@@ -1,0 +1,6 @@
+module Pods_Hawaii {
+  umbrella header "Pods-Hawaii-umbrella.h"
+
+  export *
+  module * { export * }
+}
