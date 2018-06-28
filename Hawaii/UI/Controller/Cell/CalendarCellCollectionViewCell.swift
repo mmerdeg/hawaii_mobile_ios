@@ -65,20 +65,21 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 continue
             }
             switch day.duration {
-                case .afternoon:
-                    afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                    afternoonImage.image = request.absence?.absenceType?.image ?? UIImage()
-                    leaveImage.image = UIImage()
-                case .fullday:
-                    morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                    afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                    leaveImage.image = request.absence?.absenceType?.image ?? UIImage()
-                    morningImage.image = UIImage()
-                    afternoonImage.image = UIImage()
-                case .morning:
-                    morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                    morningImage.image = request.absence?.absenceType?.image ?? UIImage()
-                    leaveImage.image = UIImage()
+                
+            case .afternoon:
+                afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                afternoonImage.image = request.absence?.absenceType?.image ?? UIImage()
+                leaveImage.image = UIImage()
+            case .fullday:
+                morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                leaveImage.image = request.absence?.absenceType?.image ?? UIImage()
+                morningImage.image = UIImage()
+                afternoonImage.image = UIImage()
+            case .morning:
+                morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                morningImage.image = request.absence?.absenceType?.image ?? UIImage()
+                leaveImage.image = UIImage()
             }
         }
         layoutIfNeeded()
@@ -92,5 +93,5 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         leaveImage.image = UIImage()
         layoutIfNeeded()
     }
+    
 }
-

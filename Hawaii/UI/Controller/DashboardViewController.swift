@@ -49,21 +49,18 @@ class DashboardViewController: UIViewController {
     @objc func addRequest() {
         let optionMenu = UIAlertController(title: nil, message: "Choose Request Type", preferredStyle: .actionSheet)
         
-        let leaveAction = UIAlertAction(title: "Leave", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        let leaveAction = UIAlertAction(title: "Leave", style: .default) { _ in
             self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
-        })
-        let sickAction = UIAlertAction(title: "Sick", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
-        })
-        let bonusAction = UIAlertAction(title: "Bonus", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
+        }
+        let sickAction = UIAlertAction(title: "Sick", style: .default) { _ in
             self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-        })
+        }
+        let bonusAction = UIAlertAction(title: "Bonus", style: .default) { _ in
+            self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+        }
         
         optionMenu.addAction(leaveAction)
         optionMenu.addAction(sickAction)
@@ -99,9 +96,11 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    func setupCalendarView(){
-        collectionView.visibleDates { (visibleDates) in
-            guard let date = visibleDates.monthDates.first?.date else { return }
+    func setupCalendarView() {
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.first?.date else {
+                return
+            }
             self.formatter.dateFormat = "yyyy"
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
@@ -173,7 +172,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
                   forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else{
+            as? CalendarCellCollectionViewCell else {
                 return
         }
         sharedFunctionToConfigureCell(myCustomCell: cell, cellState: cellState, date: date)
@@ -181,7 +180,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else{
+            as? CalendarCellCollectionViewCell else {
                 return JTAppleCell()
         }
         
@@ -217,8 +216,10 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let calendarCell = cell as? CalendarCellCollectionViewCell else { return }
-        calendarCell.circleView.isHidden =  Calendar.current.isDateInToday(cellState.date) ? false : true
+        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
+            return
+        }
+        calendarCell.circleView.isHidden = Calendar.current.isDateInToday(cellState.date) ? false : true
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
@@ -243,5 +244,5 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
         }
         
     }
+    
 }
-

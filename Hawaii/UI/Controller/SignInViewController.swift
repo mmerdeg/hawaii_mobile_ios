@@ -21,7 +21,7 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
         }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        Auth.auth().signIn(with: credential) { (firebaseUser, error) in
+        Auth.auth().signInAndRetrieveData(with: credential) { _, _ in
             print("User Signed Into Firebase")
             self.navigateToHome()
         }
@@ -53,14 +53,13 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
         GIDSignIn.sharedInstance().signIn()
     }
     
-    func initializeGoogleSignIn(){
+    func initializeGoogleSignIn() {
         GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
     }
     
-    
-    func navigateToHome(){
+    func navigateToHome() {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "homeVCSegue", sender: self)
         }
@@ -72,4 +71,3 @@ class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDele
     }
     
 }
-

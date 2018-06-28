@@ -10,7 +10,7 @@ import Foundation
 
 protocol RequestUseCaseProtocol {
     
-    func getAll(completion: @escaping ([Request])-> ())
+    func getAll(completion: @escaping ([Request]) -> Void)
     
 }
 
@@ -22,7 +22,7 @@ class RequestUseCase: RequestUseCaseProtocol {
         self.entityRepository = entityRepository
     }
     
-    func getAll(completion: @escaping ([Request]) -> ()) {
+    func getAll(completion: @escaping ([Request]) -> Void) {
         entityRepository.getAll { requests in
             completion(requests)
         }

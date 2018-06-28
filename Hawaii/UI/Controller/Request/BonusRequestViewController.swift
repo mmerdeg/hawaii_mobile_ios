@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class BonusRequestViewController: UIViewController {
     
     override func viewDidLoad() {

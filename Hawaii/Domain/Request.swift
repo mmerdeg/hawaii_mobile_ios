@@ -11,7 +11,7 @@ import UIKit
 
 struct Request {
     
-    let id : Int?
+    let id: Int?
     let days: [Day]?
     let reason: String?
     let requestStatus: RequestStatus?
@@ -19,7 +19,9 @@ struct Request {
 }
 
 extension Request {
-    init(request: Request? = nil, id: Int? = nil , reason: String? = nil, requestStatus: RequestStatus? = nil, abcence: Absence? = nil, days: [Day]? = nil) {
+    init(request: Request? = nil, id: Int? = nil ,
+         reason: String? = nil, requestStatus: RequestStatus? = nil,
+         abcence: Absence? = nil, days: [Day]? = nil) {
         self.id = id ?? request?.id
         self.reason = reason ?? request?.reason
         self.requestStatus = requestStatus ?? request?.requestStatus

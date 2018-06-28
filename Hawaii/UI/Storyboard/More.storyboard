@@ -27,7 +27,7 @@
                                     <color key="titleColor" red="0.9951923077" green="0.9903846154" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
-                                    <action selector="OnSignOutPressed:" destination="htc-E0-zC2" eventType="touchUpInside" id="Gt5-1x-AH5"/>
+                                    <action selector="onSignOutPressed:" destination="htc-E0-zC2" eventType="touchUpInside" id="e05-Ja-KMh"/>
                                 </connections>
                             </button>
                         </subviews>

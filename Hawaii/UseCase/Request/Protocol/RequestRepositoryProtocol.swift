@@ -10,6 +10,6 @@ import Foundation
 
 protocol RequestRepositoryProtocol {
     
-    func getAll(completion: @escaping ([Request])-> ())
+    func getAll(completion: @escaping ([Request]) -> Void)
     
 }
