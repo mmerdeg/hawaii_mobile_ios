@@ -54,84 +54,42 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func setCell() {
         handleCellText(cellState: cellState)
         handleCellSelection(cellState: cellState)
-        if requests != nil {
-            if requests?.count == 2 {
-                guard let firstDurationType = requests?.first?.days?.first?.duration,
-                      let secondDurationType = requests?.last?.days?.first?.duration else {
-                    return
-                }
-                switch firstDurationType {
-                    case .afternoon:
-                        afternoonView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                        afternoonImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
-                        leaveImage.image = UIImage()
-                    case .fullday:
-                        morningView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                        afternoonView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                        leaveImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
-                        morningImage.image = UIImage()
-                        afternoonImage.image = UIImage()
-                    case .morning:
-                        morningView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                        morningImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
-                        leaveImage.image = UIImage()
-                }
-                
-                switch secondDurationType {
-                    case .afternoon:
-                        afternoonView.backgroundColor = requests?.last?.requestStatus?.backgoundColor ?? UIColor.clear
-                        afternoonImage.image = requests?.last?.absence?.absenceType?.image ?? UIImage()
-                        leaveImage.image = UIImage()
-                    case .fullday:
-                        morningView.backgroundColor = UIColor.clear
-                        afternoonView.backgroundColor = UIColor.clear
-                        leaveImage.image = UIImage()
-                        morningImage.image = UIImage()
-                        afternoonImage.image = UIImage()
-                    case .morning:
-                        morningView.backgroundColor = requests?.last?.requestStatus?.backgoundColor ?? UIColor.clear
-                        morningImage.image = requests?.last?.absence?.absenceType?.image ?? UIImage()
-                        leaveImage.image = UIImage()
-                    }
-            } else if requests?.count == 1 {
-                guard let firstDurationType = requests?.first?.days?.first?.duration else {
-                    return
-                }
-                switch firstDurationType {
+        
+        guard let requests = requests else {
+            resetView()
+            return
+        }
+        
+        for request in requests {
+            guard let day = request.days?.first else {
+                continue
+            }
+            switch day.duration {
                 case .afternoon:
-                    afternoonView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                    afternoonImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
-                    morningView.backgroundColor = UIColor.clear
-                    morningImage.image = UIImage()
+                    afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    afternoonImage.image = request.absence?.absenceType?.image ?? UIImage()
                     leaveImage.image = UIImage()
                 case .fullday:
-                    morningView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                    afternoonView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                    leaveImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
+                    morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    leaveImage.image = request.absence?.absenceType?.image ?? UIImage()
                     morningImage.image = UIImage()
                     afternoonImage.image = UIImage()
                 case .morning:
-                    morningView.backgroundColor = requests?.first?.requestStatus?.backgoundColor ?? UIColor.clear
-                    morningImage.image = requests?.first?.absence?.absenceType?.image ?? UIImage()
-                    afternoonView.backgroundColor = UIColor.clear
-                    afternoonImage.image = UIImage()
+                    morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    morningImage.image = request.absence?.absenceType?.image ?? UIImage()
                     leaveImage.image = UIImage()
-                }
-            } else {
-                morningView.backgroundColor = UIColor.clear
-                afternoonView.backgroundColor = UIColor.clear
-                leaveImage.image = UIImage()
-                morningImage.image = UIImage()
-                afternoonImage.image = UIImage()
             }
-            
-        } else {
-            morningView.backgroundColor = UIColor.clear
-            morningImage.image = UIImage()
-            afternoonView.backgroundColor = UIColor.clear
-            afternoonImage.image = UIImage()
-            leaveImage.image = UIImage()
         }
+        layoutIfNeeded()
+    }
+    
+    func resetView() {
+        morningView.backgroundColor = UIColor.clear
+        morningImage.image = UIImage()
+        afternoonView.backgroundColor = UIColor.clear
+        afternoonImage.image = UIImage()
+        leaveImage.image = UIImage()
         layoutIfNeeded()
     }
 }

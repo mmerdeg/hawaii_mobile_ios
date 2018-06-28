@@ -18,6 +18,16 @@ struct Request {
     let absence: Absence?
 }
 
+extension Request {
+    init(request: Request? = nil, id: Int? = nil , reason: String? = nil, requestStatus: RequestStatus? = nil, abcence: Absence? = nil, days: [Day]? = nil) {
+        self.id = id ?? request?.id
+        self.reason = reason ?? request?.reason
+        self.requestStatus = requestStatus ?? request?.requestStatus
+        self.absence = abcence ?? request?.absence
+        self.days = days ?? request?.days
+    }
+}
+
 enum RequestStatus: String {
     case pending = "Pending"
     case approved = "Approved"

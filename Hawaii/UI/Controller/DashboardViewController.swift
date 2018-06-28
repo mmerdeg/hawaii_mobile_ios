@@ -19,12 +19,15 @@ class DashboardViewController: UIViewController {
     var requestUseCase: RequestUseCaseProtocol!
     var items: [Request] = []
     var customView: UIView = UIView()
-    let showRequestsTypeSegue = "showRequestsType"
+    let showLeaveRequestSegue = "showLeaveRequest"
     let showSickRequestSegue = "showSickRequest"
+    let showBonusRequestSegue = "showBonusRequest"
     let showRequestDetailsSegue = "showRequestDetails"
     
     lazy var addRequestItem: UIBarButtonItem = {
-        return UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
+        let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
+        item.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return item
     }()
     
     override func viewDidLoad() {
@@ -44,14 +47,30 @@ class DashboardViewController: UIViewController {
     }
     
     @objc func addRequest() {
-        self.navigationController?.view.addSubview(customView)
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-                self.navigationController?.view.bringSubview(toFront: self.customView)
-            })
-        }
-        self.performSegue(withIdentifier: showRequestsTypeSegue, sender: nil)
+        let optionMenu = UIAlertController(title: nil, message: "Choose Request Type", preferredStyle: .actionSheet)
+        
+        let leaveAction = UIAlertAction(title: "Leave", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
+        })
+        let sickAction = UIAlertAction(title: "Sick", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
+        })
+        let bonusAction = UIAlertAction(title: "Bonus", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        optionMenu.addAction(leaveAction)
+        optionMenu.addAction(sickAction)
+        optionMenu.addAction(bonusAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
     }
     
     func showDetails(requests: [Request]) {
@@ -66,11 +85,10 @@ class DashboardViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showRequestsTypeSegue {
-            guard let controller = segue.destination as? RequestTypeViewController else {
-                return
-            }
-            controller.delegate = self
+        if segue.identifier == showLeaveRequestSegue {
+//            guard let controller = segue.destination as? RequestTypeViewController else {
+//                return
+//            }
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
             let requests = sender as? [Request] else {
@@ -152,7 +170,8 @@ extension DashboardViewController: JTAppleCalendarViewDataSource {
 }
 
 extension DashboardViewController: JTAppleCalendarViewDelegate {
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
+                  forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
             as? CalendarCellCollectionViewCell else{
                 return
@@ -167,13 +186,15 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
         }
         
         cell.cellState = cellState
+        let calendar = NSCalendar.current
         var requests: [Request] = []
         for item in items {
             guard let days = item.days else {
                 continue
             }
-            for day in days where day.date == cellState.date {
-                requests.append(item)
+            for day in days where calendar.compare(day.date, to: cellState.date, toGranularity: .day) == .orderedSame {
+                let tempRequest = Request(request: item, days: [day])
+                requests.append(tempRequest)
             }
         }
         cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
@@ -209,7 +230,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
 
 }
 
-extension DashboardViewController: RequestDialogProtocol, RequestDetailsDialogProtocol {
+extension DashboardViewController: RequestDetailsDialogProtocol {
     func dismissDialog() {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
@@ -220,14 +241,7 @@ extension DashboardViewController: RequestDialogProtocol, RequestDetailsDialogPr
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
-        switch requestType {
-        case .bonus:
-            self.performSegue(withIdentifier: showSickRequestSegue, sender: nil)
-        case .sick:
-            self.performSegue(withIdentifier: showSickRequestSegue, sender: nil)
-        case .vacation:
-            self.performSegue(withIdentifier: showSickRequestSegue, sender: nil)
-        }
+        
     }
 }
 

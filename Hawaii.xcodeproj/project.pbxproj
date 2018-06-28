@@ -11,7 +11,7 @@
 		3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
 		3E28E77E20E361A800F1C6D5 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E77D20E361A800F1C6D5 /* swiftlint.yml */; };
-		3E28E78020E3628200F1C6D5 /* RequestTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E77F20E3628200F1C6D5 /* RequestTypeViewController.swift */; };
+		3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */; };
 		3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
 		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
 		3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
@@ -23,6 +23,8 @@
 		3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */; };
 		3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
 		3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
+		3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */; };
+		3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
 		3E42591C20E2454600F22BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
 		3E42591E20E256B300F22BBD /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591D20E256B300F22BBD /* Absence.swift */; };
 		3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592120E259C800F22BBD /* RequestUseCase.swift */; };
@@ -64,7 +66,7 @@
 		3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCellCollectionViewCell.xib; sourceTree = "<group>"; };
 		3E28E77D20E361A800F1C6D5 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftlint.yml; sourceTree = SOURCE_ROOT; };
-		3E28E77F20E3628200F1C6D5 /* RequestTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTypeViewController.swift; sourceTree = "<group>"; };
+		3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusRequestViewController.swift; sourceTree = "<group>"; };
 		3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
@@ -76,6 +78,8 @@
 		3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestDetailTableViewCell.xib; sourceTree = "<group>"; };
 		3E28E79620E4AEA100F1C6D5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestViewController.swift; sourceTree = "<group>"; };
+		3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickRequestViewController.swift; sourceTree = "<group>"; };
 		3E42591B20E2454600F22BBD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		3E42591D20E256B300F22BBD /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		3E42592120E259C800F22BBD /* RequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUseCase.swift; sourceTree = "<group>"; };
@@ -156,6 +160,16 @@
 				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		3E28E79820E511C600F1C6D5 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */,
+				3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */,
+				3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		3E42591A20E2452500F22BBD /* Domain */ = {
@@ -298,11 +312,11 @@
 		3EB5646720CA909800501CAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E28E79820E511C600F1C6D5 /* Request */,
 				3E236F2A20D7CCCE006AEF29 /* Cell */,
 				3EB5643A20CA69E900501CAC /* SignInViewController.swift */,
 				3E42F4BC20CE7946002661AF /* DashboardViewController.swift */,
 				3E236F2820D7AA10006AEF29 /* MoreViewController.swift */,
-				3E28E77F20E3628200F1C6D5 /* RequestTypeViewController.swift */,
 				3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */,
 			);
 			path = Controller;
@@ -521,9 +535,11 @@
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
-				3E28E78020E3628200F1C6D5 /* RequestTypeViewController.swift in Sources */,
+				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3E42591E20E256B300F22BBD /* Absence.swift in Sources */,
+				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
+				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
