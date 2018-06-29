@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         chooseInitialView()
-        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 1, green: 0.2355545163, blue: 0.1967591643, alpha: 1)
+        StyleSetup.setStyles()
         return true
     }
     
@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension SwinjectStoryboard {
     @objc class func setup() {
+        // Request Repository
         defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
             return RequestRepository()
         }
@@ -61,8 +62,28 @@ extension SwinjectStoryboard {
                                                               name: String(describing: RequestUseCaseProtocol.self)) ?? RequestRepository())
         }
         
+        // Table Data Provider Repository
+        defaultContainer.register(TableDataProviderRepository.self, name: String(describing: TableDataProviderRepositoryProtocol.self)) { _ in
+            return TableDataProviderRepository()
+        }
+        defaultContainer.register(TableDataProviderUseCaseProtocol.self,
+                                  name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
+                                    TableDataProviderUseCase(tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
+                                                                                      name: String(describing: TableDataProviderUseCaseProtocol.self))
+                                                                                        ?? TableDataProviderRepository())
+        }
+        
         defaultContainer.storyboardInitCompleted(DashboardViewController.self) { resolver, controller in
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+        }
+        
+        defaultContainer.storyboardInitCompleted(HistoryViewController.self) { resolver, controller in
+            controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+        }
+        
+        defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
+            controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
+                                                                   name: String(describing: TableDataProviderUseCaseProtocol.self))
         }
     }
 }

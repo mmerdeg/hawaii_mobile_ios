@@ -9,14 +9,14 @@
 import UIKit
 import JTAppleCalendar
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
     @IBOutlet weak var dateLabel: UILabel!
     
     let formatter = DateFormatter()
-    var requestUseCase: RequestUseCaseProtocol!
+    var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
     var customView: UIView = UIView()
     let showLeaveRequestSegue = "showLeaveRequest"
@@ -59,7 +59,7 @@ class DashboardViewController: UIViewController {
             self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
         
         optionMenu.addAction(leaveAction)
@@ -110,7 +110,7 @@ class DashboardViewController: UIViewController {
     }
     
     func fillCalendar() {
-        requestUseCase.getAll { request in
+        requestUseCase?.getAll { request in
             self.items = request
             self.collectionView.reloadData()
             

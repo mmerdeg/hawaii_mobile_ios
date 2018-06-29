@@ -9,7 +9,7 @@
 import UIKit
 import GoogleSignIn
 
-class MoreViewController: UIViewController {
+class MoreViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

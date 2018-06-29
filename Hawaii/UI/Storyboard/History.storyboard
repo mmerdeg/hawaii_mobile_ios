@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bXa-Ox-ldH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bXa-Ox-ldH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,14 +12,29 @@
         <!--History-->
         <scene sceneID="Jyc-NC-kOF">
             <objects>
-                <viewController id="zWB-Za-5S8" sceneMemberID="viewController">
+                <viewController id="zWB-Za-5S8" customClass="HistoryViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MYe-PJ-XJf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-gj-8sZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Psb-gj-8sZ" firstAttribute="leading" secondItem="LbI-5p-nbN" secondAttribute="leading" id="3mt-sb-uoz"/>
+                            <constraint firstItem="Psb-gj-8sZ" firstAttribute="centerX" secondItem="LbI-5p-nbN" secondAttribute="centerX" id="7xj-x7-anW"/>
+                            <constraint firstItem="Psb-gj-8sZ" firstAttribute="centerY" secondItem="LbI-5p-nbN" secondAttribute="centerY" id="8WA-Lw-JIt"/>
+                            <constraint firstItem="Psb-gj-8sZ" firstAttribute="top" secondItem="LbI-5p-nbN" secondAttribute="top" id="MHL-I7-HQT"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LbI-5p-nbN"/>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="6SX-j0-ihQ"/>
+                    <connections>
+                        <outlet property="tableView" destination="Psb-gj-8sZ" id="DN2-Fk-zFN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwE-Cb-F6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -35,10 +50,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Luz-l6-rOV">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.88638928090000002" green="0.38368532820000001" blue="0.34591973139999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

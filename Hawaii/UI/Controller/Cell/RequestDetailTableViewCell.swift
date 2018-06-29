@@ -10,25 +10,25 @@ import UIKit
 
 class RequestDetailTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var requestHours: UILabel!
+    @IBOutlet weak var date: UILabel!
     @IBOutlet weak var requestNumberOfDays: UILabel!
-    @IBOutlet weak var requestEndDate: UILabel!
     @IBOutlet weak var requestStartDate: UILabel!
     @IBOutlet weak var requestReason: UILabel!
-    
     @IBOutlet weak var requestImage: UIImageView!
+    
     var request: Request? {
         didSet {
             guard let reason = request?.reason,
-                  let endDate = request?.days?.first?.date,
                   let image = request?.absence?.absenceType?.image,
                   let color = request?.requestStatus?.backgoundColor else {
                     return
             }
             requestReason.text = reason
-            requestEndDate.text = endDate.description
-            requestImage.image = image
+            requestImage.image = image.withRenderingMode(.alwaysTemplate)
+            requestImage.tintColor = UIColor.white
             requestImage.backgroundColor = color
+            self.layer.borderWidth = 3
+            self.layer.borderColor = UIColor.transparentColor.cgColor
         }
     }
 

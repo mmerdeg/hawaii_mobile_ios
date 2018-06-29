@@ -2,7 +2,7 @@ import UIKit
 import GoogleSignIn
 import Firebase
 
-class SignInViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()

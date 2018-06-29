@@ -1,0 +1,3 @@
+[submodule "ec-foundation-ios"]
+	path = ec-foundation-ios
+	url = https://gitlab.com/anovakovic/ec-foundation-ios.git

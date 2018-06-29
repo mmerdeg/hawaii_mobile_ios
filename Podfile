@@ -10,4 +10,5 @@ target 'Hawaii' do
     pod 'JTAppleCalendar', '~> 7.0'
     pod 'Swinject'
     pod 'SwinjectStoryboard'
+    pod 'YLProgressBar', '~> 3.10.2'
 end 

@@ -39,13 +39,13 @@ enum RequestStatus: String {
     var backgoundColor: UIColor? {
         switch self {
         case .pending:
-            return #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 0.2693707192)
+            return UIColor.pendingColor
         case .approved:
-            return #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 0.2249839469)
+            return UIColor.approvedColor
         case .canceled:
              return UIColor.clear
         case .rejected:
-            return #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 0.3000588613)
+            return UIColor.rejectedColor
         }
     }
     

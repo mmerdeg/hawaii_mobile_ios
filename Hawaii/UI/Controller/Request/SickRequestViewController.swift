@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SickRequestViewController: UIViewController {
+class SickRequestViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

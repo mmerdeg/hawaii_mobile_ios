@@ -31,7 +31,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         if Calendar.current.isDateInToday(cellState.date) {
             dateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         } else {
-            dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ? UIColor.accentColor : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         }
     }
     
@@ -54,7 +54,8 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func setCell() {
         handleCellText(cellState: cellState)
         handleCellSelection(cellState: cellState)
-        
+        self.layer.borderColor = UIColor.accentColor.cgColor
+        self.layer.borderWidth = 0.5
         guard let requests = requests else {
             resetView()
             return

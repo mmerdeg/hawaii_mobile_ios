@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
+		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
+		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
+		3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */; };
+		3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */; };
+		3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
+		3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
+		3E15C41D20E61E4800DB2CF7 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3E15C45020E62AD300DB2CF7 /* WhiteUIPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C44F20E62AD300DB2CF7 /* WhiteUIPicker.swift */; };
+		3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45920E6379200DB2CF7 /* CellData.swift */; };
+		3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
+		3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45D20E645AC00DB2CF7 /* SectionData.swift */; };
+		3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */; };
+		3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCase.swift */; };
+		3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46720E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift */; };
+		3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */; };
 		3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2820D7AA10006AEF29 /* MoreViewController.swift */; };
 		3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
@@ -44,6 +60,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3E15C41320E61AAD00DB2CF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA4666DC1E1199C9004DE437;
+			remoteInfo = ECFoundationiOS;
+		};
+		3E15C41520E61AAD00DB2CF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA4666E51E1199C9004DE437;
+			remoteInfo = ECFoundationiOSTests;
+		};
+		3E15C41720E61AAD00DB2CF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA4666F91E119A02004DE437;
+			remoteInfo = ECFoundationMacOS;
+		};
+		3E15C41920E61AAD00DB2CF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = FA4667011E119A02004DE437;
+			remoteInfo = ECFoundationMacOSTests;
+		};
+		3E15C41E20E61E4800DB2CF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FA4666DB1E1199C9004DE437;
+			remoteInfo = ECFoundationiOS;
+		};
 		3EB5644A20CA69EA00501CAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3EB5642D20CA69E900501CAC /* Project object */;
@@ -60,8 +111,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3E15C42020E61E4800DB2CF7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3E15C41D20E61E4800DB2CF7 /* ECFoundationiOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
+		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
+		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
+		3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ECFoundation.xcodeproj; path = "ec-foundation-ios/ECFoundation.xcodeproj"; sourceTree = "<group>"; };
+		3E15C44F20E62AD300DB2CF7 /* WhiteUIPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteUIPicker.swift; sourceTree = "<group>"; };
+		3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hawaii-Bridging-Header.h"; sourceTree = "<group>"; };
+		3E15C45920E6379200DB2CF7 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRequestParamsViewController.swift; sourceTree = "<group>"; };
+		3E15C45D20E645AC00DB2CF7 /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
+		3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderRepository.swift; sourceTree = "<group>"; };
+		3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderUseCase.swift; sourceTree = "<group>"; };
+		3E15C46720E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderRepositoryProtocol.swift; sourceTree = "<group>"; };
+		3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3E236F2820D7AA10006AEF29 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCellCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -110,6 +190,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
+				3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
 				BA236B9808DEDD81FAEC70E1 /* libPods-Hawaii.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +219,95 @@
 				9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E15C36820E6150700DB2CF7 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C44E20E62AC700DB2CF7 /* UIPicker */,
+				3E15C3F520E61A6500DB2CF7 /* Button */,
+				3E15C3F720E61A6500DB2CF7 /* Font */,
+				3E15C36920E6151900DB2CF7 /* StyleSetup.swift */,
+			);
+			path = Style;
+			sourceTree = "<group>";
+		};
+		3E15C3F520E61A6500DB2CF7 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		3E15C3F720E61A6500DB2CF7 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */,
+				3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		3E15C40D20E61AAD00DB2CF7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */,
+				3E15C41620E61AAD00DB2CF7 /* ECFoundationiOSTests.xctest */,
+				3E15C41820E61AAD00DB2CF7 /* ECFoundationMacOS.framework */,
+				3E15C41A20E61AAD00DB2CF7 /* ECFoundationMacOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E15C44E20E62AC700DB2CF7 /* UIPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C44F20E62AD300DB2CF7 /* WhiteUIPicker.swift */,
+			);
+			path = UIPicker;
+			sourceTree = "<group>";
+		};
+		3E15C45820E6376A00DB2CF7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C45920E6379200DB2CF7 /* CellData.swift */,
+				3E15C45D20E645AC00DB2CF7 /* SectionData.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3E15C45F20E64C1000DB2CF7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3E15C46220E64CEB00DB2CF7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C46620E64D2300DB2CF7 /* Implementation */,
+				3E15C46520E64D1C00DB2CF7 /* Protocol */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3E15C46520E64D1C00DB2CF7 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C46720E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3E15C46620E64D2300DB2CF7 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCase.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 		3E236F2A20D7CCCE006AEF29 /* Cell */ = {
@@ -175,6 +346,7 @@
 		3E42591A20E2452500F22BBD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3E15C45820E6376A00DB2CF7 /* UI */,
 				3E42591B20E2454600F22BBD /* Request.swift */,
 				3E42591D20E256B300F22BBD /* Absence.swift */,
 				3E28E79620E4AEA100F1C6D5 /* Day.swift */,
@@ -185,6 +357,7 @@
 		3E42591F20E2598900F22BBD /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				3E15C45F20E64C1000DB2CF7 /* UI */,
 				3E42592A20E2609400F22BBD /* Request */,
 			);
 			path = Repository;
@@ -193,6 +366,7 @@
 		3E42592020E259AC00F22BBD /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
 			);
 			path = UseCase;
@@ -244,6 +418,7 @@
 		3EB5642C20CA69E900501CAC = {
 			isa = PBXGroup;
 			children = (
+				3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */,
 				3EB5643720CA69E900501CAC /* Hawaii */,
 				3EB5644C20CA69EA00501CAC /* HawaiiTests */,
 				3EB5645720CA69EA00501CAC /* HawaiiUITests */,
@@ -277,6 +452,7 @@
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
 				3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */,
 				3EB5644420CA69EA00501CAC /* Info.plist */,
+				3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */,
 			);
 			path = Hawaii;
 			sourceTree = "<group>";
@@ -302,6 +478,7 @@
 		3EB5646620CA909000501CAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
 				3E42592B20E26A0700F22BBD /* Extension */,
 				3EB5646720CA909800501CAC /* Controller */,
@@ -318,6 +495,9 @@
 				3E42F4BC20CE7946002661AF /* DashboardViewController.swift */,
 				3E236F2820D7AA10006AEF29 /* MoreViewController.swift */,
 				3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */,
+				3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */,
+				3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */,
+				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,10 +524,12 @@
 				3EB5643320CA69E900501CAC /* Resources */,
 				4C445ED01E3050A9DEDF0FCD /* [CP] Copy Pods Resources */,
 				3E6AEFE920D3BD9B002E8F61 /* ShellScript */,
+				3E15C42020E61E4800DB2CF7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3E15C41F20E61E4800DB2CF7 /* PBXTargetDependency */,
 			);
 			name = Hawaii;
 			productName = Hawaii;
@@ -402,6 +584,7 @@
 				TargetAttributes = {
 					3EB5643420CA69E900501CAC = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0940;
 					};
 					3EB5644820CA69EA00501CAC = {
 						CreatedOnToolsVersion = 9.3;
@@ -424,6 +607,12 @@
 			mainGroup = 3EB5642C20CA69E900501CAC;
 			productRefGroup = 3EB5643620CA69E900501CAC /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3E15C40D20E61AAD00DB2CF7 /* Products */;
+					ProjectRef = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3EB5643420CA69E900501CAC /* Hawaii */,
@@ -432,6 +621,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ECFoundationiOS.framework;
+			remoteRef = 3E15C41320E61AAD00DB2CF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E15C41620E61AAD00DB2CF7 /* ECFoundationiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ECFoundationiOSTests.xctest;
+			remoteRef = 3E15C41520E61AAD00DB2CF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E15C41820E61AAD00DB2CF7 /* ECFoundationMacOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ECFoundationMacOS.framework;
+			remoteRef = 3E15C41720E61AAD00DB2CF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3E15C41A20E61AAD00DB2CF7 /* ECFoundationMacOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ECFoundationMacOSTests.xctest;
+			remoteRef = 3E15C41920E61AAD00DB2CF7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3EB5643320CA69E900501CAC /* Resources */ = {
@@ -529,24 +749,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */,
+				3E15C45020E62AD300DB2CF7 /* WhiteUIPicker.swift in Sources */,
 				3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */,
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
+				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
+				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3E42591E20E256B300F22BBD /* Absence.swift in Sources */,
+				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
+				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
+				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
+				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
+				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
+				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
+				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
+				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
+				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +802,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3E15C41F20E61E4800DB2CF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ECFoundationiOS;
+			targetProxy = 3E15C41E20E61E4800DB2CF7 /* PBXContainerItemProxy */;
+		};
 		3EB5644B20CA69EA00501CAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3EB5643420CA69E900501CAC /* Hawaii */;
@@ -719,7 +957,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
 				INFOPLIST_FILE = Hawaii/Info.plist;
@@ -730,6 +970,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = eu.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -739,7 +981,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
 				INFOPLIST_FILE = Hawaii/Info.plist;
@@ -750,6 +994,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = eu.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
