@@ -29,20 +29,16 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func handleCellText(cellState: CellState) {
         dateLabel.text = cellState.text
         if Calendar.current.isDateInToday(cellState.date) {
-            dateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            dateLabel.textColor = UIColor.accentColor
         } else {
-            dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ? UIColor.accentColor : #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ?
+                UIColor.accentColor : UIColor.inactiveColor
         }
     }
     
     func handleCellSelection(cellState: CellState) {
-        if Calendar.current.isDateInToday(cellState.date) {
-            circleView.isHidden = false
-            circleView.backgroundColor = #colorLiteral(red: 1, green: 0.2457885742, blue: 0.2937521338, alpha: 1)
-        } else {
-            circleView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            circleView.isHidden = cellState.dateBelongsTo == .thisMonth ? !cellState.isSelected : true
-        }
+        circleView.backgroundColor = UIColor.primaryColor
+        circleView.isHidden = !Calendar.current.isDateInToday(cellState.date)
     }
     
     override func awakeFromNib() {

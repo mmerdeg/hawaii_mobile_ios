@@ -42,32 +42,31 @@ class DashboardViewController: BaseViewController {
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         setupCalendarView()
         fillCalendar()
+        collectionView.scrollToDate(Date(), animateScroll: false)
         self.navigationItem.rightBarButtonItem = addRequestItem
         
     }
     
     @objc func addRequest() {
-        let optionMenu = UIAlertController(title: nil, message: "Choose Request Type", preferredStyle: .actionSheet)
         
-        let leaveAction = UIAlertAction(title: "Leave", style: .default) { _ in
-            self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
-        }
-        let sickAction = UIAlertAction(title: "Sick", style: .default) { _ in
-            self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
-        }
-        let bonusAction = UIAlertAction(title: "Bonus", style: .default) { _ in
-            self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
-        }
+        let leave = DialogWrapper(title: "Leave", uiAction: .default,
+            handler: { _ in
+                self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
+        })
+        let sick = DialogWrapper(title: "Sick", uiAction: .default,
+            handler: { _ in
+                self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+        })
+        let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
+            handler: { _ in
+                self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+        })
+        let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-        }
-        
-        optionMenu.addAction(leaveAction)
-        optionMenu.addAction(sickAction)
-        optionMenu.addAction(bonusAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.present(optionMenu, animated: true, completion: nil)
+        ViewUtility.showCustomDialog(self,
+            choices: [leave, sick, bonus, cancel],
+            title: "Choose Request Type"
+        )
     }
     
     func showDetails(requests: [Request]) {
@@ -88,7 +87,7 @@ class DashboardViewController: BaseViewController {
 //            }
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
-            let requests = sender as? [Request] else {
+                  let requests = sender as? [Request] else {
                 return
             }
             controller.requests = requests
@@ -117,25 +116,6 @@ class DashboardViewController: BaseViewController {
         }
     }
     
-    func handleCellText(cell: CalendarCellCollectionViewCell, cellState: CellState) {
-        cell.dateLabel.text = cellState.text
-        if Calendar.current.isDateInToday(cellState.date) {
-            cell.dateLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        } else {
-            cell.dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        }
-    }
-    
-    func handleCellSelection(cell: CalendarCellCollectionViewCell, cellState: CellState) {
-        if Calendar.current.isDateInToday(cellState.date) {
-            cell.circleView.isHidden = false
-            cell.circleView.backgroundColor = #colorLiteral(red: 1, green: 0.2457885742, blue: 0.2937521338, alpha: 1)
-        } else {
-            cell.circleView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-            cell.circleView.isHidden = cellState.dateBelongsTo == .thisMonth ? !cellState.isSelected : true
-        }
-    }
-    
     func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
         
     }
@@ -160,10 +140,10 @@ extension DashboardViewController: JTAppleCalendarViewDataSource {
         
         guard let startDate = formatter.date(from: "01 06 2018"),
               let endDate = formatter.date(from: "31 12 2030") else {
-            return ConfigurationParameters(startDate: Date(), endDate: Date())
+                return ConfigurationParameters(startDate: Date(), endDate: Date(), firstDayOfWeek: .monday)
         }
         
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
         return parameters
     }
 }

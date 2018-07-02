@@ -50,10 +50,3 @@ enum RequestStatus: String {
     }
     
 }
-
-enum RequestType: Int {
-    case vacation = 0
-    case sick = 1
-    case bonus = 2
-    
-}

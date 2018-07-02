@@ -39,4 +39,8 @@ extension UIColor {
         return #colorLiteral(red: 0.01436121868, green: 0.7305877221, blue: 0.02162263702, alpha: 1)
     }
     
+    class var inactiveColor: UIColor {
+        return #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+    }
+    
 }

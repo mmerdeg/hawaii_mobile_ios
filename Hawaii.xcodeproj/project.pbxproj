@@ -48,11 +48,16 @@
 		3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
 		3E42F4BB20CE6D96002661AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */; };
 		3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42F4BC20CE7946002661AF /* DashboardViewController.swift */; };
+		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
+		3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
+		3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645320EA297C00DC7240 /* DatePickerViewController.swift */; };
+		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
+		3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E72646120EA4E8C00DC7240 /* Assets.xcassets */; };
+		3E72646420EA6FF100DC7240 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72646320EA6FF100DC7240 /* RequestType.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643820CA69E900501CAC /* AppDelegate.swift */; };
 		3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5643C20CA69E900501CAC /* Main.storyboard */; };
-		3EB5644020CA69EA00501CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5643F20CA69EA00501CAC /* Assets.xcassets */; };
 		3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
 		3EB5644E20CA69EA00501CAC /* HawaiiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5644D20CA69EA00501CAC /* HawaiiTests.swift */; };
 		3EB5645920CA69EA00501CAC /* HawaiiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5645820CA69EA00501CAC /* HawaiiUITests.swift */; };
@@ -167,12 +172,17 @@
 		3E42592C20E26A1900F22BBD /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E42F4BC20CE7946002661AF /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
+		3E72645020EA1D0600DC7240 /* ViewUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtility.swift; sourceTree = "<group>"; };
+		3E72645320EA297C00DC7240 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
+		3E72646120EA4E8C00DC7240 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		3E72646320EA6FF100DC7240 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		3EB5643520CA69E900501CAC /* Hawaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hawaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB5643820CA69E900501CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EB5643A20CA69E900501CAC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		3EB5643D20CA69E900501CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3EB5643F20CA69EA00501CAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EB5644220CA69EA00501CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EB5644420CA69EA00501CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EB5644920CA69EA00501CAC /* HawaiiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawaiiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +283,7 @@
 			children = (
 				3E15C45920E6379200DB2CF7 /* CellData.swift */,
 				3E15C45D20E645AC00DB2CF7 /* SectionData.swift */,
+				3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -350,6 +361,7 @@
 				3E42591B20E2454600F22BBD /* Request.swift */,
 				3E42591D20E256B300F22BBD /* Absence.swift */,
 				3E28E79620E4AEA100F1C6D5 /* Day.swift */,
+				3E72646320EA6FF100DC7240 /* RequestType.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -415,6 +427,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		3E72644F20EA1CE100DC7240 /* ViewUtility */ = {
+			isa = PBXGroup;
+			children = (
+				3E72645020EA1D0600DC7240 /* ViewUtility.swift */,
+			);
+			path = ViewUtility;
+			sourceTree = "<group>";
+		};
+		3E72645220EA294E00DC7240 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				3E72645320EA297C00DC7240 /* DatePickerViewController.swift */,
+				3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		3EB5642C20CA69E900501CAC = {
 			isa = PBXGroup;
 			children = (
@@ -446,9 +475,9 @@
 				3E42591A20E2452500F22BBD /* Domain */,
 				3EB5646620CA909000501CAC /* UI */,
 				3EB5643820CA69E900501CAC /* AppDelegate.swift */,
+				3E72646120EA4E8C00DC7240 /* Assets.xcassets */,
 				3E987AEF20E518630083BB18 /* .swiftlint.yml */,
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
-				3EB5643F20CA69EA00501CAC /* Assets.xcassets */,
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
 				3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */,
 				3EB5644420CA69EA00501CAC /* Info.plist */,
@@ -478,6 +507,7 @@
 		3EB5646620CA909000501CAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3E72644F20EA1CE100DC7240 /* ViewUtility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
 				3E42592B20E26A0700F22BBD /* Extension */,
@@ -489,6 +519,7 @@
 		3EB5646720CA909800501CAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E72645220EA294E00DC7240 /* Component */,
 				3E28E79820E511C600F1C6D5 /* Request */,
 				3E236F2A20D7CCCE006AEF29 /* Cell */,
 				3EB5643A20CA69E900501CAC /* SignInViewController.swift */,
@@ -666,9 +697,9 @@
 				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E42F4BB20CE6D96002661AF /* GoogleService-Info.plist in Resources */,
-				3EB5644020CA69EA00501CAC /* Assets.xcassets in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
+				3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -760,23 +791,28 @@
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3E42591E20E256B300F22BBD /* Absence.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
+				3E72646420EA6FF100DC7240 /* RequestType.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
+				3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
+				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
+				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
+				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,

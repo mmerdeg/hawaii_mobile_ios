@@ -17,9 +17,19 @@ import UIKit
     }
     
     override func layoutSubviews() {
+        //self.layoutIfNeeded()
         self.tintColor = tintCustomColor
         self.setValue(tintCustomColor, forKey: "textColor")
         self.setValue(false, forKey: "highlightsToday")
-        self.layoutIfNeeded()
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        // custom setup
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        // custom setup
     }
 }
