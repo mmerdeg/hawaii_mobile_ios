@@ -22,7 +22,8 @@ class StyleSetup {
         ]
         
         FontManager.fonts = [
-            "fontPrimary": Font.primary()
+            "fontPrimary": Font.primary(),
+            "fontRed": Font.red()
         ]
         
     }

@@ -13,5 +13,9 @@ extension Font {
     public class func primary() -> Font {
         return Font(font: UIFont.primary(), color: UIColor.accentColor, fontName: "fontPrimary")
     }
+    
+    public class func red() -> Font {
+        return Font(font: UIFont.red(), color: UIColor.primaryColor, fontName: "fontRed")
+    }
 
 }

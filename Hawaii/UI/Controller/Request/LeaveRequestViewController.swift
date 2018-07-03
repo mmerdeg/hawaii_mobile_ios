@@ -20,7 +20,7 @@ class LeaveRequestViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressBar.setProgress(0.5, animated: true)
+       // progressBar.setProgress(0.5, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

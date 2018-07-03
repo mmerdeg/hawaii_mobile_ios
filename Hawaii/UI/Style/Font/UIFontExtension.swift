@@ -12,5 +12,7 @@ import UIKit
     public class func primary() -> UIFont {
         return UIFont.preferredFont(forTextStyle: .body)
     }
-    
+    public class func red() -> UIFont {
+        return UIFont.preferredFont(forTextStyle: .body)
+    }
 }
