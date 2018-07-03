@@ -37,8 +37,9 @@ class LeaveRequestViewController: BaseViewController {
             guard let requestTableViewController = self.requestTableViewController else {
                 return
             }
-            requestTableViewController.setRequestType(type: .vacation)
+            requestTableViewController.requestType = .vacation
         }
     }
     
 }
+

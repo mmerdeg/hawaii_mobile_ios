@@ -154,7 +154,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ptd-Zk-EbP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Dashboard" id="hMB-bb-WMv"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="hMB-bb-WMv">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="XLp-ia-Ft9"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="OrU-Tk-AkU" id="FMG-b8-Wml"/>
                         <outlet property="dateLabel" destination="wVt-5j-dNE" id="znY-XY-ddg"/>
@@ -168,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="3694" y="-1601"/>
         </scene>
-        <!--Leave Request View Controller-->
+        <!--Leave Request-->
         <scene sceneID="ysm-Co-hxK">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="Tu2-2N-IoX" customClass="LeaveRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Leave Request" modalTransitionStyle="flipHorizontal" id="Tu2-2N-IoX" customClass="LeaveRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EdC-cI-mcM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +236,6 @@
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="VUD-IJ-noa" id="b8V-Vb-xGW"/>
-                        <segue destination="Dcc-JR-qMW" kind="show" identifier="selectParameters" id="A4w-58-TsG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzw-jH-nlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,15 +247,14 @@
             <objects>
                 <viewController id="Dcc-JR-qMW" customClass="SelectRequestParamsViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pgB-dX-5Iz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5uV-dt-LG0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ed0-GS-tKf" firstAttribute="bottom" secondItem="5uV-dt-LG0" secondAttribute="bottom" id="V2d-w3-XUc"/>
                             <constraint firstItem="5uV-dt-LG0" firstAttribute="top" secondItem="Ed0-GS-tKf" secondAttribute="top" id="WG5-55-5Ls"/>
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dxi-NI-JdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6401" y="-1601"/>
+            <point key="canvasLocation" x="7838" y="-2031"/>
         </scene>
         <!--Sick Request View Controller-->
         <scene sceneID="jDW-cf-IXH">
@@ -280,9 +280,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="udw-Lg-t7W"/>
                     </view>
-                    <connections>
-                        <segue destination="Dcc-JR-qMW" kind="show" identifier="selectParameters" id="9X8-IM-ufd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-YT-MNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -298,9 +295,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="iRw-Vr-qeM"/>
                     </view>
-                    <connections>
-                        <segue destination="Dcc-JR-qMW" kind="show" identifier="selectParameters" id="p4w-rK-Av9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVf-3d-sqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -442,7 +436,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4F-BV-80z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OM4-mH-DES" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5898" y="-2564"/>
+            <point key="canvasLocation" x="7306" y="-2433"/>
         </scene>
         <!--Request Table View Controller-->
         <scene sceneID="bbo-TI-r87">
@@ -457,7 +451,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="n96-9R-F7H" firstAttribute="centerX" secondItem="aac-HI-s3m" secondAttribute="centerX" id="SCo-2N-0ki"/>
                             <constraint firstItem="n96-9R-F7H" firstAttribute="leading" secondItem="aac-HI-s3m" secondAttribute="leading" id="SZI-Gg-hML"/>
@@ -468,11 +461,12 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="n96-9R-F7H" id="qPs-uo-ke1"/>
+                        <segue destination="Dcc-JR-qMW" kind="show" identifier="selectParameters" id="Qoj-Oo-EwU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cw-dF-EyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6752" y="-2401"/>
+            <point key="canvasLocation" x="6834" y="-2031"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FGs-HW-0Ir">
@@ -489,8 +483,5 @@
             </objects>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="A4w-58-TsG"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

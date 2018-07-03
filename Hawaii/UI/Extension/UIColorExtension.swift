@@ -43,4 +43,7 @@ extension UIColor {
         return #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
     
+    class var selectionColor: UIColor {
+        return #colorLiteral(red: 0.1683397346, green: 0.1683397346, blue: 0.1683397346, alpha: 1)
+    }
 }

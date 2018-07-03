@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 class DatePickerViewController: UIViewController {
-    
-    //let monika = "car"
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     }

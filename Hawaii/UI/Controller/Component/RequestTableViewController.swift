@@ -28,7 +28,6 @@ class RequestTableViewController: UIViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        
         guard let requestType = requestType else {
             return
         }
@@ -44,11 +43,6 @@ class RequestTableViewController: UIViewController {
         }
     }
     
-    func setRequestType(type: RequestType) {
-        requestType = type
-        setupTableView()
-    }
-    
     func setItems(data: [CellData]) {
         items = data
         tableView.reloadData()
@@ -61,6 +55,14 @@ class RequestTableViewController: UIViewController {
                     return
             }
             controller.items = data
+            if data[0].name == nil {
+                controller.title = "Duration"
+            } else if requestType == .vacation {
+                controller.title = "Type of leave"
+            } else {
+                controller.title = "Type of sickness"
+            }
+            controller.delegate = self
         }
     }
 }
@@ -74,6 +76,8 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         cell.textLabel?.text = self.items[indexPath.row].title
         cell.detailTextLabel?.text = self.items[indexPath.row].description
+        cell.textLabel?.textColor = UIColor.accentColor
+        cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor.transparentColor
         return cell
@@ -94,6 +98,18 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             tableDataProviderUseCase?.getDurationData(completion: { data in
                 self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
             })
+        }
+    }
+    
+}
+
+extension RequestTableViewController: SelectRequestParamProtocol {
+    
+    func didSelect(requestParam: String, requestParamType: String) {
+        if requestParamType == "Duration" {
+            tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = requestParam
+        } else {
+            tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text = requestParam
         }
     }
     

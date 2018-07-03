@@ -8,16 +8,21 @@
 
 import UIKit
 
+protocol SelectRequestParamProtocol: class {
+    func didSelect(requestParam: String, requestParamType: String)
+}
+
 class SelectRequestParamsViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    weak var delegate: SelectRequestParamProtocol?
     
     var items: [SectionData]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -27,12 +32,18 @@ extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        tableView.backgroundColor = UIColor.clear
         
         guard let items = items,
               let title = items[indexPath.section].cells?[indexPath.row].title else {
             return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
         cell.textLabel?.text = title
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.textColor = UIColor.accentColor
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.selectionColor
+        cell.selectedBackgroundView = backgroundView
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -53,5 +64,13 @@ extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewD
                 return 0
         }
         return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let title = items?[indexPath.section].cells?[indexPath.row].title else {
+            return
+        }
+        delegate?.didSelect(requestParam: title, requestParamType: self.title ?? "")
+        self.navigationController?.popViewController(animated: true)
     }
 }
