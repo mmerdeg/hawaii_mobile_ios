@@ -15,6 +15,10 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var nextButton: UIButton!
+    
+    @IBOutlet weak var previousButton: UIButton!
+    
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
@@ -26,12 +30,15 @@ class DashboardViewController: BaseViewController {
     
     lazy var addRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
-        item.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        item.tintColor = UIColor.accentColor
         return item
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateLabel.textColor = UIColor.primaryColor
+        nextButton.setTitleColor(UIColor.primaryColor, for: .normal)
+        previousButton.setTitleColor(UIColor.primaryColor, for: .normal)
         customView.frame = self.view.frame
         let nib = UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
@@ -55,7 +62,7 @@ class DashboardViewController: BaseViewController {
         })
         let sick = DialogWrapper(title: "Sick", uiAction: .default,
             handler: { _ in
-                self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+                self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
         })
         let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
             handler: { _ in

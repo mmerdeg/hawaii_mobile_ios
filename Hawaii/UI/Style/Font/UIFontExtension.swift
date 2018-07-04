@@ -12,7 +12,8 @@ import UIKit
     public class func primary() -> UIFont {
         return UIFont.preferredFont(forTextStyle: .body)
     }
-    public class func red() -> UIFont {
+    
+    public class func calendarDaysFont() -> UIFont {
         return UIFont.preferredFont(forTextStyle: .body)
     }
 }

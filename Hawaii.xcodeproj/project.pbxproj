@@ -48,6 +48,7 @@
 		3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
 		3E42F4BB20CE6D96002661AF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */; };
 		3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42F4BC20CE7946002661AF /* DashboardViewController.swift */; };
+		3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */; };
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
 		3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645320EA297C00DC7240 /* DatePickerViewController.swift */; };
@@ -172,6 +173,7 @@
 		3E42592C20E26A1900F22BBD /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3E42F4BA20CE6D96002661AF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E42F4BC20CE7946002661AF /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainigDaysViewController.swift; sourceTree = "<group>"; };
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* ViewUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtility.swift; sourceTree = "<group>"; };
 		3E72645320EA297C00DC7240 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 			children = (
 				3E72645320EA297C00DC7240 /* DatePickerViewController.swift */,
 				3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */,
+				3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -781,6 +784,7 @@
 			files = (
 				3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */,
 				3E15C45020E62AD300DB2CF7 /* WhiteUIPicker.swift in Sources */,
+				3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */,
 				3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */,
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
 				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,

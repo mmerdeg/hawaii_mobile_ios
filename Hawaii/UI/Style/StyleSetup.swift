@@ -23,7 +23,7 @@ class StyleSetup {
         
         FontManager.fonts = [
             "fontPrimary": Font.primary(),
-            "fontRed": Font.red()
+            "calendarDaysFont": Font.calendarDaysFont()
         ]
         
     }

@@ -14,8 +14,7 @@ extension Font {
         return Font(font: UIFont.primary(), color: UIColor.accentColor, fontName: "fontPrimary")
     }
     
-    public class func red() -> Font {
-        return Font(font: UIFont.red(), color: UIColor.primaryColor, fontName: "fontRed")
+    public class func calendarDaysFont() -> Font {
+        return Font(font: UIFont.calendarDaysFont(), color: UIColor.accentColor, fontName: "calendarDaysFont")
     }
-
 }

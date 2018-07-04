@@ -15,13 +15,21 @@ extension UIColor {
         return #colorLiteral(red: 1, green: 0.3524264984, blue: 0.3430640954, alpha: 1)
     }
     
-    class var secondaryColor: UIColor {
+    class var accentColor: UIColor {
         return #colorLiteral(red: 0.2597557107, green: 0.2549137603, blue: 0.2586930243, alpha: 1)
     }
-    
-    class var accentColor: UIColor {
+
+    class var secondaryColor: UIColor {
         return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
+    
+//    class var secondaryColor: UIColor {
+//        return #colorLiteral(red: 0.2597557107, green: 0.2549137603, blue: 0.2586930243, alpha: 1)
+//    }
+//
+//    class var accentColor: UIColor {
+//        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//    }
     
     class var transparentColor: UIColor {
         return UIColor.clear

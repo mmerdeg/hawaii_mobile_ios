@@ -9,18 +9,17 @@
 import UIKit
 
 class LeaveRequestViewController: BaseViewController {
-
-    @IBOutlet weak var progressBar: YLProgressBar!
     
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
     let showRequestTableViewController = "showRequestTableViewController"
-    
+    let showRemainingDaysViewController = "showRemainingDaysViewController"
+
     var datePickerController: DatePickerViewController?
     var requestTableViewController: RequestTableViewController?
+    var remainingDaysViewController: RemainigDaysViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // progressBar.setProgress(0.5, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -38,8 +37,16 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             requestTableViewController.requestType = .vacation
+        } else if segue.identifier == showRemainingDaysViewController {
+            guard let controller = segue.destination as? RemainigDaysViewController else {
+                return
+            }
+            self.remainingDaysViewController = controller
+            guard let remainingDaysViewController = self.remainingDaysViewController else {
+                return
+            }
+            remainingDaysViewController.mainLabelText = "LEAVE"
         }
     }
     
 }
-

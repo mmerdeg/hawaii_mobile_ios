@@ -10,7 +10,7 @@ import UIKit
 
 @IBDesignable class WhiteUIPicker: UIDatePicker {
     
-    @IBInspectable var tintCustomColor: UIColor = UIColor.white {
+    @IBInspectable var tintCustomColor: UIColor = UIColor.accentColor {
         didSet {
             setNeedsLayout()
         }
