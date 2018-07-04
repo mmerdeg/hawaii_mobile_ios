@@ -36,7 +36,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void) {
-        completion([SectionData(name: nil, cells: [CellData(title: "Sick", description: nil),
+        completion([SectionData(name: "Sickness Type", cells: [CellData(title: "Sick", description: nil),
                                                                     CellData(title: "Veeery sick", description: nil),
                                                                     CellData(title: "Dying", description: nil)])])
     }

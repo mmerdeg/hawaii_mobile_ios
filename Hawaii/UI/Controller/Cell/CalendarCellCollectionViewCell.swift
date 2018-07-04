@@ -15,13 +15,17 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     
     @IBOutlet weak var circleView: UIView!
     
-    @IBOutlet weak var leaveImage: UIImageView!
+    @IBOutlet weak var fullDayImage: UIImageView!
     
     @IBOutlet weak var morningView: UIView!
+    
     @IBOutlet weak var morningImage: UIImageView!
     
     @IBOutlet weak var afternoonView: UIView!
+    
     @IBOutlet weak var afternoonImage: UIImageView!
+    
+    @IBOutlet weak var fullDayView: UIView!
     
     var requests: [Request]?
     var cellState: CellState!
@@ -44,7 +48,9 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        morningView.layer.cornerRadius = morningView.frame.height / 2
+        afternoonView.layer.cornerRadius = afternoonView.frame.height / 2
+        fullDayView.layer.cornerRadius = fullDayView.frame.height / 2
     }
     
     func setCell() {
@@ -56,27 +62,23 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             resetView()
             return
         }
+        resetView()
         
         for request in requests {
             guard let day = request.days?.first else {
                 continue
             }
             switch day.duration {
-                
+
             case .afternoon:
                 afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                 afternoonImage.image = request.absence?.absenceType?.image ?? UIImage()
-                leaveImage.image = UIImage()
             case .fullday:
-                morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                leaveImage.image = request.absence?.absenceType?.image ?? UIImage()
-                morningImage.image = UIImage()
-                afternoonImage.image = UIImage()
+                fullDayView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                fullDayImage.image = request.absence?.absenceType?.image ?? UIImage()
             case .morning:
                 morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                 morningImage.image = request.absence?.absenceType?.image ?? UIImage()
-                leaveImage.image = UIImage()
             }
         }
         layoutIfNeeded()
@@ -86,8 +88,9 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         morningView.backgroundColor = UIColor.clear
         morningImage.image = UIImage()
         afternoonView.backgroundColor = UIColor.clear
+        fullDayView.backgroundColor = UIColor.clear
         afternoonImage.image = UIImage()
-        leaveImage.image = UIImage()
+        fullDayImage.image = UIImage()
         layoutIfNeeded()
     }
     
