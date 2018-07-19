@@ -540,6 +540,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="73J-fT-pgL"/>
                     </view>
+                    <connections>
+                        <outlet property="endDatePicker" destination="B30-ko-KnE" id="AQg-oD-cDm"/>
+                        <outlet property="startDatePicker" destination="EeG-bj-h9t" id="tBf-Ai-wKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4F-BV-80z" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="OM4-mH-DES" userLabel="Exit" sceneMemberID="exit"/>
@@ -722,9 +726,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9YR-6r-Hjh"/>
-        <segue reference="7Qi-Z7-6Yo"/>
-        <segue reference="C16-ZN-r4V"/>
+        <segue reference="g7F-bN-lNv"/>
+        <segue reference="ntj-IY-5Sk"/>
+        <segue reference="2Hz-vC-znZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

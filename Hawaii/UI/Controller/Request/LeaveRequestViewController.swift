@@ -18,8 +18,15 @@ class LeaveRequestViewController: BaseViewController {
     var requestTableViewController: RequestTableViewController?
     var remainingDaysViewController: RemainigDaysViewController?
     
+    lazy var addLeveRequestItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
+        item.tintColor = UIColor.accentColor
+        return item
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = addLeveRequestItem
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,6 +54,20 @@ class LeaveRequestViewController: BaseViewController {
             }
             remainingDaysViewController.mainLabelText = "LEAVE"
         }
+    }
+    
+    @objc func addLeaveRequest() {
+//        guard let startDate = datePickerController?.startDatePicker.date,
+//            let endDate = datePickerController?.endDatePicker.date,
+//            let requestTableViewController = requestTableViewController? else {
+//                return
+//        }
+//        let leaveType = requestTableViewController.getTypeSelection()
+//        let duration = requestTableViewController.getDurationSelection()
+        
+//        let request = Request(id: Int?, days: [Day]?, reason: String?, requestStatus: <#T##RequestStatus?#>, absence: <#T##Absence?#>)
+        
+        
     }
     
 }

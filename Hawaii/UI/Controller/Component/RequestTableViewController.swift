@@ -65,6 +65,14 @@ class RequestTableViewController: UIViewController {
             controller.delegate = self
         }
     }
+    
+    func getTypeSelection() -> String {
+        return tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text ?? ""
+    }
+    
+    func getDurationSelection() -> String {
+        return tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text ?? ""
+    }
 }
 
 extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource {

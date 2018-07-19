@@ -10,7 +10,12 @@ import Foundation
 import UIKit
 
 class DatePickerViewController: UIViewController {
-        
+    
+    
+    @IBOutlet weak var startDatePicker: WhiteUIPicker!
+    
+    @IBOutlet weak var endDatePicker: WhiteUIPicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
