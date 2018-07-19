@@ -1,8 +1,10 @@
 import UIKit
 import GoogleSignIn
-import Firebase
 
 class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+    
+    var signInApi: SignInApiProtocol?
+    var label = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,27 +18,33 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         print("User signed into google")
-        guard let authentication = user.authentication else {
+        guard let accessToken = user.authentication.accessToken else {
             return
         }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        Auth.auth().signInAndRetrieveData(with: credential) { _, _ in
-            print("User Signed Into Firebase")
-            self.navigateToHome()
+        guard let user = user.authentication else {
+            return
+        }
+        print(accessToken)
+        
+        guard let signInApi = signInApi else {
+            return
+        }
+        
+        signInApi.signIn(accessToken: accessToken) { didSucceed in
+            if didSucceed {
+                print("User Logged In")
+                self.navigateToHome()
+            }
         }
 
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         //Perform if user gets disconnected
-        do {
-            try
-                Auth.auth().signOut()
-            GIDSignIn.sharedInstance().signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: \(signOutError)")
-        }
+      
+        GIDSignIn.sharedInstance().signOut()
+        print("User signed into google")
+        
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {

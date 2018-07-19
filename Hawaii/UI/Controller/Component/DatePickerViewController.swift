@@ -11,7 +11,6 @@ import UIKit
 
 class DatePickerViewController: UIViewController {
     
-    
     @IBOutlet weak var startDatePicker: WhiteUIPicker!
     
     @IBOutlet weak var endDatePicker: WhiteUIPicker!
