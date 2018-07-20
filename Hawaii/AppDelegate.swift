@@ -11,9 +11,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 //        FirebaseApp.configure()
-//        GIDSignIn.sharedInstance().clientID = "792699227286-6ts8l95vntnid2mj1jk4qs9v913bqv70.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().clientID = "com.googleusercontent.apps.792699227286-6ts8l95vntnid2mj1jk4qs9v913bqv70"
-        GIDSignIn.sharedInstance().serverClientID = "91011414864-oscjl6qmm6qds4kuvvh1j991rgvker3h.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().clientID = "91011414864-e6j3me9ij99sk8gu6ikgad55qcdtobpl.apps.googleusercontent.com"
+     //   GIDSignIn.sharedInstance().clientID = "com.googleusercontent.apps.792699227286-6ts8l95vntnid2mj1jk4qs9v913bqv70"
+  //      GIDSignIn.sharedInstance().serverClientID = "91011414864-oscjl6qmm6qds4kuvvh1j991rgvker3h.apps.googleusercontent.com"
         chooseInitialView()
         StyleSetup.setStyles()
         return true
@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func chooseInitialView() {
         
         let signIn = GIDSignIn.sharedInstance()
-        signIn?.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.me"]
+        signIn?.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.me",
+        "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"]
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

@@ -27,11 +27,21 @@ class SignInApi: SignInApiProtocol {
     }
     
     func signIn(accessToken: String, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
+//        guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
+//            return
+//        }
+        guard let url = URL(string: "http://localhost:8080/signin") else {
             return
         }
-        let decoder = JSONDecoder()
         Alamofire.request(url, headers: HTTPHeaders.init(dictionaryLiteral: ("Authorization", "Bearer "+accessToken))).response { response in
+            guard let headers = response.response?.allHeaderFields else {
+                return
+            }
+            for header in headers {
+                print("")
+                print(header.key, "  :  ", header.value)
+            }
+        
             print(response.response?.statusCode)
             completion(response.response?.statusCode == 200)
         }

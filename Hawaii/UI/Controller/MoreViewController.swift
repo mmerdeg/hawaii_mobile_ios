@@ -26,15 +26,11 @@ class MoreViewController: BaseViewController {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
         
+        print(GIDSignIn.sharedInstance().currentUser)
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            print("asd")
+            print("Logged in")
         } else {
-            print("asdsad")
-        }
-        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            print("asd")
-        } else {
-            print("sadasdas")
+            print("Logged out")
         }
     }
 }
