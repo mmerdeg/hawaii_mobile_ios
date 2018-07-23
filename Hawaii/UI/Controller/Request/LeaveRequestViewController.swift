@@ -66,8 +66,6 @@ class LeaveRequestViewController: BaseViewController {
 //        let duration = requestTableViewController.getDurationSelection()
         
 //        let request = Request(id: Int?, days: [Day]?, reason: String?, requestStatus: <#T##RequestStatus?#>, absence: <#T##Absence?#>)
-        
-        
     }
     
 }

@@ -21,9 +21,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         guard let accessToken = user.authentication.accessToken else {
             return
         }
-        guard let user = user.authentication else {
-            return
-        }
         print(accessToken)
         
         guard let signInApi = signInApi else {
@@ -43,8 +40,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         //Perform if user gets disconnected
       
         GIDSignIn.sharedInstance().signOut()
-        print("User signed into google")
-        
+        navigateToSignIn()
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
@@ -70,6 +66,17 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     func navigateToHome() {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "homeVCSegue", sender: self)
+        }
+    }
+    
+    func navigateToSignIn() {
+        DispatchQueue.main.async {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: "SignInViewController")
+                as? SignInViewController else {
+                    return
+            }
+            self.present(signInViewController, animated: true, completion: nil)
         }
     }
     

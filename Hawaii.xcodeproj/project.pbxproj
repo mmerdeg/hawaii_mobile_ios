@@ -63,6 +63,9 @@
 		3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
 		3EB5644E20CA69EA00501CAC /* HawaiiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5644D20CA69EA00501CAC /* HawaiiTests.swift */; };
 		3EB5645920CA69EA00501CAC /* HawaiiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5645820CA69EA00501CAC /* HawaiiUITests.swift */; };
+		3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */; };
+		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
+		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
 		BA236B9808DEDD81FAEC70E1 /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +198,9 @@
 		3EB5645420CA69EA00501CAC /* HawaiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawaiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB5645820CA69EA00501CAC /* HawaiiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiiUITests.swift; sourceTree = "<group>"; };
 		3EB5645A20CA69EA00501CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepository.swift; sourceTree = "<group>"; };
+		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
+		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hawaii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -382,6 +388,7 @@
 		3E42592020E259AC00F22BBD /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3EBD33F921061CFB00EAFE69 /* UserDetails */,
 				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
 			);
@@ -409,14 +416,6 @@
 			children = (
 				3E42592320E259E200F22BBD /* Implementation */,
 				3E42592420E259EF00F22BBD /* Protocol */,
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		3E42592A20E2609400F22BBD /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -461,7 +460,8 @@
 			isa = PBXGroup;
 			children = (
 				3E15C45F20E64C1000DB2CF7 /* UI */,
-				3E42592A20E2609400F22BBD /* Request */,
+				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
+				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -553,6 +553,31 @@
 				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3EBD33F921061CFB00EAFE69 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				3EBD33FA21061D0C00EAFE69 /* Implementation */,
+				3EBD33FB21061D1600EAFE69 /* Protocol */,
+			);
+			path = UserDetails;
+			sourceTree = "<group>";
+		};
+		3EBD33FA21061D0C00EAFE69 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		3EBD33FB21061D1600EAFE69 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		F28D0C5FDB4E4C6C7D92927D /* Pods */ = {
@@ -814,6 +839,7 @@
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3E42591E20E256B300F22BBD /* Absence.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
+				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E72646420EA6FF100DC7240 /* RequestType.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
@@ -832,10 +858,12 @@
 				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
+				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
+				3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */,
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,

@@ -25,12 +25,6 @@ class MoreViewController: BaseViewController {
     @IBAction func onSignOutPressed(_ sender: Any) {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
-        
-        print(GIDSignIn.sharedInstance().currentUser)
-        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            print("Logged in")
-        } else {
-            print("Logged out")
-        }
     }
+    
 }
