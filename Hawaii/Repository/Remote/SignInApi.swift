@@ -11,7 +11,7 @@ import CodableAlamofire
 import Alamofire
 
 protocol SignInApiProtocol {
-    func signIn(accessToken: String, completion: @escaping (Bool) -> Void)
+    func signIn(accessToken: String, completion: @escaping (String) -> Void)
 }
 
 class SignInApi: SignInApiProtocol {
@@ -26,7 +26,7 @@ class SignInApi: SignInApiProtocol {
         signInApi = nil
     }
     
-    func signIn(accessToken: String, completion: @escaping (Bool) -> Void) {
+    func signIn(accessToken: String, completion: @escaping (String) -> Void) {
         guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
             return
         }
@@ -34,11 +34,10 @@ class SignInApi: SignInApiProtocol {
 //            return
 //        }
         Alamofire.request(url, headers: HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))).response { response in
-            guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] else {
+            guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
                 return
             }
-            
-            completion(response.response?.statusCode == 200)
+            completion(token)
         }
     }
     

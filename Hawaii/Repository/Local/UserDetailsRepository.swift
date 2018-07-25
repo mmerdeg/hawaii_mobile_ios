@@ -24,12 +24,7 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     }
     
     func setToken(token: String) {
-//        let preferences = UserDefaults.standard
-//        
-//        let currentLevel = ...
-//        let currentLevelKey = "currentLevel"
-//        preferences.set(currentLevel, forKey: currentLevelKey)
-//        
-//        preferences.synchronize()
+        preferences.set(token, forKey: tokenKey)
+        preferences.synchronize()
     }
 }

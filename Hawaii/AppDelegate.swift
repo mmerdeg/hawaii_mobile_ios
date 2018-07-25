@@ -34,19 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-//        if fb.currentUser != nil {
-//            guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-//                                             as? UITabBarController else {
-//                return
-//            }
-//            self.window?.rootViewController = homeTabBarController
-//        } else {
+        if GIDSignIn.sharedInstance().hasAuthInKeychain() {
+            guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+                                             as? UITabBarController else {
+                return
+            }
+            self.window?.rootViewController = homeTabBarController
+        } else {
             guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: "SignInViewController")
                                              as? SignInViewController else {
                 return
             }
             self.window?.rootViewController = signInViewController
-//        }
+        }
         self.window?.makeKeyAndVisible()
     }
 }
@@ -74,7 +74,19 @@ extension SwinjectStoryboard {
                                                                                         ?? TableDataProviderRepository())
         }
         
-        // SignInApi
+        // User Details Repository
+        defaultContainer.register(UserDetailsRepository.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { _ in
+            return UserDetailsRepository()
+        }
+        
+        defaultContainer.register(UserDetailsUseCaseProtocol.self,
+                                  name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
+                                    UserDetailsUseCase(userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
+                                                                            name: String(describing: UserDetailsUseCaseProtocol.self))
+                                        ?? UserDetailsRepository())
+        }
+
+        // Sign In Api
         defaultContainer.register(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self)) { _ in
             return SignInApi()
         }
@@ -94,6 +106,13 @@ extension SwinjectStoryboard {
         
         defaultContainer.storyboardInitCompleted(SignInViewController.self) { resolver, controller in
             controller.signInApi = resolver.resolve(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self))
+            controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                             name: String(describing: UserDetailsUseCaseProtocol.self))
+        }
+        
+        defaultContainer.storyboardInitCompleted(MoreViewController.self) { resolver, controller in
+            controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                             name: String(describing: UserDetailsUseCaseProtocol.self))
         }
     }
 }

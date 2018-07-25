@@ -8,6 +8,26 @@
 
 import Foundation
 
-class UserDetailsUseCase {
+protocol UserDetailsUseCaseProtocol {
+    func getToken(completion: @escaping (String) -> Void)
     
+    func setToken(token: String)
+}
+
+class UserDetailsUseCase: UserDetailsUseCaseProtocol {
+    let userDetailsRepository: UserDetailsRepositoryProtocol!
+    
+    init(userDetailsRepository: UserDetailsRepositoryProtocol) {
+        self.userDetailsRepository = userDetailsRepository
+    }
+    
+    func getToken(completion: @escaping (String) -> Void) {
+        userDetailsRepository.getToken { token in
+            completion(token)
+        }
+    }
+    
+    func setToken(token: String) {
+        userDetailsRepository.setToken(token: token)
+    }
 }
