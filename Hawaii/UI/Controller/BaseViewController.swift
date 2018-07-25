@@ -12,10 +12,11 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.secondaryColor
-        self.navigationController?.navigationBar.tintColor = UIColor.accentColor
-        self.navigationController?.navigationBar.barTintColor = UIColor.primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.accentColor]
+        self.view.backgroundColor = UIColor.primaryColor
+        self.navigationController?.navigationBar.tintColor = UIColor.primaryTextColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+        self.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.darkPrimaryColor
         // Do any additional setup after loading the view.
     }
 

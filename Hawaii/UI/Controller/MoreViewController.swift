@@ -13,15 +13,13 @@ class MoreViewController: BaseViewController {
 
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
+    @IBOutlet weak var signOutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        signOutButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3405850821)
+        signOutButton.layer.cornerRadius = 10
+        signOutButton.tintColor = UIColor.primaryTextColor
     }
     
     @IBAction func onSignOutPressed(_ sender: Any) {

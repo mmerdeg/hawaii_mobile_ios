@@ -30,15 +30,15 @@ class DashboardViewController: BaseViewController {
     
     lazy var addRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
-        item.tintColor = UIColor.accentColor
+        item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateLabel.textColor = UIColor.primaryColor
-        nextButton.setTitleColor(UIColor.primaryColor, for: .normal)
-        previousButton.setTitleColor(UIColor.primaryColor, for: .normal)
+        dateLabel.textColor = UIColor.primaryTextColor
+        nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
+        previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
         let nib = UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))

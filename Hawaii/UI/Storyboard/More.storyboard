@@ -36,6 +36,9 @@
                         <viewLayoutGuide key="safeArea" id="t9a-W3-8v8"/>
                     </view>
                     <navigationItem key="navigationItem" title="More" id="751-m1-4az"/>
+                    <connections>
+                        <outlet property="signOutButton" destination="VCU-NF-zFQ" id="8e5-hC-E6e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mze-pQ-kKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

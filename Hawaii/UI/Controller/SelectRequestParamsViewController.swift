@@ -40,9 +40,9 @@ extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewD
         }
         cell.textLabel?.text = title
         cell.backgroundColor = UIColor.clear
-        cell.textLabel?.textColor = UIColor.accentColor
+        cell.textLabel?.textColor = UIColor.primaryTextColor
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.selectionColor
+        backgroundView.backgroundColor = UIColor.lightPrimaryColor
         cell.selectedBackgroundView = backgroundView
         return cell
     }

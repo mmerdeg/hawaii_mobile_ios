@@ -11,7 +11,7 @@ import ECFoundationiOS
 extension Font {
     
     public class func primary() -> Font {
-        return Font(font: UIFont.primary(), color: UIColor.accentColor, fontName: "fontPrimary")
+        return Font(font: UIFont.primary(), color: UIColor.primaryTextColor, fontName: "fontPrimary")
     }
     
     public class func calendarDaysFont() -> Font {

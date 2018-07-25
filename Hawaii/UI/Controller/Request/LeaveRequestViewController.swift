@@ -20,7 +20,7 @@ class LeaveRequestViewController: BaseViewController {
     
     lazy var addLeveRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
-        item.tintColor = UIColor.accentColor
+        item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
@@ -52,7 +52,7 @@ class LeaveRequestViewController: BaseViewController {
             guard let remainingDaysViewController = self.remainingDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "LEAVE"
+            remainingDaysViewController.mainLabelText = "Leave"
         }
     }
     

@@ -45,7 +45,7 @@ class SickRequestViewController: BaseViewController {
             guard let remainingDaysViewController = self.remainingDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "SICK LEAVE"
+            remainingDaysViewController.mainLabelText = "Sick leave"
         }
     }
 }

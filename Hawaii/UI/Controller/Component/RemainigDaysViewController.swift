@@ -38,24 +38,24 @@ class RemainigDaysViewController: UIViewController {
         super.viewDidLoad()
         
         mainLabel.text = mainLabelText ?? ""
-        mainLabel.textColor = UIColor.accentColor
-        remainingLabel.textColor = UIColor.accentColor
-        remainingDayNoLabel.textColor = UIColor.primaryColor
-        remainingDaysLabel.textColor = UIColor.accentColor
+        mainLabel.textColor = UIColor.primaryTextColor
+        remainingLabel.textColor = UIColor.primaryTextColor
+        remainingDayNoLabel.textColor = UIColor.primaryTextColor
+        remainingDaysLabel.textColor = UIColor.primaryTextColor
         
-        takenLabel.textColor = UIColor.accentColor
+        takenLabel.textColor = UIColor.primaryTextColor
         takenDayNoLabel.textColor = UIColor.approvedColor
-        takenDaysLabel.textColor = UIColor.accentColor
-        pendingLabel.textColor = UIColor.accentColor
-        pendingDayNoLabel.textColor = UIColor.accentColor
-        totalDayNoLabel.textColor = UIColor.accentColor
+        takenDaysLabel.textColor = UIColor.primaryTextColor
+        pendingLabel.textColor = UIColor.primaryTextColor
+        pendingDayNoLabel.textColor = UIColor.primaryTextColor
+        totalDayNoLabel.textColor = UIColor.primaryTextColor
 
         progressBar.type = .flat
-        progressBar.trackTintColor = UIColor.secondaryColor
+        progressBar.trackTintColor = UIColor.transparentColor
         
         progressBar.layer.borderWidth = 2
         progressBar.layer.cornerRadius = 15
-        progressBar.layer.borderColor = UIColor.accentColor.cgColor
+        progressBar.layer.borderColor = UIColor.primaryTextColor.cgColor
     }
 
 }

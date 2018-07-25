@@ -84,7 +84,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         cell.textLabel?.text = self.items[indexPath.row].title
         cell.detailTextLabel?.text = self.items[indexPath.row].description
-        cell.textLabel?.textColor = UIColor.accentColor
+        cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor.transparentColor

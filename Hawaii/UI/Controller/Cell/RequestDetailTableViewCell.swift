@@ -25,7 +25,7 @@ class RequestDetailTableViewCell: UITableViewCell {
             }
             requestReason.text = reason
             requestImage.image = image.withRenderingMode(.alwaysTemplate)
-            requestImage.tintColor = UIColor.white
+            requestImage.tintColor = UIColor.primaryTextColor
             requestImage.backgroundColor = color
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
@@ -35,6 +35,8 @@ class RequestDetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        backgroundColor = UIColor.primaryColor
+        selectionStyle = UITableViewCellSelectionStyle.none
     }
     
 }
