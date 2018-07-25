@@ -25,6 +25,8 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     
     @IBOutlet weak var afternoonImage: UIImageView!
     
+    @IBOutlet weak var roundedHalvesView: UIView!
+    
     var requests: [Request]?
     var cellState: CellState!
     
@@ -45,14 +47,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-//        morningView.clipsToBounds = true
-//        morningView.layer.cornerRadius = morningView.frame.height / 2
-//        morningView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-//        afternoonView.clipsToBounds = true
-//        afternoonView.layer.cornerRadius = afternoonView.frame.height / 2
-//        afternoonView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        roundedHalvesView.layer.cornerRadius = roundedHalvesView.frame.size.height * 2 / 3
     }
     
     func setCell() {
@@ -62,10 +57,10 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         self.backgroundColor = UIColor.lightPrimaryColor
         self.layer.borderWidth = 0.5
         guard let requests = requests else {
-            resetView()
+            resetView(cellState: cellState)
             return
         }
-        resetView()
+        resetView(cellState: cellState)
         
         for request in requests {
             guard let day = request.days?.first else {
@@ -85,15 +80,18 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 morningImage.image = request.absence?.absenceType?.image ?? UIImage()
             }
         }
+        dateLabel.textColor = UIColor.darkPrimaryColor
+        
         layoutIfNeeded()
     }
     
-    func resetView() {
+    func resetView(cellState: CellState) {
         morningView.backgroundColor = UIColor.clear
         morningImage.image = UIImage()
         afternoonView.backgroundColor = UIColor.clear
         afternoonImage.image = UIImage()
         fullDayImage.image = UIImage()
+        handleCellText(cellState: cellState)
         layoutIfNeeded()
     }
     

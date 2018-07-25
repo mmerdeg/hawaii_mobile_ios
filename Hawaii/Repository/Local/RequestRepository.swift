@@ -11,32 +11,32 @@ import Foundation
 class RequestRepository: RequestRepositoryProtocol {
     func getAll(completion: @escaping ([Request]) -> Void) {
         print(Date())
-        //2018-06-28 11:41:55 +0000
+        //2018-07-28 11:41:55 +0000
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
         let absence1 = Absence(id: 1, comment: "", absenceType: AbsenceType.vacation, deducted: false, active: true, name: "")
         let absence2 = Absence(id: 2, comment: "", absenceType: AbsenceType.business, deducted: true, active: true, name: "")
         let absence3 = Absence(id: 3, comment: "", absenceType: AbsenceType.workFromHome, deducted: true, active: true, name: "")
-        let day1 = Day(id: 1, date: formatter.date(from: "2018-06-01 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day2 = Day(id: 2, date: formatter.date(from: "2018-06-02 00:00:00 +0000") ?? Date(), duration: .afternoon)
-        let day3 = Day(id: 3, date: formatter.date(from: "2018-06-03 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day4 = Day(id: 4, date: formatter.date(from: "2018-06-05 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day5 = Day(id: 5, date: formatter.date(from: "2018-06-06 00:00:00 +0000") ?? Date(), duration: .afternoon)
-        let day6 = Day(id: 6, date: formatter.date(from: "2018-06-07 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day7 = Day(id: 7, date: formatter.date(from: "2018-06-09 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day8 = Day(id: 8, date: formatter.date(from: "2018-06-10 00:00:00 +0000") ?? Date(), duration: .afternoon)
-        let day9 = Day(id: 9, date: formatter.date(from: "2018-06-11 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day10 = Day(id: 10, date: formatter.date(from: "2018-06-13 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day11 = Day(id: 11, date: formatter.date(from: "2018-06-13 00:00:00 +0000") ?? Date(), duration: .afternoon)
+        let day1 = Day(id: 1, date: formatter.date(from: "2018-07-01 00:00:00 +0000") ?? Date(), duration: .morning)
+        let day2 = Day(id: 2, date: formatter.date(from: "2018-07-02 00:00:00 +0000") ?? Date(), duration: .afternoon)
+        let day3 = Day(id: 3, date: formatter.date(from: "2018-07-03 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day4 = Day(id: 4, date: formatter.date(from: "2018-07-05 00:00:00 +0000") ?? Date(), duration: .morning)
+        let day5 = Day(id: 5, date: formatter.date(from: "2018-07-07 00:00:00 +0000") ?? Date(), duration: .afternoon)
+        let day6 = Day(id: 6, date: formatter.date(from: "2018-07-07 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day7 = Day(id: 7, date: formatter.date(from: "2018-07-09 00:00:00 +0000") ?? Date(), duration: .morning)
+        let day8 = Day(id: 8, date: formatter.date(from: "2018-07-10 00:00:00 +0000") ?? Date(), duration: .afternoon)
+        let day9 = Day(id: 9, date: formatter.date(from: "2018-07-11 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day10 = Day(id: 10, date: formatter.date(from: "2018-07-13 00:00:00 +0000") ?? Date(), duration: .morning)
+        let day11 = Day(id: 11, date: formatter.date(from: "2018-07-13 00:00:00 +0000") ?? Date(), duration: .afternoon)
         
-        let day12 = Day(id: 10, date: formatter.date(from: "2018-06-18 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day13 = Day(id: 11, date: formatter.date(from: "2018-06-18 00:00:00 +0000") ?? Date(), duration: .afternoon)
+        let day12 = Day(id: 10, date: formatter.date(from: "2018-07-18 00:00:00 +0000") ?? Date(), duration: .morning)
+        let day13 = Day(id: 11, date: formatter.date(from: "2018-07-18 00:00:00 +0000") ?? Date(), duration: .afternoon)
         
-        let day20 = Day(id: 3, date: formatter.date(from: "2018-06-20 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day21 = Day(id: 3, date: formatter.date(from: "2018-06-21 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day22 = Day(id: 3, date: formatter.date(from: "2018-06-22 00:00:00 +0000") ?? Date(), duration: .fullday)
-        let day23 = Day(id: 3, date: formatter.date(from: "2018-06-23 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day20 = Day(id: 3, date: formatter.date(from: "2018-07-20 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day21 = Day(id: 3, date: formatter.date(from: "2018-07-21 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day22 = Day(id: 3, date: formatter.date(from: "2018-07-22 00:00:00 +0000") ?? Date(), duration: .fullday)
+        let day23 = Day(id: 3, date: formatter.date(from: "2018-07-23 00:00:00 +0000") ?? Date(), duration: .fullday)
         let request1 = Request(id: 1, days: [day20, day21, day22, day23], reason: "Odo na more", requestStatus: RequestStatus.approved,
                                absence: absence1)
         
