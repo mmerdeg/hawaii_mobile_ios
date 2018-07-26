@@ -9,20 +9,25 @@
 import Foundation
 
 class RequestRepository: RequestRepositoryProtocol {
+
+    var requests: [Request]!
+    
+    func add(request: Request, completion: @escaping (Request) -> Void) {
+        requests?.append(request)
+        completion(request)
+    }
+    
     func getAll(completion: @escaping ([Request]) -> Void) {
-        print(Date())
-        //2018-07-28 11:41:55 +0000
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
+        let formatter = CustomDateFormatter()
+        
         let absence1 = Absence(id: 1, comment: "", absenceType: AbsenceType.vacation, deducted: false, active: true, name: "")
-        let absence2 = Absence(id: 2, comment: "", absenceType: AbsenceType.business, deducted: true, active: true, name: "")
+        let absence2 = Absence(id: 2, comment: "", absenceType: AbsenceType.businessTravel, deducted: true, active: true, name: "")
         let absence3 = Absence(id: 3, comment: "", absenceType: AbsenceType.workFromHome, deducted: true, active: true, name: "")
         let day1 = Day(id: 1, date: formatter.date(from: "2018-07-01 00:00:00 +0000") ?? Date(), duration: .morning)
         let day2 = Day(id: 2, date: formatter.date(from: "2018-07-02 00:00:00 +0000") ?? Date(), duration: .afternoon)
         let day3 = Day(id: 3, date: formatter.date(from: "2018-07-03 00:00:00 +0000") ?? Date(), duration: .fullday)
         let day4 = Day(id: 4, date: formatter.date(from: "2018-07-05 00:00:00 +0000") ?? Date(), duration: .morning)
-        let day5 = Day(id: 5, date: formatter.date(from: "2018-07-07 00:00:00 +0000") ?? Date(), duration: .afternoon)
         let day6 = Day(id: 6, date: formatter.date(from: "2018-07-07 00:00:00 +0000") ?? Date(), duration: .fullday)
         let day7 = Day(id: 7, date: formatter.date(from: "2018-07-09 00:00:00 +0000") ?? Date(), duration: .morning)
         let day8 = Day(id: 8, date: formatter.date(from: "2018-07-10 00:00:00 +0000") ?? Date(), duration: .afternoon)
@@ -45,7 +50,6 @@ class RequestRepository: RequestRepositoryProtocol {
         let request4 = Request(id: 3, days: [day3], reason: "Rad od kuce", requestStatus: RequestStatus.pending, absence: absence3)
         
         let request5 = Request(id: 4, days: [day4], reason: "Dosta mi je posla", requestStatus: RequestStatus.approved, absence: absence1)
-        let request6 = Request(id: 5, days: [day5], reason: "Dosta mi je posla", requestStatus: RequestStatus.rejected, absence: absence1)
         let request7 = Request(id: 6, days: [day6], reason: "Dosta mi je posla", requestStatus: RequestStatus.pending, absence: absence1)
         
         let request8 = Request(id: 7, days: [day7], reason: "Konferencija", requestStatus: RequestStatus.approved, absence: absence2)
@@ -58,7 +62,9 @@ class RequestRepository: RequestRepositoryProtocol {
         let request13 = Request(id: 11, days: [day12], reason: "Konferencija", requestStatus: RequestStatus.approved, absence: absence2)
         let request14 = Request(id: 12, days: [day13], reason: "Rad od kuce", requestStatus: RequestStatus.approved, absence: absence3)
         
-        completion([request1, request2, request3, request4, request5, request6, request7, request8, request9, request10, request11, request12,
-                    request13, request14])
+        requests = [request1, request2, request3, request4, request5, request7, request8, request9, request10, request11, request12,
+                    request13, request14]
+
+        completion(requests)
     }
 }

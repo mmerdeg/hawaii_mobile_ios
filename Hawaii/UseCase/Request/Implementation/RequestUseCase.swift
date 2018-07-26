@@ -12,6 +12,7 @@ protocol RequestUseCaseProtocol {
     
     func getAll(completion: @escaping ([Request]) -> Void)
     
+    func add(request: Request, completion: @escaping (Request) -> Void)
 }
 
 class RequestUseCase: RequestUseCaseProtocol {
@@ -25,6 +26,12 @@ class RequestUseCase: RequestUseCaseProtocol {
     func getAll(completion: @escaping ([Request]) -> Void) {
         entityRepository.getAll { requests in
             completion(requests)
+        }
+    }
+    
+    func add(request: Request, completion: @escaping (Request) -> Void) {
+        entityRepository.add(request: request) {request in
+            completion(request)
         }
     }
     

@@ -11,12 +11,20 @@ import UIKit
 class LeaveRequestViewController: BaseViewController {
     
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
+   
     let showRequestTableViewController = "showRequestTableViewController"
+  
     let showRemainingDaysViewController = "showRemainingDaysViewController"
 
+    weak var requestUpdateDelegate: RequestUpdateProtocol?
+    
     var datePickerController: DatePickerViewController?
+ 
     var requestTableViewController: RequestTableViewController?
+ 
     var remainingDaysViewController: RemainigDaysViewController?
+    
+    var requestUseCase: RequestUseCaseProtocol?
     
     lazy var addLeveRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
@@ -43,7 +51,7 @@ class LeaveRequestViewController: BaseViewController {
             guard let requestTableViewController = self.requestTableViewController else {
                 return
             }
-            requestTableViewController.requestType = .vacation
+            requestTableViewController.requestType = .leave
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -57,15 +65,26 @@ class LeaveRequestViewController: BaseViewController {
     }
     
     @objc func addLeaveRequest() {
-//        guard let startDate = datePickerController?.startDatePicker.date,
-//            let endDate = datePickerController?.endDatePicker.date,
-//            let requestTableViewController = requestTableViewController? else {
-//                return
-//        }
-//        let leaveType = requestTableViewController.getTypeSelection()
-//        let duration = requestTableViewController.getDurationSelection()
+        guard let startDate = datePickerController?.startDatePicker.date,
+            let endDate = datePickerController?.endDatePicker.date,
+            let requestTableViewController = requestTableViewController else {
+                return
+        }
+        let leaveType = requestTableViewController.getTypeSelection()
+        let durationType = requestTableViewController.getDurationSelection()
         
-//        let request = Request(id: Int?, days: [Day]?, reason: String?, requestStatus: <#T##RequestStatus?#>, absence: <#T##Absence?#>)
+        let days: [Day] = []
+    
+        let request = Request(id: nil, days: [Day(id: nil, date: startDate, duration: DurationType.morning)], reason: "", requestStatus: RequestStatus.pending, absence: Absence(id: nil, comment: "", absenceType: leaveType, deducted: true, active: true, name: leaveType.description))
+        
+        guard let requestUseCase = requestUseCase else {
+            return
+        }
+        
+        requestUseCase.add(request: request) { request in
+            self.requestUpdateDelegate?.didAdd(request: request)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }

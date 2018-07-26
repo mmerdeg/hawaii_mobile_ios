@@ -66,6 +66,11 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             guard let day = request.days?.first else {
                 continue
             }
+            if cellState.dateBelongsTo != .thisMonth {
+                continue
+            }
+            dateLabel.textColor = UIColor.darkPrimaryColor
+            
             switch day.duration {
 
             case .afternoon:
@@ -80,7 +85,6 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 morningImage.image = request.absence?.absenceType?.image ?? UIImage()
             }
         }
-        dateLabel.textColor = UIColor.darkPrimaryColor
         
         layoutIfNeeded()
     }

@@ -20,6 +20,10 @@ class RequestTableViewController: UIViewController {
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
+    var selectedTypeIndex = 0
+    
+    var selectedDurationIndex = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -32,7 +36,7 @@ class RequestTableViewController: UIViewController {
             return
         }
         
-        if requestType == .vacation {
+        if requestType == .leave {
             tableDataProviderUseCase?.getLeaveData(completion: { data in
                 self.setItems(data: data)
             })
@@ -57,7 +61,7 @@ class RequestTableViewController: UIViewController {
             controller.items = data
             if data[0].name == nil {
                 controller.title = "Duration"
-            } else if requestType == .vacation {
+            } else if requestType == .leave {
                 controller.title = "Type of leave"
             } else {
                 controller.title = "Type of sickness"
@@ -66,12 +70,18 @@ class RequestTableViewController: UIViewController {
         }
     }
     
-    func getTypeSelection() -> String {
-        return tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text ?? ""
+    func getTypeSelection() -> AbsenceType {
+        guard let absenceType = AbsenceType(rawValue: selectedTypeIndex) else {
+            return AbsenceType.vacation
+        }
+        return absenceType
     }
     
-    func getDurationSelection() -> String {
-        return tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text ?? ""
+    func getDurationSelection() -> DurationType {
+        guard let durationType = DurationType(rawValue: selectedDurationIndex) else {
+            return DurationType.fullday
+        }
+        return durationType
     }
 }
 
@@ -93,7 +103,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            if requestType == .vacation {
+            if requestType == .leave {
                 tableDataProviderUseCase?.getLeaveTypeData(completion: { data in
                     self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
                 })
@@ -108,17 +118,17 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             })
         }
     }
-    
 }
 
 extension RequestTableViewController: SelectRequestParamProtocol {
     
-    func didSelect(requestParam: String, requestParamType: String) {
+    func didSelect(requestParam: String, requestParamType: String, index: Int) {
         if requestParamType == "Duration" {
+            selectedDurationIndex = index
             tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = requestParam
         } else {
+            selectedTypeIndex = index
             tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text = requestParam
         }
     }
-    
 }

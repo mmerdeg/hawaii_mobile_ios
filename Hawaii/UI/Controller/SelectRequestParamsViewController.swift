@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SelectRequestParamProtocol: class {
-    func didSelect(requestParam: String, requestParamType: String)
+    func didSelect(requestParam: String, requestParamType: String, index: Int)
 }
 
 class SelectRequestParamsViewController: BaseViewController {
@@ -70,7 +70,7 @@ extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewD
         guard let title = items?[indexPath.section].cells?[indexPath.row].title else {
             return
         }
-        delegate?.didSelect(requestParam: title, requestParamType: self.title ?? "")
+        delegate?.didSelect(requestParam: title, requestParamType: self.title ?? "", index: indexPath.row)
         self.navigationController?.popViewController(animated: true)
     }
 }

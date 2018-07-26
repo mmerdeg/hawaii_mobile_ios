@@ -10,8 +10,8 @@ import Foundation
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     func getLeaveData(completion: @escaping ([CellData]) -> Void) {
-        completion([CellData(title: "Type of leave", description: "Vacation"),
-                    CellData(title: "Duration", description: "Full Day")])
+        completion([CellData(title: "Type of leave", description: AbsenceType.vacation.description),
+                    CellData(title: "Duration", description: DurationType.fullday.description)])
     }
     
     func getSicknessData(completion: @escaping ([CellData]) -> Void) {
@@ -20,19 +20,19 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getLeaveTypeData(completion: @escaping ([SectionData]) -> Void) {
-        completion([SectionData(name: "Annual Leave", cells: [CellData(title: "Annual leave - Vacation", description: nil)]),
-                                    SectionData(name: "Deducted Leave", cells: [CellData(title: "Training & Education", description: nil)]),
-                                    SectionData(name: "Non Deducted Leave", cells: [CellData(title: "Business travel", description: nil),
-                                                                                    CellData(title: "Delivery or adoption", description: nil),
-                                                                                    CellData(title: "Family Saint day", description: nil),
-                                                                                    CellData(title: "Funeral family member", description: nil),
-                                                                                    CellData(title: "Maternity Leave", description: nil),
-                                                                                    CellData(title: "Moving", description: nil),
-                                                                                    CellData(title: "National sport competition", description: nil),
-                                                                                    CellData(title: "Own wedding", description: nil),
-                                                                                    CellData(title: "Serious illness of close family member",
+        completion([SectionData(name: "Annual Leave", cells: [CellData(title: AbsenceType.vacation.description, description: nil)]),
+                                    SectionData(name: "Deducted Leave", cells: [CellData(title: AbsenceType.trainingAndEducation.description, description: nil)]),
+                                    SectionData(name: "Non Deducted Leave", cells: [CellData(title: AbsenceType.businessTravel.description, description: nil),
+                                                                                    CellData(title: AbsenceType.deliveryOrAdoption.description, description: nil),
+                                                                                    CellData(title: AbsenceType.familySaintDay.description, description: nil),
+                                                                                    CellData(title: AbsenceType.funeralFamilyMember.description, description: nil),
+                                                                                    CellData(title: AbsenceType.maternityLeave.description, description: nil),
+                                                                                    CellData(title: AbsenceType.moving.description, description: nil),
+                                                                                    CellData(title: AbsenceType.nationalSportCompetition.description, description: nil),
+                                                                                    CellData(title: AbsenceType.ownWedding.description, description: nil),
+                                                                                    CellData(title: AbsenceType.illnessOfFamilyMember.description,
                                                                                              description: nil),
-                                                                                    CellData(title: "Work from home", description: nil)])])
+                                                                                    CellData(title: AbsenceType.workFromHome.description, description: nil)])])
     }
     
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void) {
@@ -42,8 +42,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void) {
-        completion([SectionData(name: nil, cells: [CellData(title: "Morning only", description: nil),
-                                                   CellData(title: "Afternoon only", description: nil),
-                                                   CellData(title: "Full Day", description: nil)])])
+        completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil),
+                                                   CellData(title: DurationType.morning.description, description: nil),
+                                                   CellData(title: DurationType.afternoon.description, description: nil)])])
     }
 }

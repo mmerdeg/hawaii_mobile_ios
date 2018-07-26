@@ -16,10 +16,20 @@ struct Day {
     
 }
 
-enum DurationType: String {
+enum DurationType: Int {
     
-    case fullday = "FULLDAY"
-    case morning = "MORNING"
-    case afternoon = "AFTERNOON"
+    case fullday = 0
+    case morning = 1
+    case afternoon = 2
     
+    var description: String {
+        switch self {
+        case .fullday:
+            return "Full day"
+        case .morning:
+            return "Morning only"
+        case .afternoon:
+            return "Afternoon only"
+        }
+    }
 }

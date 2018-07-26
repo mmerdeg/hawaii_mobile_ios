@@ -23,4 +23,3 @@ struct DialogWrapper {
         self.handler = handler ?? dialogWrapper?.handler
     }
 }
-

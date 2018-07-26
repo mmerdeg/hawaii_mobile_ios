@@ -12,4 +12,5 @@ protocol RequestRepositoryProtocol {
     
     func getAll(completion: @escaping ([Request]) -> Void)
     
+    func add(request: Request, completion: @escaping (Request) -> Void)
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 enum RequestType: Int {
-    case vacation = 0
+    case leave = 0
     case sick = 1
     case bonus = 2
     

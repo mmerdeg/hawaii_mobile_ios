@@ -95,6 +95,10 @@ extension SwinjectStoryboard {
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
         }
         
+        defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
+            controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+        }
+        
         defaultContainer.storyboardInitCompleted(HistoryViewController.self) { resolver, controller in
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
         }

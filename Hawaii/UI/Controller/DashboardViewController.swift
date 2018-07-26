@@ -89,9 +89,10 @@ class DashboardViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showLeaveRequestSegue {
-//            guard let controller = segue.destination as? RequestTypeViewController else {
-//                return
-//            }
+            guard let controller = segue.destination as? LeaveRequestViewController else {
+                return
+            }
+            controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
                   let requests = sender as? [Request] else {
@@ -231,5 +232,22 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
         }
         
     }
+}
+
+extension DashboardViewController: RequestUpdateProtocol {
+   
+    func didAdd(request: Request) {
+        items.append(request)
+        collectionView.reloadData()
+    }
+    
+    func didRemove(request: Request) {
+        
+    }
+    
+    func didEdit(request: Request) {
+        
+    }
+    
     
 }
