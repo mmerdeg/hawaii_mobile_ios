@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -76,25 +77,12 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cYZ-L1-FWF">
-                        <rect key="frame" x="26.5" y="26" width="15" height="15"/>
+                        <rect key="frame" x="26" y="26" width="15" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="7iZ-Y7-Vg1"/>
                             <constraint firstAttribute="width" secondItem="cYZ-L1-FWF" secondAttribute="height" multiplier="1:1" id="eln-38-L2x"/>
                         </constraints>
                     </imageView>
-                    <view hidden="YES" contentMode="scaleToFill" restorationIdentifier="circleView" translatesAutoresizingMaskIntoConstraints="NO" id="xoM-5c-ZaS">
-                        <rect key="frame" x="19" y="10.5" width="30" height="30"/>
-                        <color key="backgroundColor" red="0.83075362750000004" green="0.83367367979999996" blue="0.84243383689999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="OKd-Ci-b8p"/>
-                            <constraint firstAttribute="width" constant="30" id="yaG-he-kJ9"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="15"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciI-x8-T8J">
                         <rect key="frame" x="13" y="15" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -108,12 +96,10 @@
                 <constraint firstItem="LR7-b0-PIh" firstAttribute="width" secondItem="cYZ-L1-FWF" secondAttribute="width" id="1fm-5Y-q0B"/>
                 <constraint firstItem="cYZ-L1-FWF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="5kl-Wa-vIP"/>
                 <constraint firstItem="18i-bB-UKL" firstAttribute="height" secondItem="cYZ-L1-FWF" secondAttribute="height" id="93D-88-0Gu"/>
-                <constraint firstItem="xoM-5c-ZaS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="9bZ-2w-XxU"/>
                 <constraint firstItem="LR7-b0-PIh" firstAttribute="height" secondItem="cYZ-L1-FWF" secondAttribute="height" id="Axt-0D-ZMA"/>
                 <constraint firstItem="ciI-x8-T8J" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Mb9-tT-NuD"/>
                 <constraint firstItem="cYZ-L1-FWF" firstAttribute="bottom" secondItem="18i-bB-UKL" secondAttribute="bottom" id="PjR-3a-cou"/>
                 <constraint firstItem="ciI-x8-T8J" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="T6F-iJ-d9R"/>
-                <constraint firstItem="xoM-5c-ZaS" firstAttribute="centerY" secondItem="ciI-x8-T8J" secondAttribute="centerY" id="VWo-xr-QqH"/>
                 <constraint firstItem="wmk-le-ZLh" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="eQZ-hI-Ec0"/>
                 <constraint firstItem="18i-bB-UKL" firstAttribute="width" secondItem="cYZ-L1-FWF" secondAttribute="width" id="fKy-PM-WTK"/>
                 <constraint firstItem="wmk-le-ZLh" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="hof-Bs-nDD"/>
@@ -124,7 +110,6 @@
             <connections>
                 <outlet property="afternoonImage" destination="18i-bB-UKL" id="pNj-0y-S0Q"/>
                 <outlet property="afternoonView" destination="uop-zY-hSg" id="dEV-hm-ZUk"/>
-                <outlet property="circleView" destination="xoM-5c-ZaS" id="KB8-UJ-LQe"/>
                 <outlet property="dateLabel" destination="ciI-x8-T8J" id="M1f-BB-wot"/>
                 <outlet property="fullDayImage" destination="cYZ-L1-FWF" id="3YI-49-az4"/>
                 <outlet property="morningImage" destination="LR7-b0-PIh" id="P0h-fV-dCj"/>

@@ -9,13 +9,15 @@
 import Foundation
 
 protocol TableDataProviderRepositoryProtocol {
-    func getLeaveData(completion: @escaping ([CellData]) -> Void)
+    
+    func getLeaveData(completion: @escaping ([CellData], [Absence]) -> Void)
     
     func getSicknessData(completion: @escaping ([CellData]) -> Void)
     
-    func getLeaveTypeData(completion: @escaping ([SectionData]) -> Void)
+    func getLeaveTypeData(completion: @escaping ([Absence]) -> Void)
     
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void)
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
+    
 }

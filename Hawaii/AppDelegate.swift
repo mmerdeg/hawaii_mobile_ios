@@ -28,8 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func chooseInitialView() {
         
         let signIn = GIDSignIn.sharedInstance()
-        signIn?.scopes = ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/plus.me",
-        "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"]
+        signIn?.scopes = ["https://www.googleapis.com/auth/plus.login",
+                          "https://www.googleapis.com/auth/plus.me",
+                          "https://www.googleapis.com/auth/userinfo.email",
+                          "https://www.googleapis.com/auth/userinfo.profile",
+                          "https://www.googleapis.com/auth/calendar"]
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -60,7 +63,7 @@ extension SwinjectStoryboard {
         defaultContainer.register(RequestUseCaseProtocol.self,
                                   name: String(describing: RequestUseCaseProtocol.self)) { resolver in
             RequestUseCase(entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
-                                                              name: String(describing: RequestUseCaseProtocol.self)) ?? RequestRepository())
+                                                              name: String(describing: RequestRepositoryProtocol.self)) ?? RequestRepository())
         }
         
         // Table Data Provider Repository
@@ -69,9 +72,9 @@ extension SwinjectStoryboard {
         }
         defaultContainer.register(TableDataProviderUseCaseProtocol.self,
                                   name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
-                                    TableDataProviderUseCase(tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                                                      name: String(describing: TableDataProviderUseCaseProtocol.self))
-                                                                                        ?? TableDataProviderRepository())
+            TableDataProviderUseCase(tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
+                                     name: String(describing: TableDataProviderRepositoryProtocol.self))
+                                           ?? TableDataProviderRepository())
         }
         
         // User Details Repository
@@ -82,7 +85,7 @@ extension SwinjectStoryboard {
         defaultContainer.register(UserDetailsUseCaseProtocol.self,
                                   name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
                                     UserDetailsUseCase(userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
-                                                                            name: String(describing: UserDetailsUseCaseProtocol.self))
+                                                                            name: String(describing: UserDetailsRepositoryProtocol.self))
                                         ?? UserDetailsRepository())
         }
 
@@ -103,6 +106,10 @@ extension SwinjectStoryboard {
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
         }
         
+        defaultContainer.storyboardInitCompleted(ApproveViewController.self) { resolver, controller in
+            controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+        }
+        
         defaultContainer.storyboardInitCompleted(RequestTableViewController.self) { resolver, controller in
             controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
                                                                    name: String(describing: TableDataProviderUseCaseProtocol.self))
@@ -117,6 +124,11 @@ extension SwinjectStoryboard {
         defaultContainer.storyboardInitCompleted(MoreViewController.self) { resolver, controller in
             controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                              name: String(describing: UserDetailsUseCaseProtocol.self))
+        }
+        
+        defaultContainer.storyboardInitCompleted(SelectAbsenceViewController.self) { resolver, controller in
+            controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
+                                                                            name: String(describing: TableDataProviderUseCaseProtocol.self))
         }
     }
 }

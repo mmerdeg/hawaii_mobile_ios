@@ -13,6 +13,12 @@ protocol RequestUseCaseProtocol {
     func getAll(completion: @escaping ([Request]) -> Void)
     
     func add(request: Request, completion: @escaping (Request) -> Void)
+    
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping ([Request]) -> Void)
+    
+    func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void)
+    
+    func updateRequest(request: Request, completion: @escaping (Request) -> Void)
 }
 
 class RequestUseCase: RequestUseCaseProtocol {
@@ -35,4 +41,22 @@ class RequestUseCase: RequestUseCaseProtocol {
         }
     }
     
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping ([Request]) -> Void) {
+        entityRepository.getAllByDate(from: from, toDate: toDate) { requests in
+            completion(requests)
+        }
+    }
+    
+    func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void) {
+        entityRepository.getAllPendingForApprover(approver: approver) { requests in
+            completion(requests)
+        }
+    }
+    
+    func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
+        entityRepository.updateRequest(request: request) { request in
+            completion(request)
+        }
+    }
+
 }

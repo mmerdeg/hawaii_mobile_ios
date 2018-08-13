@@ -13,4 +13,10 @@ protocol RequestRepositoryProtocol {
     func getAll(completion: @escaping ([Request]) -> Void)
     
     func add(request: Request, completion: @escaping (Request) -> Void)
+    
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping ([Request]) -> Void)
+    
+    func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void)
+    
+    func updateRequest(request: Request, completion: @escaping (Request) -> Void)
 }

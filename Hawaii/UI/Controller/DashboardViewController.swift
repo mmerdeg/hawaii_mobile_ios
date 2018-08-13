@@ -10,7 +10,7 @@ import UIKit
 import JTAppleCalendar
 
 class DashboardViewController: BaseViewController {
-
+    
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -23,6 +23,7 @@ class DashboardViewController: BaseViewController {
     var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
     var customView: UIView = UIView()
+    let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
     let showSickRequestSegue = "showSickRequest"
     let showBonusRequestSegue = "showBonusRequest"
@@ -57,22 +58,22 @@ class DashboardViewController: BaseViewController {
     @objc func addRequest() {
         
         let leave = DialogWrapper(title: "Leave", uiAction: .default,
-            handler: { _ in
-                self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
+                                  handler: { _ in
+                                    self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
         })
         let sick = DialogWrapper(title: "Sick", uiAction: .default,
-            handler: { _ in
-                self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
+                                 handler: { _ in
+                                    self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
         })
         let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
-            handler: { _ in
-                self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+                                  handler: { _ in
+                                    self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
         })
         let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
         
         ViewUtility.showCustomDialog(self,
-            choices: [leave, sick, bonus, cancel],
-            title: "Choose Request Type"
+                                     choices: [leave, sick, bonus, cancel],
+                                     title: "Choose Request Type"
         )
     }
     
@@ -95,8 +96,8 @@ class DashboardViewController: BaseViewController {
             controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
-                  let requests = sender as? [Request] else {
-                return
+                let requests = sender as? [Request] else {
+                    return
             }
             controller.requests = requests
             controller.delegate = self
@@ -119,8 +120,9 @@ class DashboardViewController: BaseViewController {
     func fillCalendar() {
         requestUseCase?.getAll { request in
             self.items = request
-            self.collectionView.reloadData()
-            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -146,8 +148,8 @@ extension DashboardViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        guard let startDate = formatter.date(from: "01 06 2018"),
-              let endDate = formatter.date(from: "31 12 2030") else {
+        guard let startDate = formatter.date(from: "01 05 2018"),
+            let endDate = formatter.date(from: "31 12 2030") else {
                 return ConfigurationParameters(startDate: Date(), endDate: Date(), firstDayOfWeek: .monday)
         }
         
@@ -179,13 +181,14 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             guard let days = item.days else {
                 continue
             }
-            for day in days where calendar.compare(day.date, to: cellState.date, toGranularity: .day) == .orderedSame {
+            print(cellState.date)
+            for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
                 let tempRequest = Request(request: item, days: [day])
                 requests.append(tempRequest)
             }
         }
         cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-        cell.setCell()
+        cell.setCell(processor: processor)
         return cell
     }
     
@@ -207,7 +210,6 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
         guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
             return
         }
-        calendarCell.circleView.isHidden = Calendar.current.isDateInToday(cellState.date) ? false : true
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
@@ -216,7 +218,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
     }
-
+    
 }
 
 extension DashboardViewController: RequestDetailsDialogProtocol {
@@ -226,7 +228,7 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
         }
     }
     
-    func requestTypeClicked(requestType: RequestType) {
+    func requestTypeClicked(requestType: AbsenceType) {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
@@ -235,7 +237,7 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
 }
 
 extension DashboardViewController: RequestUpdateProtocol {
-   
+    
     func didAdd(request: Request) {
         items.append(request)
         collectionView.reloadData()
@@ -248,6 +250,5 @@ extension DashboardViewController: RequestUpdateProtocol {
     func didEdit(request: Request) {
         
     }
-    
     
 }

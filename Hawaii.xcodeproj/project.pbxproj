@@ -40,8 +40,16 @@
 		3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
 		3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */; };
 		3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
+		3E3550D6211C462D00B43B57 /* libPocketSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550D5211C462D00B43B57 /* libPocketSVG.a */; };
+		3E3550E8211C5CCB00B43B57 /* libKingfisher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550E7211C5CCB00B43B57 /* libKingfisher.a */; };
+		3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
+		3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
+		3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */; };
+		3E3550FE2121789300B43B57 /* Approve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E3550FD2121789300B43B57 /* Approve.storyboard */; };
+		3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
+		3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */; };
+		3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35510321217BC400B43B57 /* ApproveViewController.swift */; };
 		3E42591C20E2454600F22BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
-		3E42591E20E256B300F22BBD /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591D20E256B300F22BBD /* Absence.swift */; };
 		3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592120E259C800F22BBD /* RequestUseCase.swift */; };
 		3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */; };
 		3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592820E25B7500F22BBD /* RequestRepository.swift */; };
@@ -55,9 +63,10 @@
 		3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645320EA297C00DC7240 /* DatePickerViewController.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
 		3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E72646120EA4E8C00DC7240 /* Assets.xcassets */; };
-		3E72646420EA6FF100DC7240 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72646320EA6FF100DC7240 /* RequestType.swift */; };
 		3E834B642100A8BA0038BC96 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
 		3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E834B6B2100AF1B0038BC96 /* SignInApi.swift */; };
+		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
+		3E84371B211C430D003F449B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643820CA69E900501CAC /* AppDelegate.swift */; };
 		3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -68,7 +77,7 @@
 		3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */; };
 		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
-		BA236B9808DEDD81FAEC70E1 /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */; };
+		C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,8 +180,16 @@
 		3E28E79620E4AEA100F1C6D5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestViewController.swift; sourceTree = "<group>"; };
 		3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickRequestViewController.swift; sourceTree = "<group>"; };
+		3E3550D5211C462D00B43B57 /* libPocketSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPocketSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E3550E7211C5CCB00B43B57 /* libKingfisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKingfisher.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E3550F5211D937B00B43B57 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAbsenceViewController.swift; sourceTree = "<group>"; };
+		3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestsViewController.swift; sourceTree = "<group>"; };
+		3E3550FD2121789300B43B57 /* Approve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Approve.storyboard; sourceTree = "<group>"; };
+		3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalTableViewCell.swift; sourceTree = "<group>"; };
+		3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestApprovalTableViewCell.xib; sourceTree = "<group>"; };
+		3E35510321217BC400B43B57 /* ApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewController.swift; sourceTree = "<group>"; };
 		3E42591B20E2454600F22BBD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		3E42591D20E256B300F22BBD /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		3E42592120E259C800F22BBD /* RequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUseCase.swift; sourceTree = "<group>"; };
 		3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3E42592820E25B7500F22BBD /* RequestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRepository.swift; sourceTree = "<group>"; };
@@ -186,9 +203,10 @@
 		3E72645320EA297C00DC7240 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
 		3E72646120EA4E8C00DC7240 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		3E72646320EA6FF100DC7240 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		3E834B602100A8B90038BC96 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		3E834B6B2100AF1B0038BC96 /* SignInApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApi.swift; sourceTree = "<group>"; };
+		3E843714211C42AF003F449B /* SVGProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGProcessor.swift; sourceTree = "<group>"; };
+		3E84371A211C430D003F449B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		3EB5643520CA69E900501CAC /* Hawaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hawaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB5643820CA69E900501CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,8 +223,8 @@
 		3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepository.swift; sourceTree = "<group>"; };
 		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
-		9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hawaii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
+		E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hawaii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,9 +232,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3550E8211C5CCB00B43B57 /* libKingfisher.a in Frameworks */,
+				3E3550D6211C462D00B43B57 /* libPocketSVG.a in Frameworks */,
 				3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
 				3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
-				BA236B9808DEDD81FAEC70E1 /* libPods-Hawaii.a in Frameworks */,
+				C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +260,9 @@
 		08624EF672D76C3B7D6C231E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9707B6F683AB0BE855A6D157 /* libPods-Hawaii.a */,
+				3E3550E7211C5CCB00B43B57 /* libKingfisher.a */,
+				3E3550D5211C462D00B43B57 /* libPocketSVG.a */,
+				E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +364,8 @@
 				3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */,
 				3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */,
 				3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */,
+				3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */,
+				3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -354,6 +378,7 @@
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
 				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
 				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
+				3E3550FD2121789300B43B57 /* Approve.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -374,9 +399,7 @@
 			children = (
 				3E15C45820E6376A00DB2CF7 /* UI */,
 				3E42591B20E2454600F22BBD /* Request.swift */,
-				3E42591D20E256B300F22BBD /* Absence.swift */,
 				3E28E79620E4AEA100F1C6D5 /* Day.swift */,
-				3E72646320EA6FF100DC7240 /* RequestType.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -396,6 +419,7 @@
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
 				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
+				3E3550F5211D937B00B43B57 /* ArrayExtension.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -439,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				3E5C2AD52109CBA600706E82 /* CustomDateFormatter.swift */,
+				3E843714211C42AF003F449B /* SVGProcessor.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -465,6 +490,7 @@
 				3E72645320EA297C00DC7240 /* DatePickerViewController.swift */,
 				3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */,
 				3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */,
+				3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -526,6 +552,7 @@
 				3EB5644420CA69EA00501CAC /* Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
 				3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */,
+				3E84371A211C430D003F449B /* Constants.swift */,
 			);
 			path = Hawaii;
 			sourceTree = "<group>";
@@ -573,6 +600,8 @@
 				3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */,
 				3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */,
 				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
+				3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */,
+				3E35510321217BC400B43B57 /* ApproveViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -766,9 +795,11 @@
 				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
+				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
 				3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
+				3E3550FE2121789300B43B57 /* Approve.storyboard in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -854,16 +885,15 @@
 				3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */,
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
 				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,
+				3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
-				3E42591E20E256B300F22BBD /* Absence.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
-				3E72646420EA6FF100DC7240 /* RequestType.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
@@ -873,12 +903,15 @@
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
+				3E84371B211C430D003F449B /* Constants.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
 				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,
+				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
@@ -886,7 +919,10 @@
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
+				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
+				3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */,
 				3E5C2AD62109CBA600706E82 /* CustomDateFormatter.swift in Sources */,
+				3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */,
 				3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */,
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
@@ -1074,8 +1110,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = Hawaii/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1098,8 +1139,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = Hawaii/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

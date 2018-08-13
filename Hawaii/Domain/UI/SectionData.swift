@@ -14,3 +14,12 @@ struct SectionData {
     let cells: [CellData]?
     
 }
+
+extension SectionData {
+    
+    init(sectionData: SectionData? = nil, name: String? = nil, cells: [CellData]? = nil) {
+        self.name = name ?? sectionData?.name
+        self.cells = cells ?? sectionData?.cells
+    }
+    
+}

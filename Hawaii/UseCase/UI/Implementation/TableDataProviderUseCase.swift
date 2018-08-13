@@ -10,11 +10,11 @@ import Foundation
 
 protocol TableDataProviderUseCaseProtocol {
     
-    func getLeaveData(completion: @escaping ([CellData]) -> Void)
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]]) -> Void)
     
     func getSicknessData(completion: @escaping ([CellData]) -> Void)
     
-    func getLeaveTypeData(completion: @escaping ([SectionData]) -> Void)
+    func getLeaveTypeData(completion: @escaping ([String: [Absence]]) -> Void)
     
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void)
     
@@ -25,9 +25,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
     var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
 
-    func getLeaveData(completion: @escaping ([CellData]) -> Void) {
-        tableDataProviderRepository?.getLeaveData(completion: { data in
-            completion(data)
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]]) -> Void) {
+        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData in
+            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }))
         })
     }
     
@@ -37,9 +37,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
         })
     }
     
-    func getLeaveTypeData(completion: @escaping ([SectionData]) -> Void) {
+    func getLeaveTypeData(completion: @escaping ([String: [Absence]]) -> Void) {
         tableDataProviderRepository?.getLeaveTypeData(completion: { data in
-            completion(data)
+            completion(Dictionary(grouping: data, by: { $0.absenceType ?? "" }))
         })
     }
     

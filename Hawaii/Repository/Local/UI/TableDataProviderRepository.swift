@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import CodableAlamofire
+import Alamofire
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
-    func getLeaveData(completion: @escaping ([CellData]) -> Void) {
-        completion([CellData(title: "Type of leave", description: AbsenceType.vacation.description),
-                    CellData(title: "Duration", description: DurationType.fullday.description)])
+    func getLeaveData(completion: @escaping ([CellData], [Absence]) -> Void) {
+        guard let url = URL(string: Constants.leaveTypes) else {
+            return
+        }
+        Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
+           completion([CellData(title: "Type of leave", description: response.result.value?.first?.absenceType),
+             CellData(title: "Duration", description: DurationType.fullday.description)], response.result.value ?? [] )
+        }
     }
     
     func getSicknessData(completion: @escaping ([CellData]) -> Void) {
@@ -19,26 +26,19 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                     CellData(title: "Duration", description: "Full Day")])
     }
     
-    func getLeaveTypeData(completion: @escaping ([SectionData]) -> Void) {
-        completion([SectionData(name: "Annual Leave", cells: [CellData(title: AbsenceType.vacation.description, description: nil)]),
-                                    SectionData(name: "Deducted Leave", cells: [CellData(title: AbsenceType.trainingAndEducation.description, description: nil)]),
-                                    SectionData(name: "Non Deducted Leave", cells: [CellData(title: AbsenceType.businessTravel.description, description: nil),
-                                                                                    CellData(title: AbsenceType.deliveryOrAdoption.description, description: nil),
-                                                                                    CellData(title: AbsenceType.familySaintDay.description, description: nil),
-                                                                                    CellData(title: AbsenceType.funeralFamilyMember.description, description: nil),
-                                                                                    CellData(title: AbsenceType.maternityLeave.description, description: nil),
-                                                                                    CellData(title: AbsenceType.moving.description, description: nil),
-                                                                                    CellData(title: AbsenceType.nationalSportCompetition.description, description: nil),
-                                                                                    CellData(title: AbsenceType.ownWedding.description, description: nil),
-                                                                                    CellData(title: AbsenceType.illnessOfFamilyMember.description,
-                                                                                             description: nil),
-                                                                                    CellData(title: AbsenceType.workFromHome.description, description: nil)])])
+    func getLeaveTypeData(completion: @escaping ([Absence]) -> Void) {
+        guard let url = URL(string: Constants.leaveTypes) else {
+            return
+        }
+        Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
+            completion(response.result.value ?? [])
+        }
     }
     
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void) {
         completion([SectionData(name: "Sickness Type", cells: [CellData(title: "Sick", description: nil),
-                                                                    CellData(title: "Veeery sick", description: nil),
-                                                                    CellData(title: "Dying", description: nil)])])
+                                                               CellData(title: "Veeery sick", description: nil),
+                                                               CellData(title: "Dying", description: nil)])])
     }
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void) {

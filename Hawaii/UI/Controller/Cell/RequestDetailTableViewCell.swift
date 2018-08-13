@@ -19,19 +19,21 @@ class RequestDetailTableViewCell: UITableViewCell {
     var request: Request? {
         didSet {
             guard let reason = request?.reason,
-                  let image = request?.absence?.absenceType?.image,
-                  let color = request?.requestStatus?.backgoundColor else {
+                let imageUrl = request?.absence?.iconUrl,
+                let color = request?.requestStatus?.backgoundColor else {
                     return
             }
             requestReason.text = reason
-            requestImage.image = image.withRenderingMode(.alwaysTemplate)
+            requestImage.kf.setImage(with: URL(string: imageUrl))
+            requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryTextColor
             requestImage.backgroundColor = color
+            date.text = String(describing: request?.id ?? -1)
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
         }
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

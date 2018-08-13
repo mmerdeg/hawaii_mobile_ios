@@ -8,12 +8,11 @@
 
 import UIKit
 import JTAppleCalendar
+import Kingfisher
 
 class CalendarCellCollectionViewCell: JTAppleCell {
-
-    @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var fullDayImage: UIImageView!
     
@@ -34,15 +33,18 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         dateLabel.text = cellState.text
         if Calendar.current.isDateInToday(cellState.date) {
             dateLabel.textColor = UIColor.accentColor
+            self.layer.borderColor = UIColor.cyan.cgColor
         } else {
             dateLabel.textColor = cellState.dateBelongsTo == .thisMonth ?
                 UIColor.primaryTextColor : UIColor.secondaryTextColor
+            if NSCalendar.current.isDateInWeekend(cellState.date) {
+                self.isUserInteractionEnabled = false
+                dateLabel.textColor = UIColor.secondaryTextColor
+            } else {
+                self.isUserInteractionEnabled = true
+                dateLabel.textColor = UIColor.primaryTextColor
+            }
         }
-    }
-    
-    func handleCellSelection(cellState: CellState) {
-        circleView.backgroundColor = UIColor.primaryColor
-        circleView.isHidden = !Calendar.current.isDateInToday(cellState.date)
     }
     
     override func awakeFromNib() {
@@ -50,9 +52,8 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         roundedHalvesView.layer.cornerRadius = roundedHalvesView.frame.size.height * 2 / 3
     }
     
-    func setCell() {
+    func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
-        handleCellSelection(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         self.backgroundColor = UIColor.lightPrimaryColor
         self.layer.borderWidth = 0.5
@@ -71,19 +72,25 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             }
             dateLabel.textColor = UIColor.darkPrimaryColor
             
-            switch day.duration {
-
-            case .afternoon:
-                afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                afternoonImage.image = request.absence?.absenceType?.image ?? UIImage()
-            case .fullday:
-                afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                fullDayImage.image = request.absence?.absenceType?.image ?? UIImage()
-            case .morning:
-                morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                morningImage.image = request.absence?.absenceType?.image ?? UIImage()
+            DispatchQueue.main.async {
+                switch day.duration {
+                    
+                case .afternoon?:
+                    self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.afternoonImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    print(Constants.baseUrl + "/" + (request.absence?.iconUrl ?? ""))
+                case .fullday?:
+                    self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.fullDayImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                case .morning?:
+                    self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                case .none:
+                    print("")
+                }
             }
+            
         }
         
         layoutIfNeeded()

@@ -9,32 +9,92 @@
 import Foundation
 import UIKit
 
-struct Request {
-    
-    let id: Int?
-    let days: [Day]?
-    let reason: String?
-    let requestStatus: RequestStatus?
-    let absence: Absence?
+enum AbsenceType: String, Codable {
+    case deducted = "DEDUCTED_LEAVE"
+    case sick = "SICKNESS"
+    case bonus = "BONUS_DAYS"
+    case nonDecuted = "NONDEDUCTED_LEAVE"
 }
 
-extension Request {
-    init(request: Request? = nil, id: Int? = nil ,
-         reason: String? = nil, requestStatus: RequestStatus? = nil,
-         abcence: Absence? = nil, days: [Day]? = nil) {
-        self.id = id ?? request?.id
-        self.reason = reason ?? request?.reason
-        self.requestStatus = requestStatus ?? request?.requestStatus
-        self.absence = abcence ?? request?.absence
-        self.days = days ?? request?.days
+enum AbsenceSubType: Int, Codable {
+    
+    case workFromHome = 0
+    case vacation = 1
+    case trainingAndEducation = 2
+    case businessTravel = 3
+    case deliveryOrAdoption = 4
+    case familySaintDay = 5
+    case funeralFamilyMember = 6
+    case maternityLeave = 7
+    case moving = 8
+    case nationalSportCompetition = 9
+    case ownWedding = 10
+    case illnessOfFamilyMember = 11
+    
+    var image: UIImage? {
+        switch self {
+        case .workFromHome:
+            return #imageLiteral(resourceName: "house")
+        case .businessTravel:
+            return #imageLiteral(resourceName: "airplane_mode_on")
+        case .vacation:
+            return #imageLiteral(resourceName: "vacation")
+        case .trainingAndEducation:
+            return #imageLiteral(resourceName: "vacation")
+        case .deliveryOrAdoption:
+            return #imageLiteral(resourceName: "vacation")
+        case .familySaintDay:
+            return #imageLiteral(resourceName: "vacation")
+        case .funeralFamilyMember:
+            return #imageLiteral(resourceName: "vacation")
+        case .maternityLeave:
+            return #imageLiteral(resourceName: "vacation")
+        case .moving:
+            return #imageLiteral(resourceName: "vacation")
+        case .nationalSportCompetition:
+            return #imageLiteral(resourceName: "vacation")
+        case .ownWedding:
+            return #imageLiteral(resourceName: "vacation")
+        case .illnessOfFamilyMember:
+            return #imageLiteral(resourceName: "vacation")
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case .workFromHome:
+            return "Work from home"
+        case .businessTravel:
+            return "Business travel"
+        case .vacation:
+            return "Annual leave - Vacation"
+        case .trainingAndEducation:
+            return "Training & Education"
+        case .deliveryOrAdoption:
+            return "Delivery or adoption"
+        case .familySaintDay:
+            return "Family Saint day"
+        case .funeralFamilyMember:
+            return "Funeral family member"
+        case .maternityLeave:
+            return "Maternity leave"
+        case .moving:
+            return "Moving"
+        case .nationalSportCompetition:
+            return "National sport competition"
+        case .ownWedding:
+            return "Own wedding"
+        case .illnessOfFamilyMember:
+            return "Serious illness of close family member"
+        }
     }
 }
 
-enum RequestStatus: String {
-    case pending = "Pending"
-    case approved = "Approved"
-    case rejected = "Rejected"
-    case canceled = "Canceled"
+enum RequestStatus: String, Codable {
+    case pending = "PENDING"
+    case approved = "APPROVED"
+    case rejected = "REJECTED"
+    case canceled = "CANCELED"
     
     var backgoundColor: UIColor? {
         switch self {
@@ -43,10 +103,57 @@ enum RequestStatus: String {
         case .approved:
             return UIColor.approvedColor
         case .canceled:
-             return UIColor.clear
+            return UIColor.clear
         case .rejected:
             return UIColor.rejectedColor
         }
     }
-    
+}
+
+struct Request: Codable {
+    let userId: Int?
+    let absence: Absence?
+    let requestStatus: RequestStatus?
+    let reason: String?
+    let approverId: Int?
+    let days: [Day]?
+    let id: Int?
+}
+
+extension Request {
+    init(request: Request? = nil, approverId: Int? = nil, days: [Day]? = nil,
+         reason: String? = nil, requestStatus: RequestStatus? = nil, absence: Absence? = nil,
+         userId: Int? = nil, id: Int? = nil) {
+        self.approverId = approverId ?? request?.approverId
+        self.days = days ?? request?.days
+        self.reason = reason ?? request?.reason
+        self.requestStatus = requestStatus ?? request?.requestStatus
+        self.userId = userId ?? request?.userId
+        self.absence = absence ?? request?.absence
+        self.id = id ?? request?.id
+    }
+}
+
+struct Absence: Codable {
+    let id: Int?
+    let name: String?
+    let absenceSubType: String?
+    let absenceType: String?
+    let comment: String?
+    let active: Bool?
+    let iconUrl: String?
+}
+extension Absence {
+    init(absence: Absence? = nil, id: Int? = nil, name: String? = nil, absenceSubType: String? = nil ,
+         absenceType: String? = nil, comment: String? = nil, active: Bool? = nil,
+         iconUrl: String? = nil) {
+        self.id = id ?? absence?.id
+        self.name = name ?? absence?.name
+        self.absenceSubType = absenceSubType ?? absence?.absenceSubType
+        self.absenceType = absenceType ?? absence?.absenceType
+        self.comment = comment ?? absence?.comment
+        self.active = active ?? absence?.active
+        self.iconUrl = iconUrl ?? absence?.iconUrl
+        
+    }
 }

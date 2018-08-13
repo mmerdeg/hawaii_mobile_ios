@@ -11,17 +11,17 @@ import UIKit
 class LeaveRequestViewController: BaseViewController {
     
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
-   
+    
     let showRequestTableViewController = "showRequestTableViewController"
-  
+    
     let showRemainingDaysViewController = "showRemainingDaysViewController"
-
+    
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     var datePickerController: DatePickerViewController?
- 
+    
     var requestTableViewController: RequestTableViewController?
- 
+    
     var remainingDaysViewController: RemainigDaysViewController?
     
     var requestUseCase: RequestUseCaseProtocol?
@@ -51,7 +51,7 @@ class LeaveRequestViewController: BaseViewController {
             guard let requestTableViewController = self.requestTableViewController else {
                 return
             }
-            requestTableViewController.requestType = .leave
+            requestTableViewController.requestType = .deducted
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -66,25 +66,54 @@ class LeaveRequestViewController: BaseViewController {
     
     @objc func addLeaveRequest() {
         guard let startDate = datePickerController?.startDatePicker.date,
-            let endDate = datePickerController?.endDatePicker.date,
-            let requestTableViewController = requestTableViewController else {
+              let endDate = datePickerController?.endDatePicker.date,
+              let requestTableViewController = requestTableViewController,
+              let requestUseCase = requestUseCase else {
                 return
         }
-        let leaveType = requestTableViewController.getTypeSelection()
         let durationType = requestTableViewController.getDurationSelection()
         
-        let days: [Day] = []
-    
-        let request = Request(id: nil, days: [Day(id: nil, date: startDate, duration: DurationType.morning)], reason: "", requestStatus: RequestStatus.pending, absence: Absence(id: nil, comment: "", absenceType: leaveType, deducted: true, active: true, name: leaveType.description))
-        
-        guard let requestUseCase = requestUseCase else {
-            return
+        var days: [Day] = []
+        for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
+            days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
         }
         
+        let request = Request(approverId: 3, days: days, reason: "string",
+                              requestStatus: RequestStatus.pending,
+                              absence: requestTableViewController.selectedAbsence, userId: 1)
         requestUseCase.add(request: request) { request in
             self.requestUpdateDelegate?.didAdd(request: request)
             self.navigationController?.popViewController(animated: true)
         }
     }
     
+    func getDaysBetweeen(startDate: Date, endDate: Date) -> [Date] {
+        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+        guard let numberOfDays = components.day else {
+            return []
+        }
+        if Calendar.current.compare(startDate, to: endDate, toGranularity: .day) == .orderedSame {
+            return [startDate]
+        } else if numberOfDays == 0 {
+            return [startDate, endDate]
+        }
+        var dates: [Date] = []
+        for currentDay in 0...numberOfDays {
+            dates.append(startDate.addingTimeInterval(24 * 3600 * Double(currentDay)))
+        }
+        return dates
+    }
+    
+}
+
+extension Date {
+    var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon) ?? Date()
+    }
+    var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon) ?? Date()
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self) ?? Date()
+    }
 }

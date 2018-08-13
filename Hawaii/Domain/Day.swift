@@ -8,19 +8,11 @@
 
 import Foundation
 
-struct Day {
+enum DurationType: String, Codable {
     
-    let id: Int?
-    let date: Date
-    let duration: DurationType
-    
-}
-
-enum DurationType: Int {
-    
-    case fullday = 0
-    case morning = 1
-    case afternoon = 2
+    case fullday = "FULL_DAY"
+    case morning = "MORNING"
+    case afternoon = "AFTERNOON"
     
     var description: String {
         switch self {
@@ -30,6 +22,31 @@ enum DurationType: Int {
             return "Morning only"
         case .afternoon:
             return "Afternoon only"
+        }
+    }
+    
+}
+
+struct Day: Codable {
+    
+    let id: Int?
+    let date: Date?
+    let duration: DurationType?
+    let requestId: Int?
+    
+}
+
+extension DurationType {
+    init?(durationType: Int) {
+        switch durationType {
+        case 0:
+            self.init(rawValue: "FULL_DAY")
+        case 1:
+            self.init(rawValue: "MORNING")
+        case 2:
+            self.init(rawValue: "AFTERNOON")
+        default:
+            return nil
         }
     }
 }
