@@ -14,13 +14,15 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let tokenKey = "token"
     
-    func getToken(completion: @escaping (String) -> Void) {
+    func getToken() -> String {
+        var token = ""
         if preferences.object(forKey: tokenKey) != nil {
-            guard let token = preferences.string(forKey: tokenKey) else {
-                return
+            guard let authToken = preferences.string(forKey: tokenKey) else {
+                return ""
             }
-            completion(token)
+            token = authToken
         }
+        return token
     }
     
     func setToken(token: String) {

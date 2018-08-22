@@ -19,7 +19,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         print("User signed into google")
-        guard let accessToken = user.authentication.idToken else {
+        guard let accessToken = user.authentication.accessToken else {
             return
         }
         print(accessToken)

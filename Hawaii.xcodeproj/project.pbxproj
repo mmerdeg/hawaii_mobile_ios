@@ -498,6 +498,7 @@
 		3E834B662100AEAF0038BC96 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				3E834B6B2100AF1B0038BC96 /* SignInApi.swift */,
 			);
 			path = Remote;
@@ -507,7 +508,6 @@
 			isa = PBXGroup;
 			children = (
 				3E15C45F20E64C1000DB2CF7 /* UI */,
-				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
 			);
 			path = Local;
@@ -545,6 +545,7 @@
 				3EB5646620CA909000501CAC /* UI */,
 				3E5C2AD42109CABB00706E82 /* Utility */,
 				3EB5643820CA69E900501CAC /* AppDelegate.swift */,
+				3E84371A211C430D003F449B /* Constants.swift */,
 				3E72646120EA4E8C00DC7240 /* Assets.xcassets */,
 				3E987AEF20E518630083BB18 /* .swiftlint.yml */,
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
@@ -552,7 +553,6 @@
 				3EB5644420CA69EA00501CAC /* Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
 				3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */,
-				3E84371A211C430D003F449B /* Constants.swift */,
 			);
 			path = Hawaii;
 			sourceTree = "<group>";

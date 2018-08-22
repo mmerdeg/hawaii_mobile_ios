@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UserDetailsUseCaseProtocol {
-    func getToken(completion: @escaping (String) -> Void)
+    func getToken() -> String
     
     func setToken(token: String)
 }
@@ -21,10 +21,8 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         self.userDetailsRepository = userDetailsRepository
     }
     
-    func getToken(completion: @escaping (String) -> Void) {
-        userDetailsRepository.getToken { token in
-            completion(token)
-        }
+    func getToken() -> String {
+        return userDetailsRepository.getToken()
     }
     
     func setToken(token: String) {

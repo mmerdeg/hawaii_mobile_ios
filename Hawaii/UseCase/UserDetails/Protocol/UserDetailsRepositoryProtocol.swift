@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UserDetailsRepositoryProtocol {
-    func getToken(completion: @escaping (String) -> Void)
+    func getToken() -> String
     
     func setToken(token: String)
 }

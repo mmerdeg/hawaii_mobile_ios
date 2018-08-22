@@ -1,12 +1,13 @@
 import UIKit
 import GoogleSignIn
+import Swinject
 import SwinjectStoryboard
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -131,4 +132,5 @@ extension SwinjectStoryboard {
                                                                             name: String(describing: TableDataProviderUseCaseProtocol.self))
         }
     }
+    
 }

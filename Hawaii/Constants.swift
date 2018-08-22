@@ -10,6 +10,7 @@ import Foundation
 
 struct Constants {
     static let baseUrl = "http://nb077:8090"
+    static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
     static let userRequests = requests + "/user"
     static let leaveTypes = baseUrl + "/leavetypes"

@@ -30,10 +30,12 @@ class SignInApi: SignInApiProtocol {
 //        guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
 //            return
 //        }
-        guard let url = URL(string: "http://nb077:8080/signin") else {
-            return
-        }
-        Alamofire.request(url, headers: HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))).response { response in
+        
+        let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
+        Alamofire.request(Constants.signin, headers: headers).response { response in
+            guard let resp = response.response?.allHeaderFields else {
+                return
+            }
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
                 completion("")
                 return
