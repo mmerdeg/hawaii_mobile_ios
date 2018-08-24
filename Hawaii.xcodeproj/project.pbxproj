@@ -77,6 +77,7 @@
 		3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */; };
 		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
+		3ED6ED8421300CCB001436FE /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
 		C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */; };
 /* End PBXBuildFile section */
 
@@ -223,6 +224,7 @@
 		3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepository.swift; sourceTree = "<group>"; };
 		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
+		3ED6ED8321300CCB001436FE /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
 		E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hawaii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -400,6 +402,7 @@
 				3E15C45820E6376A00DB2CF7 /* UI */,
 				3E42591B20E2454600F22BBD /* Request.swift */,
 				3E28E79620E4AEA100F1C6D5 /* Day.swift */,
+				3ED6ED8321300CCB001436FE /* Absence.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
+				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
 				3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */,
@@ -1108,6 +1112,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1123,6 +1128,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = eu.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1137,6 +1144,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1152,6 +1160,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = eu.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

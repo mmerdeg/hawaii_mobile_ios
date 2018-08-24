@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +38,7 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aec-78-0yL">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aec-78-0yL">
                         <rect key="frame" x="55" y="61" width="338" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -54,7 +55,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaS-6T-Rhl">
-                        <rect key="frame" x="24" y="80" width="65.5" height="21"/>
+                        <rect key="frame" x="24" y="80" width="66" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="NOJ-HX-WQl"/>
                         </constraints>
@@ -66,7 +67,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IK-xi-4Hb">
-                        <rect key="frame" x="43" y="152" width="46" height="21"/>
+                        <rect key="frame" x="44" y="152" width="46" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -75,7 +76,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-mg-hoM">
-                        <rect key="frame" x="105" y="80" width="269" height="21"/>
+                        <rect key="frame" x="106" y="80" width="268" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -84,7 +85,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhR-ga-jRP">
-                        <rect key="frame" x="105" y="114" width="269" height="21"/>
+                        <rect key="frame" x="106" y="114" width="268" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -93,7 +94,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfP-J3-NtA">
-                        <rect key="frame" x="105" y="152" width="269" height="21"/>
+                        <rect key="frame" x="106" y="152" width="268" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -101,8 +102,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7P-GM-2BY">
-                        <rect key="frame" x="53" y="114" width="36" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dates" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7P-GM-2BY">
+                        <rect key="frame" x="45.5" y="114" width="44.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -113,6 +114,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnJ-JQ-qVX">
                         <rect key="frame" x="259" y="187" width="115" height="30"/>
                         <state key="normal" title="Cancel"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="rejectClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zDi-6g-8jg"/>
                         </connections>
@@ -120,6 +124,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNH-xV-jvh">
                         <rect key="frame" x="80" y="187" width="115" height="30"/>
                         <state key="normal" title="Accept"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="acceptClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KEE-it-ijf"/>
                         </connections>
@@ -128,6 +135,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="fUS-mg-hoM" secondAttribute="trailing" constant="16" id="1n4-9c-RvE"/>
                     <constraint firstItem="RaS-6T-Rhl" firstAttribute="top" secondItem="aec-78-0yL" secondAttribute="bottom" constant="18" id="4Fz-QY-EOG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aec-78-0yL" secondAttribute="trailing" constant="-23" id="4Nq-xt-NF7"/>
                     <constraint firstItem="GnJ-JQ-qVX" firstAttribute="width" secondItem="jNH-xV-jvh" secondAttribute="width" id="7Xn-UC-TjF"/>
                     <constraint firstItem="jNH-xV-jvh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9iO-7V-UuJ"/>
                     <constraint firstItem="HhR-ga-jRP" firstAttribute="trailing" secondItem="fUS-mg-hoM" secondAttribute="trailing" id="B3o-eG-Vba"/>
@@ -141,7 +149,7 @@
                     <constraint firstAttribute="trailing" secondItem="JDT-ZS-qIr" secondAttribute="trailing" constant="24" id="JKp-xh-gqV"/>
                     <constraint firstItem="GnJ-JQ-qVX" firstAttribute="centerY" secondItem="jNH-xV-jvh" secondAttribute="centerY" id="Mw4-ou-s7o"/>
                     <constraint firstItem="cvl-Vo-8CM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="SII-Vc-McS"/>
-                    <constraint firstAttribute="bottom" secondItem="jNH-xV-jvh" secondAttribute="bottom" constant="21.5" id="SOd-gz-NrZ"/>
+                    <constraint firstAttribute="bottom" secondItem="jNH-xV-jvh" secondAttribute="bottom" constant="21" id="SOd-gz-NrZ"/>
                     <constraint firstItem="JDT-ZS-qIr" firstAttribute="centerY" secondItem="1yQ-Cj-G2R" secondAttribute="centerY" id="WFF-7j-fE9"/>
                     <constraint firstItem="HhR-ga-jRP" firstAttribute="leading" secondItem="fUS-mg-hoM" secondAttribute="leading" id="X8T-zP-gfA"/>
                     <constraint firstItem="D7P-GM-2BY" firstAttribute="height" secondItem="RaS-6T-Rhl" secondAttribute="height" id="XQ9-86-MKH"/>
@@ -159,15 +167,19 @@
                     <constraint firstItem="MfP-J3-NtA" firstAttribute="trailing" secondItem="HhR-ga-jRP" secondAttribute="trailing" id="v3X-8W-6eI"/>
                     <constraint firstItem="cvl-Vo-8CM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="vXE-Cq-6c5"/>
                     <constraint firstItem="D7P-GM-2BY" firstAttribute="trailing" secondItem="RaS-6T-Rhl" secondAttribute="trailing" id="x0n-wj-Lrk"/>
+                    <constraint firstItem="aec-78-0yL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="35" id="zYs-DU-bnS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="acceptButton" destination="jNH-xV-jvh" id="iiC-it-D9p"/>
+                <outlet property="cancelButton" destination="GnJ-JQ-qVX" id="VMp-za-cMi"/>
                 <outlet property="date" destination="JDT-ZS-qIr" id="qev-70-7Mz"/>
+                <outlet property="requestDates" destination="HhR-ga-jRP" id="bmq-vx-lrF"/>
+                <outlet property="requestDuration" destination="fUS-mg-hoM" id="kTf-5G-TKM"/>
                 <outlet property="requestImage" destination="cvl-Vo-8CM" id="POH-zl-Vhj"/>
-                <outlet property="requestNumberOfDays" destination="fUS-mg-hoM" id="kTf-5G-TKM"/>
+                <outlet property="requestPerson" destination="1yQ-Cj-G2R" id="KdQ-Im-Qwa"/>
                 <outlet property="requestReason" destination="MfP-J3-NtA" id="Fen-R2-uuF"/>
-                <outlet property="requestStartDate" destination="HhR-ga-jRP" id="bmq-vx-lrF"/>
             </connections>
             <point key="canvasLocation" x="69" y="151.5"/>
         </tableViewCell>

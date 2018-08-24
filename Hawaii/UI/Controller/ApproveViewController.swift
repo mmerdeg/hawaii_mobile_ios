@@ -26,6 +26,8 @@ class ApproveViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestApprovalTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestApprovalTableViewCell.self))
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.primaryColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
         fillCalendar()
     }
     
@@ -62,8 +64,9 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
 extension ApproveViewController: RequestApprovalProtocol {
     func requestAction(request: Request?, isAccepted: Bool) {
         requestUseCase.updateRequest(request: Request(request: request,
-                                                      requestStatus: isAccepted ? RequestStatus.approved: RequestStatus.rejected)) { request in
-            
+                    requestStatus: isAccepted ? RequestStatus.approved: RequestStatus.rejected)) { request in
+                        self.requests = self.requests.filter { $0.id != request.id }
+                        self.tableView.reloadData()
         }
     }
 }

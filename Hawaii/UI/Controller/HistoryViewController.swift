@@ -34,6 +34,7 @@ class HistoryViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.primaryColor
         customView.frame = self.view.frame
         self.navigationItem.rightBarButtonItem = searchItem
         fillCalendar()
@@ -66,7 +67,7 @@ class HistoryViewController: BaseViewController {
         }
         self.performSegue(withIdentifier: searchRequestsSegue, sender: nil)
     }
-    
+
 }
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -77,6 +78,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
         cell.request = requests[indexPath.row]
+        cell.requestCancelationDelegate = self
         return cell
     }
     
@@ -101,4 +103,20 @@ extension HistoryViewController: SearchDialogProtocol {
             self.customView.removeFromSuperview()
         }
     }
+}
+
+extension HistoryViewController: RequestCancelationProtocol {
+    func requestCanceled(request: Request?) {
+        guard let request = request else {
+            return
+        }
+        requestUseCase.updateRequest(request: Request(request: request, requestStatus: RequestStatus.canceled)) { request in
+            if request.requestStatus == RequestStatus.canceled {
+                print("CANCELED")
+            } else {
+                print("NOT GONNA HAPPEN")
+            }
+        }
+    }
+    
 }

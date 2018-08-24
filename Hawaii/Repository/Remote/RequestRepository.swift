@@ -51,8 +51,9 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders())
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-            print(response)
-            completion(response.result.value ?? [])}
+                print(response)
+                completion(response.result.value ?? [])
+            }
     }
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping ([Request]) -> Void) {
@@ -67,8 +68,9 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders())
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-            print(response)
-                completion(response.result.value ?? [])}
+                print(response)
+                completion(response.result.value ?? [])
+            }
     }
     
     func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
@@ -81,14 +83,14 @@ class RequestRepository: RequestRepositoryProtocol {
         }
         
         Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default,
-                          headers: getHeaders()).responseString { response in
-            print(response.error ?? "")
-            //completion(request)
+                          headers: getHeaders()).responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
+            print(response)
+            completion(response.result.value ?? request)
         }
     }
     
     func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void) {
-        guard let url = URL(string: Constants.userRequests + "/3") else {
+        guard let url = URL(string: Constants.requestsToApprove) else {
             return
         }
         
@@ -96,7 +98,7 @@ class RequestRepository: RequestRepositoryProtocol {
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
             print(response)
             completion(response.result.value ?? [])
-        }
+            }
     }
     
     func getDecoder() -> JSONDecoder {

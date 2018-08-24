@@ -17,9 +17,6 @@ class MoreViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signOutButton.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3405850821)
-        signOutButton.layer.cornerRadius = 10
-        signOutButton.tintColor = UIColor.primaryTextColor
     }
     
     @IBAction func onSignOutPressed(_ sender: Any) {

@@ -27,6 +27,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     @IBOutlet weak var roundedHalvesView: UIView!
     
     var requests: [Request]?
+    
     var cellState: CellState!
     
     func handleCellText(cellState: CellState) {

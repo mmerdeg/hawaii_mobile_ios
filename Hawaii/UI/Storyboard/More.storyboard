@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +23,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="YxX-1G-B7S"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Sign out"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onSignOutPressed:" destination="htc-E0-zC2" eventType="touchUpInside" id="e05-Ja-KMh"/>
                                 </connections>

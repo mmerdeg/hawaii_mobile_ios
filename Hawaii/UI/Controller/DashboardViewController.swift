@@ -181,7 +181,6 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             guard let days = item.days else {
                 continue
             }
-            print(cellState.date)
             for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
                 let tempRequest = Request(request: item, days: [day])
                 requests.append(tempRequest)

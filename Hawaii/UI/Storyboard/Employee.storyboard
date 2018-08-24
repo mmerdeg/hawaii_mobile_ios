@@ -4,12 +4,13 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Employees-->
+        <!--Team calendar-->
         <scene sceneID="bwd-fe-Z4C">
             <objects>
                 <viewController id="UfA-62-Xdn" sceneMemberID="viewController">
@@ -18,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="XkH-vt-f9n"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Employees" id="0oq-Tq-VwG"/>
+                    <navigationItem key="navigationItem" title="Team calendar" id="0oq-Tq-VwG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4K-c1-wUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3820" y="975"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Team-->
         <scene sceneID="35D-zh-PHK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7bz-br-VVX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="dk8-04-2Sd"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="happy" id="dk8-04-2Sd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Go-y6-6wj">
@@ -45,4 +46,7 @@
             <point key="canvasLocation" x="2945" y="975"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="happy" width="24" height="24"/>
+    </resources>
 </document>

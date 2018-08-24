@@ -13,6 +13,7 @@ struct Constants {
     static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
     static let userRequests = requests + "/user"
+    static let requestsToApprove = requests + "/approval"
     static let leaveTypes = baseUrl + "/leavetypes"
     //static let baseUrl = "https://hawaii2.execom.eu/hawaii"
 }
