@@ -14,6 +14,7 @@ enum RequestStatus: String, Codable {
     case approved = "APPROVED"
     case rejected = "REJECTED"
     case canceled = "CANCELED"
+    case cancelationPending = "CANCELLATION_PENDING"
     
     var backgoundColor: UIColor? {
         switch self {
@@ -25,6 +26,8 @@ enum RequestStatus: String, Codable {
             return UIColor.clear
         case .rejected:
             return UIColor.rejectedColor
+        case .cancelationPending:
+            return UIColor.cancelationPendingColor
         }
     }
 }

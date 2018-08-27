@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RequestApprovalProtocol: class {
-    func requestAction(request: Request?, isAccepted: Bool)
+    func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell)
 }
 
 class RequestApprovalTableViewCell: UITableViewCell {
@@ -22,7 +22,7 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestDates: UILabel!
     
-    @IBOutlet weak var requestReason: UILabel!
+    @IBOutlet weak var requestNotes: UILabel!
     
     @IBOutlet weak var requestImage: UIImageView!
     
@@ -30,23 +30,27 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var requestReason: UILabel!
+    
     weak var delegate: RequestApprovalProtocol?
     
     var request: Request? {
         didSet {
-            guard let reason = request?.reason,
+            guard let notes = request?.reason,
                 let imageUrl = request?.absence?.iconUrl,
                 let duration = request?.days?.first?.duration?.description,
                 let startDate = request?.days?.first?.date,
                 let endDate = request?.days?.last?.date,
+                let reason = request?.absence?.name,
                 let color = request?.requestStatus?.backgoundColor else {
                     return
             }
             
             date.text = "submission date"
-            requestReason.text = reason
+            requestNotes.text = notes
             requestDuration.text = String(duration)
             requestPerson.text = "Ime Prezime"
+            requestReason.text = reason
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
@@ -72,10 +76,10 @@ class RequestApprovalTableViewCell: UITableViewCell {
     }
     
     @IBAction func rejectClicked(_ sender: Any) {
-        delegate?.requestAction(request: request, isAccepted: false)
+        delegate?.requestAction(request: request, isAccepted: false, cell: self)
     }
     
     @IBAction func acceptClicked(_ sender: Any) {
-        delegate?.requestAction(request: request, isAccepted: true)
+        delegate?.requestAction(request: request, isAccepted: true, cell: self)
     }
 }

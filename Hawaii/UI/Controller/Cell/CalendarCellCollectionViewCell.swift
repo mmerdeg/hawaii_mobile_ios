@@ -66,7 +66,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             guard let day = request.days?.first else {
                 continue
             }
-            if cellState.dateBelongsTo != .thisMonth {
+            if cellState.dateBelongsTo != .thisMonth || request.requestStatus == RequestStatus.canceled {
                 continue
             }
             dateLabel.textColor = UIColor.darkPrimaryColor

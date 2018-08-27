@@ -9,7 +9,7 @@
 import UIKit
 
 protocol RequestCancelationProtocol: class {
-    func requestCanceled(request: Request?)
+    func requestCanceled(request: Request?, cell: RequestDetailTableViewCell)
 }
 
 class RequestDetailTableViewCell: UITableViewCell {
@@ -20,22 +20,25 @@ class RequestDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestDates: UILabel!
     
-    @IBOutlet weak var requestReason: UILabel!
-    
     @IBOutlet weak var requestImage: UIImageView!
     
     @IBOutlet weak var requestStatus: UILabel!
     
     @IBOutlet weak var cancelButton: UIButton!
     
+    @IBOutlet weak var requestReason: UILabel!
+    
+    @IBOutlet weak var requestNotes: UILabel!
+    
     weak var requestCancelationDelegate: RequestCancelationProtocol?
     
     var request: Request? {
         didSet {
-            guard let reason = request?.reason,
+            guard let notes = request?.reason,
                 let imageUrl = request?.absence?.iconUrl,
                 let duration = request?.days?.first?.duration?.description,
                 let startDate = request?.days?.first?.date,
+                let reason = request?.absence?.name,
                 let endDate = request?.days?.last?.date,
                 let status = request?.requestStatus,
                 let color = request?.requestStatus?.backgoundColor else {
@@ -43,9 +46,10 @@ class RequestDetailTableViewCell: UITableViewCell {
             }
             
             date.text = "submission date"
-            requestReason.text = reason
+            requestNotes.text = notes
             requestDuration.text = String(duration)
             requestStatus.text = status.rawValue
+            requestReason.text = reason
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
@@ -61,9 +65,7 @@ class RequestDetailTableViewCell: UITableViewCell {
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
             
-            if status != RequestStatus.pending {
-                cancelButton.isHidden = true
-            }
+            cancelButton.isHidden = status != .pending && status != .approved
         }
     }
     
@@ -75,6 +77,6 @@ class RequestDetailTableViewCell: UITableViewCell {
     }
     
     @IBAction func onCancel(_ sender: Any) {
-        requestCancelationDelegate?.requestCanceled(request: request)
+        requestCancelationDelegate?.requestCanceled(request: request, cell: self)
     }
 }
