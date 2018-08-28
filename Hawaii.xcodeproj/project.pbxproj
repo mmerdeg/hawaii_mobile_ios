@@ -16,6 +16,8 @@
 		302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHUD.swift */; };
 		302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18021356C93001355E9 /* TeamCalendarViewController.swift */; };
 		302EE1832135744D001355E9 /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
+		302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
+		302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
@@ -162,6 +164,8 @@
 		302EE17B21353539001355E9 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		302EE18021356C93001355E9 /* TeamCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarViewController.swift; sourceTree = "<group>"; };
 		302EE1822135744D001355E9 /* CalendarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarType.swift; sourceTree = "<group>"; };
+		302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -380,6 +384,8 @@
 				3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */,
 				3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */,
 				3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */,
+				302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */,
+				302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -811,6 +817,7 @@
 			files = (
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
+				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* Employee.storyboard in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
@@ -916,6 +923,7 @@
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
+				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,

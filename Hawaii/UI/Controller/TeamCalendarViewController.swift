@@ -26,6 +26,8 @@ class TeamCalendarViewController: BaseViewController {
     var items: [Request] = []
     var customView: UIView = UIView()
     
+    let processor = SVGProcessor()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.textColor = UIColor.primaryTextColor
@@ -34,6 +36,8 @@ class TeamCalendarViewController: BaseViewController {
         customView.frame = self.view.frame
         let nib = UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
+        let nib2 = UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil)
+        collectionView?.register(nib2, forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -164,6 +168,8 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        
+        if segmentedControl.selectedSegmentIndex == 2 {
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
             as? CalendarCellCollectionViewCell else {
                 return JTAppleCell()
@@ -181,10 +187,33 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                 requests.append(tempRequest)
             }
         }
-        if segmentedControl.selectedSegmentIndex == 2 {
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+            cell.setCell(processor: processor)
+            return cell
+        } else {
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
+                                                          for: indexPath)
+                as? TeamCalendarCollectionViewCell else {
+                    return JTAppleCell()
+            }
+            
+            cell.cellState = cellState
+            let calendar = NSCalendar.current
+            var requests: [Request] = []
+            for item in items {
+                guard let days = item.days else {
+                    continue
+                }
+                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
+                    let tempRequest = Request(request: item, days: [day])
+                    requests.append(tempRequest)
+                }
+            }
+            cell.requests = requests
+            cell.setCell(processor: processor)
+            return cell
         }
-        return cell
+
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
