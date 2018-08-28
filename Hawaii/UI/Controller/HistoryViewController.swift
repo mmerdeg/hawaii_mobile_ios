@@ -12,13 +12,17 @@ class HistoryViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let searchRequestsSegue = "searchRequests"
+    
+    let segmentedControl = UISegmentedControl(items: ["All", "Pending", "Approved", "Rejected", "Canceled"])
+    
     var customView: UIView = UIView()
     
     var requestUseCase: RequestUseCaseProtocol!
     
     var requests: [Request] = []
     
-    let searchRequestsSegue = "searchRequests"
+    var filteredRequests: [Request] = []
     
     lazy var searchItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(searchRequest))
@@ -37,15 +41,24 @@ class HistoryViewController: BaseViewController {
         tableView.backgroundColor = UIColor.primaryColor
         customView.frame = self.view.frame
         self.navigationItem.rightBarButtonItem = searchItem
+        
+        initFilterHeader()
         fillCalendar()
     }
     
     func fillCalendar() {
-        requestUseCase.getAll { request in
-            self.requests = request
+        requestUseCase.getAll { requests in
+            self.requests = requests
+            self.filteredRequests = requests
             self.tableView.reloadData()
-            
         }
+    }
+    
+    func initFilterHeader() {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.tintColor = UIColor.accentColor
+        segmentedControl.backgroundColor = UIColor.black
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,13 +90,41 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             as? RequestDetailTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
-        cell.request = requests[indexPath.row]
+        cell.request = filteredRequests[indexPath.row]
         cell.requestCancelationDelegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return requests.count
+        return filteredRequests.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return segmentedControl
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+        case 1:
+            filteredRequests = requests.filter { $0.requestStatus == .pending }
+        case 2:
+            filteredRequests = requests.filter { $0.requestStatus == .approved || $0.requestStatus == .cancelationPending }
+        case 3:
+            filteredRequests = requests.filter { $0.requestStatus == .rejected }
+        case 4:
+            filteredRequests = requests.filter { $0.requestStatus == .canceled }
+        default:
+            filteredRequests = requests
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.segmentedControl.selectedSegmentIndex = segment.selectedSegmentIndex
+        }
+        
     }
 }
 
@@ -124,7 +165,7 @@ extension HistoryViewController: RequestCancelationProtocol {
                 self.requests.remove(at: index.row)
                 self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
             } else {
-                print("NOT GONNA HAPPEN")
+                print("CANCELATION FAILED")
             }
         }
     }
