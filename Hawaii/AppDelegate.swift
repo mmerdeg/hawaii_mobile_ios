@@ -61,6 +61,23 @@ extension SwinjectStoryboard {
         defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
             return RequestRepository()
         }
+        
+        // Request Repository
+        defaultContainer.register(UserRepositoryProtocol.self, name: String(describing: UserRepositoryProtocol.self)) { resolver in
+            let userRepository = UserRepository()
+            userRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                                                                 ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+            return userRepository
+        }
+        
+        // Table Data Provider Repository
+        defaultContainer.register(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self)) { resolver in
+            return UserUseCase(userRepository: resolver.resolve(UserRepositoryProtocol.self,
+                                                                name: String(describing: UserRepositoryProtocol.self))
+                ?? UserRepository())
+        }
+        
         defaultContainer.register(RequestUseCaseProtocol.self,
                                   name: String(describing: RequestUseCaseProtocol.self)) { resolver in
             RequestUseCase(entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
@@ -101,6 +118,12 @@ extension SwinjectStoryboard {
         
         defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+            
+        }
+        
+        defaultContainer.storyboardInitCompleted(RemainigDaysViewController.self) { resolver, controller in
+            controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            
         }
         
         defaultContainer.storyboardInitCompleted(HistoryViewController.self) { resolver, controller in
@@ -131,6 +154,7 @@ extension SwinjectStoryboard {
             controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
                                                                             name: String(describing: TableDataProviderUseCaseProtocol.self))
         }
+        
     }
     
 }

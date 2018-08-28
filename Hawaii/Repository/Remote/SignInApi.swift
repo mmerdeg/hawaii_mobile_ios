@@ -33,6 +33,7 @@ class SignInApi: SignInApiProtocol {
         
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
         Alamofire.request(Constants.signin, headers: headers).response { response in
+            print(response)
             guard let resp = response.response?.allHeaderFields else {
                 return
             }
@@ -40,6 +41,7 @@ class SignInApi: SignInApiProtocol {
                 completion("")
                 return
             }
+            
             completion(token)
         }
     }

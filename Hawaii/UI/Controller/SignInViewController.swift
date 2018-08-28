@@ -27,12 +27,9 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         guard let signInApi = signInApi else {
             return
         }
-        
+        userDetailsUseCase?.setEmail(user.profile.email)
         signInApi.signIn(accessToken: accessToken) { token in
-            guard let userDetailsUseCase = self.userDetailsUseCase else {
-                return
-            }
-            userDetailsUseCase.setToken(token: token)
+            self.userDetailsUseCase?.setToken(token: token)
             print("User Logged In")
             self.navigateToHome()
         }
@@ -44,11 +41,13 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         self.dismiss(animated: true) { () -> Void in
+            
         }
     }
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         self.present(viewController, animated: true) { () -> Void in
+            
         }
     }
     

@@ -12,9 +12,14 @@ protocol UserDetailsUseCaseProtocol {
     func getToken() -> String
     
     func setToken(token: String)
+    
+    func getEmail() -> String
+    
+    func setEmail(_ email: String)
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
+    
     let userDetailsRepository: UserDetailsRepositoryProtocol!
     
     init(userDetailsRepository: UserDetailsRepositoryProtocol) {
@@ -27,5 +32,13 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setToken(token: String) {
         userDetailsRepository.setToken(token: token)
+    }
+    
+    func getEmail() -> String {
+        return userDetailsRepository.getEmail()
+    }
+    
+    func setEmail(_ email: String) {
+        userDetailsRepository.setEmail(email)
     }
 }

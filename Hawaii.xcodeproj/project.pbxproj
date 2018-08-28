@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
+		302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		302EE1732133F549001355E9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
+		302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */; };
+		302EE1772133F5C4001355E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
+		302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
 		3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */; };
 		3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */; };
-		3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
-		3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
-		3E15C41D20E61E4800DB2CF7 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E15C45020E62AD300DB2CF7 /* WhiteUIPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C44F20E62AD300DB2CF7 /* WhiteUIPicker.swift */; };
 		3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45920E6379200DB2CF7 /* CellData.swift */; };
 		3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
@@ -82,6 +85,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		302EE16F2133C93B001355E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = FA4666DB1E1199C9004DE437;
+			remoteInfo = ECFoundationiOS;
+		};
 		3E15C41320E61AAD00DB2CF7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
@@ -110,13 +120,6 @@
 			remoteGlobalIDString = FA4667011E119A02004DE437;
 			remoteInfo = ECFoundationMacOSTests;
 		};
-		3E15C41E20E61E4800DB2CF7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = FA4666DB1E1199C9004DE437;
-			remoteInfo = ECFoundationiOS;
-		};
 		3EB5644A20CA69EA00501CAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3EB5642D20CA69E900501CAC /* Project object */;
@@ -134,13 +137,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3E15C42020E61E4800DB2CF7 /* Embed Frameworks */ = {
+		302EE1712133C93B001355E9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3E15C41D20E61E4800DB2CF7 /* ECFoundationiOS.framework in Embed Frameworks */,
+				302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +152,10 @@
 
 /* Begin PBXFileReference section */
 		1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
+		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
+		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		302EE1782133FD1B001355E9 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -236,9 +243,8 @@
 			files = (
 				3E3550E8211C5CCB00B43B57 /* libKingfisher.a in Frameworks */,
 				3E3550D6211C462D00B43B57 /* libPocketSVG.a in Frameworks */,
-				3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
-				3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */,
 				C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */,
+				302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +409,7 @@
 				3E42591B20E2454600F22BBD /* Request.swift */,
 				3E28E79620E4AEA100F1C6D5 /* Day.swift */,
 				3ED6ED8321300CCB001436FE /* Absence.swift */,
+				302EE1762133F5C4001355E9 /* User.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -503,6 +510,7 @@
 			children = (
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				3E834B6B2100AF1B0038BC96 /* SignInApi.swift */,
+				302EE1722133F549001355E9 /* UserRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -622,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */,
+				302EE1782133FD1B001355E9 /* UserUseCase.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -630,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */,
+				302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -656,12 +666,12 @@
 				3EB5643320CA69E900501CAC /* Resources */,
 				4C445ED01E3050A9DEDF0FCD /* [CP] Copy Pods Resources */,
 				3E6AEFE920D3BD9B002E8F61 /* ShellScript */,
-				3E15C42020E61E4800DB2CF7 /* Embed Frameworks */,
+				302EE1712133C93B001355E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3E15C41F20E61E4800DB2CF7 /* PBXTargetDependency */,
+				302EE1702133C93B001355E9 /* PBXTargetDependency */,
 			);
 			name = Hawaii;
 			productName = Hawaii;
@@ -711,7 +721,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Server;
 				TargetAttributes = {
 					3EB5643420CA69E900501CAC = {
@@ -896,6 +906,7 @@
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
+				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
@@ -905,11 +916,14 @@
 				3E72645420EA297C00DC7240 /* DatePickerViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
+				302EE1732133F549001355E9 /* UserRepository.swift in Sources */,
+				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E84371B211C430D003F449B /* Constants.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
+				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
@@ -954,10 +968,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E15C41F20E61E4800DB2CF7 /* PBXTargetDependency */ = {
+		302EE1702133C93B001355E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ECFoundationiOS;
-			targetProxy = 3E15C41E20E61E4800DB2CF7 /* PBXContainerItemProxy */;
+			targetProxy = 302EE16F2133C93B001355E9 /* PBXContainerItemProxy */;
 		};
 		3EB5644B20CA69EA00501CAC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
