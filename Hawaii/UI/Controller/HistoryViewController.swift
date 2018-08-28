@@ -106,13 +106,23 @@ extension HistoryViewController: SearchDialogProtocol {
 }
 
 extension HistoryViewController: RequestCancelationProtocol {
-    func requestCanceled(request: Request?) {
+    
+    func requestCanceled(request: Request?, cell: RequestDetailTableViewCell) {
         guard let request = request else {
             return
         }
-        requestUseCase.updateRequest(request: Request(request: request, requestStatus: RequestStatus.canceled)) { request in
+        var status = RequestStatus.canceled
+        if request.requestStatus == .approved {
+            status = .cancelationPending
+        }
+        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { request in
             if request.requestStatus == RequestStatus.canceled {
                 print("CANCELED")
+                guard let index = self.tableView.indexPath(for: cell) else {
+                    return
+                }
+                self.requests.remove(at: index.row)
+                self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
             } else {
                 print("NOT GONNA HAPPEN")
             }

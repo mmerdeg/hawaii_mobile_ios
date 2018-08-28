@@ -47,6 +47,14 @@ extension UIColor {
         return #colorLiteral(red: 0.2039215686, green: 0.8823529412, blue: 0.9882352941, alpha: 1)
     }
     
+    class var canceledColor: UIColor {
+        return #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+    }
+    
+    class var cancelationPendingColor: UIColor {
+        return #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+    }
+    
     class var primaryTextColor: UIColor {
         return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }

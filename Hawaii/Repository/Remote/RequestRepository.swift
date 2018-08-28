@@ -20,7 +20,7 @@ class RequestRepository: RequestRepositoryProtocol {
     
     var requests: [Request]!
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol = UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     func add(request: Request, completion: @escaping (Request) -> Void) {
         requests?.append(request)
@@ -121,7 +121,7 @@ class RequestRepository: RequestRepositoryProtocol {
     }
     
     func getHeaders() -> HTTPHeaders {
-        let token = userDetailsUseCase.getToken()
-        return [authHeader: token]
+        let token = userDetailsUseCase?.getToken()
+        return [authHeader: token ?? ""]
     }
 }

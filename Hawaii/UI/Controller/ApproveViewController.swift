@@ -62,11 +62,21 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ApproveViewController: RequestApprovalProtocol {
-    func requestAction(request: Request?, isAccepted: Bool) {
+    func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell) {
+        
+        var status: RequestStatus
+        if request?.requestStatus == .cancelationPending {
+            status = isAccepted ? .canceled : .approved
+        } else {
+            status = isAccepted ? .approved : .rejected
+        }
         requestUseCase.updateRequest(request: Request(request: request,
-                    requestStatus: isAccepted ? RequestStatus.approved: RequestStatus.rejected)) { request in
-                        self.requests = self.requests.filter { $0.id != request.id }
-                        self.tableView.reloadData()
+            requestStatus: status)) { _ in
+                guard let index = self.tableView.indexPath(for: cell) else {
+                    return
+                }
+                self.requests.remove(at: index.row)
+                self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
         }
     }
 }

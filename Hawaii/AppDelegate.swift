@@ -58,8 +58,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension SwinjectStoryboard {
     @objc class func setup() {
         // Request Repository
-        defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
-            return RequestRepository()
+        defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { resolver in
+            let requestRepository = RequestRepository()
+            requestRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                    name: String(describing: UserDetailsUseCaseProtocol.self))
+                                                                    ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+            return requestRepository
         }
         
         // Request Repository
@@ -90,7 +94,7 @@ extension SwinjectStoryboard {
         }
         defaultContainer.register(TableDataProviderUseCaseProtocol.self,
                                   name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
-            TableDataProviderUseCase(tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
+            return TableDataProviderUseCase(tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
                                      name: String(describing: TableDataProviderRepositoryProtocol.self))
                                            ?? TableDataProviderRepository())
         }
