@@ -12,24 +12,34 @@ protocol SearchDialogProtocol: NSObjectProtocol {
     
     func dismissDialog()
     
-    func didSearch(from: Date, toDate: Date)
+    func didFilter(year: String)
     
 }
 
 class SearchRequestsViewController: UIViewController {
     
-    @IBOutlet weak var toLabel: UILabel!
-    @IBOutlet weak var toPicker: UIDatePicker!
-    @IBOutlet weak var fromPicker: UIDatePicker!
-    @IBOutlet weak var fromLabel: UILabel!
+    let years = ["2016", "2017", "2018", "2019"]
     
     @IBOutlet weak var clickableView: UIView!
     
-    weak var delegate: SearchDialogProtocol?
+    @IBOutlet weak var yearPicker: UIPickerView!
     
+    @IBOutlet weak var yearLabel: UILabel!
+    
+    @IBOutlet weak var backgroundView: UIView!
+    
+    weak var delegate: SearchDialogProtocol?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        yearPicker.dataSource = self
+        yearPicker.delegate = self
+        
+        backgroundView.backgroundColor = UIColor.primaryColor
+        yearLabel.textColor = UIColor.primaryTextColor
+        yearPicker.tintColor = UIColor.primaryTextColor
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
     }
@@ -45,7 +55,28 @@ class SearchRequestsViewController: UIViewController {
     
     @IBAction func searchClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.didSearch(from: fromPicker.date, toDate: toPicker.date)
+        delegate?.didFilter(year: years[yearPicker.selectedRow(inComponent: 0)])
     }
+    
+}
+
+extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return years.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return years[row]
+    }
+    
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+//
+//        let string = "myString"
+//        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+//    }
     
 }

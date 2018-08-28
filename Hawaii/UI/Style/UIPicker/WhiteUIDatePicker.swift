@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable class WhiteUIPicker: UIDatePicker {
+@IBDesignable class WhiteUIDatePicker: UIDatePicker {
     
     @IBInspectable var tintCustomColor: UIColor = UIColor.primaryTextColor {
         didSet {
@@ -20,8 +20,6 @@ import UIKit
         //self.layoutIfNeeded()
         self.tintColor = tintCustomColor
         self.setValue(tintCustomColor, forKey: "textColor")
-        self.setValue(false, forKey: "highlightsToday")
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

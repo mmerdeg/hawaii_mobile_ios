@@ -25,7 +25,17 @@ class HistoryViewController: BaseViewController {
     var filteredRequests: [Request] = []
     
     lazy var searchItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(searchRequest))
+        
+        var buttonImage = UIImage(named: "filter")
+        buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
+        
+        let button: UIButton = UIButton(type: UIButtonType.custom)
+        button.setImage(buttonImage, for: UIControlState.normal)
+        button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 51, height: 31)
+        button.tintColor = UIColor.primaryTextColor
+        
+        let item = UIBarButtonItem(customView: button)
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -129,11 +139,12 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HistoryViewController: SearchDialogProtocol {
-    func didSearch(from: Date, toDate: Date) {
-        requestUseCase.getAllByDate(from: from, toDate: toDate) { requests in
-            self.requests = requests
-            self.tableView.reloadData()
-        }
+
+    func didFilter(year: String) {
+//        requestUseCase.getAllByDate(from: year, toDate: toDate) { requests in
+//            self.requests = requests
+//            self.tableView.reloadData()
+//        }
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
@@ -158,14 +169,11 @@ extension HistoryViewController: RequestCancelationProtocol {
         }
         requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { request in
             if request.requestStatus == RequestStatus.canceled {
-                print("CANCELED")
                 guard let index = self.tableView.indexPath(for: cell) else {
                     return
                 }
                 self.requests.remove(at: index.row)
                 self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
-            } else {
-                print("CANCELATION FAILED")
             }
         }
     }
