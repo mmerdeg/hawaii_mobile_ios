@@ -17,6 +17,7 @@ class RequestDetailsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var requestDialog: UIView!
     @IBOutlet weak var clickableView: UIView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     weak var delegate: RequestDetailsDialogProtocol?
     var requests: [Request] = []
@@ -34,6 +35,7 @@ class RequestDetailsViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
+        heightConstraint.constant = self.tableView.contentSize.height
     }
     
     @objc func  dismissDialog() {

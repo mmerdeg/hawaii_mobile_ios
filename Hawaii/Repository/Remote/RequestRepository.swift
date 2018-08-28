@@ -44,10 +44,6 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests + "/3") else {
             return
         }
-    
-//        Alamofire.request(url, method: HTTPMethod.get, headers: headers).response(completionHandler: { response in
-//            print(response)
-//        })
         
         Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders())
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
@@ -99,6 +95,30 @@ class RequestRepository: RequestRepositoryProtocol {
             print(response)
             completion(response.result.value ?? [])
             }
+    }
+    
+    func getAllByTeam(date: Date, teamId: Int, completion: @escaping ([Request]) -> Void) {
+        guard let url = URL(string: Constants.requestsToApprove) else {
+            return
+        }
+        
+        Alamofire.request(url, headers: getHeaders())
+            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
+                print(response)
+                completion(response.result.value ?? [])
+        }
+    }
+    
+    func getAllForAllEmployees(date: Date, completion: @escaping ([Request]) -> Void) {
+        guard let url = URL(string: Constants.requestsToApprove) else {
+            return
+        }
+        
+        Alamofire.request(url, headers: getHeaders())
+            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
+                print(response)
+                completion(response.result.value ?? [])
+        }
     }
     
     func getDecoder() -> JSONDecoder {

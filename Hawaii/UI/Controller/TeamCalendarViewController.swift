@@ -1,15 +1,15 @@
 //
-//  HomeViewController.swift
+//  TeamCalendarViewController.swift
 //  Hawaii
 //
-//  Created by Server on 6/11/18.
+//  Created by Ivan Divljak on 8/28/18.
 //  Copyright © 2018 Server. All rights reserved.
 //
 
 import UIKit
 import JTAppleCalendar
 
-class DashboardViewController: BaseViewController {
+class TeamCalendarViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
@@ -19,21 +19,12 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
     var customView: UIView = UIView()
-    let processor = SVGProcessor()
-    let showLeaveRequestSegue = "showLeaveRequest"
-    let showSickRequestSegue = "showSickRequest"
-    let showBonusRequestSegue = "showBonusRequest"
-    let showRequestDetailsSegue = "showRequestDetails"
-    
-    lazy var addRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestViaItem))
-        item.tintColor = UIColor.primaryTextColor
-        return item
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +34,6 @@ class DashboardViewController: BaseViewController {
         customView.frame = self.view.frame
         let nib = UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil)
         collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
-        // Do any additional setup after loading the view.
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -51,34 +41,50 @@ class DashboardViewController: BaseViewController {
         setupCalendarView()
         fillCalendar()
         collectionView.scrollToDate(Date(), animateScroll: false)
-        self.navigationItem.rightBarButtonItem = addRequestItem
-        
+        initFilterHeader()
     }
     
-    @objc func addRequestViaItem() {
-        addRequest(Date())
+    func initFilterHeader() {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.tintColor = UIColor.accentColor
+        segmentedControl.backgroundColor = UIColor.black
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
     }
     
-    func addRequest(_ date: Date? = nil) {
+    @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+        case 1:
+            startActivityIndicatorSpinner()
+            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
+                self.items = requests
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            })
+        case 2:
+            startActivityIndicatorSpinner()
+            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
+                self.items = requests
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            })
+        default:
+            startActivityIndicatorSpinner()
+            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
+                self.items = requests
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            })
+        }
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
         
-        let leave = DialogWrapper(title: "Leave", uiAction: .default,
-                                  handler: { _ in
-                                    self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: date)
-        })
-        let sick = DialogWrapper(title: "Sick", uiAction: .default,
-                                 handler: { _ in
-                                    self.performSegue(withIdentifier: self.showSickRequestSegue, sender: date)
-        })
-        let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
-                                  handler: { _ in
-                                    self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: date)
-        })
-        let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
-        
-        ViewUtility.showCustomDialog(self,
-                                     choices: [leave, sick, bonus, cancel],
-                                     title: "Choose Request Type"
-        )
     }
     
     func showDetails(_ requests: [Request]) {
@@ -88,25 +94,6 @@ class DashboardViewController: BaseViewController {
                 self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
                 self.navigationController?.view.bringSubview(toFront: self.customView)
             })
-        }
-        self.performSegue(withIdentifier: showRequestDetailsSegue, sender: requests)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showLeaveRequestSegue {
-            guard let controller = segue.destination as? LeaveRequestViewController,
-                  let date = sender as? Date else {
-                return
-            }
-            controller.selectedDate = date
-            controller.requestUpdateDelegate = self
-        } else if segue.identifier == showRequestDetailsSegue {
-            guard let controller = segue.destination as? RequestDetailsViewController,
-                let requests = sender as? [Request] else {
-                    return
-            }
-            controller.requests = requests
-            controller.delegate = self
         }
     }
     
@@ -125,13 +112,13 @@ class DashboardViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase?.getAll { request in
-            self.items = request
+        requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
+            self.items = requests
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()
             }
-        }
+        })
     }
     
     func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
@@ -150,14 +137,14 @@ class DashboardViewController: BaseViewController {
     }
 }
 
-extension DashboardViewController: JTAppleCalendarViewDataSource {
+extension TeamCalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "dd MM yyyy"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "01 05 2018"),
-            let endDate = formatter.date(from: "31 12 2030") else {
+              let endDate = formatter.date(from: "31 12 2030") else {
                 return ConfigurationParameters(startDate: Date(), endDate: Date(), firstDayOfWeek: .monday)
         }
         
@@ -166,7 +153,7 @@ extension DashboardViewController: JTAppleCalendarViewDataSource {
     }
 }
 
-extension DashboardViewController: JTAppleCalendarViewDelegate {
+extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
                   forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
@@ -194,8 +181,9 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
                 requests.append(tempRequest)
             }
         }
-        cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-        cell.setCell(processor: processor)
+        if segmentedControl.selectedSegmentIndex == 2 {
+            cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+        }
         return cell
     }
     
@@ -209,7 +197,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             }
             showDetails(requests)
         } else {
-            addRequest(date)
+           // addRequest(date)
         }
     }
     
@@ -224,38 +212,6 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
-    }
-    
-}
-
-extension DashboardViewController: RequestDetailsDialogProtocol {
-    func dismissDialog() {
-        DispatchQueue.main.async {
-            self.customView.removeFromSuperview()
-        }
-    }
-    
-    func requestTypeClicked(requestType: AbsenceType) {
-        DispatchQueue.main.async {
-            self.customView.removeFromSuperview()
-        }
-        
-    }
-}
-
-extension DashboardViewController: RequestUpdateProtocol {
-    
-    func didAdd(request: Request) {
-        items.append(request)
-        collectionView.reloadData()
-    }
-    
-    func didRemove(request: Request) {
-        
-    }
-    
-    func didEdit(request: Request) {
-        
     }
     
 }

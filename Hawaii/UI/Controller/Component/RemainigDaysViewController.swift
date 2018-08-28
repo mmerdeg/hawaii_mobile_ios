@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RemainigDaysViewController: UIViewController {
+class RemainigDaysViewController: BaseViewController {
 
     @IBOutlet weak var mainLabel: UILabel!
     
@@ -40,7 +40,7 @@ class RemainigDaysViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { user in
             self.user = user
             guard let annual = user?.allowances?.first?.annual,
@@ -49,6 +49,7 @@ class RemainigDaysViewController: UIViewController {
                   let bonus = user?.allowances?.first?.bonus,
                   let carriedOver = user?.allowances?.first?.carriedOver,
                 let manualAdjust = user?.allowances?.first?.manualAdjust else {
+                    self.stopActivityIndicatorSpinner()
                     return
             }
             
@@ -58,6 +59,7 @@ class RemainigDaysViewController: UIViewController {
             self.pendingDayNoLabel.text = String(describing: pendingAnnual)
             let total = annual + takenAnnual + pendingAnnual + carriedOver + bonus + manualAdjust
             self.progressBar.progress = CGFloat(takenAnnual / total) == 0 ? 1 : CGFloat(takenAnnual / total)
+            self.stopActivityIndicatorSpinner()
         })
         
         mainLabel.text = mainLabelText ?? ""

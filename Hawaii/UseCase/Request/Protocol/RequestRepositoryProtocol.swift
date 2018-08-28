@@ -19,4 +19,8 @@ protocol RequestRepositoryProtocol {
     func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void)
     
     func updateRequest(request: Request, completion: @escaping (Request) -> Void)
+    
+    func getAllByTeam(date: Date, teamId: Int, completion: @escaping ([Request]) -> Void)
+    
+    func getAllForAllEmployees(date: Date, completion: @escaping ([Request]) -> Void)
 }

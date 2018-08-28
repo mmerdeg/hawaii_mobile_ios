@@ -26,6 +26,8 @@ class LeaveRequestViewController: BaseViewController {
     
     var requestUseCase: RequestUseCaseProtocol?
     
+    var selectedDate: Date?
+    
     lazy var addLeveRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
         item.tintColor = UIColor.primaryTextColor
@@ -42,6 +44,7 @@ class LeaveRequestViewController: BaseViewController {
             guard let controller = segue.destination as? DatePickerViewController else {
                 return
             }
+            controller.selectedDate = selectedDate 
             self.datePickerController = controller
         } else if segue.identifier == showRequestTableViewController {
             guard let controller = segue.destination as? RequestTableViewController else {
@@ -70,6 +73,10 @@ class LeaveRequestViewController: BaseViewController {
               let requestTableViewController = requestTableViewController,
               let requestUseCase = requestUseCase else {
                 return
+        }
+        
+        if startDate >= endDate {
+            return
         }
         let durationType = requestTableViewController.getDurationSelection()
         

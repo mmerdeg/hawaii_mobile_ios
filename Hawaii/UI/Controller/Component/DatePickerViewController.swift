@@ -19,9 +19,13 @@ class DatePickerViewController: UIViewController {
     
     @IBOutlet weak var endDateLabel: UILabel!
     
+    var selectedDate: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        startDatePicker.date = selectedDate ?? Date()
         startDateLabel.textColor = UIColor.secondaryTextColor
         endDateLabel.textColor = UIColor.secondaryTextColor
+        endDatePicker.date = selectedDate ?? Date()
     }
 }
