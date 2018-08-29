@@ -23,6 +23,8 @@ class TeamCalendarViewController: BaseViewController {
     
     let teamDetailsSegue = "teamDetails"
     
+    let requestDetailsViewController = "RequestDetailsViewController"
+    
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
@@ -113,9 +115,13 @@ class TeamCalendarViewController: BaseViewController {
                     self.navigationController?.view.bringSubview(toFront: self.customView)
                 })
             }
-            let controller = RequestDetailsViewController()
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+            guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController) as? RequestDetailsViewController else {
+                return
+            }
             controller.requests = requests
             controller.delegate = self
+            controller.definesPresentationContext = true
             self.present(controller, animated: true, completion: nil)
         default:
             self.performSegue(withIdentifier: teamDetailsSegue, sender: requests)

@@ -24,7 +24,6 @@ class RequestDetailsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         requestDialog.layer.cornerRadius = 10
         self.view.backgroundColor = UIColor.clear
