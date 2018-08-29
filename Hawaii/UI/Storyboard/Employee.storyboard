@@ -191,11 +191,42 @@
                         <outlet property="nextButton" destination="IvF-lm-MTg" id="Ds6-wB-0GB"/>
                         <outlet property="previousButton" destination="xQL-7V-8di" id="mGH-TX-bTE"/>
                         <outlet property="segmentedControl" destination="dCn-vf-GKa" id="O0w-1b-3sH"/>
+                        <segue destination="W0R-72-7nz" kind="show" identifier="teamDetails" id="XPp-5I-QX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4K-c1-wUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3820" y="975"/>
+        </scene>
+        <!--Team Preview View Controller-->
+        <scene sceneID="zgm-ka-hkz">
+            <objects>
+                <viewController id="W0R-72-7nz" customClass="TeamPreviewViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="89g-BO-6TQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BCc-nl-Oqb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="bottom" secondItem="BCc-nl-Oqb" secondAttribute="bottom" id="Bdc-Kz-RUx"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="leading" secondItem="MEa-Vb-6Td" secondAttribute="leading" id="UiE-bf-6aP"/>
+                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="trailing" secondItem="BCc-nl-Oqb" secondAttribute="trailing" id="fCg-vh-AWS"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="top" secondItem="MEa-Vb-6Td" secondAttribute="top" id="w0b-Yv-UGE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MEa-Vb-6Td"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="BCc-nl-Oqb" id="Ux0-NB-fCv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEJ-a6-irt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4674" y="975"/>
         </scene>
         <!--Team-->
         <scene sceneID="35D-zh-PHK">

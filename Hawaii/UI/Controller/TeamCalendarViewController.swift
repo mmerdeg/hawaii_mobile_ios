@@ -21,6 +21,8 @@ class TeamCalendarViewController: BaseViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    let teamDetailsSegue = "teamDetails"
+    
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var items: [Request] = []
@@ -55,6 +57,16 @@ class TeamCalendarViewController: BaseViewController {
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == teamDetailsSegue {
+            guard let controller = segue.destination as? TeamPreviewViewController,
+                let requests = sender as? [Request] else {
+                    return
+            }
+            controller.requests = requests
+        }
+    }
+    
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
         case 1:
@@ -68,13 +80,13 @@ class TeamCalendarViewController: BaseViewController {
             })
         case 2:
             startActivityIndicatorSpinner()
-            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
-                self.items = requests
+            requestUseCase?.getAll { request in
+                self.items = request
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.stopActivityIndicatorSpinner()
                 }
-            })
+            }
         default:
             startActivityIndicatorSpinner()
             requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
@@ -88,16 +100,25 @@ class TeamCalendarViewController: BaseViewController {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        
     }
     
     func showDetails(_ requests: [Request]) {
-        self.navigationController?.view.addSubview(customView)
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-                self.navigationController?.view.bringSubview(toFront: self.customView)
-            })
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 2:
+            self.navigationController?.view.addSubview(customView)
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                    self.navigationController?.view.bringSubview(toFront: self.customView)
+                })
+            }
+            let controller = RequestDetailsViewController()
+            controller.requests = requests
+            controller.delegate = self
+            self.present(controller, animated: true, completion: nil)
+        default:
+            self.performSegue(withIdentifier: teamDetailsSegue, sender: requests)
         }
     }
     
@@ -217,23 +238,26 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
-            return
-        }
-        if calendarCell.requests != nil {
-            guard let requests = calendarCell.requests else {
+        if let calendarCell = cell as? CalendarCellCollectionViewCell {
+            if calendarCell.requests != nil {
+                guard let requests = calendarCell.requests else {
+                    return
+                }
+                showDetails(requests)
+            }
+        } else {
+            if let teamCalendarCell = cell as? TeamCalendarCollectionViewCell {
+                if teamCalendarCell.requests != nil {
+                    guard let requests = teamCalendarCell.requests else {
+                        return
+                    }
+                    showDetails(requests)
+                }
+            } else {
                 return
             }
-            showDetails(requests)
-        } else {
-           // addRequest(date)
         }
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
-            return
-        }
+        
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
@@ -243,4 +267,19 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
         setupCalendarView()
     }
     
+}
+
+extension TeamCalendarViewController: RequestDetailsDialogProtocol {
+    func dismissDialog() {
+        DispatchQueue.main.async {
+            self.customView.removeFromSuperview()
+        }
+    }
+    
+    func requestTypeClicked(requestType: AbsenceType) {
+        DispatchQueue.main.async {
+            self.customView.removeFromSuperview()
+        }
+        
+    }
 }

@@ -35,6 +35,8 @@ class RequestDetailsViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
+        tableView.reloadData()
+        tableView.layoutIfNeeded()
         heightConstraint.constant = self.tableView.contentSize.height
     }
     

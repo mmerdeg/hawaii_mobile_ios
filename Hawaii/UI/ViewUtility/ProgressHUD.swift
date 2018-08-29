@@ -84,4 +84,3 @@ class ProgressHUD: UIVisualEffectView {
         self.isHidden = true
     }
 }
-

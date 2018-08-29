@@ -65,13 +65,12 @@ class RequestUseCase: RequestUseCaseProtocol {
         if teamId != -1 {
              entityRepository.getAllByTeam(date: from, teamId: teamId) { requests in
                 completion(requests)
-            }
+             }
         } else {
             entityRepository.getAllForAllEmployees(date: from) { requests in
                 completion(requests)
             }
         }
     }
-    
 
 }

@@ -18,14 +18,14 @@
 		302EE1832135744D001355E9 /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
 		302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
+		307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413082136673100F05427 /* TeamPreviewViewController.swift */; };
+		3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */; };
+		307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
 		3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */; };
 		3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */; };
-		3E15C41B20E61AEA00DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
-		3E15C41C20E61E4800DB2CF7 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
-		3E15C41D20E61E4800DB2CF7 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3E15C45020E62AD300DB2CF7 /* WhiteUIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C44F20E62AD300DB2CF7 /* WhiteUIDatePicker.swift */; };
 		3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45920E6379200DB2CF7 /* CellData.swift */; };
 		3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
@@ -171,6 +171,9 @@
 		302EE1822135744D001355E9 /* CalendarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarType.swift; sourceTree = "<group>"; };
 		302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		307413082136673100F05427 /* TeamPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewViewController.swift; sourceTree = "<group>"; };
+		3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewTableViewCell.swift; sourceTree = "<group>"; };
+		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 				302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */,
 				3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */,
 				3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */,
+				3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */,
+				3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 				3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */,
 				3E35510321217BC400B43B57 /* ApproveViewController.swift */,
 				302EE18021356C93001355E9 /* TeamCalendarViewController.swift */,
+				307413082136673100F05427 /* TeamPreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -834,6 +840,7 @@
 				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
+				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
 				3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */,
@@ -926,6 +933,7 @@
 				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,
 				3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
+				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
@@ -968,6 +976,7 @@
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
+				307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */,
 				3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */,
 				3E5C2AD62109CBA600706E82 /* CustomDateFormatter.swift in Sources */,
 				3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */,

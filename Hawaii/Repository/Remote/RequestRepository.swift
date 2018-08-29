@@ -106,7 +106,7 @@ class RequestRepository: RequestRepositoryProtocol {
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
                 print(response)
                 completion(response.result.value ?? [])
-        }
+            }
     }
     
     func getAllForAllEmployees(date: Date, completion: @escaping ([Request]) -> Void) {
@@ -118,7 +118,7 @@ class RequestRepository: RequestRepositoryProtocol {
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
                 print(response)
                 completion(response.result.value ?? [])
-        }
+            }
     }
     
     func getDecoder() -> JSONDecoder {
