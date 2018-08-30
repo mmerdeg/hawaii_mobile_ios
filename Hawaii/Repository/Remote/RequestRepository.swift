@@ -29,6 +29,7 @@ class RequestRepository: RequestRepositoryProtocol {
               let requestParameters = request.dictionary else {
                 return
         }
+        print(requestParameters)
         Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseString { response in
                  print(response.error ?? "")
@@ -37,7 +38,7 @@ class RequestRepository: RequestRepositoryProtocol {
     }
     
     func getAll(completion: @escaping ([Request]) -> Void) {
-        guard let url = URL(string: Constants.userRequests + "/6") else {
+        guard let url = URL(string: Constants.userRequests) else {
             return
         }
         
