@@ -14,10 +14,6 @@ class RequestRepository: RequestRepositoryProtocol {
     
     let authHeader = "X-AUTH-TOKEN"
     
-//    let dateFormat = "yyyy-MM-dd"
-//
-//    let timeZone = "UTC"
-    
     var requests: [Request]!
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
@@ -41,12 +37,16 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
+
+        Alamofire.request(url, headers: getHeaders()).responseString { string in
+            print(string)
+        }
         
-        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders())
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                print(response)
-                completion(response.result.value ?? [])
-            }
+//        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders())
+//            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
+//                print(response)
+//                completion(response.result.value ?? [])
+//            }
     }
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping ([Request]) -> Void) {

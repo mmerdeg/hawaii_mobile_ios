@@ -58,6 +58,7 @@ class HistoryViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        segmentedControl.selectedSegmentIndex = 0
         fillCalendar()
     }
     
@@ -146,12 +147,14 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 extension HistoryViewController: SearchDialogProtocol {
 
     func didFilter(year: String) {
-//        requestUseCase.getAllByDate(from: year, toDate: toDate) { requests in
-//            self.requests = requests
-//            self.tableView.reloadData()
-//        }
+        guard let yearNo = Int(year) else {
+            return
+        }
+        filteredRequests = requests.filter { inSelectedYear(year: yearNo, days: $0.days ?? []) }
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
+            self.tableView.reloadData()
+            self.segmentedControl.selectedSegmentIndex = 0
         }
     }
     
@@ -159,6 +162,17 @@ extension HistoryViewController: SearchDialogProtocol {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
+    }
+    
+    func inSelectedYear(year: Int, days: [Day]) -> Bool {
+        let calendar = Calendar.current
+        
+        guard let firstDate = days.first?.date,
+            let lastDate = days.last?.date else {
+                return false
+        }
+        return calendar.component(.year, from: firstDate) == year ||
+                calendar.component(.year, from: lastDate) == year
     }
 }
 
