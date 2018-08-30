@@ -17,7 +17,9 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         }
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
            completion([CellData(title: "Type of leave", description: response.result.value?.first?.name),
-             CellData(title: "Duration", description: DurationType.fullday.description)], response.result.value ?? [], response.result.value?.first ?? Absence())
+             CellData(title: "Duration", description: DurationType.fullday.description)],
+                      response.result.value ?? [],
+                      response.result.value?.first ?? Absence())
         }
     }
     

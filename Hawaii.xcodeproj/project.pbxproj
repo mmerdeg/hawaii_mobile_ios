@@ -56,7 +56,7 @@
 		3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
 		3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
 		3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */; };
-		3E3550FE2121789300B43B57 /* Approve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E3550FD2121789300B43B57 /* Approve.storyboard */; };
+		3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E3550FD2121789300B43B57 /* Approval.storyboard */; };
 		3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
 		3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */; };
 		3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35510321217BC400B43B57 /* ApproveViewController.swift */; };
@@ -211,7 +211,7 @@
 		3E3550F5211D937B00B43B57 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAbsenceViewController.swift; sourceTree = "<group>"; };
 		3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestsViewController.swift; sourceTree = "<group>"; };
-		3E3550FD2121789300B43B57 /* Approve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Approve.storyboard; sourceTree = "<group>"; };
+		3E3550FD2121789300B43B57 /* Approval.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Approval.storyboard; sourceTree = "<group>"; };
 		3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalTableViewCell.swift; sourceTree = "<group>"; };
 		3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestApprovalTableViewCell.xib; sourceTree = "<group>"; };
 		3E35510321217BC400B43B57 /* ApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewController.swift; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
 				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
 				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
-				3E3550FD2121789300B43B57 /* Approve.storyboard */,
+				3E3550FD2121789300B43B57 /* Approval.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -845,7 +845,7 @@
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
 				3E72646220EA4E8C00DC7240 /* Assets.xcassets in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
-				3E3550FE2121789300B43B57 /* Approve.storyboard in Resources */,
+				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

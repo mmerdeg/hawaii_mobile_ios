@@ -68,10 +68,8 @@ class RequestRepository: RequestRepositoryProtocol {
     
     func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
         
-        guard let encodedData = try? getEncoder().encode(request),
-            let url = URL(string: Constants.requests),
-            let parameters = try? JSONSerialization.jsonObject(with: encodedData, options: []) as? [String: Any],
-            let requestParameters = parameters else {
+        guard let url = URL(string: Constants.requests),
+              let requestParameters = request.dictionary else {
                 return
         }
         

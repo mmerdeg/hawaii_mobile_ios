@@ -499,7 +499,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-bj-h9t" customClass="WhiteUIPicker" customModule="Hawaii" customModuleProvider="target">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-bj-h9t" customClass="WhiteUIDatePicker" customModule="Hawaii" customModuleProvider="target">
                                 <rect key="frame" x="10" y="41" width="355" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="eWH-CT-pBz"/>
@@ -520,14 +520,13 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="B30-ko-KnE" customClass="WhiteUIPicker" customModule="Hawaii" customModuleProvider="target">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="B30-ko-KnE" customClass="WhiteUIDatePicker" customModule="Hawaii" customModuleProvider="target">
                                 <rect key="frame" x="10" y="182" width="355" height="100"/>
                                 <date key="date" timeIntervalSinceReferenceDate="551889391.40092003">
                                     <!--2018-06-28 14:36:31 +0000-->
                                 </date>
                             </datePicker>
                         </subviews>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="B30-ko-KnE" firstAttribute="leading" secondItem="EeG-bj-h9t" secondAttribute="leading" id="07F-7m-fhj"/>
                             <constraint firstItem="JJR-yx-EbL" firstAttribute="top" secondItem="EeG-bj-h9t" secondAttribute="bottom" constant="10" id="4xp-Ap-SUM"/>
@@ -768,9 +767,9 @@
         <image name="calendar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9YR-6r-Hjh"/>
-        <segue reference="7Qi-Z7-6Yo"/>
-        <segue reference="C16-ZN-r4V"/>
+        <segue reference="g7F-bN-lNv"/>
+        <segue reference="ntj-IY-5Sk"/>
+        <segue reference="2Hz-vC-znZ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

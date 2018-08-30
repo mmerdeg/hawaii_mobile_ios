@@ -18,4 +18,5 @@ struct Constants {
     static let getUser = baseUrl + "/users"
     static let dateFormat = "yyyy-MM-dd"
     static let timeZone = "UTC"
+    static let userId = 2
 }

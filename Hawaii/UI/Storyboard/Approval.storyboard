@@ -41,11 +41,11 @@
             </objects>
             <point key="canvasLocation" x="972" y="178.56071964017991"/>
         </scene>
-        <!--Approve-->
+        <!--Approval-->
         <scene sceneID="KQQ-i8-ZFU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gc1-LA-eAL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Approve" image="airplane_mode_on" id="KeV-4t-7VP"/>
+                    <tabBarItem key="tabBarItem" title="Approval" image="airplane_mode_on" id="KeV-4t-7VP"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="aJX-lh-v0C">

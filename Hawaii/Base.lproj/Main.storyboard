@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="970" y="34"/>
         </scene>
-        <!--Approve-->
+        <!--Approval-->
         <scene sceneID="wfB-sK-OzE">
             <objects>
-                <viewControllerPlaceholder storyboardName="Approve" id="Q3u-zH-0jh" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Approval" id="Q3u-zH-0jh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="ZBs-ma-f9P"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rec-Ur-vPv" userLabel="First Responder" sceneMemberID="firstResponder"/>

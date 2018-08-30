@@ -86,7 +86,7 @@ class LeaveRequestViewController: BaseViewController {
         
         let request = Request(approverId: nil, days: days, reason: "string",
                               requestStatus: RequestStatus.pending,
-                              absence: requestTableViewController.selectedAbsence, userId: 3)
+                              absence: requestTableViewController.selectedAbsence, userId: Constants.userId)
         requestUseCase.add(request: request) { request in
             self.requestUpdateDelegate?.didAdd(request: request)
             self.navigationController?.popViewController(animated: true)
