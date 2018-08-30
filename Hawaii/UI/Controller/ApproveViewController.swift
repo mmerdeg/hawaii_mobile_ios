@@ -28,6 +28,10 @@ class ApproveViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fillCalendar()
     }
     
@@ -70,11 +74,13 @@ extension ApproveViewController: RequestApprovalProtocol {
         } else {
             status = isAccepted ? .approved : .rejected
         }
+        startActivityIndicatorSpinner()
         requestUseCase.updateRequest(request: Request(request: request,
             requestStatus: status)) { _ in
                 guard let index = self.tableView.indexPath(for: cell) else {
                     return
                 }
+                self.stopActivityIndicatorSpinner()
                 self.requests.remove(at: index.row)
                 self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
         }

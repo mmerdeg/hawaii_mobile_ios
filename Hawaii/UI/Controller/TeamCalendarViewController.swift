@@ -49,11 +49,15 @@ class TeamCalendarViewController: BaseViewController {
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         setupCalendarView()
-        fillCalendar()
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
         searchBar.barTintColor = UIColor.accentColor
         searchBar.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fillCalendar()
     }
     
     func initFilterHeader() {

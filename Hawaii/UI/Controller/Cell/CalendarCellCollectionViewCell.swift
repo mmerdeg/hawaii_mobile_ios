@@ -83,6 +83,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                     self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.fullDayImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    print()
                 case .morning?:
                     self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))

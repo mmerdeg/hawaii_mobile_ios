@@ -49,10 +49,14 @@ class DashboardViewController: BaseViewController {
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         setupCalendarView()
-        fillCalendar()
         collectionView.scrollToDate(Date(), animateScroll: false)
         self.navigationItem.rightBarButtonItem = addRequestItem
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fillCalendar()
     }
     
     @objc func addRequestViaItem() {
