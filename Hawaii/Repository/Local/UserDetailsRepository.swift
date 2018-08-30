@@ -13,6 +13,7 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     let preferences = UserDefaults.standard
     
     let tokenKey = "token"
+    let emailKey = "email"
     
     func getToken() -> String {
         var token = ""
@@ -27,6 +28,22 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     func setToken(token: String) {
         preferences.set(token, forKey: tokenKey)
+        preferences.synchronize()
+    }
+    
+    func getEmail() -> String {
+        var email = ""
+        if preferences.object(forKey: emailKey) != nil {
+            guard let emailValue = preferences.string(forKey: emailKey) else {
+                return ""
+            }
+            email = emailValue
+        }
+        return email
+    }
+    
+    func setEmail(_ email: String) {
+        preferences.set(email, forKey: emailKey)
         preferences.synchronize()
     }
 }

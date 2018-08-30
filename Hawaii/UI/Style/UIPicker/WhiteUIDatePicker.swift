@@ -10,17 +10,9 @@ import UIKit
 
 @IBDesignable class WhiteUIDatePicker: UIDatePicker {
     
-    @IBInspectable var tintCustomColor: UIColor = UIColor.primaryTextColor {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    
     override func layoutSubviews() {
-        //self.layoutIfNeeded()
-        self.tintColor = tintCustomColor
-        self.setValue(tintCustomColor, forKey: "textColor")
-        self.setValue(false, forKey: "highlightsToday")
+        self.setValue(UIColor.cyan, forKey: "textColor")
+        self.setValue(true, forKey: "highlightsToday")
     }
     
     required init?(coder aDecoder: NSCoder) {

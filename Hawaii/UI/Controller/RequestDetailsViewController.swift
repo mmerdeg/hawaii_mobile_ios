@@ -17,13 +17,13 @@ class RequestDetailsViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var requestDialog: UIView!
     @IBOutlet weak var clickableView: UIView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     weak var delegate: RequestDetailsDialogProtocol?
     var requests: [Request] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         requestDialog.layer.cornerRadius = 10
         self.view.backgroundColor = UIColor.clear
@@ -34,6 +34,9 @@ class RequestDetailsViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
+        tableView.reloadData()
+        tableView.layoutIfNeeded()
+        heightConstraint.constant = self.tableView.contentSize.height
     }
     
     @objc func  dismissDialog() {

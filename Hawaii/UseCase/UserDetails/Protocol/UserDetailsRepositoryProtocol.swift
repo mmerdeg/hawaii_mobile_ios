@@ -12,4 +12,8 @@ protocol UserDetailsRepositoryProtocol {
     func getToken() -> String
     
     func setToken(token: String)
+    
+    func getEmail() -> String
+    
+    func setEmail(_ email: String)
 }

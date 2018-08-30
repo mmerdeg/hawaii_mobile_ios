@@ -18,6 +18,8 @@ protocol RequestUseCaseProtocol {
     
     func getAllPendingForApprover(approver: Int, completion: @escaping ([Request]) -> Void)
     
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping ([Request]) -> Void)
+    
     func updateRequest(request: Request, completion: @escaping (Request) -> Void)
 }
 
@@ -56,6 +58,18 @@ class RequestUseCase: RequestUseCaseProtocol {
     func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
         entityRepository.updateRequest(request: request) { request in
             completion(request)
+        }
+    }
+
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping ([Request]) -> Void) {
+        if teamId != -1 {
+             entityRepository.getAllByTeam(date: from, teamId: teamId) { requests in
+                completion(requests)
+             }
+        } else {
+            entityRepository.getAllForAllEmployees(date: from) { requests in
+                completion(requests)
+            }
         }
     }
 

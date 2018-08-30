@@ -30,7 +30,7 @@ class DashboardViewController: BaseViewController {
     let showRequestDetailsSegue = "showRequestDetails"
     
     lazy var addRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequest))
+        let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestViaItem))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -55,19 +55,23 @@ class DashboardViewController: BaseViewController {
         
     }
     
-    @objc func addRequest() {
+    @objc func addRequestViaItem() {
+        addRequest(Date())
+    }
+    
+    func addRequest(_ date: Date? = nil) {
         
         let leave = DialogWrapper(title: "Leave", uiAction: .default,
                                   handler: { _ in
-                                    self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: nil)
+                                    self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: date)
         })
         let sick = DialogWrapper(title: "Sick", uiAction: .default,
                                  handler: { _ in
-                                    self.performSegue(withIdentifier: self.showSickRequestSegue, sender: nil)
+                                    self.performSegue(withIdentifier: self.showSickRequestSegue, sender: date)
         })
         let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
                                   handler: { _ in
-                                    self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: nil)
+                                    self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: date)
         })
         let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
         
@@ -77,7 +81,7 @@ class DashboardViewController: BaseViewController {
         )
     }
     
-    func showDetails(requests: [Request]) {
+    func showDetails(_ requests: [Request]) {
         self.navigationController?.view.addSubview(customView)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
@@ -90,9 +94,11 @@ class DashboardViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showLeaveRequestSegue {
-            guard let controller = segue.destination as? LeaveRequestViewController else {
+            guard let controller = segue.destination as? LeaveRequestViewController,
+                  let date = sender as? Date else {
                 return
             }
+            controller.selectedDate = date
             controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
@@ -118,10 +124,12 @@ class DashboardViewController: BaseViewController {
     }
     
     func fillCalendar() {
+        startActivityIndicatorSpinner()
         requestUseCase?.getAll { request in
             self.items = request
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                self.stopActivityIndicatorSpinner()
             }
         }
     }
@@ -145,7 +153,7 @@ class DashboardViewController: BaseViewController {
 extension DashboardViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = Calendar.current.timeZone
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "01 05 2018"),
@@ -199,9 +207,9 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             guard let requests = calendarCell.requests else {
                 return
             }
-            showDetails(requests: requests)
+            showDetails(requests)
         } else {
-            addRequest()
+            addRequest(date)
         }
     }
     

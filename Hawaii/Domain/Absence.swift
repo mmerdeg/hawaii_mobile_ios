@@ -92,19 +92,19 @@ enum AbsenceSubType: Int, Codable {
 struct Absence: Codable {
     let id: Int?
     let name: String?
-    let absenceSubType: String?
+    let absenceSubtype: String?
     let absenceType: String?
     let comment: String?
     let active: Bool?
     let iconUrl: String?
 }
 extension Absence {
-    init(absence: Absence? = nil, id: Int? = nil, name: String? = nil, absenceSubType: String? = nil ,
+    init(absence: Absence? = nil, id: Int? = nil, name: String? = nil, absenceSubtype: String? = nil ,
          absenceType: String? = nil, comment: String? = nil, active: Bool? = nil,
          iconUrl: String? = nil) {
         self.id = id ?? absence?.id
         self.name = name ?? absence?.name
-        self.absenceSubType = absenceSubType ?? absence?.absenceSubType
+        self.absenceSubtype = absenceSubtype ?? absence?.absenceSubtype
         self.absenceType = absenceType ?? absence?.absenceType
         self.comment = comment ?? absence?.comment
         self.active = active ?? absence?.active

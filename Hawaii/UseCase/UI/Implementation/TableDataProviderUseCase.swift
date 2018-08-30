@@ -10,7 +10,7 @@ import Foundation
 
 protocol TableDataProviderUseCaseProtocol {
     
-    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]]) -> Void)
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void)
     
     func getSicknessData(completion: @escaping ([CellData]) -> Void)
     
@@ -25,9 +25,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
     var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
 
-    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]]) -> Void) {
-        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData in
-            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }))
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void) {
+        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData, absence in
+            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), absence)
         })
     }
     

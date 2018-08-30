@@ -13,17 +13,226 @@
         <!--Team calendar-->
         <scene sceneID="bwd-fe-Z4C">
             <objects>
-                <viewController id="UfA-62-Xdn" sceneMemberID="viewController">
+                <viewController id="UfA-62-Xdn" customClass="TeamCalendarViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OXf-EC-xLy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c11-4n-1mD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="594"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-vf-GKa">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
+                                        <segments>
+                                            <segment title="All Employees"/>
+                                            <segment title="My Team"/>
+                                            <segment title="Custom"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt5-Oh-C6o">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="56"/>
+                                        <color key="barTintColor" red="1" green="0.00060692348051816225" blue="0.20844578742980957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YM-s3-wOU">
+                                        <rect key="frame" x="0.0" y="84" width="375" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Fw-vJM">
+                                                <rect key="frame" x="149" y="20.5" width="76" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvF-lm-MTg">
+                                                <rect key="frame" x="275" y="14.5" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="KXK-Lx-h46"/>
+                                                    <constraint firstAttribute="width" constant="30" id="lWg-la-uuF"/>
+                                                </constraints>
+                                                <state key="normal" title="&gt;">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="nextMonthPressed:" destination="UfA-62-Xdn" eventType="touchUpInside" id="h3a-WC-PCP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-7V-8di">
+                                                <rect key="frame" x="70" y="15" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="HHW-PW-kcd"/>
+                                                    <constraint firstAttribute="width" constant="30" id="tIr-4H-MD8"/>
+                                                </constraints>
+                                                <state key="normal" title="&lt;">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="previousMonthPressed:" destination="UfA-62-Xdn" eventType="touchUpInside" id="pau-wp-FVQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="7w9-Fw-vJM" firstAttribute="centerY" secondItem="8YM-s3-wOU" secondAttribute="centerY" id="60W-GG-3gp"/>
+                                            <constraint firstItem="IvF-lm-MTg" firstAttribute="centerY" secondItem="8YM-s3-wOU" secondAttribute="centerY" id="EcT-Xa-eba"/>
+                                            <constraint firstItem="7w9-Fw-vJM" firstAttribute="centerX" secondItem="8YM-s3-wOU" secondAttribute="centerX" id="RKA-75-VBb"/>
+                                            <constraint firstItem="xQL-7V-8di" firstAttribute="leading" secondItem="8YM-s3-wOU" secondAttribute="leading" constant="70" id="aPj-db-UEb"/>
+                                            <constraint firstAttribute="height" constant="60" id="jZ6-8N-Fe0"/>
+                                            <constraint firstItem="xQL-7V-8di" firstAttribute="centerY" secondItem="8YM-s3-wOU" secondAttribute="centerY" id="mZA-79-jlG"/>
+                                            <constraint firstAttribute="trailing" secondItem="IvF-lm-MTg" secondAttribute="trailing" constant="70" id="oYx-eK-hUU"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h0N-F3-VaT">
+                                        <rect key="frame" x="0.0" y="144" width="375" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAX-04-sVy">
+                                                <rect key="frame" x="0.0" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xwE-Ht-BgH">
+                                                <rect key="frame" x="53.5" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcs-EO-8gV">
+                                                <rect key="frame" x="107" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yc1-jR-bQr">
+                                                <rect key="frame" x="160.5" y="0.0" width="54" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVA-tO-jcj">
+                                                <rect key="frame" x="214.5" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yE1-gw-MZi">
+                                                <rect key="frame" x="268" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-yh-fXa">
+                                                <rect key="frame" x="321.5" y="0.0" width="53.5" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="calendarDaysFont"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="fgP-XL-tjt"/>
+                                        </constraints>
+                                    </stackView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UXb-JU-fla" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                        <rect key="frame" x="0.0" y="194" width="375" height="400"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="750" constant="400" id="YTW-0F-IwW"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="layoutMargins" id="bMu-Wo-in9">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="8YM-s3-wOU" secondAttribute="trailing" id="AVs-MZ-BOC"/>
+                                    <constraint firstItem="8YM-s3-wOU" firstAttribute="leading" secondItem="c11-4n-1mD" secondAttribute="leading" id="a0p-au-9cL"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="c11-4n-1mD" firstAttribute="leading" secondItem="XkH-vt-f9n" secondAttribute="leading" id="4ee-FC-TPe"/>
+                            <constraint firstItem="c11-4n-1mD" firstAttribute="top" secondItem="XkH-vt-f9n" secondAttribute="top" id="8gW-qf-eEu"/>
+                            <constraint firstItem="c11-4n-1mD" firstAttribute="centerX" secondItem="XkH-vt-f9n" secondAttribute="centerX" id="yTx-0m-1bS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XkH-vt-f9n"/>
                     </view>
                     <navigationItem key="navigationItem" title="Team calendar" id="0oq-Tq-VwG"/>
+                    <connections>
+                        <outlet property="collectionView" destination="UXb-JU-fla" id="Fux-l6-6vo"/>
+                        <outlet property="dateLabel" destination="7w9-Fw-vJM" id="VFe-2c-WCR"/>
+                        <outlet property="nextButton" destination="IvF-lm-MTg" id="Ds6-wB-0GB"/>
+                        <outlet property="previousButton" destination="xQL-7V-8di" id="mGH-TX-bTE"/>
+                        <outlet property="searchBar" destination="qt5-Oh-C6o" id="fZD-tz-1TG"/>
+                        <outlet property="segmentedControl" destination="dCn-vf-GKa" id="O0w-1b-3sH"/>
+                        <segue destination="W0R-72-7nz" kind="show" identifier="teamDetails" id="XPp-5I-QX3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4K-c1-wUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3820" y="975"/>
+        </scene>
+        <!--Team Preview View Controller-->
+        <scene sceneID="zgm-ka-hkz">
+            <objects>
+                <viewController id="W0R-72-7nz" customClass="TeamPreviewViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="89g-BO-6TQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BCc-nl-Oqb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="bottom" secondItem="BCc-nl-Oqb" secondAttribute="bottom" id="Bdc-Kz-RUx"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="leading" secondItem="MEa-Vb-6Td" secondAttribute="leading" id="UiE-bf-6aP"/>
+                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="trailing" secondItem="BCc-nl-Oqb" secondAttribute="trailing" id="fCg-vh-AWS"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="top" secondItem="MEa-Vb-6Td" secondAttribute="top" id="w0b-Yv-UGE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MEa-Vb-6Td"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="BCc-nl-Oqb" id="Ux0-NB-fCv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEJ-a6-irt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4674" y="975"/>
         </scene>
         <!--Team-->
         <scene sceneID="35D-zh-PHK">

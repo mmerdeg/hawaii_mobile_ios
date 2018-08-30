@@ -13,7 +13,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     }
 
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-
+        startActivityIndicatorSpinner()
         if let error = error {
             print(error.localizedDescription)
             return
@@ -27,28 +27,29 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         guard let signInApi = signInApi else {
             return
         }
-        
+        userDetailsUseCase?.setEmail(user.profile.email)
         signInApi.signIn(accessToken: accessToken) { token in
-            guard let userDetailsUseCase = self.userDetailsUseCase else {
-                return
-            }
-            userDetailsUseCase.setToken(token: token)
+            self.userDetailsUseCase?.setToken(token: token)
             print("User Logged In")
+            self.stopActivityIndicatorSpinner()
             self.navigateToHome()
         }
 
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        stopActivityIndicatorSpinner()
     }
     
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         self.dismiss(animated: true) { () -> Void in
+            self.stopActivityIndicatorSpinner()
         }
     }
     
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         self.present(viewController, animated: true) { () -> Void in
+            
         }
     }
     
