@@ -73,10 +73,4 @@ extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDele
         return years[row]
     }
     
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-//
-//        let string = "myString"
-//        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-//    }
-    
 }

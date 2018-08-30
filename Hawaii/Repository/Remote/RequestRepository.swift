@@ -41,7 +41,7 @@ class RequestRepository: RequestRepositoryProtocol {
     
     func getAll(completion: @escaping ([Request]) -> Void) {
         
-        guard let url = URL(string: Constants.userRequests + "/3") else {
+        guard let url = URL(string: Constants.userRequests) else {
             return
         }
     

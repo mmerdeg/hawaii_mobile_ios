@@ -53,6 +53,11 @@ class HistoryViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = searchItem
         
         initFilterHeader()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fillCalendar()
     }
     
@@ -160,21 +165,29 @@ extension HistoryViewController: SearchDialogProtocol {
 extension HistoryViewController: RequestCancelationProtocol {
     
     func requestCanceled(request: Request?, cell: RequestDetailTableViewCell) {
-        guard let request = request else {
+        guard let oldRequest = request else {
             return
         }
         var status = RequestStatus.canceled
-        if request.requestStatus == .approved {
+        if oldRequest.requestStatus == .approved {
             status = .cancelationPending
         }
-        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { request in
-            if request.requestStatus == RequestStatus.canceled {
-                guard let index = self.tableView.indexPath(for: cell) else {
-                    return
-                }
-                self.requests.remove(at: index.row)
-                self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+        requestUseCase.updateRequest(request: Request(request: oldRequest, requestStatus: status)) { request in
+            guard let index = self.tableView.indexPath(for: cell) else {
+                return
             }
+            
+            let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: request.requestStatus)
+            let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
+            
+            self.requests[indexOfOldRequest ?? 0] = updatedRequest
+            
+            if self.filteredRequests[index.row].requestStatus == .pending {
+                self.filteredRequests.remove(at: index.row)
+            } else {
+                self.filteredRequests[index.row] = updatedRequest
+            }
+            self.tableView.reloadData()
         }
     }
     
