@@ -21,6 +21,8 @@ class TeamCalendarViewController: BaseViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     let teamDetailsSegue = "teamDetails"
     
     let requestDetailsViewController = "RequestDetailsViewController"
@@ -50,6 +52,8 @@ class TeamCalendarViewController: BaseViewController {
         fillCalendar()
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
+        searchBar.barTintColor = UIColor.accentColor
+        searchBar.isHidden = true
     }
     
     func initFilterHeader() {
@@ -72,15 +76,19 @@ class TeamCalendarViewController: BaseViewController {
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
         case 1:
+            self.view.endEditing(true)
+            searchBar.isHidden = true
             startActivityIndicatorSpinner()
-            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
-                self.items = requests
+            requestUseCase?.getAll { request in
+                self.items = request
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.stopActivityIndicatorSpinner()
                 }
-            })
+            }
         case 2:
+            
+            searchBar.isHidden = false
             startActivityIndicatorSpinner()
             requestUseCase?.getAll { request in
                 self.items = request
@@ -90,14 +98,16 @@ class TeamCalendarViewController: BaseViewController {
                 }
             }
         default:
+            self.view.endEditing(true)
+            searchBar.isHidden = true
             startActivityIndicatorSpinner()
-            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
-                self.items = requests
+            requestUseCase?.getAll { request in
+                self.items = request
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.stopActivityIndicatorSpinner()
                 }
-            })
+            }
         }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -143,13 +153,13 @@ class TeamCalendarViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requests in
-            self.items = requests
+        requestUseCase?.getAll { request in
+            self.items = request
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()
             }
-        })
+        }
     }
     
     func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
@@ -171,7 +181,7 @@ class TeamCalendarViewController: BaseViewController {
 extension TeamCalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = Calendar.current.timeZone
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "01 05 2018"),

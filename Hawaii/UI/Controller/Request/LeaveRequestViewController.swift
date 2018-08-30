@@ -74,8 +74,7 @@ class LeaveRequestViewController: BaseViewController {
               let requestUseCase = requestUseCase else {
                 return
         }
-        
-        if startDate >= endDate {
+        if startDate > endDate {
             return
         }
         let durationType = requestTableViewController.getDurationSelection()
@@ -92,6 +91,13 @@ class LeaveRequestViewController: BaseViewController {
             self.requestUpdateDelegate?.didAdd(request: request)
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func getDateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.dateFormat
+        formatter.timeZone = TimeZone(abbreviation: Constants.timeZone)
+        return formatter
     }
     
     func getDaysBetweeen(startDate: Date, endDate: Date) -> [Date] {
@@ -122,5 +128,10 @@ extension Date {
     }
     var noon: Date {
         return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self) ?? Date()
+    }
+    
+    func convertToTimeZone(initTimeZone: TimeZone, timeZone: TimeZone) -> Date {
+        let delta = TimeInterval(timeZone.secondsFromGMT() - initTimeZone.secondsFromGMT())
+        return addingTimeInterval(delta)
     }
 }

@@ -768,9 +768,9 @@
         <image name="calendar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g7F-bN-lNv"/>
-        <segue reference="ntj-IY-5Sk"/>
-        <segue reference="2Hz-vC-znZ"/>
+        <segue reference="9YR-6r-Hjh"/>
+        <segue reference="7Qi-Z7-6Yo"/>
+        <segue reference="C16-ZN-r4V"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

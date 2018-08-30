@@ -34,6 +34,8 @@ struct Day: Codable {
     let duration: DurationType?
     let requestId: Int?
     
+    
+    
 }
 
 extension DurationType {

@@ -41,9 +41,10 @@ class RequestTableViewController: UIViewController {
         }
         
         if requestType == .deducted {
-            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData in
+            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, absence in
                 self.setItems(data: data)
                 self.leaveTypeData = leaveTypeData
+                self.selectedAbsence = absence
             })
         } else {
             tableDataProviderUseCase?.getSicknessData(completion: { data in

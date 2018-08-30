@@ -48,7 +48,7 @@ class RemainigDaysViewController: BaseViewController {
                   let pendingAnnual = user?.allowances?.first?.pendingAnnual,
                   let bonus = user?.allowances?.first?.bonus,
                   let carriedOver = user?.allowances?.first?.carriedOver,
-                let manualAdjust = user?.allowances?.first?.manualAdjust else {
+                  let manualAdjust = user?.allowances?.first?.manualAdjust else {
                     self.stopActivityIndicatorSpinner()
                     return
             }

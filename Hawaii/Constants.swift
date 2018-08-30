@@ -16,4 +16,6 @@ struct Constants {
     static let requestsToApprove = requests + "/approval"
     static let leaveTypes = baseUrl + "/leavetypes"
     static let getUser = baseUrl + "/users"
+    static let dateFormat = "yyyy-MM-dd"
+    static let timeZone = "UTC"
 }

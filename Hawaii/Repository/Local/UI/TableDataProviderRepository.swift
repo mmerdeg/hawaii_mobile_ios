@@ -11,13 +11,13 @@ import CodableAlamofire
 import Alamofire
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
-    func getLeaveData(completion: @escaping ([CellData], [Absence]) -> Void) {
+    func getLeaveData(completion: @escaping ([CellData], [Absence], Absence) -> Void) {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-           completion([CellData(title: "Type of leave", description: response.result.value?.first?.absenceType),
-             CellData(title: "Duration", description: DurationType.fullday.description)], response.result.value ?? [] )
+           completion([CellData(title: "Type of leave", description: response.result.value?.first?.name),
+             CellData(title: "Duration", description: DurationType.fullday.description)], response.result.value ?? [], response.result.value?.first ?? Absence())
         }
     }
     

@@ -153,7 +153,7 @@ class DashboardViewController: BaseViewController {
 extension DashboardViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = Calendar.current.timeZone
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "01 05 2018"),

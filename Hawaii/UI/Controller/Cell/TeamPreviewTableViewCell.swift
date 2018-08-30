@@ -25,11 +25,9 @@ class TeamPreviewTableViewCell: UITableViewCell {
             requestOwner.text = notes
             requestImage.kf.setImage(with: URL(string: imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
-            requestImage.tintColor = request?.requestStatus?.backgoundColor ?? UIColor.clear
-            requestImage.backgroundColor = UIColor.cyan
+            requestImage.tintColor = UIColor.primaryColor
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true
-            
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
         }
@@ -38,7 +36,7 @@ class TeamPreviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        backgroundColor = UIColor.primaryColor
+        //backgroundColor = UIColor.primaryColor
         selectionStyle = UITableViewCellSelectionStyle.none
     }
 }

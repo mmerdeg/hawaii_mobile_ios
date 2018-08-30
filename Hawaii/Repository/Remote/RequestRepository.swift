@@ -14,9 +14,9 @@ class RequestRepository: RequestRepositoryProtocol {
     
     let authHeader = "X-AUTH-TOKEN"
     
-    let dateFormat = "yyyy-MM-dd"
-    
-    let timeZone = "UTC"
+//    let dateFormat = "yyyy-MM-dd"
+//
+//    let timeZone = "UTC"
     
     var requests: [Request]!
     
@@ -25,23 +25,19 @@ class RequestRepository: RequestRepositoryProtocol {
     func add(request: Request, completion: @escaping (Request) -> Void) {
         requests?.append(request)
         
-        guard let encodedRequest = try? getEncoder().encode(request),
-            let url = URL(string: Constants.requests),
-            let parameters = try? JSONSerialization.jsonObject(with: encodedRequest, options: []) as? [String: Any],
-            let requestParameters = parameters else {
+        guard let url = URL(string: Constants.requests),
+              let requestParameters = request.dictionary else {
                 return
-            }
-        
+        }
         Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseString { response in
-            print(response.error ?? "")
+                 print(response.error ?? "")
             completion(request)
         }
     }
     
     func getAll(completion: @escaping ([Request]) -> Void) {
-        
-        guard let url = URL(string: Constants.userRequests + "/3") else {
+        guard let url = URL(string: Constants.userRequests + "/6") else {
             return
         }
         
@@ -95,6 +91,9 @@ class RequestRepository: RequestRepositoryProtocol {
             print(response)
             completion(response.result.value ?? [])
             }
+//        Alamofire.request(url, headers: getHeaders()).responseString { string in
+//            print(string.result)
+//        }
     }
     
     func getAllByTeam(date: Date, teamId: Int, completion: @escaping ([Request]) -> Void) {
@@ -135,13 +134,26 @@ class RequestRepository: RequestRepositoryProtocol {
     
     func getDateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = dateFormat
-        formatter.timeZone = TimeZone(abbreviation: timeZone)
+        formatter.dateFormat = Constants.dateFormat
         return formatter
     }
     
     func getHeaders() -> HTTPHeaders {
         let token = userDetailsUseCase?.getToken()
         return [authHeader: token ?? ""]
+    }
+    
+}
+
+extension Encodable {
+    var dictionary: [String: Any]? {
+        let encoder = JSONEncoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.dateFormat
+        encoder.dateEncodingStrategy = .formatted(formatter)
+        guard let data = try? encoder.encode(self) else {
+            return nil
+        }
+        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }

@@ -37,6 +37,7 @@
                 <constraints>
                     <constraint firstItem="JXT-AO-g8V" firstAttribute="centerY" secondItem="70O-oW-qQm" secondAttribute="centerY" id="8ON-BL-cug"/>
                     <constraint firstItem="70O-oW-qQm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eQH-ch-gsx"/>
+                    <constraint firstItem="70O-oW-qQm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="s6J-kZ-MLl"/>
                     <constraint firstItem="JXT-AO-g8V" firstAttribute="leading" secondItem="70O-oW-qQm" secondAttribute="trailing" constant="24" id="urz-P1-wkh"/>
                     <constraint firstItem="70O-oW-qQm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vWd-at-A8x"/>
                 </constraints>
