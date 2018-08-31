@@ -19,11 +19,19 @@ protocol TableDataProviderUseCaseProtocol {
     func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void)
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
+    
+    func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void)
 }
 
 class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
+    
+    
     var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
+    
+    init(tableDataProviderRepository: TableDataProviderRepositoryProtocol) {
+        self.tableDataProviderRepository = tableDataProviderRepository
+    }
 
     func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void) {
         tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData, absence in
@@ -55,7 +63,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
         })
     }
     
-    init(tableDataProviderRepository: TableDataProviderRepositoryProtocol) {
-        self.tableDataProviderRepository = tableDataProviderRepository
+    func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {
+        tableDataProviderRepository?.getExpandableData(forDate: forDate, completion: { expandableData in
+            completion(expandableData)
+        })
     }
 }

@@ -157,6 +157,10 @@ extension SwinjectStoryboard {
             controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                              name: String(describing: UserDetailsUseCaseProtocol.self))
         }
+        defaultContainer.storyboardInitCompleted(DatePickerViewController.self) { resolver, controller in
+            controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
+                                                                   name: String(describing: TableDataProviderUseCaseProtocol.self))
+        }
         
         defaultContainer.storyboardInitCompleted(SelectAbsenceViewController.self) { resolver, controller in
             controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,

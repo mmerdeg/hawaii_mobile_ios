@@ -36,8 +36,10 @@ class ApproveViewController: BaseViewController {
     }
     
     func fillCalendar() {
+        startActivityIndicatorSpinner()
         requestUseCase.getAllPendingForApprover(approver: 3) { request in
             self.requests = request
+            self.stopActivityIndicatorSpinner()
             self.tableView.reloadData()
         }
     }

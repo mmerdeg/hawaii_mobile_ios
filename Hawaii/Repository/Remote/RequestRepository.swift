@@ -65,9 +65,11 @@ class RequestRepository: RequestRepositoryProtocol {
                 completion(response.result.value ?? [])
             }
     }
+    func updateRequest2( forDate: Date) {
+        
+    }
     
     func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
-        
         guard let encodedData = try? getEncoder().encode(request),
             let url = URL(string: Constants.requests),
             let parameters = try? JSONSerialization.jsonObject(with: encodedData, options: []) as? [String: Any],
