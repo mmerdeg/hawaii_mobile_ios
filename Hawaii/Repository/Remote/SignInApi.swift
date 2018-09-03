@@ -10,10 +10,6 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-protocol SignInApiProtocol {
-    func signIn(accessToken: String, completion: @escaping (String) -> Void)
-}
-
 class SignInApi: SignInApiProtocol {
     
     let signInApi: SignInApiProtocol?
@@ -33,10 +29,11 @@ class SignInApi: SignInApiProtocol {
         
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
         Alamofire.request(Constants.signin, headers: headers).response { response in
+            let genericResponse = 
             print(response)
-            guard let resp = response.response?.allHeaderFields else {
-                return
-            }
+//            guard let resp = response.response?.allHeaderFields else {
+//                return
+//            }
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
                 completion("")
                 return

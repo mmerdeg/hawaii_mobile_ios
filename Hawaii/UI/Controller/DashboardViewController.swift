@@ -116,7 +116,7 @@ class DashboardViewController: BaseViewController {
     
     func setupCalendarView() {
         collectionView.visibleDates { visibleDates in
-            guard let date = visibleDates.monthDates.first?.date else {
+            guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
             self.formatter.dateFormat = "yyyy"
@@ -218,9 +218,9 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
-            return
-        }
+//        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
+//            return
+//        }
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {

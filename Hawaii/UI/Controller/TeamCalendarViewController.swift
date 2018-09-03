@@ -130,7 +130,8 @@ class TeamCalendarViewController: BaseViewController {
                 })
             }
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController) as? RequestDetailsViewController else {
+            guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController)
+                                                                        as? RequestDetailsViewController else {
                 return
             }
             controller.requests = requests

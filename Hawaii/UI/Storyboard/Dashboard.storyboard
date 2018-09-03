@@ -321,19 +321,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-NP-oih">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="622"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egU-TC-XDh">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="300" id="HfT-hW-ch6"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="319"/>
                                                 <connections>
                                                     <segue destination="Qer-bd-5aa" kind="embed" identifier="showDatePickerViewController" id="C16-ZN-r4V"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="up4-af-bJe">
-                                                <rect key="frame" x="0.0" y="308" width="375" height="128"/>
+                                                <rect key="frame" x="0.0" y="327" width="375" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="RUB-OA-36N"/>
                                                 </constraints>
@@ -342,7 +339,7 @@
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXP-05-UGz">
-                                                <rect key="frame" x="0.0" y="446" width="375" height="120"/>
+                                                <rect key="frame" x="0.0" y="465" width="375" height="120"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="120" id="4M3-ho-0p8"/>
                                                 </constraints>
@@ -487,82 +484,28 @@
             <objects>
                 <viewController id="Qer-bd-5aa" customClass="DatePickerViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afa-Ke-xqd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="319"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XLc-5w-1Pj">
-                                <rect key="frame" x="0.0" y="44" width="375" height="422"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="241"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rre-HC-BMC">
-                                <rect key="frame" x="20" y="2000" width="335" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-bj-h9t" customClass="WhiteUIPicker" customModule="Hawaii" customModuleProvider="target">
-                                <rect key="frame" x="10" y="4021" width="355" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="eWH-CT-pBz"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="551778387.55520701">
-                                    <!--2018-06-27 07:46:27 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="aA:" destination="OM4-mH-DES" eventType="valueChanged" id="G1r-bC-QTP"/>
-                                </connections>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJR-yx-EbL">
-                                <rect key="frame" x="20" y="4131" width="335" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="labelFont" value="fontPrimary"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="B30-ko-KnE" customClass="WhiteUIPicker" customModule="Hawaii" customModuleProvider="target">
-                                <rect key="frame" x="10" y="4162" width="355" height="100"/>
-                                <date key="date" timeIntervalSinceReferenceDate="551889391.40092003">
-                                    <!--2018-06-28 14:36:31 +0000-->
-                                </date>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="B30-ko-KnE" firstAttribute="leading" secondItem="EeG-bj-h9t" secondAttribute="leading" id="07F-7m-fhj"/>
-                            <constraint firstItem="JJR-yx-EbL" firstAttribute="top" secondItem="EeG-bj-h9t" secondAttribute="bottom" constant="10" id="4xp-Ap-SUM"/>
-                            <constraint firstItem="JJR-yx-EbL" firstAttribute="leading" secondItem="rre-HC-BMC" secondAttribute="leading" id="5eK-bJ-5Zx"/>
-                            <constraint firstItem="EeG-bj-h9t" firstAttribute="centerX" secondItem="afa-Ke-xqd" secondAttribute="centerX" id="8NV-xU-FM3"/>
-                            <constraint firstItem="EeG-bj-h9t" firstAttribute="top" secondItem="rre-HC-BMC" secondAttribute="bottom" constant="2000" id="9jk-V1-DNa"/>
                             <constraint firstItem="XLc-5w-1Pj" firstAttribute="centerY" secondItem="73J-fT-pgL" secondAttribute="centerY" id="CoH-c3-cuY"/>
                             <constraint firstItem="XLc-5w-1Pj" firstAttribute="leading" secondItem="73J-fT-pgL" secondAttribute="leading" id="DkX-oG-kti"/>
-                            <constraint firstItem="EeG-bj-h9t" firstAttribute="height" secondItem="B30-ko-KnE" secondAttribute="height" id="H5A-iu-AJN"/>
-                            <constraint firstItem="rre-HC-BMC" firstAttribute="top" secondItem="afa-Ke-xqd" secondAttribute="top" constant="2000" id="NZP-BX-Fkf"/>
                             <constraint firstItem="XLc-5w-1Pj" firstAttribute="top" secondItem="73J-fT-pgL" secondAttribute="top" id="Uvz-NX-cb8"/>
-                            <constraint firstItem="B30-ko-KnE" firstAttribute="top" secondItem="JJR-yx-EbL" secondAttribute="bottom" constant="10" id="iN4-Yc-lPF"/>
-                            <constraint firstItem="rre-HC-BMC" firstAttribute="leading" secondItem="afa-Ke-xqd" secondAttribute="leading" constant="20" id="ms5-Lf-rdT"/>
-                            <constraint firstItem="rre-HC-BMC" firstAttribute="centerX" secondItem="afa-Ke-xqd" secondAttribute="centerX" id="n2v-GZ-cWa"/>
-                            <constraint firstItem="B30-ko-KnE" firstAttribute="centerX" secondItem="EeG-bj-h9t" secondAttribute="centerX" id="qXy-uD-Flg"/>
-                            <constraint firstItem="EeG-bj-h9t" firstAttribute="leading" secondItem="afa-Ke-xqd" secondAttribute="leading" constant="10" id="sQl-4T-qTK"/>
                             <constraint firstItem="XLc-5w-1Pj" firstAttribute="centerX" secondItem="73J-fT-pgL" secondAttribute="centerX" id="whY-dI-bNj"/>
-                            <constraint firstItem="JJR-yx-EbL" firstAttribute="centerX" secondItem="rre-HC-BMC" secondAttribute="centerX" id="xB0-ES-MSQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="73J-fT-pgL"/>
                     </view>
                     <connections>
-                        <outlet property="endDateLabel" destination="JJR-yx-EbL" id="u91-MF-qEg"/>
-                        <outlet property="endDatePicker" destination="B30-ko-KnE" id="AQg-oD-cDm"/>
-                        <outlet property="startDateLabel" destination="rre-HC-BMC" id="3Q8-hJ-Agf"/>
-                        <outlet property="startDatePicker" destination="EeG-bj-h9t" id="tBf-Ai-wKe"/>
                         <outlet property="tableView" destination="XLc-5w-1Pj" id="cjV-JX-Dt1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i4F-BV-80z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="OM4-mH-DES" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7629" y="-2817"/>
         </scene>
@@ -777,9 +720,9 @@
         <image name="calendar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g7F-bN-lNv"/>
-        <segue reference="ntj-IY-5Sk"/>
-        <segue reference="2Hz-vC-znZ"/>
+        <segue reference="9YR-6r-Hjh"/>
+        <segue reference="7Qi-Z7-6Yo"/>
+        <segue reference="C16-ZN-r4V"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

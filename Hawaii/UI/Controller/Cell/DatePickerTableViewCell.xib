@@ -24,6 +24,9 @@
                         <date key="date" timeIntervalSinceReferenceDate="557315391.98109198">
                             <!--2018-08-30 09:49:51 +0000-->
                         </date>
+                        <connections>
+                            <action selector="dateSelected:" destination="KGk-i7-Jjw" eventType="valueChanged" id="4jr-SR-Tr7"/>
+                        </connections>
                     </datePicker>
                 </subviews>
                 <constraints>

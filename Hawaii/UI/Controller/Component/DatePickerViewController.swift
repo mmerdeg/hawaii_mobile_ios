@@ -9,27 +9,6 @@
 import Foundation
 import UIKit
 
-//class DatePickerViewController: UIViewController {
-//
-//    @IBOutlet weak var startDatePicker: WhiteUIDatePicker!
-//
-//    @IBOutlet weak var endDatePicker: WhiteUIDatePicker!
-//
-//    @IBOutlet weak var startDateLabel: UILabel!
-//
-//    @IBOutlet weak var endDateLabel: UILabel!
-//
-//    var selectedDate: Date?
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        startDatePicker.date = selectedDate ?? Date()
-//        startDateLabel.textColor = UIColor.secondaryTextColor
-//        endDateLabel.textColor = UIColor.secondaryTextColor
-//        endDatePicker.date = selectedDate ?? Date()
-//    }
-//}
-
 class DatePickerViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -38,13 +17,9 @@ class DatePickerViewController: BaseViewController {
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
-    @IBOutlet weak var startDatePicker: WhiteUIDatePicker!
+    var startDate: Date?
     
-    @IBOutlet weak var endDatePicker: WhiteUIDatePicker!
-    
-    @IBOutlet weak var startDateLabel: UILabel!
-    
-    @IBOutlet weak var endDateLabel: UILabel!
+    var endDate: Date?
     
     var selectedDate: Date?
     
@@ -54,6 +29,8 @@ class DatePickerViewController: BaseViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        startDate = selectedDate
+        endDate = selectedDate
         let nib = UINib(nibName: String(describing: DatePickerTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: DatePickerTableViewCell.self))
         tableView.tableFooterView = UIView()
@@ -74,9 +51,13 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let list = items.filter { $0.expanded == true }
         if list[indexPath.row].id == 0 {
+                let formatter = DateFormatter()
+                formatter.dateFormat = Constants.dateFormat
+            
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-                cell.textLabel?.text = "Start date"
-                cell.detailTextLabel?.text = String(describing: selectedDate)
+            
+                cell.textLabel?.text = indexPath.row == 0 ?  "Start date": "End date"
+                cell.detailTextLabel?.text = formatter.string(from: selectedDate ?? Date())
                 cell.textLabel?.textColor = UIColor.primaryTextColor
                 cell.selectionStyle = .none
                 cell.accessoryType = .disclosureIndicator
@@ -90,13 +71,14 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
                     return UITableViewCell(style: .default, reuseIdentifier: "Cell")
             }
             cell.tag = indexPath.row
+            cell.datePicker.date = selectedDate ?? Date()
+            cell.delegate = self
             return cell
         }
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(items.filter { $0.expanded == true }.count)
         return items.filter { $0.expanded == true }.count
     }
     
@@ -105,12 +87,11 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let expanded = items[indexPath.row + 1].expanded else {
-            return
-        }
-        items[indexPath.row + 1] = ExpandableData(expandableData: items[indexPath.row + 1], expanded: !expanded)
-        print(items[indexPath.row + 1].title)
-        if items[indexPath.row + 1].expanded ?? false {
+        
+        let item = items.filter { $0.expanded == true }[indexPath.row]
+        let index = items.index(of: item) ?? 0
+        items[index + 1] = ExpandableData(expandableData: items[index + 1], expanded: !(items[index + 1].expanded ?? false))
+        if items[index + 1].expanded ?? false {
             tableView.insertRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
         } else {
             tableView.deleteRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
@@ -118,3 +99,18 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension DatePickerViewController: DatePickerProtocol {
+    func selectedDate(_ date: Date, cell: DatePickerTableViewCell) {
+        if cell.tag == 1 {
+            startDate = date
+        } else {
+            endDate = date
+        }
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.dateFormat
+        guard let prevousCell = tableView.cellForRow(at: IndexPath(row: cell.tag - 1, section: 0)) else {
+            return
+        }
+        prevousCell.detailTextLabel?.text = formatter.string(from: date)
+    }
+}

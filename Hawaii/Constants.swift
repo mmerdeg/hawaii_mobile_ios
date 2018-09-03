@@ -9,7 +9,7 @@
 import Foundation
 
 struct Constants {
-    static let baseUrl = "http://nb077:8090"
+    static let baseUrl = "https://hawaii2.execom.eu"
     static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
     static let userRequests = requests + "/user"

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DatePickerProtocol: class {
-    func selectedDate(_ date: Date)
+    func selectedDate(_ date: Date, cell: DatePickerTableViewCell)
 }
 
 class DatePickerTableViewCell: UITableViewCell {
@@ -18,8 +18,10 @@ class DatePickerTableViewCell: UITableViewCell {
     
     weak var delegate: DatePickerProtocol?
     
+    @IBAction func dateSelected(_ sender: Any) {
+        delegate?.selectedDate(datePicker.date, cell: self)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 }

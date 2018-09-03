@@ -24,6 +24,9 @@
 		307413142137F52500F05427 /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413122137F52500F05427 /* DatePickerTableViewCell.swift */; };
 		307413152137F52500F05427 /* DatePickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413132137F52500F05427 /* DatePickerTableViewCell.xib */; };
 		3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
+		307413212139304700F05427 /* SignInApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413202139304700F05427 /* SignInApiProtocol.swift */; };
+		30741325213938E500F05427 /* RequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741324213938E500F05427 /* RequestResponse.swift */; };
+		30741327213968E800F05427 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
@@ -180,6 +183,9 @@
 		307413122137F52500F05427 /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		307413132137F52500F05427 /* DatePickerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerTableViewCell.xib; sourceTree = "<group>"; };
 		3074131921380FFF00F05427 /* ExpandableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableData.swift; sourceTree = "<group>"; };
+		307413202139304700F05427 /* SignInApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApiProtocol.swift; sourceTree = "<group>"; };
+		30741324213938E500F05427 /* RequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponse.swift; sourceTree = "<group>"; };
+		30741326213968E800F05427 /* Allowance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allowance.swift; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -299,6 +305,22 @@
 				E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3074131C2139302300F05427 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				30741322213936F000F05427 /* Protocol */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		30741322213936F000F05427 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				307413202139304700F05427 /* SignInApiProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		3E15C36820E6150700DB2CF7 /* Style */ = {
@@ -446,6 +468,8 @@
 				3ED6ED8321300CCB001436FE /* Absence.swift */,
 				302EE1762133F5C4001355E9 /* User.swift */,
 				302EE1822135744D001355E9 /* CalendarType.swift */,
+				30741324213938E500F05427 /* RequestResponse.swift */,
+				30741326213968E800F05427 /* Allowance.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -462,6 +486,7 @@
 		3E42592020E259AC00F22BBD /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3074131C2139302300F05427 /* SignIn */,
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
 				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
@@ -948,6 +973,7 @@
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
+				30741325213938E500F05427 /* RequestResponse.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
@@ -956,6 +982,7 @@
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
+				30741327213968E800F05427 /* Allowance.swift in Sources */,
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
@@ -973,6 +1000,7 @@
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				307413212139304700F05427 /* SignInApiProtocol.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
 				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,

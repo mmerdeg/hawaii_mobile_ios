@@ -25,8 +25,6 @@ protocol TableDataProviderUseCaseProtocol {
 
 class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
-    
-    
     var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
     
     init(tableDataProviderRepository: TableDataProviderRepositoryProtocol) {

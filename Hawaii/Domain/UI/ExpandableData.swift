@@ -34,3 +34,12 @@ extension ExpandableData {
     }
     
 }
+
+extension ExpandableData: Equatable {
+    static func == (lhs: ExpandableData, rhs: ExpandableData) -> Bool {
+        return lhs.expanded == rhs.expanded &&
+            lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.id == rhs.id
+    }
+}
