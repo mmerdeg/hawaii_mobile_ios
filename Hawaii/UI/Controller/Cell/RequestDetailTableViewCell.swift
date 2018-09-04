@@ -55,9 +55,9 @@ class RequestDetailTableViewCell: UITableViewCell {
             formatter.dateFormat = "dd.MM.yyyy."
             requestDates.text = formatter.string(from: startDate) + " - " + formatter.string(from: endDate)
            
-            requestImage.kf.setImage(with: URL(string: imageUrl))
+            requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
-            requestImage.tintColor = UIColor.primaryTextColor
+            requestImage.tintColor = UIColor.primaryColor
             requestImage.backgroundColor = color
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SignInApiProtocol {
-    func signIn(accessToken: String, completion: @escaping (String) -> Void)
+    func signIn(accessToken: String, completion: @escaping (TokenResponse) -> Void)
 }

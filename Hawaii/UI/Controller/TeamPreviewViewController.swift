@@ -15,7 +15,7 @@ class TeamPreviewViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     weak var delegate: RequestDetailsDialogProtocol?
-    var requests: [Request] = []
+    var requests: [Int: [Request]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +35,20 @@ extension TeamPreviewViewController: UITableViewDelegate, UITableViewDataSource 
             as? TeamPreviewTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
-        cell.request = requests[indexPath.row]
+        cell.request = Array(requests ?? [:])[indexPath.section].value[indexPath.row]
         return cell
     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(describing: Array(requests ?? [:])[section].key)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Array(requests ?? [:])[section].value.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        guard let requests = requests else {
+            return 0
+        }
         return requests.count
     }
 }

@@ -130,10 +130,21 @@ class DashboardViewController: BaseViewController {
     func fillCalendar() {
         startActivityIndicatorSpinner()
         requestUseCase?.getAll { request in
-            self.items = request
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            
+            guard let success = request.success else {
                 self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.items = request.requests ?? []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
             }
         }
     }

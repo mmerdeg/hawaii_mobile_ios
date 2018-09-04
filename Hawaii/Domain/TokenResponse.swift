@@ -1,16 +1,16 @@
 //
-//  RequestResponse.swift
+//  TokenResponse.swift
 //  Hawaii
 //
-//  Created by Ivan Divljak on 9/3/18.
+//  Created by Ivan Divljak on 9/4/18.
 //  Copyright © 2018 Server. All rights reserved.
 //
 
 import Foundation
 
-struct RequestResponse {
+struct TokenResponse {
     let success: Bool?
-    let request: Request?
+    let token: String?
     let error: Error?
     let message: String?
 }

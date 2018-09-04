@@ -85,12 +85,16 @@ class LeaveRequestViewController: BaseViewController {
         for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
             days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
         }
-        
+        startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { user in
             let request = Request(approverId: nil, days: days, reason: "string",
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)
             requestUseCase.add(request: request) { request in
+                guard let request = request.request else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
                 self.requestUpdateDelegate?.didAdd(request: request)
                 self.navigationController?.popViewController(animated: true)
             }

@@ -28,8 +28,14 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         userDetailsUseCase?.setEmail(user.profile.email)
-        signInApi.signIn(accessToken: accessToken) { token in
-            if token != "" {
+        startActivityIndicatorSpinner()
+        signInApi.signIn(accessToken: accessToken) { tokenResponse in
+            guard let success = tokenResponse.success,
+                  let token = tokenResponse.token else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
                 self.userDetailsUseCase?.setToken(token: token)
                 print("User Logged In")
                 self.stopActivityIndicatorSpinner()
@@ -37,13 +43,10 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()
-                ViewUtility.showAlertWithAction(title: "Error",
-                                                message: "Something went wrong, cant sign you in",
-                                                viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
+                ViewUtility.showAlertWithAction(title: "Error", message: tokenResponse.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
                 })
             }
-            
         }
 
     }
