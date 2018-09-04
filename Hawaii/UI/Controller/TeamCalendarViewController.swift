@@ -73,7 +73,8 @@ class TeamCalendarViewController: BaseViewController {
                 let requests = sender as? [Request] else {
                     return
             }
-            controller.requests = requests
+            
+            controller.requests = Dictionary(grouping: requests, by: { $0.user?.teamId ?? -1 })
         }
     }
     
@@ -84,10 +85,20 @@ class TeamCalendarViewController: BaseViewController {
             searchBar.isHidden = true
             startActivityIndicatorSpinner()
             requestUseCase?.getAll { request in
-                self.items = request
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                guard let success = request.success else {
                     self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.items = request.requests ?? []
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.stopActivityIndicatorSpinner()
+                    }
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
                 }
             }
         case 2:
@@ -95,10 +106,20 @@ class TeamCalendarViewController: BaseViewController {
             searchBar.isHidden = false
             startActivityIndicatorSpinner()
             requestUseCase?.getAll { request in
-                self.items = request
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                guard let success = request.success else {
                     self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.items = request.requests ?? []
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.stopActivityIndicatorSpinner()
+                    }
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
                 }
             }
         default:
@@ -106,10 +127,20 @@ class TeamCalendarViewController: BaseViewController {
             searchBar.isHidden = true
             startActivityIndicatorSpinner()
             requestUseCase?.getAll { request in
-                self.items = request
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                guard let success = request.success else {
                     self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.items = request.requests ?? []
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.stopActivityIndicatorSpinner()
+                    }
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
                 }
             }
         }
@@ -130,7 +161,8 @@ class TeamCalendarViewController: BaseViewController {
                 })
             }
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-            guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController) as? RequestDetailsViewController else {
+            guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController)
+                                                                        as? RequestDetailsViewController else {
                 return
             }
             controller.requests = requests
@@ -158,10 +190,20 @@ class TeamCalendarViewController: BaseViewController {
     func fillCalendar() {
         startActivityIndicatorSpinner()
         requestUseCase?.getAll { request in
-            self.items = request
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            guard let success = request.success else {
                 self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.items = request.requests ?? []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
             }
         }
     }

@@ -52,4 +52,28 @@ class ViewUtility {
             controller.present(dialogue, animated: true, completion: nil)
         }
     }
+    
+    /**
+     Show alert with one ok button and action.
+     
+     - Parameter title:          Alert title.
+     - Parameter message:        Alert message.
+     - Parameter viewController: Alert's owner.
+     
+     */
+    static func showAlertWithAction(title: String, message: String,
+                                    viewController: UIViewController, completion: @escaping (Bool) -> Void ) {
+        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringMessage = NSMutableAttributedString(string: message ,
+                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.setValue(mutableStringTitle, forKey: "attributedTitle")
+        alert.setValue(mutableStringMessage, forKey: "attributedMessage")
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { _ in
+            completion(true)
+        }
+        alert.addAction(okAction)
+        alert.view.tintColor = UIColor.primaryColor
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

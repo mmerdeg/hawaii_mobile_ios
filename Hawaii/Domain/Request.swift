@@ -33,7 +33,7 @@ enum RequestStatus: String, Codable {
 }
 
 struct Request: Codable {
-    let userId: Int?
+    let user: User?
     let absence: Absence?
     let requestStatus: RequestStatus?
     let reason: String?
@@ -45,12 +45,12 @@ struct Request: Codable {
 extension Request {
     init(request: Request? = nil, approverId: Int? = nil, days: [Day]? = nil,
          reason: String? = nil, requestStatus: RequestStatus? = nil, absence: Absence? = nil,
-         userId: Int? = nil, id: Int? = nil) {
+         user: User? = nil, id: Int? = nil) {
         self.approverId = approverId ?? request?.approverId
         self.days = days ?? request?.days
         self.reason = reason ?? request?.reason
         self.requestStatus = requestStatus ?? request?.requestStatus
-        self.userId = userId ?? request?.userId
+        self.user = user ?? request?.user
         self.absence = absence ?? request?.absence
         self.id = id ?? request?.id
     }

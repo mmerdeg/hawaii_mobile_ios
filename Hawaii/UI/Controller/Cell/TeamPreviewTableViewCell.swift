@@ -18,16 +18,18 @@ class TeamPreviewTableViewCell: UITableViewCell {
     
     var request: Request? {
         didSet {
-            guard let notes = request?.reason,
-                  let imageUrl = request?.absence?.iconUrl else {
+            guard let notes = request?.user?.fullName,
+                let imageUrl = request?.absence?.iconUrl,
+                let color = request?.requestStatus?.backgoundColor else {
                     return
             }
             requestOwner.text = notes
-            requestImage.kf.setImage(with: URL(string: imageUrl))
+            requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true
+            requestImage.backgroundColor = color
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
         }

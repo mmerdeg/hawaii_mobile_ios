@@ -11,10 +11,12 @@ import CodableAlamofire
 import Alamofire
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
+    
     func getLeaveData(completion: @escaping ([CellData], [Absence], Absence) -> Void) {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
+        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
            completion([CellData(title: "Type of leave", description: response.result.value?.first?.name),
              CellData(title: "Duration", description: DurationType.fullday.description)],
@@ -48,4 +50,12 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                                                    CellData(title: DurationType.morning.description, description: nil),
                                                    CellData(title: DurationType.afternoon.description, description: nil)])])
     }
+    
+    func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {
+       completion([ExpandableData(id: 0, expanded: true, title: "Start date", description: forDate),
+        ExpandableData(expanded: false, description: forDate),
+        ExpandableData(id: 0, expanded: true, title: "End date", description: forDate),
+        ExpandableData(expanded: false, description: forDate)])
+    }
+    
 }

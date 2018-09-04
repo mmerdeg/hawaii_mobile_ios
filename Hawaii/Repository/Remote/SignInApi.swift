@@ -10,39 +10,23 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-protocol SignInApiProtocol {
-    func signIn(accessToken: String, completion: @escaping (String) -> Void)
-}
-
 class SignInApi: SignInApiProtocol {
-    
-    let signInApi: SignInApiProtocol?
-    
-    init(signInApi: SignInApiProtocol) {
-        self.signInApi = signInApi
-    }
-    
-    init() {
-        signInApi = nil
-    }
     
     func signIn(accessToken: String, completion: @escaping (String) -> Void) {
 //        guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
 //            return
 //        }
         
+    }
+    
+    func signIn(accessToken: String, completion: @escaping (TokenResponse) -> Void) {
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
-        Alamofire.request(Constants.signin, headers: headers).response { response in
-            print(response)
-            guard let resp = response.response?.allHeaderFields else {
-                return
-            }
+        Alamofire.request(Constants.signin, headers: headers).validate().response { response in
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
-                completion("")
+                completion(TokenResponse(success: false, token: "", error: response.error, message: response.error?.localizedDescription))
                 return
             }
-            
-            completion(token)
+            completion(TokenResponse(success: true, token: token, error: nil, message: nil))
         }
     }
     

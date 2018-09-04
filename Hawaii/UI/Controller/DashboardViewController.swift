@@ -116,7 +116,7 @@ class DashboardViewController: BaseViewController {
     
     func setupCalendarView() {
         collectionView.visibleDates { visibleDates in
-            guard let date = visibleDates.monthDates.first?.date else {
+            guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
             self.formatter.dateFormat = "yyyy"
@@ -130,10 +130,21 @@ class DashboardViewController: BaseViewController {
     func fillCalendar() {
         startActivityIndicatorSpinner()
         requestUseCase?.getAll { request in
-            self.items = request
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+            
+            guard let success = request.success else {
                 self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.items = request.requests ?? []
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
             }
         }
     }
@@ -218,9 +229,9 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
-            return
-        }
+//        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
+//            return
+//        }
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {

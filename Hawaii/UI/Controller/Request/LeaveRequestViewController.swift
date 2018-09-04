@@ -26,6 +26,8 @@ class LeaveRequestViewController: BaseViewController {
     
     var requestUseCase: RequestUseCaseProtocol?
     
+    var userUseCase: UserUseCaseProtocol?
+    
     var selectedDate: Date?
     
     lazy var addLeveRequestItem: UIBarButtonItem = {
@@ -68,8 +70,8 @@ class LeaveRequestViewController: BaseViewController {
     }
     
     @objc func addLeaveRequest() {
-        guard let startDate = datePickerController?.startDatePicker.date,
-              let endDate = datePickerController?.endDatePicker.date,
+        guard let startDate = datePickerController?.startDate,
+              let endDate = datePickerController?.endDate,
               let requestTableViewController = requestTableViewController,
               let requestUseCase = requestUseCase else {
                 return
@@ -83,14 +85,20 @@ class LeaveRequestViewController: BaseViewController {
         for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
             days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
         }
-        
-        let request = Request(approverId: nil, days: days, reason: "string",
-                              requestStatus: RequestStatus.pending,
-                              absence: requestTableViewController.selectedAbsence, userId: Constants.userId)
-        requestUseCase.add(request: request) { request in
-            self.requestUpdateDelegate?.didAdd(request: request)
-            self.navigationController?.popViewController(animated: true)
-        }
+        startActivityIndicatorSpinner()
+        userUseCase?.getUser(completion: { user in
+            let request = Request(approverId: nil, days: days, reason: "string",
+                                  requestStatus: RequestStatus.pending,
+                                  absence: requestTableViewController.selectedAbsence, user: user)
+            requestUseCase.add(request: request) { request in
+                guard let request = request.request else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                self.requestUpdateDelegate?.didAdd(request: request)
+                self.navigationController?.popViewController(animated: true)
+            }
+        })
     }
     
     func getDateFormatter() -> DateFormatter {

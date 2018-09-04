@@ -63,10 +63,22 @@ class HistoryViewController: BaseViewController {
     }
     
     func fillCalendar() {
+        startActivityIndicatorSpinner()
         requestUseCase.getAll { requests in
-            self.requests = requests
-            self.filteredRequests = requests
-            self.tableView.reloadData()
+            guard let success = requests.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.requests = requests.requests ?? []
+                self.filteredRequests = requests.requests ?? []
+                self.tableView.reloadData()
+                self.stopActivityIndicatorSpinner()
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: requests.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
         }
     }
     
@@ -186,6 +198,26 @@ extension HistoryViewController: RequestCancelationProtocol {
         if oldRequest.requestStatus == .approved {
             status = .cancelationPending
         }
+        startActivityIndicatorSpinner()
+        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { request in
+            
+            guard let success = request.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                if request.request?.requestStatus == RequestStatus.canceled {
+                    guard let index = self.tableView.indexPath(for: cell) else {
+                        return
+                    }
+                    self.requests.remove(at: index.row)
+                    self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
         requestUseCase.updateRequest(request: Request(request: oldRequest, requestStatus: status)) { request in
             guard let index = self.tableView.indexPath(for: cell) else {
                 return

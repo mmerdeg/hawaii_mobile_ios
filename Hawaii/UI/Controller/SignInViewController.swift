@@ -28,11 +28,25 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         userDetailsUseCase?.setEmail(user.profile.email)
-        signInApi.signIn(accessToken: accessToken) { token in
-            self.userDetailsUseCase?.setToken(token: token)
-            print("User Logged In")
-            self.stopActivityIndicatorSpinner()
-            self.navigateToHome()
+        startActivityIndicatorSpinner()
+        signInApi.signIn(accessToken: accessToken) { tokenResponse in
+            guard let success = tokenResponse.success,
+                  let token = tokenResponse.token else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.userDetailsUseCase?.setToken(token: token)
+                print("User Logged In")
+                self.stopActivityIndicatorSpinner()
+                self.navigateToHome()
+            } else {
+                GIDSignIn.sharedInstance().signOut()
+                GIDSignIn.sharedInstance().disconnect()
+                ViewUtility.showAlertWithAction(title: "Error", message: tokenResponse.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
         }
 
     }

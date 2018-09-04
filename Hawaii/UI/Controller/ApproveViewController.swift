@@ -36,9 +36,21 @@ class ApproveViewController: BaseViewController {
     }
     
     func fillCalendar() {
+        startActivityIndicatorSpinner()
         requestUseCase.getAllPendingForApprover(approver: 3) { request in
-            self.requests = request
-            self.tableView.reloadData()
+            guard let success = request.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.requests = request.requests ?? []
+                self.stopActivityIndicatorSpinner()
+                self.tableView.reloadData()
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
         }
     }
     
