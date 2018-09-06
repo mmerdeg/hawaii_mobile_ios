@@ -11,9 +11,7 @@ import UIKit
 
 class DatePickerViewController: BaseViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    weak var delegate: SelectAbsenceProtocol?
+    @IBOutlet weak var tableView: UITableView! 
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
@@ -24,6 +22,8 @@ class DatePickerViewController: BaseViewController {
     var selectedDate: Date?
     
     var items: [ExpandableData] = []
+    
+    let showDatePickerSegue = "showDatePicker"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,13 @@ class DatePickerViewController: BaseViewController {
         tableDataProviderUseCase?.getExpandableData(forDate: selectedDate ?? Date(), completion: { items in
             self.items = items
             self.tableView.reloadData()
+            self.getTableViewHeight()
         })
+    }
+    
+    func getTableViewHeight() {
+        tableView.layoutIfNeeded()
+        preferredContentSize = tableView.contentSize
     }
 }
 
@@ -75,7 +81,6 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
             cell.delegate = self
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,16 +92,21 @@ extension DatePickerViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let item = items.filter { $0.expanded == true }[indexPath.row]
         let index = items.index(of: item) ?? 0
-        items[index + 1] = ExpandableData(expandableData: items[index + 1], expanded: !(items[index + 1].expanded ?? false))
-        if items[index + 1].expanded ?? false {
-            tableView.insertRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
+        if index == 4 {
+            self.performSegue(withIdentifier: showDatePickerSegue, sender: nil)
         } else {
-            tableView.deleteRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
+            items[index + 1] = ExpandableData(expandableData: items[index + 1], expanded: !(items[index + 1].expanded ?? false))
+            if items[index + 1].expanded ?? false {
+                tableView.insertRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
+            } else {
+                tableView.deleteRows(at: [IndexPath(item: indexPath.row + 1, section: 0)], with: .fade)
+            }
+            self.getTableViewHeight()
         }
     }
+
 }
 
 extension DatePickerViewController: DatePickerProtocol {

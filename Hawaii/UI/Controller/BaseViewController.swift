@@ -21,6 +21,10 @@ class BaseViewController: UIViewController {
         self.navigationController?.tabBarController?.tabBar.barTintColor = UIColor.darkPrimaryColor
         self.view.addSubview(progressHUD)
         self.stopActivityIndicatorSpinner()
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+        }
         // Do any additional setup after loading the view.
     }
 

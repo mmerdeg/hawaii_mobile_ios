@@ -41,14 +41,14 @@ class RemainigDaysViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startActivityIndicatorSpinner()
-        userUseCase?.getUser(completion: { user in
-            self.user = user
-            guard let annual = user?.allowances?.first?.annual,
-                  let takenAnnual = user?.allowances?.first?.takenAnnual,
-                  let pendingAnnual = user?.allowances?.first?.pendingAnnual,
-                  let bonus = user?.allowances?.first?.bonus,
-                  let carriedOver = user?.allowances?.first?.carriedOver,
-                  let manualAdjust = user?.allowances?.first?.manualAdjust else {
+        userUseCase?.getUser(completion: { response in
+            self.user = response?.user
+            guard let annual = response?.user?.allowances?.first?.annual,
+                  let takenAnnual = response?.user?.allowances?.first?.takenAnnual,
+                  let pendingAnnual = response?.user?.allowances?.first?.pendingAnnual,
+                  let bonus = response?.user?.allowances?.first?.bonus,
+                  let carriedOver = response?.user?.allowances?.first?.carriedOver,
+                  let manualAdjust = response?.user?.allowances?.first?.manualAdjust else {
                     self.stopActivityIndicatorSpinner()
                     return
             }

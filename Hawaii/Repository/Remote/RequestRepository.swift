@@ -32,14 +32,13 @@ class RequestRepository: RequestRepositoryProtocol {
         print(requestParameters)
         Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseString { response in
-                            print(response)
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
                                 completion(RequestResponse(success: true, request: request, error: nil, message: nil))
                             case .failure(let error):
                                 print(error)
-                                completion(RequestResponse(success: false, request: request,
+                                completion(RequestResponse(success: false, request: nil,
                                                            error: response.error,
                                                            message: response.error?.localizedDescription))
                             }
@@ -53,14 +52,13 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                print(response)
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value ?? [], error: nil, message: nil))
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(RequestsResponse(success: false, requests: [], error: response.error, message: response.error?.localizedDescription))
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
                 
             }
@@ -78,14 +76,13 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                print(response)
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value ?? [], error: nil, message: nil))
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(RequestsResponse(success: false, requests: [], error: response.error, message: response.error?.localizedDescription))
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
             }
     }
@@ -100,7 +97,6 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
-            print(response)
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
@@ -109,7 +105,7 @@ class RequestRepository: RequestRepositoryProtocol {
                                                            error: nil, message: nil))
                             case .failure(let error):
                                 print(error)
-                                completion(RequestResponse(success: false, request: request,
+                                completion(RequestResponse(success: false, request: nil,
                                                            error: response.error,
                                                            message: response.error?.localizedDescription))
                             }
@@ -123,19 +119,15 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-            print(response)
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value ?? [], error: nil, message: nil))
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(RequestsResponse(success: false, requests: [], error: response.error, message: response.error?.localizedDescription))
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
             }
-//        Alamofire.request(url, headers: getHeaders()).responseString { string in
-//            print(string.result)
-//        }
     }
     
     func getAllByTeam(date: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void) {
@@ -145,16 +137,34 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                print(response)
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value ?? [], error: nil, message: nil))
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(RequestsResponse(success: false, requests: [], error: response.error, message: response.error?.localizedDescription))
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
             }
+    }
+    
+    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void) {
+        guard let url = URL(string: Constants.userRequests) else {
+            return
+        }
+        
+        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
+            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
+                case .failure(let error):
+                    print(error)
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
+                }
+                
+        }
     }
     
     func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void) {
@@ -164,14 +174,13 @@ class RequestRepository: RequestRepositoryProtocol {
         
         Alamofire.request(url, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                print(response)
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value ?? [], error: nil, message: nil))
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(RequestsResponse(success: false, requests: [], error: response.error, message: response.error?.localizedDescription))
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
             }
     }

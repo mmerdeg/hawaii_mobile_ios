@@ -21,6 +21,8 @@ protocol RequestUseCaseProtocol {
     func getAllByTeam(from: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void)
     
     func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void)
+    
+    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void)
 }
 
 class RequestUseCase: RequestUseCaseProtocol {
@@ -72,5 +74,10 @@ class RequestUseCase: RequestUseCaseProtocol {
             }
         }
     }
-
+    
+    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void) {
+        entityRepository.getAllForEmployee(byEmail: email) { requestsResponse in
+            completion(requestsResponse)
+        }
+    }
 }

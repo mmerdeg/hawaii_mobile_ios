@@ -42,14 +42,15 @@ class RequestApprovalTableViewCell: UITableViewCell {
                 let startDate = request?.days?.first?.date,
                 let endDate = request?.days?.last?.date,
                 let reason = request?.absence?.name,
-                let color = request?.requestStatus?.backgoundColor else {
+                let color = request?.requestStatus?.backgoundColor,
+                let userFullname = request?.user?.fullName else {
                     return
             }
             
             date.text = "submission date"
             requestNotes.text = notes
             requestDuration.text = String(duration)
-            requestPerson.text = "Ime Prezime"
+            requestPerson.text = userFullname
             requestReason.text = reason
             
             let formatter = DateFormatter()
