@@ -16,6 +16,8 @@ class LeaveRequestViewController: BaseViewController {
     
     let showRemainingDaysViewController = "showRemainingDaysViewController"
     
+    @IBOutlet weak var pickerHeight: NSLayoutConstraint!
+    
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     var datePickerController: DatePickerViewController?
@@ -41,12 +43,20 @@ class LeaveRequestViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = addLeveRequestItem
     }
     
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        guard let container = container as? DatePickerViewController else {
+            return
+        }
+        pickerHeight.constant = container.preferredContentSize.height
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showDatePickerViewControllerSegue {
             guard let controller = segue.destination as? DatePickerViewController else {
                 return
             }
-            controller.selectedDate = selectedDate 
+            controller.selectedDate = selectedDate
+            addChildViewController(controller)
             self.datePickerController = controller
         } else if segue.identifier == showRequestTableViewController {
             guard let controller = segue.destination as? RequestTableViewController else {
@@ -86,10 +96,10 @@ class LeaveRequestViewController: BaseViewController {
             days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
         }
         startActivityIndicatorSpinner()
-        userUseCase?.getUser(completion: { user in
+        userUseCase?.getUser(completion: { response in
             let request = Request(approverId: nil, days: days, reason: "string",
                                   requestStatus: RequestStatus.pending,
-                                  absence: requestTableViewController.selectedAbsence, user: user)
+                                  absence: requestTableViewController.selectedAbsence, user: response?.user)
             requestUseCase.add(request: request) { request in
                 guard let request = request.request else {
                     self.stopActivityIndicatorSpinner()
@@ -124,7 +134,7 @@ class LeaveRequestViewController: BaseViewController {
         }
         return dates
     }
-    
+
 }
 
 extension Date {

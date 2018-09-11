@@ -9,5 +9,7 @@
 import Foundation
 
 protocol UserRepositoryProtocol {
-    func getUser(completion: @escaping (User?) -> Void)
+    func getUser(completion: @escaping (UserResponse?) -> Void)
+    
+    func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
 }

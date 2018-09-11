@@ -23,4 +23,6 @@ protocol RequestRepositoryProtocol {
     func getAllByTeam(date: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void)
     
     func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void)
+    
+    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void)
 }

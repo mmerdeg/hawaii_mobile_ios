@@ -55,7 +55,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
        completion([ExpandableData(id: 0, expanded: true, title: "Start date", description: forDate),
         ExpandableData(expanded: false, description: forDate),
         ExpandableData(id: 0, expanded: true, title: "End date", description: forDate),
-        ExpandableData(expanded: false, description: forDate)])
+        ExpandableData(expanded: false, description: forDate),
+        ExpandableData(id: 0, expanded: true, title: "Test data", description: forDate)])
     }
     
 }

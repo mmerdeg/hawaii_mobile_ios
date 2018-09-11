@@ -20,6 +20,19 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     
     func handleCellText(cellState: CellState) {
         dateLabel.text = cellState.text
+        if Calendar.current.isDateInToday(cellState.date) {
+            dateLabel.textColor = UIColor.accentColor
+            self.isUserInteractionEnabled = true
+            self.layer.borderColor = UIColor.cyan.cgColor
+        } else {
+            if NSCalendar.current.isDateInWeekend(cellState.date) || cellState.dateBelongsTo != .thisMonth {
+                self.isUserInteractionEnabled = false
+                dateLabel.textColor = UIColor.secondaryTextColor
+            } else {
+                self.isUserInteractionEnabled = true
+                dateLabel.textColor = UIColor.primaryTextColor
+            }
+        }
     }
     
     override func awakeFromNib() {
@@ -29,7 +42,7 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
-        self.backgroundColor = UIColor.lightPrimaryColor
+        //self.backgroundColor = requests?.isEmpty ?? true ? UIColor.lightPrimaryColor: UIColor.pendingColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
     }
