@@ -22,7 +22,13 @@ class RemainigDaysViewController: BaseViewController {
     
     @IBOutlet weak var takenDaysLabel: UILabel!
     
-    @IBOutlet weak var progressBar: YLProgressBar!
+    @IBOutlet weak var progressBar: UIView!
+    
+    @IBOutlet weak var approvedBar: UIView!
+    
+    @IBOutlet weak var pendingBar: UIView!
+    
+    @IBOutlet weak var sicknessBar: UIView!
     
     @IBOutlet weak var remainingLabel: UILabel!
     
@@ -41,6 +47,7 @@ class RemainigDaysViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startActivityIndicatorSpinner()
+        
         userUseCase?.getUser(completion: { user in
             self.user = user
             guard let annual = user?.allowances?.first?.annual,
@@ -52,13 +59,45 @@ class RemainigDaysViewController: BaseViewController {
                     self.stopActivityIndicatorSpinner()
                     return
             }
+            let workHours = 8.0
             
-            self.totalDayNoLabel.text = String(describing: annual + takenAnnual + pendingAnnual + carriedOver + bonus + manualAdjust)
-            self.takenDayNoLabel.text = String(describing: takenAnnual)
-            self.remainingDayNoLabel.text = String(describing: annual + carriedOver + bonus + manualAdjust)
-            self.pendingDayNoLabel.text = String(describing: pendingAnnual)
-            let total = annual + takenAnnual + pendingAnnual + carriedOver + bonus + manualAdjust
-            self.progressBar.progress = CGFloat(takenAnnual / total) == 0 ? 1 : CGFloat(takenAnnual / total)
+            let days = Double(annual + takenAnnual + pendingAnnual + carriedOver + bonus + manualAdjust) / workHours
+            self.totalDayNoLabel.text = floor(days) == days ? String(describing: Int(days)) : String(format: "%.1f", days)
+            
+            let totalDays = Double(annual + carriedOver + bonus + manualAdjust) / workHours
+            self.totalDayNoLabel.text = (floor(totalDays) == totalDays ?
+                String(describing: Int(totalDays)) : String(format: "%.1f", totalDays)) + " Days"
+            
+            let takenAnnualDays = Double(takenAnnual) / workHours
+            self.takenDayNoLabel.text = floor(takenAnnualDays) == takenAnnualDays ?
+                String(describing: Int(takenAnnualDays)) : String(format: "%.1f", takenAnnualDays)
+            
+            let remainingDays = totalDays - takenAnnualDays
+            self.remainingDayNoLabel.text = floor(remainingDays) == remainingDays ?
+            String(describing: Int(remainingDays)) : String(format: "%.1f", remainingDays)
+            
+            let pendingDays = Double(pendingAnnual) / workHours
+            self.pendingDayNoLabel.text = floor(pendingDays) == pendingDays ?
+                String(describing: Int(pendingDays)) : String(format: "%.1f", pendingDays)
+            
+            let barWidth = self.progressBar.frame.width
+            
+            var approvedBarLen, sickBarLen, pendindgBarLen : CGFloat
+            
+            switch self.mainLabelText {
+            case "Leave":
+                approvedBarLen = CGFloat(takenAnnualDays / totalDays) * barWidth
+                pendindgBarLen = CGFloat( (takenAnnualDays + pendingDays) / totalDays) * barWidth
+                sickBarLen = 0
+            default:
+                approvedBarLen = 0
+                pendindgBarLen = 0
+                sickBarLen = 0
+            }
+            self.approvedBar.widthAnchor.constraint(equalToConstant: approvedBarLen).isActive = true
+            self.pendingBar.widthAnchor.constraint(equalToConstant: pendindgBarLen).isActive = true
+            self.sicknessBar.widthAnchor.constraint(equalToConstant: sickBarLen).isActive = true
+            
             self.stopActivityIndicatorSpinner()
         })
         
@@ -73,14 +112,16 @@ class RemainigDaysViewController: BaseViewController {
         takenDaysLabel.textColor = UIColor.primaryTextColor
         pendingLabel.textColor = UIColor.primaryTextColor
         pendingDayNoLabel.textColor = UIColor.primaryTextColor
-        totalDayNoLabel.textColor = UIColor.primaryTextColor
-
-        progressBar.type = .flat
-        progressBar.trackTintColor = UIColor.transparentColor
+        totalDayNoLabel.textColor = UIColor.black
+        totalDayNoLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         
-        progressBar.layer.borderWidth = 2
+        progressBar.backgroundColor = UIColor.remainingColor
         progressBar.layer.cornerRadius = 15
-        progressBar.layer.borderColor = UIColor.primaryTextColor.cgColor
+        
+        approvedBar.backgroundColor = UIColor.approvedColor
+        pendingBar.backgroundColor = UIColor.pendingColor
+        sicknessBar.backgroundColor = UIColor.rejectedColor
+        
     }
 
 }

@@ -199,42 +199,33 @@ extension HistoryViewController: RequestCancelationProtocol {
             status = .cancelationPending
         }
         startActivityIndicatorSpinner()
-        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { request in
+        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { response in
             
-            guard let success = request.success else {
+            guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if success {
-                if request.request?.requestStatus == RequestStatus.canceled {
-                    guard let index = self.tableView.indexPath(for: cell) else {
-                        return
-                    }
-                    self.requests.remove(at: index.row)
-                    self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+                guard let index = self.tableView.indexPath(for: cell) else {
+                    return
                 }
+                
+                let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: response.request?.requestStatus)
+                let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
+                
+                self.requests[indexOfOldRequest ?? 0] = updatedRequest
+                
+                if self.filteredRequests[index.row].requestStatus == .pending {
+                    self.filteredRequests.remove(at: index.row)
+                } else {
+                    self.filteredRequests[index.row] = updatedRequest
+                }
+                self.tableView.reloadData()
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }
-        requestUseCase.updateRequest(request: Request(request: oldRequest, requestStatus: status)) { request in
-            guard let index = self.tableView.indexPath(for: cell) else {
-                return
-            }
-            
-            let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: request.requestStatus)
-            let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
-            
-            self.requests[indexOfOldRequest ?? 0] = updatedRequest
-            
-            if self.filteredRequests[index.row].requestStatus == .pending {
-                self.filteredRequests.remove(at: index.row)
-            } else {
-                self.filteredRequests[index.row] = updatedRequest
-            }
-            self.tableView.reloadData()
         }
     }
-    
 }

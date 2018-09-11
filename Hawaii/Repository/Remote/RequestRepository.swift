@@ -46,10 +46,6 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
-
-        Alamofire.request(url, headers: getHeaders()).responseString { string in
-            print(string)
-        }
         
         Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
@@ -91,20 +87,28 @@ class RequestRepository: RequestRepositoryProtocol {
     }
     
     func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void) {
-        guard let encodedData = try? getEncoder().encode(request),
-            let url = URL(string: Constants.requests),
-            let parameters = try? JSONSerialization.jsonObject(with: encodedData, options: []) as? [String: Any],
-            let requestParameters = parameters else {
-    func updateRequest(request: Request, completion: @escaping (Request) -> Void) {
-        
         guard let url = URL(string: Constants.requests),
-              let requestParameters = request.dictionary else {
+            let requestParameters = request.dictionary else {
                 return
         }
-        
-        Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default,
-                          headers: getHeaders()).responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
-            print(response)
+        Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default, headers: getHeaders())
+//            .validate().responseJSON { response in
+//                print(response.response?.statusCode)
+//                    switch response.result {
+//                    case .success:
+//                        print("Validation Successful")
+//                        completion(RequestResponse(success: true,
+//                                                   request: request,
+//                                                   error: nil, message: nil))
+//                    case .failure(let error):
+//                        print(error)
+//                        completion(RequestResponse(success: false, request: request,
+//                                                   error: response.error,
+//                                                   message: response.error?.localizedDescription))
+//                    }
+//        }
+            .validate().responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
+                print(response)
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
@@ -117,7 +121,7 @@ class RequestRepository: RequestRepositoryProtocol {
                                                            error: response.error,
                                                            message: response.error?.localizedDescription))
                             }
-        }
+            }
     }
     
     func getAllPendingForApprover(approver: Int, completion: @escaping (RequestsResponse) -> Void) {
