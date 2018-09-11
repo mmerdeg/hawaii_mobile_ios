@@ -9,6 +9,10 @@
 import UIKit
 import JTAppleCalendar
 
+protocol DatePickerProtocol: class {
+    func selectedDate(_ dates: [Date])
+}
+
 class CustomDatePickerTableViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
@@ -19,10 +23,18 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     
-    let formatter = DateFormatter()
+    weak var delegate: DatePickerProtocol?
+    
     var requestUseCase: RequestUseCaseProtocol?
+    
+    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    
     var items: [Date] = []
+    
+    var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
+    var isFirstSelected = false
+    let formatter = DateFormatter()
     let processor = SVGProcessor()
     
     override func viewDidLoad() {
@@ -31,15 +43,18 @@ class CustomDatePickerTableViewController: BaseViewController {
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
-        let nib = UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil)
-        collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
         // Do any additional setup after loading the view.
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         setupCalendarView()
-        collectionView.scrollToDate(Date(), animateScroll: false)
+        collectionView.scrollToDate(items.first ?? Date(), animateScroll: false)
+        fillCalendar()
     }
     
     func setupCalendarView() {
@@ -54,8 +69,29 @@ class CustomDatePickerTableViewController: BaseViewController {
             self.dateLabel.text = month+", "+year
         }
     }
+    func fillCalendar() {
+        startActivityIndicatorSpinner()
+        self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+            guard let success = holidaysResponse?.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.holidays = holidays
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                                                viewController: self, completion: { _ in
+                                                    self.stopActivityIndicatorSpinner()
+                })
+            }
+        })
+    }
     
-    func handleCellLeave(cell: TeamCalendarCollectionViewCell, cellState: CellState) {
+    func handleCellLeave(cell: PublicHolidayTableViewCell, cellState: CellState) {
         
     }
     
@@ -69,6 +105,10 @@ class CustomDatePickerTableViewController: BaseViewController {
         collectionView.reloadData()
     }
     
+    @IBAction func acceptClicked(_ sender: Any) {
+        delegate?.selectedDate(items)
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
@@ -95,49 +135,76 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
                   forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self), for: indexPath)
-            as? TeamCalendarCollectionViewCell else {
+        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
+            as? PublicHolidayTableViewCell else {
                 return
         }
         sharedFunctionToConfigureCell(myCustomCell: cell, cellState: cellState, date: date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
-                                                      for: indexPath)
-            as? TeamCalendarCollectionViewCell else {
-                return JTAppleCell()
-        }
-        if containsDate(date: date) {
-            cell.backgroundColor = UIColor.blue
+        if holidays.keys.contains(date) {
+            
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
+                             as? PublicHolidayTableViewCell else {
+                    return JTAppleCell()
+            }
+            
+            cell.cellState = cellState
+            cell.setCell(processor: processor)
+            return cell
         } else {
-            cell.backgroundColor = UIColor.transparentColor
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
+                                                      for: indexPath)
+                             as? TeamCalendarCollectionViewCell else {
+                return JTAppleCell()
+            }
+            if cellState.dateBelongsTo == .thisMonth {
+                if containsDate(date: date) {
+                    cell.backgroundColor = UIColor.blue
+                } else {
+                    cell.backgroundColor = UIColor.transparentColor
+                }
+            } else {
+                cell.backgroundColor = UIColor.transparentColor
+            }
+            
+            cell.cellState = cellState
+            cell.setCell(processor: processor)
+            return cell
         }
-        cell.cellState = cellState
-        cell.setCell(processor: processor)
-        
-        return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if containsDate(date: date) {
-            if let index = items.index(of: date) {
-                items.remove(at: index)
+        if isFirstSelected {
+            guard let firstDate = items.first else {
+                collectionView.reloadData()
+                return
             }
+            
+            if Calendar.current.compare(firstDate, to: date, toGranularity: .day) == .orderedAscending ||
+                Calendar.current.compare(firstDate, to: date, toGranularity: .day) == .orderedSame {
+                    items = []
+                    items =  [firstDate, date]
+                    selectDates()
+                    collectionView.reloadData()
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+                }
+            }
+            return
         } else {
-            items.append(date)
-            items = items.sorted(by: { $0.compare($1) == .orderedAscending })
-            if items.count > 1 {
-                selectDates()
-            }
+            items = [date]
+            collectionView.reloadData()
+            return
         }
-        collectionView.reloadData()
+        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
     }
     
-    func sharedFunctionToConfigureCell(myCustomCell: TeamCalendarCollectionViewCell, cellState: CellState, date: Date) {
+    func sharedFunctionToConfigureCell(myCustomCell: PublicHolidayTableViewCell, cellState: CellState, date: Date) {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -148,13 +215,17 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
         var date = items.first ?? Date()// first date
         let endDate = items.last ?? Date()// last date
         
-        items = [date]
-        while date < endDate {
-            guard let selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
-                return
+        if Calendar.current.compare(date, to: endDate, toGranularity: .day) == .orderedSame {
+            items = [date, date]
+        } else {
+            items = [date]
+            while date < endDate {
+                guard let selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
+                    return
+                }
+                date = selectedDate
+                items.append(selectedDate)
             }
-            date = selectedDate
-            items.append(selectedDate)
         }
     }
     

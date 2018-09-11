@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RequestTableViewController: UIViewController {
+class RequestTableViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,6 +28,14 @@ class RequestTableViewController: UIViewController {
     var selectedDurationIndex = 0
     var selectedAbsence: Absence?
     
+    var startDate: Date?
+    
+    var endDate: Date?
+    
+    var dateItems: [ExpandableData] = []
+    
+    let showDatePickerSegue = "showDatePicker"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -36,19 +44,26 @@ class RequestTableViewController: UIViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        endDate = startDate
         guard let requestType = requestType else {
             return
         }
         
         if requestType == .deducted {
             tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, absence in
-                self.setItems(data: data)
-                self.leaveTypeData = leaveTypeData
-                self.selectedAbsence = absence
+                self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                    self.dateItems = items
+                    self.setItems(data: data)
+                    self.leaveTypeData = leaveTypeData
+                    self.selectedAbsence = absence
+                })
             })
         } else {
             tableDataProviderUseCase?.getSicknessData(completion: { data in
-                self.setItems(data: data)
+                self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                    self.dateItems = items
+                    self.setItems(data: data)
+                })
             })
         }
     }
@@ -84,14 +99,15 @@ class RequestTableViewController: UIViewController {
             }
             controller.items = leaveTypeData
             controller.delegate = self
+        } else if segue.identifier == showDatePickerSegue {
+            guard let controller = segue.destination as? CustomDatePickerTableViewController,
+                let params = sender as? (Bool, [Date]) else {
+                    return
+            }
+            controller.items = params.1
+            controller.isFirstSelected = params.0
+            controller.delegate = self
         }
-    }
-    
-    func getTypeSelection() -> AbsenceSubType {
-        guard let absenceType = AbsenceSubType(rawValue: selectedTypeIndex) else {
-            return AbsenceSubType.vacation
-        }
-        return absenceType
     }
     
     func getDurationSelection() -> DurationType {
@@ -109,29 +125,45 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
-        cell.textLabel?.text = self.items[indexPath.row].title
-        cell.detailTextLabel?.text = self.items[indexPath.row].description
         cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor.transparentColor
+        if indexPath.section == 0 {
+            let formatter = DateFormatter()
+            formatter.dateFormat = Constants.dateFormat
+            cell.textLabel?.text = dateItems[indexPath.row].title
+            cell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
+        } else {
+            cell.textLabel?.text = self.items[indexPath.row].title
+            cell.detailTextLabel?.text = self.items[indexPath.row].description
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            if requestType == .deducted {
-                    self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
+        if indexPath.section == 0 {
+            self.performSegue(withIdentifier: showDatePickerSegue,
+                              sender: (indexPath.row == 1 ? true: false, [startDate]))
+        } else {
+            if indexPath.row == 0 {
+                if requestType == .deducted {
+                        self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
+                } else {
+                    tableDataProviderUseCase?.getSicknessTypeData(completion: { data in
+                        self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                    })
+                }
             } else {
-                tableDataProviderUseCase?.getSicknessTypeData(completion: { data in
+                tableDataProviderUseCase?.getDurationData(completion: { data in
                     self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
                 })
             }
-        } else {
-            tableDataProviderUseCase?.getDurationData(completion: { data in
-                self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-            })
         }
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
 }
 
@@ -153,3 +185,37 @@ extension RequestTableViewController: SelectAbsenceProtocol {
         selectedAbsence = absence
     }
 }
+
+extension RequestTableViewController: DatePickerProtocol {
+    func selectedDate(_ dates: [Date]) {
+        if dates.count == 1 {
+            guard let startDate = dates.first else {
+                return
+            }
+            self.startDate = startDate
+            self.endDate = startDate
+            let formatter = DateFormatter()
+            formatter.dateFormat = Constants.dateFormat
+            guard let startDateCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)),
+                  let endDateCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
+                    return
+            }
+            startDateCell.detailTextLabel?.text = formatter.string(from: startDate)
+            endDateCell.detailTextLabel?.text = formatter.string(from: startDate)
+            
+        } else if dates.count > 2 {
+            guard let endDate = dates.last else {
+                return
+            }
+            self.endDate = endDate
+            let formatter = DateFormatter()
+            formatter.dateFormat = Constants.dateFormat
+            guard let prevousCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
+                return
+            }
+            prevousCell.detailTextLabel?.text = formatter.string(from: endDate)
+        }
+    }
+    
+}
+

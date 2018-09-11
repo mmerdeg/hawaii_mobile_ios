@@ -21,7 +21,9 @@ class DashboardViewController: BaseViewController {
     
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var items: [Request] = []
+    var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
     let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
@@ -41,8 +43,11 @@ class DashboardViewController: BaseViewController {
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
-        let nib = UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil)
-        collectionView?.register(nib, forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
+        
         // Do any additional setup after loading the view.
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
@@ -129,20 +134,34 @@ class DashboardViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase?.getAll { request in
+        requestUseCase?.getAll { requestResponse in
             
-            guard let success = request.success else {
+            guard let success = requestResponse.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if success {
-                self.items = request.requests ?? []
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.stopActivityIndicatorSpinner()
-                }
+                self.items = requestResponse.requests ?? []
+                self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                    guard let success = holidaysResponse?.success else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    if success {
+                        self.holidays = holidays
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            self.stopActivityIndicatorSpinner()
+                        }
+                    } else {
+                        ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                                                        viewController: self, completion: { _ in
+                            self.stopActivityIndicatorSpinner()
+                        })
+                    }
+                })
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }
@@ -192,26 +211,41 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else {
-                return JTAppleCell()
-        }
-        
-        cell.cellState = cellState
-        let calendar = NSCalendar.current
-        var requests: [Request] = []
-        for item in items {
-            guard let days = item.days else {
-                continue
+        if holidays.keys.contains(date) {
+            
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
+                as? PublicHolidayTableViewCell else {
+                    return JTAppleCell()
             }
-            for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
-                let tempRequest = Request(request: item, days: [day])
-                requests.append(tempRequest)
+            
+            cell.cellState = cellState
+            cell.setCell(processor: processor)
+            return cell
+        } else {
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
+                                                          for: indexPath)
+                as? CalendarCellCollectionViewCell else {
+                    return JTAppleCell()
             }
+            
+            cell.cellState = cellState
+            let calendar = NSCalendar.current
+            var requests: [Request] = []
+            for item in items {
+                guard let days = item.days else {
+                    continue
+                }
+                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
+                    item.requestStatus != RequestStatus.canceled &&
+                    item.requestStatus != RequestStatus.rejected {
+                        let tempRequest = Request(request: item, days: [day])
+                        requests.append(tempRequest)
+                }
+            }
+            cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+            cell.setCell(processor: processor)
+            return cell
         }
-        cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-        cell.setCell(processor: processor)
-        return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -248,13 +282,6 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
-    }
-    
-    func requestTypeClicked(requestType: AbsenceType) {
-        DispatchQueue.main.async {
-            self.customView.removeFromSuperview()
-        }
-        
     }
 }
 

@@ -99,9 +99,12 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func resetView(cellState: CellState) {
         morningView.backgroundColor = UIColor.clear
         morningImage.image = UIImage()
+        morningImage.kf.setImage(with: URL(string: ""))
         afternoonView.backgroundColor = UIColor.clear
         afternoonImage.image = UIImage()
+        afternoonImage.kf.setImage(with: URL(string: ""))
         fullDayImage.image = UIImage()
+        fullDayImage.kf.setImage(with: URL(string: ""))
         handleCellText(cellState: cellState)
         layoutIfNeeded()
     }

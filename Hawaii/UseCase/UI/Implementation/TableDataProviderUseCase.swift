@@ -20,6 +20,8 @@ protocol TableDataProviderUseCaseProtocol {
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
     
+    func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void)
+    
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void)
 }
 
@@ -57,6 +59,12 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void) {
         tableDataProviderRepository?.getDurationData(completion: { data in
+            completion(data)
+        })
+    }
+    
+    func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void) {
+        tableDataProviderRepository?.getMultipleDaysDurationData(completion: { data in
             completion(data)
         })
     }

@@ -20,6 +20,8 @@ protocol TableDataProviderRepositoryProtocol {
     
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
     
+    func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void)
+    
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void)
     
 }

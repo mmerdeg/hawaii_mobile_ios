@@ -66,6 +66,21 @@ extension SwinjectStoryboard {
             return requestRepository
         }
         
+        defaultContainer.register(PublicHolidayRepositoryProtocol.self, name: String(describing: PublicHolidayRepositoryProtocol.self)) { resolver in
+            let holidayRepository = PublicHolidayRepository()
+            holidayRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                    name: String(describing: UserDetailsUseCaseProtocol.self))
+                ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+            return holidayRepository
+        }
+        
+        // Table Data Provider Repository
+        defaultContainer.register(PublicHolidayUseCaseProtocol.self, name: String(describing: PublicHolidayUseCaseProtocol.self)) { resolver in
+            return PublicHolidayUseCase(publicHolidayRepository: resolver.resolve(PublicHolidayRepositoryProtocol.self,
+                                                                name: String(describing: PublicHolidayRepositoryProtocol.self))
+                ?? PublicHolidayRepository())
+        }
+        
         // Request Repository
         defaultContainer.register(UserRepositoryProtocol.self, name: String(describing: UserRepositoryProtocol.self)) { resolver in
             let userRepository = UserRepository()
@@ -118,6 +133,8 @@ extension SwinjectStoryboard {
         
         defaultContainer.storyboardInitCompleted(DashboardViewController.self) { resolver, controller in
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+            controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                name: String(describing: PublicHolidayUseCaseProtocol.self))
         }
         
         defaultContainer.storyboardInitCompleted(TeamCalendarViewController.self) { resolver, controller in
@@ -158,14 +175,19 @@ extension SwinjectStoryboard {
             controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                              name: String(describing: UserDetailsUseCaseProtocol.self))
         }
-        defaultContainer.storyboardInitCompleted(DatePickerViewController.self) { resolver, controller in
-            controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
-                                                                   name: String(describing: TableDataProviderUseCaseProtocol.self))
-        }
+//        defaultContainer.storyboardInitCompleted(DatePickerViewController.self) { resolver, controller in
+//            controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
+//                                                                   name: String(describing: TableDataProviderUseCaseProtocol.self))
+//        }
         
         defaultContainer.storyboardInitCompleted(SelectAbsenceViewController.self) { resolver, controller in
             controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
                                                                             name: String(describing: TableDataProviderUseCaseProtocol.self))
+        }
+        
+        defaultContainer.storyboardInitCompleted(CustomDatePickerTableViewController.self) { resolver, controller in
+            controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                name: String(describing: PublicHolidayUseCaseProtocol.self))
         }
         
     }

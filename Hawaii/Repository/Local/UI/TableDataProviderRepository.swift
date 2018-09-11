@@ -16,12 +16,12 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
-        let queue = DispatchQueue(label: "com.cnoon.response-queue", qos: .utility, attributes: [.concurrent])
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
            completion([CellData(title: "Type of leave", description: response.result.value?.first?.name),
-             CellData(title: "Duration", description: DurationType.fullday.description)],
-                      response.result.value ?? [],
-                      response.result.value?.first ?? Absence())
+                       CellData(title: "Duration", description: DurationType.fullday.description)],
+                       response.result.value?.filter({$0.absenceType == AbsenceType.deducted.rawValue ||
+                                                       $0.absenceType == AbsenceType.nonDecuted.rawValue }) ?? [],
+                                                                                          response.result.value?.first ?? Absence())
         }
     }
     
@@ -51,12 +51,16 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                                                    CellData(title: DurationType.afternoon.description, description: nil)])])
     }
     
+    func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void) {
+        completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil),
+                                                   CellData(title: DurationType.morning.description, description: nil),
+                                                   CellData(title: DurationType.afternoon.description, description: nil),
+                                                   CellData(title: DurationType.afternoon.description, description: nil)])])
+    }
+    
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {
        completion([ExpandableData(id: 0, expanded: true, title: "Start date", description: forDate),
-        ExpandableData(expanded: false, description: forDate),
-        ExpandableData(id: 0, expanded: true, title: "End date", description: forDate),
-        ExpandableData(expanded: false, description: forDate),
-        ExpandableData(id: 0, expanded: true, title: "Test data", description: forDate)])
+                   ExpandableData(id: 0, expanded: true, title: "End date", description: forDate)])
     }
     
 }

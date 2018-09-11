@@ -1,8 +1,8 @@
 //
-//  TeamCalendarCollectionViewCell.swift
+//  PublicHolidayTableViewCell.swift
 //  Hawaii
 //
-//  Created by Ivan Divljak on 8/28/18.
+//  Created by Ivan Divljak on 9/7/18.
 //  Copyright © 2018 Server. All rights reserved.
 //
 
@@ -10,13 +10,11 @@ import UIKit
 import JTAppleCalendar
 import Kingfisher
 
-class TeamCalendarCollectionViewCell: JTAppleCell {
+class PublicHolidayTableViewCell: JTAppleCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var isEmpty: UIView!
-    var requests: [Request]?
-    
+    @IBOutlet weak var imageView: UIImageView!
     var cellState: CellState!
     
     func handleCellText(cellState: CellState) {
@@ -43,9 +41,11 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
-        isEmpty.backgroundColor = requests?.isEmpty ?? true ? UIColor.transparentColor: UIColor.pendingColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
+        
+        self.backgroundColor = UIColor.cyan
+        self.isUserInteractionEnabled = false
     }
     
     func resetView(cellState: CellState) {

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +16,17 @@
             <objects>
                 <viewController storyboardIdentifier="SignInViewController" id="BYZ-38-t0r" customClass="SignInViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="execom" translatesAutoresizingMaskIntoConstraints="NO" id="jbC-Ud-wWo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vU-hD-ZET" customClass="GIDSignInButton">
-                                <rect key="frame" x="30" y="412" width="315" height="55"/>
+                                <rect key="frame" x="30" y="687" width="315" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="BTW-Pr-0IK"/>
+                                    <constraint firstAttribute="height" constant="40" id="ecg-la-JnY"/>
                                 </constraints>
                                 <connections>
                                     <action selector="onSignInPressed:" destination="BYZ-38-t0r" eventType="valueChanged" id="ihi-Y4-XQG"/>
@@ -30,10 +34,13 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9vU-hD-ZET" secondAttribute="bottom" constant="200" id="B5R-gu-Xkb"/>
                             <constraint firstItem="9vU-hD-ZET" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M0i-mS-x5D"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9vU-hD-ZET" secondAttribute="trailing" constant="30" id="Syz-c3-6uV"/>
+                            <constraint firstAttribute="bottom" secondItem="jbC-Ud-wWo" secondAttribute="bottom" id="UNp-A6-714"/>
+                            <constraint firstItem="jbC-Ud-wWo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="a33-JO-OSt"/>
                             <constraint firstItem="9vU-hD-ZET" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eQS-tt-a72"/>
+                            <constraint firstItem="jbC-Ud-wWo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gmU-Wc-nhm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jbC-Ud-wWo" secondAttribute="trailing" id="lrb-d0-ujs"/>
+                            <constraint firstItem="9vU-hD-ZET" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.72" id="sfe-iR-VJu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -121,4 +128,7 @@
             <point key="canvasLocation" x="1686" y="-235"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="execom" width="837" height="1152"/>
+    </resources>
 </document>

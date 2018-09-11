@@ -27,7 +27,7 @@ class RequestRepository: RequestRepositoryProtocol {
         }
         print(requestParameters)
         Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
-                          headers: getHeaders()).responseString { response in
+                          headers: getHeaders()).validate().responseString { response in
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
@@ -85,12 +85,13 @@ class RequestRepository: RequestRepositoryProtocol {
     
     func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void) {
         guard let url = URL(string: Constants.requests),
-            let requestParameters = request.dictionary else {
+              let requestParameters = request.dictionary else {
                 return
         }
         
         Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
+                            print(response)
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
@@ -125,11 +126,13 @@ class RequestRepository: RequestRepositoryProtocol {
     }
     
     func getAllByTeam(date: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void) {
-        guard let url = URL(string: Constants.requestsToApprove) else {
+        let urlString = Constants.requestsByTeamByMonth + "/\(teamId)/month"
+        guard let url = URL(string: urlString) else {
             return
         }
-        
-        Alamofire.request(url, headers: getHeaders()).validate()
+        let formatter = getDateFormatter()
+        let params = ["date": formatter.string(from: date)]
+        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
                 switch response.result {
                 case .success:
@@ -158,15 +161,16 @@ class RequestRepository: RequestRepositoryProtocol {
                     completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
                 
-        }
+            }
     }
     
     func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void) {
-        guard let url = URL(string: Constants.requestsToApprove) else {
+        guard let url = URL(string: Constants.requestsByMonth) else {
             return
         }
-        
-        Alamofire.request(url, headers: getHeaders()).validate()
+        let formatter = getDateFormatter()
+        let params = ["date": formatter.string(from: date)]
+        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
                 switch response.result {
                 case .success:
