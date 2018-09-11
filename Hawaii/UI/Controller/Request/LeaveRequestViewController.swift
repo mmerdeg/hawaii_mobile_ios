@@ -80,9 +80,29 @@ class LeaveRequestViewController: BaseViewController {
         let durationType = requestTableViewController.getDurationSelection()
         
         var days: [Day] = []
-        for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
-            days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
+        switch durationType {
+        case .afternoonFirst:
+            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
+            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate) {
+                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
+            }
+        case .morningLast:
+            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate.yesterday) {
+                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
+            }
+            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
+        case .morningAndAfternoon:
+            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
+            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate.yesterday) {
+                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
+            }
+            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
+        default:
+            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
+                days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
+            }
         }
+        
         startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { response in
             let request = Request(approverId: nil, days: days, reason: "string",

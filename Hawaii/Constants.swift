@@ -9,7 +9,7 @@
 import Foundation
 
 struct Constants {
-    static let baseUrl = "http://nb077:8090"
+    //static let baseUrl = "http://nb077:8080"
     static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
     static let userRequests = requests + "/user"
@@ -19,8 +19,8 @@ struct Constants {
     static let publicHolidays = baseUrl + "/publicholidays"
     static let requestsByTeamByMonth = baseUrl + "/requests/team"
     static let requestsByMonth = baseUrl + "/requests/user/month"
+    static let requestYears = baseUrl + "/requests/years/range"
     static let dateFormat = "yyyy-MM-dd"
     static let timeZone = "UTC"
-    //static let baseUrl = "https://hawaii2.execom.eu"
-    //static let asdasd = "https://hawaii2.execom.eu"
+    static let baseUrl = "https://hawaii2.execom.eu"
 }

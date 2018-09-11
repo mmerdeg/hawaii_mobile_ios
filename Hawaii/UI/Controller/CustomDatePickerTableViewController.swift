@@ -106,6 +106,11 @@ class CustomDatePickerTableViewController: BaseViewController {
     }
     
     @IBAction func acceptClicked(_ sender: Any) {
+        if isFirstSelected {
+            if items.count == 1 {
+                items.append(items.first ?? Date())
+            }
+        }
         delegate?.selectedDate(items)
         self.dismiss(animated: true, completion: nil)
     }

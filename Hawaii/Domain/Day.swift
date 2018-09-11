@@ -13,6 +13,9 @@ enum DurationType: String, Codable {
     case fullday = "FULL_DAY"
     case morning = "MORNING"
     case afternoon = "AFTERNOON"
+    case afternoonFirst = "AFTERNOON-FIRST"
+    case morningLast = "MORNING-LAST"
+    case morningAndAfternoon = "MORNING-AFTERNOON"
     
     var description: String {
         switch self {
@@ -22,6 +25,12 @@ enum DurationType: String, Codable {
             return "Morning only"
         case .afternoon:
             return "Afternoon only"
+        case .afternoonFirst:
+            return "Afternoon first day"
+        case .morningLast:
+            return "Morning last day"
+        case .morningAndAfternoon:
+            return "Afternoon first day and morning last day"
         }
     }
     
@@ -37,14 +46,21 @@ struct Day: Codable {
 }
 
 extension DurationType {
-    init?(durationType: Int) {
+    
+    init?(durationType: String) {
         switch durationType {
-        case 0:
+        case DurationType.fullday.description:
             self.init(rawValue: "FULL_DAY")
-        case 1:
+        case DurationType.morning.description:
             self.init(rawValue: "MORNING")
-        case 2:
+        case DurationType.afternoon.description:
             self.init(rawValue: "AFTERNOON")
+        case DurationType.afternoonFirst.description:
+            self.init(rawValue: "AFTERNOON-FIRST")
+        case DurationType.morningLast.description:
+            self.init(rawValue: "MORNING-LAST")
+        case DurationType.morningAndAfternoon.description:
+            self.init(rawValue: "MORNING-AFTERNOON")
         default:
             return nil
         }

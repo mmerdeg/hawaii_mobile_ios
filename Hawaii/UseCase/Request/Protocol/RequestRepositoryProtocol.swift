@@ -25,4 +25,7 @@ protocol RequestRepositoryProtocol {
     func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void)
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void)
+    
+    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void)
+    
 }

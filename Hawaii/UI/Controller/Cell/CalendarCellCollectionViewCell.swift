@@ -74,7 +74,6 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             
             DispatchQueue.main.async {
                 switch day.duration {
-                    
                 case .afternoon?:
                     self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.afternoonImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
@@ -87,6 +86,12 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                     self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                 case .none:
+                    print("")
+                case .some(.afternoonFirst):
+                    print("")
+                case .some(.morningLast):
+                    print("")
+                case .some(.morningAndAfternoon):
                     print("")
                 }
             }

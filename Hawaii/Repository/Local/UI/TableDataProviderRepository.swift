@@ -53,9 +53,9 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     
     func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void) {
         completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil),
-                                                   CellData(title: DurationType.morning.description, description: nil),
-                                                   CellData(title: DurationType.afternoon.description, description: nil),
-                                                   CellData(title: DurationType.afternoon.description, description: nil)])])
+                                                   CellData(title: DurationType.afternoonFirst.description, description: nil),
+                                                   CellData(title: DurationType.morningLast.description, description: nil),
+                                                   CellData(title: DurationType.morningAndAfternoon.description, description: nil)])])
     }
     
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {

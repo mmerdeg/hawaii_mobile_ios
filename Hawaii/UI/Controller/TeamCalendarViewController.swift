@@ -102,11 +102,15 @@ class TeamCalendarViewController: BaseViewController {
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
+        refreshUI()
+    }
+    
+    func refreshUI() {
         collectionView.visibleDates { visibleDates in
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            switch segment.selectedSegmentIndex {
+            switch self.segmentedControl?.selectedSegmentIndex {
             case 0:
                 self.startActivityIndicatorSpinner()
                 self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
@@ -187,6 +191,7 @@ class TeamCalendarViewController: BaseViewController {
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
             self.dateLabel.text = month+", "+year
+            self.refreshUI()
         }
     }
     
@@ -209,12 +214,13 @@ class TeamCalendarViewController: BaseViewController {
     @IBAction func nextMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.next, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
-        collectionView.reloadData()
+        refreshUI()
     }
     
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
+        refreshUI()
     }
 }
 

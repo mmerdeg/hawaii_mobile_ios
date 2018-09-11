@@ -26,6 +26,7 @@ class SelectAbsenceViewController: BaseViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.primaryColor
     }
 }
 

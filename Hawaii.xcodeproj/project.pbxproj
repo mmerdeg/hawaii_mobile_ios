@@ -42,6 +42,8 @@
 		307413572142809B00F05427 /* PublicHolidayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */; };
 		307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
+		3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135B2147DBFC00F05427 /* YearResponse.swift */; };
+		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
@@ -214,6 +216,8 @@
 		307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayTableViewCell.swift; sourceTree = "<group>"; };
 		307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicHolidayTableViewCell.xib; sourceTree = "<group>"; };
 		30741359214650AE00F05427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3074135B2147DBFC00F05427 /* YearResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearResponse.swift; sourceTree = "<group>"; };
+		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -531,6 +535,8 @@
 				30741340213E9DBD00F05427 /* UsersResponse.swift */,
 				307413492142756100F05427 /* PublicHoliday.swift */,
 				3074134B214275E000F05427 /* PublicHolidayResponse.swift */,
+				3074135B2147DBFC00F05427 /* YearResponse.swift */,
+				3074135D2147E53200F05427 /* Year.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1026,6 +1032,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */,
+				3074135E2147E53200F05427 /* Year.swift in Sources */,
 				3E15C45020E62AD300DB2CF7 /* WhiteUIDatePicker.swift in Sources */,
 				3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */,
 				3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */,
@@ -1058,6 +1065,7 @@
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
+				3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */,
 				302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
