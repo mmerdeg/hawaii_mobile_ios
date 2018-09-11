@@ -13,8 +13,6 @@ class SickRequestViewController: BaseViewController {
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
     let showRequestTableViewController = "showRequestTableViewController"
     let showRemainingDaysViewController = "showRemainingDaysViewController"
-    
-    var datePickerController: DatePickerViewController?
     var requestTableViewController: RequestTableViewController?
     var remainingDaysViewController: RemainigDaysViewController?
     
@@ -23,12 +21,7 @@ class SickRequestViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showDatePickerViewControllerSegue {
-            guard let controller = segue.destination as? DatePickerViewController else {
-                return
-            }
-            self.datePickerController = controller
-        } else if segue.identifier == showRequestTableViewController {
+        if segue.identifier == showRequestTableViewController {
             guard let controller = segue.destination as? RequestTableViewController else {
                 return
             }

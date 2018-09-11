@@ -20,8 +20,6 @@ class LeaveRequestViewController: BaseViewController {
     
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
-    var datePickerController: DatePickerViewController?
-    
     var requestTableViewController: RequestTableViewController?
     
     var remainingDaysViewController: RemainigDaysViewController?
@@ -43,30 +41,18 @@ class LeaveRequestViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = addLeveRequestItem
     }
     
-    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
-        guard let container = container as? DatePickerViewController else {
-            return
-        }
-        pickerHeight.constant = container.preferredContentSize.height
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showDatePickerViewControllerSegue {
-            guard let controller = segue.destination as? DatePickerViewController else {
-                return
-            }
-            controller.selectedDate = selectedDate
-            addChildViewController(controller)
-            self.datePickerController = controller
-        } else if segue.identifier == showRequestTableViewController {
+        if segue.identifier == showRequestTableViewController {
             guard let controller = segue.destination as? RequestTableViewController else {
                 return
             }
             self.requestTableViewController = controller
+            controller.startDate = selectedDate
             guard let requestTableViewController = self.requestTableViewController else {
                 return
             }
             requestTableViewController.requestType = .deducted
+            addChildViewController(controller)
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -80,13 +66,15 @@ class LeaveRequestViewController: BaseViewController {
     }
     
     @objc func addLeaveRequest() {
-        guard let startDate = datePickerController?.startDate,
-              let endDate = datePickerController?.endDate,
+        guard let startDate = requestTableViewController?.startDate,
+              let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
               let requestUseCase = requestUseCase else {
                 return
         }
         if startDate > endDate {
+            ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            }
             return
         }
         let durationType = requestTableViewController.getDurationSelection()

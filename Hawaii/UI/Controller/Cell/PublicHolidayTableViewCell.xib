@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="61" id="KGk-i7-Jjw" customClass="PublicHolidayTableViewCell" customModule="Hawaii" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="62" height="61"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="62" height="60.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="TeamCalendarCollectionViewCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byv-kH-Dcr">
+                        <rect key="frame" x="10" y="15" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="63Q-RZ-vOR">
+                        <rect key="frame" x="23.5" y="35.5" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="63Q-RZ-vOR" secondAttribute="height" multiplier="1:1" id="HES-D1-jX5"/>
+                            <constraint firstAttribute="width" constant="15" id="Ijy-nU-4jq"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="63Q-RZ-vOR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="AQC-wu-otc"/>
+                    <constraint firstItem="63Q-RZ-vOR" firstAttribute="top" secondItem="byv-kH-Dcr" secondAttribute="bottom" id="AeD-Ia-pCR"/>
+                    <constraint firstItem="byv-kH-Dcr" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="IG5-30-OsL"/>
+                    <constraint firstItem="byv-kH-Dcr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="aqX-B0-BtH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="byv-kH-Dcr" id="cy8-7v-zcR"/>
+                <outlet property="imageView" destination="63Q-RZ-vOR" id="8Vv-8l-FwO"/>
+            </connections>
+            <point key="canvasLocation" x="163" y="62.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="happy" width="24" height="24"/>
+    </resources>
+</document>

@@ -31,7 +31,7 @@ class UserRepository: UserRepositoryProtocol {
             switch response.result {
             case .success:
                 print("Validation Successful")
-                completion(UsersResponse(success: true, users: [user], maxUsers: 10, error: nil, message: nil))
+                completion(UsersResponse(success: true, users: [user, user], maxUsers: 10, error: nil, message: nil))
             case .failure(let error):
                 print(error)
                 completion(UsersResponse(success: false, users: nil, maxUsers: 10,

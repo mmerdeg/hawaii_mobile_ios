@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,9 +26,19 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79P-4T-ZpC">
+                        <rect key="frame" x="31" y="49" width="5" height="5"/>
+                        <color key="backgroundColor" red="1" green="0.94876855979999997" blue="0.14785282899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="79P-4T-ZpC" secondAttribute="height" multiplier="1:1" id="lxU-fh-ex1"/>
+                            <constraint firstAttribute="width" constant="5" id="sIZ-xm-dHZ"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="79P-4T-ZpC" firstAttribute="bottom" secondItem="ZTg-uK-7eu" secondAttribute="bottom" constant="-5" id="4No-bj-nOC"/>
+                <constraint firstItem="79P-4T-ZpC" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="exk-uA-sRq"/>
                 <constraint firstItem="L9k-Qe-j5R" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="gjh-I9-a0B"/>
                 <constraint firstItem="L9k-Qe-j5R" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="15" id="jOM-gn-hgf"/>
             </constraints>
@@ -35,6 +46,7 @@
             <size key="customSize" width="67" height="59"/>
             <connections>
                 <outlet property="dateLabel" destination="L9k-Qe-j5R" id="GB7-Js-Fh3"/>
+                <outlet property="isEmpty" destination="79P-4T-ZpC" id="fmj-UR-l3X"/>
             </connections>
             <point key="canvasLocation" x="96.5" y="58.5"/>
         </collectionViewCell>

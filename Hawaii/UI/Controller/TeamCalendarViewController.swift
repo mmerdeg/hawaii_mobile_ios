@@ -76,7 +76,6 @@ class TeamCalendarViewController: BaseViewController {
         resultsController?.tableView.register(UINib(nibName: String(describing: LoadMoreTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: String(describing: LoadMoreTableViewCell.self))
         resultsController?.tableView.tableFooterView = UIView()
-        // 3
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.searchBar.searchBarStyle = .minimal
@@ -103,65 +102,31 @@ class TeamCalendarViewController: BaseViewController {
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
-        switch segment.selectedSegmentIndex {
-        case 0:
-            startActivityIndicatorSpinner()
-            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requestResponse in
-                guard let success = requestResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.items = requestResponse.requests ?? []
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                        self.stopActivityIndicatorSpinner()
-                    }
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
+                return
+            }
+            switch segment.selectedSegmentIndex {
+            case 0:
+                self.startActivityIndicatorSpinner()
+                self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                    self.handleResponse(requestResponse: requestResponse)
+                })
+            case 1:
+                self.startActivityIndicatorSpinner()
+                self.userUseCase?.getUser(completion: { response in
+                    self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
+                        self.handleResponse(requestResponse: requestResponse)
                     })
-                }
-            })
-        case 1:
-            startActivityIndicatorSpinner()
-            requestUseCase?.getAllByTeam(from: Date(), teamId: -1, completion: { requestResponse in
-                guard let success = requestResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.items = requestResponse.requests ?? []
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                        self.stopActivityIndicatorSpinner()
-                    }
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                    })
-                }
-            })
-        default:
-            startActivityIndicatorSpinner()
-            requestUseCase?.getAll { request in
-                guard let success = request.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.items = request.requests ?? []
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                        self.stopActivityIndicatorSpinner()
-                    }
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                    })
+                })
+            default:
+                self.startActivityIndicatorSpinner()
+                self.requestUseCase?.getAll { requestResponse in
+                    self.handleResponse(requestResponse: requestResponse)
                 }
             }
         }
+        
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController : nil
         }
@@ -170,8 +135,25 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
+    func handleResponse(requestResponse: RequestsResponse?) {
+        guard let success = requestResponse?.success else {
+            self.stopActivityIndicatorSpinner()
+            return
+        }
+        if success {
+            self.items = requestResponse?.requests ?? []
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.stopActivityIndicatorSpinner()
+            }
+        } else {
+            ViewUtility.showAlertWithAction(title: "Error", message: requestResponse?.message ?? "", viewController: self, completion: { _ in
+                self.stopActivityIndicatorSpinner()
+            })
+        }
+    }
+    
     func showDetails(_ requests: [Request]) {
-        
         switch segmentedControl.selectedSegmentIndex {
         case 2:
             self.navigationController?.view.addSubview(customView)
@@ -210,22 +192,13 @@ class TeamCalendarViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase?.getAll { request in
-            guard let success = request.success else {
-                self.stopActivityIndicatorSpinner()
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            if success {
-                self.items = request.requests ?? []
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.stopActivityIndicatorSpinner()
-                }
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
-            }
+            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
+            })
         }
     }
     
@@ -286,7 +259,9 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             guard let days = item.days else {
                 continue
             }
-            for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
+            for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
+                item.requestStatus != RequestStatus.canceled &&
+                item.requestStatus != RequestStatus.rejected {
                 let tempRequest = Request(request: item, days: [day])
                 requests.append(tempRequest)
             }
@@ -308,7 +283,9 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                 guard let days = item.days else {
                     continue
                 }
-                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame {
+                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
+                    item.requestStatus != RequestStatus.canceled &&
+                    item.requestStatus != RequestStatus.rejected {
                     let tempRequest = Request(request: item, days: [day])
                     requests.append(tempRequest)
                 }
@@ -378,13 +355,6 @@ extension TeamCalendarViewController: RequestDetailsDialogProtocol {
             self.customView.removeFromSuperview()
         }
     }
-    
-    func requestTypeClicked(requestType: AbsenceType) {
-        DispatchQueue.main.async {
-            self.customView.removeFromSuperview()
-        }
-        
-    }
 }
 
 extension TeamCalendarViewController: UISearchResultsUpdating {
@@ -433,9 +403,5 @@ extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource
                 
             }
         }
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
 }
