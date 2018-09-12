@@ -23,6 +23,8 @@ protocol RequestUseCaseProtocol {
     func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void)
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void)
+    
+    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void)
 }
 
 class RequestUseCase: RequestUseCaseProtocol {
@@ -80,4 +82,11 @@ class RequestUseCase: RequestUseCaseProtocol {
             completion(requestsResponse)
         }
     }
+    
+    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void) {
+        entityRepository.getAvailableRequestYears { requestsResponse in
+            completion(requestsResponse)
+        }
+    }
+    
 }

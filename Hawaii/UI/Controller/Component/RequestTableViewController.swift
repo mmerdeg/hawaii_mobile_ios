@@ -23,9 +23,9 @@ class RequestTableViewController: BaseViewController {
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
-    var selectedTypeIndex = 0
+    //var selectedTypeIndex = 0
     
-    var selectedDurationIndex = 0
+    var selectedDuration = ""
     var selectedAbsence: Absence?
     
     var startDate: Date?
@@ -33,6 +33,8 @@ class RequestTableViewController: BaseViewController {
     var endDate: Date?
     
     var dateItems: [ExpandableData] = []
+    
+    var isMultipleDaysSelected = false
     
     let showDatePickerSegue = "showDatePicker"
     
@@ -44,6 +46,7 @@ class RequestTableViewController: BaseViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = UIColor.primaryColor
         endDate = startDate
         guard let requestType = requestType else {
             return
@@ -59,10 +62,12 @@ class RequestTableViewController: BaseViewController {
                 })
             })
         } else {
-            tableDataProviderUseCase?.getSicknessData(completion: { data in
+            tableDataProviderUseCase?.getSicknessData(completion: { data, leaveTypeData, absence  in
                 self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
                     self.dateItems = items
                     self.setItems(data: data)
+                    self.leaveTypeData = leaveTypeData
+                    self.selectedAbsence = absence
                 })
             })
         }
@@ -111,7 +116,7 @@ class RequestTableViewController: BaseViewController {
     }
     
     func getDurationSelection() -> DurationType {
-        guard let durationType = DurationType(durationType: selectedDurationIndex) else {
+        guard let durationType = DurationType(durationType: selectedDuration) else {
             return DurationType.fullday
         }
         return durationType
@@ -147,17 +152,17 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
                               sender: (indexPath.row == 1 ? true: false, [startDate]))
         } else {
             if indexPath.row == 0 {
-                if requestType == .deducted {
-                        self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
+                self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
+            } else {
+                if isMultipleDaysSelected {
+                    tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                        self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                    })
                 } else {
-                    tableDataProviderUseCase?.getSicknessTypeData(completion: { data in
+                    tableDataProviderUseCase?.getDurationData(completion: { data in
                         self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
                     })
                 }
-            } else {
-                tableDataProviderUseCase?.getDurationData(completion: { data in
-                    self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                })
             }
         }
     }
@@ -170,18 +175,13 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
 extension RequestTableViewController: SelectRequestParamProtocol {
     
     func didSelect(requestParam: String, requestParamType: String, index: Int) {
-        if requestParamType == "Duration" {
-            selectedDurationIndex = index
-            tableView.cellForRow(at: IndexPath(row: 1, section: 0))?.detailTextLabel?.text = requestParam
-        } else {
-            selectedTypeIndex = index
-            tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text = requestParam
-        }
+        selectedDuration = requestParam
+        tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = requestParam
     }
 }
 extension RequestTableViewController: SelectAbsenceProtocol {
     func didSelect(absence: Absence) {
-        tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.detailTextLabel?.text = absence.name
+        tableView.cellForRow(at: IndexPath(row: 0, section: 1))?.detailTextLabel?.text = absence.name
         selectedAbsence = absence
     }
 }
@@ -202,8 +202,9 @@ extension RequestTableViewController: DatePickerProtocol {
             }
             startDateCell.detailTextLabel?.text = formatter.string(from: startDate)
             endDateCell.detailTextLabel?.text = formatter.string(from: startDate)
+            isMultipleDaysSelected = false
             
-        } else if dates.count > 2 {
+        } else if dates.count >= 2 {
             guard let endDate = dates.last else {
                 return
             }
@@ -214,8 +215,7 @@ extension RequestTableViewController: DatePickerProtocol {
                 return
             }
             prevousCell.detailTextLabel?.text = formatter.string(from: endDate)
+            isMultipleDaysSelected = true
         }
     }
-    
 }
-

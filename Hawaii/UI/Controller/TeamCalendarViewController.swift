@@ -106,27 +106,30 @@ class TeamCalendarViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            switch segment.selectedSegmentIndex {
-            case 0:
-                self.startActivityIndicatorSpinner()
-                self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+            self.refreshUI(date: date)
+        }
+    }
+    
+    func refreshUI(date: Date) {
+        switch self.segmentedControl?.selectedSegmentIndex {
+        case 0:
+            self.startActivityIndicatorSpinner()
+            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
+            })
+        case 1:
+            self.startActivityIndicatorSpinner()
+            self.userUseCase?.getUser(completion: { response in
+                self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
                     self.handleResponse(requestResponse: requestResponse)
                 })
-            case 1:
-                self.startActivityIndicatorSpinner()
-                self.userUseCase?.getUser(completion: { response in
-                    self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
-                        self.handleResponse(requestResponse: requestResponse)
-                    })
-                })
-            default:
-                self.startActivityIndicatorSpinner()
-                self.requestUseCase?.getAll { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
-                }
+            })
+        default:
+            self.startActivityIndicatorSpinner()
+            self.requestUseCase?.getAll { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
             }
         }
-        
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController : nil
         }
@@ -187,6 +190,7 @@ class TeamCalendarViewController: BaseViewController {
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
             self.dateLabel.text = month+", "+year
+            self.refreshUI(date: date)
         }
     }
     
@@ -209,12 +213,23 @@ class TeamCalendarViewController: BaseViewController {
     @IBAction func nextMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.next, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
-        collectionView.reloadData()
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
+                return
+            }
+            self.refreshUI(date: date)
+        }
     }
     
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
+                return
+            }
+            self.refreshUI(date: date)
+        }
     }
 }
 
@@ -247,25 +262,25 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         if segmentedControl.selectedSegmentIndex == 2 {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else {
-                return JTAppleCell()
-        }
-        
-        cell.cellState = cellState
-        let calendar = NSCalendar.current
-        var requests: [Request] = []
-        for item in items {
-            guard let days = item.days else {
-                continue
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
+                as? CalendarCellCollectionViewCell else {
+                    return JTAppleCell()
             }
-            for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
-                item.requestStatus != RequestStatus.canceled &&
-                item.requestStatus != RequestStatus.rejected {
-                let tempRequest = Request(request: item, days: [day])
-                requests.append(tempRequest)
+            
+            cell.cellState = cellState
+            let calendar = NSCalendar.current
+            var requests: [Request] = []
+            for item in items {
+                guard let days = item.days else {
+                    continue
+                }
+                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
+                    item.requestStatus != RequestStatus.canceled &&
+                    item.requestStatus != RequestStatus.rejected {
+                    let tempRequest = Request(request: item, days: [day])
+                    requests.append(tempRequest)
+                }
             }
-        }
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
             cell.setCell(processor: processor)
             return cell
