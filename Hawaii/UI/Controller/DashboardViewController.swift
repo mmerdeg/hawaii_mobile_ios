@@ -109,6 +109,13 @@ class DashboardViewController: BaseViewController {
             }
             controller.selectedDate = date
             controller.requestUpdateDelegate = self
+        } else if segue.identifier == showSickRequestSegue {
+            guard let controller = segue.destination as? SickRequestViewController,
+                let date = sender as? Date else {
+                    return
+            }
+            controller.selectedDate = date
+            controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
                 let requests = sender as? [Request] else {

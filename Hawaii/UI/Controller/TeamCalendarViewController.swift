@@ -102,35 +102,34 @@ class TeamCalendarViewController: BaseViewController {
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
-        refreshUI()
-    }
-    
-    func refreshUI() {
         collectionView.visibleDates { visibleDates in
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            switch self.segmentedControl?.selectedSegmentIndex {
-            case 0:
-                self.startActivityIndicatorSpinner()
-                self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+            self.refreshUI(date: date)
+        }
+    }
+    
+    func refreshUI(date: Date) {
+        switch self.segmentedControl?.selectedSegmentIndex {
+        case 0:
+            self.startActivityIndicatorSpinner()
+            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
+            })
+        case 1:
+            self.startActivityIndicatorSpinner()
+            self.userUseCase?.getUser(completion: { response in
+                self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
                     self.handleResponse(requestResponse: requestResponse)
                 })
-            case 1:
-                self.startActivityIndicatorSpinner()
-                self.userUseCase?.getUser(completion: { response in
-                    self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
-                        self.handleResponse(requestResponse: requestResponse)
-                    })
-                })
-            default:
-                self.startActivityIndicatorSpinner()
-                self.requestUseCase?.getAll { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
-                }
+            })
+        default:
+            self.startActivityIndicatorSpinner()
+            self.requestUseCase?.getAll { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
             }
         }
-        
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController : nil
         }
@@ -191,7 +190,7 @@ class TeamCalendarViewController: BaseViewController {
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
             self.dateLabel.text = month+", "+year
-            self.refreshUI()
+            self.refreshUI(date: date)
         }
     }
     
@@ -214,13 +213,23 @@ class TeamCalendarViewController: BaseViewController {
     @IBAction func nextMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.next, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
-        refreshUI()
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
+                return
+            }
+            self.refreshUI(date: date)
+        }
     }
     
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
-        refreshUI()
+        collectionView.visibleDates { visibleDates in
+            guard let date = visibleDates.monthDates.last?.date else {
+                return
+            }
+            self.refreshUI(date: date)
+        }
     }
 }
 

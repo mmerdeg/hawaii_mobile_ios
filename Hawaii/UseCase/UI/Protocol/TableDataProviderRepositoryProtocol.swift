@@ -12,7 +12,7 @@ protocol TableDataProviderRepositoryProtocol {
     
     func getLeaveData(completion: @escaping ([CellData], [Absence], Absence) -> Void)
     
-    func getSicknessData(completion: @escaping ([CellData]) -> Void)
+    func getSicknessData(completion: @escaping ([CellData], [Absence], Absence) -> Void)
     
     func getLeaveTypeData(completion: @escaping ([Absence]) -> Void)
     

@@ -17,11 +17,29 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
             return
         }
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-           completion([CellData(title: "Type of leave", description: response.result.value?.first?.name),
-                       CellData(title: "Duration", description: DurationType.fullday.description)],
-                       response.result.value?.filter({$0.absenceType == AbsenceType.deducted.rawValue ||
-                                                       $0.absenceType == AbsenceType.nonDecuted.rawValue }) ?? [],
-                                                                                          response.result.value?.first ?? Absence())
+            let filteredAbsences = response.result.value?.filter({
+                $0.absenceType == AbsenceType.deducted.rawValue ||
+                $0.absenceType == AbsenceType.nonDecuted.rawValue
+            })
+            completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
+                        CellData(title: "Duration", description: DurationType.fullday.description)],
+                       filteredAbsences ?? [],
+                       response.result.value?.first ?? Absence())
+        }
+    }
+    
+    func getSicknessData(completion: @escaping ([CellData], [Absence], Absence) -> Void) {
+        guard let url = URL(string: Constants.leaveTypes) else {
+            return
+        }
+        Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
+            let filteredAbsences = response.result.value?.filter({
+                $0.absenceType == AbsenceType.sick.rawValue
+            })
+            completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
+                        CellData(title: "Duration", description: DurationType.fullday.description)],
+                       filteredAbsences ?? [],
+                       response.result.value?.first ?? Absence())
         }
     }
     

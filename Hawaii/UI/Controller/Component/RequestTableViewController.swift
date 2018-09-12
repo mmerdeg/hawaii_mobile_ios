@@ -62,10 +62,12 @@ class RequestTableViewController: BaseViewController {
                 })
             })
         } else {
-            tableDataProviderUseCase?.getSicknessData(completion: { data in
+            tableDataProviderUseCase?.getSicknessData(completion: { data, leaveTypeData, absence  in
                 self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
                     self.dateItems = items
                     self.setItems(data: data)
+                    self.leaveTypeData = leaveTypeData
+                    self.selectedAbsence = absence
                 })
             })
         }
@@ -150,13 +152,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
                               sender: (indexPath.row == 1 ? true: false, [startDate]))
         } else {
             if indexPath.row == 0 {
-                if requestType == .deducted {
-                        self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
-                } else {
-                    tableDataProviderUseCase?.getSicknessTypeData(completion: { data in
-                        self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                    })
-                }
+                self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
             } else {
                 if isMultipleDaysSelected {
                     tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
