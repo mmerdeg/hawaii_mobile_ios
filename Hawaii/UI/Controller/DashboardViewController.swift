@@ -19,17 +19,20 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     
-    let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var items: [Request] = []
     var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
+    var remainingDaysViewController: RemainigDaysViewController?
     let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
     let showSickRequestSegue = "showSickRequest"
     let showBonusRequestSegue = "showBonusRequest"
     let showRequestDetailsSegue = "showRequestDetails"
+    let showRemainingDaysViewController = "showRemainingDaysViewController"
+    let showRemainingDaysSickViewController = "showRemainingDaysSickViewController"
+    let formatter = DateFormatter()
     
     lazy var addRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestViaItem))
@@ -123,6 +126,24 @@ class DashboardViewController: BaseViewController {
             }
             controller.requests = requests
             controller.delegate = self
+        } else if segue.identifier == showRemainingDaysViewController {
+            guard let controller = segue.destination as? RemainigDaysViewController else {
+                return
+            }
+            self.remainingDaysViewController = controller
+            guard let remainingDaysViewController = self.remainingDaysViewController else {
+                return
+            }
+            remainingDaysViewController.mainLabelText = "Leave"
+        } else if segue.identifier == showRemainingDaysSickViewController {
+            guard let controller = segue.destination as? RemainigDaysViewController else {
+                return
+            }
+            self.remainingDaysViewController = controller
+            guard let remainingDaysViewController = self.remainingDaysViewController else {
+                return
+            }
+            remainingDaysViewController.mainLabelText = "Training"
         }
     }
     

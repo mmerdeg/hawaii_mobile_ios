@@ -47,6 +47,7 @@ class UserRepository: UserRepositoryProtocol {
         }
         
         Alamofire.request(url, headers: getHeaders()).responseDecodableObject { (response: DataResponse<User>) in
+            print(response)
             switch response.result {
             case .success:
                 print("Validation Successful")
