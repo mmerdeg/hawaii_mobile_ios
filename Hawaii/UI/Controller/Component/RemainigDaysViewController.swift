@@ -81,7 +81,7 @@ class RemainigDaysViewController: BaseViewController {
             
             let barWidth = self.progressBar.frame.width
             
-            var approvedBarLen, sickBarLen, pendindgBarLen : CGFloat
+            var approvedBarLen, sickBarLen, pendindgBarLen: CGFloat
             
             switch self.mainLabelText {
             case "Leave":

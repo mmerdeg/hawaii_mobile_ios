@@ -25,7 +25,6 @@ class RequestRepository: RequestRepositoryProtocol {
               let requestParameters = request.dictionary else {
                 return
         }
-        print(requestParameters)
         Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).validate().responseString { response in
                             switch response.result {
@@ -104,7 +103,7 @@ class RequestRepository: RequestRepositoryProtocol {
                                                            error: response.error,
                                                            message: response.error?.localizedDescription))
                             }
-            }
+        }
     }
     
     func getAllPendingForApprover(approver: Int, completion: @escaping (RequestsResponse) -> Void) {
@@ -180,6 +179,24 @@ class RequestRepository: RequestRepositoryProtocol {
                     print(error)
                     completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
                 }
+            }
+    }
+    
+    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void) {
+        guard let url = URL(string: Constants.requestYears) else {
+            return
+        }
+        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
+            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Year>) in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completion(YearsResponse(success: true, years: response.result.value, error: nil, message: nil))
+                case .failure(let error):
+                    print(error)
+                    completion(YearsResponse(success: false, years: nil, error: response.error, message: response.error?.localizedDescription))
+                }
+
             }
     }
     

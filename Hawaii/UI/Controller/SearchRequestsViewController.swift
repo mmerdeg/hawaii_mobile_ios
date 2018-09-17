@@ -18,7 +18,7 @@ protocol SearchDialogProtocol: NSObjectProtocol {
 
 class SearchRequestsViewController: UIViewController {
     
-    let years = ["2016", "2017", "2018", "2019"]
+    var items: [Int] = []
     
     @IBOutlet weak var clickableView: UIView!
     
@@ -29,6 +29,8 @@ class SearchRequestsViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     
     weak var delegate: SearchDialogProtocol?
+    
+    var requestUseCase: RequestUseCaseProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,19 @@ class SearchRequestsViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
+        
+        requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+            guard let startYear = yearsResponse.years?.first,
+                  let endYear = yearsResponse.years?.last else {
+                    return
+            }
+            var tempYear = startYear
+            while tempYear <= endYear {
+                self.items.append(tempYear)
+                tempYear += 1
+            }
+            self.yearPicker.reloadAllComponents()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,14 +70,14 @@ class SearchRequestsViewController: UIViewController {
     
     @IBAction func searchClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.didFilter(year: years[yearPicker.selectedRow(inComponent: 0)])
+        delegate?.didFilter(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]))
     }
     
 }
 
 extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return years.count
+        return items.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -70,11 +85,10 @@ extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDele
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return years[row]
+        return String(describing: items[row])
     }
  
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: years[row], attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: String(describing: items[row]), attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
-
 }
