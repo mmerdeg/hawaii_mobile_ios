@@ -60,7 +60,7 @@ class RemainigDaysViewController: BaseViewController {
             }
             let workHours = 8.0
             
-            let days = Double(annual + takenAnnual + pendingAnnual + carriedOver + bonus + manualAdjust) / workHours
+            let days = Double(annual + takenAnnual - pendingAnnual + carriedOver + bonus + manualAdjust) / workHours
             self.totalDayNoLabel.text = floor(days) == days ? String(describing: Int(days)) : String(format: "%.1f", days)
             
             let totalDays = Double(annual + carriedOver + bonus + manualAdjust) / workHours
