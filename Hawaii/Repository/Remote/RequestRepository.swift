@@ -68,7 +68,6 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests + "/3/dates") else {
             return
         }
-        
         Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
             .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
                 switch response.result {

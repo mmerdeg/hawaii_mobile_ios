@@ -9,7 +9,12 @@
 import Foundation
 
 struct Constants {
-    static let baseUrl = "http://nb077:8080"
+    #if PRODUCTION
+      static let baseUrl = "https://hawaii2.execom.eu"
+    #else
+      static let baseUrl = "http://nb077:8080"
+    #endif
+    //
     static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
     static let userRequests = requests + "/user"
@@ -22,5 +27,4 @@ struct Constants {
     static let requestYears = baseUrl + "/requests/years/range"
     static let dateFormat = "yyyy-MM-dd"
     static let timeZone = "UTC"
-   // static let baseUrl = "https://hawaii2.execom.eu"
 }
