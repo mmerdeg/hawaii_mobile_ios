@@ -20,6 +20,7 @@ struct Allowance: Codable {
     let carriedOver: Int?
     let manualAdjust: Int?
     let training: Int?
-    let pendingTraning: Int?
+    let pendingTraining: Int?
+    let takenTraining: Int?
     
 }

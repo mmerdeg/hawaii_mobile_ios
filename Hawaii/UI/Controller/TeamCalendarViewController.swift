@@ -55,7 +55,7 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.calendarDelegate = self
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
-        setupCalendarView()
+        
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
         setUpSearch()
@@ -63,7 +63,7 @@ class TeamCalendarViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fillCalendar()
+        setupCalendarView()
     }
     
     func setUpSearch() {
@@ -417,6 +417,17 @@ extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource
             getUsers(parameter: searchController?.searchBar.text ?? "", page: page, numberOfItems: numberOfItems) {
                 
             }
+        } else {
+            guard let cell = tableView.cellForRow(at: indexPath) as? UserPreviewTableViewCell else {
+                    return
+            }
+            ViewUtility.showAlertWithAction(title: "Alert", message: "You have selected \(cell.user?.fullName ?? "")", viewController: self) { _ in
+                self.searchController?.dismiss(animated: true, completion: nil)
+                self.requestUseCase?.getAll { requestResponse in
+                    self.handleResponse(requestResponse: requestResponse)
+                }
+            }
+            
         }
     }
 }

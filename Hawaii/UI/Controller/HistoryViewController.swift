@@ -221,6 +221,7 @@ extension HistoryViewController: RequestCancelationProtocol {
                     self.filteredRequests[index.row] = updatedRequest
                 }
                 self.tableView.reloadData()
+                self.stopActivityIndicatorSpinner()
             } else {
                 ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
