@@ -80,21 +80,37 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
 extension ApproveViewController: RequestApprovalProtocol {
     func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell) {
         
+        guard let request = request else {
+            return
+        }
+        
         var status: RequestStatus
-        if request?.requestStatus == .cancelationPending {
+        var message: String
+        if request.requestStatus == .cancelationPending {
             status = isAccepted ? .canceled : .approved
         } else {
             status = isAccepted ? .approved : .rejected
         }
+        message = isAccepted ? "Are you sure you want to approve this request?"
+                                : "Are you sure you want to reject this request?"
+        
+        ViewUtility.showConfirmationAlert(message: message, title: "Confirm", viewController: self) { confirmed in
+            if confirmed {
+                self.updateRequest(request: request, status: status, cell: cell)
+            }
+        }
+    }
+    
+    func updateRequest(request: Request, status: RequestStatus, cell: RequestApprovalTableViewCell) {
         startActivityIndicatorSpinner()
         requestUseCase.updateRequest(request: Request(request: request,
-            requestStatus: status)) { _ in
-                guard let index = self.tableView.indexPath(for: cell) else {
-                    return
-                }
-                self.stopActivityIndicatorSpinner()
-                self.requests.remove(at: index.row)
-                self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+                                                      requestStatus: status)) { _ in
+                                                        guard let index = self.tableView.indexPath(for: cell) else {
+                                                            return
+                                                        }
+                                                        self.stopActivityIndicatorSpinner()
+                                                        self.requests.remove(at: index.row)
+                                                        self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
         }
     }
 }

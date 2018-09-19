@@ -76,4 +76,32 @@ class ViewUtility {
         alert.view.tintColor = UIColor.primaryColor
         viewController.present(alert, animated: true, completion: nil)
     }
+    
+    /**
+     Show alert with ok and cancel button.
+     
+     - Parameter title:          Alert title.
+     - Parameter message:        Alert message.
+     - Parameter viewController: Alert's owner.
+     
+     */
+    static func showConfirmationAlert(message: String, title: String,
+                                      viewController: UIViewController, completion: @escaping (Bool) -> Void) {
+        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringMessage = NSMutableAttributedString(string: message ,
+                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.setValue(mutableStringTitle, forKey: "attributedTitle")
+        alert.setValue(mutableStringMessage, forKey: "attributedMessage")
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { _ in
+            completion(true)
+        }
+        alert.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { _ in
+            completion(false)
+        }
+        alert.addAction(cancelAction)
+        alert.view.tintColor = UIColor.primaryColor
+        viewController.present(alert, animated: true, completion: nil)
+    }
 }

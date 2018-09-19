@@ -125,7 +125,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnJ-JQ-qVX">
                         <rect key="frame" x="259" y="221" width="115" height="30"/>
-                        <state key="normal" title="Cancel"/>
+                        <state key="normal" title="Reject"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
                         </userDefinedRuntimeAttributes>

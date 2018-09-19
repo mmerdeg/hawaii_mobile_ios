@@ -191,14 +191,25 @@ extension HistoryViewController: SearchDialogProtocol {
 extension HistoryViewController: RequestCancelationProtocol {
     
     func requestCanceled(request: Request?, cell: RequestDetailTableViewCell) {
-        guard let oldRequest = request else {
+        guard let oldRequest = request,
+                let newRequest = request else {
             return
         }
         var status = RequestStatus.canceled
         if oldRequest.requestStatus == .approved {
             status = .cancelationPending
         }
-        startActivityIndicatorSpinner()
+        
+        ViewUtility.showConfirmationAlert(message: "Are you sure you want to cancel this request?",
+                                          title: "Confirm", viewController: self) { confirmed in
+            if confirmed {
+                self.startActivityIndicatorSpinner()
+                self.updateRequest(request: newRequest, oldRequest: oldRequest, status: status, cell: cell)
+            }
+        }
+    }
+    
+    func updateRequest(request: Request, oldRequest: Request, status: RequestStatus, cell: RequestDetailTableViewCell) {
         requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { response in
             
             guard let success = response.success else {
@@ -229,4 +240,5 @@ extension HistoryViewController: RequestCancelationProtocol {
             }
         }
     }
+
 }

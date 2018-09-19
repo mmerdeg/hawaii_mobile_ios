@@ -160,6 +160,10 @@ extension SwinjectStoryboard {
             controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
         }
         
+        defaultContainer.storyboardInitCompleted(RequestDetailsViewController.self) { resolver, controller in
+            controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+        }
+        
         defaultContainer.storyboardInitCompleted(RequestTableViewController.self) { resolver, controller in
             controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
                                                                    name: String(describing: TableDataProviderUseCaseProtocol.self))
