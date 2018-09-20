@@ -67,7 +67,8 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             guard let day = request.days?.first else {
                 continue
             }
-            if cellState.dateBelongsTo != .thisMonth || request.requestStatus == RequestStatus.canceled {
+            if cellState.dateBelongsTo != .thisMonth || request.requestStatus == RequestStatus.canceled
+                || cellState.day == DaysOfWeek.saturday || cellState.day == DaysOfWeek.sunday {
                 continue
             }
             dateLabel.textColor = UIColor.darkPrimaryColor
@@ -85,13 +86,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 case .morning?:
                     self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
                     self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
-                case .none:
-                    print("")
-                case .some(.afternoonFirst):
-                    print("")
-                case .some(.morningLast):
-                    print("")
-                case .some(.morningAndAfternoon):
+                default :
                     print("")
                 }
             }
