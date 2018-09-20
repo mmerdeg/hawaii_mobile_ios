@@ -55,7 +55,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
-        self.backgroundColor = UIColor.lightPrimaryColor
+       // self.backgroundColor = UIColor.lightPrimaryColor
         self.layer.borderWidth = 0.5
         guard let requests = requests else {
             resetView(cellState: cellState)

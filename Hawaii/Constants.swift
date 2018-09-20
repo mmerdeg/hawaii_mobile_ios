@@ -22,9 +22,10 @@ struct Constants {
     static let leaveTypes = baseUrl + "/leavetypes"
     static let getUser = baseUrl + "/users"
     static let publicHolidays = baseUrl + "/publicholidays"
-    static let requestsByTeamByMonth = baseUrl + "/requests/team"
-    static let requestsByMonth = baseUrl + "/requests/month"
-    static let requestYears = baseUrl + "/requests/years/range"
+    static let requestsByTeamByMonth = requests + "/team"
+    static let requestsByMonth = requests + "/month"
+    static let requestYears = requests + "/years/range"
+    static let search = getUser + "/search"
     static let dateFormat = "yyyy-MM-dd"
     static let timeZone = "UTC"
 }

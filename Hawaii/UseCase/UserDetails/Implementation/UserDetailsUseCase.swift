@@ -16,10 +16,14 @@ protocol UserDetailsUseCaseProtocol {
     func getEmail() -> String
     
     func setEmail(_ email: String)
+    
+    func getLoadMore() -> Bool
+    
+    func setLoadMore(_ loadMore: Bool)
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
-    
+
     let userDetailsRepository: UserDetailsRepositoryProtocol!
     
     init(userDetailsRepository: UserDetailsRepositoryProtocol) {
@@ -40,5 +44,13 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setEmail(_ email: String) {
         userDetailsRepository.setEmail(email)
+    }
+    
+    func getLoadMore() -> Bool {
+        return userDetailsRepository.getLoadMore()
+    }
+    
+    func setLoadMore(_ loadMore: Bool) {
+        userDetailsRepository.setLoadMore(loadMore)
     }
 }

@@ -16,4 +16,8 @@ protocol UserDetailsRepositoryProtocol {
     func getEmail() -> String
     
     func setEmail(_ email: String)
+    
+    func getLoadMore() -> Bool
+    
+    func setLoadMore(_ loadMore: Bool)
 }

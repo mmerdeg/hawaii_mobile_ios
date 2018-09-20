@@ -17,28 +17,33 @@ class UserRepository: UserRepositoryProtocol {
     let authHeader = "X-AUTH-TOKEN"
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
+        guard let url = URL(string: Constants.search) else {
             return
         }
-        
-        Alamofire.request(url, headers: getHeaders()).validate().responseDecodableObject { (response: DataResponse<User>) in
-            guard let user = response.result.value else {
-                completion(UsersResponse(success: false, users: nil, maxUsers: 10,
-                                         error: response.error,
-                                         message: response.error?.localizedDescription))
-                return
+        let params = ["page": page,
+                      "size": numberOfItems,
+                      "active": true,
+                      "searchQuery": parameter] as [String: Any]
+        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
+            .responseDecodableObject { (response: DataResponse<Page>) in
+                guard let searchedContent = response.result.value else {
+                    completion(UsersResponse(success: false, users: nil, maxUsers: nil,
+                                             error: response.error,
+                                             message: response.error?.localizedDescription))
+                    return
+                }
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completion(UsersResponse(success: true, users: searchedContent.content,
+                                             maxUsers: searchedContent.totalElements, error: nil, message: nil))
+                case .failure(let error):
+                    print(error)
+                    completion(UsersResponse(success: false, users: nil, maxUsers: nil,
+                                             error: response.error,
+                                             message: response.error?.localizedDescription))
+                }
             }
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-                completion(UsersResponse(success: true, users: [user, user], maxUsers: 10, error: nil, message: nil))
-            case .failure(let error):
-                print(error)
-                completion(UsersResponse(success: false, users: nil, maxUsers: 10,
-                                         error: response.error,
-                                         message: response.error?.localizedDescription))
-            }
-        }
     }
     
     func getUser(completion: @escaping (UserResponse?) -> Void) {

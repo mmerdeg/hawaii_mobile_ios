@@ -43,7 +43,8 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
-        isEmpty.backgroundColor = requests?.isEmpty ?? true ? UIColor.transparentColor: UIColor.pendingColor
+        isEmpty.backgroundColor = requests?.isEmpty ?? true ||
+            NSCalendar.current.isDateInWeekend(cellState.date) ? UIColor.transparentColor: UIColor.pendingColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
     }

@@ -14,6 +14,7 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let tokenKey = "token"
     let emailKey = "email"
+    let loadMoreKey = "loadMore"
     
     func getToken() -> String {
         var token = ""
@@ -44,6 +45,19 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     func setEmail(_ email: String) {
         preferences.set(email, forKey: emailKey)
+        preferences.synchronize()
+    }
+    
+    func getLoadMore() -> Bool {
+        var loadMore = false
+        if preferences.object(forKey: loadMoreKey) != nil {
+            loadMore = preferences.bool(forKey: loadMoreKey)
+        }
+        return loadMore
+    }
+    
+    func setLoadMore(_ loadMore: Bool) {
+        preferences.set(loadMore, forKey: loadMoreKey)
         preferences.synchronize()
     }
 }

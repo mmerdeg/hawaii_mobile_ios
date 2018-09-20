@@ -59,6 +59,25 @@ class RequestRepository: RequestRepositoryProtocol {
             }
     }
     
+    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void) {
+        guard let url = URL(string: Constants.userRequests + "/\(id)") else {
+            return
+        }
+        
+        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
+            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
+                switch response.result {
+                case .success:
+                    print("Validation Successful")
+                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
+                case .failure(let error):
+                    print(error)
+                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
+                }
+                
+        }
+    }
+    
     func getAllByDate(from: Date, toDate: Date, completion: @escaping (RequestsResponse) -> Void) {
         
         let formatter = getDateFormatter()

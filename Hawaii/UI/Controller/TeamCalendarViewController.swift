@@ -28,18 +28,22 @@ class TeamCalendarViewController: BaseViewController {
     
     let requestDetailsViewController = "RequestDetailsViewController"
     
+    let processor = SVGProcessor()
+    
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var userUseCase: UserUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     var page = 0
-    var numberOfItems = 0
+    var numberOfItems = 10
     
     var items: [Request] = []
     var users: [User] = []
     var customView: UIView = UIView()
+    var timer: Timer?
     
-    let processor = SVGProcessor()
+    var searchableId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +84,9 @@ class TeamCalendarViewController: BaseViewController {
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.searchBar.searchBarStyle = .minimal
         searchController?.searchResultsUpdater = self
+        searchController?.searchBar.tintColor = UIColor.white
+        searchController?.searchBar.barTintColor = UIColor.white
+        searchController?.searchBar.barStyle = .black
         self.definesPresentationContext = true
     }
     
@@ -126,8 +133,14 @@ class TeamCalendarViewController: BaseViewController {
             })
         default:
             self.startActivityIndicatorSpinner()
-            self.requestUseCase?.getAll { requestResponse in
-                self.handleResponse(requestResponse: requestResponse)
+            if let searchableId = searchableId {
+                self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
+                    self.handleResponse(requestResponse: requestResponse)
+                }
+            } else {
+                self.requestUseCase?.getAll { requestResponse in
+                    self.handleResponse(requestResponse: requestResponse)
+                }
             }
         }
         if #available(iOS 11.0, *) {
@@ -262,7 +275,8 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         if segmentedControl.selectedSegmentIndex == 2 {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
+                                                          for: indexPath)
                 as? CalendarCellCollectionViewCell else {
                     return JTAppleCell()
             }
@@ -344,21 +358,32 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     
     func getUsers(parameter: String, page: Int, numberOfItems: Int, completion: @escaping () -> Void) {
         userUseCase?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems, completion: { response in
-            guard let users = response.users,
-                  let usersMax = response.maxUsers else {
+            guard let success = response.success else {
+                self.stopActivityIndicatorSpinner()
                 return
             }
-            if !users.isEmpty {
-                if self.page == 0 {
-                    
+            if success {
+                guard let users = response.users,
+                    let usersMax = response.maxUsers else {
+                        return
                 }
-                self.page += 1
-                for user in users {
-                    self.users.append(user)
+                if !users.isEmpty {
+                    if self.page == 0 {
+                        self.users = []
+                    }
+                    self.page += 1
+                    for user in users {
+                        self.users.append(user)
+                    }
                 }
+                self.userDetailsUseCase?.setLoadMore(self.users.count < usersMax)
+                self.resultsController?.tableView.reloadData()
+                completion()
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
             }
-            self.resultsController?.tableView.reloadData()
-            completion()
         })
     }
     
@@ -374,9 +399,14 @@ extension TeamCalendarViewController: RequestDetailsDialogProtocol {
 
 extension TeamCalendarViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        timer?.invalidate()  // Cancel any previous timer
+        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(performSearch), userInfo: nil, repeats: false)
+    }
+    
+    @objc func performSearch() {
         self.users = []
         self.page = 0
-        getUsers(parameter: searchController.searchBar.text ?? "", page: 0, numberOfItems: numberOfItems) {
+        getUsers(parameter: searchController?.searchBar.text ?? "", page: 0, numberOfItems: numberOfItems) {
             
         }
     }
@@ -384,7 +414,19 @@ extension TeamCalendarViewController: UISearchResultsUpdating {
 
 extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count + 1
+        if users.isEmpty {
+            tableView.backgroundView?.isHidden = false
+            return 0
+        } else {
+            guard let loadMore = userDetailsUseCase?.getLoadMore() else {
+                return users.count
+            }
+            if loadMore {
+                return users.count + 1
+            } else {
+                return users.count
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -421,13 +463,11 @@ extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource
             guard let cell = tableView.cellForRow(at: indexPath) as? UserPreviewTableViewCell else {
                     return
             }
-            ViewUtility.showAlertWithAction(title: "Alert", message: "You have selected \(cell.user?.fullName ?? "")", viewController: self) { _ in
-                self.searchController?.dismiss(animated: true, completion: nil)
-                self.requestUseCase?.getAll { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
-                }
+            self.searchController?.dismiss(animated: true, completion: nil)
+            self.searchableId = cell.user?.id
+            self.requestUseCase?.getAllBy(id: cell.user?.id ?? -1) { requestResponse in
+                self.handleResponse(requestResponse: requestResponse)
             }
-            
         }
     }
 }

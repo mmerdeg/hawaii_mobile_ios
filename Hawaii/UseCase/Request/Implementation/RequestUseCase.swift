@@ -12,6 +12,8 @@ protocol RequestUseCaseProtocol {
     
     func getAll(completion: @escaping (RequestsResponse) -> Void)
     
+    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void)
+    
     func add(request: Request, completion: @escaping (RequestResponse) -> Void)
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping (RequestsResponse) -> Void)
@@ -37,6 +39,12 @@ class RequestUseCase: RequestUseCaseProtocol {
     
     func getAll(completion: @escaping (RequestsResponse) -> Void) {
         entityRepository.getAll { requests in
+            completion(requests)
+        }
+    }
+    
+    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void) {
+        entityRepository.getAllBy(id: id) { requests in
             completion(requests)
         }
     }

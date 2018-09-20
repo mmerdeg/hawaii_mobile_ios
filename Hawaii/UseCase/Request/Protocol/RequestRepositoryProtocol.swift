@@ -12,6 +12,8 @@ protocol RequestRepositoryProtocol {
     
     func getAll(completion: @escaping (RequestsResponse) -> Void)
     
+    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void)
+    
     func add(request: Request, completion: @escaping (RequestResponse) -> Void)
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping (RequestsResponse) -> Void)

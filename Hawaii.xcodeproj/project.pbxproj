@@ -18,6 +18,12 @@
 		302EE1832135744D001355E9 /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
 		302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
+		3042CA8321536DF9002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
+		3042CA8521536E9F002446FE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8421536E9F002446FE /* Sort.swift */; };
+		3042CA8621536E9F002446FE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8421536E9F002446FE /* Sort.swift */; };
+		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
+		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
+		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413082136673100F05427 /* TeamPreviewViewController.swift */; };
 		3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */; };
 		307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */; };
@@ -44,6 +50,8 @@
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
 		3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135B2147DBFC00F05427 /* YearResponse.swift */; };
 		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
+		30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
+		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		30FD367F214A5E530047038C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		30FD3680214A5E530047038C /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
 		30FD3681214A5E530047038C /* WhiteUIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C44F20E62AD300DB2CF7 /* WhiteUIDatePicker.swift */; };
@@ -202,12 +210,10 @@
 		3E834B642100A8BA0038BC96 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
 		3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E834B6B2100AF1B0038BC96 /* SignInApi.swift */; };
 		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
-		3E84371B211C430D003F449B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
 		3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */; };
 		3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643820CA69E900501CAC /* AppDelegate.swift */; };
-		3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5643C20CA69E900501CAC /* Main.storyboard */; };
 		3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
 		3EB5644E20CA69EA00501CAC /* HawaiiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5644D20CA69EA00501CAC /* HawaiiTests.swift */; };
@@ -314,6 +320,9 @@
 		302EE1822135744D001355E9 /* CalendarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarType.swift; sourceTree = "<group>"; };
 		302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
+		3042CA8221536DF9002446FE /* Pagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
+		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		307413082136673100F05427 /* TeamPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewViewController.swift; sourceTree = "<group>"; };
 		3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -672,6 +681,9 @@
 				3074134B214275E000F05427 /* PublicHolidayResponse.swift */,
 				3074135B2147DBFC00F05427 /* YearResponse.swift */,
 				3074135D2147E53200F05427 /* Year.swift */,
+				3042CA8221536DF9002446FE /* Pagable.swift */,
+				3042CA8421536E9F002446FE /* Sort.swift */,
+				3042CA8821536EF6002446FE /* Page.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1282,8 +1294,10 @@
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
+				3042CA8621536E9F002446FE /* Sort.swift in Sources */,
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
 				30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */,
+				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
 				30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */,
 				30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */,
 				30FD3690214A5E530047038C /* BonusRequestViewController.swift in Sources */,
@@ -1301,6 +1315,7 @@
 				30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */,
 				30FD369D214A5E530047038C /* Allowance.swift in Sources */,
 				30FD369E214A5E530047038C /* Absence.swift in Sources */,
+				3042CA8A21536EF6002446FE /* Page.swift in Sources */,
 				30FD369F214A5E530047038C /* TableDataProviderUseCase.swift in Sources */,
 				30FD36A0214A5E530047038C /* MoreViewController.swift in Sources */,
 				30FD36A1214A5E530047038C /* YearResponse.swift in Sources */,
@@ -1355,7 +1370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EB5643B20CA69E900501CAC /* SignInViewController.swift in Sources */,
 				3074135E2147E53200F05427 /* Year.swift in Sources */,
 				3E15C45020E62AD300DB2CF7 /* WhiteUIDatePicker.swift in Sources */,
 				3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */,
@@ -1367,11 +1381,13 @@
 				3074134A2142756100F05427 /* PublicHoliday.swift in Sources */,
 				3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
+				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
+				3042CA8321536DF9002446FE /* Pagable.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				30741325213938E500F05427 /* RequestsResponse.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
@@ -1388,16 +1404,18 @@
 				30741327213968E800F05427 /* Allowance.swift in Sources */,
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
+				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
 				3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */,
+				30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */,
 				302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
+				30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				302EE1732133F549001355E9 /* UserRepository.swift in Sources */,
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
-				3E84371B211C430D003F449B /* Constants.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
