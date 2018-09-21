@@ -10,7 +10,7 @@ import UIKit
 import JTAppleCalendar
 
 protocol DatePickerProtocol: class {
-    func selectedDate(_ dates: [Date])
+    func selectedDate(startDate: Date?, endDate: Date?, isMultipleDaysSelected: Bool)
 }
 
 class CustomDatePickerTableViewController: BaseViewController {
@@ -28,6 +28,10 @@ class CustomDatePickerTableViewController: BaseViewController {
     var requestUseCase: RequestUseCaseProtocol?
     
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    
+    var startDate: Date?
+    
+    var endDate: Date?
     
     var items: [Date] = []
     
@@ -53,7 +57,10 @@ class CustomDatePickerTableViewController: BaseViewController {
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         setupCalendarView()
-        collectionView.scrollToDate(items.first ?? Date(), animateScroll: false)
+        items = [startDate ?? Date(), endDate ?? Date()]
+        selectDates()
+        isFirstSelected ? collectionView.scrollToDate(endDate ?? Date(), animateScroll: false)
+            : collectionView.scrollToDate(startDate ?? Date(), animateScroll: false)
         fillCalendar()
     }
     
@@ -106,12 +113,11 @@ class CustomDatePickerTableViewController: BaseViewController {
     }
     
     @IBAction func acceptClicked(_ sender: Any) {
-        if isFirstSelected {
-            if items.count == 1 {
-                items.append(items.first ?? Date())
-            }
-        }
-        delegate?.selectedDate(items)
+        selectDates()
+        delegate?.selectedDate(startDate: startDate, endDate: endDate,
+                               isMultipleDaysSelected: items.count >= 2 && Calendar.current.compare(startDate ?? Date(),
+                                                                                                    to: endDate ?? Date(),
+                                                                                                    toGranularity: .day) != .orderedSame)
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func previousMonthPressed(_ sender: Any) {
@@ -181,27 +187,31 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        let tempStartDate = startDate
+        let tempEndDate = endDate
         if isFirstSelected {
-            guard let firstDate = items.first else {
-                collectionView.reloadData()
-                return
-            }
-            
-            if Calendar.current.compare(firstDate, to: date, toGranularity: .day) == .orderedAscending ||
-                Calendar.current.compare(firstDate, to: date, toGranularity: .day) == .orderedSame {
-                    items = []
-                    items =  [firstDate, date]
-                    selectDates()
-                    collectionView.reloadData()
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
-                }
-            }
-            return
+            endDate = date
         } else {
-            items = [date]
+            startDate = date
+            if Calendar.current.compare(startDate ?? Date(), to: endDate ?? Date(), toGranularity: .day) == .orderedDescending {
+                endDate = startDate
+            } else if items.count >= 2 && Calendar.current.compare(tempStartDate ?? Date(),
+                                                                   to: tempEndDate ?? Date(),
+                                                                   toGranularity: .day) == .orderedSame {
+                endDate = startDate
+            }
+        }
+        if Calendar.current.compare(startDate ?? Date(), to: endDate ?? Date(), toGranularity: .day) == .orderedAscending ||
+            Calendar.current.compare(startDate ?? Date(), to: endDate ?? Date(), toGranularity: .day) == .orderedSame {
+            items = []
+            items =  [startDate ?? Date(), endDate ?? Date()]
+            selectDates()
             collectionView.reloadData()
-            return
+        } else {
+            ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            }
+            startDate = tempStartDate
+            endDate = tempEndDate
         }
         
     }

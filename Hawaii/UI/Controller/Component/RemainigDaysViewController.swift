@@ -48,63 +48,75 @@ class RemainigDaysViewController: BaseViewController {
         super.viewDidLoad()
         startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { response in
-            self.user = response?.item
-            guard let annual = response?.item?.allowances?.first?.annual,
-                  let takenAnnual = response?.item?.allowances?.first?.takenAnnual,
-                  let pendingAnnual = response?.item?.allowances?.first?.pendingAnnual,
-                  let bonus = response?.item?.allowances?.first?.bonus,
-                  let carriedOver = response?.item?.allowances?.first?.carriedOver,
-                  let manualAdjust = response?.item?.allowances?.first?.manualAdjust,
-                  let training = response?.item?.allowances?.first?.training,
-                  let trainingPending = response?.item?.allowances?.first?.pendingTraining,
-                  let takenTraining = response?.item?.allowances?.first?.takenTraining else {
+            
+            guard let success = response?.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.user = response?.item
+                guard let annual = response?.item?.allowances?.first?.annual,
+                    let takenAnnual = response?.item?.allowances?.first?.takenAnnual,
+                    let pendingAnnual = response?.item?.allowances?.first?.pendingAnnual,
+                    let bonus = response?.item?.allowances?.first?.bonus,
+                    let carriedOver = response?.item?.allowances?.first?.carriedOver,
+                    let manualAdjust = response?.item?.allowances?.first?.manualAdjust,
+                    let training = response?.item?.allowances?.first?.training,
+                    let trainingPending = response?.item?.allowances?.first?.pendingTraining,
+                    let takenTraining = response?.item?.allowances?.first?.takenTraining else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                }
+                
+                let workHours = 8.0
+                var total = 0.0, taken = 0.0, pending = 0.0
+                
+                switch self.mainLabelText {
+                case "Leave":
+                    total = Double(annual + carriedOver + bonus + manualAdjust)
+                    taken = Double(takenAnnual)
+                    pending = Double(pendingAnnual)
+                case "Training":
+                    total = Double(training)
+                    taken = Double(takenTraining)
+                    pending = Double(trainingPending)
+                default:
+                    print("")
+                }
+                
+                let totalDays = total / workHours
+                self.totalDayNoLabel.text = (floor(totalDays) == totalDays ?
+                    String(describing: Int(totalDays)) : String(format: "%.1f", totalDays)) + " Days"
+                
+                let takenAnnualDays = taken / workHours
+                self.takenDayNoLabel.text = floor(takenAnnualDays) == takenAnnualDays ?
+                    String(describing: Int(takenAnnualDays)) : String(format: "%.1f", takenAnnualDays)
+                
+                let remainingDays = totalDays - takenAnnualDays
+                self.remainingDayNoLabel.text = floor(remainingDays) == remainingDays ?
+                    String(describing: Int(remainingDays)) : String(format: "%.1f", remainingDays)
+                
+                let pendingDays = pending / workHours
+                self.pendingDayNoLabel.text = floor(pendingDays) == pendingDays ?
+                    String(describing: Int(pendingDays)) : String(format: "%.1f", pendingDays)
+                
+                let barWidth = self.progressBar.frame.width
+                
+                var approvedBarLen, sickBarLen, pendindgBarLen: CGFloat
+                approvedBarLen = CGFloat(takenAnnualDays / totalDays) * barWidth
+                pendindgBarLen = CGFloat((takenAnnualDays + pendingDays) / totalDays) * barWidth
+                sickBarLen = 0
+                self.approvedBar.widthAnchor.constraint(equalToConstant: approvedBarLen).isActive = true
+                self.pendingBar.widthAnchor.constraint(equalToConstant: pendindgBarLen).isActive = true
+                self.sicknessBar.widthAnchor.constraint(equalToConstant: sickBarLen).isActive = true
+                
+                self.stopActivityIndicatorSpinner()
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: response?.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
-                    return
+                })
             }
             
-            let workHours = 8.0
-            var total = 0.0, taken = 0.0, pending = 0.0
-            
-            switch self.mainLabelText {
-            case "Leave":
-                total = Double(annual + carriedOver + bonus + manualAdjust)
-                taken = Double(takenAnnual)
-                pending = Double(pendingAnnual)
-            case "Training":
-                total = Double(training)
-                taken = Double(takenTraining)
-                pending = Double(trainingPending)
-            default:
-                print("")
-            }
-            
-            let totalDays = total / workHours
-            self.totalDayNoLabel.text = (floor(totalDays) == totalDays ?
-                String(describing: Int(totalDays)) : String(format: "%.1f", totalDays)) + " Days"
-            
-            let takenAnnualDays = taken / workHours
-            self.takenDayNoLabel.text = floor(takenAnnualDays) == takenAnnualDays ?
-                String(describing: Int(takenAnnualDays)) : String(format: "%.1f", takenAnnualDays)
-            
-            let remainingDays = totalDays - takenAnnualDays
-            self.remainingDayNoLabel.text = floor(remainingDays) == remainingDays ?
-                String(describing: Int(remainingDays)) : String(format: "%.1f", remainingDays)
-            
-            let pendingDays = pending / workHours
-            self.pendingDayNoLabel.text = floor(pendingDays) == pendingDays ?
-                String(describing: Int(pendingDays)) : String(format: "%.1f", pendingDays)
-            
-            let barWidth = self.progressBar.frame.width
-            
-            var approvedBarLen, sickBarLen, pendindgBarLen: CGFloat
-            approvedBarLen = CGFloat(takenAnnualDays / totalDays) * barWidth
-            pendindgBarLen = CGFloat((takenAnnualDays + pendingDays) / totalDays) * barWidth
-            sickBarLen = 0
-            self.approvedBar.widthAnchor.constraint(equalToConstant: approvedBarLen).isActive = true
-            self.pendingBar.widthAnchor.constraint(equalToConstant: pendindgBarLen).isActive = true
-            self.sicknessBar.widthAnchor.constraint(equalToConstant: sickBarLen).isActive = true
-            
-            self.stopActivityIndicatorSpinner()
         })
         
         mainLabel.text = mainLabelText ?? ""

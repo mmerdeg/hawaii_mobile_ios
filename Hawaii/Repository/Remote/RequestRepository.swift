@@ -25,18 +25,8 @@ class RequestRepository: RequestRepositoryProtocol {
               let requestParameters = request.dictionary else {
                 return
         }
-        Alamofire.request(url, method: HTTPMethod.post, parameters: requestParameters, encoding: JSONEncoding.default,
-                          headers: getHeaders()).validate().responseString { response in
-                            switch response.result {
-                            case .success:
-                                print("Validation Successful")
-                                completion(GenericResponseSingle<Request>(success: true, item: request, error: nil, message: nil))
-                            case .failure(let error):
-                                print(error)
-                                completion(GenericResponseSingle<Request>(success: false, item: nil,
-                                                                          error: response.error,
-                                                                          message: response.error?.localizedDescription))
-                            }
+        genericRequest(url, method: .post, parameters: requestParameters, encoding: JSONEncoding.default, headers: getHeaders()) { response in
+            completion(response)
         }
     }
     

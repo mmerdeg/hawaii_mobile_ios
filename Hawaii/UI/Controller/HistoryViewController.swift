@@ -64,18 +64,18 @@ class HistoryViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase.getAll { requests in
-            guard let success = requests.success else {
+        requestUseCase.getAll { response in
+            guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if success {
-                self.requests = requests.item ?? []
-                self.filteredRequests = requests.item ?? []
+                self.requests = response.item ?? []
+                self.filteredRequests = response.item ?? []
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: requests.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }

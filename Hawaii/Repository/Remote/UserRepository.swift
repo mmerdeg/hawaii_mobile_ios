@@ -50,19 +50,8 @@ class UserRepository: UserRepositoryProtocol {
         guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
             return
         }
-        
-        Alamofire.request(url, headers: getHeaders()).responseDecodableObject { (response: DataResponse<User>) in
-            print(response)
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-                completion(GenericResponseSingle<User>(success: true, item: response.result.value, error: nil, message: nil))
-            case .failure(let error):
-                print(error)
-                completion(GenericResponseSingle<User>(success: false, item: nil,
-                                         error: response.error,
-                                         message: response.error?.localizedDescription))
-            }
+        genericRequest(url, headers: getHeaders()) { response in
+            completion(response)
         }
     }
     

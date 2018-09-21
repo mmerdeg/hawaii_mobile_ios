@@ -106,11 +106,12 @@ class RequestTableViewController: BaseViewController {
             controller.delegate = self
         } else if segue.identifier == showDatePickerSegue {
             guard let controller = segue.destination as? CustomDatePickerTableViewController,
-                let params = sender as? (Bool, [Date]) else {
+                let params = sender as? (Bool, Date, Date) else {
                     return
             }
-            controller.items = params.1
             controller.isFirstSelected = params.0
+            controller.startDate = params.1
+            controller.endDate = params.2
             controller.delegate = self
         }
     }
@@ -149,7 +150,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             self.performSegue(withIdentifier: showDatePickerSegue,
-                              sender: (indexPath.row == 1 ? true: false, [startDate]))
+                              sender: (indexPath.row == 1 ? true : false, startDate, endDate))
         } else {
             if indexPath.row == 0 {
                 self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
@@ -187,35 +188,18 @@ extension RequestTableViewController: SelectAbsenceProtocol {
 }
 
 extension RequestTableViewController: DatePickerProtocol {
-    func selectedDate(_ dates: [Date]) {
-        if dates.count == 1 {
-            guard let startDate = dates.first else {
+    
+    func selectedDate(startDate: Date?, endDate: Date?, isMultipleDaysSelected: Bool) {
+        self.startDate = startDate
+        self.endDate = endDate ?? startDate
+        self.isMultipleDaysSelected = isMultipleDaysSelected
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.dateFormat
+        guard let startDateCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)),
+            let endDateCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
                 return
-            }
-            self.startDate = startDate
-            self.endDate = startDate
-            let formatter = DateFormatter()
-            formatter.dateFormat = Constants.dateFormat
-            guard let startDateCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)),
-                  let endDateCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
-                    return
-            }
-            startDateCell.detailTextLabel?.text = formatter.string(from: startDate)
-            endDateCell.detailTextLabel?.text = formatter.string(from: startDate)
-            isMultipleDaysSelected = false
-            
-        } else if dates.count >= 2 {
-            guard let endDate = dates.last else {
-                return
-            }
-            self.endDate = endDate
-            let formatter = DateFormatter()
-            formatter.dateFormat = Constants.dateFormat
-            guard let prevousCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
-                return
-            }
-            prevousCell.detailTextLabel?.text = formatter.string(from: endDate)
-            isMultipleDaysSelected = true
         }
+        startDateCell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
+        endDateCell.detailTextLabel?.text = formatter.string(from: endDate ?? startDate ?? Date())
     }
 }
