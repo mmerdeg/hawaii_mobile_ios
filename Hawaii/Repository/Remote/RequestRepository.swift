@@ -18,7 +18,7 @@ class RequestRepository: RequestRepositoryProtocol {
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
-    func add(request: Request, completion: @escaping (RequestResponse) -> Void) {
+    func add(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void) {
         requests?.append(request)
         
         guard let url = URL(string: Constants.requests),
@@ -30,55 +30,37 @@ class RequestRepository: RequestRepositoryProtocol {
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
-                                completion(RequestResponse(success: true, request: request, error: nil, message: nil))
+                                completion(GenericResponseSingle<Request>(success: true, item: request, error: nil, message: nil))
                             case .failure(let error):
                                 print(error)
-                                completion(RequestResponse(success: false, request: nil,
-                                                           error: response.error,
-                                                           message: response.error?.localizedDescription))
+                                completion(GenericResponseSingle<Request>(success: false, item: nil,
+                                                                          error: response.error,
+                                                                          message: response.error?.localizedDescription))
                             }
         }
     }
     
-    func getAll(completion: @escaping (RequestsResponse) -> Void) {
+    func getAll(completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
         
-        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-                
-            }
+        genericRequest(url, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.userRequests + "/\(id)") else {
             return
         }
         
-        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-                
+        genericRequest(url, headers: getHeaders()) { response in
+            completion(response)
         }
     }
     
-    func getAllByDate(from: Date, toDate: Date, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<Request>) -> Void) {
         
         let formatter = getDateFormatter()
         let params = ["startDate": formatter.string(from: from),
@@ -87,120 +69,80 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests + "/3/dates") else {
             return
         }
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-            }
+        
+        genericRequest(url, parameters: params, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void) {
+    func updateRequest(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void) {
         guard let url = URL(string: Constants.requests),
               let requestParameters = request.dictionary else {
                 return
         }
-        
         Alamofire.request(url, method: HTTPMethod.put, parameters: requestParameters, encoding: JSONEncoding.default,
                           headers: getHeaders()).responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<Request>) in
                             print(response)
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
-                                completion(RequestResponse(success: true,
-                                                           request: response.result.value ?? request,
-                                                           error: nil, message: nil))
+                                completion(GenericResponseSingle<Request>(success: true,
+                                                                          item: response.result.value ?? request,
+                                                                          error: nil, message: nil))
                             case .failure(let error):
                                 print(error)
-                                completion(RequestResponse(success: false, request: nil,
-                                                           error: response.error,
-                                                           message: response.error?.localizedDescription))
+                                completion(GenericResponseSingle<Request>(success: false, item: nil,
+                                                                          error: response.error,
+                                                                          message: response.error?.localizedDescription))
                             }
         }
     }
     
-    func getAllPendingForApprover(approver: Int, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.requestsToApprove) else {
             return
         }
         
-        Alamofire.request(url, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-            }
+        genericRequest(url, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
         let urlString = Constants.requestsByTeamByMonth + "/\(teamId)/month"
         guard let url = URL(string: urlString) else {
             return
         }
         let formatter = getDateFormatter()
         let params = ["date": formatter.string(from: date)]
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-            }
+        
+        genericRequest(url, parameters: params, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
-        
-        Alamofire.request(url, method: HTTPMethod.get, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-                
-            }
+        genericRequest(url, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void) {
+    func getAllForAllEmployees(date: Date, completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.requestsByMonth) else {
             return
         }
         let formatter = getDateFormatter()
         let params = ["date": formatter.string(from: date)]
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
-            .responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[Request]>) in
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(RequestsResponse(success: true, requests: response.result.value, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(RequestsResponse(success: false, requests: nil, error: response.error, message: response.error?.localizedDescription))
-                }
-            }
+        
+        genericRequest(url, parameters: params, headers: getHeaders()) { response in
+            completion(response)
+        }
     }
     
-    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void) {
+    func getAvailableRequestYears(completion: @escaping (YearResponse) -> Void) {
         guard let url = URL(string: Constants.requestYears) else {
             return
         }
@@ -209,31 +151,15 @@ class RequestRepository: RequestRepositoryProtocol {
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(YearsResponse(success: true, years: response.result.value, error: nil, message: nil))
+                    completion(YearResponse(success: true, year: response.result.value, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(YearsResponse(success: false, years: nil, error: response.error, message: response.error?.localizedDescription))
+                    completion(YearResponse(success: false, year: nil,
+                                            error: response.error,
+                                            message: response.error?.localizedDescription))
                 }
 
             }
-    }
-    
-    func getDecoder() -> JSONDecoder {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(getDateFormatter())
-        return decoder
-    }
-    
-    func getEncoder() -> JSONEncoder {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .formatted(getDateFormatter())
-        return encoder
-    }
-    
-    func getDateFormatter() -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.dateFormat
-        return formatter
     }
     
     func getHeaders() -> HTTPHeaders {

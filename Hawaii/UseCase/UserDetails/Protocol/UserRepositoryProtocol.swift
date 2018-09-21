@@ -8,8 +8,8 @@
 
 import Foundation
 
-protocol UserRepositoryProtocol {
-    func getUser(completion: @escaping (UserResponse?) -> Void)
+protocol UserRepositoryProtocol: GenericResponseProtocol {
+    func getUser(completion: @escaping (GenericResponseSingle<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
 }

@@ -70,8 +70,8 @@ class HistoryViewController: BaseViewController {
                 return
             }
             if success {
-                self.requests = requests.requests ?? []
-                self.filteredRequests = requests.requests ?? []
+                self.requests = requests.items ?? []
+                self.filteredRequests = requests.items ?? []
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             } else {
@@ -221,7 +221,7 @@ extension HistoryViewController: RequestCancelationProtocol {
                     return
                 }
                 
-                let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: response.request?.requestStatus)
+                let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: response.item?.requestStatus)
                 let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
                 
                 self.requests[indexOfOldRequest ?? 0] = updatedRequest

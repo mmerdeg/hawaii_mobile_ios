@@ -96,7 +96,7 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
                     return
                 }
                 
-                let updatedRequest = Request(request: self.requests[index.row], requestStatus: response.request?.requestStatus)
+                let updatedRequest = Request(request: self.requests[index.row], requestStatus: response.item?.requestStatus)
                 let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
                 
                 self.requests[indexOfOldRequest ?? 0] = updatedRequest

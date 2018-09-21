@@ -48,16 +48,16 @@ class RemainigDaysViewController: BaseViewController {
         super.viewDidLoad()
         startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { response in
-            self.user = response?.user
-            guard let annual = response?.user?.allowances?.first?.annual,
-                  let takenAnnual = response?.user?.allowances?.first?.takenAnnual,
-                  let pendingAnnual = response?.user?.allowances?.first?.pendingAnnual,
-                  let bonus = response?.user?.allowances?.first?.bonus,
-                  let carriedOver = response?.user?.allowances?.first?.carriedOver,
-                  let manualAdjust = response?.user?.allowances?.first?.manualAdjust,
-                  let training = response?.user?.allowances?.first?.training,
-                  let trainingPending = response?.user?.allowances?.first?.pendingTraining,
-                  let takenTraining = response?.user?.allowances?.first?.takenTraining else {
+            self.user = response?.item
+            guard let annual = response?.item?.allowances?.first?.annual,
+                  let takenAnnual = response?.item?.allowances?.first?.takenAnnual,
+                  let pendingAnnual = response?.item?.allowances?.first?.pendingAnnual,
+                  let bonus = response?.item?.allowances?.first?.bonus,
+                  let carriedOver = response?.item?.allowances?.first?.carriedOver,
+                  let manualAdjust = response?.item?.allowances?.first?.manualAdjust,
+                  let training = response?.item?.allowances?.first?.training,
+                  let trainingPending = response?.item?.allowances?.first?.pendingTraining,
+                  let takenTraining = response?.item?.allowances?.first?.takenTraining else {
                     self.stopActivityIndicatorSpinner()
                     return
             }
@@ -157,7 +157,6 @@ class RemainigDaysViewController: BaseViewController {
                 self.pendingBar.widthAnchor.constraint(equalToConstant: pendindgBarLen).isActive = true
                 self.sicknessBar.widthAnchor.constraint(equalToConstant: sickBarLen).isActive = true
             }
-            
             
             self.stopActivityIndicatorSpinner()
         })

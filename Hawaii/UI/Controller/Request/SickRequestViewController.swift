@@ -99,9 +99,9 @@ class SickRequestViewController: BaseViewController {
         userUseCase?.getUser(completion: { response in
             let request = Request(approverId: nil, days: days, reason: "string",
                                   requestStatus: RequestStatus.pending,
-                                  absence: requestTableViewController.selectedAbsence, user: response?.user)
+                                  absence: requestTableViewController.selectedAbsence, user: response?.item)
             requestUseCase.add(request: request) { request in
-                guard let request = request.request else {
+                guard let request = request.item else {
                     self.stopActivityIndicatorSpinner()
                     return
                 }

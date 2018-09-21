@@ -7,27 +7,28 @@
 //
 
 import Foundation
+import Alamofire
 
-protocol RequestRepositoryProtocol {
+protocol RequestRepositoryProtocol: GenericResponseProtocol {
     
-    func getAll(completion: @escaping (RequestsResponse) -> Void)
+    func getAll(completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllBy(id: Int, completion: @escaping (RequestsResponse) -> Void)
+    func getAllBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func add(request: Request, completion: @escaping (RequestResponse) -> Void)
+    func add(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void)
     
-    func getAllByDate(from: Date, toDate: Date, completion: @escaping (RequestsResponse) -> Void)
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllPendingForApprover(approver: Int, completion: @escaping (RequestsResponse) -> Void)
+    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func updateRequest(request: Request, completion: @escaping (RequestResponse) -> Void)
+    func updateRequest(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void)
     
-    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (RequestsResponse) -> Void)
+    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllForAllEmployees(date: Date, completion: @escaping (RequestsResponse) -> Void)
+    func getAllForAllEmployees(date: Date, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllForEmployee(byEmail email: String, completion: @escaping (RequestsResponse) -> Void)
+    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAvailableRequestYears(completion: @escaping (YearsResponse) -> Void)
+    func getAvailableRequestYears(completion: @escaping (YearResponse) -> Void)
     
 }

@@ -127,7 +127,7 @@ class TeamCalendarViewController: BaseViewController {
         case 1:
             self.startActivityIndicatorSpinner()
             self.userUseCase?.getUser(completion: { response in
-                self.requestUseCase?.getAllByTeam(from: date, teamId: response?.user?.teamId ?? -1, completion: { requestResponse in
+                self.requestUseCase?.getAllByTeam(from: date, teamId: response?.item?.teamId ?? -1, completion: { requestResponse in
                     self.handleResponse(requestResponse: requestResponse)
                 })
             })
@@ -151,13 +151,13 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handleResponse(requestResponse: RequestsResponse?) {
+    func handleResponse(requestResponse: GenericResponse<Request>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return
         }
         if success {
-            self.items = requestResponse?.requests ?? []
+            self.items = requestResponse?.items ?? []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()

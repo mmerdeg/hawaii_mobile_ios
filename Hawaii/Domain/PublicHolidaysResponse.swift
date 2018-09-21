@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PublicHolidayResponse {
+struct PublicHolidaysResponse {
     let success: Bool?
     let holidays: [PublicHoliday]?
     let error: Error?

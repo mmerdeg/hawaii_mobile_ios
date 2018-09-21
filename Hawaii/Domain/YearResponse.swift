@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct YearsResponse {
+struct YearResponse {
     let success: Bool?
-    let years: Year?
+    let year: Year?
     let error: Error?
     let message: String?
 }

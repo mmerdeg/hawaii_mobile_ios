@@ -46,7 +46,7 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
-    func getUser(completion: @escaping (UserResponse?) -> Void) {
+    func getUser(completion: @escaping (GenericResponseSingle<User>?) -> Void) {
         guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
             return
         }
@@ -56,10 +56,10 @@ class UserRepository: UserRepositoryProtocol {
             switch response.result {
             case .success:
                 print("Validation Successful")
-                completion(UserResponse(success: true, user: response.result.value, error: nil, message: nil))
+                completion(GenericResponseSingle<User>(success: true, item: response.result.value, error: nil, message: nil))
             case .failure(let error):
                 print(error)
-                completion(UserResponse(success: false, user: nil,
+                completion(GenericResponseSingle<User>(success: false, item: nil,
                                          error: response.error,
                                          message: response.error?.localizedDescription))
             }
