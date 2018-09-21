@@ -16,7 +16,7 @@ class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
-    func getHolidays(completion: @escaping (GenericResponse<PublicHoliday>?) -> Void) {
+    func getHolidays(completion: @escaping (GenericResponseSingle<[PublicHoliday]>?) -> Void) {
         guard let url = URL(string: Constants.publicHolidays) else {
             return
         }

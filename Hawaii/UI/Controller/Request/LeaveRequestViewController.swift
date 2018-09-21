@@ -105,16 +105,38 @@ class LeaveRequestViewController: BaseViewController {
         
         startActivityIndicatorSpinner()
         userUseCase?.getUser(completion: { response in
-            let request = Request(approverId: nil, days: days, reason: "string",
-                                  requestStatus: RequestStatus.pending,
-                                  absence: requestTableViewController.selectedAbsence, user: response?.item)
-            requestUseCase.add(request: request) { request in
-                guard let request = request.item else {
+            
+            guard let success = response?.success else {
                     self.stopActivityIndicatorSpinner()
                     return
+            }
+            if success {
+                let request = Request(approverId: nil, days: days, reason: "string",
+                                      requestStatus: RequestStatus.pending,
+                                      absence: requestTableViewController.selectedAbsence, user: response?.item)
+                requestUseCase.add(request: request) { requestResponse in
+                    
+                    guard let success = requestResponse.success,
+                          let request = requestResponse.item else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    if success {
+                        self.requestUpdateDelegate?.didAdd(request: request)
+                        self.navigationController?.popViewController(animated: true)
+                        self.stopActivityIndicatorSpinner()
+                    } else {
+                        ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                                                        viewController: self, completion: { _ in
+                            self.stopActivityIndicatorSpinner()
+                        })
+                    }
                 }
-                self.requestUpdateDelegate?.didAdd(request: request)
-                self.navigationController?.popViewController(animated: true)
+                
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: response?.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
             }
         })
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol PublicHolidayUseCaseProtocol {
-    func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<PublicHoliday>?)) -> Void)
+    func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponseSingle<[PublicHoliday]>?)) -> Void)
 }
 
 class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
@@ -20,9 +20,9 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
         self.publicHolidayRepository = publicHolidayRepository
     }
     
-    func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<PublicHoliday>?)) -> Void) {
+    func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponseSingle<[PublicHoliday]>?)) -> Void) {
         publicHolidayRepository.getHolidays { response in
-            guard let holidays = response?.items else {
+            guard let holidays = response?.item else {
                 return
             }
             completion((Dictionary(grouping: holidays, by: { $0.date ?? Date() }), response))

@@ -12,7 +12,7 @@ import Alamofire
 protocol GenericResponseProtocol {
     func genericRequest<T: Decodable>(_ url: URL, method: HTTPMethod,
                                       parameters: Parameters?, encoding: ParameterEncoding,
-                                      headers: HTTPHeaders?, completion: @escaping (GenericResponse<T>) -> Void)
+                                      headers: HTTPHeaders?, completion: @escaping (GenericResponseSingle<T>) -> Void)
 }
 
 extension GenericResponseProtocol {
@@ -21,17 +21,17 @@ extension GenericResponseProtocol {
                                       parameters: Parameters? = nil,
                                       encoding: ParameterEncoding = URLEncoding.default,
                                       headers: HTTPHeaders? = nil,
-                                      completion: @escaping (GenericResponse<T>) -> Void) {
+                                      completion: @escaping (GenericResponseSingle<T>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<[T]>) in
+                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<T>) in
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
-                                completion(GenericResponse<T> (success: true, items: response.result.value, error: nil, message: nil))
+                                completion(GenericResponseSingle<T> (success: true, item: response.result.value, error: nil, message: nil))
                             case .failure(let error):
                                 print(error)
                                 
-                                completion(GenericResponse<T> (success: false, items: nil,
+                                completion(GenericResponseSingle<T> (success: false, item: nil,
                                                                error: response.error,
                                                                message: response.error?.localizedDescription))
                             }

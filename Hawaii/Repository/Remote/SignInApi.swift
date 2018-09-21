@@ -12,21 +12,19 @@ import Alamofire
 
 class SignInApi: SignInApiProtocol {
     
-    func signIn(accessToken: String, completion: @escaping (String) -> Void) {
-//        guard let url = URL(string: "https://hawaii2.execom.eu/hawaii/signin") else {
-//            return
-//        }
-        
-    }
-    
-    func signIn(accessToken: String, completion: @escaping (TokenResponse) -> Void) {
+    func signIn(accessToken: String, completion: @escaping (GenericResponseSingle<String>) -> Void) {
+        guard let url = URL(string: Constants.signin) else {
+            return
+        }
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
-        Alamofire.request(Constants.signin, headers: headers).validate().response { response in
+        Alamofire.request(url, headers: headers).validate().response { response in
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
-                completion(TokenResponse(success: false, token: "", error: response.error, message: response.error?.localizedDescription))
+                completion(GenericResponseSingle<String>(success: false, item: "",
+                                                         error: response.error,
+                                                         message: response.error?.localizedDescription))
                 return
             }
-            completion(TokenResponse(success: true, token: token, error: nil, message: nil))
+            completion(GenericResponseSingle<String>(success: true, item: token, error: nil, message: nil))
         }
     }
     

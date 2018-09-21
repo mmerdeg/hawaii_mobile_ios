@@ -22,6 +22,8 @@
 		303C442E2154C998003F16CC /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
 		303C44302154E243003F16CC /* GenericResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericResponseProtocol.swift */; };
 		303C44312154E246003F16CC /* GenericResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericResponseProtocol.swift */; };
+		303C44332154F023003F16CC /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44322154F022003F16CC /* UsersResponse.swift */; };
+		303C44342154F101003F16CC /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44322154F022003F16CC /* UsersResponse.swift */; };
 		3042CA8321536DF9002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8521536E9F002446FE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8421536E9F002446FE /* Sort.swift */; };
 		3042CA8621536E9F002446FE /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8421536E9F002446FE /* Sort.swift */; };
@@ -33,26 +35,19 @@
 		307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */; };
 		3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
 		307413212139304700F05427 /* SignInApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413202139304700F05427 /* SignInApiProtocol.swift */; };
-		30741325213938E500F05427 /* RequestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741324213938E500F05427 /* RequestsResponse.swift */; };
 		30741327213968E800F05427 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
-		3074132D213D369100F05427 /* RequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074132C213D369100F05427 /* RequestResponse.swift */; };
-		3074132F213E4C9000F05427 /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074132E213E4C9000F05427 /* TokenResponse.swift */; };
 		30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */; };
 		30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */; };
 		3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */; };
-		3074133F213E9DAE00F05427 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074133E213E9DAE00F05427 /* UserResponse.swift */; };
-		30741341213E9DBD00F05427 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741340213E9DBD00F05427 /* UsersResponse.swift */; };
 		30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */; };
 		307413482142754600F05427 /* PublicHolidayRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413472142754500F05427 /* PublicHolidayRepositoryProtocol.swift */; };
 		3074134A2142756100F05427 /* PublicHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413492142756100F05427 /* PublicHoliday.swift */; };
-		3074134C214275E000F05427 /* PublicHolidaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074134B214275E000F05427 /* PublicHolidaysResponse.swift */; };
 		3074134E2142761C00F05427 /* PublicHolidayUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074134D2142761C00F05427 /* PublicHolidayUseCase.swift */; };
 		307413502142770000F05427 /* PublicHolidayRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074134F2142770000F05427 /* PublicHolidayRepository.swift */; };
 		307413572142809B00F05427 /* PublicHolidayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */; };
 		307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
-		3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135B2147DBFC00F05427 /* YearResponse.swift */; };
 		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
 		30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -64,7 +59,6 @@
 		30FD3684214A5E530047038C /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		30FD3685214A5E530047038C /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		30FD3686214A5E530047038C /* PublicHolidayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */; };
-		30FD3687214A5E530047038C /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074132E213E4C9000F05427 /* TokenResponse.swift */; };
 		30FD3688214A5E530047038C /* PublicHoliday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413492142756100F05427 /* PublicHoliday.swift */; };
 		30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
 		30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */; };
@@ -74,15 +68,12 @@
 		30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */; };
 		30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
 		30FD3690214A5E530047038C /* BonusRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */; };
-		30FD3691214A5E530047038C /* RequestsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741324213938E500F05427 /* RequestsResponse.swift */; };
 		30FD3692214A5E530047038C /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
 		30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */; };
 		30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */; };
 		30FD3695214A5E530047038C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
-		30FD3696214A5E530047038C /* RequestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074132C213D369100F05427 /* RequestResponse.swift */; };
 		30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
 		30FD3698214A5E530047038C /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
-		30FD3699214A5E530047038C /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741340213E9DBD00F05427 /* UsersResponse.swift */; };
 		30FD369A214A5E530047038C /* LeaveRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */; };
 		30FD369B214A5E530047038C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */; };
 		30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074134D2142761C00F05427 /* PublicHolidayUseCase.swift */; };
@@ -90,7 +81,6 @@
 		30FD369E214A5E530047038C /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
 		30FD369F214A5E530047038C /* TableDataProviderUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCase.swift */; };
 		30FD36A0214A5E530047038C /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2820D7AA10006AEF29 /* MoreViewController.swift */; };
-		30FD36A1214A5E530047038C /* YearResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135B2147DBFC00F05427 /* YearResponse.swift */; };
 		30FD36A2214A5E530047038C /* TeamCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18021356C93001355E9 /* TeamCalendarViewController.swift */; };
 		30FD36A3214A5E530047038C /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		30FD36A4214A5E530047038C /* TableDataProviderRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46720E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift */; };
@@ -116,10 +106,8 @@
 		30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643820CA69E900501CAC /* AppDelegate.swift */; };
 		30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
-		30FD36BB214A5E530047038C /* PublicHolidaysResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074134B214275E000F05427 /* PublicHolidaysResponse.swift */; };
 		30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */; };
 		30FD36BD214A5E530047038C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42F4BC20CE7946002661AF /* DashboardViewController.swift */; };
-		30FD36BE214A5E530047038C /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074133E213E9DAE00F05427 /* UserResponse.swift */; };
 		30FD36BF214A5E530047038C /* SearchRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */; };
 		30FD36C0214A5E530047038C /* UserPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */; };
 		30FD36C1214A5E530047038C /* PublicHolidayRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413472142754500F05427 /* PublicHolidayRepositoryProtocol.swift */; };
@@ -326,6 +314,7 @@
 		302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
 		303C44292154C746003F16CC /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		303C442F2154E243003F16CC /* GenericResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseProtocol.swift; sourceTree = "<group>"; };
+		303C44322154F022003F16CC /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		3042CA8221536DF9002446FE /* Pagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
 		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -335,26 +324,19 @@
 		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		3074131921380FFF00F05427 /* ExpandableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableData.swift; sourceTree = "<group>"; };
 		307413202139304700F05427 /* SignInApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApiProtocol.swift; sourceTree = "<group>"; };
-		30741324213938E500F05427 /* RequestsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsResponse.swift; sourceTree = "<group>"; };
 		30741326213968E800F05427 /* Allowance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allowance.swift; sourceTree = "<group>"; };
-		3074132C213D369100F05427 /* RequestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestResponse.swift; sourceTree = "<group>"; };
-		3074132E213E4C9000F05427 /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 		30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMoreTableViewCell.swift; sourceTree = "<group>"; };
 		3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadMoreTableViewCell.xib; sourceTree = "<group>"; };
-		3074133E213E9DAE00F05427 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
-		30741340213E9DBD00F05427 /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerTableViewController.swift; sourceTree = "<group>"; };
 		307413472142754500F05427 /* PublicHolidayRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayRepositoryProtocol.swift; sourceTree = "<group>"; };
 		307413492142756100F05427 /* PublicHoliday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHoliday.swift; sourceTree = "<group>"; };
-		3074134B214275E000F05427 /* PublicHolidaysResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidaysResponse.swift; sourceTree = "<group>"; };
 		3074134D2142761C00F05427 /* PublicHolidayUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayUseCase.swift; sourceTree = "<group>"; };
 		3074134F2142770000F05427 /* PublicHolidayRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayRepository.swift; sourceTree = "<group>"; };
 		307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayTableViewCell.swift; sourceTree = "<group>"; };
 		307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicHolidayTableViewCell.xib; sourceTree = "<group>"; };
 		30741359214650AE00F05427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3074135B2147DBFC00F05427 /* YearResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearResponse.swift; sourceTree = "<group>"; };
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -678,20 +660,14 @@
 				3ED6ED8321300CCB001436FE /* Absence.swift */,
 				302EE1762133F5C4001355E9 /* User.swift */,
 				302EE1822135744D001355E9 /* CalendarType.swift */,
-				3074132E213E4C9000F05427 /* TokenResponse.swift */,
-				30741324213938E500F05427 /* RequestsResponse.swift */,
 				30741326213968E800F05427 /* Allowance.swift */,
-				3074132C213D369100F05427 /* RequestResponse.swift */,
-				3074133E213E9DAE00F05427 /* UserResponse.swift */,
-				30741340213E9DBD00F05427 /* UsersResponse.swift */,
 				307413492142756100F05427 /* PublicHoliday.swift */,
-				3074134B214275E000F05427 /* PublicHolidaysResponse.swift */,
-				3074135B2147DBFC00F05427 /* YearResponse.swift */,
 				3074135D2147E53200F05427 /* Year.swift */,
 				3042CA8221536DF9002446FE /* Pagable.swift */,
 				3042CA8421536E9F002446FE /* Sort.swift */,
 				3042CA8821536EF6002446FE /* Page.swift */,
 				303C44292154C746003F16CC /* GenericResponse.swift */,
+				303C44322154F022003F16CC /* UsersResponse.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1306,7 +1282,6 @@
 				30FD3684214A5E530047038C /* CalendarCellCollectionViewCell.swift in Sources */,
 				30FD3685214A5E530047038C /* HistoryViewController.swift in Sources */,
 				30FD3686214A5E530047038C /* PublicHolidayTableViewCell.swift in Sources */,
-				30FD3687214A5E530047038C /* TokenResponse.swift in Sources */,
 				30FD3688214A5E530047038C /* PublicHoliday.swift in Sources */,
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
@@ -1318,15 +1293,12 @@
 				30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */,
 				30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */,
 				30FD3690214A5E530047038C /* BonusRequestViewController.swift in Sources */,
-				30FD3691214A5E530047038C /* RequestsResponse.swift in Sources */,
 				30FD3692214A5E530047038C /* ExpandableData.swift in Sources */,
 				30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */,
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
 				30FD3695214A5E530047038C /* UserUseCase.swift in Sources */,
-				30FD3696214A5E530047038C /* RequestResponse.swift in Sources */,
 				30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */,
 				30FD3698214A5E530047038C /* UserDetailsRepositoryProtocol.swift in Sources */,
-				30FD3699214A5E530047038C /* UsersResponse.swift in Sources */,
 				30FD369A214A5E530047038C /* LeaveRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */,
@@ -1335,7 +1307,6 @@
 				3042CA8A21536EF6002446FE /* Page.swift in Sources */,
 				30FD369F214A5E530047038C /* TableDataProviderUseCase.swift in Sources */,
 				30FD36A0214A5E530047038C /* MoreViewController.swift in Sources */,
-				30FD36A1214A5E530047038C /* YearResponse.swift in Sources */,
 				303C442E2154C998003F16CC /* GenericResponse.swift in Sources */,
 				30FD36A2214A5E530047038C /* TeamCalendarViewController.swift in Sources */,
 				30FD36A3214A5E530047038C /* StyleSetup.swift in Sources */,
@@ -1358,15 +1329,14 @@
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
 				30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */,
+				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
-				30FD36BB214A5E530047038C /* PublicHolidaysResponse.swift in Sources */,
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
 				30FD36BD214A5E530047038C /* DashboardViewController.swift in Sources */,
-				30FD36BE214A5E530047038C /* UserResponse.swift in Sources */,
 				30FD36BF214A5E530047038C /* SearchRequestsViewController.swift in Sources */,
 				30FD36C0214A5E530047038C /* UserPreviewTableViewCell.swift in Sources */,
 				30FD36C1214A5E530047038C /* PublicHolidayRepositoryProtocol.swift in Sources */,
@@ -1396,7 +1366,6 @@
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
 				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,
 				307413572142809B00F05427 /* PublicHolidayTableViewCell.swift in Sources */,
-				3074132F213E4C9000F05427 /* TokenResponse.swift in Sources */,
 				3074134A2142756100F05427 /* PublicHoliday.swift in Sources */,
 				3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
@@ -1408,15 +1377,12 @@
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
 				3042CA8321536DF9002446FE /* Pagable.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
-				30741325213938E500F05427 /* RequestsResponse.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
-				3074132D213D369100F05427 /* RequestResponse.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
-				30741341213E9DBD00F05427 /* UsersResponse.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3074134E2142761C00F05427 /* PublicHolidayUseCase.swift in Sources */,
@@ -1425,7 +1391,6 @@
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
-				3074135C2147DBFC00F05427 /* YearResponse.swift in Sources */,
 				30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */,
 				303C442A2154C746003F16CC /* GenericResponse.swift in Sources */,
 				302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */,
@@ -1442,6 +1407,7 @@
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
 				307413212139304700F05427 /* SignInApiProtocol.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
@@ -1454,10 +1420,8 @@
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
-				3074134C214275E000F05427 /* PublicHolidaysResponse.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
-				3074133F213E9DAE00F05427 /* UserResponse.swift in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
 				307413482142754600F05427 /* PublicHolidayRepositoryProtocol.swift in Sources */,

@@ -70,8 +70,8 @@ class HistoryViewController: BaseViewController {
                 return
             }
             if success {
-                self.requests = requests.items ?? []
-                self.filteredRequests = requests.items ?? []
+                self.requests = requests.item ?? []
+                self.filteredRequests = requests.item ?? []
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             } else {

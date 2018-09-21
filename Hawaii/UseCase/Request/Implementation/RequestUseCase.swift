@@ -10,23 +10,23 @@ import Foundation
 
 protocol RequestUseCaseProtocol {
     
-    func getAll(completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAll(completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
-    func getAllBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAllBy(id: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
     func add(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void)
     
-    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
-    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
     func updateRequest(request: Request, completion: @escaping (GenericResponseSingle<Request>) -> Void)
     
-    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
-    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<Request>) -> Void)
+    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponseSingle<[Request]>) -> Void)
     
-    func getAvailableRequestYears(completion: @escaping (YearResponse) -> Void)
+    func getAvailableRequestYears(completion: @escaping (GenericResponseSingle<Year>) -> Void)
     
 }
 
@@ -38,13 +38,13 @@ class RequestUseCase: RequestUseCaseProtocol {
         self.entityRepository = entityRepository
     }
     
-    func getAll(completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAll(completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         entityRepository.getAll { requests in
             completion(requests)
         }
     }
     
-    func getAllBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAllBy(id: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         entityRepository.getAllBy(id: id) { requests in
             completion(requests)
         }
@@ -56,13 +56,13 @@ class RequestUseCase: RequestUseCaseProtocol {
         }
     }
     
-    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         entityRepository.getAllByDate(from: from, toDate: toDate) { requests in
             completion(requests)
         }
     }
     
-    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         entityRepository.getAllPendingForApprover(approver: approver) { requests in
             completion(requests)
         }
@@ -74,7 +74,7 @@ class RequestUseCase: RequestUseCaseProtocol {
         }
     }
 
-    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         if teamId != -1 {
              entityRepository.getAllByTeam(date: from, teamId: teamId) { requests in
                 completion(requests)
@@ -86,13 +86,13 @@ class RequestUseCase: RequestUseCaseProtocol {
         }
     }
     
-    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponseSingle<[Request]>) -> Void) {
         entityRepository.getAllForEmployee(byEmail: email) { requestsResponse in
             completion(requestsResponse)
         }
     }
     
-    func getAvailableRequestYears(completion: @escaping (YearResponse) -> Void) {
+    func getAvailableRequestYears(completion: @escaping (GenericResponseSingle<Year>) -> Void) {
         entityRepository.getAvailableRequestYears { requestsResponse in
             completion(requestsResponse)
         }

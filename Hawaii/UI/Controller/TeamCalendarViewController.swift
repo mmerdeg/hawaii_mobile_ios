@@ -151,13 +151,13 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handleResponse(requestResponse: GenericResponse<Request>?) {
+    func handleResponse(requestResponse: GenericResponseSingle<[Request]>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return
         }
         if success {
-            self.items = requestResponse?.items ?? []
+            self.items = requestResponse?.item ?? []
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()

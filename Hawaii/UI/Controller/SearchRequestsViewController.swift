@@ -46,8 +46,8 @@ class SearchRequestsViewController: UIViewController {
         clickableView.addGestureRecognizer(tap)
         
         requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
-            guard let startYear = yearsResponse.year?.first,
-                  let endYear = yearsResponse.year?.last else {
+            guard let startYear = yearsResponse.item?.first,
+                  let endYear = yearsResponse.item?.last else {
                     return
             }
             var tempYear = startYear

@@ -169,7 +169,7 @@ class DashboardViewController: BaseViewController {
                 return
             }
             if success {
-                self.items = requestResponse.items ?? []
+                self.items = requestResponse.item ?? []
                 self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
                     guard let success = holidaysResponse?.success else {
                         self.stopActivityIndicatorSpinner()

@@ -43,7 +43,7 @@ class ApproveViewController: BaseViewController {
                 return
             }
             if success {
-                self.requests = request.items ?? []
+                self.requests = request.item ?? []
                 self.stopActivityIndicatorSpinner()
                 self.tableView.reloadData()
             } else {

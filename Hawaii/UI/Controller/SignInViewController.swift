@@ -31,7 +31,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         startActivityIndicatorSpinner()
         signInApi.signIn(accessToken: accessToken) { tokenResponse in
             guard let success = tokenResponse.success,
-                  let token = tokenResponse.token else {
+                  let token = tokenResponse.item else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
