@@ -32,7 +32,7 @@ extension GenericResponseProtocol {
                                 print(error)
                                 
                                 completion(GenericResponseSingle<T> (success: false, item: nil,
-                                                               error: response.error,
+                                                                     error: response.error,
                                                                message: response.error?.localizedDescription))
                             }
                             
