@@ -22,6 +22,7 @@ class RequestDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestImage: UIImageView!
     
+    @IBOutlet weak var requestImageFrame: UIView!
     @IBOutlet weak var requestStatus: UILabel!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -59,9 +60,12 @@ class RequestDetailTableViewCell: UITableViewCell {
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor
             requestImage.backgroundColor = color
-            requestImage.layer.cornerRadius = requestImage.frame.height / 2
+            requestImage.layer.cornerRadius = requestImage.frame.width / 2
             requestImage.layer.masksToBounds = true
-
+            requestImageFrame.backgroundColor = color
+            requestImageFrame.layer.cornerRadius = requestImageFrame.frame.width / 2
+            requestImageFrame.layer.masksToBounds = true
+            
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
             

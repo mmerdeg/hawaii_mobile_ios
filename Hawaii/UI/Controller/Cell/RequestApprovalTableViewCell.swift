@@ -26,6 +26,8 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestImage: UIImageView!
     
+    @IBOutlet weak var requestImageFrame: UIView!
+    
     @IBOutlet weak var acceptButton: UIButton!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -63,6 +65,9 @@ class RequestApprovalTableViewCell: UITableViewCell {
             requestImage.backgroundColor = color
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true
+            requestImageFrame.backgroundColor = color
+            requestImageFrame.layer.cornerRadius = requestImageFrame.frame.height / 2
+            requestImageFrame.layer.masksToBounds = true
             
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
