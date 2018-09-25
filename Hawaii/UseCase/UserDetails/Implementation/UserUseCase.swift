@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UserUseCaseProtocol {
-    func getUser(completion: @escaping (GenericResponseSingle<User>?) -> Void)
+    func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
 }
@@ -32,7 +32,7 @@ class UserUseCase: UserUseCaseProtocol {
         }
     }
     
-    func getUser(completion: @escaping (GenericResponseSingle<User>?) -> Void) {
+    func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         userRepository.getUser { response in
             completion(response)
         }

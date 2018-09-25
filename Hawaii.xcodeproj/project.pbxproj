@@ -20,8 +20,8 @@
 		302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
 		303C442A2154C746003F16CC /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
 		303C442E2154C998003F16CC /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
-		303C44302154E243003F16CC /* GenericResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericResponseProtocol.swift */; };
-		303C44312154E246003F16CC /* GenericResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericResponseProtocol.swift */; };
+		303C44302154E243003F16CC /* GenericRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */; };
+		303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */; };
 		303C44332154F023003F16CC /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44322154F022003F16CC /* UsersResponse.swift */; };
 		303C44342154F101003F16CC /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44322154F022003F16CC /* UsersResponse.swift */; };
 		3042CA8321536DF9002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
@@ -30,6 +30,12 @@
 		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
+		305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
+		305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305A01AD215908EB0008B4EA /* InputTableViewCell.xib */; };
+		305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
+		305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305A01AD215908EB0008B4EA /* InputTableViewCell.xib */; };
+		305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01B2215928A00008B4EA /* RoundedTextView.swift */; };
+		305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01B2215928A00008B4EA /* RoundedTextView.swift */; };
 		307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413082136673100F05427 /* TeamPreviewViewController.swift */; };
 		3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */; };
 		307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */; };
@@ -313,12 +319,15 @@
 		302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamCalendarCollectionViewCell.xib; sourceTree = "<group>"; };
 		303C44292154C746003F16CC /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
-		303C442F2154E243003F16CC /* GenericResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponseProtocol.swift; sourceTree = "<group>"; };
+		303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRepositoryProtocol.swift; sourceTree = "<group>"; };
 		303C44322154F022003F16CC /* UsersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersResponse.swift; sourceTree = "<group>"; };
 		3042CA8221536DF9002446FE /* Pagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
 		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		3042CA9121539EC6002446FE /* Hawaii production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hawaii production.entitlements"; sourceTree = "<group>"; };
+		305A01AC215908EB0008B4EA /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		305A01AD215908EB0008B4EA /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
+		305A01B2215928A00008B4EA /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
 		307413082136673100F05427 /* TeamPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewViewController.swift; sourceTree = "<group>"; };
 		3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -623,6 +632,8 @@
 				3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */,
 				307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */,
 				307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */,
+				305A01AC215908EB0008B4EA /* InputTableViewCell.swift */,
+				305A01AD215908EB0008B4EA /* InputTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -725,6 +736,7 @@
 				3E42592C20E26A1900F22BBD /* UIColorExtension.swift */,
 				3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */,
 				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
+				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -772,7 +784,7 @@
 				3E834B6B2100AF1B0038BC96 /* SignInApi.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepository.swift */,
-				303C442F2154E243003F16CC /* GenericResponseProtocol.swift */,
+				303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -1099,6 +1111,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
+				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
 				30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
@@ -1126,6 +1139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
+				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
@@ -1290,6 +1304,7 @@
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
 				30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */,
 				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
+				305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */,
 				30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */,
 				30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */,
 				30FD3690214A5E530047038C /* BonusRequestViewController.swift in Sources */,
@@ -1315,13 +1330,14 @@
 				30FD36A6214A5E530047038C /* UserRepositoryProtocol.swift in Sources */,
 				30FD36A7214A5E530047038C /* SickRequestViewController.swift in Sources */,
 				30FD36A8214A5E530047038C /* Request.swift in Sources */,
-				303C44312154E246003F16CC /* GenericResponseProtocol.swift in Sources */,
+				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
 				30FD36A9214A5E530047038C /* Constants.swift in Sources */,
 				30FD36AA214A5E530047038C /* SignInApi.swift in Sources */,
 				30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
 				30FD36AE214A5E530047038C /* Day.swift in Sources */,
+				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36AF214A5E530047038C /* SignInApiProtocol.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
 				30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */,
@@ -1375,6 +1391,7 @@
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
+				305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */,
 				3042CA8321536DF9002446FE /* Pagable.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
@@ -1400,13 +1417,14 @@
 				302EE1732133F549001355E9 /* UserRepository.swift in Sources */,
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
-				303C44302154E243003F16CC /* GenericResponseProtocol.swift in Sources */,
+				303C44302154E243003F16CC /* GenericRepositoryProtocol.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
 				307413212139304700F05427 /* SignInApiProtocol.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,

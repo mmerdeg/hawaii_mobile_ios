@@ -151,7 +151,7 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handleResponse(requestResponse: GenericResponseSingle<[Request]>?) {
+    func handleResponse(requestResponse: GenericResponse<[Request]>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return

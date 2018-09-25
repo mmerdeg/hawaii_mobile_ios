@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CellData {
+struct CellData: Codable {
     let title: String?
     let description: String?
 }

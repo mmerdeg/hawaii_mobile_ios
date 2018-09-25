@@ -12,40 +12,41 @@ import Alamofire
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     
-    func getLeaveData(completion: @escaping ([CellData], [Absence], Absence) -> Void) {
+    func getLeaveData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
-        Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-            let filteredAbsences = response.result.value?.filter({
+        genericRequest(value: [Absence].self, url) { response in
+            let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.deducted.rawValue ||
-                $0.absenceType == AbsenceType.nonDecuted.rawValue
+                    $0.absenceType == AbsenceType.nonDecuted.rawValue
             })
+            
             completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
                         CellData(title: "Duration", description: DurationType.fullday.description)],
                        filteredAbsences ?? [],
-                       response.result.value?.first ?? Absence())
+                       GenericResponse<[Absence]>(genericResponse: response, item: filteredAbsences))
         }
     }
     
-    func getSicknessData(completion: @escaping ([CellData], [Absence], Absence) -> Void) {
+    func getSicknessData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
-        Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-            let filteredAbsences = response.result.value?.filter({
+        
+        genericRequest(value: [Absence].self, url) { response in
+            let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.sick.rawValue
             })
             completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
                         CellData(title: "Duration", description: DurationType.fullday.description)],
                        filteredAbsences ?? [],
-                       response.result.value?.first ?? Absence())
+                       GenericResponse<[Absence]>(genericResponse: response, item: filteredAbsences))
         }
     }
     
-    func getSicknessData(completion: @escaping ([CellData]) -> Void) {
-        completion([CellData(title: "Type of sickness", description: "Sick"),
-                    CellData(title: "Duration", description: "Full Day")])
+    func getBonusData(completion: @escaping ([CellData]) -> Void) {
+            completion([CellData(title: "Duration", description: DurationType.fullday.description)])
     }
     
     func getLeaveTypeData(completion: @escaping ([Absence]) -> Void) {

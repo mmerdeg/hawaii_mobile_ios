@@ -8,11 +8,13 @@
 
 import Foundation
 
-protocol TableDataProviderRepositoryProtocol {
+protocol TableDataProviderRepositoryProtocol: GenericRepositoryProtocol {
     
-    func getLeaveData(completion: @escaping ([CellData], [Absence], Absence) -> Void)
+    func getLeaveData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void)
     
-    func getSicknessData(completion: @escaping ([CellData], [Absence], Absence) -> Void)
+    func getSicknessData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void)
+    
+    func getBonusData(completion: @escaping ([CellData]) -> Void)
     
     func getLeaveTypeData(completion: @escaping ([Absence]) -> Void)
     
