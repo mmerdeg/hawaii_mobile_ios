@@ -31,7 +31,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aec-78-0yL">
-                        <rect key="frame" x="55" y="61" width="338" height="1"/>
+                        <rect key="frame" x="-3" y="61" width="396" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="yWW-uO-tuV"/>
@@ -205,7 +205,7 @@
                     <constraint firstItem="HhR-ga-jRP" firstAttribute="centerY" secondItem="D7P-GM-2BY" secondAttribute="centerY" id="pGW-qr-Ko4"/>
                     <constraint firstItem="MfP-J3-NtA" firstAttribute="trailing" secondItem="HhR-ga-jRP" secondAttribute="trailing" id="v3X-8W-6eI"/>
                     <constraint firstItem="D7P-GM-2BY" firstAttribute="trailing" secondItem="RaS-6T-Rhl" secondAttribute="trailing" id="x0n-wj-Lrk"/>
-                    <constraint firstItem="aec-78-0yL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="35" id="zYs-DU-bnS"/>
+                    <constraint firstItem="aec-78-0yL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-23" id="zYs-DU-bnS"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

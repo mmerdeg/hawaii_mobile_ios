@@ -114,6 +114,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        tableView.separatorInset = UIEdgeInsets.zero
+    
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RequestDetailTableViewCell.self), for: indexPath)
             as? RequestDetailTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")

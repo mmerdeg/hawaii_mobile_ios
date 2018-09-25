@@ -40,7 +40,7 @@ extension UIColor {
     }
     
     class var approvedColor: UIColor {
-        return #colorLiteral(red: 0.2039215686, green: 0.9882352941, blue: 0.431372549, alpha: 1)
+        return #colorLiteral(red: 0.1803921569, green: 0.7568627451, blue: 0.1764705882, alpha: 1)
     }
     
     class var remainingColor: UIColor {

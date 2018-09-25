@@ -23,7 +23,9 @@ class BaseViewController: UIViewController {
         self.stopActivityIndicatorSpinner()
         if #available(iOS 11.0, *) {
             self.navigationController?.navigationBar.prefersLargeTitles = true
-            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+            self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25, weight: .semibold)
+            ]
         }
         // Do any additional setup after loading the view.
     }
