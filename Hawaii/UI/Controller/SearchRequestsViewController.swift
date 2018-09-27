@@ -12,7 +12,7 @@ protocol SearchDialogProtocol: NSObjectProtocol {
     
     func dismissDialog()
     
-    func didFilter(year: String)
+    func didFilterBy(year: String, leave: Bool, sick: Bool, bonus: Bool)
     
 }
 
@@ -20,6 +20,9 @@ class SearchRequestsViewController: UIViewController {
     
     var items: [Int] = []
     
+    @IBOutlet weak var bonusToggle: UISwitch!
+    @IBOutlet weak var sickToggle: UISwitch!
+    @IBOutlet weak var leaveToogle: UISwitch!
     @IBOutlet weak var clickableView: UIView!
     
     @IBOutlet weak var yearPicker: UIPickerView!
@@ -70,7 +73,7 @@ class SearchRequestsViewController: UIViewController {
     
     @IBAction func searchClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.didFilter(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]))
+        delegate?.didFilterBy(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]), leave: leaveToogle.isOn, sick: sickToggle.isOn, bonus: bonusToggle.isOn)
     }
     
 }

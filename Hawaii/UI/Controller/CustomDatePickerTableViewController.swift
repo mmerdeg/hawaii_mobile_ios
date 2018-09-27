@@ -156,7 +156,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             }
             if cellState.dateBelongsTo == .thisMonth {
                 if containsDate(date: date) {
-                    cell.backgroundColor = UIColor.blue
+                    cell.backgroundColor = UIColor.remainingColor
                 } else {
                     cell.backgroundColor = UIColor.transparentColor
                 }

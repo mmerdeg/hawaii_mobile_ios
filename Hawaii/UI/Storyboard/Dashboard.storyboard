@@ -245,169 +245,31 @@
                         <outlet property="dateLabel" destination="wVt-5j-dNE" id="znY-XY-ddg"/>
                         <outlet property="nextButton" destination="bTz-Xy-0kJ" id="MLc-Lu-Wnc"/>
                         <outlet property="previousButton" destination="8e5-wV-4DT" id="NDZ-LC-ww8"/>
-                        <segue destination="Tu2-2N-IoX" kind="show" identifier="showLeaveRequest" id="i4A-gB-r6v"/>
                         <segue destination="dQu-hX-waz" kind="presentation" identifier="showRequestDetails" id="61k-Vu-8dI"/>
-                        <segue destination="ls5-ks-Jea" kind="show" identifier="showSickRequest" id="Jsp-wr-mVG"/>
                         <segue destination="rxj-Jz-1Mw" kind="show" identifier="showBonusRequest" id="usi-Hv-oJB"/>
+                        <segue destination="IPM-sP-uJ8" kind="show" identifier="showLeaveRequest" id="79G-gN-5PE"/>
+                        <segue destination="vXb-yr-Aai" kind="show" identifier="showSickRequest" id="IeD-op-Ya0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xt7-Ka-k9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3693.5999999999999" y="-1402.4630541871923"/>
         </scene>
-        <!--Leave Request-->
-        <scene sceneID="ysm-Co-hxK">
+        <!--LeaveRequest-->
+        <scene sceneID="bMK-rU-m7m">
             <objects>
-                <viewController title="Leave Request" modalTransitionStyle="flipHorizontal" id="Tu2-2N-IoX" customClass="LeaveRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EdC-cI-mcM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoN-iG-M4O">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbA-zw-bHL">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
-                                        <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-CR-CNN">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="11c-rF-VGd"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="Ceh-qy-fIu" kind="embed" identifier="showRequestTableViewController" id="QfH-f7-eb3"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcU-Ln-llf">
-                                                <rect key="frame" x="0.0" y="401" width="375" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="6u8-lM-EWQ"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="ial-XT-UUu" kind="embed" identifier="showRemainingDaysViewController" id="6au-nP-aQ3"/>
-                                                </connections>
-                                            </containerView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="zcU-Ln-llf" firstAttribute="centerX" secondItem="IhI-CR-CNN" secondAttribute="centerX" id="5MP-1i-3Ym"/>
-                                            <constraint firstAttribute="bottom" secondItem="zcU-Ln-llf" secondAttribute="bottom" constant="56" id="EfC-qc-aGc"/>
-                                            <constraint firstItem="zcU-Ln-llf" firstAttribute="leading" secondItem="IhI-CR-CNN" secondAttribute="leading" id="La5-nH-P93"/>
-                                            <constraint firstItem="zcU-Ln-llf" firstAttribute="top" secondItem="IhI-CR-CNN" secondAttribute="bottom" constant="1" id="NNM-RR-HFC"/>
-                                            <constraint firstItem="IhI-CR-CNN" firstAttribute="top" secondItem="mbA-zw-bHL" secondAttribute="top" id="VRz-UT-pLu"/>
-                                            <constraint firstItem="IhI-CR-CNN" firstAttribute="centerX" secondItem="mbA-zw-bHL" secondAttribute="centerX" id="c2f-PT-saE"/>
-                                            <constraint firstItem="IhI-CR-CNN" firstAttribute="leading" secondItem="mbA-zw-bHL" secondAttribute="leading" id="vCo-4y-qM3"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="mbA-zw-bHL" secondAttribute="trailing" id="8Ko-OB-QA0"/>
-                                    <constraint firstAttribute="bottom" secondItem="mbA-zw-bHL" secondAttribute="bottom" id="9hu-SH-Y32"/>
-                                    <constraint firstItem="mbA-zw-bHL" firstAttribute="top" secondItem="eoN-iG-M4O" secondAttribute="top" id="DzV-KJ-UMZ"/>
-                                    <constraint firstItem="mbA-zw-bHL" firstAttribute="leading" secondItem="eoN-iG-M4O" secondAttribute="leading" id="w9l-WN-X0R"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.19910302429999999" blue="0.225036499" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="eoN-iG-M4O" firstAttribute="centerX" secondItem="kLj-WZ-GVq" secondAttribute="centerX" id="0xj-ML-Z2l"/>
-                            <constraint firstItem="eoN-iG-M4O" firstAttribute="centerY" secondItem="kLj-WZ-GVq" secondAttribute="centerY" id="6xY-Uc-3sV"/>
-                            <constraint firstItem="kLj-WZ-GVq" firstAttribute="top" secondItem="eoN-iG-M4O" secondAttribute="top" id="Eln-dT-IHh"/>
-                            <constraint firstItem="kLj-WZ-GVq" firstAttribute="leading" secondItem="eoN-iG-M4O" secondAttribute="leading" id="RCc-96-jR4"/>
-                            <constraint firstItem="mbA-zw-bHL" firstAttribute="height" secondItem="EdC-cI-mcM" secondAttribute="height" priority="750" id="Zed-pb-qjb"/>
-                            <constraint firstItem="mbA-zw-bHL" firstAttribute="width" secondItem="EdC-cI-mcM" secondAttribute="width" id="ZwO-ab-PQX"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="kLj-WZ-GVq"/>
-                    </view>
-                    <connections>
-                        <outlet property="scrollView" destination="eoN-iG-M4O" id="DJ4-LY-9MQ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dzw-jH-nlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="LeaveRequest" id="IPM-sP-uJ8" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zXC-DS-Qq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4948" y="-2816.0098522167491"/>
+            <point key="canvasLocation" x="4774" y="-1677"/>
         </scene>
-        <!--Sick Request-->
-        <scene sceneID="jDW-cf-IXH">
+        <!--Sick-->
+        <scene sceneID="gPM-RV-cKe">
             <objects>
-                <viewController title="Sick Request" id="ls5-ks-Jea" customClass="SickRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kuB-Sp-uuM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ta-d2-kTx">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="641"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-NP-oih">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
-                                        <subviews>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="up4-af-bJe">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="RUB-OA-36N"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="Ceh-qy-fIu" kind="embed" identifier="showRequestTableViewController" id="Lvn-Wy-FFG"/>
-                                                </connections>
-                                            </containerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOu-PI-Nzp">
-                                                <rect key="frame" x="0.0" y="400" width="375" height="1"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="lsE-8y-vg2"/>
-                                                </constraints>
-                                            </view>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXP-05-UGz">
-                                                <rect key="frame" x="0.0" y="416" width="375" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="4M3-ho-0p8"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="ial-XT-UUu" kind="embed" identifier="showRemainingDaysViewController" id="BAr-qZ-zT1"/>
-                                                </connections>
-                                            </containerView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="up4-af-bJe" firstAttribute="leading" secondItem="FpC-NP-oih" secondAttribute="leading" id="2xu-ak-TCL"/>
-                                            <constraint firstAttribute="trailing" secondItem="fOu-PI-Nzp" secondAttribute="trailing" id="8oA-Y5-0gW"/>
-                                            <constraint firstAttribute="bottom" secondItem="aXP-05-UGz" secondAttribute="bottom" constant="56" id="B1A-LF-4PJ"/>
-                                            <constraint firstItem="aXP-05-UGz" firstAttribute="leading" secondItem="up4-af-bJe" secondAttribute="leading" id="Kky-RU-9uJ"/>
-                                            <constraint firstItem="up4-af-bJe" firstAttribute="centerX" secondItem="FpC-NP-oih" secondAttribute="centerX" id="NtV-hF-JSz"/>
-                                            <constraint firstItem="aXP-05-UGz" firstAttribute="centerX" secondItem="up4-af-bJe" secondAttribute="centerX" id="ZEW-G6-pGt"/>
-                                            <constraint firstItem="fOu-PI-Nzp" firstAttribute="top" secondItem="up4-af-bJe" secondAttribute="bottom" id="mLm-CH-zK5"/>
-                                            <constraint firstItem="aXP-05-UGz" firstAttribute="top" secondItem="fOu-PI-Nzp" secondAttribute="bottom" constant="15" id="wFQ-ri-SX2"/>
-                                            <constraint firstItem="up4-af-bJe" firstAttribute="top" secondItem="FpC-NP-oih" secondAttribute="top" id="zE3-wJ-PGX"/>
-                                            <constraint firstItem="fOu-PI-Nzp" firstAttribute="leading" secondItem="FpC-NP-oih" secondAttribute="leading" id="zGy-v1-bLP"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="FpC-NP-oih" secondAttribute="trailing" id="9vQ-WB-lFQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="FpC-NP-oih" secondAttribute="bottom" id="FQM-e8-0VV"/>
-                                    <constraint firstItem="FpC-NP-oih" firstAttribute="leading" secondItem="1Ta-d2-kTx" secondAttribute="leading" id="HIG-ZY-h2Z"/>
-                                    <constraint firstItem="FpC-NP-oih" firstAttribute="top" secondItem="1Ta-d2-kTx" secondAttribute="top" id="pXG-3Z-Vp8"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="1Ta-d2-kTx" firstAttribute="centerY" secondItem="udw-Lg-t7W" secondAttribute="centerY" id="0uZ-5j-UbE"/>
-                            <constraint firstItem="1Ta-d2-kTx" firstAttribute="centerX" secondItem="udw-Lg-t7W" secondAttribute="centerX" id="AcG-V6-0yx"/>
-                            <constraint firstItem="1Ta-d2-kTx" firstAttribute="top" secondItem="udw-Lg-t7W" secondAttribute="top" id="PFa-bH-3sS"/>
-                            <constraint firstItem="FpC-NP-oih" firstAttribute="height" secondItem="kuB-Sp-uuM" secondAttribute="height" priority="750" id="Wx4-L2-bgT"/>
-                            <constraint firstItem="1Ta-d2-kTx" firstAttribute="leading" secondItem="udw-Lg-t7W" secondAttribute="leading" id="aAj-3s-kCS"/>
-                            <constraint firstItem="FpC-NP-oih" firstAttribute="width" secondItem="kuB-Sp-uuM" secondAttribute="width" id="tYR-TK-AcW"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="udw-Lg-t7W"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eit-YT-MNK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Sick" id="vXb-yr-Aai" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iO-T9-dgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4924" y="-1904"/>
+            <point key="canvasLocation" x="4753" y="-1544"/>
         </scene>
         <!--RemainingDays-->
         <scene sceneID="Vxw-XH-6SB">
@@ -415,7 +277,7 @@
                 <viewControllerPlaceholder storyboardName="RemainingDays" id="pWK-zL-GDT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8F-QV-dKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4924" y="-1402"/>
+            <point key="canvasLocation" x="4698" y="-1390"/>
         </scene>
         <!--Request Details View Controller-->
         <scene sceneID="q2q-HI-UbE">
@@ -494,22 +356,6 @@
             </objects>
             <point key="canvasLocation" x="2641" y="-1402"/>
         </scene>
-        <!--Request-->
-        <scene sceneID="yZw-Xh-UGd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Request" id="Ceh-qy-fIu" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FxX-hZ-9TC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7291" y="-2181"/>
-        </scene>
-        <!--RemainingDays-->
-        <scene sceneID="W1a-zs-OlI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RemainingDays" id="ial-XT-UUu" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bnz-IT-AdJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6068" y="-2195"/>
-        </scene>
         <!--Bonus-->
         <scene sceneID="9Lo-K0-eFV">
             <objects>
@@ -523,8 +369,6 @@
         <image name="calendar" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6au-nP-aQ3"/>
-        <segue reference="QfH-f7-eb3"/>
         <segue reference="TXB-yP-tc9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

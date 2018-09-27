@@ -101,12 +101,11 @@ class BonusRequestViewController: BaseViewController {
                         return
                     }
                     if success {
-                        guard let request = requestResponse.item else {
-                            self.stopActivityIndicatorSpinner()
-                            return
-                        }
-                       // self.requestUpdateDelegate?.didAdd(request: request)
+                        ViewUtility.showAlertWithAction(title: "Success", message: "You have successfuly added bonus request",
+                                                        viewController: self, completion: { _ in
+                        })
                         self.navigationController?.popViewController(animated: true)
+                        self.stopActivityIndicatorSpinner()
                         self.stopActivityIndicatorSpinner()
                     } else {
                         ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
@@ -162,4 +161,3 @@ extension BonusRequestViewController: UIScrollViewDelegate {
         self.view.endEditing(true)
     }
 }
-

@@ -159,12 +159,16 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HistoryViewController: SearchDialogProtocol {
-
-    func didFilter(year: String) {
+    func didFilterBy(year: String, leave: Bool, sick: Bool, bonus: Bool) {
         guard let yearNo = Int(year) else {
             return
         }
-        filteredRequests = requests.filter { inSelectedYear(year: yearNo, days: $0.days ?? []) }
+        filteredRequests = requests.filter { inSelectedYear(year: yearNo, days: $0.days ?? []) &&
+                                             (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
+                                              $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
+                                                sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
+                                                 bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+        }
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
             self.tableView.reloadData()
