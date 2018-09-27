@@ -76,7 +76,8 @@ class SearchRequestsViewController: UIViewController {
     
     @IBAction func searchClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.didFilterBy(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]), leave: leaveToogle.isOn, sick: sickToggle.isOn, bonus: bonusToggle.isOn)
+        delegate?.didFilterBy(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]),
+                              leave: leaveToogle.isOn, sick: sickToggle.isOn, bonus: bonusToggle.isOn)
     }
     
 }

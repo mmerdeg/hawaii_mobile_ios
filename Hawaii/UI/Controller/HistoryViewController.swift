@@ -191,7 +191,7 @@ extension HistoryViewController: SearchDialogProtocol {
                         $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
                         sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
                         bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
-                    } ?? []
+                } ?? []
                 self.filteredRequests = self.requests
                 DispatchQueue.main.async {
                     self.customView.removeFromSuperview()
@@ -205,8 +205,7 @@ extension HistoryViewController: SearchDialogProtocol {
                 })
             }
         }
-        
-        
+    
     }
     
     func dismissDialog() {
