@@ -24,12 +24,13 @@ class SearchRequestsViewController: UIViewController {
     @IBOutlet weak var sickToggle: UISwitch!
     @IBOutlet weak var leaveToogle: UISwitch!
     @IBOutlet weak var clickableView: UIView!
-    
     @IBOutlet weak var yearPicker: UIPickerView!
-    
     @IBOutlet weak var yearLabel: UILabel!
-    
     @IBOutlet weak var backgroundView: UIView!
+    
+    var leaveParameter = true
+    var sickParameter = true
+    var bonusParameter = true
     
     weak var delegate: SearchDialogProtocol?
     
@@ -37,7 +38,9 @@ class SearchRequestsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bonusToggle.isOn = bonusParameter
+        leaveToogle.isOn = leaveParameter
+        sickToggle.isOn = sickParameter
         yearPicker.dataSource = self
         yearPicker.delegate = self
         

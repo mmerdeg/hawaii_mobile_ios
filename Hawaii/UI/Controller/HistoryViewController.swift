@@ -24,6 +24,12 @@ class HistoryViewController: BaseViewController {
     
     var filteredRequests: [Request] = []
     
+    var leaveParameter = true
+    
+    var sickParameter = true
+    
+    var bonusParameter = true
+    
     lazy var searchItem: UIBarButtonItem = {
         
         var buttonImage = UIImage(named: "filter")
@@ -95,6 +101,9 @@ class HistoryViewController: BaseViewController {
                 return
             }
             controller.delegate = self
+            controller.leaveParameter = leaveParameter
+            controller.sickParameter = sickParameter
+            controller.bonusParameter = bonusParameter
         }
     }
     
@@ -163,17 +172,41 @@ extension HistoryViewController: SearchDialogProtocol {
         guard let yearNo = Int(year) else {
             return
         }
-        filteredRequests = requests.filter { inSelectedYear(year: yearNo, days: $0.days ?? []) &&
-                                             (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
-                                              $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
-                                                sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
-                                                 bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+        leaveParameter = leave
+        sickParameter = sick
+        bonusParameter = bonus
+        let startDate = "01-01-\(year)"
+        let endDate = "31-12-\(year)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        requestUseCase.getAllByDate(from: dateFormatter.date(from: startDate) ?? Date(),
+                                    toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
+            guard let success = response.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if success {
+                self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
+                    (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
+                        $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
+                        sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
+                        bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+                    } ?? []
+                self.filteredRequests = self.requests
+                DispatchQueue.main.async {
+                    self.customView.removeFromSuperview()
+                    self.tableView.reloadData()
+                    self.segmentedControl.selectedSegmentIndex = 0
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
         }
-        DispatchQueue.main.async {
-            self.customView.removeFromSuperview()
-            self.tableView.reloadData()
-            self.segmentedControl.selectedSegmentIndex = 0
-        }
+        
+        
     }
     
     func dismissDialog() {

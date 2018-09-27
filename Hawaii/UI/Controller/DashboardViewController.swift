@@ -299,9 +299,6 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-//        guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
-//            return
-//        }
     }
     
     func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
