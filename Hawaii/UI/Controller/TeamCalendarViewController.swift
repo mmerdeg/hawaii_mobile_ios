@@ -151,7 +151,7 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handleResponse(requestResponse: GenericResponseSingle<[Request]>?) {
+    func handleResponse(requestResponse: GenericResponse<[Request]>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return
@@ -290,7 +290,8 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                 }
                 for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
                     item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected {
+                    item.requestStatus != RequestStatus.rejected &&
+                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
                     let tempRequest = Request(request: item, days: [day])
                     requests.append(tempRequest)
                 }
@@ -314,7 +315,8 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                 }
                 for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
                     item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected {
+                    item.requestStatus != RequestStatus.rejected &&
+                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
                     let tempRequest = Request(request: item, days: [day])
                     requests.append(tempRequest)
                 }

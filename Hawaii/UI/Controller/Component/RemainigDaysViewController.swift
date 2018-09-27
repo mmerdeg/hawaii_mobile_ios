@@ -38,7 +38,14 @@ class RemainigDaysViewController: BaseViewController {
     
     @IBOutlet weak var totalDayNoLabel: UILabel!
     
-    var mainLabelText: String?
+    @IBOutlet weak var approvedBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var pendingBarWidth: NSLayoutConstraint!
+    @IBOutlet weak var sicknessBarWidth: NSLayoutConstraint!
+    var mainLabelText: String? {
+        didSet {
+            getData()
+        }
+    }
     
     var userUseCase: UserUseCaseProtocol?
     
@@ -47,8 +54,32 @@ class RemainigDaysViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startActivityIndicatorSpinner()
+        
+        mainLabel.text = mainLabelText ?? ""
+        mainLabel.textColor = UIColor.primaryTextColor
+        remainingLabel.textColor = UIColor.primaryTextColor
+        remainingDayNoLabel.textColor = UIColor.primaryTextColor
+        remainingDaysLabel.textColor = UIColor.primaryTextColor
+        
+        takenLabel.textColor = UIColor.primaryTextColor
+        takenDayNoLabel.textColor = UIColor.approvedColor
+        takenDaysLabel.textColor = UIColor.primaryTextColor
+        pendingLabel.textColor = UIColor.primaryTextColor
+        pendingDayNoLabel.textColor = UIColor.primaryTextColor
+        totalDayNoLabel.textColor = UIColor.black
+        totalDayNoLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+        
+        progressBar.backgroundColor = UIColor.remainingColor
+        progressBar.layer.cornerRadius = 15
+        
+        approvedBar.backgroundColor = UIColor.approvedColor
+        pendingBar.backgroundColor = UIColor.pendingColor
+        sicknessBar.backgroundColor = UIColor.rejectedColor
+        
+    }
+
+    func getData() {
         userUseCase?.getUser(completion: { response in
-            
             guard let success = response?.success else {
                 self.stopActivityIndicatorSpinner()
                 return
@@ -81,7 +112,9 @@ class RemainigDaysViewController: BaseViewController {
                     taken = Double(takenTraining)
                     pending = Double(trainingPending)
                 default:
-                    print("")
+                    total = Double(annual + carriedOver + bonus + manualAdjust)
+                    taken = Double(takenAnnual)
+                    pending = Double(pendingAnnual)
                 }
                 
                 let totalDays = total / workHours
@@ -106,9 +139,10 @@ class RemainigDaysViewController: BaseViewController {
                 approvedBarLen = CGFloat(takenAnnualDays / totalDays) * barWidth
                 pendindgBarLen = CGFloat((takenAnnualDays + pendingDays) / totalDays) * barWidth
                 sickBarLen = 0
-                self.approvedBar.widthAnchor.constraint(equalToConstant: approvedBarLen).isActive = true
-                self.pendingBar.widthAnchor.constraint(equalToConstant: pendindgBarLen).isActive = true
-                self.sicknessBar.widthAnchor.constraint(equalToConstant: sickBarLen).isActive = true
+            
+                self.approvedBarWidth.constant = approvedBarLen
+                self.pendingBarWidth.constant = pendindgBarLen
+                self.sicknessBarWidth.constant = sickBarLen
                 
                 self.stopActivityIndicatorSpinner()
             } else {
@@ -118,28 +152,5 @@ class RemainigDaysViewController: BaseViewController {
             }
             
         })
-        
-        mainLabel.text = mainLabelText ?? ""
-        mainLabel.textColor = UIColor.primaryTextColor
-        remainingLabel.textColor = UIColor.primaryTextColor
-        remainingDayNoLabel.textColor = UIColor.primaryTextColor
-        remainingDaysLabel.textColor = UIColor.primaryTextColor
-        
-        takenLabel.textColor = UIColor.primaryTextColor
-        takenDayNoLabel.textColor = UIColor.approvedColor
-        takenDaysLabel.textColor = UIColor.primaryTextColor
-        pendingLabel.textColor = UIColor.primaryTextColor
-        pendingDayNoLabel.textColor = UIColor.primaryTextColor
-        totalDayNoLabel.textColor = UIColor.black
-        totalDayNoLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
-        
-        progressBar.backgroundColor = UIColor.remainingColor
-        progressBar.layer.cornerRadius = 15
-        
-        approvedBar.backgroundColor = UIColor.approvedColor
-        pendingBar.backgroundColor = UIColor.pendingColor
-        sicknessBar.backgroundColor = UIColor.rejectedColor
-        
     }
-
 }

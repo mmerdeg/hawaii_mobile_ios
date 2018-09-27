@@ -46,11 +46,11 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
-    func getUser(completion: @escaping (GenericResponseSingle<User>?) -> Void) {
+    func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
             return
         }
-        genericRequest(url, headers: getHeaders()) { response in
+        genericRequest(value: User.self, url, headers: getHeaders()) { response in
             completion(response)
         }
     }

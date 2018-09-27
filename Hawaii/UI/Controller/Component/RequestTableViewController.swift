@@ -17,7 +17,7 @@ class RequestTableViewController: BaseViewController {
     
     var items: [CellData] = []
     
-    var leaveTypeData: [String: [Absence]]?
+    var typeData: [String: [Absence]]?
     
     var requestType: AbsenceType?
     
@@ -26,7 +26,13 @@ class RequestTableViewController: BaseViewController {
     //var selectedTypeIndex = 0
     
     var selectedDuration = ""
-    var selectedAbsence: Absence?
+    var selectedAbsence: Absence? {
+        didSet {
+            if let selectedAbsence = selectedAbsence {
+                delegate?.didSelect(absence: selectedAbsence)
+            }
+        }
+    }
     
     var startDate: Date?
     
@@ -35,6 +41,8 @@ class RequestTableViewController: BaseViewController {
     var dateItems: [ExpandableData] = []
     
     var isMultipleDaysSelected = false
+    
+    weak var delegate: SelectAbsenceProtocol?
     
     let showDatePickerSegue = "showDatePicker"
     
@@ -48,26 +56,50 @@ class RequestTableViewController: BaseViewController {
         tableView.delegate = self
         tableView.backgroundColor = UIColor.primaryColor
         endDate = startDate
+        tableView.register(UINib(nibName: String(describing: InputTableViewCell.self), bundle: nil),
+                           forCellReuseIdentifier: String(describing: InputTableViewCell.self))
         guard let requestType = requestType else {
             return
         }
         
         if requestType == .deducted {
-            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, absence in
+            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, response in
+                guard let success = response.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                        self.dateItems = items
+                        self.setItems(data: data)
+                        self.typeData = leaveTypeData
+                        self.selectedAbsence = response.item?.first
+                        
+                        self.stopActivityIndicatorSpinner()
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
+            
+            })
+        } else if requestType == .sick {
+            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, response  in
                 self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
                     self.dateItems = items
                     self.setItems(data: data)
-                    self.leaveTypeData = leaveTypeData
-                    self.selectedAbsence = absence
+                    self.typeData = sicknessTypeData
+                    self.selectedAbsence = response.item?.first
                 })
             })
         } else {
-            tableDataProviderUseCase?.getSicknessData(completion: { data, leaveTypeData, absence  in
+            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, response   in
                 self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
                     self.dateItems = items
                     self.setItems(data: data)
-                    self.leaveTypeData = leaveTypeData
-                    self.selectedAbsence = absence
+                    self.typeData = bonusTypeData
+                    self.selectedAbsence = response.item?.first
                 })
             })
         }
@@ -102,7 +134,7 @@ class RequestTableViewController: BaseViewController {
             } else {
                 controller.title = "Type of sickness"
             }
-            controller.items = leaveTypeData
+            controller.items = typeData
             controller.delegate = self
         } else if segue.identifier == showDatePickerSegue {
             guard let controller = segue.destination as? CustomDatePickerTableViewController,
@@ -126,10 +158,17 @@ class RequestTableViewController: BaseViewController {
 
 extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        if section == 0 {
+            return dateItems.count
+        } else if section == 1 {
+            return items.count
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath)
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.selectionStyle = .none
@@ -140,9 +179,16 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             formatter.dateFormat = Constants.dateFormat
             cell.textLabel?.text = dateItems[indexPath.row].title
             cell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
-        } else {
+        } else if indexPath.section == 1 {
             cell.textLabel?.text = self.items[indexPath.row].title
             cell.detailTextLabel?.text = self.items[indexPath.row].description
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InputTableViewCell.self), for: indexPath)
+                as? InputTableViewCell else {
+                    return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            }
+            cell.backgroundColor = UIColor.transparentColor
+            return cell
         }
         return cell
     }
@@ -152,7 +198,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             self.performSegue(withIdentifier: showDatePickerSegue,
                               sender: (indexPath.row == 1 ? true : false, startDate, endDate))
         } else {
-            if indexPath.row == 0 {
+            if indexPath.row == 0 && items.count == 2 {
                 self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
             } else {
                 if isMultipleDaysSelected {
@@ -169,7 +215,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 }
 
@@ -177,7 +223,11 @@ extension RequestTableViewController: SelectRequestParamProtocol {
     
     func didSelect(requestParam: String, requestParamType: String, index: Int) {
         selectedDuration = requestParam
-        tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = requestParam
+        if items.count == 2 {
+            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = requestParam
+        } else {
+            tableView.cellForRow(at: IndexPath(row: 0, section: 1))?.detailTextLabel?.text = requestParam
+        }
     }
 }
 extension RequestTableViewController: SelectAbsenceProtocol {

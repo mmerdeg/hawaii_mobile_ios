@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol PublicHolidayRepositoryProtocol: GenericResponseProtocol {
-    func getHolidays(completion: @escaping (GenericResponseSingle<[PublicHoliday]>?) -> Void)
+protocol PublicHolidayRepositoryProtocol: GenericRepositoryProtocol {
+    func getHolidays(completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void)
 }

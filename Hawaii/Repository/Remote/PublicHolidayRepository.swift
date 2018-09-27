@@ -16,14 +16,14 @@ class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
-    func getHolidays(completion: @escaping (GenericResponseSingle<[PublicHoliday]>?) -> Void) {
+    func getHolidays(completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void) {
         guard let url = URL(string: Constants.publicHolidays) else {
             return
         }
         
         let params = ["active": true]
         
-        genericRequest(url, parameters: params, headers: getHeaders()) { response in
+        genericRequest(value: [PublicHoliday].self, url, parameters: params, headers: getHeaders()) { response in
             completion(response)
         }
     }

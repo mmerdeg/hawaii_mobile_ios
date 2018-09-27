@@ -10,22 +10,23 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class SignInApi: SignInApiProtocol {
+class SignInApi: SignInApiProtocol, GenericRepositoryProtocol {
     
-    func signIn(accessToken: String, completion: @escaping (GenericResponseSingle<String>) -> Void) {
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<String>) -> Void) {
         guard let url = URL(string: Constants.signin) else {
             return
         }
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
-        Alamofire.request(url, headers: headers).validate().response { response in
+        Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
-                completion(GenericResponseSingle<String>(success: false, item: "",
-                                                         error: response.error,
-                                                         message: response.error?.localizedDescription))
+                completion(GenericResponse<String>(success: false, item: "", statusCode: response.response?.statusCode,
+                                                   error: response.error,
+                                                   message: response.error?.localizedDescription))
                 return
             }
-            completion(GenericResponseSingle<String>(success: true, item: token, error: nil, message: nil))
+            completion(GenericResponse<String>(success: true, item: token, statusCode: response.response?.statusCode, error: nil, message: nil))
         }
+        
     }
     
 }

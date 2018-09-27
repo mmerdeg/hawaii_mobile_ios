@@ -119,6 +119,13 @@ class DashboardViewController: BaseViewController {
             }
             controller.selectedDate = date
             controller.requestUpdateDelegate = self
+        } else if segue.identifier == showBonusRequestSegue {
+            guard let controller = segue.destination as? BonusRequestViewController,
+                  let date = sender as? Date else {
+                    return
+            }
+            controller.selectedDate = date
+            controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,
                 let requests = sender as? [Request] else {
@@ -265,7 +272,8 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
                 }
                 for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
                     item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected {
+                    item.requestStatus != RequestStatus.rejected &&
+                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
                         let tempRequest = Request(request: item, days: [day])
                         requests.append(tempRequest)
                 }

@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SignInApiProtocol: GenericResponseProtocol {
-    func signIn(accessToken: String, completion: @escaping (GenericResponseSingle<String>) -> Void)
+protocol SignInApiProtocol: GenericRepositoryProtocol {
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<String>) -> Void)
 }

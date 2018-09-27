@@ -10,9 +10,11 @@ import Foundation
 
 protocol TableDataProviderUseCaseProtocol {
     
-    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void)
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void)
     
-    func getSicknessData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void)
+    func getSicknessData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void)
+    
+    func getBonusData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void)
     
     func getLeaveTypeData(completion: @escaping ([String: [Absence]]) -> Void)
     
@@ -33,9 +35,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
         self.tableDataProviderRepository = tableDataProviderRepository
     }
 
-    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void) {
-        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData, absence in
-            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), absence)
+    func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
+        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData, response in
+            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), response)
         })
     }
     
@@ -45,9 +47,15 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
         })
     }
     
-    func getSicknessData(completion: @escaping ([CellData], [String: [Absence]], Absence) -> Void) {
-        tableDataProviderRepository?.getSicknessData(completion: { data, leaveTypeData, absence in
-            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), absence)
+    func getSicknessData(completion: @escaping ([CellData], [String : [Absence]], GenericResponse<[Absence]>) -> Void) {
+        tableDataProviderRepository?.getSicknessData(completion: { data, leaveTypeData, response in
+            completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), response)
+        })
+    }
+    
+    func getBonusData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
+        tableDataProviderRepository?.getBonusData(completion: { data, bonusTypeData, response  in
+            completion(data, Dictionary(grouping: bonusTypeData, by: { $0.absenceType ?? "" }), response)
         })
     }
     

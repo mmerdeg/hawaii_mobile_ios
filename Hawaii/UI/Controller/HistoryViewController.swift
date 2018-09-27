@@ -45,8 +45,8 @@ class HistoryViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil),
+                           forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
         customView.frame = self.view.frame

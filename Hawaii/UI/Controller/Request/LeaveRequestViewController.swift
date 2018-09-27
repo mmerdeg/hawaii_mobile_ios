@@ -16,6 +16,7 @@ class LeaveRequestViewController: BaseViewController {
     
     let showRemainingDaysViewController = "showRemainingDaysViewController"
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pickerHeight: NSLayoutConstraint!
     
     weak var requestUpdateDelegate: RequestUpdateProtocol?
@@ -39,6 +40,7 @@ class LeaveRequestViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = addLeveRequestItem
+        self.scrollView.delegate = self
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +53,7 @@ class LeaveRequestViewController: BaseViewController {
             guard let requestTableViewController = self.requestTableViewController else {
                 return
             }
+            requestTableViewController.delegate = self
             requestTableViewController.requestType = .deducted
             addChildViewController(controller)
         } else if segue.identifier == showRemainingDaysViewController {
@@ -69,11 +72,19 @@ class LeaveRequestViewController: BaseViewController {
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
-              let requestUseCase = requestUseCase else {
+              let requestUseCase = requestUseCase,
+              let cell = requestTableViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? InputTableViewCell,
+              let cellText = cell.inputReasonTextView.text else {
                 return
         }
         if startDate > endDate {
             ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            }
+            return
+        }
+        if cellText == "" || cellText == "Enter reason for leave" {
+            ViewUtility.showAlertWithAction(title: "Error", message: "Reason filed is required", viewController: self) { _ in
+                cell.inputReasonTextView.becomeFirstResponder()
             }
             return
         }
@@ -111,17 +122,20 @@ class LeaveRequestViewController: BaseViewController {
                     return
             }
             if success {
-                let request = Request(approverId: nil, days: days, reason: "string",
+                let request = Request(approverId: nil, days: days, reason: cellText,
                                       requestStatus: RequestStatus.pending,
                                       absence: requestTableViewController.selectedAbsence, user: response?.item)
                 requestUseCase.add(request: request) { requestResponse in
                     
-                    guard let success = requestResponse.success,
-                          let request = requestResponse.item else {
+                    guard let success = requestResponse.success else {
                         self.stopActivityIndicatorSpinner()
                         return
                     }
                     if success {
+                        guard let request = requestResponse.item else {
+                            self.stopActivityIndicatorSpinner()
+                            return
+                        }
                         self.requestUpdateDelegate?.didAdd(request: request)
                         self.navigationController?.popViewController(animated: true)
                         self.stopActivityIndicatorSpinner()
@@ -165,4 +179,20 @@ class LeaveRequestViewController: BaseViewController {
         return dates
     }
 
+}
+
+extension LeaveRequestViewController: SelectAbsenceProtocol {
+    func didSelect(absence: Absence) {
+        if absence.absenceSubtype == "TRAINING" {
+            remainingDaysViewController?.mainLabelText = "Training"
+        } else {
+            remainingDaysViewController?.mainLabelText = "Leave"
+        }
+    }
+}
+
+extension LeaveRequestViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
+    }
 }

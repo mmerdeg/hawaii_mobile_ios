@@ -19,10 +19,6 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var nextButton: UIButton!
-    
-    @IBOutlet weak var previousButton: UIButton!
-    
     weak var delegate: DatePickerProtocol?
     
     var requestUseCase: RequestUseCaseProtocol?
@@ -44,8 +40,6 @@ class CustomDatePickerTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.textColor = UIColor.primaryTextColor
-        nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
-        previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
         collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
@@ -106,12 +100,6 @@ class CustomDatePickerTableViewController: BaseViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func nextMonthPressed(_ sender: Any) {
-        collectionView.scrollToSegment(.next, triggerScrollToDateDelegate: true,
-                                       animateScroll: true, extraAddedOffset: 0.0)
-        collectionView.reloadData()
-    }
-    
     @IBAction func acceptClicked(_ sender: Any) {
         selectDates()
         delegate?.selectedDate(startDate: startDate, endDate: endDate,
@@ -119,10 +107,6 @@ class CustomDatePickerTableViewController: BaseViewController {
                                                                                                     to: endDate ?? Date(),
                                                                                                     toGranularity: .day) != .orderedSame)
         self.dismiss(animated: true, completion: nil)
-    }
-    @IBAction func previousMonthPressed(_ sender: Any) {
-        collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
-                                       animateScroll: true, extraAddedOffset: 0.0)
     }
 }
 
