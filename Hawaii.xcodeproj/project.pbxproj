@@ -203,6 +203,12 @@
 		3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
 		3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */; };
 		3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35510321217BC400B43B57 /* ApproveViewController.swift */; };
+		3E35CA95215E148E0042E65A /* UserDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA94215E148E0042E65A /* UserDb.swift */; };
+		3E35CA96215E148E0042E65A /* UserDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA94215E148E0042E65A /* UserDb.swift */; };
+		3E35CA9C215E14E70042E65A /* UserDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA9B215E14E70042E65A /* UserDaoProtocol.swift */; };
+		3E35CA9D215E14E70042E65A /* UserDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA9B215E14E70042E65A /* UserDaoProtocol.swift */; };
+		3E35CAA0215E15150042E65A /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA9F215E15150042E65A /* UserDao.swift */; };
+		3E35CAA1215E15150042E65A /* UserDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA9F215E15150042E65A /* UserDao.swift */; };
 		3E42591C20E2454600F22BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
 		3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592120E259C800F22BBD /* RequestUseCase.swift */; };
 		3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */; };
@@ -405,6 +411,9 @@
 		3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalTableViewCell.swift; sourceTree = "<group>"; };
 		3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestApprovalTableViewCell.xib; sourceTree = "<group>"; };
 		3E35510321217BC400B43B57 /* ApproveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApproveViewController.swift; sourceTree = "<group>"; };
+		3E35CA94215E148E0042E65A /* UserDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDb.swift; sourceTree = "<group>"; };
+		3E35CA9B215E14E70042E65A /* UserDaoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDaoProtocol.swift; sourceTree = "<group>"; };
+		3E35CA9F215E15150042E65A /* UserDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDao.swift; sourceTree = "<group>"; };
 		3E42591B20E2454600F22BBD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		3E42592120E259C800F22BBD /* RequestUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUseCase.swift; sourceTree = "<group>"; };
 		3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -682,6 +691,22 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		3E35CA9A215E14C60042E65A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3E35CA9B215E14E70042E65A /* UserDaoProtocol.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		3E35CA9E215E15060042E65A /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				3E35CA9F215E15150042E65A /* UserDao.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		3E42591A20E2452500F22BBD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +724,7 @@
 				3042CA8821536EF6002446FE /* Page.swift */,
 				303C44292154C746003F16CC /* GenericResponse.swift */,
 				303C44322154F022003F16CC /* UsersResponse.swift */,
+				3E35CA94215E148E0042E65A /* UserDb.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -715,6 +741,7 @@
 		3E42592020E259AC00F22BBD /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3E35CA9A215E14C60042E65A /* User */,
 				30741344214274FF00F05427 /* Public holiday */,
 				3074131C2139302300F05427 /* SignIn */,
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
@@ -812,6 +839,7 @@
 		3E834B6A2100AEBB0038BC96 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				3E35CA9E215E15060042E65A /* DataBase */,
 				3E15C45F20E64C1000DB2CF7 /* UI */,
 				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
 			);
@@ -1327,6 +1355,7 @@
 				30FD3685214A5E530047038C /* HistoryViewController.swift in Sources */,
 				30FD3686214A5E530047038C /* PublicHolidayTableViewCell.swift in Sources */,
 				30FD3688214A5E530047038C /* PublicHoliday.swift in Sources */,
+				3E35CA9D215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
@@ -1374,10 +1403,12 @@
 				30FD36B2214A5E530047038C /* ViewUtility.swift in Sources */,
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
+				3E35CAA1215E15150042E65A /* UserDao.swift in Sources */,
 				30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */,
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
+				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
@@ -1414,6 +1445,7 @@
 				307413572142809B00F05427 /* PublicHolidayTableViewCell.swift in Sources */,
 				3074134A2142756100F05427 /* PublicHoliday.swift in Sources */,
 				3E3551012121797E00B43B57 /* RequestApprovalTableViewCell.swift in Sources */,
+				3E35CA9C215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
@@ -1461,10 +1493,12 @@
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
 				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,
 				302EE1832135744D001355E9 /* CalendarType.swift in Sources */,
+				3E35CAA0215E15150042E65A /* UserDao.swift in Sources */,
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
 				302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
+				3E35CA95215E148E0042E65A /* UserDb.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
