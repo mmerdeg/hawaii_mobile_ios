@@ -19,7 +19,7 @@ class SignInApi: SignInApiProtocol, GenericRepositoryProtocol {
         let headers = HTTPHeaders.init(dictionaryLiteral: ("Authorization", accessToken))
         Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let token = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String else {
-                completion(GenericResponse<String>(success: false, item: "", statusCode: response.response?.statusCode,
+                completion(GenericResponse<String>(success: false, item: nil, statusCode: response.response?.statusCode,
                                                    error: response.error,
                                                    message: response.error?.localizedDescription))
                 return

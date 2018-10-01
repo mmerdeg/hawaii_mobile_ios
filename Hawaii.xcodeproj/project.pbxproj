@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FEB42E150B94A71508CDC03 /* Pods_Hawaii_production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */; };
 		3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
 		3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
 		30139323215CA90800F65B7F /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* Request.storyboard */; };
@@ -139,9 +140,6 @@
 		30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
 		30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */; };
 		30FD36CD214A5E530047038C /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */; };
-		30FD36CF214A5E530047038C /* libKingfisher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550E7211C5CCB00B43B57 /* libKingfisher.a */; };
-		30FD36D0214A5E530047038C /* libPocketSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550D5211C462D00B43B57 /* libPocketSVG.a */; };
-		30FD36D1214A5E530047038C /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */; };
 		30FD36D2214A5E530047038C /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
 		30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */; };
 		30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
@@ -164,6 +162,7 @@
 		30FD36E6214A5E530047038C /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
 		30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		30FD36EB214A5E530047038C /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
@@ -194,8 +193,6 @@
 		3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
 		3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */; };
 		3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
-		3E3550D6211C462D00B43B57 /* libPocketSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550D5211C462D00B43B57 /* libPocketSVG.a */; };
-		3E3550E8211C5CCB00B43B57 /* libKingfisher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3550E7211C5CCB00B43B57 /* libKingfisher.a */; };
 		3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
 		3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
 		3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */; };
@@ -236,7 +233,8 @@
 		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
 		3ED6ED8421300CCB001436FE /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
-		C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */; };
+		682DDCDE6AE8A763DE840C0E /* Pods_HawaiiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */; };
+		848C43317462A4E1A2DFBFBA /* Pods_Hawaii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,7 +322,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
+		070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.release.xcconfig"; sourceTree = "<group>"; };
+		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3013931C215CA88400F65B7F /* Bonus.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bonus.storyboard; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* Request.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
@@ -370,6 +369,8 @@
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
+		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
+		3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -377,7 +378,6 @@
 		3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ECFoundation.xcodeproj; path = "ec-foundation-ios/ECFoundation.xcodeproj"; sourceTree = "<group>"; };
 		3E15C44F20E62AD300DB2CF7 /* WhiteUIDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteUIDatePicker.swift; sourceTree = "<group>"; };
-		3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hawaii-Bridging-Header.h"; sourceTree = "<group>"; };
 		3E15C45920E6379200DB2CF7 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRequestParamsViewController.swift; sourceTree = "<group>"; };
 		3E15C45D20E645AC00DB2CF7 /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
@@ -449,8 +449,14 @@
 		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3ED6ED8321300CCB001436FE /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
-		CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
-		E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hawaii.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6E75A8E608CFAB8216A254E4 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
+		833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii_production.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC7C625CC9F3A3F6686D84F5 /* Pods-Hawaii production.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.release.xcconfig"; sourceTree = "<group>"; };
+		E192188DA1C740EBA3E792FB /* Pods-HawaiiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,10 +464,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30FD36CF214A5E530047038C /* libKingfisher.a in Frameworks */,
-				30FD36D0214A5E530047038C /* libPocketSVG.a in Frameworks */,
-				30FD36D1214A5E530047038C /* libPods-Hawaii.a in Frameworks */,
 				30FD36D2214A5E530047038C /* ECFoundationiOS.framework in Frameworks */,
+				0FEB42E150B94A71508CDC03 /* Pods_Hawaii_production.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,10 +473,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E3550E8211C5CCB00B43B57 /* libKingfisher.a in Frameworks */,
-				3E3550D6211C462D00B43B57 /* libPocketSVG.a in Frameworks */,
-				C03EFD3E3A7BCD2C59A58C9A /* libPods-Hawaii.a in Frameworks */,
 				302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */,
+				848C43317462A4E1A2DFBFBA /* Pods_Hawaii.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				682DDCDE6AE8A763DE840C0E /* Pods_HawaiiTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +490,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +502,10 @@
 			children = (
 				3E3550E7211C5CCB00B43B57 /* libKingfisher.a */,
 				3E3550D5211C462D00B43B57 /* libPocketSVG.a */,
-				E47C364EBB1FE0A427551F79 /* libPods-Hawaii.a */,
+				FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */,
+				833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */,
+				E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */,
+				914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -888,7 +895,6 @@
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
 				3EB5644420CA69EA00501CAC /* Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
-				3E15C45220E6309D00DB2CF7 /* Hawaii-Bridging-Header.h */,
 			);
 			path = Hawaii;
 			sourceTree = "<group>";
@@ -975,8 +981,14 @@
 		F28D0C5FDB4E4C6C7D92927D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */,
-				CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */,
+				3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */,
+				6E75A8E608CFAB8216A254E4 /* Pods-Hawaii.release.xcconfig */,
+				36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */,
+				BC7C625CC9F3A3F6686D84F5 /* Pods-Hawaii production.release.xcconfig */,
+				E192188DA1C740EBA3E792FB /* Pods-HawaiiTests.debug.xcconfig */,
+				070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */,
+				5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */,
+				1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -988,13 +1000,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30FD36EC214A5E530047038C /* Build configuration list for PBXNativeTarget "Hawaii production" */;
 			buildPhases = (
-				30FD367D214A5E530047038C /* [CP] Check Pods Manifest.lock */,
+				CD40DF7C38DB3F4BE29030A9 /* [CP] Check Pods Manifest.lock */,
 				30FD367E214A5E530047038C /* Sources */,
 				30FD36CE214A5E530047038C /* Frameworks */,
 				30FD36D3214A5E530047038C /* Resources */,
-				30FD36E8214A5E530047038C /* [CP] Copy Pods Resources */,
 				30FD36E9214A5E530047038C /* ShellScript */,
 				30FD36EA214A5E530047038C /* Embed Frameworks */,
+				5DEAF544C4FE7C02D1F33015 /* [CP] Embed Pods Frameworks */,
+				872AA06CA4560ECF1E7CC76C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1014,9 +1027,10 @@
 				3EB5643120CA69E900501CAC /* Sources */,
 				3EB5643220CA69E900501CAC /* Frameworks */,
 				3EB5643320CA69E900501CAC /* Resources */,
-				4C445ED01E3050A9DEDF0FCD /* [CP] Copy Pods Resources */,
 				3E6AEFE920D3BD9B002E8F61 /* ShellScript */,
 				302EE1712133C93B001355E9 /* Embed Frameworks */,
+				F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */,
+				CA66B9DED7106AA4AFF2F018 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1032,6 +1046,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EB5646020CA69EA00501CAC /* Build configuration list for PBXNativeTarget "HawaiiTests" */;
 			buildPhases = (
+				A25E18A7044E1FF574BAB78F /* [CP] Check Pods Manifest.lock */,
 				3EB5644520CA69EA00501CAC /* Sources */,
 				3EB5644620CA69EA00501CAC /* Frameworks */,
 				3EB5644720CA69EA00501CAC /* Resources */,
@@ -1050,6 +1065,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EB5646320CA69EA00501CAC /* Build configuration list for PBXNativeTarget "HawaiiUITests" */;
 			buildPhases = (
+				6E81735A2D3EFE77933C2887 /* [CP] Check Pods Manifest.lock */,
 				3EB5645020CA69EA00501CAC /* Sources */,
 				3EB5645120CA69EA00501CAC /* Frameworks */,
 				3EB5645220CA69EA00501CAC /* Resources */,
@@ -1237,44 +1253,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		30FD367D214A5E530047038C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Hawaii-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		30FD36E8214A5E530047038C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh",
-				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		30FD36E9214A5E530047038C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1301,24 +1279,44 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
-		4C445ED01E3050A9DEDF0FCD /* [CP] Copy Pods Resources */ = {
+		5DEAF544C4FE7C02D1F33015 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh",
-				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		66E2FBBE5469451912BC5D73 /* [CP] Check Pods Manifest.lock */ = {
@@ -1337,6 +1335,136 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E81735A2D3EFE77933C2887 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HawaiiUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		872AA06CA4560ECF1E7CC76C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A25E18A7044E1FF574BAB78F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HawaiiTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA66B9DED7106AA4AFF2F018 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD40DF7C38DB3F4BE29030A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Hawaii production-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1585,7 +1713,7 @@
 /* Begin XCBuildConfiguration section */
 		30FD36ED214A5E530047038C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */;
+			baseConfigurationReference = 36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1604,13 +1732,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/CodableAlamofire/CodableAlamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/JTAppleCalendar/JTAppleCalendar.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Swinject/Swinject.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwinjectStoryboard/SwinjectStoryboard.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -DPRODUCTION";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DPRODUCTION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1618,7 +1747,7 @@
 		};
 		30FD36EE214A5E530047038C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */;
+			baseConfigurationReference = BC7C625CC9F3A3F6686D84F5 /* Pods-Hawaii production.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1637,12 +1766,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/CodableAlamofire/CodableAlamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/JTAppleCalendar/JTAppleCalendar.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Swinject/Swinject.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwinjectStoryboard/SwinjectStoryboard.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -DPRODUCTION";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DPRODUCTION";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1705,6 +1835,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 			};
 			name = Debug;
 		};
@@ -1758,13 +1889,14 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		3EB5645E20CA69EA00501CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFA88555D32877B415910D4 /* Pods-Hawaii.debug.xcconfig */;
+			baseConfigurationReference = 3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1783,13 +1915,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/CodableAlamofire/CodableAlamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/JTAppleCalendar/JTAppleCalendar.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Swinject/Swinject.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwinjectStoryboard/SwinjectStoryboard.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1797,7 +1930,7 @@
 		};
 		3EB5645F20CA69EA00501CAC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA5A8453019EA7B1115D2FB6 /* Pods-Hawaii.release.xcconfig */;
+			baseConfigurationReference = 6E75A8E608CFAB8216A254E4 /* Pods-Hawaii.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1816,12 +1949,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/CodableAlamofire/CodableAlamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/JTAppleCalendar/JTAppleCalendar.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Swinject/Swinject.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/SwinjectStoryboard/SwinjectStoryboard.modulemap\" $(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.execom.Hawaii;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Hawaii/Hawaii-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1829,6 +1963,7 @@
 		};
 		3EB5646120CA69EA00501CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E192188DA1C740EBA3E792FB /* Pods-HawaiiTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1850,6 +1985,7 @@
 		};
 		3EB5646220CA69EA00501CAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1871,6 +2007,7 @@
 		};
 		3EB5646420CA69EA00501CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1891,6 +2028,7 @@
 		};
 		3EB5646520CA69EA00501CAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

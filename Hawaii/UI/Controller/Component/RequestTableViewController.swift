@@ -202,13 +202,25 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
                 self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
             } else {
                 if isMultipleDaysSelected {
-                    tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
-                        self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                    })
+                    if requestType == .bonus {
+                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                        })
+                    } else {
+                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                        })
+                    }
                 } else {
-                    tableDataProviderUseCase?.getDurationData(completion: { data in
-                        self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                    })
+                    if requestType == .bonus {
+                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                        })
+                    } else {
+                        tableDataProviderUseCase?.getDurationData(completion: { data in
+                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
+                        })
+                    }
                 }
             }
         }

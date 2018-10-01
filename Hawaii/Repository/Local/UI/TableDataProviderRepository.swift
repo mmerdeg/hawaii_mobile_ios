@@ -95,4 +95,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                    ExpandableData(id: 0, expanded: true, title: "End date", description: forDate)])
     }
     
+    func getBonusDaysDurationData(completion: @escaping ([SectionData]) -> Void) {
+        completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil)])])
+    }
+    
 }

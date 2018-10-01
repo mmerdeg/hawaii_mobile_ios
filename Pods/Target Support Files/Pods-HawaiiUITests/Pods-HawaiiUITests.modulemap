@@ -1,0 +1,6 @@
+framework module Pods_HawaiiUITests {
+  umbrella header "Pods-HawaiiUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

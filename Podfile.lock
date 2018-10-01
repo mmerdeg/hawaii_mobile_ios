@@ -1,8 +1,11 @@
 PODS:
-  - Alamofire (4.7.2)
+  - Alamofire (4.7.3)
   - CodableAlamofire (1.1.0):
     - Alamofire (~> 4.0)
-  - GoogleSignIn (4.1.2):
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - GoogleSignIn (4.2.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
@@ -17,35 +20,37 @@ PODS:
   - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
   - GTMOAuth2 (1.1.6):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.15):
-    - GTMSessionFetcher/Full (= 1.1.15)
-  - GTMSessionFetcher/Core (1.1.15)
-  - GTMSessionFetcher/Full (1.1.15):
-    - GTMSessionFetcher/Core (= 1.1.15)
-  - JTAppleCalendar (7.1.5)
-  - Kingfisher (4.8.0)
+  - GTMSessionFetcher (1.2.0):
+    - GTMSessionFetcher/Full (= 1.2.0)
+  - GTMSessionFetcher/Core (1.2.0)
+  - GTMSessionFetcher/Full (1.2.0):
+    - GTMSessionFetcher/Core (= 1.2.0)
+  - JTAppleCalendar (7.1.6)
+  - Kingfisher (4.10.0)
   - PocketSVG (2.4.0)
-  - SwiftLint (0.25.1)
-  - Swinject (2.4.1)
-  - SwinjectStoryboard (2.0.1):
+  - SwiftLint (0.27.0)
+  - Swinject (2.5.0)
+  - SwinjectStoryboard (2.0.2):
     - Swinject (~> 2.4)
   - YLProgressBar (3.10.2)
 
 DEPENDENCIES:
   - CodableAlamofire
+  - FMDB
   - GoogleSignIn
-  - JTAppleCalendar (~> 7.0)
-  - Kingfisher (~> 4.0)
-  - PocketSVG (~> 2.0)
+  - JTAppleCalendar
+  - Kingfisher
+  - PocketSVG
   - SwiftLint
   - Swinject
   - SwinjectStoryboard
-  - YLProgressBar (~> 3.10.2)
+  - YLProgressBar
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - CodableAlamofire
+    - FMDB
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMOAuth2
@@ -59,20 +64,21 @@ SPEC REPOS:
     - YLProgressBar
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
-  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  GoogleSignIn: 591e46382014e591269f862ba6e7bc0fbd793532
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
+  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   PocketSVG: 8ac7b20a881ca1a3d46ba1e54ee2b0f2307c3d48
-  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
-  Swinject: f7f15a9672e99328c1f07f277091087917215700
-  SwinjectStoryboard: ad2529218a1504cc888040ee56c13d7cb1cc7998
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
+  SwinjectStoryboard: 365698aec11b57c6b14a3c1f52d0308759d377bf
   YLProgressBar: 365b6c5e934be18b661f79413db33c993c8e8251
 
-PODFILE CHECKSUM: 67142d98d16fe1ebb91c51374239ee75ac2c6b6a
+PODFILE CHECKSUM: 48e77673f3481b0660c2f9200f9ed67100ae2814
 
 COCOAPODS: 1.5.3
