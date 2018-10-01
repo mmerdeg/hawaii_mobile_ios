@@ -42,9 +42,9 @@ extension UIColor {
     class var approvedColor: UIColor {
         return #colorLiteral(red: 0.1803921569, green: 0.7568627451, blue: 0.1764705882, alpha: 1)
     }
-    
     class var remainingColor: UIColor {
         return #colorLiteral(red: 0.2039215686, green: 0.8823529412, blue: 0.9882352941, alpha: 1)
+      //  return #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)
     }
     
     class var canceledColor: UIColor {

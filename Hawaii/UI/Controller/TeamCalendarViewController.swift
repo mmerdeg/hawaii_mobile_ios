@@ -59,6 +59,7 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.calendarDelegate = self
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
+        collectionView.backgroundColor = UIColor.lightPrimaryColor
         
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()

@@ -50,6 +50,7 @@ class CustomDatePickerTableViewController: BaseViewController {
         collectionView.calendarDelegate = self
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
+        
         setupCalendarView()
         items = [startDate ?? Date(), endDate ?? Date()]
         selectDates()

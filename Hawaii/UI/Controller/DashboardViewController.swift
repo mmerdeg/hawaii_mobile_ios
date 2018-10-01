@@ -56,6 +56,8 @@ class DashboardViewController: BaseViewController {
         collectionView.calendarDelegate = self
         
         collectionView.scrollingMode = .stopAtEachCalendarFrame
+        collectionView.backgroundColor = UIColor.lightPrimaryColor
+        
         setupCalendarView()
         collectionView.scrollToDate(Date(), animateScroll: false)
         self.navigationItem.rightBarButtonItem = addRequestItem
