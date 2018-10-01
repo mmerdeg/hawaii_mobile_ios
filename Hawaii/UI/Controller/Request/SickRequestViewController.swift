@@ -96,17 +96,35 @@ class SickRequestViewController: BaseViewController {
         }
         
         startActivityIndicatorSpinner()
-        userUseCase?.getUser(completion: { response in
+        userUseCase?.readUser(completion: { userResult in
+            
+            guard let user = userResult else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            
             let request = Request(approverId: nil, days: days, reason: "string",
                                   requestStatus: RequestStatus.pending,
-                                  absence: requestTableViewController.selectedAbsence, user: response?.item)
-            requestUseCase.add(request: request) { request in
-                guard let request = request.item else {
+                                  absence: requestTableViewController.selectedAbsence, user: user)
+            requestUseCase.add(request: request) { requestResponse in
+                guard let success = requestResponse.success else {
                     self.stopActivityIndicatorSpinner()
                     return
                 }
-                self.requestUpdateDelegate?.didAdd(request: request)
-                self.navigationController?.popViewController(animated: true)
+                if success {
+                    guard let request = requestResponse.item else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    self.requestUpdateDelegate?.didAdd(request: request)
+                    self.navigationController?.popViewController(animated: true)
+                    self.stopActivityIndicatorSpinner()
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                                                    viewController: self, completion: { _ in
+                                                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             }
         })
     }

@@ -47,7 +47,7 @@ extension UserDb {
             let userRole = parameters["user_role"] as? String,
             let jobTitle = parameters["job_title"] as? String,
             let active = parameters["active"] as? Bool,
-            let yearsOfService = parameters["yearsOfService"] as? Int else {
+            let yearsOfService = parameters["years_of_service"] as? Int else {
                 print("Error getting User data")
                 return nil
         }

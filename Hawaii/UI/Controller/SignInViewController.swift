@@ -4,7 +4,11 @@ import GoogleSignIn
 class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     
     var signInApi: SignInApiProtocol?
+    
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
+    var userUseCase: UserUseCaseProtocol?
+    
     var label = false
     
     override func viewDidLoad() {
@@ -29,21 +33,27 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         }
         userDetailsUseCase?.setEmail(user.profile.email)
         startActivityIndicatorSpinner()
-        signInApi.signIn(accessToken: accessToken) { tokenResponse in
-            guard let success = tokenResponse.success,
-                  let token = tokenResponse.item else {
+        signInApi.signIn(accessToken: accessToken) { response in
+            guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if success {
+                guard let token = response.item?.0,
+                    let user = response.item?.1 else {
+                        return
+                }
                 self.userDetailsUseCase?.setToken(token: token)
+                self.userUseCase?.createUser(entity: user, completion: { id in
+                    print(id)
+                })
                 print("User Logged In")
                 self.stopActivityIndicatorSpinner()
                 self.navigateToHome()
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()
-                ViewUtility.showAlertWithAction(title: "Error", message: tokenResponse.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }

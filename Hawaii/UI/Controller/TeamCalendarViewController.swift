@@ -126,8 +126,8 @@ class TeamCalendarViewController: BaseViewController {
             })
         case 1:
             self.startActivityIndicatorSpinner()
-            self.userUseCase?.getUser(completion: { response in
-                self.requestUseCase?.getAllByTeam(from: date, teamId: response?.item?.teamId ?? -1, completion: { requestResponse in
+            self.userUseCase?.readUser(completion: { user in
+                self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
                     self.handleResponse(requestResponse: requestResponse)
                 })
             })

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SignInApiProtocol: GenericRepositoryProtocol {
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<String>) -> Void)
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
 }

@@ -115,42 +115,36 @@ class LeaveRequestViewController: BaseViewController {
         }
         
         startActivityIndicatorSpinner()
-        userUseCase?.getUser(completion: { response in
+        userUseCase?.readUser(completion: { userResult in
             
-            guard let success = response?.success else {
+            guard let user = userResult else {
                     self.stopActivityIndicatorSpinner()
                     return
             }
-            if success {
-                let request = Request(approverId: nil, days: days, reason: cellText,
-                                      requestStatus: RequestStatus.pending,
-                                      absence: requestTableViewController.selectedAbsence, user: response?.item)
-                requestUseCase.add(request: request) { requestResponse in
-                    
-                    guard let success = requestResponse.success else {
+
+            let request = Request(approverId: nil, days: days, reason: cellText,
+                                  requestStatus: RequestStatus.pending,
+                                  absence: requestTableViewController.selectedAbsence, user: user)
+            requestUseCase.add(request: request) { requestResponse in
+                
+                guard let success = requestResponse.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    guard let request = requestResponse.item else {
                         self.stopActivityIndicatorSpinner()
                         return
                     }
-                    if success {
-                        guard let request = requestResponse.item else {
-                            self.stopActivityIndicatorSpinner()
-                            return
-                        }
-                        self.requestUpdateDelegate?.didAdd(request: request)
-                        self.navigationController?.popViewController(animated: true)
-                        self.stopActivityIndicatorSpinner()
-                    } else {
-                        ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
-                                                        viewController: self, completion: { _ in
-                            self.stopActivityIndicatorSpinner()
-                        })
-                    }
-                }
-                
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response?.message ?? "", viewController: self, completion: { _ in
+                    self.requestUpdateDelegate?.didAdd(request: request)
+                    self.navigationController?.popViewController(animated: true)
                     self.stopActivityIndicatorSpinner()
-                })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                                                    viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             }
         })
     }

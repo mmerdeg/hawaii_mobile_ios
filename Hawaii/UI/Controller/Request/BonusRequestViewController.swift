@@ -84,43 +84,40 @@ class BonusRequestViewController: BaseViewController {
         }
         
         startActivityIndicatorSpinner()
-        userUseCase?.getUser(completion: { response in
+        userUseCase?.readUser(completion: { userResult in
             
-            guard let success = response?.success else {
+            guard let user = userResult else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                let request = Request(approverId: nil, days: days, reason: cellText,
-                                      requestStatus: RequestStatus.pending,
-                                      absence: requestTableViewController.selectedAbsence, user: response?.item)
-                requestUseCase.add(request: request) { requestResponse in
-                    
-                    guard let success = requestResponse.success else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    if success {
-                        ViewUtility.showAlertWithAction(title: "Success", message: "You have successfuly added bonus request",
-                                                        viewController: self, completion: { _ in
-                        })
-                        self.navigationController?.popViewController(animated: true)
-                        self.stopActivityIndicatorSpinner()
-                        self.stopActivityIndicatorSpinner()
-                    } else {
-                        ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
-                                                        viewController: self, completion: { _ in
-                                                            self.stopActivityIndicatorSpinner()
-                        })
-                    }
-                }
+            
+            let request = Request(approverId: nil, days: days, reason: cellText,
+                                  requestStatus: RequestStatus.pending,
+                                  absence: requestTableViewController.selectedAbsence, user: user)
+            requestUseCase.add(request: request) { requestResponse in
                 
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response?.message ?? "", viewController: self, completion: { _ in
+                guard let success = requestResponse.success else {
                     self.stopActivityIndicatorSpinner()
-                })
+                    return
+                }
+                if success {
+                    ViewUtility.showAlertWithAction(title: "Success", message: "You have successfuly added bonus request",
+                                                    viewController: self, completion: { _ in
+                    })
+                    self.navigationController?.popViewController(animated: true)
+                    self.stopActivityIndicatorSpinner()
+                    self.stopActivityIndicatorSpinner()
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                                                    viewController: self, completion: { _ in
+                                                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             }
+            
         })
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
