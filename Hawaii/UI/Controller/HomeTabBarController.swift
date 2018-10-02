@@ -17,17 +17,13 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userUseCase?.readUser(completion: { user in
-            guard let user = user else {
-                return
-            }
-            if user.userRole != UserRole.hrMenager.rawValue {
+            if user?.userRole ?? "" == UserRole.hrMenager.rawValue {
                 let indexToRemove = 3
                 if indexToRemove < self.viewControllers?.count ?? 0 {
                     self.viewControllers?.remove(at: indexToRemove)
                 }
             }
         })
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
