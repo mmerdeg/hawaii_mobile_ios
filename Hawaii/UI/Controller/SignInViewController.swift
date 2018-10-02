@@ -46,10 +46,10 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 self.userDetailsUseCase?.setToken(token: token)
                 self.userUseCase?.createUser(entity: user, completion: { id in
                     print(id)
+                    print("User Logged In")
+                    self.stopActivityIndicatorSpinner()
+                    self.navigateToHome()
                 })
-                print("User Logged In")
-                self.stopActivityIndicatorSpinner()
-                self.navigateToHome()
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()

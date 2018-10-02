@@ -55,7 +55,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iz3-P0-5yg">
-                                <rect key="frame" x="0.0" y="204" width="375" height="340"/>
+                                <rect key="frame" x="0.0" y="200" width="375" height="340"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNP-vg-qO9">
                                         <rect key="frame" x="30" y="30" width="34" height="21"/>
@@ -64,7 +64,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="700" translatesAutoresizingMaskIntoConstraints="NO" id="Poz-Fr-B2z">
-                                        <rect key="frame" x="94" y="-9.3333333333333428" width="251" height="100"/>
+                                        <rect key="frame" x="94" y="-9.6666666666666572" width="251" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="DMc-7C-geR"/>
                                         </constraints>
@@ -141,12 +141,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Iz3-P0-5yg" firstAttribute="top" secondItem="Bv3-WH-5uA" secondAttribute="top" constant="160" id="4mz-rb-N0u"/>
                             <constraint firstItem="dJz-Fa-i4D" firstAttribute="top" secondItem="ncC-42-5es" secondAttribute="topMargin" id="ABu-jg-Vxg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dJz-Fa-i4D" secondAttribute="trailing" id="Chg-uJ-L1I"/>
                             <constraint firstItem="Iz3-P0-5yg" firstAttribute="leading" secondItem="Bv3-WH-5uA" secondAttribute="leading" id="GJI-le-M4J"/>
                             <constraint firstItem="Iz3-P0-5yg" firstAttribute="centerX" secondItem="Bv3-WH-5uA" secondAttribute="centerX" id="Jp8-1q-4bg"/>
                             <constraint firstAttribute="bottomMargin" secondItem="dJz-Fa-i4D" secondAttribute="bottom" id="NHC-Th-oPI"/>
+                            <constraint firstItem="Iz3-P0-5yg" firstAttribute="centerY" secondItem="Bv3-WH-5uA" secondAttribute="centerY" multiplier="0.9" id="boD-eZ-2Td"/>
                             <constraint firstItem="dJz-Fa-i4D" firstAttribute="leading" secondItem="ncC-42-5es" secondAttribute="leadingMargin" id="n5x-ld-dhE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bv3-WH-5uA"/>

@@ -203,7 +203,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             } else {
                 if isMultipleDaysSelected {
                     if requestType == .bonus {
-                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                        tableDataProviderUseCase?.getBonusDaysDurationData(completion: { data in
                             self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
                         })
                     } else {
@@ -213,7 +213,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
                     }
                 } else {
                     if requestType == .bonus {
-                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                        tableDataProviderUseCase?.getBonusDaysDurationData(completion: { data in
                             self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
                         })
                     } else {

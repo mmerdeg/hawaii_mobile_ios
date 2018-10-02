@@ -66,6 +66,10 @@
 		307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
 		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
+		309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
+		309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
+		309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
+		309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
 		30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		30FD367F214A5E530047038C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -375,6 +379,8 @@
 		307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicHolidayTableViewCell.xib; sourceTree = "<group>"; };
 		30741359214650AE00F05427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		309B6CDC2162AA570046EFE9 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -782,6 +788,7 @@
 				3042CA8821536EF6002446FE /* Page.swift */,
 				303C44292154C746003F16CC /* GenericResponse.swift */,
 				303C44322154F022003F16CC /* UsersResponse.swift */,
+				309B6CDC2162AA570046EFE9 /* UserRole.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -997,6 +1004,7 @@
 				302EE18021356C93001355E9 /* TeamCalendarViewController.swift */,
 				307413082136673100F05427 /* TeamPreviewViewController.swift */,
 				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
+				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1584,6 +1592,7 @@
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
 				3E35CAA1215E15150042E65A /* UserDao.swift in Sources */,
 				30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */,
+				309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
@@ -1608,6 +1617,7 @@
 				30FD36CA214A5E530047038C /* FilterHeaderTableViewCell.swift in Sources */,
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
+				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1653,6 +1663,7 @@
 				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
 				30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */,
+				309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */,
 				303C442A2154C746003F16CC /* GenericResponse.swift in Sources */,
 				302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
@@ -1662,6 +1673,7 @@
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				303C44302154E243003F16CC /* GenericRepositoryProtocol.swift in Sources */,
+				309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,

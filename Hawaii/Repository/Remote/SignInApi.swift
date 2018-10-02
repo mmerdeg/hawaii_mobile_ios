@@ -25,7 +25,9 @@ class SignInApi: SignInApiProtocol, GenericRepositoryProtocol {
                                                    message: response.error?.localizedDescription))
                 return
             }
-            completion(GenericResponse<(String, User)>(success: true, item: (token, user), statusCode: response.response?.statusCode, error: nil, message: nil))
+            completion(GenericResponse<(String, User)>(success: true, item: (token, user),
+                                                       statusCode: response.response?.statusCode,
+                                                       error: nil, message: nil))
         }
         
     }

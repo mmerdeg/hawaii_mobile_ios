@@ -99,12 +99,13 @@ extension SwinjectStoryboard {
                 return userRepository
             }
             
-        
             defaultContainer.register(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self)) { resolver in
                 UserUseCase(userRepository: resolver.resolve(UserRepositoryProtocol.self,
                                                                     name: String(describing: UserRepositoryProtocol.self))
                     ?? UserRepository(), userDao: resolver.resolve(UserDaoProtocol.self,
-                                                                   name: String(describing: UserDaoProtocol.self)) ?? UserDao(dispatchQueue: dispatchQueue, databaseQueue: databaseQueue))
+                                                                   name: String(describing: UserDaoProtocol.self)) ??
+                                                                   UserDao(dispatchQueue: dispatchQueue,
+                                                                           databaseQueue: databaseQueue))
             }
             
             defaultContainer.register(RequestUseCaseProtocol.self,
@@ -210,6 +211,10 @@ extension SwinjectStoryboard {
             defaultContainer.storyboardInitCompleted(BonusRequestViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
         }
