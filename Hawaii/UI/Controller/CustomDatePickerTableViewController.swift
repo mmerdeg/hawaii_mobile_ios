@@ -19,6 +19,8 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     
+    @IBOutlet weak var closeButton: UIButton!
+    
     weak var delegate: DatePickerProtocol?
     
     var requestUseCase: RequestUseCaseProtocol?
@@ -40,6 +42,7 @@ class CustomDatePickerTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateLabel.textColor = UIColor.primaryTextColor
+        closeButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
         collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))

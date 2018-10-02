@@ -201,6 +201,7 @@
                         <viewLayoutGuide key="safeArea" id="xZp-XN-SYq"/>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="W5k-7S-fUm" id="Rnv-R2-IRV"/>
                         <outlet property="collectionView" destination="HFV-cO-eV2" id="sfm-9L-uld"/>
                         <outlet property="dateLabel" destination="A6X-CQ-eCS" id="2uG-vU-tgL"/>
                     </connections>
