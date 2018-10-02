@@ -17,6 +17,8 @@ class UserDao: UserDaoProtocol {
 
     var createUserQuery: String?
 
+    var emptyUsersQuery: String?
+    
     var readUserQuery: String?
 
     init(dispatchQueue: DispatchQueue, databaseQueue: FMDatabaseQueue) {
@@ -24,32 +26,38 @@ class UserDao: UserDaoProtocol {
         self.dispatchQueue = dispatchQueue
         let bundle = Bundle.main
         guard let createUserUrl = bundle.url(forResource: "createUser", withExtension: Constants.sqlExtension),
+              let emptyUsersUrl = bundle.url(forResource: "deleteUsers", withExtension: Constants.sqlExtension),
               let readUserUrl = bundle.url(forResource: "readUser", withExtension: Constants.sqlExtension) else {
                 return
         }
         readUserQuery = (try? String(contentsOf: readUserUrl))
         createUserQuery = (try? String(contentsOf: createUserUrl))
+        emptyUsersQuery = (try? String(contentsOf: emptyUsersUrl))
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        dispatchQueue?.async {
-            self.databaseQueue?.inTransaction { database, _ in
-                do {
-                    let values: [Any] = [ entity.id ?? -1,
-                                          entity.teamId ?? -1,
-                                          entity.leaveProfileId ?? -1,
-                                          entity.fullName ?? "",
-                                          entity.email ?? "",
-                                          entity.userRole ?? "",
-                                          entity.jobTitle ?? "",
-                                          entity.active ?? false,
-                                          entity.yearsOfService ?? -1]
-                    try database.executeUpdate(self.createUserQuery ?? "", values: values)
-                    
-                    completion(Int(database.lastInsertRowId))
-                } catch {
-                    completion(-1)
-                    print(error.localizedDescription)
+        emptyUsers { success in
+            if !success {
+                return
+            }
+            self.dispatchQueue?.async {
+                self.databaseQueue?.inTransaction { database, _ in
+                    do {
+                        let values: [Any] = [ entity.id ?? -1,
+                                              entity.teamId ?? -1,
+                                              entity.leaveProfileId ?? -1,
+                                              entity.fullName ?? "",
+                                              entity.email ?? "",
+                                              entity.userRole ?? "",
+                                              entity.jobTitle ?? "",
+                                              entity.active ?? false,
+                                              entity.yearsOfService ?? -1]
+                        try database.executeUpdate(self.createUserQuery ?? "", values: values)
+                        completion(Int(database.lastInsertRowId))
+                    } catch {
+                        completion(-1)
+                        print(error.localizedDescription)
+                    }
                 }
             }
         }
@@ -74,6 +82,14 @@ class UserDao: UserDaoProtocol {
                     }
                     completion(userDb.toUser())
                 }
+            }
+        }
+    }
+    
+    func emptyUsers(completion: @escaping (Bool) -> Void) {
+        dispatchQueue?.async {
+            self.databaseQueue?.inTransaction { database, _ in
+                completion(database.executeStatements(self.emptyUsersQuery ?? ""))
             }
         }
     }

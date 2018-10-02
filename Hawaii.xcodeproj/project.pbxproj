@@ -183,6 +183,9 @@
 		3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2820D7AA10006AEF29 /* MoreViewController.swift */; };
 		3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
+		3E24C7A021636A11002C5E0A /* deleteUsers.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C79F21636A11002C5E0A /* deleteUsers.sql */; };
+		3E24C7A421636DF6002C5E0A /* deleteUsers.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C79F21636A11002C5E0A /* deleteUsers.sql */; };
+		3E24C7A621636ED5002C5E0A /* readUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C7A521636ED5002C5E0A /* readUser.sql */; };
 		3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */; };
 		3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
 		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
@@ -198,12 +201,10 @@
 		3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */; };
 		3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
 		3E2D45AB216209D9002A512C /* createUser.sql in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AA216209D9002A512C /* createUser.sql */; };
-		3E2D45AD21620A04002A512C /* readUser.sql in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AC21620A04002A512C /* readUser.sql */; };
 		3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */; };
 		3E2D45B121621C44002A512C /* schema.sql in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45B021621C44002A512C /* schema.sql */; };
 		3E2D45B3216223C0002A512C /* DatabaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */; };
 		3E2D45B4216223C3002A512C /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D45B021621C44002A512C /* schema.sql */; };
-		3E2D45B5216223C6002A512C /* readUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D45AC21620A04002A512C /* readUser.sql */; };
 		3E2D45B6216223C8002A512C /* createUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D45AA216209D9002A512C /* createUser.sql */; };
 		3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
 		3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
@@ -402,6 +403,8 @@
 		3E236F2820D7AA10006AEF29 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCellCollectionViewCell.xib; sourceTree = "<group>"; };
+		3E24C79F21636A11002C5E0A /* deleteUsers.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteUsers.sql; sourceTree = "<group>"; };
+		3E24C7A521636ED5002C5E0A /* readUser.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readUser.sql; sourceTree = "<group>"; };
 		3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusRequestViewController.swift; sourceTree = "<group>"; };
 		3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -417,7 +420,6 @@
 		3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveRequestViewController.swift; sourceTree = "<group>"; };
 		3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickRequestViewController.swift; sourceTree = "<group>"; };
 		3E2D45AA216209D9002A512C /* createUser.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = createUser.sql; sourceTree = "<group>"; };
-		3E2D45AC21620A04002A512C /* readUser.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readUser.sql; sourceTree = "<group>"; };
 		3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitializer.swift; sourceTree = "<group>"; };
 		3E2D45B021621C44002A512C /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		3E3550D5211C462D00B43B57 /* libPocketSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPocketSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -721,7 +723,8 @@
 			children = (
 				3E35CA9F215E15150042E65A /* UserDao.swift */,
 				3E2D45AA216209D9002A512C /* createUser.sql */,
-				3E2D45AC21620A04002A512C /* readUser.sql */,
+				3E24C79F21636A11002C5E0A /* deleteUsers.sql */,
+				3E24C7A521636ED5002C5E0A /* readUser.sql */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1235,7 +1238,6 @@
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
 				3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */,
-				3E2D45B5216223C6002A512C /* readUser.sql in Resources */,
 				30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1248,6 +1250,7 @@
 				30FD36DE214A5E530047038C /* Dashboard.storyboard in Resources */,
 				30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */,
 				30FD36E0214A5E530047038C /* TeamPreviewTableViewCell.xib in Resources */,
+				3E24C7A421636DF6002C5E0A /* deleteUsers.sql in Resources */,
 				30FD36E1214A5E530047038C /* RequestApprovalTableViewCell.xib in Resources */,
 				30FD36E2214A5E530047038C /* Assets.xcassets in Resources */,
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
@@ -1271,6 +1274,7 @@
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				30139329215CBE7A00F65B7F /* Sick.storyboard in Resources */,
+				3E24C7A621636ED5002C5E0A /* readUser.sql in Resources */,
 				3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1284,6 +1288,7 @@
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
+				3E24C7A021636A11002C5E0A /* deleteUsers.sql in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
@@ -1698,7 +1703,6 @@
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
-				3E2D45AD21620A04002A512C /* readUser.sql in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */,
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
