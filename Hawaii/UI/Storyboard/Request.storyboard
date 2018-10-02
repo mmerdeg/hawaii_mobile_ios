@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cbs-VX-sPy">
-                                <rect key="frame" x="50" y="94" width="314" height="450"/>
+                                <rect key="frame" x="50" y="94" width="314" height="410"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pad-w7-xhT">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="60"/>
@@ -169,19 +169,6 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vb1-PB-Ttr">
-                                        <rect key="frame" x="0.0" y="410" width="314" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="LFP-a2-9qS"/>
-                                        </constraints>
-                                        <state key="normal" title="OK"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="acceptClicked:" destination="WEs-w8-SC8" eventType="touchUpInside" id="8v0-nX-DQj"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="pad-w7-xhT" firstAttribute="leading" secondItem="Cbs-VX-sPy" secondAttribute="leading" id="ZZ7-Y7-EkD"/>
@@ -189,13 +176,29 @@
                                     <constraint firstAttribute="trailing" secondItem="pad-w7-xhT" secondAttribute="trailing" id="o2g-f4-6tj"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vb1-PB-Ttr">
+                                <rect key="frame" x="50" y="524" width="314" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LFP-a2-9qS"/>
+                                </constraints>
+                                <state key="normal" title="OK"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptClicked:" destination="WEs-w8-SC8" eventType="touchUpInside" id="8v0-nX-DQj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xZp-XN-SYq" firstAttribute="leading" secondItem="Cbs-VX-sPy" secondAttribute="leading" constant="-50" id="2RN-MF-CGW"/>
                             <constraint firstItem="Cbs-VX-sPy" firstAttribute="centerX" secondItem="xZp-XN-SYq" secondAttribute="centerX" id="4L1-aj-w3p"/>
+                            <constraint firstItem="vb1-PB-Ttr" firstAttribute="trailing" secondItem="Cbs-VX-sPy" secondAttribute="trailing" id="8Ye-PD-LpA"/>
+                            <constraint firstItem="vb1-PB-Ttr" firstAttribute="leading" secondItem="Cbs-VX-sPy" secondAttribute="leading" id="LmY-Uu-QI1"/>
                             <constraint firstItem="xZp-XN-SYq" firstAttribute="trailing" secondItem="W5k-7S-fUm" secondAttribute="trailing" constant="16" id="MVf-QV-JAr"/>
                             <constraint firstItem="Cbs-VX-sPy" firstAttribute="top" secondItem="xZp-XN-SYq" secondAttribute="top" constant="50" id="YTI-Ki-cbA"/>
+                            <constraint firstItem="vb1-PB-Ttr" firstAttribute="top" secondItem="Cbs-VX-sPy" secondAttribute="bottom" constant="20" id="pTi-fF-HYc"/>
                             <constraint firstItem="xZp-XN-SYq" firstAttribute="top" secondItem="W5k-7S-fUm" secondAttribute="top" constant="-32" id="xDr-fX-vYS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xZp-XN-SYq"/>

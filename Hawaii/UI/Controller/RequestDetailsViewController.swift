@@ -27,7 +27,7 @@ class RequestDetailsViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         requestDialog.layer.cornerRadius = 10
-        self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(0.85)
+        self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(CGFloat(Constants.dialogBackgroundAlpha))
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
         tableView.delegate = self

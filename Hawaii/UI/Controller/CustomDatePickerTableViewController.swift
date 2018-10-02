@@ -48,7 +48,7 @@ class CustomDatePickerTableViewController: BaseViewController {
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
         collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
-        // Do any additional setup after loading the view.
+
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -71,7 +71,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
-            self.dateLabel.text = month+", "+year
+            self.dateLabel.text = "<   " + month + ", " + year + "   >"
         }
     }
     func fillCalendar() {

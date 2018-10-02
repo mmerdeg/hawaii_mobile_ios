@@ -29,4 +29,5 @@ struct Constants {
     static let dateFormat = "yyyy-MM-dd"
     static let timeZone = "UTC"
     static let sqlExtension = "sql"
+    static let dialogBackgroundAlpha = 0.85
 }

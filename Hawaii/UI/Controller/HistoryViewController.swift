@@ -111,7 +111,7 @@ class HistoryViewController: BaseViewController {
         self.navigationController?.view.addSubview(customView)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
-                self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                self.customView.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(Constants.dialogBackgroundAlpha))
                 self.navigationController?.view.bringSubview(toFront: self.customView)
             })
         }
