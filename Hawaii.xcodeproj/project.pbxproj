@@ -186,6 +186,7 @@
 		3E24C7A021636A11002C5E0A /* deleteUsers.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C79F21636A11002C5E0A /* deleteUsers.sql */; };
 		3E24C7A421636DF6002C5E0A /* deleteUsers.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C79F21636A11002C5E0A /* deleteUsers.sql */; };
 		3E24C7A621636ED5002C5E0A /* readUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C7A521636ED5002C5E0A /* readUser.sql */; };
+		3E24C7AF2163A172002C5E0A /* readUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E24C7A521636ED5002C5E0A /* readUser.sql */; };
 		3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */; };
 		3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
 		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
@@ -1254,6 +1255,7 @@
 				30FD36E1214A5E530047038C /* RequestApprovalTableViewCell.xib in Resources */,
 				30FD36E2214A5E530047038C /* Assets.xcassets in Resources */,
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
+				3E24C7AF2163A172002C5E0A /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E2D45B4216223C3002A512C /* schema.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,

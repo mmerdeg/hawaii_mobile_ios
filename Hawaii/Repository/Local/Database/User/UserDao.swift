@@ -55,8 +55,8 @@ class UserDao: UserDaoProtocol {
                         try database.executeUpdate(self.createUserQuery ?? "", values: values)
                         completion(Int(database.lastInsertRowId))
                     } catch {
-                        completion(-1)
                         print(error.localizedDescription)
+                        completion(-1)
                     }
                 }
             }
