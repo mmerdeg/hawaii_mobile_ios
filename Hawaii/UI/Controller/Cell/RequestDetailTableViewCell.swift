@@ -23,6 +23,9 @@ class RequestDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var requestImage: UIImageView!
     
     @IBOutlet weak var requestImageFrame: UIView!
+    
+    @IBOutlet weak var cardView: UIView!
+    
     @IBOutlet weak var requestStatus: UILabel!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -55,7 +58,8 @@ class RequestDetailTableViewCell: UITableViewCell {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
             requestDates.text = formatter.string(from: startDate) + " - " + formatter.string(from: endDate)
-           
+            cardView.backgroundColor = UIColor.lightPrimaryColor
+            
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor

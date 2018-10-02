@@ -71,7 +71,7 @@ class RemainigDaysViewController: BaseViewController {
         takenDayNoLabel.textColor = UIColor.approvedColor
         takenDaysLabel.textColor = UIColor.primaryTextColor
         pendingLabel.textColor = UIColor.primaryTextColor
-        pendingDayNoLabel.textColor = UIColor.primaryTextColor
+        pendingDayNoLabel.textColor = UIColor.pendingColor
         totalDayNoLabel.textColor = UIColor.black
         totalDayNoLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         

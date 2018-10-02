@@ -96,6 +96,9 @@ class TeamCalendarViewController: BaseViewController {
         segmentedControl.tintColor = UIColor.accentColor
         segmentedControl.backgroundColor = UIColor.black
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
+        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+        segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

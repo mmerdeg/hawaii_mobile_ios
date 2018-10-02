@@ -63,7 +63,7 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        tableView.separatorInset = UIEdgeInsets.zero
+        tableView.separatorColor = UIColor.primaryColor
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RequestApprovalTableViewCell.self), for: indexPath)
             as? RequestApprovalTableViewCell else {

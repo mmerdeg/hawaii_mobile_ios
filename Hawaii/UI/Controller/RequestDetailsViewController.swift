@@ -50,6 +50,8 @@ extension RequestDetailsViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        tableView.separatorColor = UIColor.primaryColor
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RequestDetailTableViewCell.self), for: indexPath)
             as? RequestDetailTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
@@ -58,6 +60,7 @@ extension RequestDetailsViewController: UITableViewDelegate, UITableViewDataSour
         cell.requestCancelationDelegate = self
         return cell
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return requests.count
     }

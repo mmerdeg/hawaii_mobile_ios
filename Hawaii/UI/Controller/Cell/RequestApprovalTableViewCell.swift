@@ -28,6 +28,8 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestImageFrame: UIView!
     
+    @IBOutlet weak var cardView: UIView!
+    
     @IBOutlet weak var acceptButton: UIButton!
     
     @IBOutlet weak var cancelButton: UIButton!
@@ -58,6 +60,7 @@ class RequestApprovalTableViewCell: UITableViewCell {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
             requestDates.text = formatter.string(from: startDate) + " - " + formatter.string(from: endDate)
+            cardView.backgroundColor = UIColor.lightPrimaryColor
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)

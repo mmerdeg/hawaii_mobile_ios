@@ -35,7 +35,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         if Calendar.current.isDateInToday(cellState.date) {
             dateLabel.textColor = UIColor.accentColor
             self.isUserInteractionEnabled = true
-            self.layer.borderColor = UIColor.cyan.cgColor
+            self.layer.borderColor = UIColor.remainingColor.cgColor
         } else {
             if NSCalendar.current.isDateInWeekend(cellState.date) || cellState.dateBelongsTo != .thisMonth {
                 self.isUserInteractionEnabled = false
