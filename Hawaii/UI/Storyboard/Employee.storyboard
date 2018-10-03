@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7bz-br-VVX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7bz-br-VVX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,28 +24,31 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6C-s7-klc">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-vf-GKa">
+                                                <rect key="frame" x="15" y="5" width="345" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Q3G-fH-NYW"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="All Employees"/>
+                                                    <segment title="My Team"/>
+                                                    <segment title="Person"/>
+                                                </segments>
+                                            </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c11-4n-1mD">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                                                <rect key="frame" x="0.0" y="45" width="375" height="510"/>
                                                 <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-vf-GKa">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="29"/>
-                                                        <segments>
-                                                            <segment title="All Employees"/>
-                                                            <segment title="My Team"/>
-                                                            <segment title="Custom"/>
-                                                        </segments>
-                                                    </segmentedControl>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YM-s3-wOU">
-                                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w9-Fw-vJM">
-                                                                <rect key="frame" x="149.5" y="20.5" width="76" height="20.5"/>
+                                                                <rect key="frame" x="149.5" y="20" width="76" height="20.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvF-lm-MTg">
-                                                                <rect key="frame" x="275" y="14.5" width="30" height="30"/>
+                                                                <rect key="frame" x="275" y="15" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="KXK-Lx-h46"/>
                                                                     <constraint firstAttribute="width" constant="30" id="lWg-la-uuF"/>
@@ -84,7 +87,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="h0N-F3-VaT">
-                                                        <rect key="frame" x="0.0" y="88" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="60" width="375" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAX-04-sVy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="53.5" height="50"/>
@@ -163,7 +166,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UXb-JU-fla" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                                        <rect key="frame" x="0.0" y="138" width="375" height="400"/>
+                                                        <rect key="frame" x="0.0" y="110" width="375" height="400"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" priority="750" constant="400" id="YTW-0F-IwW"/>
@@ -185,8 +188,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="c11-4n-1mD" firstAttribute="top" secondItem="h6C-s7-klc" secondAttribute="top" id="aa6-ni-bf5"/>
+                                            <constraint firstItem="dCn-vf-GKa" firstAttribute="leading" secondItem="h6C-s7-klc" secondAttribute="leading" constant="15" id="Fqd-kp-F8m"/>
+                                            <constraint firstAttribute="trailing" secondItem="dCn-vf-GKa" secondAttribute="trailing" constant="15" id="HmL-QA-J3k"/>
                                             <constraint firstAttribute="trailing" secondItem="c11-4n-1mD" secondAttribute="trailing" id="cXw-1F-phc"/>
+                                            <constraint firstItem="c11-4n-1mD" firstAttribute="top" secondItem="dCn-vf-GKa" secondAttribute="bottom" id="hUq-9x-kP6"/>
+                                            <constraint firstItem="dCn-vf-GKa" firstAttribute="top" secondItem="h6C-s7-klc" secondAttribute="top" constant="5" id="n1d-jV-XYy"/>
                                             <constraint firstItem="c11-4n-1mD" firstAttribute="leading" secondItem="h6C-s7-klc" secondAttribute="leading" id="tIr-dx-HJa"/>
                                         </constraints>
                                     </view>

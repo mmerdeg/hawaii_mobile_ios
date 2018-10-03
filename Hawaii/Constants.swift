@@ -27,6 +27,7 @@ struct Constants {
     static let requestYears = requests + "/years/range"
     static let search = getUser + "/search"
     static let dateFormat = "yyyy-MM-dd"
+    static let displayDateFormat = "dd.MM.yyyy."
     static let timeZone = "UTC"
     static let sqlExtension = "sql"
     static let dialogBackgroundAlpha = 0.85
