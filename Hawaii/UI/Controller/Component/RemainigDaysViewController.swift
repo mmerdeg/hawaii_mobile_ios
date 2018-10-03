@@ -81,6 +81,7 @@ class RemainigDaysViewController: BaseViewController {
     }
 
     func getData() {
+        mainLabel.text = mainLabelText
         userUseCase?.getUser(completion: { response in
             guard let success = response?.success else {
                 self.stopActivityIndicatorSpinner()

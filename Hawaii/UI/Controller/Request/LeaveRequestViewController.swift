@@ -31,7 +31,7 @@ class LeaveRequestViewController: BaseViewController {
     
     var selectedDate: Date?
     
-    lazy var addLeveRequestItem: UIBarButtonItem = {
+    lazy var addLeaveRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
@@ -39,7 +39,7 @@ class LeaveRequestViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = addLeveRequestItem
+        self.navigationItem.rightBarButtonItem = addLeaveRequestItem
         self.scrollView.delegate = self
     }
     
