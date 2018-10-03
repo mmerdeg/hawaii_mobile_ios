@@ -30,6 +30,10 @@ class HistoryViewController: BaseViewController {
     
     var bonusParameter = true
     
+    var selectedYear: String?
+    
+    private let refreshControl = UIRefreshControl()
+    
     lazy var searchItem: UIBarButtonItem = {
         
         var buttonImage = UIImage(named: "filter")
@@ -60,12 +64,64 @@ class HistoryViewController: BaseViewController {
         
         initFilterHeader()
         
+        // Add Refresh Control to Table View
+        tableView.refreshControl = refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.accentColor
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
+        fillCalendar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.selectedSegmentIndex = 0
-        fillCalendar()
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        self.refreshControl.endRefreshing()
+        if let selectedYear = selectedYear {
+            fillCalendatByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
+        } else {
+            fillCalendar()
+        }
+    }
+    
+    func fillCalendatByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {
+        guard let yearNo = Int(year) else {
+            return
+        }
+        let startDate = "01-01-\(year)"
+        let endDate = "31-12-\(year)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        requestUseCase.getAllByDate(from: dateFormatter.date(from: startDate) ?? Date(),
+                                    toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
+                                        guard let success = response.success else {
+                                            self.stopActivityIndicatorSpinner()
+                                            return
+                                        }
+                                        if success {
+                                            self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
+                                                (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
+                                                    $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
+                                                    sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
+                                                    bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+                                            } ?? []
+                                            self.filteredRequests = self.requests
+                                            DispatchQueue.main.async {
+                                                self.customView.removeFromSuperview()
+                                                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                                                self.stopActivityIndicatorSpinner()
+                                            }
+                                        } else {
+                                            ViewUtility.showAlertWithAction(title: "Error",
+                                                                            message: response.message ?? "",
+                                                                            viewController: self, completion: { _ in
+                                                self.stopActivityIndicatorSpinner()
+                                            })
+                                        }
+        }
     }
     
     func fillCalendar() {
@@ -78,8 +134,11 @@ class HistoryViewController: BaseViewController {
             if success {
                 self.requests = response.item ?? []
                 self.filteredRequests = response.item ?? []
-                self.tableView.reloadData()
-                self.stopActivityIndicatorSpinner()
+                DispatchQueue.main.async {
+                    self.customView.removeFromSuperview()
+                    self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                    self.stopActivityIndicatorSpinner()
+                }
             } else {
                 ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
@@ -147,7 +206,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 32
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
@@ -173,43 +232,11 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HistoryViewController: SearchDialogProtocol {
     func didFilterBy(year: String, leave: Bool, sick: Bool, bonus: Bool) {
-        guard let yearNo = Int(year) else {
-            return
-        }
         leaveParameter = leave
         sickParameter = sick
         bonusParameter = bonus
-        let startDate = "01-01-\(year)"
-        let endDate = "31-12-\(year)"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        requestUseCase.getAllByDate(from: dateFormatter.date(from: startDate) ?? Date(),
-                                    toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
-            guard let success = response.success else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            if success {
-                self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
-                    (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
-                        $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
-                        sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
-                        bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
-                } ?? []
-                self.filteredRequests = self.requests
-                DispatchQueue.main.async {
-                    self.customView.removeFromSuperview()
-                    self.tableView.reloadData()
-                    self.segmentedControl.selectedSegmentIndex = 0
-                    self.stopActivityIndicatorSpinner()
-                }
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
-            }
-        }
-    
+        selectedYear = year
+        fillCalendatByParameter(year: year, leave: leave, sick: sick, bonus: bonus)
     }
     
     func dismissDialog() {

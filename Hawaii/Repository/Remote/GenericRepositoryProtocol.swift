@@ -12,7 +12,7 @@ import Alamofire
 protocol GenericRepositoryProtocol {
     func genericRequest<T: Codable>(value: T.Type, _ url: URL, method: HTTPMethod,
                                     parameters: Parameters?, encoding: ParameterEncoding,
-                                    headers: HTTPHeaders?, completion: @escaping (GenericResponse<T>) -> Void)
+                                    headers: HTTPHeaders?, codableDecoder: JSONDecoder?, completion: @escaping (GenericResponse<T>) -> Void)
 }
 
 extension GenericRepositoryProtocol {
@@ -23,7 +23,7 @@ extension GenericRepositoryProtocol {
                                     headers: HTTPHeaders? = nil,
                                     completion: @escaping (GenericResponse<T>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: getDecoder()) { (response: DataResponse<T>) in
+                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: codableDecoder) { (response: DataResponse<T>) in
                             switch response.result {
                             case .success:
                                 print("Validation Successful")

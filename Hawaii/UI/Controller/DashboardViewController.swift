@@ -19,6 +19,7 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     
+    var refresher: UIRefreshControl?
     var requestUseCase: RequestUseCaseProtocol?
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var items: [Request] = []

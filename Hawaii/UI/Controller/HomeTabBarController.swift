@@ -17,7 +17,7 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userUseCase?.readUser(completion: { user in
-            if user?.userRole ?? "" == UserRole.hrMenager.rawValue {
+            if user?.userRole ?? "" != UserRole.hrMenager.rawValue {
                 let indexToRemove = 3
                 if indexToRemove < self.viewControllers?.count ?? 0 {
                     self.viewControllers?.remove(at: indexToRemove)
