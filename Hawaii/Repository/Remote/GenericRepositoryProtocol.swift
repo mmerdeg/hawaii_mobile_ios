@@ -21,9 +21,10 @@ extension GenericRepositoryProtocol {
                                     parameters: Parameters? = nil,
                                     encoding: ParameterEncoding = URLEncoding.default,
                                     headers: HTTPHeaders? = nil,
+                                    codableDecoder: JSONDecoder? = nil,
                                     completion: @escaping (GenericResponse<T>) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: codableDecoder) { (response: DataResponse<T>) in
+                          headers: headers).validate().responseDecodableObject(keyPath: nil, decoder: codableDecoder ?? getDecoder()) { (response: DataResponse<T>) in
                             switch response.result {
                             case .success:
                                 print("Validation Successful")
