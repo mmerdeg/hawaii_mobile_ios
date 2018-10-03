@@ -66,12 +66,8 @@ extension SwinjectStoryboard {
             }
             
             // Request Repository
-            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { resolver in
-                let requestRepository = RequestRepository()
-                requestRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                        name: String(describing: UserDetailsUseCaseProtocol.self))
-                                                                        ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
-                return requestRepository
+            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
+                RequestRepository()
             }
             
             defaultContainer.register(PublicHolidayRepositoryProtocol.self,
@@ -111,7 +107,17 @@ extension SwinjectStoryboard {
             defaultContainer.register(RequestUseCaseProtocol.self,
                                       name: String(describing: RequestUseCaseProtocol.self)) { resolver in
                 RequestUseCase(entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
-                                                                  name: String(describing: RequestRepositoryProtocol.self)) ?? RequestRepository())
+                                                                  name: String(describing: RequestRepositoryProtocol.self)) ?? RequestRepository(),
+                               userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                    name: String(describing: UserDetailsUseCaseProtocol.self))
+                                ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository()),
+                               userUseCase: resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                                            ?? UserUseCase(userRepository: resolver.resolve(UserRepositoryProtocol.self,
+                                                                                            name: String(describing: UserRepositoryProtocol.self))
+                                                ?? UserRepository(), userDao: resolver.resolve(UserDaoProtocol.self,
+                                                                               name: String(describing: UserDaoProtocol.self))
+                                                    ?? UserDao(dispatchQueue: dispatchQueue,
+                                                               databaseQueue: databaseQueue)))
             }
             
             // Table Data Provider Repository

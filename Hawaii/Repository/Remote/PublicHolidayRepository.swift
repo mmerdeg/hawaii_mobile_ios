@@ -23,7 +23,7 @@ class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
         
         let params = ["active": true]
         
-        genericRequest(value: [PublicHoliday].self, url, parameters: params, headers: getHeaders()) { response in
+        genericCodableRequest(value: [PublicHoliday].self, url, parameters: params, headers: getHeaders()) { response in
             completion(response)
         }
     }

@@ -21,9 +21,9 @@ protocol UserUseCaseProtocol {
 
 class UserUseCase: UserUseCaseProtocol {
     
-    let userRepository: UserRepositoryProtocol!
+    let userRepository: UserRepositoryProtocol?
     
-    let userDao: UserDaoProtocol!
+    let userDao: UserDaoProtocol?
     
     init(userRepository: UserRepositoryProtocol, userDao: UserDaoProtocol) {
         self.userRepository = userRepository
@@ -31,25 +31,25 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func createUser(entity: User, completion: @escaping (Int) -> Void) {
-        userDao.create(entity: entity) { id in
+        userDao?.create(entity: entity) { id in
             completion(id)
         }
     }
     
     func readUser(completion: @escaping (User?) -> Void) {
-        userDao.read { user in
+        userDao?.read { user in
             completion(user)
         }
     }
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        userRepository.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
+        userRepository?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        userRepository.getUser { response in
+        userRepository?.getUser { response in
             completion(response)
         }
     }

@@ -31,4 +31,5 @@ struct Constants {
     static let timeZone = "UTC"
     static let sqlExtension = "sql"
     static let dialogBackgroundAlpha = 0.85
+    static let maxTimeElapsed = 15
 }

@@ -19,8 +19,10 @@ class HomeTabBarController: UITabBarController {
         userUseCase?.readUser(completion: { user in
             if user?.userRole ?? "" != UserRole.hrMenager.rawValue {
                 let indexToRemove = 3
-                if indexToRemove < self.viewControllers?.count ?? 0 {
-                    self.viewControllers?.remove(at: indexToRemove)
+                if self.viewControllers?.count ?? 0 == 5 {
+                    DispatchQueue.main.async {
+                        self.viewControllers?.remove(at: indexToRemove)
+                    }
                 }
             }
         })

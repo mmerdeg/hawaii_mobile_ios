@@ -32,6 +32,8 @@ class HistoryViewController: BaseViewController {
     
     var selectedYear: String?
     
+    var lastTimeSynced: Date?
+    
     private let refreshControl = UIRefreshControl()
     
     lazy var searchItem: UIBarButtonItem = {
@@ -71,11 +73,23 @@ class HistoryViewController: BaseViewController {
         refreshControl.tintColor = UIColor.accentColor
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
         fillCalendar()
+        lastTimeSynced = Date()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.selectedSegmentIndex = 0
+        
+        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
+        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
+        if seconds >= Int(Constants.maxTimeElapsed) {
+            if let selectedYear = selectedYear {
+                fillCalendatByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
+            } else {
+                fillCalendar()
+            }
+        }
+        lastTimeSynced = Date()
     }
     
     @objc private func refreshData(_ sender: Any) {
@@ -85,6 +99,7 @@ class HistoryViewController: BaseViewController {
         } else {
             fillCalendar()
         }
+        lastTimeSynced = Date()
     }
     
     func fillCalendatByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {

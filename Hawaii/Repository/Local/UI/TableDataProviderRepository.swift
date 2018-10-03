@@ -16,7 +16,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         guard let url = URL(string: Constants.leaveTypes) else {
             return
         }
-        genericRequest(value: [Absence].self, url) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.deducted.rawValue ||
                     $0.absenceType == AbsenceType.nonDecuted.rawValue
@@ -34,7 +34,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
             return
         }
         
-        genericRequest(value: [Absence].self, url) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.sick.rawValue
             })
@@ -50,7 +50,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
             return
         }
         
-        genericRequest(value: [Absence].self, url) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.bonus.rawValue
             })

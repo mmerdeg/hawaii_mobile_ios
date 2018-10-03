@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Alamofire
+import CodableAlamofire
 
 protocol RequestUseCaseProtocol {
     
@@ -34,68 +36,83 @@ class RequestUseCase: RequestUseCaseProtocol {
     
     let entityRepository: RequestRepositoryProtocol!
     
-    init(entityRepository: RequestRepositoryProtocol) {
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
+    let userUseCase: UserUseCaseProtocol?
+    
+    let authHeader = "X-AUTH-TOKEN"
+    
+    init(entityRepository: RequestRepositoryProtocol, userDetailsUseCase: UserDetailsUseCaseProtocol?, userUseCase: UserUseCaseProtocol) {
         self.entityRepository = entityRepository
+        self.userDetailsUseCase = userDetailsUseCase
+        self.userUseCase = userUseCase
     }
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAll { requests in
+        entityRepository.getAll(token: getHeaders()) { requests in
             completion(requests)
         }
     }
     
     func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllBy(id: id) { requests in
+        entityRepository.getAllBy(token: getHeaders(), id: id) { requests in
             completion(requests)
         }
     }
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
-        entityRepository.add(request: request) {request in
+        entityRepository.add(token: getHeaders(), request: request) {request in
             completion(request)
         }
     }
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllByDate(from: from, toDate: toDate) { requests in
-            completion(requests)
-        }
+        userUseCase?.readUser(completion: { user in
+            self.entityRepository.getAllByDate(token: self.getHeaders(), userId: user?.id ?? -1, from: from, toDate: toDate) { requests in
+                completion(requests)
+            }
+        })
     }
     
     func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllPendingForApprover(approver: approver) { requests in
+        entityRepository.getAllPendingForApprover(token: getHeaders(), approver: approver) { requests in
             completion(requests)
         }
     }
     
     func updateRequest(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
-        entityRepository.updateRequest(request: request) { request in
+        entityRepository.updateRequest(token: getHeaders(), request: request) { request in
             completion(request)
         }
     }
 
     func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         if teamId != -1 {
-             entityRepository.getAllByTeam(date: from, teamId: teamId) { requests in
+            entityRepository.getAllByTeam(token: getHeaders(), date: from, teamId: teamId) { requests in
                 completion(requests)
-             }
+            }
         } else {
-            entityRepository.getAllForAllEmployees(date: from) { requests in
+            entityRepository.getAllForAllEmployees(token: getHeaders(), date: from) { requests in
                 completion(requests)
             }
         }
     }
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllForEmployee(byEmail: email) { requestsResponse in
+        entityRepository.getAllForEmployee(token: getHeaders(), byEmail: email) { requestsResponse in
             completion(requestsResponse)
         }
     }
     
     func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void) {
-        entityRepository.getAvailableRequestYears { requestsResponse in
+        entityRepository.getAvailableRequestYears(token: getHeaders()) { requestsResponse in
             completion(requestsResponse)
         }
+    }
+    
+    func getHeaders() -> HTTPHeaders {
+        let token = userDetailsUseCase?.getToken()
+        return [authHeader: token ?? ""]
     }
     
 }

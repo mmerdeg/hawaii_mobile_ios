@@ -70,6 +70,8 @@
 		309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
 		309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
+		309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = 309B6CEB2164EF5E0046EFE9 /* schema.sql */; };
+		309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = 309B6CEB2164EF5E0046EFE9 /* schema.sql */; };
 		30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		30FD367F214A5E530047038C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -203,9 +205,7 @@
 		3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
 		3E2D45AB216209D9002A512C /* createUser.sql in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AA216209D9002A512C /* createUser.sql */; };
 		3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */; };
-		3E2D45B121621C44002A512C /* schema.sql in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45B021621C44002A512C /* schema.sql */; };
 		3E2D45B3216223C0002A512C /* DatabaseInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */; };
-		3E2D45B4216223C3002A512C /* schema.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D45B021621C44002A512C /* schema.sql */; };
 		3E2D45B6216223C8002A512C /* createUser.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D45AA216209D9002A512C /* createUser.sql */; };
 		3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
 		3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
@@ -383,6 +383,7 @@
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		309B6CDC2162AA570046EFE9 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		309B6CEB2164EF5E0046EFE9 /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -422,7 +423,6 @@
 		3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SickRequestViewController.swift; sourceTree = "<group>"; };
 		3E2D45AA216209D9002A512C /* createUser.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = createUser.sql; sourceTree = "<group>"; };
 		3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseInitializer.swift; sourceTree = "<group>"; };
-		3E2D45B021621C44002A512C /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
 		3E3550D5211C462D00B43B57 /* libPocketSVG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libPocketSVG.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3550E7211C5CCB00B43B57 /* libKingfisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libKingfisher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3550F5211D937B00B43B57 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
@@ -769,7 +769,7 @@
 			children = (
 				3E2D45A9216209AB002A512C /* User */,
 				3E2D45AE21621C2C002A512C /* DatabaseInitializer.swift */,
-				3E2D45B021621C44002A512C /* schema.sql */,
+				309B6CEB2164EF5E0046EFE9 /* schema.sql */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1257,11 +1257,11 @@
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				3E24C7AF2163A172002C5E0A /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
-				3E2D45B4216223C3002A512C /* schema.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
 				3E2D45B6216223C8002A512C /* createUser.sql in Resources */,
 				30FD36E6214A5E530047038C /* credentials.plist in Resources */,
+				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
 				30139324215CA90800F65B7F /* Request.storyboard in Resources */,
 				30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */,
 			);
@@ -1291,6 +1291,7 @@
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				3E24C7A021636A11002C5E0A /* deleteUsers.sql in Resources */,
+				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
@@ -1655,7 +1656,6 @@
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
-				3E2D45B121621C44002A512C /* schema.sql in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
