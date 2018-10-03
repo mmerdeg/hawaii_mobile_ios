@@ -45,8 +45,13 @@ class RequestDetailTableViewCell: UITableViewCell {
                 let reason = request?.absence?.name,
                 let endDate = request?.days?.last?.date,
                 let status = request?.requestStatus,
-                let color = request?.requestStatus?.backgoundColor else {
+                let absenceType = request?.absence?.absenceType,
+                var color = request?.requestStatus?.backgoundColor else {
                     return
+            }
+            
+            if absenceType == AbsenceType.sick.rawValue {
+                color = UIColor.sickColor
             }
             
             date.text = "submission date"
@@ -57,7 +62,9 @@ class RequestDetailTableViewCell: UITableViewCell {
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
-            requestDates.text = formatter.string(from: startDate) + " - " + formatter.string(from: endDate)
+            let start = formatter.string(from: startDate)
+            let end = formatter.string(from: endDate)
+            requestDates.text = start == end ? start : start + " - " + end
             cardView.backgroundColor = UIColor.lightPrimaryColor
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))

@@ -28,8 +28,13 @@ class TeamPreviewTableViewCell: UITableViewCell {
                 let imageUrl = request?.absence?.iconUrl,
                 let startDate = request?.days?.first?.date,
                 let endDate = request?.days?.last?.date,
-                let color = request?.requestStatus?.backgoundColor else {
+                let absenceType = request?.absence?.absenceType,
+                var color = request?.requestStatus?.backgoundColor else {
                     return
+            }
+            
+            if absenceType == AbsenceType.sick.rawValue {
+                color = UIColor.sickColor
             }
             self.backgroundColor = UIColor.primaryColor
             requestOwner.text = notes

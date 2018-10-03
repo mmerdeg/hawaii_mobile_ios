@@ -59,7 +59,9 @@ class RequestApprovalTableViewCell: UITableViewCell {
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd.MM.yyyy."
-            requestDates.text = formatter.string(from: startDate) + " - " + formatter.string(from: endDate)
+            let start = formatter.string(from: startDate)
+            let end = formatter.string(from: endDate)
+            requestDates.text = start == end ? start : start + " - " + end
             cardView.backgroundColor = UIColor.lightPrimaryColor
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))

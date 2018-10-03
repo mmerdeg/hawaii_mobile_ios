@@ -15,20 +15,26 @@ protocol RequestDetailsDialogProtocol: NSObjectProtocol {
 class RequestDetailsViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var requestDialog: UIView!
+    
     @IBOutlet weak var clickableView: UIView!
+    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     var requestUseCase: RequestUseCaseProtocol!
+    
     weak var delegate: RequestDetailsDialogProtocol?
+    
     var requests: [Request] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         requestDialog.layer.cornerRadius = 10
         self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(CGFloat(Constants.dialogBackgroundAlpha))
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
+        requestDialog.backgroundColor = UIColor.primaryColor
         clickableView.addGestureRecognizer(tap)
         tableView.delegate = self
         tableView.dataSource = self

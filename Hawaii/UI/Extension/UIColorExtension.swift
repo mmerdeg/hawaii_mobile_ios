@@ -39,6 +39,11 @@ extension UIColor {
         return #colorLiteral(red: 0.9490196078, green: 0.1843137255, blue: 0.4274509804, alpha: 1)
     }
     
+    // TODO: Define sickness color
+    class var sickColor: UIColor {
+        return accentColor
+    }
+    
     class var approvedColor: UIColor {
         return #colorLiteral(red: 0.1803921569, green: 0.7568627451, blue: 0.1764705882, alpha: 1)
     }

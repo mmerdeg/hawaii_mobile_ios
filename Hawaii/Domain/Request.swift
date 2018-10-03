@@ -23,7 +23,7 @@ enum RequestStatus: String, Codable {
         case .approved:
             return UIColor.approvedColor
         case .canceled:
-            return UIColor.clear
+            return UIColor.lightGray
         case .rejected:
             return UIColor.rejectedColor
         case .cancelationPending:

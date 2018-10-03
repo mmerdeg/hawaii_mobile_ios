@@ -39,7 +39,9 @@ class RemainigDaysViewController: BaseViewController {
     @IBOutlet weak var totalDayNoLabel: UILabel!
     
     @IBOutlet weak var approvedBarWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var pendingBarWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var sicknessBarWidth: NSLayoutConstraint!
     
     var mainLabelText: String?

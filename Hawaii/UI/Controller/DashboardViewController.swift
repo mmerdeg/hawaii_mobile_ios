@@ -277,8 +277,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
                     item.requestStatus != RequestStatus.canceled &&
                     item.requestStatus != RequestStatus.rejected &&
                     item.absence?.absenceType != AbsenceType.bonus.rawValue {
-                        let tempRequest = Request(request: item, days: [day])
-                        requests.append(tempRequest)
+                        requests.append(item)
                 }
             }
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests

@@ -35,7 +35,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         if Calendar.current.isDateInToday(cellState.date) {
             dateLabel.textColor = UIColor.accentColor
             self.isUserInteractionEnabled = true
-            self.layer.borderColor = UIColor.remainingColor.cgColor
+            self.layer.borderColor = UIColor.primaryTextColor.cgColor
         } else {
             if NSCalendar.current.isDateInWeekend(cellState.date) || cellState.dateBelongsTo != .thisMonth {
                 self.isUserInteractionEnabled = false
@@ -55,7 +55,6 @@ class CalendarCellCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
-       // self.backgroundColor = UIColor.lightPrimaryColor
         self.layer.borderWidth = 0.5
         guard let requests = requests else {
             resetView(cellState: cellState)
@@ -72,19 +71,21 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 continue
             }
             dateLabel.textColor = UIColor.darkPrimaryColor
+            let backgroundColor = request.absence?.absenceType == AbsenceType.sick.rawValue ? UIColor.sickColor :
+                request.requestStatus?.backgoundColor ?? UIColor.clear
             
             DispatchQueue.main.async {
                 switch day.duration {
                 case .afternoon?:
-                    self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.afternoonView.backgroundColor = backgroundColor
                     self.afternoonImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                 case .fullday?:
-                    self.afternoonView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
-                    self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.afternoonView.backgroundColor = backgroundColor
+                    self.morningView.backgroundColor = backgroundColor
                     self.fullDayImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                     print()
                 case .morning?:
-                    self.morningView.backgroundColor = request.requestStatus?.backgoundColor ?? UIColor.clear
+                    self.morningView.backgroundColor = backgroundColor
                     self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                 default :
                     print("")

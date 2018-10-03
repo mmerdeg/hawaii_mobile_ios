@@ -1,4 +1,4 @@
-//
+
 //  SickRequestViewController.swift
 //  Hawaii
 //
@@ -24,7 +24,7 @@ class SickRequestViewController: BaseViewController {
     var selectedDate: Date?
     
     lazy var addLeveRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
+        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addSickRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -57,7 +57,7 @@ class SickRequestViewController: BaseViewController {
         }
     }
     
-    @objc func addLeaveRequest() {
+    @objc func addSickRequest() {
         guard let startDate = requestTableViewController?.startDate,
             let endDate = requestTableViewController?.endDate,
             let requestTableViewController = requestTableViewController,

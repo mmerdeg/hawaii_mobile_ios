@@ -22,9 +22,9 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     func handleCellText(cellState: CellState) {
         dateLabel.text = cellState.text
         if Calendar.current.isDateInToday(cellState.date) {
-            dateLabel.textColor = UIColor.accentColor
             self.isUserInteractionEnabled = true
-            self.layer.borderColor = UIColor.cyan.cgColor
+            dateLabel.textColor = UIColor.primaryTextColor
+            self.layer.borderColor = UIColor.primaryTextColor.cgColor
         } else {
             if NSCalendar.current.isDateInWeekend(cellState.date) || cellState.dateBelongsTo != .thisMonth {
                 self.isUserInteractionEnabled = false
@@ -34,6 +34,10 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
                 dateLabel.textColor = UIColor.primaryTextColor
             }
         }
+        
+        if requests?.isEmpty ?? true {
+            self.isUserInteractionEnabled = false
+        }
     }
     
     override func awakeFromNib() {
@@ -41,10 +45,11 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     }
     
     func setCell(processor: ImageProcessor) {
-        handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
+        handleCellText(cellState: cellState)
+        isEmpty.layer.cornerRadius = isEmpty.frame.width / 2
         isEmpty.backgroundColor = requests?.isEmpty ?? true ||
-            NSCalendar.current.isDateInWeekend(cellState.date) ? UIColor.transparentColor: UIColor.pendingColor
+            NSCalendar.current.isDateInWeekend(cellState.date) ? UIColor.transparentColor: UIColor.accentColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
     }
