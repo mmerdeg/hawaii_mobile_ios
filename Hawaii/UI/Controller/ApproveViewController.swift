@@ -22,6 +22,8 @@ class ApproveViewController: BaseViewController {
     
     private let refreshControl = UIRefreshControl()
     
+    var lastTimeSynced: Date?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,39 +42,46 @@ class ApproveViewController: BaseViewController {
         refreshControl.tintColor = UIColor.accentColor
         refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
         fillCalendar()
+        lastTimeSynced = Date()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
+        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
+        if seconds >= Int(Constants.maxTimeElapsed) {
+            fillCalendar()
+        }
+        lastTimeSynced = Date()
     }
     
     @objc private func refreshData(_ sender: Any) {
         fillCalendar()
         self.refreshControl.endRefreshing()
+        lastTimeSynced = Date()
+        
     }
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        userUseCase?.readUser(completion: { user in
-            self.requestUseCase.getAllPendingForApprover(approver: user?.id ?? -1) { request in
-                guard let success = request.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.requests = request.item ?? []
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.stopActivityIndicatorSpinner()
-                    }
-                } else {
-                    self.refreshControl.endRefreshing()
-                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                    })
-                }
+        self.requestUseCase.getAllPendingForApprover(approver: -1) { request in
+            guard let success = request.success else {
+                self.stopActivityIndicatorSpinner()
+                return
             }
-        })
+            if success {
+                self.requests = request.item ?? []
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                }
+            } else {
+                self.refreshControl.endRefreshing()
+                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+                })
+            }
+        }
         
     }
     

@@ -50,7 +50,7 @@ class UserRepository: UserRepositoryProtocol {
         guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
             return
         }
-        genericRequest(value: User.self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: User.self, url, headers: getHeaders()) { response in
             completion(response)
         }
     }

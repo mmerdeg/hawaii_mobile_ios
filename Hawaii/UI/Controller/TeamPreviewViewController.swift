@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class TeamPreviewViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!

@@ -12,22 +12,18 @@ import Alamofire
 
 class RequestRepository: RequestRepositoryProtocol {
     
-    let authHeader = "X-AUTH-TOKEN"
-    
     var requests: [Request]!
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
-    
-    func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func add(token: HTTPHeaders, request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
         requests?.append(request)
         
         guard let url = URL(string: Constants.requests),
               let requestParameters = request.dictionary else {
                 return
         }
-        genericRequest(value: Request.self, url, method: .post,
+        genericCodableRequest(value: Request.self, url, method: .post,
                        parameters: requestParameters, encoding: JSONEncoding.default,
-                       headers: getHeaders()) { response in
+                       headers: token) { response in
             if response.statusCode == 416 {
                 completion(GenericResponse<Request> (success: false, item: nil, statusCode: response.statusCode,
                                                error: response.error,
@@ -43,65 +39,65 @@ class RequestRepository: RequestRepositoryProtocol {
     
     }
     
-    func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAll(token: HTTPHeaders, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
         
-        genericRequest(value: [Request].self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllBy(token: HTTPHeaders, id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         guard let url = URL(string: Constants.userRequests + "/\(id)") else {
             return
         }
         
-        genericRequest(value: [Request].self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllByDate(token: HTTPHeaders, userId: Int, from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         
         let formatter = getDateFormatter()
         let params = ["startDate": formatter.string(from: from),
                       "endDate": formatter.string(from: toDate)]
         
-        guard let url = URL(string: Constants.userRequests + "/3/dates") else {
+        guard let url = URL(string: Constants.userRequests + "/\(userId)/dates") else {
             return
         }
         
-        genericRequest(value: [Request].self, url, parameters: params, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, parameters: params, headers: token) { response in
             completion(response)
         }
     }
     
-    func updateRequest(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
+    func updateRequest(token: HTTPHeaders, request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
         guard let url = URL(string: Constants.requests),
               let requestParameters = request.dictionary else {
                 return
         }
-        genericRequest(value: Request.self, url, method: .put,
+        genericCodableRequest(value: Request.self, url, method: .put,
                        parameters: requestParameters,
                        encoding: JSONEncoding.default,
-                       headers: getHeaders()) { response in
+                       headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllPendingForApprover(token: HTTPHeaders, approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         guard let url = URL(string: Constants.requestsToApprove) else {
             return
         }
         
-        genericRequest(value: [Request].self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllByTeam(token: HTTPHeaders, date: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         let urlString = Constants.requestsByTeamByMonth + "/\(teamId)/month"
         guard let url = URL(string: urlString) else {
             return
@@ -109,45 +105,40 @@ class RequestRepository: RequestRepositoryProtocol {
         let formatter = getDateFormatter()
         let params = ["date": formatter.string(from: date)]
         
-        genericRequest(value: [Request].self, url, parameters: params, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, parameters: params, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllForEmployee(token: HTTPHeaders, byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
-        genericRequest(value: [Request].self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAllForAllEmployees(date: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllForAllEmployees(token: HTTPHeaders, date: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         guard let url = URL(string: Constants.requestsByMonth) else {
             return
         }
         let formatter = getDateFormatter()
         let params = ["date": formatter.string(from: date)]
         
-        genericRequest(value: [Request].self, url, parameters: params, headers: getHeaders()) { response in
+        genericCodableRequest(value: [Request].self, url, parameters: params, headers: token) { response in
             completion(response)
         }
     }
     
-    func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void) {
+    func getAvailableRequestYears(token: HTTPHeaders, completion: @escaping (GenericResponse<Year>) -> Void) {
         guard let url = URL(string: Constants.requestYears) else {
             return
         }
         
-        genericRequest(value: Year.self, url, method: .get, headers: getHeaders()) { response in
+        genericCodableRequest(value: Year.self, url, method: .get, headers: token) { response in
             completion(response)
         }
-    }
-    
-    func getHeaders() -> HTTPHeaders {
-        let token = userDetailsUseCase?.getToken()
-        return [authHeader: token ?? ""]
     }
     
 }

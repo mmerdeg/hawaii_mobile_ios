@@ -34,6 +34,7 @@ class TeamCalendarViewController: BaseViewController {
     var requestUseCase: RequestUseCaseProtocol?
     var userUseCase: UserUseCaseProtocol?
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var lastTimeSynced: Date?
     
     var page = 0
     var numberOfItems = 10
@@ -64,11 +65,18 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
         setUpSearch()
+        setupCalendarView()
+        lastTimeSynced = Date()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupCalendarView()
+        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
+        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
+        if seconds >= Int(Constants.maxTimeElapsed) {
+            setupCalendarView()
+        }
+        lastTimeSynced = Date()
     }
     
     func setUpSearch() {

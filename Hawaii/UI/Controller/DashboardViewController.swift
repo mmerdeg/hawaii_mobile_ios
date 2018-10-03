@@ -26,6 +26,9 @@ class DashboardViewController: BaseViewController {
     var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
     var remainingDaysViewController: RemainigDaysViewController?
+    var lastTimeSynced: Date?
+    var startDate = Date()
+    var endDate = Date()
     let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
     let showSickRequestSegue = "showSickRequest"
@@ -59,15 +62,20 @@ class DashboardViewController: BaseViewController {
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         collectionView.backgroundColor = UIColor.lightPrimaryColor
         
-        setupCalendarView()
-        collectionView.scrollToDate(Date(), animateScroll: false)
         self.navigationItem.rightBarButtonItem = addRequestItem
-        
+        fillCalendar()
+        lastTimeSynced = Date()
+        setupCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fillCalendar()
+        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
+        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
+        if seconds >= Int(Constants.maxTimeElapsed) {
+            fillCalendar()
+        }
+        lastTimeSynced = Date()
     }
     
     @objc func addRequestViaItem() {
@@ -187,10 +195,26 @@ class DashboardViewController: BaseViewController {
                     }
                     if success {
                         self.holidays = holidays
-                        DispatchQueue.main.async {
-                            self.collectionView.reloadData()
-                            self.stopActivityIndicatorSpinner()
-                        }
+                        self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+                            guard let startYear = yearsResponse.item?.first,
+                                let endYear = yearsResponse.item?.last else {
+                                    return
+                            }
+                            let startDateString = "01 01 \(startYear)"
+                            let endDateString = "31 12 \(endYear)"
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "dd MM yyyy"
+                            self.startDate = dateFormatter.date(from: startDateString) ?? Date()
+                            self.endDate = dateFormatter.date(from: endDateString) ?? Date()
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                                self.stopActivityIndicatorSpinner()
+                                
+                                self.collectionView.scrollToDate(Date(), animateScroll: false)
+                            }
+                            
+                        })
+                        
                     } else {
                         ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
@@ -227,11 +251,6 @@ extension DashboardViewController: JTAppleCalendarViewDataSource {
         formatter.dateFormat = "dd MM yyyy"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.locale = Calendar.current.locale
-        
-        guard let startDate = formatter.date(from: "01 05 2018"),
-            let endDate = formatter.date(from: "31 12 2030") else {
-                return ConfigurationParameters(startDate: Date(), endDate: Date(), firstDayOfWeek: .monday)
-        }
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
         return parameters
