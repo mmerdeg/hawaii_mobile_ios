@@ -80,18 +80,31 @@ class RequestTableViewController: BaseViewController {
                 } else {
                     ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
                         self.stopActivityIndicatorSpinner()
+                        self.navigationController?.popViewController(animated: true)
                     })
                 }
             
             })
         } else if requestType == .sick {
-            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, response  in
-                self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                    self.dateItems = items
-                    self.setItems(data: data)
-                    self.typeData = sicknessTypeData
-                    self.selectedAbsence = response.item?.first
-                })
+            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse  in
+                guard let success = sicknessResponse.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                        self.dateItems = items
+                        self.setItems(data: data)
+                        self.typeData = sicknessTypeData
+                        self.selectedAbsence = sicknessResponse.item?.first
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: sicknessResponse.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                }
             })
         } else {
             tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, response   in

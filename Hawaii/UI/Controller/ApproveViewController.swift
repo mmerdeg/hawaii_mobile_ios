@@ -16,7 +16,11 @@ class ApproveViewController: BaseViewController {
     
     var requestUseCase: RequestUseCaseProtocol!
     
+    var userUseCase: UserUseCaseProtocol?
+    
     var requests: [Request] = []
+    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,30 +32,48 @@ class ApproveViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
+        
+        // Add Refresh Control to Table View
+        tableView.refreshControl = refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.accentColor
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
+        fillCalendar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
         fillCalendar()
+        self.refreshControl.endRefreshing()
     }
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase.getAllPendingForApprover(approver: 3) { request in
-            guard let success = request.success else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            if success {
-                self.requests = request.item ?? []
-                self.stopActivityIndicatorSpinner()
-                self.tableView.reloadData()
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+        userUseCase?.readUser(completion: { user in
+            self.requestUseCase.getAllPendingForApprover(approver: user?.id ?? -1) { request in
+                guard let success = request.success else {
                     self.stopActivityIndicatorSpinner()
-                })
+                    return
+                }
+                if success {
+                    self.requests = request.item ?? []
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.stopActivityIndicatorSpinner()
+                    }
+                } else {
+                    self.refreshControl.endRefreshing()
+                    ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             }
-        }
+        })
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -42,11 +42,7 @@ class RemainigDaysViewController: BaseViewController {
     @IBOutlet weak var pendingBarWidth: NSLayoutConstraint!
     @IBOutlet weak var sicknessBarWidth: NSLayoutConstraint!
     
-    var mainLabelText: String? {
-        didSet {
-            getData()
-        }
-    }
+    var mainLabelText: String?
     
     var userUseCase: UserUseCaseProtocol?
     
