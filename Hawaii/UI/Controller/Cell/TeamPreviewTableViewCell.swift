@@ -18,6 +18,8 @@ class TeamPreviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestDuration: UILabel!
     
+    @IBOutlet weak var cardView: UIView!
+    
     weak var requestCancelationDelegate: RequestCancelationProtocol?
     
     var request: Request? {
@@ -29,14 +31,19 @@ class TeamPreviewTableViewCell: UITableViewCell {
                 let color = request?.requestStatus?.backgoundColor else {
                     return
             }
+            self.backgroundColor = UIColor.primaryColor
             requestOwner.text = notes
+            requestOwner.textColor = UIColor.primaryTextColor
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = Constants.displayDateFormat
             let start = dateFormatter.string(from: startDate)
             let end = dateFormatter.string(from: endDate)
             requestDuration.textColor = UIColor.lightPrimaryColor
-            requestDuration.text = false ? start : start + " - " + end
+            requestDuration.text = start == end ? start : start + " - " + end
+            requestDuration.textColor = UIColor.primaryTextColor
+            
+            cardView.backgroundColor = UIColor.lightPrimaryColor
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)

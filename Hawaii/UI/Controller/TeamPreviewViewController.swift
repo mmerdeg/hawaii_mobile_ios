@@ -8,7 +8,6 @@
 
 import UIKit
 
-var requests: [Request]?
 
 class TeamPreviewViewController: BaseViewController {
     
@@ -24,13 +23,14 @@ class TeamPreviewViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: TeamPreviewTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: TeamPreviewTableViewCell.self))
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = UIColor.primaryColor
     }
     
 }
 extension TeamPreviewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        tableView.separatorColor = UIColor.primaryColor
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TeamPreviewTableViewCell.self), for: indexPath)
             as? TeamPreviewTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
@@ -38,9 +38,13 @@ extension TeamPreviewViewController: UITableViewDelegate, UITableViewDataSource 
         cell.request = Array(requests ?? [:])[indexPath.section].value[indexPath.row]
         return cell
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String(describing: Array(requests ?? [:])[section].key)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = UIColor.primaryTextColor
+        label.text = String(describing: Array(requests ?? [:])[section].key)
+        return label
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Array(requests ?? [:])[section].value.count
     }

@@ -71,7 +71,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
-            self.dateLabel.text = "<   " + month + ", " + year + "   >"
+            self.dateLabel.text = month + ", " + year
         }
     }
     func fillCalendar() {

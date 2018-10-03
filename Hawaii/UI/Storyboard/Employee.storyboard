@@ -47,7 +47,7 @@
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvF-lm-MTg">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IvF-lm-MTg">
                                                                 <rect key="frame" x="275" y="15" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="KXK-Lx-h46"/>
@@ -60,7 +60,7 @@
                                                                     <action selector="nextMonthPressed:" destination="UfA-62-Xdn" eventType="touchUpInside" id="h3a-WC-PCP"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-7V-8di">
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQL-7V-8di">
                                                                 <rect key="frame" x="70" y="15" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="HHW-PW-kcd"/>
@@ -247,15 +247,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BCc-nl-Oqb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="10" y="0.0" width="355" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="MEa-Vb-6Td" firstAttribute="bottom" secondItem="BCc-nl-Oqb" secondAttribute="bottom" id="Bdc-Kz-RUx"/>
-                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="leading" secondItem="MEa-Vb-6Td" secondAttribute="leading" id="UiE-bf-6aP"/>
-                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="trailing" secondItem="BCc-nl-Oqb" secondAttribute="trailing" id="fCg-vh-AWS"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="leading" secondItem="MEa-Vb-6Td" secondAttribute="leading" constant="10" id="UiE-bf-6aP"/>
+                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="trailing" secondItem="BCc-nl-Oqb" secondAttribute="trailing" constant="10" id="fCg-vh-AWS"/>
                             <constraint firstItem="BCc-nl-Oqb" firstAttribute="top" secondItem="MEa-Vb-6Td" secondAttribute="top" id="w0b-Yv-UGE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MEa-Vb-6Td"/>

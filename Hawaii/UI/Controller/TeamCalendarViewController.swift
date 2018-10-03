@@ -321,7 +321,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                     item.requestStatus != RequestStatus.canceled &&
                     item.requestStatus != RequestStatus.rejected &&
                     item.absence?.absenceType != AbsenceType.bonus.rawValue {
-                    let tempRequest = Request(request: item, days: [day])
+                    let tempRequest = Request(request: item, days: days)
                     requests.append(tempRequest)
                 }
             }

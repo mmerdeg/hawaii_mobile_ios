@@ -15,10 +15,14 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="TeamPreviewTableViewCell" customModule="Hawaii" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTl-nz-Btl">
+                        <rect key="frame" x="0.0" y="5.5" width="320" height="58"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="EFz-xL-CG4">
                         <rect key="frame" x="67" y="16.5" width="42" height="36"/>
                         <subviews>
@@ -60,18 +64,24 @@
                     <constraint firstItem="HCg-7X-yVI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2tX-dJ-keu"/>
                     <constraint firstItem="EFz-xL-CG4" firstAttribute="centerY" secondItem="HCg-7X-yVI" secondAttribute="centerY" id="6ka-S4-MVa"/>
                     <constraint firstItem="EFz-xL-CG4" firstAttribute="leading" secondItem="HCg-7X-yVI" secondAttribute="trailing" constant="16" id="IMQ-Mv-Vpp"/>
-                    <constraint firstItem="HCg-7X-yVI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="g6o-LN-Z5v"/>
-                    <constraint firstItem="HCg-7X-yVI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16.5" id="lfm-GG-b5v"/>
+                    <constraint firstItem="gTl-nz-Btl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KEw-k0-HZf"/>
+                    <constraint firstAttribute="trailing" secondItem="gTl-nz-Btl" secondAttribute="trailing" id="P1L-LL-aaH"/>
+                    <constraint firstItem="gTl-nz-Btl" firstAttribute="centerY" secondItem="EFz-xL-CG4" secondAttribute="centerY" id="cWq-Q4-04Q"/>
+                    <constraint firstAttribute="bottom" secondItem="gTl-nz-Btl" secondAttribute="bottom" constant="5" id="da8-fp-7gD"/>
+                    <constraint firstItem="HCg-7X-yVI" firstAttribute="leading" secondItem="gTl-nz-Btl" secondAttribute="leading" constant="16" id="g6o-LN-Z5v"/>
+                    <constraint firstItem="HCg-7X-yVI" firstAttribute="top" secondItem="gTl-nz-Btl" secondAttribute="top" constant="11.5" id="lfm-GG-b5v"/>
+                    <constraint firstItem="gTl-nz-Btl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="y88-K7-knr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cardView" destination="gTl-nz-Btl" id="nxh-dA-ipy"/>
                 <outlet property="requestDuration" destination="Ghc-jN-HaU" id="aJT-ci-2RV"/>
                 <outlet property="requestImage" destination="70O-oW-qQm" id="xlC-mY-ARc"/>
                 <outlet property="requestImageFrame" destination="HCg-7X-yVI" id="m3d-gd-DG1"/>
                 <outlet property="requestOwner" destination="JXT-AO-g8V" id="HSy-Ci-X2p"/>
             </connections>
-            <point key="canvasLocation" x="34" y="66"/>
+            <point key="canvasLocation" x="33.600000000000001" y="65.667166416791616"/>
         </tableViewCell>
     </objects>
 </document>
