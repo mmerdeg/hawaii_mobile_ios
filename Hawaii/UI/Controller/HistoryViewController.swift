@@ -281,7 +281,7 @@ extension HistoryViewController: RequestCancelationProtocol {
         }
         var status = RequestStatus.canceled
         if oldRequest.requestStatus == .approved {
-            status = .cancelationPending
+            status = .canceled
         }
         
         ViewUtility.showConfirmationAlert(message: "Are you sure you want to cancel this request?",

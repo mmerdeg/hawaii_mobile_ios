@@ -22,7 +22,7 @@ protocol GenericRepositoryProtocol {
     
     func genericStringRequest(_ url: URL, method: HTTPMethod,
                               parameters: Parameters?, encoding: ParameterEncoding,
-                              headers: HTTPHeaders?, codableDecoder: JSONDecoder?,
+                              headers: HTTPHeaders?,
                               completion: @escaping (GenericResponse<String>) -> Void)
 }
 
@@ -54,7 +54,7 @@ extension GenericRepositoryProtocol {
     
     func genericStringRequest(_ url: URL, method: HTTPMethod,
                               parameters: Parameters?, encoding: ParameterEncoding,
-                              headers: HTTPHeaders?, codableDecoder: JSONDecoder?,
+                              headers: HTTPHeaders?,
                               completion: @escaping (GenericResponse<String>) -> Void) {
         let completionHandler: (_ response: DataResponse<String>) -> Void = { (response: DataResponse<String>) in
             switch response.result {

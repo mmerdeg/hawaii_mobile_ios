@@ -42,7 +42,7 @@ class TeamCalendarViewController: BaseViewController {
     var items: [Request] = []
     var users: [User] = []
     var customView: UIView = UIView()
-    var timer: Timer?
+    private var pendingRequestWorkItem: DispatchWorkItem?
     
     var searchableId: Int?
     
@@ -134,24 +134,24 @@ class TeamCalendarViewController: BaseViewController {
         case 0:
             self.startActivityIndicatorSpinner()
             self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
-                self.handleResponse(requestResponse: requestResponse)
+                self.handle(requestResponse)
             })
         case 1:
             self.startActivityIndicatorSpinner()
             self.userUseCase?.readUser(completion: { user in
                 self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
+                    self.handle(requestResponse)
                 })
             })
         default:
             self.startActivityIndicatorSpinner()
             if let searchableId = searchableId {
                 self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
+                    self.handle(requestResponse)
                 }
             } else {
                 self.requestUseCase?.getAll { requestResponse in
-                    self.handleResponse(requestResponse: requestResponse)
+                    self.handle(requestResponse)
                 }
             }
         }
@@ -163,7 +163,7 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handleResponse(requestResponse: GenericResponse<[Request]>?) {
+    func handle(_ requestResponse: GenericResponse<[Request]>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return
@@ -226,7 +226,7 @@ class TeamCalendarViewController: BaseViewController {
                 return
             }
             self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
-                self.handleResponse(requestResponse: requestResponse)
+                self.handle(requestResponse)
             })
         }
     }
@@ -412,8 +412,18 @@ extension TeamCalendarViewController: RequestDetailsDialogProtocol {
 
 extension TeamCalendarViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        timer?.invalidate()  // Cancel any previous timer
-        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(performSearch), userInfo: nil, repeats: false)
+        pendingRequestWorkItem?.cancel()
+        
+        // Wrap our request in a work item
+        let requestWorkItem = DispatchWorkItem { [weak self] in
+            self?.performSearch()
+        }
+        
+        // Save the new work item and execute it after 250 ms
+        pendingRequestWorkItem = requestWorkItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
+                                      execute: requestWorkItem)
+        
     }
     
     @objc func performSearch() {
@@ -479,7 +489,7 @@ extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource
             self.searchController?.dismiss(animated: true, completion: nil)
             self.searchableId = cell.user?.id
             self.requestUseCase?.getAllBy(id: cell.user?.id ?? -1) { requestResponse in
-                self.handleResponse(requestResponse: requestResponse)
+                self.handle(requestResponse)
             }
         }
     }

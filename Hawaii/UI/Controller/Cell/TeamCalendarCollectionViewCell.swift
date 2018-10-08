@@ -34,10 +34,10 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
                 dateLabel.textColor = UIColor.primaryTextColor
             }
         }
-        
-        if requests?.isEmpty ?? true {
-            self.isUserInteractionEnabled = false
-        }
+   //TODO!!!!!
+//        if requests?.isEmpty ?? true {
+//            self.isUserInteractionEnabled = false
+//        }
     }
     
     override func awakeFromNib() {

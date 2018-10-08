@@ -22,7 +22,7 @@ class DashboardViewController: BaseViewController {
     var refresher: UIRefreshControl?
     var requestUseCase: RequestUseCaseProtocol?
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
-    var items: [Request] = []
+    var items: [Date: [Request]] = [:]
     var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
     var remainingDaysViewController: RemainigDaysViewController?
@@ -180,14 +180,13 @@ class DashboardViewController: BaseViewController {
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        requestUseCase?.getAll { requestResponse in
-            
+        requestUseCase?.getAllForCalendar(completion: { requestResponse in
             guard let success = requestResponse.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if success {
-                self.items = requestResponse.item ?? []
+                self.items = requestResponse.item ?? [:]
                 self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
                     guard let success = holidaysResponse?.success else {
                         self.stopActivityIndicatorSpinner()
@@ -218,7 +217,7 @@ class DashboardViewController: BaseViewController {
                     } else {
                         ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
-                            self.stopActivityIndicatorSpinner()
+                                                            self.stopActivityIndicatorSpinner()
                         })
                     }
                 })
@@ -227,7 +226,7 @@ class DashboardViewController: BaseViewController {
                     self.stopActivityIndicatorSpinner()
                 })
             }
-        }
+        })
     }
     
     func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
@@ -286,19 +285,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            let calendar = NSCalendar.current
-            var requests: [Request] = []
-            for item in items {
-                guard let days = item.days else {
-                    continue
-                }
-                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
-                    item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected &&
-                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
-                        requests.append(item)
-                }
-            }
+            let requests: [Request] = items[date] ?? []
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
             cell.setCell(processor: processor)
             return cell
@@ -342,8 +329,22 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
 extension DashboardViewController: RequestUpdateProtocol {
     
     func didAdd(request: Request) {
-        items.append(request)
+        request.days?.forEach({ day in
+            if let date = day.date {
+                if items[date] != nil {
+                    if !(items[date]?.contains(request) ?? true) &&
+                        request.requestStatus != RequestStatus.canceled &&
+                        request.requestStatus != RequestStatus.rejected &&
+                        request.absence?.absenceType != AbsenceType.bonus.rawValue {
+                        items[date]?.append(request)
+                    }
+                } else {
+                    items[date] = [request]
+                }
+            }
+        })
         collectionView.reloadData()
+        self.collectionView.scrollToDate(request.days?.first?.date ?? Date(), animateScroll: false)
     }
     
     func didRemove(request: Request) {

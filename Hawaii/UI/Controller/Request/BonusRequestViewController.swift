@@ -51,7 +51,7 @@ class BonusRequestViewController: BaseViewController {
             }
             return
         }
-        if cellText == "" || cellText == "Enter reason for leave" {
+        if cellText.trim() == "" || cellText.trim() == "Enter reason for leave" {
             ViewUtility.showAlertWithAction(title: "Error", message: "Reason filed is required", viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }
@@ -91,7 +91,7 @@ class BonusRequestViewController: BaseViewController {
                 return
             }
             
-            let request = Request(approverId: nil, days: days, reason: cellText,
+            let request = Request(approverId: nil, days: days, reason: cellText.trim(),
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)
             requestUseCase.add(request: request) { requestResponse in

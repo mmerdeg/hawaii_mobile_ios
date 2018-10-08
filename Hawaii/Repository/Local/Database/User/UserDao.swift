@@ -26,7 +26,7 @@ class UserDao: UserDaoProtocol {
         self.dispatchQueue = dispatchQueue
         let bundle = Bundle.main
         guard let createUserUrl = bundle.url(forResource: "createUser", withExtension: Constants.sqlExtension),
-              let emptyUsersUrl = bundle.url(forResource: "deleteUsers", withExtension: Constants.sqlExtension),
+              let emptyUsersUrl = bundle.url(forResource: "deleteUser", withExtension: Constants.sqlExtension),
               let readUserUrl = bundle.url(forResource: "readUser", withExtension: Constants.sqlExtension) else {
                 return
         }

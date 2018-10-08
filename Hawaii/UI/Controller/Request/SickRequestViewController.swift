@@ -1,4 +1,3 @@
-
 //  SickRequestViewController.swift
 //  Hawaii
 //
@@ -59,13 +58,22 @@ class SickRequestViewController: BaseViewController {
     
     @objc func addSickRequest() {
         guard let startDate = requestTableViewController?.startDate,
-            let endDate = requestTableViewController?.endDate,
-            let requestTableViewController = requestTableViewController,
-            let requestUseCase = requestUseCase else {
+              let endDate = requestTableViewController?.endDate,
+              let requestTableViewController = requestTableViewController,
+              let requestUseCase = requestUseCase,
+              let cell = requestTableViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? InputTableViewCell,
+            let cellText = cell.inputReasonTextView.text else {
                 return
         }
         if startDate > endDate {
             ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            }
+            return
+        }
+        
+        if cellText.trim() == "" || cellText.trim() == "Enter reason for leave" {
+            ViewUtility.showAlertWithAction(title: "Error", message: "Reason filed is required", viewController: self) { _ in
+                cell.inputReasonTextView.becomeFirstResponder()
             }
             return
         }
@@ -103,7 +111,7 @@ class SickRequestViewController: BaseViewController {
                 return
             }
             
-            let request = Request(approverId: nil, days: days, reason: "string",
+            let request = Request(approverId: nil, days: days, reason: cellText.trim(),
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)
             requestUseCase.add(request: request) { requestResponse in

@@ -14,6 +14,8 @@ protocol RequestUseCaseProtocol {
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void)
     
+    func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
+    
     func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
@@ -63,6 +65,32 @@ class RequestUseCase: RequestUseCaseProtocol {
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
         entityRepository.add(token: getHeaders(), request: request) {request in
             completion(request)
+        }
+    }
+    
+    func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
+        entityRepository.getAll(token: getHeaders()) { response in
+            var dict: [Date: [Request]] = [:]
+            response.item?.forEach({ request in
+                request.days?.forEach({ day in
+                    if let date = day.date {
+                        if dict[date] != nil {
+                            if !(dict[date]?.contains(request) ?? true) &&
+                                request.requestStatus != RequestStatus.canceled &&
+                                request.requestStatus != RequestStatus.rejected &&
+                                request.absence?.absenceType != AbsenceType.bonus.rawValue {
+                                dict[date]?.append(request)
+                            }
+                        } else {
+                            dict[date] = [request]
+                        }
+                    }
+                })
+            })
+            completion(GenericResponse<[Date: [Request]]> (success: response.success,
+                                                            item: dict, statusCode: response.statusCode,
+                                                            error: response.error,
+                                                            message: response.error?.localizedDescription))
         }
     }
     

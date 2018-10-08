@@ -53,8 +53,7 @@ class RequestDetailTableViewCell: UITableViewCell {
             if absenceType == AbsenceType.sick.rawValue {
                 color = UIColor.sickColor
             }
-            
-            date.text = "submission date"
+            date.text = "Submission time"
             requestNotes.text = notes
             requestDuration.text = String(duration)
             requestStatus.text = status.rawValue

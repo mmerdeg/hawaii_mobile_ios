@@ -32,7 +32,8 @@ enum RequestStatus: String, Codable {
     }
 }
 
-struct Request: Codable {
+struct Request: Codable, Equatable {
+    
     let user: User?
     let absence: Absence?
     let requestStatus: RequestStatus?
@@ -40,12 +41,14 @@ struct Request: Codable {
     let approverId: Int?
     let days: [Day]?
     let id: Int?
+    let submissionTime: Date?
+    
 }
 
 extension Request {
     init(request: Request? = nil, approverId: Int? = nil, days: [Day]? = nil,
          reason: String? = nil, requestStatus: RequestStatus? = nil, absence: Absence? = nil,
-         user: User? = nil, id: Int? = nil) {
+         user: User? = nil, id: Int? = nil, submissionTime: Date? = nil) {
         self.approverId = approverId ?? request?.approverId
         self.days = days ?? request?.days
         self.reason = reason ?? request?.reason
@@ -53,5 +56,10 @@ extension Request {
         self.user = user ?? request?.user
         self.absence = absence ?? request?.absence
         self.id = id ?? request?.id
+        self.submissionTime = submissionTime ?? request?.submissionTime
+    }
+
+    static func == (lhs: Request, rhs: Request) -> Bool {
+        return lhs.id == rhs.id
     }
 }
