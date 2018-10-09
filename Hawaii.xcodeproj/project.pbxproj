@@ -238,6 +238,10 @@
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
+		3E832312216CAD570068E37F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E832311216CAD570068E37F /* SummaryViewController.swift */; };
+		3E832313216CAD570068E37F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E832311216CAD570068E37F /* SummaryViewController.swift */; };
+		3E832318216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
+		3E832319216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
 		3E834B642100A8BA0038BC96 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
 		3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E834B6B2100AF1B0038BC96 /* SignInApi.swift */; };
 		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
@@ -456,6 +460,8 @@
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* ViewUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtility.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
+		3E832311216CAD570068E37F /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		3E832317216CADCC0068E37F /* Summary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Summary.storyboard; sourceTree = "<group>"; };
 		3E834B602100A8B90038BC96 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		3E834B6B2100AF1B0038BC96 /* SignInApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApi.swift; sourceTree = "<group>"; };
 		3E843714211C42AF003F449B /* SVGProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGProcessor.swift; sourceTree = "<group>"; };
@@ -715,6 +721,7 @@
 				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
 				30139328215CBE7A00F65B7F /* Sick.storyboard */,
 				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
+				3E832317216CADCC0068E37F /* Summary.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -726,6 +733,7 @@
 				3E28E77F20E3628200F1C6D5 /* BonusRequestViewController.swift */,
 				3E28E79920E5121700F1C6D5 /* LeaveRequestViewController.swift */,
 				3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */,
+				3E832311216CAD570068E37F /* SummaryViewController.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1270,6 +1278,7 @@
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				309B6CF4216603F00046EFE9 /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
+				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
@@ -1308,6 +1317,7 @@
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
+				3E832318216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6CFF216605710046EFE9 /* createUser.sql in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
@@ -1600,6 +1610,7 @@
 				30FD36A5214A5E530047038C /* UserRepository.swift in Sources */,
 				30FD36A6214A5E530047038C /* UserRepositoryProtocol.swift in Sources */,
 				309B6D63216736890046EFE9 /* StringExtension.swift in Sources */,
+				3E832313216CAD570068E37F /* SummaryViewController.swift in Sources */,
 				30FD36A7214A5E530047038C /* SickRequestViewController.swift in Sources */,
 				30FD36A8214A5E530047038C /* Request.swift in Sources */,
 				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
@@ -1695,6 +1706,7 @@
 				30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				309B6D62216736880046EFE9 /* StringExtension.swift in Sources */,
+				3E832312216CAD570068E37F /* SummaryViewController.swift in Sources */,
 				302EE1732133F549001355E9 /* UserRepository.swift in Sources */,
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,

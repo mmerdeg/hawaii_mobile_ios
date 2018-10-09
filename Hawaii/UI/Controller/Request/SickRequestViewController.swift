@@ -10,13 +10,18 @@ import UIKit
 class SickRequestViewController: BaseViewController {
 
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
-    let showRequestTableViewController = "showRequestTableViewController"
-    let showRemainingDaysViewController = "showRemainingDaysViewController"
-    var requestTableViewController: RequestTableViewController?
-    var remainingDaysViewController: RemainigDaysViewController?
-    weak var requestUpdateDelegate: RequestUpdateProtocol?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    let showRequestTableViewController = "showRequestTableViewController"
+    
+    let showRemainingDaysViewController = "showRemainingDaysViewController"
+    
+    let showSummaryViewController = "showSummaryViewController"
+    
+    var requestTableViewController: RequestTableViewController?
+    
+    var remainingDaysViewController: RemainigDaysViewController?
+    
+    weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     var userUseCase: UserUseCaseProtocol?
     
@@ -53,6 +58,14 @@ class SickRequestViewController: BaseViewController {
                 return
             }
             remainingDaysViewController.mainLabelText = "Sick leave"
+        } else if segue.identifier == showSummaryViewController {
+            guard let controller = segue.destination as? SummaryViewController,
+                let request = sender as? Request else {
+                    return
+            }
+            controller.request = request
+            controller.requestUpdateDelegate = self.requestUpdateDelegate
+            controller.remainingDaysNo = "0"
         }
     }
     
@@ -60,7 +73,6 @@ class SickRequestViewController: BaseViewController {
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
-              let requestUseCase = requestUseCase,
               let cell = requestTableViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? InputTableViewCell,
             let cellText = cell.inputReasonTextView.text else {
                 return
@@ -114,25 +126,8 @@ class SickRequestViewController: BaseViewController {
             let request = Request(approverId: nil, days: days, reason: cellText.trim(),
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)
-            requestUseCase.add(request: request) { requestResponse in
-                guard let success = requestResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    guard let request = requestResponse.item else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    self.requestUpdateDelegate?.didAdd(request: request)
-                    self.navigationController?.popViewController(animated: true)
-                    self.stopActivityIndicatorSpinner()
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
-                                                    viewController: self, completion: { _ in
-                                                        self.stopActivityIndicatorSpinner()
-                    })
-                }
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: self.showSummaryViewController, sender: request)
             }
         })
     }

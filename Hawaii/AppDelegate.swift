@@ -162,12 +162,14 @@ extension SwinjectStoryboard {
             }
             
             defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(SickRequestViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(SummaryViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(SickRequestViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
@@ -223,8 +225,6 @@ extension SwinjectStoryboard {
             }
             
             defaultContainer.storyboardInitCompleted(BonusRequestViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
