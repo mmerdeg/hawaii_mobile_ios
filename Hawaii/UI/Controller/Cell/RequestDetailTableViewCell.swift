@@ -34,6 +34,8 @@ class RequestDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestNotes: UILabel!
     
+    var isCancelHidden = false
+    
     weak var requestCancelationDelegate: RequestCancelationProtocol?
     
     var request: Request? {
@@ -53,7 +55,6 @@ class RequestDetailTableViewCell: UITableViewCell {
             if absenceType == AbsenceType.sick.rawValue {
                 color = UIColor.sickColor
             }
-            date.text = "Submission time"
             requestNotes.text = notes
             requestDuration.text = String(duration)
             requestStatus.text = status.rawValue
@@ -65,6 +66,9 @@ class RequestDetailTableViewCell: UITableViewCell {
             let end = formatter.string(from: endDate)
             requestDates.text = start == end ? start : start + " - " + end
             cardView.backgroundColor = UIColor.lightPrimaryColor
+            date.text = convertDateString(dateString: request?.submissionTime ?? "",
+                                          fromFormat: "yyyy-MM-dd HH:mm:ss",
+                                          toFormat: "dd MM yyyy")
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
@@ -79,8 +83,20 @@ class RequestDetailTableViewCell: UITableViewCell {
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
             
-            cancelButton.isHidden = status != .pending && status != .approved
+            cancelButton.isHidden = isCancelHidden || (status != .pending && status != .approved)
         }
+    }
+    
+    func convertDateString(dateString: String, fromFormat sourceFormat: String, toFormat desFormat: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = sourceFormat
+        dateFormatter.calendar = Calendar(identifier: .iso8601)
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let date = dateFormatter.date(from: dateString)
+        dateFormatter.dateFormat = desFormat
+        
+        return dateFormatter.string(from: date ?? Date())
     }
     
     override func awakeFromNib() {

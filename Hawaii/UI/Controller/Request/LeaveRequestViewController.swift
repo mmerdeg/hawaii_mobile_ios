@@ -17,6 +17,7 @@ class LeaveRequestViewController: BaseViewController {
     let showRemainingDaysViewController = "showRemainingDaysViewController"
     
     @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var pickerHeight: NSLayoutConstraint!
     
     weak var requestUpdateDelegate: RequestUpdateProtocol?
@@ -41,6 +42,29 @@ class LeaveRequestViewController: BaseViewController {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = addLeaveRequestItem
         self.scrollView.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
+        
+        guard let userInfo = notification.userInfo,
+              let value = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue else {
+            return
+        }
+        var keyboardFrame: CGRect = value.cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset: UIEdgeInsets = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        scrollView.contentInset = contentInset
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -187,6 +211,6 @@ extension LeaveRequestViewController: SelectAbsenceProtocol {
 
 extension LeaveRequestViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.view.endEditing(true)
+      //  self.view.endEditing(true)
     }
 }

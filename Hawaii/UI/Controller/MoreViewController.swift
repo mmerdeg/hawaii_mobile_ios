@@ -13,10 +13,27 @@ class MoreViewController: BaseViewController {
 
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
+    var userUseCase: UserUseCaseProtocol?
+    
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var signOutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileImage.kf.setImage(with: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
+        profileImage.layer.borderWidth = 1.0
+        profileImage.layer.masksToBounds = false
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.cornerRadius = 120 / 2
+        profileImage.clipsToBounds = true
+        userUseCase?.readUser(completion: { user in
+            DispatchQueue.main.async {
+                self.nameLabel.text = user?.fullName
+                self.emailLabel.text = user?.email
+            }
+        })
     }
     
     @IBAction func onSignOutPressed(_ sender: Any) {

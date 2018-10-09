@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79P-4T-ZpC">
-                        <rect key="frame" x="18.5" y="10.5" width="30" height="30"/>
+                        <rect key="frame" x="18.5" y="11.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="9Eh-Nf-f6S"/>
                             <constraint firstAttribute="width" constant="30" id="dPh-R1-xJk"/>
@@ -28,7 +28,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="TeamCalendarCollectionViewCell" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9k-Qe-j5R">
-                        <rect key="frame" x="12.5" y="15" width="42" height="20.5"/>
+                        <rect key="frame" x="12.5" y="16" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                 <constraint firstItem="79P-4T-ZpC" firstAttribute="centerY" secondItem="L9k-Qe-j5R" secondAttribute="centerY" id="KiS-7r-na6"/>
                 <constraint firstItem="79P-4T-ZpC" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="exk-uA-sRq"/>
                 <constraint firstItem="L9k-Qe-j5R" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="gjh-I9-a0B"/>
-                <constraint firstItem="L9k-Qe-j5R" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="15" id="jOM-gn-hgf"/>
+                <constraint firstItem="L9k-Qe-j5R" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="16" id="jOM-gn-hgf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="67" height="59"/>

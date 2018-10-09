@@ -1,8 +1,8 @@
 //
-//  TeamCalendarCollectionViewCell.swift
+//  DatePickerCollectionViewCell.swift
 //  Hawaii
 //
-//  Created by Ivan Divljak on 8/28/18.
+//  Created by Ivan Divljak on 10/8/18.
 //  Copyright © 2018 Server. All rights reserved.
 //
 
@@ -10,12 +10,9 @@ import UIKit
 import JTAppleCalendar
 import Kingfisher
 
-class TeamCalendarCollectionViewCell: JTAppleCell {
+class DatePickerCollectionViewCell: JTAppleCell {
     
     @IBOutlet weak var dateLabel: UILabel!
-    
-    @IBOutlet weak var isEmpty: UIView!
-    var requests: [Request]?
     
     var cellState: CellState!
     
@@ -34,9 +31,6 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
                 dateLabel.textColor = UIColor.primaryTextColor
             }
         }
-        if requests?.isEmpty ?? true {
-            self.isUserInteractionEnabled = false
-        }
     }
     
     override func awakeFromNib() {
@@ -46,9 +40,6 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
     func setCell(processor: ImageProcessor) {
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         handleCellText(cellState: cellState)
-        isEmpty.layer.cornerRadius = isEmpty.frame.width / 2
-        isEmpty.backgroundColor = requests?.isEmpty ?? true ||
-            NSCalendar.current.isDateInWeekend(cellState.date) ? UIColor.transparentColor: UIColor.accentColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
     }

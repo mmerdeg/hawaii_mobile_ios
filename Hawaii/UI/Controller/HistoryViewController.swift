@@ -54,7 +54,6 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil),
@@ -300,6 +299,7 @@ extension HistoryViewController: RequestCancelationProtocol {
                 self.stopActivityIndicatorSpinner()
                 return
             }
+            
             if success {
                 guard let index = self.tableView.indexPath(for: cell) else {
                     return

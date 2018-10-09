@@ -41,14 +41,14 @@ struct Request: Codable, Equatable {
     let approverId: Int?
     let days: [Day]?
     let id: Int?
-    let submissionTime: Date?
+    let submissionTime: String?
     
 }
 
 extension Request {
     init(request: Request? = nil, approverId: Int? = nil, days: [Day]? = nil,
          reason: String? = nil, requestStatus: RequestStatus? = nil, absence: Absence? = nil,
-         user: User? = nil, id: Int? = nil, submissionTime: Date? = nil) {
+         user: User? = nil, id: Int? = nil, submissionTime: String? = nil) {
         self.approverId = approverId ?? request?.approverId
         self.days = days ?? request?.days
         self.reason = reason ?? request?.reason

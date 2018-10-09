@@ -16,7 +16,7 @@ protocol RequestUseCaseProtocol {
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
-    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
     
@@ -26,7 +26,7 @@ protocol RequestUseCaseProtocol {
     
     func updateRequest(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
@@ -56,9 +56,9 @@ class RequestUseCase: RequestUseCaseProtocol {
         }
     }
     
-    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
         entityRepository.getAllBy(token: getHeaders(), id: id) { requests in
-            completion(requests)
+            completion(self.handle(requests))
         }
     }
     
@@ -70,27 +70,7 @@ class RequestUseCase: RequestUseCaseProtocol {
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
         entityRepository.getAll(token: getHeaders()) { response in
-            var dict: [Date: [Request]] = [:]
-            response.item?.forEach({ request in
-                request.days?.forEach({ day in
-                    if let date = day.date {
-                        if dict[date] != nil {
-                            if !(dict[date]?.contains(request) ?? true) &&
-                                request.requestStatus != RequestStatus.canceled &&
-                                request.requestStatus != RequestStatus.rejected &&
-                                request.absence?.absenceType != AbsenceType.bonus.rawValue {
-                                dict[date]?.append(request)
-                            }
-                        } else {
-                            dict[date] = [request]
-                        }
-                    }
-                })
-            })
-            completion(GenericResponse<[Date: [Request]]> (success: response.success,
-                                                            item: dict, statusCode: response.statusCode,
-                                                            error: response.error,
-                                                            message: response.error?.localizedDescription))
+            completion(self.handle(response))
         }
     }
     
@@ -113,17 +93,48 @@ class RequestUseCase: RequestUseCaseProtocol {
             completion(request)
         }
     }
-
-    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
+    
+    func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
         if teamId != -1 {
-            entityRepository.getAllByTeam(token: getHeaders(), date: from, teamId: teamId) { requests in
-                completion(requests)
+            entityRepository.getAllByTeam(token: getHeaders(), date: from, teamId: teamId) { response in
+                completion(self.handle(response))
             }
         } else {
-            entityRepository.getAllForAllEmployees(token: getHeaders(), date: from) { requests in
-                completion(requests)
+            entityRepository.getAllForAllEmployees(token: getHeaders(), date: from) { response in
+                completion(self.handle(response))
             }
         }
+    }
+    
+    func handle(_ response: GenericResponse<[Request]>?) -> GenericResponse<[Date: [Request]]> {
+        if !(response?.success ?? false) {
+            return GenericResponse<[Date: [Request]]> (success: response?.success,
+                                                           item: nil, statusCode: response?.statusCode,
+                                                           error: response?.error,
+                                                           message: response?.error?.localizedDescription)
+        }
+        var dict: [Date: [Request]] = [:]
+        response?.item?.forEach({ request in
+            request.days?.forEach({ day in
+                if (request.requestStatus == RequestStatus.approved ||
+                    request.requestStatus == RequestStatus.pending) &&
+                    request.absence?.absenceType != AbsenceType.bonus.rawValue {
+                    if let date = day.date {
+                        if dict[date] != nil {
+                            if !(dict[date]?.contains(request) ?? true) {
+                                dict[date]?.append(request)
+                            }
+                        } else {
+                            dict[date] = [request]
+                        }
+                    }
+                }
+            })
+        })
+        return GenericResponse<[Date: [Request]]> (success: response?.success,
+                                                       item: dict, statusCode: response?.statusCode,
+                                                       error: response?.error,
+                                                       message: response?.error?.localizedDescription)
     }
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {

@@ -39,10 +39,19 @@ class TeamCalendarViewController: BaseViewController {
     var page = 0
     var numberOfItems = 10
     
-    var items: [Request] = []
+    var items: [Date: [Request]] = [:]
+    var holidays: [Date: [PublicHoliday]] = [:]
     var users: [User] = []
     var customView: UIView = UIView()
-    private var pendingRequestWorkItem: DispatchWorkItem?
+    
+    var lastDateInMonth = Date()
+    var pendingRequestWorkItem: DispatchWorkItem?
+    
+    lazy var refreshItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
+        item.tintColor = UIColor.primaryTextColor
+        return item
+    }()
     
     var searchableId: Int?
     
@@ -65,8 +74,8 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
         setUpSearch()
-        setupCalendarView()
         lastTimeSynced = Date()
+        self.navigationItem.leftBarButtonItem = refreshItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +83,7 @@ class TeamCalendarViewController: BaseViewController {
         let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
         let seconds = components.second ?? Int(Constants.maxTimeElapsed)
         if seconds >= Int(Constants.maxTimeElapsed) {
-            setupCalendarView()
+            self.refreshUI(date: lastDateInMonth)
         }
         lastTimeSynced = Date()
     }
@@ -121,12 +130,7 @@ class TeamCalendarViewController: BaseViewController {
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
-        collectionView.visibleDates { visibleDates in
-            guard let date = visibleDates.monthDates.last?.date else {
-                return
-            }
-            self.refreshUI(date: date)
-        }
+        self.refreshUI(date: lastDateInMonth)
     }
     
     func refreshUI(date: Date) {
@@ -150,7 +154,7 @@ class TeamCalendarViewController: BaseViewController {
                     self.handle(requestResponse)
                 }
             } else {
-                self.requestUseCase?.getAll { requestResponse in
+                self.requestUseCase?.getAllForCalendar { requestResponse in
                     self.handle(requestResponse)
                 }
             }
@@ -163,13 +167,13 @@ class TeamCalendarViewController: BaseViewController {
         }
     }
     
-    func handle(_ requestResponse: GenericResponse<[Request]>?) {
+    func handle(_ requestResponse: GenericResponse<[Date: [Request]]>?) {
         guard let success = requestResponse?.success else {
             self.stopActivityIndicatorSpinner()
             return
         }
         if success {
-            self.items = requestResponse?.item ?? []
+            self.items = requestResponse?.item ?? [:]
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()
@@ -215,20 +219,13 @@ class TeamCalendarViewController: BaseViewController {
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
             self.dateLabel.text = month+", "+year
+            self.lastDateInMonth = date
             self.refreshUI(date: date)
         }
     }
     
-    func fillCalendar() {
-        startActivityIndicatorSpinner()
-        collectionView.visibleDates { visibleDates in
-            guard let date = visibleDates.monthDates.last?.date else {
-                return
-            }
-            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
-                self.handle(requestResponse)
-            })
-        }
+    @objc func fillCalendar() {
+        refreshUI(date: lastDateInMonth)
     }
     
     func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
@@ -294,20 +291,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            let calendar = NSCalendar.current
-            var requests: [Request] = []
-            for item in items {
-                guard let days = item.days else {
-                    continue
-                }
-                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
-                    item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected &&
-                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
-                    let tempRequest = Request(request: item, days: [day])
-                    requests.append(tempRequest)
-                }
-            }
+            let requests: [Request] = items[date] ?? []
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
             cell.setCell(processor: processor)
             return cell
@@ -319,19 +303,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            let calendar = NSCalendar.current
-            var requests: [Request] = []
-            for item in items {
-                guard let days = item.days else {
-                    continue
-                }
-                for day in days where calendar.compare(day.date ?? Date(), to: cellState.date, toGranularity: .day) == .orderedSame &&
-                    item.requestStatus != RequestStatus.canceled &&
-                    item.requestStatus != RequestStatus.rejected &&
-                    item.absence?.absenceType != AbsenceType.bonus.rawValue {
-                        requests.append(item)
-                }
-            }
+            let requests: [Request] = items[date] ?? []
             cell.requests = requests
             cell.setCell(processor: processor)
             return cell

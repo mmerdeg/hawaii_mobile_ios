@@ -19,7 +19,8 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var previousButton: UIButton!
     
-    var refresher: UIRefreshControl?
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     var requestUseCase: RequestUseCaseProtocol?
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var items: [Date: [Request]] = [:]
@@ -29,6 +30,7 @@ class DashboardViewController: BaseViewController {
     var lastTimeSynced: Date?
     var startDate = Date()
     var endDate = Date()
+    
     let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
     let showSickRequestSegue = "showSickRequest"
@@ -40,6 +42,12 @@ class DashboardViewController: BaseViewController {
     
     lazy var addRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestViaItem))
+        item.tintColor = UIColor.primaryTextColor
+        return item
+    }()
+    
+    lazy var refreshItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -63,6 +71,7 @@ class DashboardViewController: BaseViewController {
         collectionView.backgroundColor = UIColor.lightPrimaryColor
         
         self.navigationItem.rightBarButtonItem = addRequestItem
+        self.navigationItem.leftBarButtonItem = refreshItem
         fillCalendar()
         lastTimeSynced = Date()
         setupCalendarView()
@@ -178,7 +187,7 @@ class DashboardViewController: BaseViewController {
         }
     }
     
-    func fillCalendar() {
+    @objc func fillCalendar() {
         startActivityIndicatorSpinner()
         requestUseCase?.getAllForCalendar(completion: { requestResponse in
             guard let success = requestResponse.success else {
@@ -323,6 +332,7 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
+        fillCalendar()
     }
 }
 

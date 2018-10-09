@@ -193,7 +193,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHx-by-oiF">
-                                                <rect key="frame" x="20" y="701" width="335" height="150"/>
+                                                <rect key="frame" x="0.0" y="701" width="375" height="150"/>
                                                 <connections>
                                                     <segue destination="pWK-zL-GDT" kind="embed" identifier="showRemainingDaysSickViewController" id="TXB-yP-tc9"/>
                                                 </connections>
@@ -205,7 +205,7 @@
                                             <constraint firstItem="1QF-Ws-pM2" firstAttribute="top" secondItem="Xee-0Y-UGI" secondAttribute="bottom" constant="10" id="7gP-5k-aHb"/>
                                             <constraint firstItem="eBq-Pa-FbQ" firstAttribute="leading" secondItem="dve-e7-bbV" secondAttribute="leading" id="7h0-6N-huW"/>
                                             <constraint firstItem="MHx-by-oiF" firstAttribute="centerX" secondItem="dve-e7-bbV" secondAttribute="centerX" id="8hC-XX-6Sf"/>
-                                            <constraint firstItem="MHx-by-oiF" firstAttribute="leading" secondItem="Xee-0Y-UGI" secondAttribute="leading" constant="20" id="Avs-jf-8ZP"/>
+                                            <constraint firstItem="MHx-by-oiF" firstAttribute="leading" secondItem="Xee-0Y-UGI" secondAttribute="leading" id="Avs-jf-8ZP"/>
                                             <constraint firstAttribute="bottom" secondItem="MHx-by-oiF" secondAttribute="bottom" id="Pkp-oT-6IW"/>
                                             <constraint firstItem="eBq-Pa-FbQ" firstAttribute="top" secondItem="dve-e7-bbV" secondAttribute="top" id="Q6m-eh-teJ"/>
                                             <constraint firstItem="Xee-0Y-UGI" firstAttribute="top" secondItem="eBq-Pa-FbQ" secondAttribute="bottom" constant="15" id="aIL-mS-OU3"/>
@@ -245,6 +245,7 @@
                         <outlet property="dateLabel" destination="wVt-5j-dNE" id="znY-XY-ddg"/>
                         <outlet property="nextButton" destination="bTz-Xy-0kJ" id="MLc-Lu-Wnc"/>
                         <outlet property="previousButton" destination="8e5-wV-4DT" id="NDZ-LC-ww8"/>
+                        <outlet property="scrollView" destination="9MN-RY-Yjs" id="SOT-c1-g45"/>
                         <segue destination="dQu-hX-waz" kind="presentation" identifier="showRequestDetails" id="61k-Vu-8dI"/>
                         <segue destination="rxj-Jz-1Mw" kind="show" identifier="showBonusRequest" id="usi-Hv-oJB"/>
                         <segue destination="IPM-sP-uJ8" kind="show" identifier="showLeaveRequest" id="79G-gN-5PE"/>
@@ -261,7 +262,7 @@
                 <viewControllerPlaceholder storyboardName="LeaveRequest" id="IPM-sP-uJ8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXC-DS-Qq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4774" y="-1677"/>
+            <point key="canvasLocation" x="4767" y="-1677"/>
         </scene>
         <!--Sick-->
         <scene sceneID="gPM-RV-cKe">
@@ -269,7 +270,7 @@
                 <viewControllerPlaceholder storyboardName="Sick" id="vXb-yr-Aai" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3iO-T9-dgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4753" y="-1544"/>
+            <point key="canvasLocation" x="4720" y="-1439"/>
         </scene>
         <!--RemainingDays-->
         <scene sceneID="Vxw-XH-6SB">
@@ -277,7 +278,7 @@
                 <viewControllerPlaceholder storyboardName="RemainingDays" id="pWK-zL-GDT" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8F-QV-dKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4698" y="-1390"/>
+            <point key="canvasLocation" x="4774" y="-1383"/>
         </scene>
         <!--Request Details View Controller-->
         <scene sceneID="q2q-HI-UbE">
@@ -362,7 +363,7 @@
                 <viewControllerPlaceholder storyboardName="Bonus" id="rxj-Jz-1Mw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UG7-Wj-dop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4923" y="-945"/>
+            <point key="canvasLocation" x="4730" y="-944"/>
         </scene>
     </scenes>
     <resources>

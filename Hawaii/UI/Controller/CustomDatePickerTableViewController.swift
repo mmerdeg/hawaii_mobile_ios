@@ -46,8 +46,8 @@ class CustomDatePickerTableViewController: BaseViewController {
         customView.frame = self.view.frame
         collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
-        collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
-                                 forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: DatePickerCollectionViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: DatePickerCollectionViewCell.self))
 
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
@@ -153,9 +153,9 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             cell.setCell(processor: processor)
             return cell
         } else {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: DatePickerCollectionViewCell.self),
                                                       for: indexPath)
-                             as? TeamCalendarCollectionViewCell else {
+                             as? DatePickerCollectionViewCell else {
                 return JTAppleCell()
             }
             if cellState.dateBelongsTo == .thisMonth {

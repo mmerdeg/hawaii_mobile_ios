@@ -24,9 +24,13 @@ class RequestDetailsViewController: BaseViewController {
     
     var requestUseCase: RequestUseCaseProtocol!
     
+    var userUseCase: UserUseCaseProtocol!
+    
     weak var delegate: RequestDetailsDialogProtocol?
     
     var requests: [Request] = []
+    
+    var isValidUser = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +45,26 @@ class RequestDetailsViewController: BaseViewController {
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
-        tableView.reloadData()
+        
         tableView.layoutIfNeeded()
         heightConstraint.constant = self.tableView.contentSize.height
+        getUserStatus()
+    }
+    
+    func getUserStatus() {
+        userUseCase.readUser { userResult in
+            guard let userId = userResult?.id,
+                let requestsUserId = self.requests.first?.user?.id else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if userId == requestsUserId {
+                self.isValidUser = true
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     @objc func  dismissDialog() {
@@ -62,6 +83,7 @@ extension RequestDetailsViewController: UITableViewDelegate, UITableViewDataSour
             as? RequestDetailTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: "Cell")
         }
+        cell.isCancelHidden = !isValidUser
         cell.request = requests[indexPath.row]
         cell.requestCancelationDelegate = self
         return cell

@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6C-s7-klc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-vf-GKa">
                                                 <rect key="frame" x="15" y="5" width="345" height="41"/>
@@ -169,7 +169,7 @@
                                                         <rect key="frame" x="0.0" y="110" width="375" height="400"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" priority="750" constant="400" id="YTW-0F-IwW"/>
+                                                            <constraint firstAttribute="height" constant="400" id="YTW-0F-IwW"/>
                                                         </constraints>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" sectionInsetReference="layoutMargins" id="bMu-Wo-in9">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -192,6 +192,7 @@
                                             <constraint firstAttribute="trailing" secondItem="dCn-vf-GKa" secondAttribute="trailing" constant="15" id="HmL-QA-J3k"/>
                                             <constraint firstAttribute="trailing" secondItem="c11-4n-1mD" secondAttribute="trailing" id="cXw-1F-phc"/>
                                             <constraint firstItem="c11-4n-1mD" firstAttribute="top" secondItem="dCn-vf-GKa" secondAttribute="bottom" id="hUq-9x-kP6"/>
+                                            <constraint firstAttribute="bottom" secondItem="c11-4n-1mD" secondAttribute="bottom" id="lT0-xS-say"/>
                                             <constraint firstItem="dCn-vf-GKa" firstAttribute="top" secondItem="h6C-s7-klc" secondAttribute="top" constant="5" id="n1d-jV-XYy"/>
                                             <constraint firstItem="c11-4n-1mD" firstAttribute="leading" secondItem="h6C-s7-klc" secondAttribute="leading" id="tIr-dx-HJa"/>
                                         </constraints>

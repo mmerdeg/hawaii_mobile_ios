@@ -12,7 +12,7 @@ struct Constants {
     #if PRODUCTION
       static let baseUrl = "https://hawaii2.execom.eu"
     #else
-      static let baseUrl = "http://nb077:8080"
+      static let baseUrl = "http://10.0.5.142:8080"
     #endif
     //
     static let signin = baseUrl + "/signin"
