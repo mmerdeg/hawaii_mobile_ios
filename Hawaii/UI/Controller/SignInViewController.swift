@@ -37,7 +37,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                         return
                 }
                 self.userDetailsUseCase?.setToken(token: token)
-                self.userUseCase?.createUser(entity: user, completion: { id in
+                self.userUseCase?.createUser(entity: user, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                     self.navigateToHome()
                 })

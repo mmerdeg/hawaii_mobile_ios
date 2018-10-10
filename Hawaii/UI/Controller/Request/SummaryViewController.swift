@@ -41,7 +41,6 @@ class SummaryViewController: BaseViewController {
     
     @IBOutlet weak var leaveRemainingConstraintTop: NSLayoutConstraint!
     
-    
     var remainingDaysNo: String?
     
     var requestUseCase: RequestUseCaseProtocol?

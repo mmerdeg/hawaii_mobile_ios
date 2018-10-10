@@ -84,6 +84,10 @@
 		30A08D46216B880000FF8B2D /* DatePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */; };
 		30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
 		30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
+		30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
+		30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
+		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
+		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE1214FDBA1004FF287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
 		30FD367F214A5E530047038C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -400,6 +404,8 @@
 		309B6D61216736880046EFE9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
+		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1029,6 +1035,8 @@
 				307413082136673100F05427 /* TeamPreviewViewController.swift */,
 				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
+				30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */,
+				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1606,6 +1614,7 @@
 				30FD369E214A5E530047038C /* Absence.swift in Sources */,
 				3042CA8A21536EF6002446FE /* Page.swift in Sources */,
 				30FD369F214A5E530047038C /* TableDataProviderUseCase.swift in Sources */,
+				30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */,
 				30FD36A0214A5E530047038C /* MoreViewController.swift in Sources */,
 				303C442E2154C998003F16CC /* GenericResponse.swift in Sources */,
 				30FD36A2214A5E530047038C /* TeamCalendarViewController.swift in Sources */,
@@ -1619,6 +1628,7 @@
 				30FD36A8214A5E530047038C /* Request.swift in Sources */,
 				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
 				30FD36A9214A5E530047038C /* Constants.swift in Sources */,
+				30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
 				30FD36AA214A5E530047038C /* SignInApi.swift in Sources */,
 				30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
@@ -1702,6 +1712,7 @@
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
+				30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */,
 				30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */,
 				309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */,
 				303C442A2154C746003F16CC /* GenericResponse.swift in Sources */,
@@ -1715,6 +1726,7 @@
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				303C44302154E243003F16CC /* GenericRepositoryProtocol.swift in Sources */,
+				30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
 				309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,

@@ -156,9 +156,6 @@ extension SwinjectStoryboard {
             
             defaultContainer.storyboardInitCompleted(TeamCalendarViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
                 controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                     name: String(describing: PublicHolidayUseCaseProtocol.self))
             }
@@ -233,6 +230,18 @@ extension SwinjectStoryboard {
             defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
+            
+            defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(SearchUsersBaseViewController.self) { resolver, controller in
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+            }
+            
         }
     }
     
