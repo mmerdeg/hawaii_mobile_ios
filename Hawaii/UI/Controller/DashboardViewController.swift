@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import EKBlurAlert
 
 class DashboardViewController: BaseViewController {
     
@@ -252,6 +253,17 @@ class DashboardViewController: BaseViewController {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
     }
+    
+    func presentBluredAlertView() {
+        let alertView = EKBlurAlertView(frame: self.view.bounds)
+        let myImage = UIImage(named: "success") ?? UIImage()
+        alertView.setCornerRadius(10)
+        alertView.set(autoFade: true, after: 2)
+        alertView.set(image: myImage)
+        alertView.set(headline: "Success")
+        alertView.set(subheading: "You have succesfully added a new request")
+        view.addSubview(alertView)
+    }
 }
 
 extension DashboardViewController: JTAppleCalendarViewDataSource {
@@ -353,6 +365,7 @@ extension DashboardViewController: RequestUpdateProtocol {
                 }
             }
         })
+        presentBluredAlertView()
         collectionView.reloadData()
         self.collectionView.scrollToDate(request.days?.first?.date ?? Date(), animateScroll: false)
     }

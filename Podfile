@@ -12,6 +12,7 @@ def common_pods_for_target
     pod 'Kingfisher'
     pod 'FMDB'
     pod 'GoogleSignIn'
+    pod 'EKBlurAlert'
 end
 
 target 'Hawaii' do

@@ -34,6 +34,7 @@ class TeamCalendarViewController: BaseViewController {
     var requestUseCase: RequestUseCaseProtocol?
     var userUseCase: UserUseCaseProtocol?
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var lastTimeSynced: Date?
     
     var page = 0
@@ -65,6 +66,8 @@ class TeamCalendarViewController: BaseViewController {
                                  forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
         collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -137,27 +140,68 @@ class TeamCalendarViewController: BaseViewController {
         switch self.segmentedControl?.selectedSegmentIndex {
         case 0:
             self.startActivityIndicatorSpinner()
-            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
-                self.handle(requestResponse)
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.holidays = holidays
+                    self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                        self.handle(requestResponse)
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             })
+            
         case 1:
             self.startActivityIndicatorSpinner()
-            self.userUseCase?.readUser(completion: { user in
-                self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
-                    self.handle(requestResponse)
-                })
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.holidays = holidays
+                    self.userUseCase?.readUser(completion: { user in
+                        self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
+                            self.handle(requestResponse)
+                        })
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             })
+            
         default:
             self.startActivityIndicatorSpinner()
-            if let searchableId = searchableId {
-                self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
-                    self.handle(requestResponse)
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
                 }
-            } else {
-                self.requestUseCase?.getAllForCalendar { requestResponse in
-                    self.handle(requestResponse)
+                if success {
+                    self.holidays = holidays
+                    if let searchableId = self.searchableId {
+                        self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
+                            self.handle(requestResponse)
+                        }
+                    } else {
+                        self.requestUseCase?.getAllForCalendar { requestResponse in
+                            self.handle(requestResponse)
+                        }
+                    }
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
                 }
-            }
+            })
         }
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController : nil
@@ -283,32 +327,43 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        if segmentedControl.selectedSegmentIndex == 2 {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
-                                                          for: indexPath)
-                as? CalendarCellCollectionViewCell else {
+        if holidays.keys.contains(date) {
+            
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
+                as? PublicHolidayTableViewCell else {
                     return JTAppleCell()
             }
             
             cell.cellState = cellState
-            let requests: [Request] = items[date] ?? []
-            cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
             cell.setCell(processor: processor)
             return cell
         } else {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
-                                                          for: indexPath)
-                as? TeamCalendarCollectionViewCell else {
-                    return JTAppleCell()
+            if segmentedControl.selectedSegmentIndex == 2 {
+                guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
+                                                              for: indexPath)
+                    as? CalendarCellCollectionViewCell else {
+                        return JTAppleCell()
+                }
+                
+                cell.cellState = cellState
+                let requests: [Request] = items[date] ?? []
+                cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+                cell.setCell(processor: processor)
+                return cell
+            } else {
+                guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
+                                                              for: indexPath)
+                    as? TeamCalendarCollectionViewCell else {
+                        return JTAppleCell()
+                }
+                
+                cell.cellState = cellState
+                let requests: [Request] = items[date] ?? []
+                cell.requests = requests
+                cell.setCell(processor: processor)
+                return cell
             }
-            
-            cell.cellState = cellState
-            let requests: [Request] = items[date] ?? []
-            cell.requests = requests
-            cell.setCell(processor: processor)
-            return cell
         }
-
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -378,6 +433,7 @@ extension TeamCalendarViewController: RequestDetailsDialogProtocol {
     func dismissDialog() {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
+            self.refreshUI(date: self.lastDateInMonth)
         }
     }
 }
@@ -425,6 +481,7 @@ extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.row == users.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:
                 String(describing: LoadMoreTableViewCell.self)) as? LoadMoreTableViewCell else {

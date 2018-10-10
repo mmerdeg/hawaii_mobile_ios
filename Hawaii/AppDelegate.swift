@@ -159,6 +159,8 @@ extension SwinjectStoryboard {
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
+                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in

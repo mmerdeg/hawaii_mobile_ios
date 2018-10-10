@@ -21,13 +21,8 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             print(error.localizedDescription)
             return
         }
-        print("User signed into google")
-        guard let accessToken = user.authentication.accessToken else {
-            return
-        }
-        print(accessToken)
-        
-        guard let signInApi = signInApi else {
+        guard let accessToken = user.authentication.accessToken,
+              let signInApi = signInApi else {
             return
         }
         userDetailsUseCase?.setEmail(user.profile.email)
@@ -43,8 +38,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 }
                 self.userDetailsUseCase?.setToken(token: token)
                 self.userUseCase?.createUser(entity: user, completion: { id in
-                    print(id)
-                    print("User Logged In")
                     self.stopActivityIndicatorSpinner()
                     self.navigateToHome()
                 })

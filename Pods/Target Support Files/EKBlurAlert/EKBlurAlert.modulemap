@@ -1,0 +1,6 @@
+framework module EKBlurAlert {
+  umbrella header "EKBlurAlert-umbrella.h"
+
+  export *
+  module * { export * }
+}

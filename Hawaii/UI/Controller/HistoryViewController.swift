@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EKBlurAlert
 
 class HistoryViewController: BaseViewController {
 
@@ -36,8 +37,22 @@ class HistoryViewController: BaseViewController {
     
     private let refreshControl = UIRefreshControl()
     
-    lazy var searchItem: UIBarButtonItem = {
+    lazy var filterDisabled: UIBarButtonItem = {
+        var buttonImage = UIImage(named: "filter")
+        buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         
+        let button: UIButton = UIButton(type: UIButtonType.custom)
+        button.setImage(buttonImage, for: UIControlState.normal)
+        button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 31, height: 21)
+        button.tintColor = UIColor.primaryTextColor
+        
+        let item = UIBarButtonItem(customView: button)
+        item.tintColor = UIColor.primaryTextColor
+        return item
+    }()
+    
+    lazy var filterEnabled: UIBarButtonItem = {
         var buttonImage = UIImage(named: "filter")
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         
@@ -45,10 +60,10 @@ class HistoryViewController: BaseViewController {
         button.setImage(buttonImage, for: UIControlState.normal)
         button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 51, height: 31)
-        button.tintColor = UIColor.primaryTextColor
+        button.tintColor = UIColor.accentColor
         
         let item = UIBarButtonItem(customView: button)
-        item.tintColor = UIColor.primaryTextColor
+        item.tintColor = UIColor.accentColor
         return item
     }()
     
@@ -61,7 +76,7 @@ class HistoryViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
         customView.frame = self.view.frame
-        self.navigationItem.rightBarButtonItem = searchItem
+        self.navigationItem.rightBarButtonItem = filterDisabled
         
         initFilterHeader()
         
@@ -99,6 +114,17 @@ class HistoryViewController: BaseViewController {
             fillCalendar()
         }
         lastTimeSynced = Date()
+    }
+    
+    func presentBluredAlertView() {
+        let alertView = EKBlurAlertView(frame: self.view.bounds)
+        let myImage = UIImage(named: "success") ?? UIImage()
+        alertView.setCornerRadius(10)
+        alertView.set(autoFade: true, after: 2)
+        alertView.set(image: myImage)
+        alertView.set(headline: "Success")
+        alertView.set(subheading: "You have succesfully canceled a new request")
+        view.addSubview(alertView)
     }
     
     func fillCalendatByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {
@@ -250,6 +276,11 @@ extension HistoryViewController: SearchDialogProtocol {
         sickParameter = sick
         bonusParameter = bonus
         selectedYear = year
+        if leaveParameter && sickParameter && bonusParameter {
+           self.navigationItem.rightBarButtonItem = filterDisabled
+        } else {
+            self.navigationItem.rightBarButtonItem = filterEnabled
+        }
         fillCalendatByParameter(year: year, leave: leave, sick: sick, bonus: bonus)
     }
     
@@ -309,12 +340,13 @@ extension HistoryViewController: RequestCancelationProtocol {
                 let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
                 
                 self.requests[indexOfOldRequest ?? 0] = updatedRequest
-                
+                //TODO: Research implications of removing
                 if self.filteredRequests[index.row].requestStatus == .pending {
                     self.filteredRequests.remove(at: index.row)
                 } else {
                     self.filteredRequests[index.row] = updatedRequest
                 }
+                self.presentBluredAlertView()
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             } else {
