@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-hB-yY6">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-hB-yY6">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6C-s7-klc">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="555"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCn-vf-GKa">
                                                 <rect key="frame" x="15" y="5" width="345" height="41"/>
@@ -36,7 +36,7 @@
                                                 </segments>
                                             </segmentedControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c11-4n-1mD">
-                                                <rect key="frame" x="0.0" y="45" width="375" height="510"/>
+                                                <rect key="frame" x="0.0" y="45" width="375" height="710"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8YM-s3-wOU">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -165,7 +165,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="fgP-XL-tjt"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UXb-JU-fla" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UXb-JU-fla" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
                                                         <rect key="frame" x="0.0" y="110" width="375" height="400"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -179,10 +179,19 @@
                                                         </collectionViewFlowLayout>
                                                         <cells/>
                                                     </collectionView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxO-bJ-pA2">
+                                                        <rect key="frame" x="0.0" y="510" width="375" height="200"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="W9E-FL-8xG"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="pxO-bJ-pA2" firstAttribute="leading" secondItem="UXb-JU-fla" secondAttribute="leading" id="3da-Cx-5UA"/>
                                                     <constraint firstAttribute="trailing" secondItem="8YM-s3-wOU" secondAttribute="trailing" id="AVs-MZ-BOC"/>
                                                     <constraint firstItem="8YM-s3-wOU" firstAttribute="leading" secondItem="c11-4n-1mD" secondAttribute="leading" id="a0p-au-9cL"/>
+                                                    <constraint firstItem="pxO-bJ-pA2" firstAttribute="centerX" secondItem="UXb-JU-fla" secondAttribute="centerX" id="aHT-28-xCK"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -191,6 +200,7 @@
                                             <constraint firstItem="dCn-vf-GKa" firstAttribute="leading" secondItem="h6C-s7-klc" secondAttribute="leading" constant="15" id="Fqd-kp-F8m"/>
                                             <constraint firstAttribute="trailing" secondItem="dCn-vf-GKa" secondAttribute="trailing" constant="15" id="HmL-QA-J3k"/>
                                             <constraint firstAttribute="trailing" secondItem="c11-4n-1mD" secondAttribute="trailing" id="cXw-1F-phc"/>
+                                            <constraint firstAttribute="bottom" secondItem="pxO-bJ-pA2" secondAttribute="bottom" id="eBr-Vp-2kU"/>
                                             <constraint firstItem="c11-4n-1mD" firstAttribute="top" secondItem="dCn-vf-GKa" secondAttribute="bottom" id="hUq-9x-kP6"/>
                                             <constraint firstAttribute="bottom" secondItem="c11-4n-1mD" secondAttribute="bottom" id="lT0-xS-say"/>
                                             <constraint firstItem="dCn-vf-GKa" firstAttribute="top" secondItem="h6C-s7-klc" secondAttribute="top" constant="5" id="n1d-jV-XYy"/>
@@ -268,6 +278,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEJ-a6-irt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4674" y="975"/>
+        </scene>
+        <!--Search Users Table View Controller-->
+        <scene sceneID="yPy-E6-IC0">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchUsersTableViewController" id="TQF-vD-s5F" customClass="SearchUsersTableViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cxv-ie-pmk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="TQF-vD-s5F" id="QZc-6G-QjY"/>
+                            <outlet property="delegate" destination="TQF-vD-s5F" id="sj5-T7-fSn"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AK1-Xo-N5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5673" y="983"/>
         </scene>
         <!--Team-->
         <scene sceneID="35D-zh-PHK">

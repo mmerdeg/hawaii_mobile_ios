@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EKBlurAlert
 
 class ApproveViewController: BaseViewController {
     
@@ -129,12 +130,25 @@ extension ApproveViewController: RequestApprovalProtocol {
         
         ViewUtility.showConfirmationAlert(message: message, title: "Confirm", viewController: self) { confirmed in
             if confirmed {
-                self.updateRequest(request: request, status: status, cell: cell)
+                self.updateRequest(request: request, status: status, cell: cell, isAccepted: isAccepted)
             }
         }
     }
     
-    func updateRequest(request: Request, status: RequestStatus, cell: RequestApprovalTableViewCell) {
+    func presentBluredAlertView(_ isAccepted: Bool) {
+        let alertView = EKBlurAlertView(frame: self.view.bounds)
+        let myImage = UIImage(named: "success") ?? UIImage()
+        alertView.setCornerRadius(10)
+        alertView.set(autoFade: true, after: 2)
+        alertView.set(image: myImage)
+        alertView.set(headline: "Success")
+        let message = isAccepted ? "You have succesfully approved a request."
+            : "You have succesfully rejected a proposed request"
+        alertView.set(subheading: message)
+        view.addSubview(alertView)
+    }
+    
+    func updateRequest(request: Request, status: RequestStatus, cell: RequestApprovalTableViewCell, isAccepted: Bool) {
         startActivityIndicatorSpinner()
         requestUseCase.updateRequest(request: Request(request: request,
                                                       requestStatus: status)) { _ in
@@ -142,6 +156,7 @@ extension ApproveViewController: RequestApprovalProtocol {
                                                             return
                                                         }
                                                         self.stopActivityIndicatorSpinner()
+                                                        self.presentBluredAlertView(isAccepted)
                                                         self.requests.remove(at: index.row)
                                                         self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
         }

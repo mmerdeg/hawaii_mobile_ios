@@ -17,6 +17,7 @@ struct Constants {
     //
     static let signin = baseUrl + "/signin"
     static let requests = baseUrl + "/requests"
+    static let allowances = baseUrl + "/allowances"
     static let userRequests = requests + "/user"
     static let requestsToApprove = requests + "/approval"
     static let leaveTypes = baseUrl + "/leavetypes"
@@ -24,7 +25,11 @@ struct Constants {
     static let publicHolidays = baseUrl + "/publicholidays"
     static let requestsByTeamByMonth = requests + "/team"
     static let requestsByMonth = requests + "/month"
+    #if PRODUCTION
     static let requestYears = requests + "/years/range"
+    #else
+    static let requestYears = allowances + "/years/range"
+    #endif
     static let search = getUser + "/search"
     static let dateFormat = "yyyy-MM-dd"
     static let displayDateFormat = "dd.MM.yyyy."

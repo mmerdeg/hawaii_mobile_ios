@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class TeamCalendarViewController: BaseViewController {
+class TeamCalendarViewController: SearchUsersBaseViewController {
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
@@ -21,9 +21,6 @@ class TeamCalendarViewController: BaseViewController {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var resultsController: UITableViewController?
-    var searchController: UISearchController?
-    
     let teamDetailsSegue = "teamDetails"
     
     let requestDetailsViewController = "RequestDetailsViewController"
@@ -32,28 +29,20 @@ class TeamCalendarViewController: BaseViewController {
     
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
-    var userUseCase: UserUseCaseProtocol?
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     var lastTimeSynced: Date?
-    
-    var page = 0
-    var numberOfItems = 10
     
     var items: [Date: [Request]] = [:]
     var holidays: [Date: [PublicHoliday]] = [:]
-    var users: [User] = []
     var customView: UIView = UIView()
     
     var lastDateInMonth = Date()
-    var pendingRequestWorkItem: DispatchWorkItem?
-    
+    var searchableId: Int?
     lazy var refreshItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
-    
-    var searchableId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +54,8 @@ class TeamCalendarViewController: BaseViewController {
                                  forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
         collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self))
+        collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
+                                 forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -73,7 +64,6 @@ class TeamCalendarViewController: BaseViewController {
         
         collectionView.scrollToDate(Date(), animateScroll: false)
         initFilterHeader()
-        setUpSearch()
         lastTimeSynced = Date()
         self.navigationItem.leftBarButtonItem = refreshItem
     }
@@ -86,26 +76,6 @@ class TeamCalendarViewController: BaseViewController {
             self.refreshUI(date: lastDateInMonth)
         }
         lastTimeSynced = Date()
-    }
-    
-    func setUpSearch() {
-        
-        let nib = UINib(nibName: String(describing: UserPreviewTableViewCell.self), bundle: nil)
-        resultsController = UITableViewController(style: .grouped)
-        resultsController?.tableView.dataSource = self
-        resultsController?.tableView.delegate = self
-        resultsController?.tableView.register(nib, forCellReuseIdentifier: String(describing: UserPreviewTableViewCell.self))
-        resultsController?.tableView.register(UINib(nibName: String(describing: LoadMoreTableViewCell.self), bundle: nil),
-                           forCellReuseIdentifier: String(describing: LoadMoreTableViewCell.self))
-        resultsController?.tableView.tableFooterView = UIView()
-        searchController = UISearchController(searchResultsController: resultsController)
-        searchController?.hidesNavigationBarDuringPresentation = true
-        searchController?.searchBar.searchBarStyle = .minimal
-        searchController?.searchResultsUpdater = self
-        searchController?.searchBar.tintColor = UIColor.white
-        searchController?.searchBar.barTintColor = UIColor.white
-        searchController?.searchBar.barStyle = .black
-        self.definesPresentationContext = true
     }
     
     func initFilterHeader() {
@@ -121,7 +91,7 @@ class TeamCalendarViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == teamDetailsSegue {
             guard let controller = segue.destination as? TeamPreviewViewController,
-                let requests = sender as? [Request] else {
+                  let requests = sender as? [Request] else {
                     return
             }
             
@@ -133,34 +103,86 @@ class TeamCalendarViewController: BaseViewController {
         self.refreshUI(date: lastDateInMonth)
     }
     
+    override func didSelect(user: User) {
+        super.didSelect(user: user)
+        guard let userId = user.id else {
+            return
+        }
+        searchableId = userId
+        self.requestUseCase?.getAllBy(id: userId) { requestResponse in
+            self.handle(requestResponse)
+        }
+    }
+    
     func refreshUI(date: Date) {
         switch self.segmentedControl?.selectedSegmentIndex {
         case 0:
             self.startActivityIndicatorSpinner()
-            self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
-                self.handle(requestResponse)
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.holidays = holidays
+                    self.requestUseCase?.getAllByTeam(from: date, teamId: -1, completion: { requestResponse in
+                        self.handle(requestResponse)
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             })
+            
         case 1:
             self.startActivityIndicatorSpinner()
-            self.userUseCase?.readUser(completion: { user in
-                self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
-                    self.handle(requestResponse)
-                })
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if success {
+                    self.holidays = holidays
+                    self.userUseCase?.readUser(completion: { user in
+                        self.requestUseCase?.getAllByTeam(from: date, teamId: user?.teamId ?? -1, completion: { requestResponse in
+                            self.handle(requestResponse)
+                        })
+                    })
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
+                }
             })
+            
         default:
             self.startActivityIndicatorSpinner()
-            if let searchableId = searchableId {
-                self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
-                    self.handle(requestResponse)
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
                 }
-            } else {
-                self.requestUseCase?.getAllForCalendar { requestResponse in
-                    self.handle(requestResponse)
+                if success {
+                    self.holidays = holidays
+                    if let searchableId = self.searchableId {
+                        self.requestUseCase?.getAllBy(id: searchableId) { requestResponse in
+                            self.handle(requestResponse)
+                        }
+                    } else {
+                        self.requestUseCase?.getAllForCalendar { requestResponse in
+                            self.handle(requestResponse)
+                        }
+                    }
+                } else {
+                    ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "", viewController: self, completion: { _ in
+                        self.stopActivityIndicatorSpinner()
+                    })
                 }
-            }
+            })
         }
         if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController : nil
+            self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController :  nil
         }
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -283,32 +305,43 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        if segmentedControl.selectedSegmentIndex == 2 {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
-                                                          for: indexPath)
-                as? CalendarCellCollectionViewCell else {
+        if holidays.keys.contains(date) {
+            
+            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
+                as? PublicHolidayTableViewCell else {
                     return JTAppleCell()
             }
             
             cell.cellState = cellState
-            let requests: [Request] = items[date] ?? []
-            cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
             cell.setCell(processor: processor)
             return cell
         } else {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
-                                                          for: indexPath)
-                as? TeamCalendarCollectionViewCell else {
-                    return JTAppleCell()
+            if segmentedControl.selectedSegmentIndex == 2 {
+                guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
+                                                              for: indexPath)
+                    as? CalendarCellCollectionViewCell else {
+                        return JTAppleCell()
+                }
+                
+                cell.cellState = cellState
+                let requests: [Request] = items[date] ?? []
+                cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+                cell.setCell(processor: processor)
+                return cell
+            } else {
+                guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
+                                                              for: indexPath)
+                    as? TeamCalendarCollectionViewCell else {
+                        return JTAppleCell()
+                }
+                
+                cell.cellState = cellState
+                let requests: [Request] = items[date] ?? []
+                cell.requests = requests
+                cell.setCell(processor: processor)
+                return cell
             }
-            
-            cell.cellState = cellState
-            let requests: [Request] = items[date] ?? []
-            cell.requests = requests
-            cell.setCell(processor: processor)
-            return cell
         }
-
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -341,128 +374,13 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
         setupCalendarView()
     }
     
-    func getUsers(parameter: String, page: Int, numberOfItems: Int, completion: @escaping () -> Void) {
-        userUseCase?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems, completion: { response in
-            guard let success = response.success else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            if success {
-                guard let users = response.users,
-                    let usersMax = response.maxUsers else {
-                        return
-                }
-                if !users.isEmpty {
-                    if self.page == 0 {
-                        self.users = []
-                    }
-                    self.page += 1
-                    for user in users {
-                        self.users.append(user)
-                    }
-                }
-                self.userDetailsUseCase?.setLoadMore(self.users.count < usersMax)
-                self.resultsController?.tableView.reloadData()
-                completion()
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
-            }
-        })
-    }
-    
 }
 
 extension TeamCalendarViewController: RequestDetailsDialogProtocol {
     func dismissDialog() {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
-        }
-    }
-}
-
-extension TeamCalendarViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        pendingRequestWorkItem?.cancel()
-        
-        // Wrap our request in a work item
-        let requestWorkItem = DispatchWorkItem { [weak self] in
-            self?.performSearch()
-        }
-        
-        // Save the new work item and execute it after 250 ms
-        pendingRequestWorkItem = requestWorkItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
-                                      execute: requestWorkItem)
-        
-    }
-    
-    @objc func performSearch() {
-        self.users = []
-        self.page = 0
-        getUsers(parameter: searchController?.searchBar.text ?? "", page: 0, numberOfItems: numberOfItems) {
-            
-        }
-    }
-}
-
-extension TeamCalendarViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if users.isEmpty {
-            tableView.backgroundView?.isHidden = false
-            return 0
-        } else {
-            guard let loadMore = userDetailsUseCase?.getLoadMore() else {
-                return users.count
-            }
-            if loadMore {
-                return users.count + 1
-            } else {
-                return users.count
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == users.count {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier:
-                String(describing: LoadMoreTableViewCell.self)) as? LoadMoreTableViewCell else {
-                    let defaultCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-                    return defaultCell
-            }
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UserPreviewTableViewCell.self),
-                                                           for: indexPath)
-                as? UserPreviewTableViewCell else {
-                    return UITableViewCell(style: .default, reuseIdentifier: "Cell")
-            }
-            cell.user = users[indexPath.row]
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == users.count {
-            guard let loadMoreCell = tableView.cellForRow(at: indexPath) as? LoadMoreTableViewCell else {
-                return
-            }
-            loadMoreCell.activityIndicator.startAnimating()
-            loadMoreCell.loadMore.isHidden = true
-            loadMoreCell.loadingMore.isHidden = false
-            getUsers(parameter: searchController?.searchBar.text ?? "", page: page, numberOfItems: numberOfItems) {
-                
-            }
-        } else {
-            guard let cell = tableView.cellForRow(at: indexPath) as? UserPreviewTableViewCell else {
-                    return
-            }
-            self.searchController?.dismiss(animated: true, completion: nil)
-            self.searchableId = cell.user?.id
-            self.requestUseCase?.getAllBy(id: cell.user?.id ?? -1) { requestResponse in
-                self.handle(requestResponse)
-            }
+            self.refreshUI(date: self.lastDateInMonth)
         }
     }
 }
