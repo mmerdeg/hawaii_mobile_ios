@@ -16,24 +16,24 @@ class LeaveRequestViewController: BaseViewController {
     
     let showRemainingDaysViewController = "showRemainingDaysViewController"
     
+    let showSummaryViewController = "showSummaryViewController"
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var pickerHeight: NSLayoutConstraint!
-    
-    weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     var requestTableViewController: RequestTableViewController?
     
     var remainingDaysViewController: RemainigDaysViewController?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     var userUseCase: UserUseCaseProtocol?
     
     var selectedDate: Date?
     
     lazy var addLeaveRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addLeaveRequest))
+        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(addRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -89,14 +89,21 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             remainingDaysViewController.mainLabelText = "Leave"
+        } else if segue.identifier == showSummaryViewController {
+            guard let controller = segue.destination as? SummaryViewController,
+                  let request = sender as? Request else {
+                return
+            }
+            controller.request = request
+            controller.requestUpdateDelegate = self.requestUpdateDelegate
+            controller.remainingDaysNo = self.remainingDaysViewController?.remainingDayNoLabel.text
         }
     }
     
-    @objc func addLeaveRequest() {
+    @objc func addRequest() {
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
-              let requestUseCase = requestUseCase,
               let cell = requestTableViewController.tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as? InputTableViewCell,
               let cellText = cell.inputReasonTextView.text else {
                 return
@@ -138,7 +145,6 @@ class LeaveRequestViewController: BaseViewController {
             }
         }
         
-        startActivityIndicatorSpinner()
         userUseCase?.readUser(completion: { userResult in
             
             guard let user = userResult else {
@@ -149,27 +155,10 @@ class LeaveRequestViewController: BaseViewController {
             let request = Request(approverId: nil, days: days, reason: cellText.trim(),
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)
-            requestUseCase.add(request: request) { requestResponse in
-                
-                guard let success = requestResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    guard let request = requestResponse.item else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    self.requestUpdateDelegate?.didAdd(request: request)
-                    self.navigationController?.popViewController(animated: true)
-                    self.stopActivityIndicatorSpinner()
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
-                                                    viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                    })
-                }
+            DispatchQueue.main.async {
+                 self.performSegue(withIdentifier: self.showSummaryViewController, sender: request)
             }
+        
         })
     }
     

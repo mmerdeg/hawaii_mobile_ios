@@ -84,10 +84,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qhn-QT-A7r"/>
                     </view>
+                    <connections>
+                        <segue destination="el7-XQ-qmx" kind="show" identifier="showSummaryViewController" id="Zg4-nM-t6P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tv9-bg-JKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6015" y="-2213"/>
+        </scene>
+        <!--Summary-->
+        <scene sceneID="JmP-4M-5tc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Summary" id="el7-XQ-qmx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YoE-S2-X4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7279" y="-2450"/>
         </scene>
         <!--Request-->
         <scene sceneID="ehh-gU-ca7">
@@ -95,7 +106,7 @@
                 <viewControllerPlaceholder storyboardName="Request" id="IT0-wd-oLe" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tC8-YP-BDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7291" y="-2928"/>
+            <point key="canvasLocation" x="7291" y="-2234"/>
         </scene>
         <!--RemainingDays-->
         <scene sceneID="Lp4-da-nRk">
