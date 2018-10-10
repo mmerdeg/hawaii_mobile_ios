@@ -28,7 +28,7 @@ class SickRequestViewController: BaseViewController {
     var selectedDate: Date?
     
     lazy var addLeveRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addSickRequest))
+        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(addSickRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -49,15 +49,6 @@ class SickRequestViewController: BaseViewController {
             }
             controller.startDate = selectedDate
             requestTableViewController.requestType = .sick
-        } else if segue.identifier == showRemainingDaysViewController {
-            guard let controller = segue.destination as? RemainigDaysViewController else {
-                return
-            }
-            self.remainingDaysViewController = controller
-            guard let remainingDaysViewController = self.remainingDaysViewController else {
-                return
-            }
-            remainingDaysViewController.mainLabelText = "Sick leave"
         } else if segue.identifier == showSummaryViewController {
             guard let controller = segue.destination as? SummaryViewController,
                 let request = sender as? Request else {
@@ -115,7 +106,6 @@ class SickRequestViewController: BaseViewController {
             }
         }
         
-        startActivityIndicatorSpinner()
         userUseCase?.readUser(completion: { userResult in
             
             guard let user = userResult else {

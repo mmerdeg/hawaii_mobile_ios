@@ -15,6 +15,11 @@ class PublicHolidayTableViewCell: JTAppleCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var roundView: UIView!
+    
+    @IBOutlet weak var roundViewTopMargin: NSLayoutConstraint!
+    
     var cellState: CellState!
     
     func handleCellText(cellState: CellState) {
@@ -22,14 +27,14 @@ class PublicHolidayTableViewCell: JTAppleCell {
         if Calendar.current.isDateInToday(cellState.date) {
             dateLabel.textColor = UIColor.accentColor
             self.isUserInteractionEnabled = true
-            self.layer.borderColor = UIColor.cyan.cgColor
+            self.layer.borderColor = UIColor.primaryTextColor.cgColor
         } else {
             if NSCalendar.current.isDateInWeekend(cellState.date) || cellState.dateBelongsTo != .thisMonth {
                 self.isUserInteractionEnabled = false
                 dateLabel.textColor = UIColor.secondaryTextColor
             } else {
                 self.isUserInteractionEnabled = true
-                dateLabel.textColor = UIColor.primaryTextColor
+                dateLabel.textColor = UIColor.darkPrimaryColor
             }
         }
     }
@@ -42,9 +47,9 @@ class PublicHolidayTableViewCell: JTAppleCell {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         self.layer.borderWidth = 0.5
+        roundView.layer.cornerRadius = contentView.frame.height / 2 - roundViewTopMargin.constant
+        roundView.backgroundColor = UIColor.remainingColor
         layoutIfNeeded()
-        
-        self.backgroundColor = UIColor.cyan
         self.isUserInteractionEnabled = false
     }
     

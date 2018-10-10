@@ -76,6 +76,9 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="itv-NI-Ma7">
                                         <rect key="frame" x="120" y="193" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="sWV-sG-BTk"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -94,6 +97,9 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave remaining:" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A4C-hL-Kw3">
                                         <rect key="frame" x="14" y="183" width="90" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="PM4-F7-Ajo"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -171,7 +177,9 @@
                         <outlet property="leaveReasonLabel" destination="Dz2-RB-mlV" id="5c1-0b-jWv"/>
                         <outlet property="leaveRemainingConstraintTop" destination="zOy-fx-v8W" id="415-v1-AdZ"/>
                         <outlet property="leaveRemainingLabel" destination="itv-NI-Ma7" id="QGe-Lh-RtU"/>
+                        <outlet property="leaveRemainingLabelHeight" destination="sWV-sG-BTk" id="1Ke-EF-XFH"/>
                         <outlet property="leaveRemainingTitle" destination="A4C-hL-Kw3" id="phe-LO-2Ij"/>
+                        <outlet property="leaveRemainingTitleHeight" destination="PM4-F7-Ajo" id="idF-UU-JlM"/>
                         <outlet property="leaveRequestedLabel" destination="sJh-hd-tNk" id="1Se-wJ-QOg"/>
                         <outlet property="leaveRequestedTitle" destination="5hH-hx-5K9" id="nW4-hO-DdL"/>
                         <outlet property="leaveTypeLabel" destination="p0n-xz-h4m" id="onm-yU-ol2"/>

@@ -82,7 +82,6 @@ class BonusRequestViewController: BaseViewController {
             }
         }
         
-        startActivityIndicatorSpinner()
         userUseCase?.readUser(completion: { userResult in
             
             guard let user = userResult else {

@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjp-FI-aoI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="592"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHN-zs-Vg1">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
@@ -33,34 +33,11 @@
                                                     <segue destination="IT0-wd-oLe" kind="embed" identifier="showRequestTableViewController" id="Lgy-7U-Qm9"/>
                                                 </connections>
                                             </containerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5p-Ur-Yay">
-                                                <rect key="frame" x="0.0" y="400" width="375" height="1"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="1" id="CSH-EP-NGM"/>
-                                                </constraints>
-                                            </view>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4Z-aC-cwz">
-                                                <rect key="frame" x="0.0" y="416" width="375" height="120"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="auM-xu-S7I"/>
-                                                </constraints>
-                                                <connections>
-                                                    <segue destination="9N9-ZC-Wda" kind="embed" identifier="showRemainingDaysViewController" id="tuY-rW-Ter"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="f4Z-aC-cwz" secondAttribute="bottom" constant="56" id="1ka-dF-sg8"/>
-                                            <constraint firstItem="f4Z-aC-cwz" firstAttribute="top" secondItem="s5p-Ur-Yay" secondAttribute="bottom" constant="15" id="55M-L5-pGs"/>
-                                            <constraint firstItem="s5p-Ur-Yay" firstAttribute="leading" secondItem="pjp-FI-aoI" secondAttribute="leading" id="5sX-nt-n6m"/>
-                                            <constraint firstAttribute="trailing" secondItem="s5p-Ur-Yay" secondAttribute="trailing" id="Ghr-fc-XAN"/>
-                                            <constraint firstItem="f4Z-aC-cwz" firstAttribute="centerX" secondItem="EHN-zs-Vg1" secondAttribute="centerX" id="Yiy-Zf-hKo"/>
                                             <constraint firstItem="EHN-zs-Vg1" firstAttribute="leading" secondItem="pjp-FI-aoI" secondAttribute="leading" id="ZGh-Fy-Mcf"/>
-                                            <constraint firstItem="f4Z-aC-cwz" firstAttribute="leading" secondItem="EHN-zs-Vg1" secondAttribute="leading" id="ft9-6k-Xq4"/>
                                             <constraint firstItem="EHN-zs-Vg1" firstAttribute="centerX" secondItem="pjp-FI-aoI" secondAttribute="centerX" id="xA0-FU-lb2"/>
-                                            <constraint firstItem="s5p-Ur-Yay" firstAttribute="top" secondItem="EHN-zs-Vg1" secondAttribute="bottom" id="yFa-mJ-LiW"/>
                                             <constraint firstItem="EHN-zs-Vg1" firstAttribute="top" secondItem="pjp-FI-aoI" secondAttribute="top" id="zFd-w2-eWP"/>
                                         </constraints>
                                     </view>
@@ -107,14 +84,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tC8-YP-BDY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7291" y="-2234"/>
-        </scene>
-        <!--RemainingDays-->
-        <scene sceneID="Lp4-da-nRk">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RemainingDays" id="9N9-ZC-Wda" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PtX-2u-GJg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7292" y="-1975"/>
         </scene>
     </scenes>
 </document>

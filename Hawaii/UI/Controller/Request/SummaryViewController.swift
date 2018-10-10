@@ -41,6 +41,9 @@ class SummaryViewController: BaseViewController {
     
     @IBOutlet weak var leaveRemainingConstraintTop: NSLayoutConstraint!
     
+    @IBOutlet weak var leaveRemainingLabelHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var leaveRemainingTitleHeight: NSLayoutConstraint!
     
     var remainingDaysNo: String?
     
@@ -127,12 +130,8 @@ class SummaryViewController: BaseViewController {
         leaveRemainingTitle.isHidden = true
         leaveRemainingLabel.isHidden = true
         leaveRemainingConstraintTop.constant = 0
-        leaveRemainingLabel.frame = CGRect(x: leaveRemainingLabel.frame.minX, y: leaveRemainingLabel.frame.minY,
-                                           width: leaveRemainingLabel.frame.width, height: 0)
-        leaveRemainingTitle.frame = CGRect(x: leaveRemainingTitle.frame.minX, y: leaveRemainingTitle.frame.minY,
-                                           width: leaveRemainingTitle.frame.width, height: 0)
-//        leaveRemainingLabel.frame.size.height = 0
-//        leaveRemainingTitle.frame.size.height = 0
+        leaveRemainingLabelHeight.constant = 0
+        leaveRemainingTitleHeight.constant = 0
         self.view.layoutIfNeeded()
     }
     
