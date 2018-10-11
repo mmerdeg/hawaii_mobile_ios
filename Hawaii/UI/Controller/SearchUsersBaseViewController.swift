@@ -40,7 +40,6 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     func didSelect(user: User) {
         self.searchController?.dismiss(animated: true, completion: nil)
-        //delegate?.didSelect(user: user)
     }
     
     func setUpSearch() {
@@ -50,7 +49,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
                                                         as? SearchUsersTableViewController else {
             return
         }
-        
+        searchUsersTableViewController.delegate = self
         resultsController = searchUsersTableViewController
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.hidesNavigationBarDuringPresentation = true

@@ -184,9 +184,6 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController :  nil
         }
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
     }
     
     func handle(_ requestResponse: GenericResponse<[Date: [Request]]>?) {

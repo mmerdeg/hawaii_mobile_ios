@@ -132,7 +132,7 @@ extension SwinjectStoryboard {
             }
             
             // User Details Repository
-            defaultContainer.register(UserDetailsRepository.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { _ in
+            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { _ in
                 UserDetailsRepository()
             }
             
@@ -158,6 +158,9 @@ extension SwinjectStoryboard {
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                     name: String(describing: PublicHolidayUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
@@ -232,12 +235,6 @@ extension SwinjectStoryboard {
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
-            }
-            
-            defaultContainer.storyboardInitCompleted(SearchUsersBaseViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
