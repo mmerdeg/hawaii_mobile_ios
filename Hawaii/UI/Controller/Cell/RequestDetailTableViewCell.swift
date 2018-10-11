@@ -67,7 +67,7 @@ class RequestDetailTableViewCell: UITableViewCell {
             requestDates.text = start == end ? start : start + " - " + end
             cardView.backgroundColor = UIColor.lightPrimaryColor
             date.text = convertDateString(dateString: request?.submissionTime ?? "",
-                                          fromFormat: "yyyy-MM-dd HH:mm:ss",
+                                          fromFormat: "yyyy-MM-dd'T'HH:mm:ss",
                                           toFormat: "dd.MM.yyyy.")
             
             requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))

@@ -54,6 +54,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.searchBar.searchBarStyle = .minimal
+        searchController?.searchBar.keyboardAppearance = .dark
         searchController?.searchResultsUpdater = self
         searchController?.searchBar.tintColor = UIColor.white
         searchController?.searchBar.barTintColor = UIColor.white

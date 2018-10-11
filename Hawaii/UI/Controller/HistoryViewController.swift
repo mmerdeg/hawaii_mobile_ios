@@ -191,7 +191,8 @@ class HistoryViewController: BaseViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.accentColor
         segmentedControl.backgroundColor = UIColor.black
-        
+        segmentedControl.layer.borderColor = UIColor.accentColor.cgColor
+        segmentedControl.layer.borderWidth = 2
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
         let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
@@ -340,7 +341,6 @@ extension HistoryViewController: RequestCancelationProtocol {
                 let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
                 
                 self.requests[indexOfOldRequest ?? 0] = updatedRequest
-                //TODO: Research implications of removing
                 if self.filteredRequests[index.row].requestStatus == .pending {
                     self.filteredRequests.remove(at: index.row)
                 } else {
