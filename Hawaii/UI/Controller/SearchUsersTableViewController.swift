@@ -29,6 +29,9 @@ class SearchUsersTableViewController: UITableViewController {
         tableView.register(UINib(nibName: String(describing: LoadMoreTableViewCell.self), bundle: nil),
                                               forCellReuseIdentifier: String(describing: LoadMoreTableViewCell.self))
         tableView.tableFooterView = UIView()
+        self.tableView.backgroundColor = UIColor.darkPrimaryColor
+        self.view.backgroundColor = UIColor.darkPrimaryColor
+        self.tableView.separatorStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

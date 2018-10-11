@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,17 +27,27 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEd-cz-kha">
-                        <rect key="frame" x="82" y="28" width="42" height="21"/>
+                        <rect key="frame" x="82" y="27.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GPM-LE-tj4">
+                        <rect key="frame" x="16" y="74" width="419" height="1"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="iRf-6M-uRk"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="GPM-LE-tj4" secondAttribute="bottom" constant="0.5" id="BHx-BF-4Q2"/>
+                    <constraint firstItem="U1O-2X-Hm3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="ElW-xc-5b0"/>
                     <constraint firstItem="yEd-cz-kha" firstAttribute="leading" secondItem="U1O-2X-Hm3" secondAttribute="trailing" constant="16" id="Fqu-Ms-TKf"/>
                     <constraint firstItem="U1O-2X-Hm3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="MIQ-RQ-hri"/>
-                    <constraint firstItem="U1O-2X-Hm3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="S2g-uo-cuv"/>
-                    <constraint firstItem="U1O-2X-Hm3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Y0j-Aj-LOv"/>
+                    <constraint firstItem="GPM-LE-tj4" firstAttribute="top" secondItem="U1O-2X-Hm3" secondAttribute="bottom" constant="11" id="WXK-B3-i6n"/>
+                    <constraint firstItem="GPM-LE-tj4" firstAttribute="leading" secondItem="U1O-2X-Hm3" secondAttribute="leading" id="hnx-4Q-kTi"/>
+                    <constraint firstAttribute="trailing" secondItem="GPM-LE-tj4" secondAttribute="trailing" constant="3" id="oZQ-Ru-CcM"/>
                     <constraint firstItem="yEd-cz-kha" firstAttribute="centerY" secondItem="U1O-2X-Hm3" secondAttribute="centerY" id="xpW-GH-1lB"/>
                 </constraints>
             </tableViewCellContentView>

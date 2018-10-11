@@ -18,11 +18,12 @@ class LoadMoreTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
        // loadMore.text = LocalizedKeys.General.loadMore.localized()
-        loadMore.textColor = UIColor.primaryColor
+        loadMore.textColor = UIColor.primaryTextColor
       //  loadingMore.text = LocalizedKeys.General.loadingMore.localized()
-        loadingMore.textColor = UIColor.primaryColor
-        activityIndicator.color = UIColor.primaryColor
+        loadingMore.textColor = UIColor.primaryTextColor
+        activityIndicator.color = UIColor.primaryTextColor
         loadingMore.isHidden = true
+        self.backgroundColor = UIColor.darkPrimaryColor
     }
     
 }

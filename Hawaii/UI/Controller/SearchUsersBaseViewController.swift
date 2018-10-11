@@ -69,7 +69,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
             }
             if success {
                 guard let users = response.users,
-                    let usersMax = response.maxUsers else {
+                      let usersMax = response.maxUsers else {
                         return
                 }
                 if !users.isEmpty {
@@ -82,7 +82,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
                     }
                 }
                 self.userDetailsUseCase?.setLoadMore(self.users.count < usersMax)
-                self.resultsController?.users = users
+                self.resultsController?.users = self.users
                 self.resultsController?.tableView.reloadData()
                 completion()
             } else {
