@@ -51,7 +51,6 @@
 		3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */; };
 		307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */; };
 		3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
-		307413212139304700F05427 /* SignInApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413202139304700F05427 /* SignInApiProtocol.swift */; };
 		30741327213968E800F05427 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
 		30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */; };
 		30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
@@ -128,12 +127,10 @@
 		30FD36A7214A5E530047038C /* SickRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79C20E5124000F1C6D5 /* SickRequestViewController.swift */; };
 		30FD36A8214A5E530047038C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
 		30FD36A9214A5E530047038C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E84371A211C430D003F449B /* Constants.swift */; };
-		30FD36AA214A5E530047038C /* SignInApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E834B6B2100AF1B0038BC96 /* SignInApi.swift */; };
 		30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
 		30FD36AC214A5E530047038C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
 		30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
 		30FD36AE214A5E530047038C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
-		30FD36AF214A5E530047038C /* SignInApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307413202139304700F05427 /* SignInApiProtocol.swift */; };
 		30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
 		30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */; };
 		30FD36B2214A5E530047038C /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
@@ -247,7 +244,6 @@
 		3E832318216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
 		3E832319216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
 		3E834B642100A8BA0038BC96 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
-		3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E834B6B2100AF1B0038BC96 /* SignInApi.swift */; };
 		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
@@ -380,7 +376,6 @@
 		3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
 		3074131921380FFF00F05427 /* ExpandableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableData.swift; sourceTree = "<group>"; };
-		307413202139304700F05427 /* SignInApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApiProtocol.swift; sourceTree = "<group>"; };
 		30741326213968E800F05427 /* Allowance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allowance.swift; sourceTree = "<group>"; };
 		30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPreviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -469,7 +464,6 @@
 		3E832311216CAD570068E37F /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		3E832317216CADCC0068E37F /* Summary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Summary.storyboard; sourceTree = "<group>"; };
 		3E834B602100A8B90038BC96 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
-		3E834B6B2100AF1B0038BC96 /* SignInApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApi.swift; sourceTree = "<group>"; };
 		3E843714211C42AF003F449B /* SVGProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGProcessor.swift; sourceTree = "<group>"; };
 		3E84371A211C430D003F449B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
@@ -550,22 +544,6 @@
 				914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3074131C2139302300F05427 /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				30741322213936F000F05427 /* Protocol */,
-			);
-			path = SignIn;
-			sourceTree = "<group>";
-		};
-		30741322213936F000F05427 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				307413202139304700F05427 /* SignInApiProtocol.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		30741344214274FF00F05427 /* Public holiday */ = {
@@ -836,7 +814,6 @@
 			children = (
 				3E35CA9A215E14C60042E65A /* User */,
 				30741344214274FF00F05427 /* Public holiday */,
-				3074131C2139302300F05427 /* SignIn */,
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
 				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
@@ -923,7 +900,6 @@
 			children = (
 				3E8582A52175E0310061A590 /* Protocol */,
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
-				3E834B6B2100AF1B0038BC96 /* SignInApi.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepository.swift */,
 			);
@@ -1637,13 +1613,11 @@
 				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
 				30FD36A9214A5E530047038C /* Constants.swift in Sources */,
 				30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
-				30FD36AA214A5E530047038C /* SignInApi.swift in Sources */,
 				30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
 				30FD36AE214A5E530047038C /* Day.swift in Sources */,
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
-				30FD36AF214A5E530047038C /* SignInApiProtocol.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
 				30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */,
 				30FD36B2214A5E530047038C /* ViewUtility.swift in Sources */,
@@ -1737,14 +1711,12 @@
 				30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
 				309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
-				3E834B6C2100AF1B0038BC96 /* SignInApi.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
 				305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
-				307413212139304700F05427 /* SignInApiProtocol.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
 				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,

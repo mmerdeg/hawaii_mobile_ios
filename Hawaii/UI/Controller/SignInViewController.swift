@@ -3,8 +3,6 @@ import GoogleSignIn
 
 class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     
-    var signInApi: SignInApiProtocol?
-    
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     var userUseCase: UserUseCaseProtocol?
@@ -22,11 +20,11 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         guard let accessToken = user.authentication.accessToken,
-              let signInApi = signInApi else {
+              let userUseCase = userUseCase else {
             return
         }
         userDetailsUseCase?.setEmail(user.profile.email)
-        signInApi.signIn(accessToken: accessToken) { response in
+        userUseCase.signIn(accessToken: accessToken) { response in
             guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return

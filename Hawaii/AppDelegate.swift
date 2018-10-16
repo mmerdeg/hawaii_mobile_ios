@@ -142,11 +142,6 @@ extension SwinjectStoryboard {
                                                                                 name: String(describing: UserDetailsRepositoryProtocol.self))
                                             ?? UserDetailsRepository())
             }
-
-            // Sign In Api
-            defaultContainer.register(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self)) { _ in
-                SignInApi()
-            }
             
             defaultContainer.storyboardInitCompleted(DashboardViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
@@ -200,7 +195,6 @@ extension SwinjectStoryboard {
             }
             
             defaultContainer.storyboardInitCompleted(SignInViewController.self) { resolver, controller in
-                controller.signInApi = resolver.resolve(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))

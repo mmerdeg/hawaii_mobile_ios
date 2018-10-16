@@ -9,6 +9,9 @@
 import Foundation
 
 protocol UserRepositoryProtocol: GenericRepositoryProtocol {
+    
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
+    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
