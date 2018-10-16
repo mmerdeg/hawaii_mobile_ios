@@ -921,11 +921,11 @@
 		3E834B662100AEAF0038BC96 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				3E8582A52175E0310061A590 /* Protocol */,
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				3E834B6B2100AF1B0038BC96 /* SignInApi.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepository.swift */,
-				303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -938,6 +938,14 @@
 				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		3E8582A52175E0310061A590 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		3EB5642C20CA69E900501CAC = {

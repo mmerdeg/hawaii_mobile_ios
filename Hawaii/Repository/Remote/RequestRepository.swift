@@ -43,7 +43,6 @@ class RequestRepository: RequestRepositoryProtocol {
         guard let url = URL(string: Constants.userRequests) else {
             return
         }
-        
         genericCodableRequest(value: [Request].self, url, headers: token) { response in
             completion(response)
         }

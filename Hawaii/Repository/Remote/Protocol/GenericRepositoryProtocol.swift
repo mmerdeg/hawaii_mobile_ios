@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 
 protocol GenericRepositoryProtocol {
+    
     func genericCodableRequest<T: Codable >(value: T.Type, _ url: URL, method: HTTPMethod,
                                             parameters: Parameters?, encoding: ParameterEncoding,
                                             headers: HTTPHeaders?, codableDecoder: JSONDecoder?,
