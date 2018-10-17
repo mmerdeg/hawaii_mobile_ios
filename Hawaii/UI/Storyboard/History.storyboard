@@ -165,11 +165,11 @@
             </objects>
             <point key="canvasLocation" x="4621.6000000000004" y="152.47376311844079"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--History-->
         <scene sceneID="DE6-eL-b7H">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bXa-Ox-ldH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="history" id="73n-7q-e5R"/>
+                    <tabBarItem key="tabBarItem" title="History" image="00 history white 02" id="73n-7q-e5R"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Luz-l6-rOV">
@@ -186,4 +186,7 @@
             <point key="canvasLocation" x="2945" y="137"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="00 history white 02" width="48" height="32"/>
+    </resources>
 </document>
