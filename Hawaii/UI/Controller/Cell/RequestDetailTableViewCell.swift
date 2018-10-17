@@ -60,8 +60,7 @@ class RequestDetailTableViewCell: UITableViewCell {
             requestStatus.text = status.rawValue
             requestReason.text = reason
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd.MM.yyyy."
+            let formatter = DisplayedDateFormatter()
             let start = formatter.string(from: startDate)
             let end = formatter.string(from: endDate)
             requestDates.text = start == end ? start : start + " - " + end
@@ -70,7 +69,7 @@ class RequestDetailTableViewCell: UITableViewCell {
                                           fromFormat: "yyyy-MM-dd'T'HH:mm:ss",
                                           toFormat: "dd.MM.yyyy.")
             
-            requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
+            requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor
             requestImage.backgroundColor = color

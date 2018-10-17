@@ -81,8 +81,8 @@ class DashboardViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
-        if seconds >= Int(Constants.maxTimeElapsed) {
+        let seconds = components.second ?? ViewConstants.maxTimeElapsed
+        if seconds >= ViewConstants.maxTimeElapsed {
             fillCalendar()
         }
         lastTimeSynced = Date()

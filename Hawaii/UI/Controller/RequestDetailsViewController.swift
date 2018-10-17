@@ -36,7 +36,7 @@ class RequestDetailsViewController: BaseViewController {
         super.viewDidLoad()
 
         requestDialog.layer.cornerRadius = 10
-        self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(CGFloat(Constants.dialogBackgroundAlpha))
+        self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(CGFloat(ViewConstants.dialogBackgroundAlpha))
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         requestDialog.backgroundColor = UIColor.primaryColor
         clickableView.addGestureRecognizer(tap)

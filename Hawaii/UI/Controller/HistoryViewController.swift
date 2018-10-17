@@ -95,8 +95,8 @@ class HistoryViewController: BaseViewController {
         segmentedControl.selectedSegmentIndex = 0
         
         let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? Int(Constants.maxTimeElapsed)
-        if seconds >= Int(Constants.maxTimeElapsed) {
+        let seconds = components.second ?? ViewConstants.maxTimeElapsed
+        if seconds >= ViewConstants.maxTimeElapsed {
             if let selectedYear = selectedYear {
                 fillCalendatByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
             } else {
@@ -213,7 +213,7 @@ class HistoryViewController: BaseViewController {
         self.navigationController?.view.addSubview(customView)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
-                self.customView.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(Constants.dialogBackgroundAlpha))
+                self.customView.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(ViewConstants.dialogBackgroundAlpha))
                 self.navigationController?.view.bringSubview(toFront: self.customView)
             })
         }

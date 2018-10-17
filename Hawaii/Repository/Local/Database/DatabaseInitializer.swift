@@ -24,10 +24,11 @@ class DatabaseInitializer {
         let dbName = "Hawaii.sqlite"
         let schemaName = "schema"
         let label = "database-queue"
+        let sqlExtension = "sql"
         
         guard let fileUrl = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(dbName),
-            let schemaUrl = bundle.url(forResource: schemaName, withExtension: Constants.sqlExtension),
+            let schemaUrl = bundle.url(forResource: schemaName, withExtension: sqlExtension),
             let schemaScript = (try? String(contentsOf: schemaUrl)) else {
                 print("Error initializing schema.")
                 fatalError()

@@ -3,6 +3,7 @@ import Foundation
 class CustomDateFormatter: DateFormatter {
     
     let format = "yyyy-MM-dd hh:mm:ss Z"
+    let zone = "UTC"
     
     override init() {
         super.init()

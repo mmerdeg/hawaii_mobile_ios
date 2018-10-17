@@ -66,8 +66,10 @@ extension SwinjectStoryboard {
             }
             
             // Request Repository
-            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
-                RequestRepository()
+            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { resolver in
+                RequestRepository(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                       name: String(describing: UserDetailsUseCaseProtocol.self))
+                    ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository(keyChainRepository: KeyChainRepository())))
             }
             
             defaultContainer.register(PublicHolidayRepositoryProtocol.self,
@@ -107,10 +109,9 @@ extension SwinjectStoryboard {
             defaultContainer.register(RequestUseCaseProtocol.self,
                                       name: String(describing: RequestUseCaseProtocol.self)) { resolver in
                 RequestUseCase(entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
-                                                                  name: String(describing: RequestRepositoryProtocol.self)) ?? RequestRepository(),
-                               userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                    name: String(describing: UserDetailsUseCaseProtocol.self))
-                                ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository(keyChainRepository: KeyChainRepository())),
+                                                                  name: String(describing: RequestRepositoryProtocol.self)) ??
+                                                                    RequestRepository(userDetailsUseCase: UserDetailsUseCase(userDetailsRepository:
+                                                                    UserDetailsRepository(keyChainRepository: KeyChainRepository()))),
                                userUseCase: resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                                             ?? UserUseCase(userRepository: resolver.resolve(UserRepositoryProtocol.self,
                                                                                             name: String(describing: UserRepositoryProtocol.self))

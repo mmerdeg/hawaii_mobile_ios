@@ -247,6 +247,12 @@
 		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
 		3E892DE4217722DE00C7F784 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */; };
 		3E892DE5217722DE00C7F784 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */; };
+		3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE72177590200C7F784 /* ApiConstants.swift */; };
+		3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE72177590200C7F784 /* ApiConstants.swift */; };
+		3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DEA21777B7300C7F784 /* ViewConstants.swift */; };
+		3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DEA21777B7300C7F784 /* ViewConstants.swift */; };
+		3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */; };
+		3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
 		3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */; };
@@ -469,6 +475,9 @@
 		3E843714211C42AF003F449B /* SVGProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGProcessor.swift; sourceTree = "<group>"; };
 		3E84371A211C430D003F449B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
+		3E892DE72177590200C7F784 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		3E892DEA21777B7300C7F784 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
+		3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedDateFormatter.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -859,6 +868,7 @@
 			children = (
 				3E5C2AD52109CBA600706E82 /* CustomDateFormatter.swift */,
 				3E843714211C42AF003F449B /* SVGProcessor.swift */,
+				3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -876,6 +886,7 @@
 			children = (
 				3E72645020EA1D0600DC7240 /* ViewUtility.swift */,
 				302EE17B21353539001355E9 /* ProgressHUD.swift */,
+				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
 			);
 			path = ViewUtility;
 			sourceTree = "<group>";
@@ -893,6 +904,7 @@
 		3E834B662100AEAF0038BC96 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				3E892DE6217758ED00C7F784 /* Constants */,
 				3E8582A52175E0310061A590 /* Protocol */,
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
@@ -918,6 +930,14 @@
 				303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3E892DE6217758ED00C7F784 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3E892DE72177590200C7F784 /* ApiConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		3EB5642C20CA69E900501CAC = {
@@ -1573,6 +1593,8 @@
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
+				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
+				3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */,
 				3042CA8621536E9F002446FE /* Sort.swift in Sources */,
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
 				30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */,
@@ -1624,6 +1646,7 @@
 				30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */,
 				309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
+				3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
 				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
@@ -1670,6 +1693,8 @@
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
+				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
+				3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */,
@@ -1721,6 +1746,7 @@
 				302EE1832135744D001355E9 /* CalendarType.swift in Sources */,
 				3E35CAA0215E15150042E65A /* UserDao.swift in Sources */,
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
+				3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,

@@ -40,8 +40,7 @@ class TeamPreviewTableViewCell: UITableViewCell {
             requestOwner.text = notes
             requestOwner.textColor = UIColor.primaryTextColor
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Constants.displayDateFormat
+            let dateFormatter = DisplayedDateFormatter()
             let start = dateFormatter.string(from: startDate)
             let end = dateFormatter.string(from: endDate)
             requestDuration.textColor = UIColor.lightPrimaryColor
@@ -50,7 +49,7 @@ class TeamPreviewTableViewCell: UITableViewCell {
             
             cardView.backgroundColor = UIColor.lightPrimaryColor
             
-            requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
+            requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
