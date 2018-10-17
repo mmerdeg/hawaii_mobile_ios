@@ -9,13 +9,18 @@
 import Foundation
 
 protocol UserDetailsUseCaseProtocol {
-    func getToken() -> String
+    
+    func getToken() -> String?
     
     func setToken(token: String)
     
-    func getEmail() -> String
+    func removeToken()
+    
+    func getEmail() -> String?
     
     func setEmail(_ email: String)
+    
+    func removeEmail()
     
     func getLoadMore() -> Bool
     
@@ -30,7 +35,7 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         self.userDetailsRepository = userDetailsRepository
     }
     
-    func getToken() -> String {
+    func getToken() -> String? {
         return userDetailsRepository.getToken()
     }
     
@@ -38,7 +43,11 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         userDetailsRepository.setToken(token: token)
     }
     
-    func getEmail() -> String {
+    func removeToken() {
+        userDetailsRepository.removeToken()
+    }
+    
+    func getEmail() -> String? {
         return userDetailsRepository.getEmail()
     }
     
@@ -46,6 +55,9 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         userDetailsRepository.setEmail(email)
     }
     
+    func removeEmail() {
+        userDetailsRepository.removeEmail()
+    }
     func getLoadMore() -> Bool {
         return userDetailsRepository.getLoadMore()
     }

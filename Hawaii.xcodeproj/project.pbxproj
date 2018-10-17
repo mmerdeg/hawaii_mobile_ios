@@ -245,6 +245,8 @@
 		3E832319216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
 		3E834B642100A8BA0038BC96 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E834B602100A8B90038BC96 /* credentials.plist */; };
 		3E843715211C42AF003F449B /* SVGProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E843714211C42AF003F449B /* SVGProcessor.swift */; };
+		3E892DE4217722DE00C7F784 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */; };
+		3E892DE5217722DE00C7F784 /* KeyChainRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
 		3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
 		3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */; };
@@ -466,6 +468,7 @@
 		3E834B602100A8B90038BC96 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
 		3E843714211C42AF003F449B /* SVGProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGProcessor.swift; sourceTree = "<group>"; };
 		3E84371A211C430D003F449B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepository.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -546,13 +549,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		30741344214274FF00F05427 /* Public holiday */ = {
+		30741344214274FF00F05427 /* PublicHoliday */ = {
 			isa = PBXGroup;
 			children = (
 				307413462142751E00F05427 /* Implementation */,
 				307413452142751700F05427 /* Protocol */,
 			);
-			path = "Public holiday";
+			path = PublicHoliday;
 			sourceTree = "<group>";
 		};
 		307413452142751700F05427 /* Protocol */ = {
@@ -625,14 +628,6 @@
 				3E15C45D20E645AC00DB2CF7 /* SectionData.swift */,
 				3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */,
 				3074131921380FFF00F05427 /* ExpandableData.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		3E15C45F20E64C1000DB2CF7 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -813,7 +808,7 @@
 			isa = PBXGroup;
 			children = (
 				3E35CA9A215E14C60042E65A /* User */,
-				30741344214274FF00F05427 /* Public holiday */,
+				30741344214274FF00F05427 /* PublicHoliday */,
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
 				3E15C46220E64CEB00DB2CF7 /* UI */,
 				3E42592520E259F500F22BBD /* Request */,
@@ -902,6 +897,7 @@
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepository.swift */,
+				3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -910,8 +906,8 @@
 			isa = PBXGroup;
 			children = (
 				3E35CA9E215E15060042E65A /* Database */,
-				3E15C45F20E64C1000DB2CF7 /* UI */,
 				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
+				3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1590,6 +1586,7 @@
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
 				30FD3695214A5E530047038C /* UserUseCase.swift in Sources */,
 				30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */,
+				3E892DE5217722DE00C7F784 /* KeyChainRepository.swift in Sources */,
 				30FD3698214A5E530047038C /* UserDetailsRepositoryProtocol.swift in Sources */,
 				30FD369A214A5E530047038C /* LeaveRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
@@ -1686,6 +1683,7 @@
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
+				3E892DE4217722DE00C7F784 /* KeyChainRepository.swift in Sources */,
 				3E28E79A20E5121700F1C6D5 /* LeaveRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3074134E2142761C00F05427 /* PublicHolidayUseCase.swift in Sources */,

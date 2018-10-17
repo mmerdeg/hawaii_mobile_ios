@@ -9,6 +9,7 @@
 import Foundation
 
 protocol PublicHolidayUseCaseProtocol {
+    
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void)
 }
 

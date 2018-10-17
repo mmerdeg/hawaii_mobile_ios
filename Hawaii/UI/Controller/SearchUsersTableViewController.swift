@@ -9,7 +9,9 @@
 import UIKit
 
 protocol SearchUserProtocol: class {
+    
     func loadMoreClicked(completion: @escaping () -> Void)
+    
     func didSelect(user: User)
 }
 

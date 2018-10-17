@@ -12,7 +12,10 @@ import CodableAlamofire
 
 class UserRepository: UserRepositoryProtocol {
 
-    var userDetailsUseCase: UserDetailsUseCaseProtocol = UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+//    var userDetailsUseCase: UserDetailsUseCaseProtocol =
+//        UserDetailsUseCase(userDetailsRepository: UserDetailsRepository(keyChainRepository: KeyChainRepository()))
+    
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     let authHeader = "X-AUTH-TOKEN"
     
@@ -47,7 +50,10 @@ class UserRepository: UserRepositoryProtocol {
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
+        guard let email = userDetailsUseCase?.getEmail() else {
+            return
+        }
+        guard let url = URL(string: Constants.getUser + "/\(email)") else {
             return
         }
         genericCodableRequest(value: User.self, url, headers: getHeaders()) { response in
@@ -76,12 +82,12 @@ class UserRepository: UserRepositoryProtocol {
     }
     
     func getHeaders() -> HTTPHeaders {
-        let token = userDetailsUseCase.getToken()
-        return [authHeader: token]
+        let token = userDetailsUseCase?.getToken()
+        return [authHeader: token ?? ""]
     }
     
     func getEmail() -> String {
-        return userDetailsUseCase.getEmail()
+        return userDetailsUseCase?.getEmail() ?? ""
     }
     
 }

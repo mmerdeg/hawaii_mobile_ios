@@ -22,7 +22,8 @@ class MoreViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileImage.kf.setImage(with: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
+        profileImage.kf.setImage(with: URL(string:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
         profileImage.layer.borderColor = UIColor.white.cgColor
@@ -39,15 +40,16 @@ class MoreViewController: BaseViewController {
     @IBAction func onSignOutPressed(_ sender: Any) {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
-        removeToken()
+        removeUserDetails()
         navigateToSignIn()
     }
     
-    func removeToken() {
+    func removeUserDetails() {
         guard let userDetailsUseCase = userDetailsUseCase else {
             return
         }
-        userDetailsUseCase.setToken(token: "")
+        userDetailsUseCase.removeToken()
+        userDetailsUseCase.removeEmail()
     }
     
     func navigateToSignIn() {
