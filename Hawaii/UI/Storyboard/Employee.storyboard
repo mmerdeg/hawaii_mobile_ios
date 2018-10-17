@@ -279,6 +279,21 @@
             </objects>
             <point key="canvasLocation" x="4674" y="975"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Ngz-UL-CDP">
+            <objects>
+                <viewController id="1GA-vG-5B8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="el6-Ju-mFQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="T5Y-EH-CVP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zdl-tl-dPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4948" y="1717"/>
+        </scene>
         <!--Search Users Table View Controller-->
         <scene sceneID="yPy-E6-IC0">
             <objects>
@@ -301,7 +316,7 @@
         <scene sceneID="35D-zh-PHK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7bz-br-VVX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Team" image="happy" id="dk8-04-2Sd"/>
+                    <tabBarItem key="tabBarItem" title="Team" image="00 team white 01" id="dk8-04-2Sd"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="7Go-y6-6wj">
@@ -322,6 +337,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="happy" width="24" height="24"/>
+        <image name="00 team white 01" width="48" height="32"/>
     </resources>
 </document>

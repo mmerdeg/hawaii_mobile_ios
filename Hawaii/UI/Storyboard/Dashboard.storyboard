@@ -340,7 +340,7 @@
         <scene sceneID="awH-qa-5aA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bRN-9c-16X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="calendar" id="uem-IX-GPx"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="00 dashboard white 01" id="uem-IX-GPx"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="1CL-Hb-JgW">
@@ -367,7 +367,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" width="25" height="25"/>
+        <image name="00 dashboard white 01" width="48" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TXB-yP-tc9"/>
