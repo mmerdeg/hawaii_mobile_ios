@@ -168,9 +168,8 @@ class RequestRepository: RequestRepositoryProtocol {
 extension Encodable {
     var dictionary: [String: Any]? {
         let encoder = JSONEncoder()
-        let formatter = DateFormatter()
+        let formatter = RequestDateFormatter()
         
-        formatter.dateFormat = Constants.dateFormat
         encoder.dateEncodingStrategy = .formatted(formatter)
         
         guard let data = try? encoder.encode(self) else {
