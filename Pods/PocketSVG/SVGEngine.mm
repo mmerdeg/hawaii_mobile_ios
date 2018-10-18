@@ -105,12 +105,21 @@ NSArray *svgParser::parse(NSMapTable ** const aoAttributes)
                                               valueOptions:NSMapTableStrongMemory];
     NSMutableArray * const paths = [NSMutableArray new];
 
+    NSUInteger depthWithinUnknownElement = 0;
+
     while(xmlTextReaderRead(_xmlReader) == 1) {
         int const type = xmlTextReaderNodeType(_xmlReader);
         const char * const tag = (char *)xmlTextReaderConstName(_xmlReader);
         
         CGPathRef path = NULL;
-        if(type == XML_READER_TYPE_ELEMENT && strcasecmp(tag, "path") == 0)
+        if(depthWithinUnknownElement > 0) {
+            if(type == XML_READER_TYPE_ELEMENT && !xmlTextReaderIsEmptyElement(_xmlReader))
+                ++depthWithinUnknownElement;
+            else if(type == XML_READER_TYPE_END_ELEMENT)
+                --depthWithinUnknownElement;
+        } else if(type == XML_READER_TYPE_ELEMENT && strcasecmp(tag, "svg") == 0) {
+            // recognize the root svg element but we don't need to do anything with it
+        } else if(type == XML_READER_TYPE_ELEMENT && strcasecmp(tag, "path") == 0)
             path = readPathTag();
         else if(type == XML_READER_TYPE_ELEMENT && strcasecmp(tag, "polyline") == 0)
             path = readPolylineTag();
@@ -122,12 +131,13 @@ NSArray *svgParser::parse(NSMapTable ** const aoAttributes)
             path = readCircleTag();
         else if(type == XML_READER_TYPE_ELEMENT && strcasecmp(tag, "ellipse") == 0)
             path = readEllipseTag();
-        else if(strcasecmp(tag, "g") == 0) {
+        else if(strcasecmp(tag, "g") == 0 || strcasecmp(tag, "a") == 0) {
             if(type == XML_READER_TYPE_ELEMENT)
                 pushGroup(readAttributes());
             else if(type == XML_READER_TYPE_END_ELEMENT)
                 popGroup();
-        }
+        } else if(type == XML_READER_TYPE_ELEMENT && !xmlTextReaderIsEmptyElement(_xmlReader))
+            ++depthWithinUnknownElement;
         if(path) {
             [paths addObject:CFBridgingRelease(path)];
             
@@ -313,11 +323,11 @@ NSDictionary *svgParser::readAttributes()
                     transformOperands.push_back(operand));
 
                 CGAffineTransform additionalTransform = CGAffineTransformIdentity;
-                if([transformCmd isEqualToString:@"matrix"])
+                if([transformCmd isEqualToString:@"matrix"] && transformOperands.size() >= 6) {
                     additionalTransform = CGAffineTransformMake(transformOperands[0], transformOperands[1],
                                                                 transformOperands[2], transformOperands[3],
                                                                 transformOperands[4], transformOperands[5]);
-                else if([transformCmd isEqualToString:@"rotate"]) {
+                } else if([transformCmd isEqualToString:@"rotate"] && transformOperands.size() >= 1) {
                     float const radians = transformOperands[0] * M_PI / 180.0;
                     if (transformOperands.size() == 3) {
                         float const x = transformOperands[1];
@@ -331,14 +341,23 @@ NSDictionary *svgParser::readAttributes()
                                                                     -sinf(radians), cosf(radians),
                                                                     0, 0);
                     }
-                } else if([transformCmd isEqualToString:@"translate"])
-                    additionalTransform = CGAffineTransformMakeTranslation(transformOperands[0], transformOperands[1]);
-                else if([transformCmd isEqualToString:@"scale"])
-                    additionalTransform = CGAffineTransformMakeScale(transformOperands[0], transformOperands[1]);
-                else if([transformCmd isEqualToString:@"skewX"])
+                } else if([transformCmd isEqualToString:@"translate"] && transformOperands.size() >= 1) {
+                    float tx = transformOperands[0];
+                    float ty = 0;
+                    if (transformOperands.size() >= 2)
+                        ty = transformOperands[1];
+                    additionalTransform = CGAffineTransformMakeTranslation(tx, ty);
+                } else if([transformCmd isEqualToString:@"scale"] && transformOperands.size() >= 1) {
+                    float sx = transformOperands[0];
+                    float sy = sx;
+                    if (transformOperands.size() >= 2)
+                        sy = transformOperands[1];
+                    additionalTransform = CGAffineTransformMakeScale(sx, sy);
+                } else if([transformCmd isEqualToString:@"skewX"] && transformOperands.size() >= 1) {
                     additionalTransform.c = tanf(transformOperands[0] * M_PI / 180.0);
-                else if([transformCmd isEqualToString:@"skewY"])
+                } else if([transformCmd isEqualToString:@"skewY"] && transformOperands.size() >= 1) {
                     additionalTransform.b = tanf(transformOperands[0] * M_PI / 180.0);
+                }
 
                 transform = CGAffineTransformConcat(additionalTransform, transform);
             }
@@ -833,17 +852,24 @@ hexTriplet::hexTriplet(NSString *str)
         str = mapped;
     }
     
-    NSCParameterAssert([str hasPrefix:@"#"]);
-    NSCParameterAssert([str length] == 4 || [str length] == 7);
-    if([str length] == 4) {
-        str = [str mutableCopy];
-        [(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 3, 1 }]
-                                                      atIndex:3];
-        [(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 2, 1 }]
-                                                      atIndex:2];
-        [(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 1, 1 }]
-                                                      atIndex:1];
-    }
+    if ([str hasPrefix:@"rgb("]) {
+		NSCParameterAssert([str hasSuffix:@")"]);
+		NSArray<NSString*>* parts = [[str substringWithRange:(NSRange) { 4, str.length-5 }] componentsSeparatedByString:@","];
+		NSCParameterAssert([parts count] == 3);
+		str = [NSString stringWithFormat:@"#%02x%02x%02x", (unsigned int)parts[0].integerValue, (unsigned int)parts[1].integerValue, (unsigned int)parts[2].integerValue];
+	} else {
+		NSCParameterAssert([str hasPrefix:@"#"]);
+		NSCParameterAssert([str length] == 4 || [str length] == 7);
+		if([str length] == 4) {
+			str = [str mutableCopy];
+			[(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 3, 1 }]
+										 atIndex:3];
+			[(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 2, 1 }]
+										 atIndex:2];
+			[(NSMutableString *)str insertString:[str substringWithRange:(NSRange) { 1, 1 }]
+										 atIndex:1];
+		}
+	}
     _data = (uint32_t)strtol([str cStringUsingEncoding:NSASCIIStringEncoding]+1, NULL, 16);
 }
 

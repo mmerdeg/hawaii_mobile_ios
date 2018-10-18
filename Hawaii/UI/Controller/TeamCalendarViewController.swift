@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class TeamCalendarViewController: SearchUsersBaseViewController {
+class TeamCalendarViewController: BaseViewController {
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
@@ -23,6 +23,8 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
     
     let teamDetailsSegue = "teamDetails"
     
+    let showSearchUserSegue = "showSearchUser"
+    
     let requestDetailsViewController = "RequestDetailsViewController"
     
     let processor = SVGProcessor()
@@ -30,6 +32,7 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
     let formatter = DateFormatter()
     var requestUseCase: RequestUseCaseProtocol?
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    var userUseCase: UserUseCaseProtocol?
     var lastTimeSynced: Date?
     
     var items: [Date: [Request]] = [:]
@@ -38,6 +41,9 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
     
     var lastDateInMonth = Date()
     var searchableId: Int?
+    
+    var searchUsersBaseViewController: SearchUsersBaseViewController?
+    
     lazy var refreshItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
         item.tintColor = UIColor.primaryTextColor
@@ -96,22 +102,19 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
             }
             
             controller.requests = Dictionary(grouping: requests, by: { $0.user?.teamId ?? -1 })
+        } else if segue.identifier == showSearchUserSegue {
+            guard let controller = segue.destination as? SearchUsersBaseViewController else {
+                return
+            }
+            
+            self.searchUsersBaseViewController = controller
+            searchUsersBaseViewController?.delegate = self
+            addChildViewController(controller)
         }
     }
     
     @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
         self.refreshUI(date: lastDateInMonth)
-    }
-    
-    override func didSelect(user: User) {
-        super.didSelect(user: user)
-        guard let userId = user.id else {
-            return
-        }
-        searchableId = userId
-        self.requestUseCase?.getAllBy(id: userId) { requestResponse in
-            self.handle(requestResponse)
-        }
     }
     
     func refreshUI(date: Date) {
@@ -182,7 +185,7 @@ class TeamCalendarViewController: SearchUsersBaseViewController {
             })
         }
         if #available(iOS 11.0, *) {
-            self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchController :  nil
+            self.navigationItem.searchController = segmentedControl.selectedSegmentIndex == 2 ? searchUsersBaseViewController?.searchController :  nil
         }
     }
     
@@ -378,6 +381,18 @@ extension TeamCalendarViewController: RequestDetailsDialogProtocol {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
             self.refreshUI(date: self.lastDateInMonth)
+        }
+    }
+}
+
+extension TeamCalendarViewController: SearchUserSelectedProtocol {
+    func didSelect(user: User) {
+        guard let userId = user.id else {
+            return
+        }
+        searchableId = userId
+        self.requestUseCase?.getAllBy(id: userId) { requestResponse in
+            self.handle(requestResponse)
         }
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchUserSelectedProtocol: class {
+    func didSelect(user: User)
+}
+
 class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     var users: [User] = []
@@ -21,6 +25,8 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     var searchController: UISearchController?
     
     var pendingRequestWorkItem: DispatchWorkItem?
+    
+    weak var delegate: SearchUserSelectedProtocol?
     
     var page = 0
     
@@ -39,6 +45,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     }
     
     func didSelect(user: User) {
+        delegate?.didSelect(user: user)
         self.searchController?.dismiss(animated: true, completion: nil)
     }
     

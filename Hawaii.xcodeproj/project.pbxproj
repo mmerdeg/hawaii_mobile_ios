@@ -83,6 +83,8 @@
 		30A08D46216B880000FF8B2D /* DatePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */; };
 		30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
 		30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
+		30ABE95221785336007E6122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30ABE94E21785335007E6122 /* GoogleService-Info.plist */; };
+		30ABE95321785336007E6122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30ABE94E21785335007E6122 /* GoogleService-Info.plist */; };
 		30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
 		30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
@@ -409,6 +411,7 @@
 		309B6D61216736880046EFE9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -985,6 +988,7 @@
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
 				3EB5644420CA69EA00501CAC /* Info.plist */,
+				30ABE94E21785335007E6122 /* GoogleService-Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
 			);
 			path = Hawaii;
@@ -1185,6 +1189,12 @@
 					30FD367A214A5E530047038C = {
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.Wallet = {
 								enabled = 0;
 							};
@@ -1268,6 +1278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				30ABE95321785336007E6122 /* GoogleService-Info.plist in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
@@ -1307,6 +1318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				30ABE95221785336007E6122 /* GoogleService-Info.plist in Resources */,
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
@@ -1398,12 +1410,18 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1414,12 +1432,18 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1548,12 +1572,18 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1564,12 +1594,18 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1849,6 +1885,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hawaii production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -1883,6 +1920,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Hawaii production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
