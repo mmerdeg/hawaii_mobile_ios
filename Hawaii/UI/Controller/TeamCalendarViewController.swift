@@ -117,7 +117,6 @@ class TeamCalendarViewController: BaseViewController {
         self.refreshUI(date: lastDateInMonth)
     }
     
-    
     func refreshUI(date: Date) {
         switch self.segmentedControl?.selectedSegmentIndex {
         case 0:
@@ -397,4 +396,3 @@ extension TeamCalendarViewController: SearchUserSelectedProtocol {
         }
     }
 }
-

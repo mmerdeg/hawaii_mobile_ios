@@ -13,6 +13,9 @@ def common_pods_for_target
     pod 'FMDB'
     pod 'GoogleSignIn'
     pod 'EKBlurAlert'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    pod 'NotificationBannerSwift'
 end
 
 target 'Hawaii' do

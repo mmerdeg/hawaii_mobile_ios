@@ -38,7 +38,7 @@ class HistoryViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     
     lazy var filterDisabled: UIBarButtonItem = {
-        var buttonImage = UIImage(named: "filter")
+        var buttonImage = UIImage(named: "00 filter white 01")
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         
         let button: UIButton = UIButton(type: UIButtonType.custom)
@@ -53,14 +53,13 @@ class HistoryViewController: BaseViewController {
     }()
     
     lazy var filterEnabled: UIBarButtonItem = {
-        var buttonImage = UIImage(named: "filter")
+        var buttonImage = UIImage(named: "00 filter inactive white 01")
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
-        
         let button: UIButton = UIButton(type: UIButtonType.custom)
         button.setImage(buttonImage, for: UIControlState.normal)
         button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
-        button.frame = CGRect(x: 0, y: 0, width: 51, height: 31)
-        button.tintColor = UIColor.accentColor
+        button.frame = CGRect(x: 0, y: 0, width: 51, height: 21)
+        button.tintColor = UIColor.primaryTextColor
         
         let item = UIBarButtonItem(customView: button)
         item.tintColor = UIColor.accentColor
