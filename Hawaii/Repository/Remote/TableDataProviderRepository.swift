@@ -12,8 +12,10 @@ import Alamofire
 
 class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     
+    let leaveTypesUrl = ApiConstants.baseUrl  + "/leavetypes"
+    
     func getLeaveData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
-        guard let url = URL(string: Constants.leaveTypes) else {
+        guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         genericCodableRequest(value: [Absence].self, url) { response in
@@ -30,7 +32,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getSicknessData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
-        guard let url = URL(string: Constants.leaveTypes) else {
+        guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         
@@ -46,7 +48,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getBonusData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
-        guard let url = URL(string: Constants.leaveTypes) else {
+        guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         
@@ -63,7 +65,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getLeaveTypeData(completion: @escaping ([Absence]) -> Void) {
-        guard let url = URL(string: Constants.leaveTypes) else {
+        guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         Alamofire.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in

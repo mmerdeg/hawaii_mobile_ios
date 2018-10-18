@@ -66,8 +66,10 @@ extension SwinjectStoryboard {
             }
             
             // Request Repository
-            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
-                RequestRepository()
+            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { resolver in
+                RequestRepository(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                       name: String(describing: UserDetailsUseCaseProtocol.self))
+                    ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository(keyChainRepository: KeyChainRepository())))
             }
             
             defaultContainer.register(PublicHolidayRepositoryProtocol.self,
@@ -75,11 +77,10 @@ extension SwinjectStoryboard {
                 let holidayRepository = PublicHolidayRepository()
                 holidayRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
-                    ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+                    ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository(keyChainRepository: KeyChainRepository()))
                 return holidayRepository
             }
             
-            // Table Data Provider Repository
             defaultContainer.register(PublicHolidayUseCaseProtocol.self, name: String(describing: PublicHolidayUseCaseProtocol.self)) { resolver in
                 PublicHolidayUseCase(publicHolidayRepository: resolver.resolve(PublicHolidayRepositoryProtocol.self,
                                                                     name: String(describing: PublicHolidayRepositoryProtocol.self))
@@ -91,7 +92,8 @@ extension SwinjectStoryboard {
                 let userRepository = UserRepository()
                 userRepository.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                      name: String(describing: UserDetailsUseCaseProtocol.self))
-                                                                     ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+                                                                     ?? UserDetailsUseCase(userDetailsRepository:
+                                                                        UserDetailsRepository(keyChainRepository: KeyChainRepository()))
                 return userRepository
             }
             
@@ -107,10 +109,9 @@ extension SwinjectStoryboard {
             defaultContainer.register(RequestUseCaseProtocol.self,
                                       name: String(describing: RequestUseCaseProtocol.self)) { resolver in
                 RequestUseCase(entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
-                                                                  name: String(describing: RequestRepositoryProtocol.self)) ?? RequestRepository(),
-                               userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                    name: String(describing: UserDetailsUseCaseProtocol.self))
-                                ?? UserDetailsUseCase(userDetailsRepository: UserDetailsRepository()),
+                                                                  name: String(describing: RequestRepositoryProtocol.self)) ??
+                                                                    RequestRepository(userDetailsUseCase: UserDetailsUseCase(userDetailsRepository:
+                                                                    UserDetailsRepository(keyChainRepository: KeyChainRepository()))),
                                userUseCase: resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                                             ?? UserUseCase(userRepository: resolver.resolve(UserRepositoryProtocol.self,
                                                                                             name: String(describing: UserRepositoryProtocol.self))
@@ -131,22 +132,25 @@ extension SwinjectStoryboard {
                                                ?? TableDataProviderRepository())
             }
             
+            //Key Chain Repository
+            defaultContainer.register(KeyChainRepositoryProtocol.self, name: String(describing: KeyChainRepositoryProtocol.self)) { _ in
+                KeyChainRepository()
+            }
+            
             // User Details Repository
-            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { _ in
-                UserDetailsRepository()
+            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { resolver in
+                UserDetailsRepository(keyChainRepository: KeyChainRepository())
+//                UserDetailsRepository(keyChainRepository: resolver.resolve(KeyChainRepositoryProtocol.self, name: String(describing: KeyChainRepositoryProtocol.self)))
             }
             
             defaultContainer.register(UserDetailsUseCaseProtocol.self,
                                       name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
                                         UserDetailsUseCase(userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
                                                                                 name: String(describing: UserDetailsRepositoryProtocol.self))
-                                            ?? UserDetailsRepository())
+                                            ?? UserDetailsRepository(keyChainRepository: KeyChainRepository()))
             }
-
-            // Sign In Api
-            defaultContainer.register(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self)) { _ in
-                SignInApi()
-            }
+            
+            // View Controllers
             
             defaultContainer.storyboardInitCompleted(DashboardViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
@@ -204,7 +208,6 @@ extension SwinjectStoryboard {
             }
             
             defaultContainer.storyboardInitCompleted(SignInViewController.self) { resolver, controller in
-                controller.signInApi = resolver.resolve(SignInApiProtocol.self, name: String(describing: SignInApiProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))

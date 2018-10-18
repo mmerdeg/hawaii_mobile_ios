@@ -78,15 +78,15 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 switch day.duration {
                 case .afternoon?:
                     self.afternoonView.backgroundColor = backgroundColor
-                    self.afternoonImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.afternoonImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                 case .fullday?:
                     self.afternoonView.backgroundColor = backgroundColor
                     self.morningView.backgroundColor = backgroundColor
-                    self.fullDayImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.fullDayImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                     print()
                 case .morning?:
                     self.morningView.backgroundColor = backgroundColor
-                    self.morningImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.morningImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
                 default :
                     print("")
                 }

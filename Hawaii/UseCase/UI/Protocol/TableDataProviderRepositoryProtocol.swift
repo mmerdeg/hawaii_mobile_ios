@@ -27,5 +27,4 @@ protocol TableDataProviderRepositoryProtocol: GenericRepositoryProtocol {
     func getBonusDaysDurationData(completion: @escaping ([SectionData]) -> Void)
     
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void)
-    
 }

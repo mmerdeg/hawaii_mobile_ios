@@ -84,8 +84,7 @@ class SummaryViewController: BaseViewController {
         leaveTypeTitle.textColor = UIColor.primaryTextColor
         leaveRemainingTitle.textColor = UIColor.primaryTextColor
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy."
+        let formatter = DisplayedDateFormatter()
         let start = formatter.string(from: startDate)
         let end = formatter.string(from: endDate)
         datesLabel.text = start == end ? start : start + " - " + end
@@ -93,7 +92,7 @@ class SummaryViewController: BaseViewController {
         
         cardView.backgroundColor = UIColor.lightPrimaryColor
         
-        requestImage.kf.setImage(with: URL(string: Constants.baseUrl + "/" + imageUrl))
+        requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
         requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
         requestImage.tintColor = UIColor.primaryColor
         requestImage.backgroundColor = color

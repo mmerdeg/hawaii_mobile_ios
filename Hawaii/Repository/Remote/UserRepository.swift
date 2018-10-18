@@ -12,18 +12,28 @@ import CodableAlamofire
 
 class UserRepository: UserRepositoryProtocol {
 
-    var userDetailsUseCase: UserDetailsUseCaseProtocol = UserDetailsUseCase(userDetailsRepository: UserDetailsRepository())
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     let authHeader = "X-AUTH-TOKEN"
     
+    let signInUrl = ApiConstants.baseUrl + "/signin"
+    
+    let getUserUrl = ApiConstants.baseUrl + "/users"
+    
+    let searchUsersUrl = ApiConstants.baseUrl + "/users/search"
+    
+    
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        guard let url = URL(string: Constants.search) else {
+        guard let url = URL(string: searchUsersUrl) else {
             return
         }
-        let params = ["page": page,
-                      "size": numberOfItems,
-                      "active": true,
-                      "searchQuery": parameter] as [String: Any]
+        let pageKey = "page",
+            sizeKey = "size",
+            activeKey = "active",
+            searchQueryKey = "searchQuery"
+        
+        let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
+        
         Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
@@ -47,7 +57,10 @@ class UserRepository: UserRepositoryProtocol {
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        guard let url = URL(string: Constants.getUser + "/\(userDetailsUseCase.getEmail())") else {
+        guard let email = userDetailsUseCase?.getEmail() else {
+            return
+        }
+        guard let url = URL(string: getUserUrl + "/\(email)") else {
             return
         }
         genericCodableRequest(value: User.self, url, headers: getHeaders()) { response in
@@ -55,13 +68,34 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
+        guard let url = URL(string: signInUrl) else {
+            return
+        }
+        let accessTokenKey = "Authorization"
+        let headers = HTTPHeaders.init(dictionaryLiteral: (accessTokenKey, accessToken))
+        
+        Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
+            guard let user = response.value,
+                let token = response.response?.allHeaderFields[self.authHeader] as? String else {
+                    completion(GenericResponse<(String, User)>(success: false, item: nil, statusCode: response.response?.statusCode,
+                                                               error: response.error,
+                                                               message: response.error?.localizedDescription))
+                    return
+            }
+            completion(GenericResponse<(String, User)>(success: true, item: (token, user),
+                                                       statusCode: response.response?.statusCode,
+                                                       error: nil, message: nil))
+        }
+    }
+    
     func getHeaders() -> HTTPHeaders {
-        let token = userDetailsUseCase.getToken()
-        return [authHeader: token]
+        let token = userDetailsUseCase?.getToken()
+        return [authHeader: token ?? ""]
     }
     
     func getEmail() -> String {
-        return userDetailsUseCase.getEmail()
+        return userDetailsUseCase?.getEmail() ?? ""
     }
     
 }

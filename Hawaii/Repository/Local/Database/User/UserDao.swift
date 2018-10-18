@@ -24,10 +24,13 @@ class UserDao: UserDaoProtocol {
     init(dispatchQueue: DispatchQueue, databaseQueue: FMDatabaseQueue) {
         self.databaseQueue = databaseQueue
         self.dispatchQueue = dispatchQueue
+        
+        let sqlExtension = "sql"
         let bundle = Bundle.main
-        guard let createUserUrl = bundle.url(forResource: "createUser", withExtension: Constants.sqlExtension),
-              let emptyUsersUrl = bundle.url(forResource: "deleteUser", withExtension: Constants.sqlExtension),
-              let readUserUrl = bundle.url(forResource: "readUser", withExtension: Constants.sqlExtension) else {
+        
+        guard let createUserUrl = bundle.url(forResource: "createUser", withExtension: sqlExtension),
+              let emptyUsersUrl = bundle.url(forResource: "deleteUser", withExtension: sqlExtension),
+              let readUserUrl = bundle.url(forResource: "readUser", withExtension: sqlExtension) else {
                 return
         }
         readUserQuery = (try? String(contentsOf: readUserUrl))

@@ -106,8 +106,6 @@ extension GenericRepositoryProtocol {
     }
     
     func getDateFormatter() -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.dateFormat
-        return formatter
+        return DtoDateFormatter()
     }
 }

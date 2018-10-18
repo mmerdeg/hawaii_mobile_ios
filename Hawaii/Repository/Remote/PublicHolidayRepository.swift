@@ -14,14 +14,16 @@ class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
     
     let authHeader = "X-AUTH-TOKEN"
     
+    let publicHolidaysUrl = ApiConstants.baseUrl + "/publicholidays"
+    
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     func getHolidays(completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void) {
-        guard let url = URL(string: Constants.publicHolidays) else {
+        guard let url = URL(string: publicHolidaysUrl) else {
             return
         }
-        
-        let params = ["active": true]
+        let activeKey = "active"
+        let params = [activeKey: true]
         
         genericCodableRequest(value: [PublicHoliday].self, url, parameters: params, headers: getHeaders()) { response in
             completion(response)

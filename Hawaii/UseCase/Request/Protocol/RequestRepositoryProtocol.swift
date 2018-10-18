@@ -11,24 +11,24 @@ import Alamofire
 
 protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     
-    func getAll(token: HTTPHeaders, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAllBy(token: HTTPHeaders, id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllBy(id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func add(token: HTTPHeaders, request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
+    func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllByDate(token: HTTPHeaders, userId: Int, from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllByDate(userId: Int, from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAllPendingForApprover(token: HTTPHeaders, approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func updateRequest(token: HTTPHeaders, request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
+    func updateRequest(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
     
-    func getAllByTeam(token: HTTPHeaders, date: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllByTeam(date: Date, teamId: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAllForAllEmployees(token: HTTPHeaders, date: Date, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllForAllEmployees(date: Date, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAllForEmployee(token: HTTPHeaders, byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAvailableRequestYears(token: HTTPHeaders, completion: @escaping (GenericResponse<Year>) -> Void)
+    func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void)
     
 }

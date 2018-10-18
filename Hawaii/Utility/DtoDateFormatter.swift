@@ -1,8 +1,16 @@
+//
+//  DtoDateFormatter.swift
+//  Hawaii
+//
+//  Created by Server on 10/17/18.
+//  Copyright © 2018 Server. All rights reserved.
+//
+
 import Foundation
 
-class CustomDateFormatter: DateFormatter {
+class DtoDateFormatter: DateFormatter {
     
-    let format = "yyyy-MM-dd hh:mm:ss Z"
+    let format = "yyyy-MM-dd"
     let zone = "UTC"
     
     override init() {

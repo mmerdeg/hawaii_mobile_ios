@@ -10,6 +10,8 @@ import Foundation
 
 protocol UserUseCaseProtocol {
     
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
+    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
@@ -30,15 +32,9 @@ class UserUseCase: UserUseCaseProtocol {
         self.userDao = userDao
     }
     
-    func createUser(entity: User, completion: @escaping (Int) -> Void) {
-        userDao?.create(entity: entity) { id in
-            completion(id)
-        }
-    }
-    
-    func readUser(completion: @escaping (User?) -> Void) {
-        userDao?.read { user in
-            completion(user)
+    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
+        userRepository?.signIn(accessToken: accessToken) { response in
+            completion(response)
         }
     }
     
@@ -51,6 +47,18 @@ class UserUseCase: UserUseCaseProtocol {
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         userRepository?.getUser { response in
             completion(response)
+        }
+    }
+    
+    func createUser(entity: User, completion: @escaping (Int) -> Void) {
+        userDao?.create(entity: entity) { id in
+            completion(id)
+        }
+    }
+    
+    func readUser(completion: @escaping (User?) -> Void) {
+        userDao?.read { user in
+            completion(user)
         }
     }
 }

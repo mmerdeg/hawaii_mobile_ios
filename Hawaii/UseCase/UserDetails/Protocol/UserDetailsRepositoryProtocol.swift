@@ -9,13 +9,18 @@
 import Foundation
 
 protocol UserDetailsRepositoryProtocol {
-    func getToken() -> String
+    
+    func getToken() -> String?
     
     func setToken(token: String)
     
-    func getEmail() -> String
+    func removeToken()
+    
+    func getEmail() -> String?
     
     func setEmail(_ email: String)
+    
+    func removeEmail()
     
     func getLoadMore() -> Bool
     

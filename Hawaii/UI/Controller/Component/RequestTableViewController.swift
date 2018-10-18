@@ -188,8 +188,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor.transparentColor
         if indexPath.section == 0 {
-            let formatter = DateFormatter()
-            formatter.dateFormat = Constants.dateFormat
+            let formatter = DisplayedDateFormatter()
             cell.textLabel?.text = dateItems[indexPath.row].title
             cell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
         } else if indexPath.section == 1 {
@@ -268,8 +267,7 @@ extension RequestTableViewController: DatePickerProtocol {
         self.startDate = startDate
         self.endDate = endDate ?? startDate
         self.isMultipleDaysSelected = isMultipleDaysSelected
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.dateFormat
+        let formatter = DisplayedDateFormatter()
         guard let startDateCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)),
             let endDateCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
                 return
