@@ -36,79 +36,83 @@ protocol RequestUseCaseProtocol {
 
 class RequestUseCase: RequestUseCaseProtocol {
     
-    let entityRepository: RequestRepositoryProtocol!
+    let requestRepository: RequestRepositoryProtocol?
+    
+    let userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     let userUseCase: UserUseCaseProtocol?
     
-    init(entityRepository: RequestRepositoryProtocol, userUseCase: UserUseCaseProtocol) {
-        self.entityRepository = entityRepository
+    init(entityRepository: RequestRepositoryProtocol, userUseCase: UserUseCaseProtocol,
+         userDetailsUseCase: UserDetailsUseCaseProtocol) {
+        self.requestRepository = entityRepository
         self.userUseCase = userUseCase
+        self.userDetailsUseCase = userDetailsUseCase
     }
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAll() { requests in
+        requestRepository?.getAll(token: getToken()) { requests in
             completion(requests)
         }
     }
     
     func getAllBy(id: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
-        entityRepository.getAllBy(id: id) { requests in
+        requestRepository?.getAllBy(token: getToken(), id: id) { requests in
             completion(self.handle(requests))
         }
     }
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
-        entityRepository.add(request: request) {request in
+        requestRepository?.add(token: getToken(), request: request) {request in
             completion(request)
         }
     }
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
-        entityRepository.getAll() { response in
+        requestRepository?.getAll(token: getToken()) { response in
             completion(self.handle(response))
         }
     }
     
     func getAllByDate(from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void) {
         userUseCase?.readUser(completion: { user in
-            self.entityRepository.getAllByDate(userId: user?.id ?? -1, from: from, toDate: toDate) { requests in
+            self.requestRepository?.getAllByDate(token: self.getToken(), userId: user?.id ?? -1, from: from, toDate: toDate) { requests in
                 completion(requests)
             }
         })
     }
     
     func getAllPendingForApprover(approver: Int, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllPendingForApprover(approver: approver) { requests in
+        requestRepository?.getAllPendingForApprover(token: getToken(), approver: approver) { requests in
             completion(requests)
         }
     }
     
     func updateRequest(request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
-        entityRepository.updateRequest(request: request) { request in
+        requestRepository?.updateRequest(token: getToken(), request: request) { request in
             completion(request)
         }
     }
     
     func getAllByTeam(from: Date, teamId: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
         if teamId != -1 {
-            entityRepository.getAllByTeam(date: from, teamId: teamId) { response in
+            requestRepository?.getAllByTeam(token: getToken(), date: from, teamId: teamId) { response in
                 completion(self.handle(response))
             }
         } else {
-            entityRepository.getAllForAllEmployees(date: from) { response in
+            requestRepository?.getAllForAllEmployees(token: getToken(), date: from) { response in
                 completion(self.handle(response))
             }
         }
     }
     
     func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        entityRepository.getAllForEmployee(byEmail: email) { requestsResponse in
+        requestRepository?.getAllForEmployee(token: getToken(), byEmail: email) { requestsResponse in
             completion(requestsResponse)
         }
     }
     
     func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void) {
-        entityRepository.getAvailableRequestYears() { requestsResponse in
+        requestRepository?.getAvailableRequestYears(token: getToken()) { requestsResponse in
             completion(requestsResponse)
         }
     }
@@ -144,10 +148,8 @@ class RequestUseCase: RequestUseCaseProtocol {
                                                    message: response?.error?.localizedDescription)
     }
     
-//    func getHeaders() -> HTTPHeaders {
-//        let authHeader = "X-AUTH-TOKEN"
-//        let token = userDetailsUseCase?.getToken()
-//        return [authHeader: token ?? ""]
-//    }
+    func getToken() -> String {
+        return userDetailsUseCase?.getToken() ?? ""
+    }
     
 }

@@ -12,7 +12,7 @@ protocol UserRepositoryProtocol: GenericRepositoryProtocol {
     
     func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
     
-    func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
+    func getUser(token: String, email: String, completion: @escaping (GenericResponse<User>?) -> Void)
     
-    func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
+    func getUsersByParameter(token: String, parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
 }

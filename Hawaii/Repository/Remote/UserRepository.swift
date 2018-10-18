@@ -11,8 +11,6 @@ import Alamofire
 import CodableAlamofire
 
 class UserRepository: UserRepositoryProtocol {
-
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
     let authHeader = "X-AUTH-TOKEN"
     
@@ -22,8 +20,7 @@ class UserRepository: UserRepositoryProtocol {
     
     let searchUsersUrl = ApiConstants.baseUrl + "/users/search"
     
-    
-    func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
+    func getUsersByParameter(token: String, parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
         guard let url = URL(string: searchUsersUrl) else {
             return
         }
@@ -34,7 +31,7 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders()).validate()
+        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
                     completion(UsersResponse(success: false, users: nil, maxUsers: nil,
@@ -56,14 +53,11 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
-    func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        guard let email = userDetailsUseCase?.getEmail() else {
-            return
-        }
+    func getUser(token: String, email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let url = URL(string: getUserUrl + "/\(email)") else {
             return
         }
-        genericCodableRequest(value: User.self, url, headers: getHeaders()) { response in
+        genericCodableRequest(value: User.self, url, headers: getHeaders(token: token)) { response in
             completion(response)
         }
     }
@@ -89,13 +83,8 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
-    func getHeaders() -> HTTPHeaders {
-        let token = userDetailsUseCase?.getToken()
-        return [authHeader: token ?? ""]
-    }
-    
-    func getEmail() -> String {
-        return userDetailsUseCase?.getEmail() ?? ""
+    func getHeaders(token: String) -> HTTPHeaders {
+        return [authHeader: token]
     }
     
 }

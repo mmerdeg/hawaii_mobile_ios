@@ -27,9 +27,13 @@ class UserUseCase: UserUseCaseProtocol {
     
     let userDao: UserDaoProtocol?
     
-    init(userRepository: UserRepositoryProtocol, userDao: UserDaoProtocol) {
+    let userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
+    init(userRepository: UserRepositoryProtocol, userDao: UserDaoProtocol,
+         userDetailsUseCase: UserDetailsUseCaseProtocol) {
         self.userRepository = userRepository
         self.userDao = userDao
+        self.userDetailsUseCase = userDetailsUseCase
     }
     
     func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
@@ -39,13 +43,13 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        userRepository?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
+        userRepository?.getUsersByParameter(token: getToken(), parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        userRepository?.getUser { response in
+        userRepository?.getUser(token: getToken(), email: getEmail()) { response in
             completion(response)
         }
     }
@@ -60,5 +64,13 @@ class UserUseCase: UserUseCaseProtocol {
         userDao?.read { user in
             completion(user)
         }
+    }
+    
+    func getToken() -> String {
+        return userDetailsUseCase?.getToken() ?? ""
+    }
+    
+    func getEmail() -> String {
+        return userDetailsUseCase?.getEmail() ?? ""
     }
 }

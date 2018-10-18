@@ -15,14 +15,17 @@ protocol PublicHolidayUseCaseProtocol {
 
 class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
     
-    let publicHolidayRepository: PublicHolidayRepositoryProtocol!
+    let publicHolidayRepository: PublicHolidayRepositoryProtocol?
     
-    init(publicHolidayRepository: PublicHolidayRepositoryProtocol) {
+    let userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
+    init(publicHolidayRepository: PublicHolidayRepositoryProtocol, userDetailsUseCase: UserDetailsUseCaseProtocol) {
         self.publicHolidayRepository = publicHolidayRepository
+        self.userDetailsUseCase = userDetailsUseCase
     }
     
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
-        publicHolidayRepository.getHolidays { response in
+        publicHolidayRepository?.getHolidays(token: getToken()) { response in
             guard let holidays = response?.item else {
                 return
             }
@@ -30,4 +33,7 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
         }
     }
     
+    func getToken() -> String {
+        return userDetailsUseCase?.getToken() ?? ""
+    }
 }
