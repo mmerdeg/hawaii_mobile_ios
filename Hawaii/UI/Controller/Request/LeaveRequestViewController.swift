@@ -163,10 +163,7 @@ class LeaveRequestViewController: BaseViewController {
     }
     
     func getDateFormatter() -> DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.dateFormat
-        formatter.timeZone = TimeZone(abbreviation: Constants.timeZone)
-        return formatter
+        return RequestDateFormatter()
     }
     
     func getDaysBetweeen(startDate: Date, endDate: Date) -> [Date] {

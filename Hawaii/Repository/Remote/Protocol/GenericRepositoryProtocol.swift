@@ -106,6 +106,6 @@ extension GenericRepositoryProtocol {
     }
     
     func getDateFormatter() -> DateFormatter {
-        return DtoDateFormatter()
+        return RequestDateFormatter()
     }
 }

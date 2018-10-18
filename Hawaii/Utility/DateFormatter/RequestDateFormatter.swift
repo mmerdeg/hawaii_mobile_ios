@@ -8,11 +8,10 @@
 
 import Foundation
 
-class DtoDateFormatter: DateFormatter {
+class RequestDateFormatter: DateFormatter {
     
     let format = "yyyy-MM-dd"
-    let zone = "UTC"
-    
+
     override init() {
         super.init()
         dateFormat = format
