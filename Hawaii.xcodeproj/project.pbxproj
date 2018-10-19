@@ -163,7 +163,7 @@
 		30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
 		30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
 		30FD36D9214A5E530047038C /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
-		30FD36DA214A5E530047038C /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* Employee.storyboard */; };
+		30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
 		30FD36DC214A5E530047038C /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
 		30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
@@ -199,7 +199,7 @@
 		3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
 		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
 		3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
-		3E28E78920E383CA00F1C6D5 /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* Employee.storyboard */; };
+		3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78A20E3845300F1C6D5 /* History.storyboard */; };
 		3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
 		3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
@@ -434,7 +434,7 @@
 		3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
-		3E28E78820E383CA00F1C6D5 /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
+		3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCalendar.storyboard; sourceTree = "<group>"; };
 		3E28E78A20E3845300F1C6D5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		3E28E78C20E3849400F1C6D5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		3E28E78E20E384D600F1C6D5 /* Leave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Leave.storyboard; sourceTree = "<group>"; };
@@ -699,7 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
-				3E28E78820E383CA00F1C6D5 /* Employee.storyboard */,
+				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
 				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
 				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
@@ -1297,7 +1297,7 @@
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932D215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */,
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
-				30FD36DA214A5E530047038C /* Employee.storyboard in Resources */,
+				30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */,
 				30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */,
 				30FD36DC214A5E530047038C /* Leave.storyboard in Resources */,
 				30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */,
@@ -1338,7 +1338,7 @@
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
-				3E28E78920E383CA00F1C6D5 /* Employee.storyboard in Resources */,
+				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
 				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,

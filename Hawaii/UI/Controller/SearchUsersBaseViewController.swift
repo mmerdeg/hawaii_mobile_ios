@@ -43,7 +43,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     }
     
     func setUpSearch() {
-        let storyboard = UIStoryboard(name: "Employee", bundle: nil)
+        let storyboard = UIStoryboard(name: "TeamCalendar", bundle: nil)
         guard let searchUsersTableViewController = storyboard.instantiateViewController(withIdentifier:
                                                      String(describing: SearchUsersTableViewController.self))
                                                         as? SearchUsersTableViewController else {
