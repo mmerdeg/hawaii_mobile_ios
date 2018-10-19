@@ -17,9 +17,4 @@ class ApiConstants {
     static let baseUrl = "http://10.0.5.142:8080"
     static let requestYears = baseUrl  + "/allowances" + "/years/range"
     #endif
-
-    
-    static let sqlExtension = "sql"
-    static let dialogBackgroundAlpha = 0.85
-    static let maxTimeElapsed = 15
 }

@@ -16,12 +16,11 @@ class UserPreviewTableViewCell: UITableViewCell {
     
     var user: User? {
         didSet {
-            guard let userImageView = user?.email,
-                  let userFullName = user?.fullName else {
+            guard let userFullName = user?.fullName else {
                     return
             }
-            
-            profileImageView.kf.setImage(with: URL(string: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
+            profileImageView.kf.setImage(with: URL(string:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
             fullName.text = userFullName
         }
     }

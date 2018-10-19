@@ -263,6 +263,8 @@
 		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
 		3ED6ED8421300CCB001436FE /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
+		3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */; };
+		3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */; };
 		682DDCDE6AE8A763DE840C0E /* Pods_HawaiiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */; };
 		848C43317462A4E1A2DFBFBA /* Pods_Hawaii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */; };
 /* End PBXBuildFile section */
@@ -494,6 +496,7 @@
 		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3ED6ED8321300CCB001436FE /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
+		3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepositoryProtocol.swift; sourceTree = "<group>"; };
 		5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E75A8E608CFAB8216A254E4 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
 		833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii_production.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -794,8 +797,6 @@
 				3042CA8221536DF9002446FE /* Pagable.swift */,
 				3042CA8421536E9F002446FE /* Sort.swift */,
 				3042CA8821536EF6002446FE /* Page.swift */,
-				303C44292154C746003F16CC /* GenericResponse.swift */,
-				303C44322154F022003F16CC /* UsersResponse.swift */,
 				309B6CDC2162AA570046EFE9 /* UserRole.swift */,
 			);
 			path = Domain;
@@ -911,6 +912,7 @@
 			children = (
 				3E892DE6217758ED00C7F784 /* Constants */,
 				3E8582A52175E0310061A590 /* Protocol */,
+				3EF5566C217A1CE000A7664D /* Response */,
 				3E42592820E25B7500F22BBD /* RequestRepository.swift */,
 				302EE1722133F549001355E9 /* UserRepository.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepository.swift */,
@@ -923,6 +925,7 @@
 			isa = PBXGroup;
 			children = (
 				3E35CA9E215E15060042E65A /* Database */,
+				3EF556652179FDE600A7664D /* Protocol */,
 				3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */,
 				3E892DE3217722DE00C7F784 /* KeyChainRepository.swift */,
 			);
@@ -974,9 +977,9 @@
 		3EB5643720CA69E900501CAC /* Hawaii */ = {
 			isa = PBXGroup;
 			children = (
-				3E42592020E259AC00F22BBD /* UseCase */,
-				3E42591F20E2598900F22BBD /* Repository */,
 				3E42591A20E2452500F22BBD /* Domain */,
+				3E42591F20E2598900F22BBD /* Repository */,
+				3E42592020E259AC00F22BBD /* UseCase */,
 				3EB5646620CA909000501CAC /* UI */,
 				3E5C2AD42109CABB00706E82 /* Utility */,
 				3EB5643820CA69E900501CAC /* AppDelegate.swift */,
@@ -1068,6 +1071,23 @@
 				3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3EF556652179FDE600A7664D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		3EF5566C217A1CE000A7664D /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				303C44292154C746003F16CC /* GenericResponse.swift */,
+				303C44322154F022003F16CC /* UsersResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		F28D0C5FDB4E4C6C7D92927D /* Pods */ = {
@@ -1639,6 +1659,7 @@
 				3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
+				3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				30FD36AE214A5E530047038C /* Day.swift in Sources */,
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
@@ -1738,6 +1759,7 @@
 				3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
+				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
