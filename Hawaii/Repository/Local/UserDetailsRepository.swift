@@ -10,7 +10,7 @@ import Foundation
 
 class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
-    var keyChainRepository: KeyChainRepository?
+    var keyChainRepository: KeyChainRepositoryProtocol?
     
     let userDefaults = UserDefaults.standard
     
@@ -20,7 +20,7 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let loadMoreKey = "loadMore"
     
-    init(keyChainRepository: KeyChainRepository) {
+    init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
     

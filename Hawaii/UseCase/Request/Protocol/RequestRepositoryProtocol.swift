@@ -13,9 +13,9 @@ protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     
     func getAll(token: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func getAllBy(token: String,id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
+    func getAllBy(token: String, id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
-    func add(token: String,request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
+    func add(token: String, request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
     
     func getAllByDate(token: String, userId: Int, from: Date, toDate: Date, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
