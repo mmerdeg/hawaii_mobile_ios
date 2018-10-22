@@ -25,6 +25,11 @@ protocol UserDetailsUseCaseProtocol {
     func getLoadMore() -> Bool
     
     func setLoadMore(_ loadMore: Bool)
+    
+    func getFirebaseToken() -> String?
+
+    func setFirebaseToken(_ token: String)
+
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
@@ -65,4 +70,13 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     func setLoadMore(_ loadMore: Bool) {
         userDetailsRepository.setLoadMore(loadMore)
     }
+    
+    func getFirebaseToken() -> String? {
+        return userDetailsRepository.getFirebaseToken()
+    }
+    
+    func setFirebaseToken(_ token: String) {
+        userDetailsRepository.setFirebaseToken(token)
+    }
+
 }

@@ -54,8 +54,8 @@ extension GenericRepositoryProtocol {
     }
     
     func genericStringRequest(_ url: URL, method: HTTPMethod,
-                              parameters: Parameters?, encoding: ParameterEncoding,
-                              headers: HTTPHeaders?,
+                              parameters: Parameters?, encoding: ParameterEncoding = URLEncoding.default,
+                              headers: HTTPHeaders? = nil,
                               completion: @escaping (GenericResponse<String>) -> Void) {
         let completionHandler: (_ response: DataResponse<String>) -> Void = { (response: DataResponse<String>) in
             switch response.result {
@@ -77,8 +77,8 @@ extension GenericRepositoryProtocol {
     }
     
     func genericJSONRequest(_ url: URL, method: HTTPMethod,
-                            parameters: Parameters?, encoding: ParameterEncoding,
-                            headers: HTTPHeaders?,
+                            parameters: Parameters?, encoding: ParameterEncoding = URLEncoding.default,
+                            headers: HTTPHeaders? = nil,
                             completion: @escaping (GenericResponse<Any>) -> Void) {
         let completionHandler: (_ response: DataResponse<Any>) -> Void = { (response: DataResponse<Any>) in
             switch response.result {

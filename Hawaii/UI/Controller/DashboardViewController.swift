@@ -88,6 +88,31 @@ class DashboardViewController: BaseViewController {
         lastTimeSynced = Date()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        addObservers()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
+    }
+    
+    /**
+        Adds observer for refresh data event.
+    */
+    func addObservers() {
+            NotificationCenter.default.addObserver(self, selector: #selector(fillCalendar),
+                                                   name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
+    /**
+        Removes observer for refresh data event.
+    */
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
     @objc func addRequestViaItem() {
         addRequest(Date())
     }
@@ -206,7 +231,7 @@ class DashboardViewController: BaseViewController {
                         self.holidays = holidays
                         self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
                             guard let startYear = yearsResponse.item?.first,
-                                let endYear = yearsResponse.item?.last else {
+                                  let endYear = yearsResponse.item?.last else {
                                     return
                             }
                             let startDateString = "01 01 \(startYear)"
@@ -225,15 +250,17 @@ class DashboardViewController: BaseViewController {
                         })
                         
                     } else {
+                        
+                        self.stopActivityIndicatorSpinner()
                         ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
-                                                            self.stopActivityIndicatorSpinner()
                         })
                     }
                 })
             } else {
+                
+                self.stopActivityIndicatorSpinner()
                 ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "", viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
                 })
             }
         })

@@ -20,6 +20,8 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let loadMoreKey = "loadMore"
     
+    let firebaseTokenKey = "firebaseToken"
+    
     init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
@@ -30,6 +32,14 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     func setToken(token: String) {
         keyChainRepository?.setItem(key: tokenKey, value: token)
+    }
+    
+    func getFirebaseToken() -> String? {
+        return keyChainRepository?.getItem(key: firebaseTokenKey)
+    }
+    
+    func setFirebaseToken(_ token: String) {
+        keyChainRepository?.setItem(key: firebaseTokenKey, value: token)
     }
     
     func removeToken() {

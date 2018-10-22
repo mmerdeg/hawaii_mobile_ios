@@ -20,6 +20,8 @@ class UserRepository: UserRepositoryProtocol {
     
     let searchUsersUrl = ApiConstants.baseUrl + "/users/search"
     
+    let firebaseTokenUrl = ApiConstants.baseUrl + "/token"
+    
     func getUsersByParameter(token: String, parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
         guard let url = URL(string: searchUsersUrl) else {
             return
@@ -50,6 +52,18 @@ class UserRepository: UserRepositoryProtocol {
                                              error: response.error,
                                              message: response.error?.localizedDescription))
                 }
+            }
+    }
+    
+    func setFirebaseToken(token: String, firebaseToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
+            guard let url = URL(string: firebaseTokenUrl) else {
+                return
+            }
+            let pushTokenKey = "pushToken"
+
+            let params = [pushTokenKey: firebaseToken] as [String: Any]
+            genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+                completion(response)
             }
     }
     

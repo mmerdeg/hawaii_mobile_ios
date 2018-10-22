@@ -56,6 +56,31 @@ class ApproveViewController: BaseViewController {
         lastTimeSynced = Date()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        addObservers()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
+    }
+    
+    /**
+     Adds observer for refresh data event.
+     */
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshData(_:)),
+                                               name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
+    /**
+     Removes observer for refresh data event.
+     */
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
     @objc private func refreshData(_ sender: Any) {
         fillCalendar()
         self.refreshControl.endRefreshing()

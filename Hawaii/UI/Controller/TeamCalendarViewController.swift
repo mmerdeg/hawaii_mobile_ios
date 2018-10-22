@@ -84,6 +84,31 @@ class TeamCalendarViewController: BaseViewController {
         lastTimeSynced = Date()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        addObservers()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
+    }
+    
+    /**
+     Adds observer for refresh data event.
+     */
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(fillCalendar),
+                                               name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
+    /**
+     Removes observer for refresh data event.
+     */
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.refreshData), object: nil)
+    }
+    
     func initFilterHeader() {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.accentColor

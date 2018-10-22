@@ -41,6 +41,10 @@
 		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
+		30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3051684B217DACF900AAEA7D /* GoogleService-Info.plist */; };
+		30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30516850217DACF900AAEA7D /* GoogleService-Info.plist */; };
+		30516857217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
+		30516858217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
 		305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
 		305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305A01AD215908EB0008B4EA /* InputTableViewCell.xib */; };
 		305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
@@ -83,8 +87,6 @@
 		30A08D46216B880000FF8B2D /* DatePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */; };
 		30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
 		30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
-		30ABE95221785336007E6122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30ABE94E21785335007E6122 /* GoogleService-Info.plist */; };
-		30ABE95321785336007E6122 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30ABE94E21785335007E6122 /* GoogleService-Info.plist */; };
 		30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
 		30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
@@ -379,6 +381,10 @@
 		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		3042CA9121539EC6002446FE /* Hawaii production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hawaii production.entitlements"; sourceTree = "<group>"; };
+		3051684B217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30516850217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30516855217DAD0D00AAEA7D /* Hawaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hawaii.entitlements; sourceTree = "<group>"; };
+		30516856217DAD8200AAEA7D /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		305A01AC215908EB0008B4EA /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		305A01AD215908EB0008B4EA /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		305A01B2215928A00008B4EA /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
@@ -559,6 +565,22 @@
 				914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3051684A217DACF900AAEA7D /* Hawaii Staging */ = {
+			isa = PBXGroup;
+			children = (
+				3051684B217DACF900AAEA7D /* GoogleService-Info.plist */,
+			);
+			path = "Hawaii Staging";
+			sourceTree = "<group>";
+		};
+		3051684F217DACF900AAEA7D /* Hawaii Production */ = {
+			isa = PBXGroup;
+			children = (
+				30516850217DACF900AAEA7D /* GoogleService-Info.plist */,
+			);
+			path = "Hawaii Production";
 			sourceTree = "<group>";
 		};
 		30741344214274FF00F05427 /* PublicHoliday */ = {
@@ -980,6 +1002,9 @@
 		3EB5643720CA69E900501CAC /* Hawaii */ = {
 			isa = PBXGroup;
 			children = (
+				30516855217DAD0D00AAEA7D /* Hawaii.entitlements */,
+				3051684F217DACF900AAEA7D /* Hawaii Production */,
+				3051684A217DACF900AAEA7D /* Hawaii Staging */,
 				3E42591A20E2452500F22BBD /* Domain */,
 				3E42591F20E2598900F22BBD /* Repository */,
 				3E42592020E259AC00F22BBD /* UseCase */,
@@ -993,6 +1018,7 @@
 				3EB5644420CA69EA00501CAC /* Info.plist */,
 				30ABE94E21785335007E6122 /* GoogleService-Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
+				30516856217DAD8200AAEA7D /* NotificationNames.swift */,
 			);
 			path = Hawaii;
 			sourceTree = "<group>";
@@ -1223,6 +1249,14 @@
 					3EB5643420CA69E900501CAC = {
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1000;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					3EB5644820CA69EA00501CAC = {
 						CreatedOnToolsVersion = 9.3;
@@ -1298,7 +1332,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */,
-				30ABE95321785336007E6122 /* GoogleService-Info.plist in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
@@ -1324,6 +1357,7 @@
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
+				30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
 				30FD36E6214A5E530047038C /* credentials.plist in Resources */,
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
@@ -1338,7 +1372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */,
-				30ABE95221785336007E6122 /* GoogleService-Info.plist in Resources */,
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
@@ -1366,6 +1399,7 @@
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
+				30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* Request.storyboard in Resources */,
 				30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */,
@@ -1666,6 +1700,7 @@
 				30FD3692214A5E530047038C /* ExpandableData.swift in Sources */,
 				30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */,
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
+				30516858217DAD8200AAEA7D /* NotificationNames.swift in Sources */,
 				30FD3695214A5E530047038C /* UserUseCase.swift in Sources */,
 				30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3E892DE5217722DE00C7F784 /* KeyChainRepository.swift in Sources */,
@@ -1766,6 +1801,7 @@
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
+				30516857217DAD8200AAEA7D /* NotificationNames.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E892DE4217722DE00C7F784 /* KeyChainRepository.swift in Sources */,
@@ -2088,6 +2124,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hawaii/Hawaii.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2103,7 +2140,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.execom.Hawaii;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2122,6 +2159,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Hawaii/Hawaii.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2137,7 +2175,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.execom.Hawaii;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

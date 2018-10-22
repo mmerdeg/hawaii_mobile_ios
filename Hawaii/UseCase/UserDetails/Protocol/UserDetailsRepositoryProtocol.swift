@@ -25,4 +25,9 @@ protocol UserDetailsRepositoryProtocol {
     func getLoadMore() -> Bool
     
     func setLoadMore(_ loadMore: Bool)
+    
+    func getFirebaseToken() -> String?
+    
+    func setFirebaseToken(_ token: String)
+
 }

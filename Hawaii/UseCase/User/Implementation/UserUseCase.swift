@@ -16,6 +16,8 @@ protocol UserUseCaseProtocol {
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
     
+    func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
+    
     func createUser(entity: User, completion: @escaping (Int) -> Void)
     
     func readUser(completion: @escaping (User?) -> Void)
@@ -66,6 +68,16 @@ class UserUseCase: UserUseCaseProtocol {
         }
     }
     
+    func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: getFirebaseToken(), completion: { response in
+            completion(response)
+        })
+    }
+    
+    func getFirebaseToken() -> String {
+        return userDetailsUseCase?.getFirebaseToken() ?? ""
+    }
+
     func getToken() -> String {
         return userDetailsUseCase?.getToken() ?? ""
     }

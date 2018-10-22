@@ -11,8 +11,6 @@ import NotificationBannerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -22,32 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         chooseInitialView()
         StyleSetup.setStyles()
-        FirebaseApp.configure()
-        
-        // [END set_messaging_delegate]
-        // Register for remote notifications. This shows a permission dialog on first run, to
-        // show the dialog at a more appropriate time move this registration accordingly.
-        // [START register_for_notifications]
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in
-            })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
-        
-        // [END register_for_notifications]
 
-        Messaging.messaging().delegate = self
         return true
     }
     
@@ -86,62 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
 
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        guard let userInfo = notification.request.content.userInfo as? [String: Any] else {
-            return
-        }
-        let banner = NotificationBanner(title: "asdasdasd", subtitle: "sadasdasdsadsad", style: .success)
-        banner.show()
-        completionHandler([.badge, .sound])
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Unable to register for remote notifications: \(error.localizedDescription)")
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-       // print(userInfo)
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: userInfo, options: [.prettyPrinted]) else {
-            return
-        }
-        let jsonString = String(data: jsonData, encoding: .utf8)
-        print(jsonString)
-        
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
-    
-}
-
-extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        
-        let dataDict: [String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-    }
-    
 }
 
 extension SwinjectStoryboard {
@@ -321,6 +238,8 @@ extension SwinjectStoryboard {
             
             defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
