@@ -230,6 +230,7 @@ extension SwinjectStoryboard {
             defaultContainer.storyboardInitCompleted(CustomDatePickerTableViewController.self) { resolver, controller in
                 controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                     name: String(describing: PublicHolidayUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(BonusRequestViewController.self) { resolver, controller in

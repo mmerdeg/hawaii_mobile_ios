@@ -31,6 +31,9 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     var endDate: Date?
     
+    var startDateCalendar = Date()
+    var endDateCalendar = Date()
+    
     var items: [Date] = []
     
     var holidays: [Date: [PublicHoliday]] = [:]
@@ -83,14 +86,42 @@ class CustomDatePickerTableViewController: BaseViewController {
             }
             if success {
                 self.holidays = holidays
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.stopActivityIndicatorSpinner()
-                }
+                self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+                    guard let success = yearsResponse.success else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    if success {
+                        guard let startYear = yearsResponse.item?.first,
+                            let endYear = yearsResponse.item?.last else {
+                                return
+                        }
+                        let startDateString = "01 01 \(startYear)"
+                        let endDateString = "31 12 \(endYear)"
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "dd MM yyyy"
+                        self.startDateCalendar = dateFormatter.date(from: startDateString) ?? Date()
+                        self.endDateCalendar = dateFormatter.date(from: endDateString) ?? Date()
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                            self.stopActivityIndicatorSpinner()
+                            
+                            self.collectionView.scrollToDate(Date(), animateScroll: false)
+                        }
+                    } else {
+                        self.stopActivityIndicatorSpinner()
+                        ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                                                        viewController: self, completion: { _ in
+                        })
+                    }
+                    
+                })
+                
             } else {
+                
+                self.stopActivityIndicatorSpinner()
                 ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
                                                 viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
                 })
             }
         })
@@ -120,12 +151,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDataSource {
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         formatter.locale = Calendar.current.locale
         
-        guard let startDate = formatter.date(from: "01 05 2018"),
-            let endDate = formatter.date(from: "31 12 2030") else {
-                return ConfigurationParameters(startDate: Date(), endDate: Date(), firstDayOfWeek: .monday)
-        }
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
+        let parameters = ConfigurationParameters(startDate: startDateCalendar, endDate: endDateCalendar, firstDayOfWeek: .monday)
         return parameters
     }
 }

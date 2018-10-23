@@ -194,13 +194,6 @@
                                                     <constraint firstItem="pxO-bJ-pA2" firstAttribute="centerX" secondItem="UXb-JU-fla" secondAttribute="centerX" id="aHT-28-xCK"/>
                                                 </constraints>
                                             </stackView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTa-8c-ape">
-                                                <rect key="frame" x="-24" y="-83" width="240" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <connections>
-                                                    <segue destination="6Cu-aK-zF4" kind="embed" identifier="showSearchUser" id="3vm-dB-wjp"/>
-                                                </connections>
-                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -242,6 +235,7 @@
                         <outlet property="searchDisplayController" destination="70k-2F-BXU" id="1nJ-o3-zBH"/>
                         <outlet property="segmentedControl" destination="dCn-vf-GKa" id="O0w-1b-3sH"/>
                         <segue destination="W0R-72-7nz" kind="show" identifier="teamDetails" id="XPp-5I-QX3"/>
+                        <segue destination="PTF-Qr-pt5" kind="show" identifier="showSearchUser" id="CSx-nb-rKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4K-c1-wUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,10 +265,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="bottom" secondItem="BCc-nl-Oqb" secondAttribute="bottom" id="Bdc-Kz-RUx"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="centerX" secondItem="MEa-Vb-6Td" secondAttribute="centerX" id="EE2-bZ-O1c"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="centerY" secondItem="MEa-Vb-6Td" secondAttribute="centerY" id="GcP-Px-P02"/>
+                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="top" secondItem="MEa-Vb-6Td" secondAttribute="top" id="Se9-ZC-CmG"/>
                             <constraint firstItem="BCc-nl-Oqb" firstAttribute="leading" secondItem="MEa-Vb-6Td" secondAttribute="leading" constant="10" id="UiE-bf-6aP"/>
-                            <constraint firstItem="MEa-Vb-6Td" firstAttribute="trailing" secondItem="BCc-nl-Oqb" secondAttribute="trailing" constant="10" id="fCg-vh-AWS"/>
-                            <constraint firstItem="BCc-nl-Oqb" firstAttribute="top" secondItem="MEa-Vb-6Td" secondAttribute="top" id="w0b-Yv-UGE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MEa-Vb-6Td"/>
                     </view>
@@ -285,6 +279,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEJ-a6-irt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4674" y="975"/>
+        </scene>
+        <!--Search Users Base View Controller-->
+        <scene sceneID="F4K-It-QTG">
+            <objects>
+                <viewController id="PTF-Qr-pt5" customClass="SearchUsersBaseViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Auy-14-Jcd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Fu2-7d-cUa"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awq-tb-z8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4674" y="1717"/>
         </scene>
         <!--Search Users Table View Controller-->
         <scene sceneID="yPy-E6-IC0">
@@ -332,9 +341,10 @@
             <objects>
                 <viewController id="6Cu-aK-zF4" customClass="SearchUsersBaseViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AmX-2g-Xnt">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jI9-Oa-bmZ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D41-MH-Iyk" userLabel="First Responder" sceneMemberID="firstResponder"/>

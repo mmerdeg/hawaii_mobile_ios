@@ -230,21 +230,32 @@ class DashboardViewController: BaseViewController {
                     if success {
                         self.holidays = holidays
                         self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
-                            guard let startYear = yearsResponse.item?.first,
-                                  let endYear = yearsResponse.item?.last else {
-                                    return
-                            }
-                            let startDateString = "01 01 \(startYear)"
-                            let endDateString = "31 12 \(endYear)"
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "dd MM yyyy"
-                            self.startDate = dateFormatter.date(from: startDateString) ?? Date()
-                            self.endDate = dateFormatter.date(from: endDateString) ?? Date()
-                            DispatchQueue.main.async {
-                                self.collectionView.reloadData()
+                            guard let success = yearsResponse.success else {
                                 self.stopActivityIndicatorSpinner()
-                                
-                                self.collectionView.scrollToDate(Date(), animateScroll: false)
+                                return
+                            }
+                            if success {
+                                guard let startYear = yearsResponse.item?.first,
+                                      let endYear = yearsResponse.item?.last else {
+                                        return
+                                }
+                                let startDateString = "01 01 \(startYear)"
+                                let endDateString = "31 12 \(endYear)"
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "dd MM yyyy"
+                                self.startDate = dateFormatter.date(from: startDateString) ?? Date()
+                                self.endDate = dateFormatter.date(from: endDateString) ?? Date()
+                                DispatchQueue.main.async {
+                                    self.collectionView.reloadData()
+                                    self.stopActivityIndicatorSpinner()
+                                    
+                                    self.collectionView.scrollToDate(Date(), animateScroll: false)
+                                }
+                            } else {
+                                self.stopActivityIndicatorSpinner()
+                                ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                                                                viewController: self, completion: { _ in
+                                })
                             }
                             
                         })

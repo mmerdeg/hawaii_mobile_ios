@@ -36,6 +36,10 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
         super.viewDidLoad()
         setUpSearch()
         // Do any additional setup after loading the view.
+        if #available(iOS 11.0, *) {
+            self.navigationItem.searchController = searchController
+        }
+        self.navigationItem.title = "Employees"
     }
     
     func loadMoreClicked(completion: @escaping () -> Void) {
@@ -46,6 +50,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     func didSelect(user: User) {
         delegate?.didSelect(user: user)
+        self.navigationController?.popViewController(animated: true)
         self.searchController?.dismiss(animated: true, completion: nil)
     }
     
@@ -104,15 +109,14 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
 }
 
 extension SearchUsersBaseViewController: UISearchResultsUpdating {
+    
     func updateSearchResults(for searchController: UISearchController) {
         pendingRequestWorkItem?.cancel()
         
-        // Wrap our request in a work item
         let requestWorkItem = DispatchWorkItem { [weak self] in
             self?.performSearch()
         }
         
-        // Save the new work item and execute it after 250 ms
         pendingRequestWorkItem = requestWorkItem
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
                                       execute: requestWorkItem)
