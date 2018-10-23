@@ -43,6 +43,8 @@ class TeamCalendarViewController: BaseViewController {
     var startDate = Date()
     var endDate = Date()
     
+    var initialMonth = true
+    
     var lastDateInMonth = Date()
     var searchableId: Int?
     
@@ -236,7 +238,10 @@ class TeamCalendarViewController: BaseViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.stopActivityIndicatorSpinner()
-                //self.collectionView.scrollToDate(self.lastDateInMonth, animateScroll: false)
+                if self.initialMonth {
+                    self.collectionView.scrollToDate(Date(), animateScroll: false)
+                    self.initialMonth = false
+                }
             }
         } else {
             ViewUtility.showAlertWithAction(title: "Error", message: requestResponse?.message ?? "", viewController: self, completion: { _ in
@@ -301,12 +306,8 @@ class TeamCalendarViewController: BaseViewController {
     
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
-                                       animateScroll: true, extraAddedOffset: 0.0)
-        collectionView.visibleDates { visibleDates in
-            guard let date = visibleDates.monthDates.last?.date else {
-                return
-            }
-            self.refreshUI(date: date)
+                                       animateScroll: true, extraAddedOffset: 0.0) {
+                                        self.refreshUI(date: self.lastDateInMonth)
         }
     }
 }
