@@ -11,6 +11,8 @@ import NotificationBannerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
+    var isFirebaseInitialized = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -20,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         chooseInitialView()
         StyleSetup.setStyles()
-
+        
         return true
     }
     

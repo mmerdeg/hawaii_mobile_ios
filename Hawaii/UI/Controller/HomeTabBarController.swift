@@ -24,7 +24,9 @@ class HomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Messaging.messaging().delegate = self
-        FirebaseApp.configure()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
         requestNotifications()
         userUseCase?.readUser(completion: { user in
             if user?.userRole ?? "" != UserRole.hrMenager.rawValue {
