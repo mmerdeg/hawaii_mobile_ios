@@ -28,6 +28,10 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestImageFrame: UIView!
     
+    @IBOutlet weak var additionalDescHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var additionalDesc: UILabel!
+    
     @IBOutlet weak var cardView: UIView!
     
     @IBOutlet weak var acceptButton: UIButton!
@@ -41,13 +45,14 @@ class RequestApprovalTableViewCell: UITableViewCell {
     var request: Request? {
         didSet {
             guard let notes = request?.reason,
-                let imageUrl = request?.absence?.iconUrl,
-                let duration = request?.days?.first?.duration?.description,
-                let startDate = request?.days?.first?.date,
-                let endDate = request?.days?.last?.date,
-                let reason = request?.absence?.name,
-                let color = request?.requestStatus?.backgoundColor,
-                let userFullname = request?.user?.fullName else {
+                  let imageUrl = request?.absence?.iconUrl,
+                  let duration = request?.days?.first?.duration?.description,
+                  let startDate = request?.days?.first?.date,
+                  let endDate = request?.days?.last?.date,
+                  let reason = request?.absence?.name,
+                  let color = request?.requestStatus?.backgoundColor,
+                  let status = request?.requestStatus,
+                  let userFullname = request?.user?.fullName else {
                     return
             }
             
@@ -78,6 +83,13 @@ class RequestApprovalTableViewCell: UITableViewCell {
             
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
+            additionalDesc.backgroundColor = UIColor.cancelationPendingColor
+            additionalDesc.layer.cornerRadius = 5
+            additionalDesc.layer.borderColor = UIColor.canceledColor.cgColor
+            additionalDesc.layer.masksToBounds = true
+            if status != .cancelationPending {
+                additionalDescHeight.constant = 0
+            }
         }
     }
     

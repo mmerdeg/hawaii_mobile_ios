@@ -78,7 +78,7 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         collectionView.backgroundColor = UIColor.lightPrimaryColor
         
-        self.collectionView.scrollToDate(Date(), animateScroll: false)
+        self.refreshUI(date: lastDateInMonth)
         initFilterHeader()
         lastTimeSynced = Date()
         self.navigationItem.leftBarButtonItem = refreshItem

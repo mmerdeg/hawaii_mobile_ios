@@ -293,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awq-tb-z8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4674" y="1717"/>
+            <point key="canvasLocation" x="4673" y="1747"/>
         </scene>
         <!--Search Users Table View Controller-->
         <scene sceneID="yPy-E6-IC0">

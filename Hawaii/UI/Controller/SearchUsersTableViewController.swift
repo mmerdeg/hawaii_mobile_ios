@@ -2,7 +2,7 @@
 //  SearchUsersTableViewController.swift
 //  Hawaii
 //
-//  Created by Ivan Divljak on 10/10/18.
+//  Created by Ivan Divljak on 10/23/18.
 //  Copyright © 2018 Server. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ class SearchUsersTableViewController: UITableViewController {
         tableView.register(UINib(nibName: String(describing: UserPreviewTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: String(describing: UserPreviewTableViewCell.self))
         tableView.register(UINib(nibName: String(describing: LoadMoreTableViewCell.self), bundle: nil),
-                                              forCellReuseIdentifier: String(describing: LoadMoreTableViewCell.self))
+                           forCellReuseIdentifier: String(describing: LoadMoreTableViewCell.self))
         tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.view.backgroundColor = UIColor.darkPrimaryColor
@@ -88,8 +88,8 @@ class SearchUsersTableViewController: UITableViewController {
             })
         } else {
             guard let cell = tableView.cellForRow(at: indexPath) as? UserPreviewTableViewCell,
-                  let user = cell.user else {
-                return
+                let user = cell.user else {
+                    return
             }
             delegate?.didSelect(user: user)
         }

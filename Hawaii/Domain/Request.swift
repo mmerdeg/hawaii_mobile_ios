@@ -30,6 +30,21 @@ enum RequestStatus: String, Codable {
             return UIColor.cancelationPendingColor
         }
     }
+    
+    var description: String? {
+        switch self {
+        case .pending:
+            return "Pending"
+        case .approved:
+            return "Approved"
+        case .canceled:
+            return "Canceled"
+        case .rejected:
+            return "Rejected"
+        case .cancelationPending:
+            return "Cancelation pending"
+        }
+    }
 }
 
 struct Request: Codable, Equatable {

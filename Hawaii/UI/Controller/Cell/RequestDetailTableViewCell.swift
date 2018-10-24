@@ -53,11 +53,11 @@ class RequestDetailTableViewCell: UITableViewCell {
             }
             
             if absenceType == AbsenceType.sick.rawValue {
-                color = UIColor.sickColor
+                color = AbsenceType.sick.backgoundColor ?? UIColor.sickColor
             }
             requestNotes.text = notes
             requestDuration.text = String(duration)
-            requestStatus.text = status.rawValue
+            requestStatus.text = status.description
             requestReason.text = reason
             
             let formatter = DisplayedDateFormatter()

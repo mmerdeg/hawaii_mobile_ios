@@ -45,6 +45,12 @@
 		30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30516850217DACF900AAEA7D /* GoogleService-Info.plist */; };
 		30516857217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
 		30516858217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
+		3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
+		3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
+		30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
+		30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
+		3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */; };
+		3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */; };
 		305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
 		305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305A01AD215908EB0008B4EA /* InputTableViewCell.xib */; };
 		305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
@@ -87,8 +93,6 @@
 		30A08D46216B880000FF8B2D /* DatePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */; };
 		30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
 		30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
-		30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
-		30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -385,6 +389,9 @@
 		30516850217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30516855217DAD0D00AAEA7D /* Hawaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hawaii.entitlements; sourceTree = "<group>"; };
 		30516856217DAD8200AAEA7D /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
+		30516867217F48EB00AAEA7D /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
+		3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		305A01AC215908EB0008B4EA /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		305A01AD215908EB0008B4EA /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		305A01B2215928A00008B4EA /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
@@ -416,7 +423,6 @@
 		30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
 		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -882,6 +888,8 @@
 				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				309B6D61216736880046EFE9 /* StringExtension.swift */,
+				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
+				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1072,8 +1080,8 @@
 				307413082136673100F05427 /* TeamPreviewViewController.swift */,
 				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
-				30BD9D04216DD39C003AE28E /* SearchUsersTableViewController.swift */,
 				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
+				30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1725,12 +1733,12 @@
 				30FD36A7214A5E530047038C /* SickRequestViewController.swift in Sources */,
 				30FD36A8214A5E530047038C /* Request.swift in Sources */,
 				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
-				30BD9D07216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
 				30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */,
 				3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
 				3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
+				3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
 				30FD36AE214A5E530047038C /* Day.swift in Sources */,
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
@@ -1745,6 +1753,7 @@
 				3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
+				30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
 				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
@@ -1762,6 +1771,7 @@
 				30FD36C7214A5E530047038C /* UserDetailsRepository.swift in Sources */,
 				30FD36C8214A5E530047038C /* DialogWrapper.swift in Sources */,
 				30FD36C9214A5E530047038C /* RequestRepository.swift in Sources */,
+				3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				30FD36CA214A5E530047038C /* FilterHeaderTableViewCell.swift in Sources */,
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
@@ -1826,12 +1836,12 @@
 				302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */,
 				3E28E79D20E5124000F1C6D5 /* SickRequestViewController.swift in Sources */,
 				303C44302154E243003F16CC /* GenericRepositoryProtocol.swift in Sources */,
-				30BD9D06216DD39C003AE28E /* SearchUsersTableViewController.swift in Sources */,
 				309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
 				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
+				3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
@@ -1846,6 +1856,7 @@
 				3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
+				30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3E35CA95215E148E0042E65A /* UserDb.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
@@ -1863,6 +1874,7 @@
 				3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */,
 				3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */,
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
+				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
 				3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,

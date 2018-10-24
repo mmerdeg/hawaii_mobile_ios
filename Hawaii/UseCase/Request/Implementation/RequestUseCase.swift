@@ -128,7 +128,8 @@ class RequestUseCase: RequestUseCaseProtocol {
         response?.item?.forEach({ request in
             request.days?.forEach({ day in
                 if (request.requestStatus == RequestStatus.approved ||
-                    request.requestStatus == RequestStatus.pending) &&
+                    request.requestStatus == RequestStatus.pending ||
+                    request.requestStatus == RequestStatus.cancelationPending) &&
                     request.absence?.absenceType != AbsenceType.bonus.rawValue {
                     if let date = day.date {
                         if dict[date] != nil {

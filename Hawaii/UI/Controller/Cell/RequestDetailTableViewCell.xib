@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="273" id="KGk-i7-Jjw" customClass="RequestDetailTableViewCell" customModule="Hawaii" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="338" height="273"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="267" id="KGk-i7-Jjw" customClass="RequestDetailTableViewCell" customModule="Hawaii" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="267"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="338" height="272.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="338" height="266.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdB-vE-0uK" userLabel="Card View">
-                        <rect key="frame" x="0.0" y="5" width="338" height="262.5"/>
+                        <rect key="frame" x="0.0" y="5" width="338" height="256.5"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H53-KI-ADV">
                         <rect key="frame" x="72" y="28" width="42" height="21"/>
@@ -72,7 +72,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCg-Dk-w4V">
-                        <rect key="frame" x="24.5" y="186.5" width="46" height="21"/>
+                        <rect key="frame" x="24.5" y="182" width="46" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjV-k9-aEj">
-                        <rect key="frame" x="86.5" y="187" width="245.5" height="20"/>
+                        <rect key="frame" x="86.5" y="182" width="245.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gry-CS-jb0">
-                        <rect key="frame" x="209" y="221" width="115" height="30"/>
+                        <rect key="frame" x="209" y="217" width="115" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="115" id="7rz-PK-E6Q"/>
                             <constraint firstAttribute="height" constant="30" id="HSE-Rq-787"/>
@@ -161,6 +161,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="v3N-Nv-jh7" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0Je-Qd-bfv"/>
+                    <constraint firstAttribute="bottom" secondItem="Gry-CS-jb0" secondAttribute="bottom" constant="19.5" id="0Th-tZ-Vl3"/>
                     <constraint firstItem="agW-6a-dAJ" firstAttribute="leading" secondItem="eLw-ud-0qs" secondAttribute="leading" id="0hJ-NM-urF"/>
                     <constraint firstItem="eLw-ud-0qs" firstAttribute="leading" secondItem="kQv-mE-Odu" secondAttribute="trailing" constant="16" id="0qo-0c-qDl"/>
                     <constraint firstItem="TIh-1i-w96" firstAttribute="top" secondItem="v3N-Nv-jh7" secondAttribute="bottom" constant="18" id="1dg-07-c14"/>
@@ -173,7 +174,7 @@
                     <constraint firstItem="kQv-mE-Odu" firstAttribute="top" secondItem="TIh-1i-w96" secondAttribute="bottom" constant="13" id="6S0-NW-LDr"/>
                     <constraint firstItem="Q6R-x6-Cos" firstAttribute="centerY" secondItem="H53-KI-ADV" secondAttribute="centerY" id="8bQ-V3-U5Z"/>
                     <constraint firstItem="rCg-Dk-w4V" firstAttribute="trailing" secondItem="Rda-Yz-vMM" secondAttribute="trailing" id="AoP-cA-hnm"/>
-                    <constraint firstItem="rCg-Dk-w4V" firstAttribute="top" secondItem="Rda-Yz-vMM" secondAttribute="bottom" constant="17.5" id="Ap5-X7-61U"/>
+                    <constraint firstItem="rCg-Dk-w4V" firstAttribute="top" secondItem="Rda-Yz-vMM" secondAttribute="bottom" constant="13" id="Ap5-X7-61U"/>
                     <constraint firstItem="Q6R-x6-Cos" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H53-KI-ADV" secondAttribute="trailing" constant="10" id="Cc5-ES-4VB"/>
                     <constraint firstItem="rCg-Dk-w4V" firstAttribute="height" secondItem="Rda-Yz-vMM" secondAttribute="height" id="EYV-Mo-by4"/>
                     <constraint firstItem="IdB-vE-0uK" firstAttribute="trailing" secondItem="Q6R-x6-Cos" secondAttribute="trailing" constant="14" id="GKr-hF-gP8"/>
@@ -191,7 +192,6 @@
                     <constraint firstItem="kQv-mE-Odu" firstAttribute="leading" secondItem="IdB-vE-0uK" secondAttribute="leading" constant="14" id="cia-Bc-EUx"/>
                     <constraint firstItem="IdB-vE-0uK" firstAttribute="trailing" secondItem="amn-Lz-fUh" secondAttribute="trailing" constant="5.5" id="fX5-IA-DFk"/>
                     <constraint firstItem="Gry-CS-jb0" firstAttribute="trailing" secondItem="Q6R-x6-Cos" secondAttribute="trailing" id="fZZ-Xp-O6J"/>
-                    <constraint firstItem="IdB-vE-0uK" firstAttribute="bottom" secondItem="Gry-CS-jb0" secondAttribute="bottom" constant="16.5" id="gB2-zV-9Zj"/>
                     <constraint firstAttribute="bottom" secondItem="IdB-vE-0uK" secondAttribute="bottom" constant="5" id="hL9-1T-i8w"/>
                     <constraint firstItem="CjV-k9-aEj" firstAttribute="trailing" secondItem="agW-6a-dAJ" secondAttribute="trailing" id="kTm-mf-tnT"/>
                     <constraint firstItem="TIh-1i-w96" firstAttribute="leading" secondItem="IdB-vE-0uK" secondAttribute="leading" constant="14" id="nAM-BN-sHE"/>
@@ -215,7 +215,7 @@
                 <outlet property="requestReason" destination="amn-Lz-fUh" id="RcC-OJ-dvf"/>
                 <outlet property="requestStatus" destination="H53-KI-ADV" id="KAP-YM-hkP"/>
             </connections>
-            <point key="canvasLocation" x="25" y="-1.5"/>
+            <point key="canvasLocation" x="24" y="-4.9475262368815596"/>
         </tableViewCell>
     </objects>
 </document>

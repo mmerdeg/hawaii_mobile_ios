@@ -7,12 +7,26 @@
 //
 
 import Foundation
+import UIKit
 
 enum AbsenceType: String, Codable {
     case deducted = "DEDUCTED_LEAVE"
     case sick = "SICKNESS"
     case bonus = "BONUS_DAYS"
     case nonDecuted = "NON_DEDUCTED_LEAVE"
+    
+    var backgoundColor: UIColor? {
+        switch self {
+        case .deducted:
+            return UIColor.pendingColor
+        case .sick:
+            return UIColor.sickColor
+        case .bonus:
+            return UIColor.lightGray
+        case .nonDecuted:
+            return UIColor.rejectedColor
+        }
+    }
 }
 
 struct Absence: Codable {

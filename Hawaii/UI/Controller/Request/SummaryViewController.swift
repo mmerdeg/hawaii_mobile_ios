@@ -135,8 +135,10 @@ class SummaryViewController: BaseViewController {
     }
     
     @objc func addRequest() {
+        self.view.isUserInteractionEnabled = false
         guard let request = request,
               let requestUseCase = requestUseCase else {
+            self.view.isUserInteractionEnabled = true
             return
         }
         
@@ -145,25 +147,30 @@ class SummaryViewController: BaseViewController {
         requestUseCase.add(request: request) { requestResponse in
             guard let success = requestResponse.success else {
                 self.stopActivityIndicatorSpinner()
+                self.view.isUserInteractionEnabled = true
                 return
             }
             if success {
                 guard let request = requestResponse.item else {
                     self.stopActivityIndicatorSpinner()
+                    self.view.isUserInteractionEnabled = true
                     return
                 }
                 self.requestUpdateDelegate?.didAdd(request: request)
                 guard let viewControllers: [UIViewController] = self.navigationController?.viewControllers else {
                     self.navigationController?.popViewController(animated: true)
                     self.stopActivityIndicatorSpinner()
+                    self.view.isUserInteractionEnabled = true
                     return
                 }
                 self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
                 self.stopActivityIndicatorSpinner()
+                self.view.isUserInteractionEnabled = true
             } else {
                 ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
                                                 viewController: self, completion: { _ in
                                                     self.stopActivityIndicatorSpinner()
+                                                    self.view.isUserInteractionEnabled = true
                 })
             }
         }
