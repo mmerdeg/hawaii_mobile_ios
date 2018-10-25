@@ -614,6 +614,18 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		3E1047B12181DDD0003ECC4C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				30139322215CA90800F65B7F /* Request.storyboard */,
+				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
+				3013931C215CA88400F65B7F /* Bonus.storyboard */,
+				30139328215CBE7A00F65B7F /* Sick.storyboard */,
+				3E832317216CADCC0068E37F /* Summary.storyboard */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		3E15C36820E6150700DB2CF7 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,18 +741,14 @@
 		3E28E78520E3774500F1C6D5 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3E1047B12181DDD0003ECC4C /* Request */,
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
 				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
 				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
-				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
 				3E3550FD2121789300B43B57 /* Approval.storyboard */,
-				3013931C215CA88400F65B7F /* Bonus.storyboard */,
-				30139322215CA90800F65B7F /* Request.storyboard */,
 				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
-				30139328215CBE7A00F65B7F /* Sick.storyboard */,
 				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
-				3E832317216CADCC0068E37F /* Summary.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";

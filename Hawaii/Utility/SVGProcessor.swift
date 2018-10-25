@@ -48,9 +48,6 @@ func generateSVGImage(data: Data, size: CGSize? = CGSize(width: 250, height: 250
     }
     _ = CGRect(x: 0, y: 0, width: size.width, height: size.height)
     if let _ = String(data: data, encoding: .utf8) {
-//        let svgLayer = SVGLayer(svgSource: svgString)
-//        svgLayer.frame = frame
-//        return snapshotImage(for: svgLayer)
         return nil
     }
     return nil

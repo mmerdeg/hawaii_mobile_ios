@@ -106,8 +106,8 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
             status = .canceled
         }
         
-        ViewUtility.showConfirmationAlert(message: "Are you sure you want to cancel this request?",
-                                          title: "Confirm", viewController: self) { confirmed in
+        ViewUtility.showAlertWithAction(title: "Confirm", message: "Are you sure you want to cancel this request?",
+                                        cancelable: true, viewController: self) { confirmed in
                                             if confirmed {
                                                 self.startActivityIndicatorSpinner()
                                                 self.updateRequest(request: newRequest, oldRequest: oldRequest, status: status, cell: cell)

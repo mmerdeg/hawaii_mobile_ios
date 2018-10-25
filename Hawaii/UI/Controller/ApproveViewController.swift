@@ -153,7 +153,8 @@ extension ApproveViewController: RequestApprovalProtocol {
         message = isAccepted ? "Are you sure you want to approve this request?"
                                 : "Are you sure you want to reject this request?"
         
-        ViewUtility.showConfirmationAlert(message: message, title: "Confirm", viewController: self) { confirmed in
+        ViewUtility.showAlertWithAction(title: "Confirm", message: message, cancelable: true,
+                                        viewController: self) { confirmed in
             if confirmed {
                 self.updateRequest(request: request, status: status, cell: cell, isAccepted: isAccepted)
             }

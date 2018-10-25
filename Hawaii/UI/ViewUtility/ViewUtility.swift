@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 class ViewUtility {
+    
+    static let titleKey = "attributedTitle"
+    
+    static let messageKey = "attributedMessage"
+    
+    static let imageKey = "image"
+    
     /**
      Presents alert with custom number of actions.
      
@@ -24,6 +31,7 @@ class ViewUtility {
                                  choices: [DialogWrapper],
                                  title: String? = nil,
                                  message: String? = nil, textAligment: NSTextAlignment? = nil) {
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = textAligment ?? .center
         let mutableStringTitle = NSMutableAttributedString(string: title ?? "", attributes: [NSAttributedStringKey.font: UIFont.primary()])
@@ -32,9 +40,9 @@ class ViewUtility {
                                                                           NSAttributedStringKey.paragraphStyle: paragraphStyle])
         let dialogue = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         dialogue.view.tintColor = UIColor.primaryColor
-        dialogue.setValue(mutableStringTitle, forKey: "attributedTitle")
+        dialogue.setValue(mutableStringTitle, forKey: titleKey)
         if message != nil {
-            dialogue.setValue(mutableStringMessage, forKey: "attributedMessage")
+            dialogue.setValue(mutableStringMessage, forKey: messageKey)
         }
         for choice in choices {
             guard let title = choice.title,
@@ -43,7 +51,7 @@ class ViewUtility {
             }
             let action = UIAlertAction(title: title, style: uiAction, handler: choice.handler)
             if let image = choice.image {
-                action.setValue(image, forKey: "image")
+                action.setValue(image, forKey: imageKey)
             }
             
             dialogue.addAction(action)
@@ -54,78 +62,46 @@ class ViewUtility {
     }
     
     /**
-     Show alert with one ok button and action.
+     Show alert with ok button, optional cancel button and action.
      
      - Parameter title:          Alert title.
      - Parameter message:        Alert message.
+     - Parameter cancelable:     If true, alert has a cancel button.
      - Parameter viewController: Alert's owner.
      
      */
     static func showAlertWithAction(title: String, message: String,
-                                    viewController: UIViewController, completion: @escaping (Bool) -> Void ) {
+                                    cancelable: Bool? = false, viewController: UIViewController,
+                                    completion: @escaping (Bool) -> Void ) {
+        
+        let okActionTitle = "OK"
+        let cancelActionTitle = "Cancel"
+        
         let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
         let mutableStringMessage = NSMutableAttributedString(string: message ,
                                                              attributes: [NSAttributedStringKey.font: UIFont.primary()])
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.setValue(mutableStringTitle, forKey: "attributedTitle")
-        alert.setValue(mutableStringMessage, forKey: "attributedMessage")
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { _ in
-            completion(true)
+        alert.setValue(mutableStringTitle, forKey: titleKey)
+        alert.setValue(mutableStringMessage, forKey: messageKey)
+        
+        if cancelable ?? false {
+            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertActionStyle.default) { _ in
+                completion(true)
+            }
+            alert.addAction(okAction)
+            
+            let cancelAction = UIAlertAction(title: cancelActionTitle, style: UIAlertActionStyle.cancel) { _ in
+                completion(false)
+            }
+            alert.addAction(cancelAction)
+        } else {
+            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertActionStyle.cancel) { _ in
+                completion(true)
+            }
+            alert.addAction(okAction)
         }
-        alert.addAction(okAction)
         alert.view.tintColor = UIColor.primaryColor
         viewController.present(alert, animated: true, completion: nil)
     }
-    
-    /**
-     Show alert with one ok button and action.
-     
-     - Parameter title:          Alert title.
-     - Parameter message:        Alert message.
-     - Parameter viewController: Alert's owner.
-     
-     */
-    static func showGenericAlertWithAction(title: String, message: String,
-                                    viewController: UIViewController, completion: @escaping (Bool) -> Void ) {
-        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
-        let mutableStringMessage = NSMutableAttributedString(string: message ,
-                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.setValue(mutableStringTitle, forKey: "attributedTitle")
-        alert.setValue(mutableStringMessage, forKey: "attributedMessage")
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { _ in
-            completion(true)
-        }
-        alert.addAction(okAction)
-        alert.view.tintColor = UIColor.primaryColor
-        viewController.present(alert, animated: true, completion: nil)
-    }
-    
-    /**
-     Show alert with ok and cancel button.
-     
-     - Parameter title:          Alert title.
-     - Parameter message:        Alert message.
-     - Parameter viewController: Alert's owner.
-     
-     */
-    static func showConfirmationAlert(message: String, title: String,
-                                      viewController: UIViewController, completion: @escaping (Bool) -> Void) {
-        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
-        let mutableStringMessage = NSMutableAttributedString(string: message ,
-                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.setValue(mutableStringTitle, forKey: "attributedTitle")
-        alert.setValue(mutableStringMessage, forKey: "attributedMessage")
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { _ in
-            completion(true)
-        }
-        alert.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { _ in
-            completion(false)
-        }
-        alert.addAction(cancelAction)
-        alert.view.tintColor = UIColor.primaryColor
-        viewController.present(alert, animated: true, completion: nil)
-    }
+
 }

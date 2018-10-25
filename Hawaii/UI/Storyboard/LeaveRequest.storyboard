@@ -65,7 +65,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.19910302429999999" blue="0.225036499" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sXe-G6-gNQ" firstAttribute="height" secondItem="PUn-XF-zsm" secondAttribute="height" priority="750" id="17q-PU-ZtH"/>
