@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0FEB42E150B94A71508CDC03 /* Pods_Hawaii_production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */; };
-		3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
-		3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
+		3013931D215CA88400F65B7F /* BonusRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* BonusRequest.storyboard */; };
+		3013931E215CA88400F65B7F /* BonusRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* BonusRequest.storyboard */; };
 		30139323215CA90800F65B7F /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* Request.storyboard */; };
 		30139324215CA90800F65B7F /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* Request.storyboard */; };
 		30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
-		30139329215CBE7A00F65B7F /* Sick.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* Sick.storyboard */; };
-		3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* Sick.storyboard */; };
+		30139329215CBE7A00F65B7F /* SickRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* SickRequest.storyboard */; };
+		3013932A215CBE7A00F65B7F /* SickRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* SickRequest.storyboard */; };
 		3013932C215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
 		302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
@@ -173,7 +173,6 @@
 		30FD36D9214A5E530047038C /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
 		30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
-		30FD36DC214A5E530047038C /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
 		30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
 		30FD36DE214A5E530047038C /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
 		30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
@@ -210,7 +209,6 @@
 		3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78A20E3845300F1C6D5 /* History.storyboard */; };
 		3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
-		3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
 		3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */; };
 		3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */; };
 		3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
@@ -364,10 +362,10 @@
 /* Begin PBXFileReference section */
 		070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.release.xcconfig"; sourceTree = "<group>"; };
 		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3013931C215CA88400F65B7F /* Bonus.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bonus.storyboard; sourceTree = "<group>"; };
+		3013931C215CA88400F65B7F /* BonusRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BonusRequest.storyboard; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* Request.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
-		30139328215CBE7A00F65B7F /* Sick.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sick.storyboard; sourceTree = "<group>"; };
+		30139328215CBE7A00F65B7F /* SickRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SickRequest.storyboard; sourceTree = "<group>"; };
 		3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaveRequest.storyboard; sourceTree = "<group>"; };
 		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -452,7 +450,6 @@
 		3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCalendar.storyboard; sourceTree = "<group>"; };
 		3E28E78A20E3845300F1C6D5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		3E28E78C20E3849400F1C6D5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
-		3E28E78E20E384D600F1C6D5 /* Leave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Leave.storyboard; sourceTree = "<group>"; };
 		3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -618,12 +615,20 @@
 			isa = PBXGroup;
 			children = (
 				30139322215CA90800F65B7F /* Request.storyboard */,
-				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
-				3013931C215CA88400F65B7F /* Bonus.storyboard */,
-				30139328215CBE7A00F65B7F /* Sick.storyboard */,
+				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
+				30139328215CBE7A00F65B7F /* SickRequest.storyboard */,
+				3013931C215CA88400F65B7F /* BonusRequest.storyboard */,
 				3E832317216CADCC0068E37F /* Summary.storyboard */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		3E1047B52181E02D003ECC4C /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		3E15C36820E6150700DB2CF7 /* Style */ = {
@@ -741,14 +746,13 @@
 		3E28E78520E3774500F1C6D5 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3E1047B52181E02D003ECC4C /* Component */,
 				3E1047B12181DDD0003ECC4C /* Request */,
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
-				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
-				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
+				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E3550FD2121789300B43B57 /* Approval.storyboard */,
-				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
-				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
+				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -894,10 +898,10 @@
 				3E42592C20E26A1900F22BBD /* UIColorExtension.swift */,
 				3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */,
 				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
+				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				309B6D61216736880046EFE9 /* StringExtension.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
-				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1347,11 +1351,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				3013931E215CA88400F65B7F /* BonusRequest.storyboard in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
-				3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */,
+				3013932A215CBE7A00F65B7F /* SickRequest.storyboard in Resources */,
 				30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1359,7 +1363,6 @@
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
 				30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */,
 				30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */,
-				30FD36DC214A5E530047038C /* Leave.storyboard in Resources */,
 				30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */,
 				30FD36DE214A5E530047038C /* Dashboard.storyboard in Resources */,
 				30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */,
@@ -1387,13 +1390,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				3013931D215CA88400F65B7F /* BonusRequest.storyboard in Resources */,
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				309B6CF9216604270046EFE9 /* deleteUser.sql in Resources */,
 				309B6CF3216603F00046EFE9 /* readUser.sql in Resources */,
-				30139329215CBE7A00F65B7F /* Sick.storyboard in Resources */,
+				30139329215CBE7A00F65B7F /* SickRequest.storyboard in Resources */,
 				3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1401,7 +1404,6 @@
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
-				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,

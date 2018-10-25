@@ -13,7 +13,10 @@ class RequestTableViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let selectParametersSegue = "selectParameters"
+    
     let selectAbsenceSegue = "selectAbsence"
+    
+    let showDatePickerSegue = "showDatePicker"
     
     var items: [CellData] = []
     
@@ -23,16 +26,7 @@ class RequestTableViewController: BaseViewController {
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
-    //var selectedTypeIndex = 0
-    
     var selectedDuration = ""
-    var selectedAbsence: Absence? {
-        didSet {
-            if let selectedAbsence = selectedAbsence {
-                delegate?.didSelect(absence: selectedAbsence)
-            }
-        }
-    }
     
     var startDate: Date?
     
@@ -44,7 +38,13 @@ class RequestTableViewController: BaseViewController {
     
     weak var delegate: SelectAbsenceProtocol?
     
-    let showDatePickerSegue = "showDatePicker"
+    var selectedAbsence: Absence? {
+        didSet {
+            if let selectedAbsence = selectedAbsence {
+                delegate?.didSelect(absence: selectedAbsence)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,58 +62,52 @@ class RequestTableViewController: BaseViewController {
             return
         }
         
-        if requestType == .deducted {
-            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, response in
-                guard let success = response.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                        self.dateItems = items
-                        self.setItems(data: data)
-                        self.typeData = leaveTypeData
-                        self.selectedAbsence = response.item?.first
-                        
-                        self.stopActivityIndicatorSpinner()
-                    })
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
-            
+        switch requestType {
+        case .sick:
+            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse in
+                self.handleTableDataResponse(data: data, typeData: sicknessTypeData, response: sicknessResponse)
             })
-        } else if requestType == .sick {
-            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse  in
-                guard let success = sicknessResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                        self.dateItems = items
-                        self.setItems(data: data)
-                        self.typeData = sicknessTypeData
-                        self.selectedAbsence = sicknessResponse.item?.first
-                    })
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: sicknessResponse.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                        
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
+        case .bonus:
+            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, bonusResponse in
+                self.handleTableDataResponse(data: data, typeData: bonusTypeData, response: bonusResponse)
+            })
+        default:
+            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, leaveResponse in
+                self.handleTableDataResponse(data: data, typeData: leaveTypeData, response: leaveResponse)
+            })
+        }
+        
+//        if requestType == .deducted {
+//            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, leaveResponse in
+//                self.handleTableDataResponse(data: data, typeData: leaveTypeData, response: leaveResponse)
+//            })
+//        } else if requestType == .sick {
+//            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse in
+//                self.handleTableDataResponse(data: data, typeData: sicknessTypeData, response: sicknessResponse)
+//            })
+//        } else {
+//            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, bonusResponse in
+//                self.handleTableDataResponse(data: data, typeData: bonusTypeData, response: bonusResponse)
+//            })
+//        }
+    }
+    
+    func handleTableDataResponse(data: [CellData], typeData: [String: [Absence]], response: GenericResponse<[Absence]>) {
+        self.stopActivityIndicatorSpinner()
+        
+        guard let success = response.success else {
+            return
+        }
+        if success {
+            self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                self.dateItems = items
+                self.setItems(data: data)
+                self.typeData = typeData
+                self.selectedAbsence = response.item?.first
             })
         } else {
-            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, response   in
-                self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                    self.dateItems = items
-                    self.setItems(data: data)
-                    self.typeData = bonusTypeData
-                    self.selectedAbsence = response.item?.first
-                })
+            ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                self.navigationController?.popViewController(animated: true)
             })
         }
     }
