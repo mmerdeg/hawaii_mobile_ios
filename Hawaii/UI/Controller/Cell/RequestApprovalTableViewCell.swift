@@ -83,7 +83,7 @@ class RequestApprovalTableViewCell: UITableViewCell {
             
             self.layer.borderWidth = 3
             self.layer.borderColor = UIColor.transparentColor.cgColor
-            additionalDesc.backgroundColor = UIColor.cancelationPendingColor
+            additionalDesc.backgroundColor = UIColor.darkPrimaryColor.withAlphaComponent(0.5)
             additionalDesc.layer.cornerRadius = 5
             additionalDesc.layer.borderColor = UIColor.canceledColor.cgColor
             additionalDesc.layer.masksToBounds = true
