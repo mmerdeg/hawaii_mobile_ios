@@ -33,17 +33,21 @@ class SelectAbsenceViewController: BaseViewController {
 extension SelectAbsenceViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        
+        let cellIdentifier = "Cell"
+        
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifier)
         
         guard let items = items,
             let title = Array(items)[indexPath.section].value[indexPath.row].name else {
-                return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell.textLabel?.text = title
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.textColor = UIColor.primaryTextColor
         return cell
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return Array(items ?? [:])[section].key
     }
