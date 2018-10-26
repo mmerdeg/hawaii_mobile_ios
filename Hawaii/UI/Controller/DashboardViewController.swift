@@ -28,9 +28,12 @@ class DashboardViewController: BaseViewController {
     var holidays: [Date: [PublicHoliday]] = [:]
     var customView: UIView = UIView()
     var remainingDaysViewController: RemainigDaysViewController?
+    var remainingSickDaysViewController: RemainigDaysViewController?
     var lastTimeSynced: Date?
     var startDate = Date()
     var endDate = Date()
+    
+    var lastDateInMonth = Date()
     
     let processor = SVGProcessor()
     let showLeaveRequestSegue = "showLeaveRequest"
@@ -192,11 +195,11 @@ class DashboardViewController: BaseViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
             }
-            self.remainingDaysViewController = controller
-            guard let remainingDaysViewController = self.remainingDaysViewController else {
+            self.remainingSickDaysViewController = controller
+            guard let remainingSickDaysViewController = self.remainingSickDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "Training"
+            remainingSickDaysViewController.mainLabelText = "Training"
         }
     }
     
@@ -210,6 +213,7 @@ class DashboardViewController: BaseViewController {
             self.formatter.dateFormat = "MMMM"
             let month = self.formatter.string(from: date)
             self.dateLabel.text = month+", "+year
+            self.lastDateInMonth = date
         }
     }
     
@@ -249,7 +253,7 @@ class DashboardViewController: BaseViewController {
                                     self.collectionView.reloadData()
                                     self.stopActivityIndicatorSpinner()
                                     
-                                    self.collectionView.scrollToDate(Date(), animateScroll: false)
+                                    self.collectionView.scrollToDate(self.lastDateInMonth, animateScroll: false)
                                 }
                             } else {
                                 self.stopActivityIndicatorSpinner()
@@ -383,6 +387,9 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
             self.customView.removeFromSuperview()
         }
         fillCalendar()
+        remainingDaysViewController?.getData()
+        remainingSickDaysViewController?.getData()
+        
     }
 }
 
