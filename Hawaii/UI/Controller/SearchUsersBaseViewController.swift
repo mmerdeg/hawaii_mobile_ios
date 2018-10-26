@@ -99,7 +99,8 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
                 self.resultsController?.tableView.reloadData()
                 completion()
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+                                                viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }

@@ -110,7 +110,7 @@ class CustomDatePickerTableViewController: BaseViewController {
                         }
                     } else {
                         self.stopActivityIndicatorSpinner()
-                        ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
                         })
                     }
@@ -120,7 +120,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             } else {
                 
                 self.stopActivityIndicatorSpinner()
-                ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: holidaysResponse?.message ?? "",
                                                 viewController: self, completion: { _ in
                 })
             }
@@ -222,7 +222,8 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             selectDates()
             collectionView.reloadData()
         } else {
-            ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me",
+                                            viewController: self) { _ in
             }
             startDate = tempStartDate
             endDate = tempEndDate

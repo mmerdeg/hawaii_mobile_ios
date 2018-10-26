@@ -67,7 +67,8 @@ class SearchRequestsViewController: UIViewController {
                 }
                 self.yearPicker.reloadAllComponents()
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: yearsResponse.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: yearsResponse.message ?? "",
+                                                viewController: self, completion: { _ in
                     
                 })
             }

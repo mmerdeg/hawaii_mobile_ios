@@ -86,7 +86,6 @@ class RemainigDaysViewController: BaseViewController {
         
         let leaveLabel = "Leave"
         let trainingLabel = "Training"
-        let alertTitle = "Error"
         
         mainLabel.text = mainLabelText
         
@@ -96,7 +95,7 @@ class RemainigDaysViewController: BaseViewController {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: alertTitle, message: response?.message ?? "",
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response?.message ?? "",
                                                 viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })

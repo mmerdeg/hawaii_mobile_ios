@@ -196,7 +196,7 @@ class SummaryViewController: BaseViewController {
                 self.stopActivityIndicatorSpinner()
                 self.view.isUserInteractionEnabled = true
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse.message ?? "",
                                                 viewController: self, completion: { _ in
                                                     self.stopActivityIndicatorSpinner()
                                                     self.view.isUserInteractionEnabled = true

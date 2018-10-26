@@ -42,7 +42,8 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+                                                viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }

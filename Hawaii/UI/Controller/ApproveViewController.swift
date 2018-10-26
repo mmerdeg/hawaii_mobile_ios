@@ -103,7 +103,8 @@ class ApproveViewController: BaseViewController {
                 }
             } else {
                 self.refreshControl.endRefreshing()
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: request.message ?? "",
+                                                viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }

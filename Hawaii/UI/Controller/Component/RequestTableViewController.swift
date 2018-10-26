@@ -80,8 +80,6 @@ class RequestTableViewController: BaseViewController {
     
     func handleTableDataResponse(data: [CellData], typeData: [String: [Absence]], response: GenericResponse<[Absence]>) {
         
-        let alertTitle = "Error"
-        
         self.stopActivityIndicatorSpinner()
         
         guard let success = response.success else {
@@ -95,7 +93,7 @@ class RequestTableViewController: BaseViewController {
                 self.selectedAbsence = response.item?.first
             })
         } else {
-            ViewUtility.showAlertWithAction(title: alertTitle, message: response.message ?? "", viewController: self, completion: { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "", viewController: self, completion: { _ in
                 self.navigationController?.popViewController(animated: true)
             })
         }

@@ -238,7 +238,8 @@ class DashboardViewController: BaseViewController {
                                 }
                             } else {
                                 self.stopActivityIndicatorSpinner()
-                                ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
+                                                                message: holidaysResponse?.message ?? "",
                                                                 viewController: self, completion: { _ in
                                 })
                             }
@@ -248,7 +249,8 @@ class DashboardViewController: BaseViewController {
                     } else {
                         
                         self.stopActivityIndicatorSpinner()
-                        ViewUtility.showAlertWithAction(title: "Error", message: holidaysResponse?.message ?? "",
+                        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
+                                                        message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
                         })
                     }
@@ -256,7 +258,8 @@ class DashboardViewController: BaseViewController {
             } else {
                 
                 self.stopActivityIndicatorSpinner()
-                ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse.message ?? "",
+                                                viewController: self, completion: { _ in
                 })
             }
         })

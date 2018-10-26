@@ -18,4 +18,6 @@ class ViewConstants {
     static let dialogBackgroundAlpha = 0.85
     
     static let maxTimeElapsed = 15
+    
+    static let errorDialogTitle = "Error"
 }

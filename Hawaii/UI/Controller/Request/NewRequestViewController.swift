@@ -135,12 +135,12 @@ class NewRequestViewController: BaseViewController {
                 return
         }
         if startDate > endDate {
-            ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me", viewController: self) { _ in
             }
             return
         }
         if cellText.trim() == "" || cellText.trim() == "Enter reason for leave" {
-            ViewUtility.showAlertWithAction(title: "Error", message: "Reason filed is required", viewController: self) { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Reason filed is required", viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }
             return

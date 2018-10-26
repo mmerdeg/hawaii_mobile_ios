@@ -140,7 +140,8 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+                                                viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }
