@@ -20,4 +20,12 @@ class ViewConstants {
     static let maxTimeElapsed = 15
     
     static let errorDialogTitle = "Error"
+    
+    static let requestReasonPlaceholder = "Enter reason for leave"
+    
+    static let sicknessRequestTitle = "Sickness request"
+    
+    static let bonusRequestTitle = "Bonus request"
+    
+    static let leaveRequestTitle = "Leave request"
 }

@@ -15,13 +15,12 @@ class InputTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         inputReasonTextView.textColor = UIColor.lightGray
-        inputReasonTextView.text = "Enter reason for leave"
+        inputReasonTextView.text = ViewConstants.requestReasonPlaceholder
         inputReasonTextView.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -37,7 +36,7 @@ extension InputTableViewCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Enter reason for leave"
+            textView.text = ViewConstants.requestReasonPlaceholder
             textView.textColor = UIColor.lightGray
         }
     }

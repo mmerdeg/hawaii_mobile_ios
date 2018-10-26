@@ -113,13 +113,13 @@ class SummaryViewController: BaseViewController {
     
     func handleAbsenceType(absenceType: String) {
         if absenceType == AbsenceType.bonus.rawValue {
-            requestTitle.text = "Bonus request"
+            requestTitle.text = ViewConstants.bonusRequestTitle
             hideRemainingDays()
         } else if absenceType == AbsenceType.sick.rawValue {
-            requestTitle.text = "Sickness request"
+            requestTitle.text = ViewConstants.sicknessRequestTitle
             hideRemainingDays()
         } else {
-            requestTitle.text = "Leave request"
+            requestTitle.text = ViewConstants.leaveRequestTitle
         }
     }
     

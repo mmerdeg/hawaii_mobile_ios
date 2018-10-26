@@ -37,7 +37,10 @@ class NewRequestViewController: BaseViewController {
     var absenceType: AbsenceType?
     
     lazy var nextItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
+        
+        let nextButtonTitle = "Next"
+        
+        let item = UIBarButtonItem(title: nextButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -51,12 +54,12 @@ class NewRequestViewController: BaseViewController {
             return
         }
         switch absenceType {
-        case AbsenceType.sick:
-            self.title = "Sickness request"
-        case AbsenceType.bonus:
-            self.title = "Bonus request"
+        case .sick:
+            self.title = ViewConstants.sicknessRequestTitle
+        case .bonus:
+            self.title = ViewConstants.bonusRequestTitle
         default:
-            self.title = "Leave request"
+            self.title = ViewConstants.leaveRequestTitle
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -127,6 +130,10 @@ class NewRequestViewController: BaseViewController {
     }
     
     @objc func newRequest() {
+        
+        let trickMessage = "Dont try to trick me"
+        let reasonEmptyMessage = "Reason filed is required"
+        
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
@@ -135,12 +142,14 @@ class NewRequestViewController: BaseViewController {
                 return
         }
         if startDate > endDate {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me", viewController: self) { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: trickMessage,
+                                            viewController: self) { _ in
             }
             return
         }
-        if cellText.trim() == "" || cellText.trim() == "Enter reason for leave" {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Reason filed is required", viewController: self) { _ in
+        if cellText.trim() == "" || cellText.trim() == ViewConstants.requestReasonPlaceholder {
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: reasonEmptyMessage,
+                                            viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }
             return
