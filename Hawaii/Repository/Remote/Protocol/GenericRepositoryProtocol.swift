@@ -36,17 +36,26 @@ extension GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<T>) -> Void = { (response: DataResponse<T>) in
             switch response.result {
             case .success:
-                print("Validation Successful")
                 completion(GenericResponse<T> (success: true, item: response.result.value,
                                                statusCode: response.response?.statusCode, error: nil, message: nil))
             case .failure(let error):
                 print(error)
-                
                 completion(GenericResponse<T> (success: false, item: nil, statusCode: response.response?.statusCode,
-                                               error: response.error,
+                                               error: error,
                                                message: response.error?.localizedDescription))
             }
         }
+        
+        print("""
+            *******************************
+                REQUEST
+                URL: \(url)
+                METHOD: \(method.rawValue)
+                HEADERS: \(headers ?? [:])
+                BODY: \(parameters ?? [:])
+            *******************************
+            """
+        )
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
                           headers: headers).validate().responseDecodableObject(keyPath: nil,
                                                                                decoder: codableDecoder ?? getDecoder(),
@@ -60,7 +69,6 @@ extension GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<String>) -> Void = { (response: DataResponse<String>) in
             switch response.result {
             case .success:
-                print("Validation Successful")
                 completion(GenericResponse<String> (success: true, item: response.result.value,
                                                     statusCode: response.response?.statusCode, error: nil, message: nil))
             case .failure(let error):
@@ -71,6 +79,16 @@ extension GenericRepositoryProtocol {
                                                     message: response.error?.localizedDescription))
             }
         }
+        print("""
+            *******************************
+                REQUEST
+                URL: \(url)
+                METHOD: \(method.rawValue)
+                HEADERS: \(headers ?? [:])
+                BODY: \(parameters ?? [:])
+            *******************************
+            """
+        )
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
                           headers: headers).validate().responseString(completionHandler: completionHandler)
         
@@ -83,7 +101,6 @@ extension GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<Any>) -> Void = { (response: DataResponse<Any>) in
             switch response.result {
             case .success:
-                print("Validation Successful")
                 completion(GenericResponse<Any> (success: true, item: response.result.value,
                                                     statusCode: response.response?.statusCode, error: nil, message: nil))
             case .failure(let error):
@@ -94,7 +111,16 @@ extension GenericRepositoryProtocol {
                                                     message: response.error?.localizedDescription))
             }
         }
-        
+        print("""
+            *******************************
+                REQUEST
+                URL: \(url)
+                METHOD: \(method.rawValue)
+                HEADERS: \(headers ?? [:])
+                BODY: \(parameters ?? [:])
+            *******************************
+            """
+        )
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
                           headers: headers).validate().responseJSON(completionHandler: completionHandler)
     }

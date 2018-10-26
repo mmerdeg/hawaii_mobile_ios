@@ -56,7 +56,6 @@ class UserDao: UserDaoProtocol {
                                               entity.active ?? false,
                                               entity.yearsOfService ?? -1]
                         try database.executeUpdate(self.createUserQuery ?? "", values: values)
-                        completion(Int(database.lastInsertRowId))
                     } catch {
                         print(error.localizedDescription)
                         completion(-1)

@@ -18,6 +18,10 @@
 		3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* Sick.storyboard */; };
 		3013932C215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
+		301F8E3C2182F95600164761 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301F8E3B2182F95600164761 /* Storyboard.storyboard */; };
+		301F8E3D2182F95600164761 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301F8E3B2182F95600164761 /* Storyboard.storyboard */; };
+		301F8E3F2182F9FD00164761 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E3E2182F9FD00164761 /* CalendarViewController.swift */; };
+		301F8E402182F9FD00164761 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E3E2182F9FD00164761 /* CalendarViewController.swift */; };
 		302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
 		302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		302EE1732133F549001355E9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
@@ -369,6 +373,8 @@
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
 		30139328215CBE7A00F65B7F /* Sick.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sick.storyboard; sourceTree = "<group>"; };
 		3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaveRequest.storyboard; sourceTree = "<group>"; };
+		301F8E3B2182F95600164761 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		301F8E3E2182F9FD00164761 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 				30139328215CBE7A00F65B7F /* Sick.storyboard */,
 				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
 				3E832317216CADCC0068E37F /* Summary.storyboard */,
+				301F8E3B2182F95600164761 /* Storyboard.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -1082,6 +1089,7 @@
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
 				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
 				30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */,
+				301F8E3E2182F9FD00164761 /* CalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1362,6 +1370,7 @@
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				309B6CF4216603F00046EFE9 /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
+				301F8E3D2182F95600164761 /* Storyboard.storyboard in Resources */,
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
@@ -1402,6 +1411,7 @@
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
+				301F8E3C2182F95600164761 /* Storyboard.storyboard in Resources */,
 				3E832318216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6CFF216605710046EFE9 /* createUser.sql in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
@@ -1761,6 +1771,7 @@
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
 				30FD36BD214A5E530047038C /* DashboardViewController.swift in Sources */,
 				30FD36BF214A5E530047038C /* SearchRequestsViewController.swift in Sources */,
+				301F8E402182F9FD00164761 /* CalendarViewController.swift in Sources */,
 				3E2D45B3216223C0002A512C /* DatabaseInitializer.swift in Sources */,
 				30FD36C0214A5E530047038C /* UserPreviewTableViewCell.swift in Sources */,
 				30FD36C1214A5E530047038C /* PublicHolidayRepositoryProtocol.swift in Sources */,
@@ -1864,6 +1875,7 @@
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
+				301F8E3F2182F9FD00164761 /* CalendarViewController.swift in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */,
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
