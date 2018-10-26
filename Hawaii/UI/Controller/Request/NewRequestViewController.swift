@@ -30,6 +30,8 @@ class NewRequestViewController: BaseViewController {
     
     var userUseCase: UserUseCaseProtocol?
     
+    var requestUseCase: RequestUseCaseProtocol?
+    
     var selectedDate: Date?
     
     var absenceType: AbsenceType?
@@ -144,30 +146,7 @@ class NewRequestViewController: BaseViewController {
             return
         }
         let durationType = requestTableViewController.getDurationSelection()
-        
-        var days: [Day] = []
-        switch durationType {
-        case .afternoonFirst:
-            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
-            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-        case .morningLast:
-            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate.yesterday) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
-        case .morningAndAfternoon:
-            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
-            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate.yesterday) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
-        default:
-            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
-                days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
-            }
-        }
+        let days = requestUseCase?.populateDaysBetween(startDate: startDate, endDate: endDate, durationType: durationType)
         
         userUseCase?.readUser(completion: { userResult in
             
@@ -189,24 +168,6 @@ class NewRequestViewController: BaseViewController {
     func getDateFormatter() -> DateFormatter {
         return RequestDateFormatter()
     }
-    
-    func getDaysBetweeen(startDate: Date, endDate: Date) -> [Date] {
-        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-        guard let numberOfDays = components.day else {
-            return []
-        }
-        if Calendar.current.compare(startDate, to: endDate, toGranularity: .day) == .orderedSame {
-            return [startDate]
-        } else if numberOfDays == 0 {
-            return [startDate, endDate]
-        }
-        var dates: [Date] = []
-        for currentDay in 0...numberOfDays {
-            dates.append(startDate.addingTimeInterval(24 * 3600 * Double(currentDay)))
-        }
-        return dates
-    }
-
 }
 
 extension NewRequestViewController: SelectAbsenceProtocol {

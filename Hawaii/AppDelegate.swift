@@ -174,6 +174,7 @@ extension SwinjectStoryboard {
             
             defaultContainer.storyboardInitCompleted(NewRequestViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(SummaryViewController.self) { resolver, controller in
