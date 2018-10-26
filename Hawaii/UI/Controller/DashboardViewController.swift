@@ -33,9 +33,7 @@ class DashboardViewController: BaseViewController {
     var endDate = Date()
     
     let processor = SVGProcessor()
-    let showLeaveRequestSegue = "showLeaveRequest"
-    let showSickRequestSegue = "showSickRequest"
-    let showBonusRequestSegue = "showBonusRequest"
+    let showNewRequestSegue = "showNewRequest"
     let showRequestDetailsSegue = "showRequestDetails"
     let showRemainingDaysViewController = "showRemainingDaysViewController"
     let showRemainingDaysSickViewController = "showRemainingDaysSickViewController"
@@ -121,15 +119,15 @@ class DashboardViewController: BaseViewController {
         
         let leave = DialogWrapper(title: "Leave", uiAction: .default,
                                   handler: { _ in
-                                    self.performSegue(withIdentifier: self.showLeaveRequestSegue, sender: date)
+                                    self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.deducted))
         })
         let sick = DialogWrapper(title: "Sick", uiAction: .default,
                                  handler: { _ in
-                                    self.performSegue(withIdentifier: self.showSickRequestSegue, sender: date)
+                                    self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.sick))
         })
         let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
                                   handler: { _ in
-                                    self.performSegue(withIdentifier: self.showBonusRequestSegue, sender: date)
+                                    self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.bonus))
         })
         let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
         
@@ -151,26 +149,13 @@ class DashboardViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showLeaveRequestSegue {
-            guard let controller = segue.destination as? LeaveRequestViewController,
-                  let date = sender as? Date else {
+        if segue.identifier == showNewRequestSegue {
+            guard let controller = segue.destination as? NewRequestViewController,
+            let data = sender as? (Date, AbsenceType) else {
                 return
             }
-            controller.selectedDate = date
-            controller.requestUpdateDelegate = self
-        } else if segue.identifier == showSickRequestSegue {
-            guard let controller = segue.destination as? SickRequestViewController,
-                let date = sender as? Date else {
-                    return
-            }
-            controller.selectedDate = date
-            controller.requestUpdateDelegate = self
-        } else if segue.identifier == showBonusRequestSegue {
-            guard let controller = segue.destination as? BonusRequestViewController,
-                  let date = sender as? Date else {
-                    return
-            }
-            controller.selectedDate = date
+            controller.selectedDate = data.0
+            controller.absenceType = data.1
             controller.requestUpdateDelegate = self
         } else if segue.identifier == showRequestDetailsSegue {
             guard let controller = segue.destination as? RequestDetailsViewController,

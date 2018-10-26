@@ -246,30 +246,20 @@
                         <outlet property="previousButton" destination="8e5-wV-4DT" id="NDZ-LC-ww8"/>
                         <outlet property="scrollView" destination="9MN-RY-Yjs" id="SOT-c1-g45"/>
                         <segue destination="dQu-hX-waz" kind="presentation" identifier="showRequestDetails" id="61k-Vu-8dI"/>
-                        <segue destination="rxj-Jz-1Mw" kind="show" identifier="showBonusRequest" id="usi-Hv-oJB"/>
-                        <segue destination="IPM-sP-uJ8" kind="show" identifier="showLeaveRequest" id="79G-gN-5PE"/>
-                        <segue destination="vXb-yr-Aai" kind="show" identifier="showSickRequest" id="IeD-op-Ya0"/>
+                        <segue destination="IPM-sP-uJ8" kind="show" identifier="showNewRequest" id="79G-gN-5PE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xt7-Ka-k9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3693.5999999999999" y="-1402.4630541871923"/>
         </scene>
-        <!--LeaveRequest-->
+        <!--NewRequest-->
         <scene sceneID="bMK-rU-m7m">
             <objects>
-                <viewControllerPlaceholder storyboardName="LeaveRequest" id="IPM-sP-uJ8" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="NewRequest" id="IPM-sP-uJ8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXC-DS-Qq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4767" y="-1677"/>
-        </scene>
-        <!--SickRequest-->
-        <scene sceneID="gPM-RV-cKe">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SickRequest" id="vXb-yr-Aai" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3iO-T9-dgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4720" y="-1439"/>
         </scene>
         <!--RemainingDays-->
         <scene sceneID="Vxw-XH-6SB">
@@ -355,14 +345,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geD-aj-HV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2641" y="-1402"/>
-        </scene>
-        <!--BonusRequest-->
-        <scene sceneID="9Lo-K0-eFV">
-            <objects>
-                <viewControllerPlaceholder storyboardName="BonusRequest" id="rxj-Jz-1Mw" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UG7-Wj-dop" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4730" y="-944"/>
         </scene>
     </scenes>
     <resources>

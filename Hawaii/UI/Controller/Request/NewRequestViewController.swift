@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaveRequestViewController: BaseViewController {
+class NewRequestViewController: BaseViewController {
     
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
     
@@ -32,16 +32,30 @@ class LeaveRequestViewController: BaseViewController {
     
     var selectedDate: Date?
     
-    lazy var addLeaveRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(addRequest))
+    var absenceType: AbsenceType?
+    
+    lazy var nextItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = addLeaveRequestItem
+        self.navigationItem.rightBarButtonItem = nextItem
         self.scrollView.delegate = self
+        
+        guard let absenceType = absenceType else {
+            return
+        }
+        switch absenceType {
+        case AbsenceType.sick:
+            self.title = "Sickness request"
+        case AbsenceType.bonus:
+            self.title = "Bonus request"
+        default:
+            self.title = "Leave request"
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -67,9 +81,17 @@ class LeaveRequestViewController: BaseViewController {
         scrollView.contentInset = contentInset
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let absenceType = absenceType else {
+            return false
+        }
+        return identifier != showRemainingDaysViewController || absenceType != .bonus && absenceType != .sick
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showRequestTableViewController {
-            guard let controller = segue.destination as? RequestTableViewController else {
+            guard let controller = segue.destination as? RequestTableViewController,
+                let absenceType = absenceType else {
                 return
             }
             self.requestTableViewController = controller
@@ -78,8 +100,9 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             requestTableViewController.delegate = self
-            requestTableViewController.requestType = .deducted
+            requestTableViewController.requestType = absenceType
             addChildViewController(controller)
+            
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -89,6 +112,7 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             remainingDaysViewController.mainLabelText = "Leave"
+            
         } else if segue.identifier == showSummaryViewController {
             guard let controller = segue.destination as? SummaryViewController,
                   let request = sender as? Request else {
@@ -96,11 +120,11 @@ class LeaveRequestViewController: BaseViewController {
             }
             controller.request = request
             controller.requestUpdateDelegate = self.requestUpdateDelegate
-            controller.remainingDaysNo = self.remainingDaysViewController?.remainingDayNoLabel.text
+            controller.remainingDaysNo = self.remainingDaysViewController?.remainingDayNoLabel.text ?? "0"
         }
     }
     
-    @objc func addRequest() {
+    @objc func newRequest() {
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
@@ -185,7 +209,7 @@ class LeaveRequestViewController: BaseViewController {
 
 }
 
-extension LeaveRequestViewController: SelectAbsenceProtocol {
+extension NewRequestViewController: SelectAbsenceProtocol {
     func didSelect(absence: Absence) {
         if absence.absenceSubtype == "TRAINING" {
             remainingDaysViewController?.mainLabelText = "Training"
@@ -195,8 +219,25 @@ extension LeaveRequestViewController: SelectAbsenceProtocol {
     }
 }
 
-extension LeaveRequestViewController: UIScrollViewDelegate {
+extension NewRequestViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
       //  self.view.endEditing(true)
+    }
+}
+
+extension Date {
+    var yesterday: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon) ?? Date()
+    }
+    var tomorrow: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon) ?? Date()
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self) ?? Date()
+    }
+    
+    func convertToTimeZone(initTimeZone: TimeZone, timeZone: TimeZone) -> Date {
+        let delta = TimeInterval(timeZone.secondsFromGMT() - initTimeZone.secondsFromGMT())
+        return addingTimeInterval(delta)
     }
 }

@@ -172,16 +172,12 @@ extension SwinjectStoryboard {
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(NewRequestViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(SummaryViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-            }
-            
-            defaultContainer.storyboardInitCompleted(SickRequestViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(RemainigDaysViewController.self) { resolver, controller in
@@ -232,10 +228,6 @@ extension SwinjectStoryboard {
                 controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                     name: String(describing: PublicHolidayUseCaseProtocol.self))
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-            }
-            
-            defaultContainer.storyboardInitCompleted(BonusRequestViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in
