@@ -18,15 +18,10 @@ class InputTableViewCell: UITableViewCell {
         inputReasonTextView.text = ViewConstants.requestReasonPlaceholder
         inputReasonTextView.delegate = self
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
 }
 
 extension InputTableViewCell: UITextViewDelegate {
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil

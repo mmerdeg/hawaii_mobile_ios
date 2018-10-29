@@ -28,4 +28,6 @@ class ViewConstants {
     static let bonusRequestTitle = "Bonus request"
     
     static let leaveRequestTitle = "Leave request"
+    
+    static let dateSourceFormat = "yyyy-MM-dd'T'HH:mm:ss"
 }

@@ -24,19 +24,14 @@ class UserPreviewTableViewCell: UITableViewCell {
             fullName.text = userFullName
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
         self.backgroundColor = UIColor.darkPrimaryColor
         profileImageView.backgroundColor = UIColor.darkPrimaryColor
         profileImageView.layer.cornerRadius = profileImageView.frame.height / 2
         profileImageView.layer.masksToBounds = true
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

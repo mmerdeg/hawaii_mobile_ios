@@ -7,8 +7,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     
     var userUseCase: UserUseCaseProtocol?
     
-    var label = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeGoogleSignIn()
@@ -81,11 +79,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "homeVCSegue", sender: self)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

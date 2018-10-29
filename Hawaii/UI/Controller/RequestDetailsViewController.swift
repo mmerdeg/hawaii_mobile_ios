@@ -37,11 +37,14 @@ class RequestDetailsViewController: BaseViewController {
 
         requestDialog.layer.cornerRadius = 10
         self.view.backgroundColor = UIColor.primaryColor.withAlphaComponent(CGFloat(ViewConstants.dialogBackgroundAlpha))
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         requestDialog.backgroundColor = UIColor.primaryColor
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         let nib = UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
@@ -67,7 +70,7 @@ class RequestDetailsViewController: BaseViewController {
         }
     }
     
-    @objc func  dismissDialog() {
+    @objc func dismissDialog() {
         delegate?.dismissDialog()
         dismiss(animated: true, completion: nil)
     }
@@ -97,6 +100,10 @@ extension RequestDetailsViewController: UITableViewDelegate, UITableViewDataSour
 extension RequestDetailsViewController: RequestCancelationProtocol {
     
     func requestCanceled(request: Request?, cell: RequestDetailTableViewCell) {
+        
+        let confirmationAlertTitle = "Confirm"
+        let confirmationAlertMessage = "Are you sure you want to cancel this request?"
+        
         guard let oldRequest = request,
             let newRequest = request else {
                 return
@@ -106,7 +113,7 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
             status = .canceled
         }
         
-        ViewUtility.showAlertWithAction(title: "Confirm", message: "Are you sure you want to cancel this request?",
+        ViewUtility.showAlertWithAction(title: confirmationAlertTitle, message: confirmationAlertMessage,
                                         cancelable: true, viewController: self) { confirmed in
                                             if confirmed {
                                                 self.startActivityIndicatorSpinner()
@@ -122,29 +129,29 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                guard let index = self.tableView.indexPath(for: cell) else {
-                    return
-                }
-                
-                let updatedRequest = Request(request: self.requests[index.row], requestStatus: response.item?.requestStatus)
-                let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
-                
-                self.requests[indexOfOldRequest ?? 0] = updatedRequest
-                
-                if self.requests[index.row].requestStatus == .pending {
-                    self.requests.remove(at: index.row)
-                } else {
-                    self.requests[index.row] = updatedRequest
-                }
-                self.tableView.reloadData()
-                self.stopActivityIndicatorSpinner()
-            } else {
+            if !success {
                 ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
                                                 viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
+                                                    self.stopActivityIndicatorSpinner()
                 })
+                return
             }
+            
+            guard let index = self.tableView.indexPath(for: cell) else {
+                return
+            }
+            let updatedRequest = Request(request: self.requests[index.row], requestStatus: response.item?.requestStatus)
+            let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
+            
+            self.requests[indexOfOldRequest ?? 0] = updatedRequest
+            
+            if self.requests[index.row].requestStatus == .pending {
+                self.requests.remove(at: index.row)
+            } else {
+                self.requests[index.row] = updatedRequest
+            }
+            self.tableView.reloadData()
+            self.stopActivityIndicatorSpinner()
         }
     }
 }

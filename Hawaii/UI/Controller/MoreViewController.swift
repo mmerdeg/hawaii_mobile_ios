@@ -16,8 +16,11 @@ class MoreViewController: BaseViewController {
     var userUseCase: UserUseCaseProtocol?
     
     @IBOutlet weak var emailLabel: UILabel!
+    
     @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var profileImage: UIImageView!
+    
     @IBOutlet weak var signOutButton: UIButton!
     
     override func viewDidLoad() {
@@ -53,13 +56,17 @@ class MoreViewController: BaseViewController {
     }
     
     func navigateToSignIn() {
+        
+        let mainStoryboardTitle = "Main"
+        let sigInViewControllerTitle = "SignInViewController"
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let window = appDelegate.window else {
                 return
         }
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: mainStoryboardTitle, bundle: nil)
         
-        guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: "SignInViewController")
+        guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: sigInViewControllerTitle)
             as? SignInViewController else {
                 return
         }

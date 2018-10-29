@@ -93,7 +93,8 @@ class RequestTableViewController: BaseViewController {
                 self.selectedAbsence = response.item?.first
             })
         } else {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "", viewController: self, completion: { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+                                            viewController: self, completion: { _ in
                 self.navigationController?.popViewController(animated: true)
             })
         }

@@ -57,7 +57,6 @@ class RemainigDaysViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startActivityIndicatorSpinner()
         
         mainLabel.text = mainLabelText ?? ""
         mainLabel.textColor = UIColor.primaryTextColor
@@ -86,6 +85,8 @@ class RemainigDaysViewController: BaseViewController {
         
         let leaveLabel = "Leave"
         let trainingLabel = "Training"
+        
+        startActivityIndicatorSpinner()
         
         mainLabel.text = mainLabelText
         

@@ -154,14 +154,12 @@
 		30FD36C7214A5E530047038C /* UserDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */; };
 		30FD36C8214A5E530047038C /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		30FD36C9214A5E530047038C /* RequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592820E25B7500F22BBD /* RequestRepository.swift */; };
-		30FD36CA214A5E530047038C /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
 		30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
 		30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */; };
 		30FD36CD214A5E530047038C /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F820E61A6500DB2CF7 /* FontExtension.swift */; };
 		30FD36D2214A5E530047038C /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
 		30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */; };
 		30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
-		30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */; };
 		30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
 		30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */; };
 		30FD36D9214A5E530047038C /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
@@ -235,6 +233,8 @@
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
+		3E80631021873600009224BD /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
+		3E80631121873600009224BD /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
 		3E832312216CAD570068E37F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E832311216CAD570068E37F /* SummaryViewController.swift */; };
 		3E832313216CAD570068E37F /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E832311216CAD570068E37F /* SummaryViewController.swift */; };
 		3E832318216CADCC0068E37F /* Summary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E832317216CADCC0068E37F /* Summary.storyboard */; };
@@ -252,8 +252,6 @@
 		3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */; };
 		3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */; };
 		3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3E987AEF20E518630083BB18 /* .swiftlint.yml */; };
-		3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */; };
-		3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */; };
 		3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643820CA69E900501CAC /* AppDelegate.swift */; };
 		3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5643C20CA69E900501CAC /* Main.storyboard */; };
 		3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
@@ -471,6 +469,7 @@
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* ViewUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtility.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
+		3E80630F21873600009224BD /* DateStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStringConverter.swift; sourceTree = "<group>"; };
 		3E832311216CAD570068E37F /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		3E832317216CADCC0068E37F /* Summary.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Summary.storyboard; sourceTree = "<group>"; };
 		3E834B602100A8B90038BC96 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
@@ -481,8 +480,6 @@
 		3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedDateFormatter.swift; sourceTree = "<group>"; };
 		3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDateFormatter.swift; sourceTree = "<group>"; };
 		3E987AEF20E518630083BB18 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
-		3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		3EB5643520CA69E900501CAC /* Hawaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hawaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB5643820CA69E900501CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EB5643A20CA69E900501CAC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -716,28 +713,16 @@
 		3E236F2A20D7CCCE006AEF29 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */,
-				3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */,
-				3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */,
-				3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */,
-				3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */,
-				3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */,
-				302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */,
-				302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */,
-				3EA0C6F0213437AC00F7A086 /* FilterHeaderTableViewCell.swift */,
-				3EA0C6F1213437AC00F7A086 /* FilterHeaderTableViewCell.xib */,
-				3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */,
-				3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */,
-				30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */,
-				30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */,
-				3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */,
-				3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */,
-				307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */,
-				307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */,
-				305A01AC215908EB0008B4EA /* InputTableViewCell.swift */,
-				305A01AD215908EB0008B4EA /* InputTableViewCell.xib */,
-				30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */,
-				30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */,
+				3E806312218744E5009224BD /* CalendarCell */,
+				3E8063152187450E009224BD /* TeamCalendarCell */,
+				3E8063192187453B009224BD /* PublicHolidayCell */,
+				3E806313218744F1009224BD /* RequestDetailCell */,
+				3E80631421874503009224BD /* RequestApprovalCell */,
+				3E80631B2187455C009224BD /* DatePickerCell */,
+				3E80631A2187454C009224BD /* InputTableCell */,
+				3E80631821874531009224BD /* LoadMoreCell */,
+				3E80631721874529009224BD /* UserPreviewCell */,
+				3E8063162187451A009224BD /* TeamPreviewCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -913,6 +898,7 @@
 		3E5C2AD42109CABB00706E82 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				3E80630B218735DC009224BD /* Converter */,
 				3E21DF01218366ED0002BED8 /* Extension */,
 				3E5622D12178C72400B376E0 /* DateFormatter */,
 				3E843714211C42AF003F449B /* SVGProcessor.swift */,
@@ -946,6 +932,113 @@
 				3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		3E80630B218735DC009224BD /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				3E80630F21873600009224BD /* DateStringConverter.swift */,
+			);
+			path = Converter;
+			sourceTree = "<group>";
+		};
+		3E806312218744E5009224BD /* CalendarCell */ = {
+			isa = PBXGroup;
+			children = (
+				3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */,
+				3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */,
+			);
+			path = CalendarCell;
+			sourceTree = "<group>";
+		};
+		3E806313218744F1009224BD /* RequestDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */,
+				3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */,
+			);
+			path = RequestDetailCell;
+			sourceTree = "<group>";
+		};
+		3E80631421874503009224BD /* RequestApprovalCell */ = {
+			isa = PBXGroup;
+			children = (
+				3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */,
+				3E3551002121797E00B43B57 /* RequestApprovalTableViewCell.xib */,
+			);
+			path = RequestApprovalCell;
+			sourceTree = "<group>";
+		};
+		3E8063152187450E009224BD /* TeamCalendarCell */ = {
+			isa = PBXGroup;
+			children = (
+				302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */,
+				302EE18521358499001355E9 /* TeamCalendarCollectionViewCell.xib */,
+			);
+			path = TeamCalendarCell;
+			sourceTree = "<group>";
+		};
+		3E8063162187451A009224BD /* TeamPreviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */,
+				3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */,
+			);
+			path = TeamPreviewCell;
+			sourceTree = "<group>";
+		};
+		3E80631721874529009224BD /* UserPreviewCell */ = {
+			isa = PBXGroup;
+			children = (
+				30741332213E6DD100F05427 /* UserPreviewTableViewCell.swift */,
+				30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */,
+			);
+			path = UserPreviewCell;
+			sourceTree = "<group>";
+		};
+		3E80631821874531009224BD /* LoadMoreCell */ = {
+			isa = PBXGroup;
+			children = (
+				3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */,
+				3074133B213E83E700F05427 /* LoadMoreTableViewCell.xib */,
+			);
+			path = LoadMoreCell;
+			sourceTree = "<group>";
+		};
+		3E8063192187453B009224BD /* PublicHolidayCell */ = {
+			isa = PBXGroup;
+			children = (
+				307413552142809B00F05427 /* PublicHolidayTableViewCell.swift */,
+				307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */,
+			);
+			path = PublicHolidayCell;
+			sourceTree = "<group>";
+		};
+		3E80631A2187454C009224BD /* InputTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				305A01AC215908EB0008B4EA /* InputTableViewCell.swift */,
+				305A01AD215908EB0008B4EA /* InputTableViewCell.xib */,
+			);
+			path = InputTableCell;
+			sourceTree = "<group>";
+		};
+		3E80631B2187455C009224BD /* DatePickerCell */ = {
+			isa = PBXGroup;
+			children = (
+				30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */,
+				30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */,
+			);
+			path = DatePickerCell;
+			sourceTree = "<group>";
+		};
+		3E80631C21875442009224BD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
+				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		3E834B662100AEAF0038BC96 /* Remote */ = {
@@ -1064,6 +1157,7 @@
 				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
 				3E42592B20E26A0700F22BBD /* Extension */,
+				3E236F2A20D7CCCE006AEF29 /* Cell */,
 				3EB5646720CA909800501CAC /* Controller */,
 			);
 			path = UI;
@@ -1072,23 +1166,21 @@
 		3EB5646720CA909800501CAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E80631C21875442009224BD /* Base */,
 				3E72645220EA294E00DC7240 /* Component */,
 				3E28E79820E511C600F1C6D5 /* Request */,
-				3E236F2A20D7CCCE006AEF29 /* Cell */,
 				3EB5643A20CA69E900501CAC /* SignInViewController.swift */,
 				3E236F2820D7AA10006AEF29 /* MoreViewController.swift */,
 				3E42F4BC20CE7946002661AF /* DashboardViewController.swift */,
 				3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */,
 				3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */,
 				3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */,
-				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
 				3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */,
 				3E35510321217BC400B43B57 /* ApproveViewController.swift */,
 				302EE18021356C93001355E9 /* TeamCalendarViewController.swift */,
 				307413082136673100F05427 /* TeamPreviewViewController.swift */,
 				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
-				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
 				30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */,
 			);
 			path = Controller;
@@ -1350,7 +1442,6 @@
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
-				30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
@@ -1389,7 +1480,6 @@
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				309B6CF9216604270046EFE9 /* deleteUser.sql in Resources */,
 				309B6CF3216603F00046EFE9 /* readUser.sql in Resources */,
-				3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
@@ -1716,6 +1806,7 @@
 				30FD3698214A5E530047038C /* UserDetailsRepositoryProtocol.swift in Sources */,
 				30FD369A214A5E530047038C /* NewRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
+				3E80631121873600009224BD /* DateStringConverter.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */,
 				30FD369D214A5E530047038C /* Allowance.swift in Sources */,
 				30FD369E214A5E530047038C /* Absence.swift in Sources */,
@@ -1773,7 +1864,6 @@
 				30FD36C8214A5E530047038C /* DialogWrapper.swift in Sources */,
 				30FD36C9214A5E530047038C /* RequestRepository.swift in Sources */,
 				3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
-				30FD36CA214A5E530047038C /* FilterHeaderTableViewCell.swift in Sources */,
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
@@ -1818,6 +1908,7 @@
 				3E28E79A20E5121700F1C6D5 /* NewRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3074134E2142761C00F05427 /* PublicHolidayUseCase.swift in Sources */,
+				3E80631021873600009224BD /* DateStringConverter.swift in Sources */,
 				30741327213968E800F05427 /* Allowance.swift in Sources */,
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
@@ -1876,7 +1967,6 @@
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
-				3EA0C6F2213437AC00F7A086 /* FilterHeaderTableViewCell.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,

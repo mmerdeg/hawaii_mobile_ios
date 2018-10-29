@@ -39,10 +39,6 @@ class PublicHolidayTableViewCell: JTAppleCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func setCell(processor: ImageProcessor) {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor

@@ -29,10 +29,13 @@ class TeamPreviewViewController: BaseViewController {
 extension TeamPreviewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "Cell"
+        
         tableView.separatorColor = UIColor.primaryColor
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TeamPreviewTableViewCell.self), for: indexPath)
             as? TeamPreviewTableViewCell else {
-                return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell.request = Array(requests ?? [:])[indexPath.section].value[indexPath.row]
         return cell

@@ -43,10 +43,10 @@ class TeamPreviewTableViewCell: UITableViewCell {
             let dateFormatter = DisplayedDateFormatter()
             let start = dateFormatter.string(from: startDate)
             let end = dateFormatter.string(from: endDate)
-            requestDuration.textColor = UIColor.lightPrimaryColor
+
             requestDuration.text = start == end ? start : start + " - " + end
             requestDuration.textColor = UIColor.primaryTextColor
-            
+
             cardView.backgroundColor = UIColor.lightPrimaryColor
             
             requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
@@ -65,8 +65,6 @@ class TeamPreviewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        //backgroundColor = UIColor.primaryColor
         selectionStyle = UITableViewCellSelectionStyle.none
     }
 }

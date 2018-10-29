@@ -14,8 +14,6 @@ protocol SearchUserSelectedProtocol: class {
 
 class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
-    var users: [User] = []
-    
     var resultsController: SearchUsersTableViewController?
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
@@ -27,6 +25,8 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     var pendingRequestWorkItem: DispatchWorkItem?
     
     weak var delegate: SearchUserSelectedProtocol?
+
+    var users: [User] = []
     
     var page = 0
     
@@ -34,12 +34,13 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let title = "Employees"
+        
         setUpSearch()
-        // Do any additional setup after loading the view.
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = searchController
         }
-        self.navigationItem.title = "Employees"
+        self.navigationItem.title = title
     }
     
     func loadMoreClicked(completion: @escaping () -> Void) {
@@ -55,7 +56,10 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     }
     
     func setUpSearch() {
-        let storyboard = UIStoryboard(name: "TeamCalendar", bundle: nil)
+        
+        let teamCalendarStoryboardName = "TeamCalendar"
+        
+        let storyboard = UIStoryboard(name: teamCalendarStoryboardName, bundle: nil)
         guard let searchUsersTableViewController = storyboard.instantiateViewController(withIdentifier:
                                                      String(describing: SearchUsersTableViewController.self))
                                                         as? SearchUsersTableViewController else {
@@ -63,6 +67,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
         }
         searchUsersTableViewController.delegate = self
         resultsController = searchUsersTableViewController
+
         searchController = UISearchController(searchResultsController: resultsController)
         searchController?.hidesNavigationBarDuringPresentation = true
         searchController?.searchBar.searchBarStyle = .minimal
@@ -80,30 +85,30 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                guard let users = response.users,
-                      let usersMax = response.maxUsers else {
-                        return
-                }
-                if !users.isEmpty {
-                    if self.page == 0 {
-                        self.users = []
-                    }
-                    self.page += 1
-                    for user in users {
-                        self.users.append(user)
-                    }
-                }
-                self.userDetailsUseCase?.setLoadMore(self.users.count < usersMax)
-                self.resultsController?.users = self.users
-                self.resultsController?.tableView.reloadData()
-                completion()
-            } else {
+            if !success {
                 ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
                                                 viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
+                                                    self.stopActivityIndicatorSpinner()
                 })
+                return
             }
+            guard let users = response.users,
+                  let usersMax = response.maxUsers else {
+                    return
+            }
+            if !users.isEmpty {
+                if self.page == 0 {
+                    self.users = []
+                }
+                self.page += 1
+                for user in users {
+                    self.users.append(user)
+                }
+            }
+            self.userDetailsUseCase?.setLoadMore(self.users.count < usersMax)
+            self.resultsController?.users = self.users
+            self.resultsController?.tableView.reloadData()
+            completion()
         })
     }
     
@@ -117,18 +122,14 @@ extension SearchUsersBaseViewController: UISearchResultsUpdating {
         let requestWorkItem = DispatchWorkItem { [weak self] in
             self?.performSearch()
         }
-        
         pendingRequestWorkItem = requestWorkItem
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250),
-                                      execute: requestWorkItem)
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250), execute: requestWorkItem)
     }
     
     @objc func performSearch() {
         self.users = []
         self.page = 0
         getUsers(parameter: searchController?.searchBar.text ?? "", page: 0, numberOfItems: numberOfItems) {
-            
         }
     }
 }

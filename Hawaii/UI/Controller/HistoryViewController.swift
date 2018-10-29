@@ -355,29 +355,29 @@ extension HistoryViewController: RequestCancelationProtocol {
                 return
             }
             
-            if success {
-                guard let index = self.tableView.indexPath(for: cell) else {
-                    return
-                }
-                
-                let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: response.item?.requestStatus)
-                let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
-                
-                self.requests[indexOfOldRequest ?? 0] = updatedRequest
-                if self.filteredRequests[index.row].requestStatus == .pending {
-                    self.filteredRequests.remove(at: index.row)
-                } else {
-                    self.filteredRequests[index.row] = updatedRequest
-                }
-                self.presentBluredAlertView()
-                self.tableView.reloadData()
-                self.stopActivityIndicatorSpinner()
-            } else {
+            if !success {
                 ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
                                                 viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
+                                                    self.stopActivityIndicatorSpinner()
                 })
+                return
             }
+            guard let index = self.tableView.indexPath(for: cell) else {
+                return
+            }
+            
+            let updatedRequest = Request(request: self.filteredRequests[index.row], requestStatus: response.item?.requestStatus)
+            let indexOfOldRequest = self.requests.index { $0.id == oldRequest.id }
+            
+            self.requests[indexOfOldRequest ?? 0] = updatedRequest
+            if self.filteredRequests[index.row].requestStatus == .pending {
+                self.filteredRequests.remove(at: index.row)
+            } else {
+                self.filteredRequests[index.row] = updatedRequest
+            }
+            self.presentBluredAlertView()
+            self.tableView.reloadData()
+            self.stopActivityIndicatorSpinner()
         }
     }
 

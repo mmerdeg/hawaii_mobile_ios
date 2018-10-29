@@ -33,10 +33,6 @@ class DatePickerCollectionViewCell: JTAppleCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     func setCell(processor: ImageProcessor) {
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         handleCellText(cellState: cellState)

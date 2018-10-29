@@ -73,27 +73,27 @@ class CalendarCellCollectionViewCell: JTAppleCell {
             dateLabel.textColor = UIColor.darkPrimaryColor
             let backgroundColor = request.absence?.absenceType == AbsenceType.sick.rawValue ? UIColor.sickColor :
                 request.requestStatus?.backgoundColor ?? UIColor.clear
+            let imageUrl = URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? ""))
             
             DispatchQueue.main.async {
                 switch day.duration {
                 case .afternoon?:
                     self.afternoonView.backgroundColor = backgroundColor
-                    self.afternoonImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.afternoonImage.kf.setImage(with: imageUrl)
                 case .fullday?:
                     self.afternoonView.backgroundColor = backgroundColor
                     self.morningView.backgroundColor = backgroundColor
-                    self.fullDayImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.fullDayImage.kf.setImage(with: imageUrl)
                     print()
                 case .morning?:
                     self.morningView.backgroundColor = backgroundColor
-                    self.morningImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? "")))
+                    self.morningImage.kf.setImage(with: imageUrl)
                 default :
                     print("")
                 }
             }
             
         }
-        
         layoutIfNeeded()
     }
     
