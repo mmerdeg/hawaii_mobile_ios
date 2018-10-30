@@ -409,11 +409,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		021622DC34E948FDE2083C45 /* Pods_RequestNotificationProd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotificationProd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.release.xcconfig"; sourceTree = "<group>"; };
 		19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.release.xcconfig"; sourceTree = "<group>"; };
 		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2397917195F000DDB1393EFC /* Pods_RequestNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.debug.xcconfig"; sourceTree = "<group>"; };
+		276BA52D73ABBC3B400131FF /* Pods-RequestNotificationProd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotificationProd.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotificationProd/Pods-RequestNotificationProd.release.xcconfig"; sourceTree = "<group>"; };
 		3013931C215CA88400F65B7F /* BonusRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BonusRequest.storyboard; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* Request.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
@@ -480,10 +482,11 @@
 		309B6D61216736880046EFE9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		30A770652188A72000540A93 /* RequestNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequestNotification.entitlements; sourceTree = "<group>"; };
+		30A770682188A93200540A93 /* Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Prod.plist"; sourceTree = "<group>"; };
 		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -574,6 +577,7 @@
 		833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii_production.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7C625CC9F3A3F6686D84F5 /* Pods-Hawaii production.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.release.xcconfig"; sourceTree = "<group>"; };
+		C7F9D02FA06753A8457E7E6D /* Pods-RequestNotificationProd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotificationProd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotificationProd/Pods-RequestNotificationProd.debug.xcconfig"; sourceTree = "<group>"; };
 		E192188DA1C740EBA3E792FB /* Pods-HawaiiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -639,6 +643,7 @@
 				301F8E6E2186F1F000164761 /* UserNotifications.framework */,
 				301F8E702186F1F000164761 /* UserNotificationsUI.framework */,
 				2397917195F000DDB1393EFC /* Pods_RequestNotification.framework */,
+				021622DC34E948FDE2083C45 /* Pods_RequestNotificationProd.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 		301F8E722186F1F100164761 /* RequestNotification */ = {
 			isa = PBXGroup;
 			children = (
+				30A770652188A72000540A93 /* RequestNotification.entitlements */,
 				301F8E732186F1F100164761 /* NotificationViewController.swift */,
 				301F8E752186F1F100164761 /* MainInterface.storyboard */,
 				301F8E782186F1F100164761 /* Info.plist */,
@@ -664,6 +670,7 @@
 		3051684A217DACF900AAEA7D /* Hawaii Staging */ = {
 			isa = PBXGroup;
 			children = (
+				3EB5644420CA69EA00501CAC /* Info.plist */,
 				3051684B217DACF900AAEA7D /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Staging";
@@ -672,6 +679,7 @@
 		3051684F217DACF900AAEA7D /* Hawaii Production */ = {
 			isa = PBXGroup;
 			children = (
+				30A770682188A93200540A93 /* Info-Prod.plist */,
 				30516850217DACF900AAEA7D /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Production";
@@ -1096,7 +1104,6 @@
 				3EB5643620CA69E900501CAC /* Products */,
 				F28D0C5FDB4E4C6C7D92927D /* Pods */,
 				08624EF672D76C3B7D6C231E /* Frameworks */,
-				30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */,
 				301F8E652186E59A00164761 /* Recovered References */,
 			);
 			sourceTree = "<group>";
@@ -1129,7 +1136,6 @@
 				3E987AEF20E518630083BB18 /* .swiftlint.yml */,
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
-				3EB5644420CA69EA00501CAC /* Info.plist */,
 				30ABE94E21785335007E6122 /* GoogleService-Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
 				30516856217DAD8200AAEA7D /* NotificationNames.swift */,
@@ -1248,6 +1254,8 @@
 				1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */,
 				23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */,
 				19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */,
+				C7F9D02FA06753A8457E7E6D /* Pods-RequestNotificationProd.debug.xcconfig */,
+				276BA52D73ABBC3B400131FF /* Pods-RequestNotificationProd.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1372,11 +1380,25 @@
 				TargetAttributes = {
 					301F8E6C2186F1F000164761 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					30FD367A214A5E530047038C = {
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -1391,7 +1413,13 @@
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -1652,8 +1680,11 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
@@ -1687,8 +1718,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
@@ -1824,8 +1858,11 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
@@ -1843,8 +1880,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
@@ -2174,6 +2214,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2199,6 +2240,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2235,7 +2277,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = "Hawaii copy-Info.plist";
+				INFOPLIST_FILE = "Hawaii/Hawaii Production/Info-Prod.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2270,7 +2312,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = "Hawaii copy-Info.plist";
+				INFOPLIST_FILE = "Hawaii/Hawaii Production/Info-Prod.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2420,7 +2462,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = Hawaii/Info.plist;
+				INFOPLIST_FILE = "Hawaii/Hawaii Staging/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2455,7 +2497,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = Hawaii/Info.plist;
+				INFOPLIST_FILE = "Hawaii/Hawaii Staging/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

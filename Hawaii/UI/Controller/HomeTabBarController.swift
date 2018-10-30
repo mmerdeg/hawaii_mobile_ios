@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import UserNotifications
+import NotificationBannerSwift
 
 class HomeTabBarController: UITabBarController {
     
@@ -159,41 +160,22 @@ extension HomeTabBarController: UNUserNotificationCenterDelegate {
             let alert = userInfo["alert"] as? [String: Any],
             let body = alert["body"] as? String,
             let title = alert["title"] as? String,
-            let requestStatus = notification.request.content.userInfo["requestStatus"] as? String,
-            let reqeust = notification.request.content.userInfo["request"] as? [String: Any] else {
+            let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
                 return
         }
         let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
-        
-//        // Generate top floating entry and set some properties
-//        var attributes = EKAttributes.topFloat
-//        attributes.entryBackground = .gradient(gradient: .init(colors: [.red, .green], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-//        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-//        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-//        attributes.statusBar = .dark
-//        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-//        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
-//
-//        let titleLabel = EKProperty.LabelContent(text: title, style: .init(font: titleFont, color: textColor))
-//        let description = EKProperty.LabelContent(text: body, style: .init(font: descFont, color: textColor))
-//        let image = EKProperty.ImageContent(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
-//        let simpleMessage = EKSimpleMessage(image: image, title: titleLabel, description: description)
-//        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-//
-//        let contentView = EKNotificationMessageView(with: notificationMessage)
-//        SwiftEntryKit.display(entry: contentView, using: attributes)
 
-//        switch status {
-//        case .approved:
-//            let banner = NotificationBanner(title: title, subtitle: body, style: .success)
-//            banner.show()
-//        case .rejected:
-//            let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
-//            banner.show()
-//        default:
-//            let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
-//            banner.show()
-//        }
+        switch status {
+        case .approved:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .success)
+            banner.show()
+        case .rejected:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
+            banner.show()
+        default:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
+            banner.show()
+        }
         NotificationCenter.default.post(name:
             NSNotification.Name(rawValue: NotificationNames.refreshData),
                                         object: nil, userInfo: nil)

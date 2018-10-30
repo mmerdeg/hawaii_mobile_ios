@@ -12,9 +12,11 @@ import UserNotificationsUI
 import Kingfisher
 import Swinject
 import SwinjectStoryboard
+import Alamofire
+import CodableAlamofire
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
-
+    
     @IBOutlet weak var date: UILabel!
     
     @IBOutlet weak var requestPerson: UILabel!
@@ -31,81 +33,96 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     @IBOutlet weak var requestReason: UILabel!
     
+    let requestUrl = "https://hawaii2.execom.eu/requests"
+    
+    let applicationTag = "com.hawaii.keys."
+    
+    
+    let tokenKey = "token"
+    
     var requestUseCase: RequestUseCaseProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any required interface initialization here.
-        self.view.backgroundColor = #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.2039215686, alpha: 1)
+        self.view.backgroundColor =  UIColor.cyan
     }
     
     func didReceive(_ notification: UNNotification) {
+        guard let requestId = notification.request.content.userInfo["requestId"] as? String else {
+            return
+        }
         
+        let token = getItem(key: tokenKey)
         
+        print(notification)
     }
     
-    
+    func getBy(id: Int, token: String, completion: @escaping (GenericResponse<Request>) -> Void) {
+        guard let url = URL(string: requestUrl + "/\(id)") else {
+            return
+        }
+        let completionHandler: (_ response: DataResponse<Request>) -> Void = { (response: DataResponse<Request>) in
+            switch response.result {
+            case .success:
+                completion(GenericResponse<Request> (success: true, item: response.result.value,
+                                                     statusCode: response.response?.statusCode, error: nil, message: nil))
+            case .failure(let error):
+                print(error)
+                completion(GenericResponse<Request> (success: false, item: nil, statusCode: response.response?.statusCode,
+                                                     error: error,
+                                                     message: response.error?.localizedDescription))
+            }
+        }
+        Alamofire.request(url, method: .get, headers: getHeaders(token: token)).validate().responseDecodableObject(keyPath: nil,
+                                                                                                                   decoder: getDecoder(),
+                                                                                                                   completionHandler: completionHandler)
+    }
     
     func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
-//        guard let requestId = notification.request.content.userInfo["requestId"] as? Int else {
-//            return
-//        }
-        requestUseCase?.getBy(id: 14, completion: { requestResponse in
-            guard let success = requestResponse.success else {
-                return
-            }
-            if success {
-                guard let request = requestResponse.item,
-                    let notes = request.reason,
-                    let imageUrl = request.absence?.iconUrl,
-                    let duration = request.days?.first?.duration?.description,
-                    let startDate = request.days?.first?.date,
-                    let endDate = request.days?.last?.date,
-                    let reason = request.absence?.name,
-                    let color = request.requestStatus?.backgoundColor,
-                    let status = request.requestStatus,
-                    let userFullname = request.user?.fullName else {
-                        return
-                }
-                
-                self.date.text = "submission date"
-                self.requestNotes.text = notes
-                self.requestDuration.text = String(duration)
-                self.requestPerson.text = userFullname
-                self.requestReason.text = reason
-                
-                let formatter = DisplayedDateFormatter()
-                let start = formatter.string(from: startDate)
-                let end = formatter.string(from: endDate)
-                self.requestDates.text = start == end ? start : start + " - " + end
-                self.view.backgroundColor = UIColor.lightPrimaryColor
-                self.date.text = self.convertDateString(dateString: request.submissionTime ?? "",
-                                                        fromFormat: "yyyy-MM-dd'T'HH:mm:ss",
-                                                        toFormat: "dd.MM.yyyy.")
-                
-                self.requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
-                self.requestImage.image = self.requestImage.image?.withRenderingMode(.alwaysTemplate)
-                self.requestImage.tintColor = UIColor.primaryColor
-                self.requestImage.backgroundColor = color
-                self.requestImage.layer.cornerRadius = self.requestImage.frame.height / 2
-                self.requestImage.layer.masksToBounds = true
-                self.requestImageFrame.backgroundColor = color
-                self.requestImageFrame.layer.cornerRadius = self.requestImageFrame.frame.height / 2
-                self.requestImageFrame.layer.masksToBounds = true
-            }
-        })
+        
+        
     }
     
-    func convertDateString(dateString: String, fromFormat sourceFormat: String, toFormat desFormat: String) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = sourceFormat
-        dateFormatter.calendar = Calendar(identifier: .iso8601)
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let date = dateFormatter.date(from: dateString)
-        dateFormatter.dateFormat = desFormat
-        
-        return dateFormatter.string(from: date ?? Date())
+    func getHeaders(token: String) -> HTTPHeaders {
+        let authHeader = "X-AUTH-TOKEN"
+        return [authHeader: token]
     }
-
+    
+    func getDecoder() -> JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(getDateFormatter())
+        return decoder
+    }
+    
+    func getDateFormatter() -> DateFormatter {
+        return DateFormatter()
+    }
+    
+    func getItem(key: String) -> String {
+        let getItemQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
+                                           kSecAttrService as String: applicationTag,
+                                           kSecAttrAccount as String: key,
+                                           kSecMatchLimit as String: kSecMatchLimitOne,
+                                           kSecReturnAttributes as String: true,
+                                           kSecReturnData as String: true]
+        var itemRef: CFTypeRef?
+        let status = SecItemCopyMatching(getItemQuery as CFDictionary, &itemRef)
+        guard status != errSecItemNotFound else {
+            print("Item not found!")
+            return ""
+        }
+        guard status == errSecSuccess else {
+            print("Item retrieving failed!")
+            return ""
+        }
+        
+        guard let existingItem = itemRef as? [String: Any],
+            let itemData = existingItem[kSecValueData as String] as? Data,
+            let itemString = String(data: itemData, encoding: String.Encoding.utf8) else {
+                return ""
+        }
+        return itemString
+    }
+    
 }

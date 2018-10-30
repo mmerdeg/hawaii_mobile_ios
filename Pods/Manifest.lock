@@ -83,13 +83,18 @@ PODS:
     - GTMSessionFetcher/Core (= 1.2.0)
   - JTAppleCalendar (7.1.6)
   - Kingfisher (4.10.0)
+  - MarqueeLabel/Swift (3.2.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - NotificationBannerSwift (1.7.3):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.0.1)
   - PocketSVG (2.4.1)
   - Protobuf (3.6.1)
+  - SnapKit (4.0.1)
   - SwiftLint (0.27.0)
   - Swinject (2.5.0)
   - SwinjectStoryboard (2.1.0):
@@ -105,6 +110,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - JTAppleCalendar
   - Kingfisher
+  - NotificationBannerSwift
   - PocketSVG
   - SwiftLint
   - Swinject
@@ -131,9 +137,12 @@ SPEC REPOS:
     - GTMSessionFetcher
     - JTAppleCalendar
     - Kingfisher
+    - MarqueeLabel
     - nanopb
+    - NotificationBannerSwift
     - PocketSVG
     - Protobuf
+    - SnapKit
     - SwiftLint
     - Swinject
     - SwinjectStoryboard
@@ -158,14 +167,17 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
+  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NotificationBannerSwift: c9f4bc868d78df975ed59c0b2fccdbbe0e863efe
   PocketSVG: 94d9740c885167f680b0175e00dd7c4153e129ab
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
   SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
   YLProgressBar: 365b6c5e934be18b661f79413db33c993c8e8251
 
-PODFILE CHECKSUM: e123b06c87d86344531908f6b7697c4a396af4aa
+PODFILE CHECKSUM: bb867fb92d68342fc13727cfb021f2e7eec08c53
 
 COCOAPODS: 1.5.3
