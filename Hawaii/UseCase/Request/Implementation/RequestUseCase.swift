@@ -16,6 +16,8 @@ protocol RequestUseCaseProtocol {
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
+    func getBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void)
+    
     func getAllBy(id: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
@@ -47,6 +49,12 @@ class RequestUseCase: RequestUseCaseProtocol {
         self.requestRepository = entityRepository
         self.userUseCase = userUseCase
         self.userDetailsUseCase = userDetailsUseCase
+    }
+    
+    func getBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
+        requestRepository?.getBy(id: id, token: getToken(), completion: { response in
+            completion(response)
+        })
     }
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {

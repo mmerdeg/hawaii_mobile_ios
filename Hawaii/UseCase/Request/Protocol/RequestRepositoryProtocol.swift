@@ -13,6 +13,8 @@ protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     
     func getAll(token: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
+    func getBy(id: Int, token: String, completion: @escaping (GenericResponse<Request>) -> Void)
+    
     func getAllBy(token: String, id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
     func add(token: String, request: Request, completion: @escaping (GenericResponse<Request>) -> Void)

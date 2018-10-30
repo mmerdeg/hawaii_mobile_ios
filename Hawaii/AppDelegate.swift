@@ -5,7 +5,6 @@ import Swinject
 import SwinjectStoryboard
 import Firebase
 import UserNotifications
-import NotificationBannerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -242,11 +241,16 @@ extension SwinjectStoryboard {
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
+                
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(NotificationViewController.self) { resolver, controller in
+                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
             }
             
         }

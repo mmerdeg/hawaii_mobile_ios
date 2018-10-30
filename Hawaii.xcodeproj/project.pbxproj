@@ -8,20 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		0FEB42E150B94A71508CDC03 /* Pods_Hawaii_production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */; };
-		3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
-		3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* Bonus.storyboard */; };
+		3013931D215CA88400F65B7F /* BonusRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* BonusRequest.storyboard */; };
+		3013931E215CA88400F65B7F /* BonusRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013931C215CA88400F65B7F /* BonusRequest.storyboard */; };
 		30139323215CA90800F65B7F /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* Request.storyboard */; };
 		30139324215CA90800F65B7F /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* Request.storyboard */; };
 		30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
-		30139329215CBE7A00F65B7F /* Sick.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* Sick.storyboard */; };
-		3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* Sick.storyboard */; };
+		30139329215CBE7A00F65B7F /* SickRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* SickRequest.storyboard */; };
+		3013932A215CBE7A00F65B7F /* SickRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139328215CBE7A00F65B7F /* SickRequest.storyboard */; };
 		3013932C215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* LeaveRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */; };
 		301F8E3C2182F95600164761 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301F8E3B2182F95600164761 /* Storyboard.storyboard */; };
-		301F8E3D2182F95600164761 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301F8E3B2182F95600164761 /* Storyboard.storyboard */; };
 		301F8E3F2182F9FD00164761 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E3E2182F9FD00164761 /* CalendarViewController.swift */; };
 		301F8E402182F9FD00164761 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E3E2182F9FD00164761 /* CalendarViewController.swift */; };
+		301F8E6F2186F1F000164761 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301F8E6E2186F1F000164761 /* UserNotifications.framework */; };
+		301F8E712186F1F000164761 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301F8E702186F1F000164761 /* UserNotificationsUI.framework */; };
+		301F8E742186F1F100164761 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E732186F1F100164761 /* NotificationViewController.swift */; };
+		301F8E772186F1F100164761 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 301F8E752186F1F100164761 /* MainInterface.storyboard */; };
+		301F8E7B2186F1F100164761 /* RequestNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 301F8E6D2186F1F000164761 /* RequestNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		301F8E9021874C0000164761 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E732186F1F100164761 /* NotificationViewController.swift */; };
+		301F8E9121874C0100164761 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301F8E732186F1F100164761 /* NotificationViewController.swift */; };
+		301F8E9221874C3B00164761 /* RequestUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592120E259C800F22BBD /* RequestUseCase.swift */; };
+		301F8E9321874C5200164761 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
+		301F8E9421874C6300164761 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
+		301F8E9521874C6C00164761 /* RequestRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepositoryProtocol.swift */; };
+		301F8E9621874C8600164761 /* GenericRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C442F2154E243003F16CC /* GenericRepositoryProtocol.swift */; };
+		301F8E9721874C9700164761 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
+		301F8E9821874C9D00164761 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
+		301F8E9921874CBF00164761 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
+		301F8E9A21874CCD00164761 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
+		301F8E9B21874CE900164761 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
+		301F8E9C21874CFD00164761 /* UserDaoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E35CA9B215E14E70042E65A /* UserDaoProtocol.swift */; };
+		301F8E9D21874D0900164761 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */; };
+		301F8E9E21874D0E00164761 /* UsersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44322154F022003F16CC /* UsersResponse.swift */; };
+		301F8E9F21874D2F00164761 /* RequestDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */; };
+		301F8EA021874D3900164761 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
+		301F8EA121874D3E00164761 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
+		301F8EA221874D4D00164761 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
+		301F8EA321874D6400164761 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
+		301F8EA421874EEB00164761 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DEA21777B7300C7F784 /* ViewConstants.swift */; };
+		301F8EA521874F2D00164761 /* DisplayedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */; };
 		302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
 		302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		302EE1732133F549001355E9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
@@ -177,7 +203,6 @@
 		30FD36D9214A5E530047038C /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
 		30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
-		30FD36DC214A5E530047038C /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
 		30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
 		30FD36DE214A5E530047038C /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
 		30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
@@ -214,7 +239,6 @@
 		3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78A20E3845300F1C6D5 /* History.storyboard */; };
 		3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78C20E3849400F1C6D5 /* More.storyboard */; };
-		3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78E20E384D600F1C6D5 /* Leave.storyboard */; };
 		3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */; };
 		3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */; };
 		3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */; };
@@ -279,9 +303,17 @@
 		3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */; };
 		682DDCDE6AE8A763DE840C0E /* Pods_HawaiiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */; };
 		848C43317462A4E1A2DFBFBA /* Pods_Hawaii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */; };
+		9A683B3BB975AE686193E38F /* Pods_RequestNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2397917195F000DDB1393EFC /* Pods_RequestNotification.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		301F8E792186F1F100164761 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EB5642D20CA69E900501CAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 301F8E6C2186F1F000164761;
+			remoteInfo = RequestNotification;
+		};
 		302EE16F2133C93B001355E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
@@ -341,6 +373,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		301F8E7F2186F1F100164761 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				301F8E7B2186F1F100164761 /* RequestNotification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		302EE1712133C93B001355E9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,14 +410,23 @@
 
 /* Begin PBXFileReference section */
 		070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.release.xcconfig"; sourceTree = "<group>"; };
+		19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.release.xcconfig"; sourceTree = "<group>"; };
 		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3013931C215CA88400F65B7F /* Bonus.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bonus.storyboard; sourceTree = "<group>"; };
+		2397917195F000DDB1393EFC /* Pods_RequestNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.debug.xcconfig"; sourceTree = "<group>"; };
+		3013931C215CA88400F65B7F /* BonusRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BonusRequest.storyboard; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* Request.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
-		30139328215CBE7A00F65B7F /* Sick.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sick.storyboard; sourceTree = "<group>"; };
+		30139328215CBE7A00F65B7F /* SickRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SickRequest.storyboard; sourceTree = "<group>"; };
 		3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaveRequest.storyboard; sourceTree = "<group>"; };
 		301F8E3B2182F95600164761 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		301F8E3E2182F9FD00164761 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		301F8E6D2186F1F000164761 /* RequestNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RequestNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		301F8E6E2186F1F000164761 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		301F8E702186F1F000164761 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		301F8E732186F1F100164761 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		301F8E762186F1F100164761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		301F8E782186F1F100164761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -458,7 +510,6 @@
 		3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCalendar.storyboard; sourceTree = "<group>"; };
 		3E28E78A20E3845300F1C6D5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		3E28E78C20E3849400F1C6D5 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
-		3E28E78E20E384D600F1C6D5 /* Leave.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Leave.storyboard; sourceTree = "<group>"; };
 		3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
 		3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailTableViewCell.swift; sourceTree = "<group>"; };
 		3E28E79320E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -529,6 +580,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		301F8E6A2186F1F000164761 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301F8E712186F1F000164761 /* UserNotificationsUI.framework in Frameworks */,
+				301F8E6F2186F1F000164761 /* UserNotifications.framework in Frameworks */,
+				9A683B3BB975AE686193E38F /* Pods_RequestNotification.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD36CE214A5E530047038C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,8 +636,29 @@
 				833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */,
 				E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */,
 				914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */,
+				301F8E6E2186F1F000164761 /* UserNotifications.framework */,
+				301F8E702186F1F000164761 /* UserNotificationsUI.framework */,
+				2397917195F000DDB1393EFC /* Pods_RequestNotification.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		301F8E652186E59A00164761 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				301F8E3B2182F95600164761 /* Storyboard.storyboard */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		301F8E722186F1F100164761 /* RequestNotification */ = {
+			isa = PBXGroup;
+			children = (
+				301F8E732186F1F100164761 /* NotificationViewController.swift */,
+				301F8E752186F1F100164761 /* MainInterface.storyboard */,
+				301F8E782186F1F100164761 /* Info.plist */,
+			);
+			path = RequestNotification;
 			sourceTree = "<group>";
 		};
 		3051684A217DACF900AAEA7D /* Hawaii Staging */ = {
@@ -618,6 +700,26 @@
 				3074134D2142761C00F05427 /* PublicHolidayUseCase.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		3E1047B12181DDD0003ECC4C /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				30139322215CA90800F65B7F /* Request.storyboard */,
+				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
+				30139328215CBE7A00F65B7F /* SickRequest.storyboard */,
+				3013931C215CA88400F65B7F /* BonusRequest.storyboard */,
+				3E832317216CADCC0068E37F /* Summary.storyboard */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		3E1047B52181E02D003ECC4C /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		3E15C36820E6150700DB2CF7 /* Style */ = {
@@ -735,19 +837,13 @@
 		3E28E78520E3774500F1C6D5 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3E1047B52181E02D003ECC4C /* Component */,
+				3E1047B12181DDD0003ECC4C /* Request */,
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
-				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
-				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
-				3E28E78E20E384D600F1C6D5 /* Leave.storyboard */,
+				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
 				3E3550FD2121789300B43B57 /* Approval.storyboard */,
-				3013931C215CA88400F65B7F /* Bonus.storyboard */,
-				30139322215CA90800F65B7F /* Request.storyboard */,
-				30139325215CAACB00F65B7F /* RemainingDays.storyboard */,
-				30139328215CBE7A00F65B7F /* Sick.storyboard */,
-				3013932B215CBE8F00F65B7F /* LeaveRequest.storyboard */,
-				3E832317216CADCC0068E37F /* Summary.storyboard */,
-				301F8E3B2182F95600164761 /* Storyboard.storyboard */,
+				3E28E78C20E3849400F1C6D5 /* More.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -893,10 +989,10 @@
 				3E42592C20E26A1900F22BBD /* UIColorExtension.swift */,
 				3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */,
 				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
+				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				309B6D61216736880046EFE9 /* StringExtension.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
-				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -996,10 +1092,12 @@
 				3EB5643720CA69E900501CAC /* Hawaii */,
 				3EB5644C20CA69EA00501CAC /* HawaiiTests */,
 				3EB5645720CA69EA00501CAC /* HawaiiUITests */,
+				301F8E722186F1F100164761 /* RequestNotification */,
 				3EB5643620CA69E900501CAC /* Products */,
 				F28D0C5FDB4E4C6C7D92927D /* Pods */,
 				08624EF672D76C3B7D6C231E /* Frameworks */,
 				30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */,
+				301F8E652186E59A00164761 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1010,6 +1108,7 @@
 				3EB5644920CA69EA00501CAC /* HawaiiTests.xctest */,
 				3EB5645420CA69EA00501CAC /* HawaiiUITests.xctest */,
 				30FD36EF214A5E530047038C /* Hawaii production.app */,
+				301F8E6D2186F1F000164761 /* RequestNotification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1147,6 +1246,8 @@
 				070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */,
 				5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */,
 				1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */,
+				23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */,
+				19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1154,6 +1255,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		301F8E6C2186F1F000164761 /* RequestNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 301F8E7C2186F1F100164761 /* Build configuration list for PBXNativeTarget "RequestNotification" */;
+			buildPhases = (
+				2A20E45CC3B83BA14C807F39 /* [CP] Check Pods Manifest.lock */,
+				301F8E692186F1F000164761 /* Sources */,
+				301F8E6A2186F1F000164761 /* Frameworks */,
+				301F8E6B2186F1F000164761 /* Resources */,
+				38A16BF191EB1CFF1059611B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RequestNotification;
+			productName = RequestNotification;
+			productReference = 301F8E6D2186F1F000164761 /* RequestNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		30FD367A214A5E530047038C /* Hawaii production */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30FD36EC214A5E530047038C /* Build configuration list for PBXNativeTarget "Hawaii production" */;
@@ -1166,11 +1286,13 @@
 				30FD36EA214A5E530047038C /* Embed Frameworks */,
 				5DEAF544C4FE7C02D1F33015 /* [CP] Embed Pods Frameworks */,
 				872AA06CA4560ECF1E7CC76C /* [CP] Copy Pods Resources */,
+				301F8E7F2186F1F100164761 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				30FD367B214A5E530047038C /* PBXTargetDependency */,
+				301F8E7A2186F1F100164761 /* PBXTargetDependency */,
 			);
 			name = "Hawaii production";
 			productName = Hawaii;
@@ -1244,10 +1366,13 @@
 		3EB5642D20CA69E900501CAC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Server;
 				TargetAttributes = {
+					301F8E6C2186F1F000164761 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					30FD367A214A5E530047038C = {
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
@@ -1307,6 +1432,7 @@
 				3EB5644820CA69EA00501CAC /* HawaiiTests */,
 				3EB5645320CA69EA00501CAC /* HawaiiUITests */,
 				30FD367A214A5E530047038C /* Hawaii production */,
+				301F8E6C2186F1F000164761 /* RequestNotification */,
 			);
 		};
 /* End PBXProject section */
@@ -1343,15 +1469,23 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		301F8E6B2186F1F000164761 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301F8E772186F1F100164761 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD36D3214A5E530047038C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3013931E215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				3013931E215CA88400F65B7F /* BonusRequest.storyboard in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
-				3013932A215CBE7A00F65B7F /* Sick.storyboard in Resources */,
+				3013932A215CBE7A00F65B7F /* SickRequest.storyboard in Resources */,
 				30FD36D6214A5E530047038C /* FilterHeaderTableViewCell.xib in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1359,7 +1493,6 @@
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
 				30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */,
 				30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */,
-				30FD36DC214A5E530047038C /* Leave.storyboard in Resources */,
 				30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */,
 				30FD36DE214A5E530047038C /* Dashboard.storyboard in Resources */,
 				30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */,
@@ -1370,7 +1503,6 @@
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				309B6CF4216603F00046EFE9 /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
-				301F8E3D2182F95600164761 /* Storyboard.storyboard in Resources */,
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
@@ -1388,13 +1520,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3013931D215CA88400F65B7F /* Bonus.storyboard in Resources */,
+				3013931D215CA88400F65B7F /* BonusRequest.storyboard in Resources */,
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
 				309B6CF9216604270046EFE9 /* deleteUser.sql in Resources */,
 				309B6CF3216603F00046EFE9 /* readUser.sql in Resources */,
-				30139329215CBE7A00F65B7F /* Sick.storyboard in Resources */,
+				30139329215CBE7A00F65B7F /* SickRequest.storyboard in Resources */,
 				3EA0C6F3213437AC00F7A086 /* FilterHeaderTableViewCell.xib in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1402,7 +1534,6 @@
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
-				3E28E78F20E384D600F1C6D5 /* Leave.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,
@@ -1442,6 +1573,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A20E45CC3B83BA14C807F39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RequestNotification-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		30FD36E9214A5E530047038C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1454,6 +1603,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+		38A16BF191EB1CFF1059611B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		3E6AEFE920D3BD9B002E8F61 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1475,25 +1642,38 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/EKBlurAlert/EKBlurAlert.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
-				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS10.0/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS12.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS12.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS12.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS12.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS12.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS12.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS12.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS12.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS12.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS12.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS12.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS12.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS12.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS12.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS12.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1507,11 +1687,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
@@ -1637,25 +1814,22 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/EKBlurAlert/EKBlurAlert.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
-				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS10.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1669,11 +1843,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLProgressBar.framework",
@@ -1687,6 +1858,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		301F8E692186F1F000164761 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301F8E9B21874CE900164761 /* Allowance.swift in Sources */,
+				301F8EA021874D3900164761 /* Request.swift in Sources */,
+				301F8E9321874C5200164761 /* GenericResponse.swift in Sources */,
+				301F8E9721874C9700164761 /* UserDetailsUseCase.swift in Sources */,
+				301F8EA321874D6400164761 /* UIColorExtension.swift in Sources */,
+				301F8EA521874F2D00164761 /* DisplayedDateFormatter.swift in Sources */,
+				301F8E742186F1F100164761 /* NotificationViewController.swift in Sources */,
+				301F8E9421874C6300164761 /* Year.swift in Sources */,
+				301F8E9E21874D0E00164761 /* UsersResponse.swift in Sources */,
+				301F8E9C21874CFD00164761 /* UserDaoProtocol.swift in Sources */,
+				301F8E9921874CBF00164761 /* UserDetailsRepositoryProtocol.swift in Sources */,
+				301F8EA421874EEB00164761 /* ViewConstants.swift in Sources */,
+				301F8EA221874D4D00164761 /* Absence.swift in Sources */,
+				301F8E9821874C9D00164761 /* UserUseCase.swift in Sources */,
+				301F8E9521874C6C00164761 /* RequestRepositoryProtocol.swift in Sources */,
+				301F8EA121874D3E00164761 /* Day.swift in Sources */,
+				301F8E9221874C3B00164761 /* RequestUseCase.swift in Sources */,
+				301F8E9A21874CCD00164761 /* User.swift in Sources */,
+				301F8E9D21874D0900164761 /* UserRepositoryProtocol.swift in Sources */,
+				301F8E9621874C8600164761 /* GenericRepositoryProtocol.swift in Sources */,
+				301F8E9F21874D2F00164761 /* RequestDateFormatter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD367E214A5E530047038C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1715,6 +1914,7 @@
 				30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */,
 				30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */,
 				30FD3690214A5E530047038C /* BonusRequestViewController.swift in Sources */,
+				301F8E9121874C0100164761 /* NotificationViewController.swift in Sources */,
 				30FD3692214A5E530047038C /* ExpandableData.swift in Sources */,
 				30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */,
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
@@ -1819,6 +2019,7 @@
 				3042CA8321536DF9002446FE /* Pagable.swift in Sources */,
 				3E28E78020E3628200F1C6D5 /* BonusRequestViewController.swift in Sources */,
 				3074131A21380FFF00F05427 /* ExpandableData.swift in Sources */,
+				301F8E9021874C0000164761 /* NotificationViewController.swift in Sources */,
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
@@ -1914,6 +2115,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		301F8E7A2186F1F100164761 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 301F8E6C2186F1F000164761 /* RequestNotification */;
+			targetProxy = 301F8E792186F1F100164761 /* PBXContainerItemProxy */;
+		};
 		302EE1702133C93B001355E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ECFoundationiOS;
@@ -1937,6 +2143,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		301F8E752186F1F100164761 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				301F8E762186F1F100164761 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		3EB5643C20CA69E900501CAC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1956,6 +2170,55 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		301F8E7D2186F1F100164761 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23E4195510E088E63F36B4F6 /* Pods-RequestNotification.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		301F8E7E2186F1F100164761 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEVELOPMENT";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		30FD36ED214A5E530047038C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */;
@@ -2299,6 +2562,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		301F8E7C2186F1F100164761 /* Build configuration list for PBXNativeTarget "RequestNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				301F8E7D2186F1F100164761 /* Debug */,
+				301F8E7E2186F1F100164761 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30FD36EC214A5E530047038C /* Build configuration list for PBXNativeTarget "Hawaii production" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

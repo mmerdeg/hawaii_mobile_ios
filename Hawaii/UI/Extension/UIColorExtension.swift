@@ -39,7 +39,6 @@ extension UIColor {
         return #colorLiteral(red: 0.9490196078, green: 0.1843137255, blue: 0.4274509804, alpha: 1)
     }
     
-    // TODO: Define sickness color
     class var sickColor: UIColor {
         return accentColor
     }
@@ -49,7 +48,6 @@ extension UIColor {
     }
     class var remainingColor: UIColor {
         return #colorLiteral(red: 0.2039215686, green: 0.8823529412, blue: 0.9882352941, alpha: 1)
-      //  return #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)
     }
     
     class var canceledColor: UIColor {

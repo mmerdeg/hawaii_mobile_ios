@@ -13,7 +13,10 @@ class RequestTableViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let selectParametersSegue = "selectParameters"
+    
     let selectAbsenceSegue = "selectAbsence"
+    
+    let showDatePickerSegue = "showDatePicker"
     
     var items: [CellData] = []
     
@@ -23,16 +26,7 @@ class RequestTableViewController: BaseViewController {
     
     var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
     
-    //var selectedTypeIndex = 0
-    
     var selectedDuration = ""
-    var selectedAbsence: Absence? {
-        didSet {
-            if let selectedAbsence = selectedAbsence {
-                delegate?.didSelect(absence: selectedAbsence)
-            }
-        }
-    }
     
     var startDate: Date?
     
@@ -44,7 +38,13 @@ class RequestTableViewController: BaseViewController {
     
     weak var delegate: SelectAbsenceProtocol?
     
-    let showDatePickerSegue = "showDatePicker"
+    var selectedAbsence: Absence? {
+        didSet {
+            if let selectedAbsence = selectedAbsence {
+                delegate?.didSelect(absence: selectedAbsence)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,58 +62,41 @@ class RequestTableViewController: BaseViewController {
             return
         }
         
-        if requestType == .deducted {
-            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, response in
-                guard let success = response.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                        self.dateItems = items
-                        self.setItems(data: data)
-                        self.typeData = leaveTypeData
-                        self.selectedAbsence = response.item?.first
-                        
-                        self.stopActivityIndicatorSpinner()
-                    })
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
-            
+        switch requestType {
+        case .sick:
+            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse in
+                self.handleTableDataResponse(data: data, typeData: sicknessTypeData, response: sicknessResponse)
             })
-        } else if requestType == .sick {
-            tableDataProviderUseCase?.getSicknessData(completion: { data, sicknessTypeData, sicknessResponse  in
-                guard let success = sicknessResponse.success else {
-                    self.stopActivityIndicatorSpinner()
-                    return
-                }
-                if success {
-                    self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                        self.dateItems = items
-                        self.setItems(data: data)
-                        self.typeData = sicknessTypeData
-                        self.selectedAbsence = sicknessResponse.item?.first
-                    })
-                } else {
-                    ViewUtility.showAlertWithAction(title: "Error", message: sicknessResponse.message ?? "", viewController: self, completion: { _ in
-                        self.stopActivityIndicatorSpinner()
-                        
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
+        case .bonus:
+            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, bonusResponse in
+                self.handleTableDataResponse(data: data, typeData: bonusTypeData, response: bonusResponse)
+            })
+        default:
+            tableDataProviderUseCase?.getLeaveData(completion: { data, leaveTypeData, leaveResponse in
+                self.handleTableDataResponse(data: data, typeData: leaveTypeData, response: leaveResponse)
+            })
+        }
+    }
+    
+    func handleTableDataResponse(data: [CellData], typeData: [String: [Absence]], response: GenericResponse<[Absence]>) {
+        
+        let alertTitle = "Error"
+        
+        self.stopActivityIndicatorSpinner()
+        
+        guard let success = response.success else {
+            return
+        }
+        if success {
+            self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
+                self.dateItems = items
+                self.setItems(data: data)
+                self.typeData = typeData
+                self.selectedAbsence = response.item?.first
             })
         } else {
-            tableDataProviderUseCase?.getBonusData(completion: { data, bonusTypeData, response   in
-                self.tableDataProviderUseCase?.getExpandableData(forDate: self.startDate ?? Date(), completion: { items in
-                    self.dateItems = items
-                    self.setItems(data: data)
-                    self.typeData = bonusTypeData
-                    self.selectedAbsence = response.item?.first
-                })
+            ViewUtility.showAlertWithAction(title: alertTitle, message: response.message ?? "", viewController: self, completion: { _ in
+                self.navigationController?.popViewController(animated: true)
             })
         }
     }
@@ -124,32 +107,42 @@ class RequestTableViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let durationTitle = "Duration"
+        let leaveTitle = "Type of leave"
+        let sicknessTitle = "Type of sickness"
+        
         if segue.identifier == selectParametersSegue {
+            
             guard let controller = segue.destination as? SelectRequestParamsViewController,
                 let data = sender as? [SectionData] else {
                     return
             }
             controller.items = data
             if data[0].name == nil {
-                controller.title = "Duration"
+                controller.title = durationTitle
             } else if requestType == .deducted {
-                controller.title = "Type of leave"
+                controller.title = leaveTitle
             } else {
-                controller.title = "Type of sickness"
+                controller.title = sicknessTitle
             }
             controller.delegate = self
+            
         } else if segue.identifier == selectAbsenceSegue {
+            
             guard let controller = segue.destination as? SelectAbsenceViewController else {
                 return
             }
             if requestType == .deducted {
-                controller.title = "Type of leave"
+                controller.title = leaveTitle
             } else {
-                controller.title = "Type of sickness"
+                controller.title = sicknessTitle
             }
             controller.items = typeData
             controller.delegate = self
+            
         } else if segue.identifier == showDatePickerSegue {
+            
             guard let controller = segue.destination as? CustomDatePickerTableViewController,
                 let params = sender as? (Bool, Date, Date) else {
                     return
@@ -171,30 +164,33 @@ class RequestTableViewController: BaseViewController {
 
 extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case 0:
             return dateItems.count
-        } else if section == 1 {
+        case 1:
             return items.count
-        } else {
+        default:
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath)
+       
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
         cell.backgroundColor = UIColor.transparentColor
-        if indexPath.section == 0 {
+        
+        switch indexPath.section {
+        case 0:
             let formatter = DisplayedDateFormatter()
             cell.textLabel?.text = dateItems[indexPath.row].title
             cell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
-        } else if indexPath.section == 1 {
+        case 1:
             cell.textLabel?.text = self.items[indexPath.row].title
             cell.detailTextLabel?.text = self.items[indexPath.row].description
-        } else {
+        default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InputTableViewCell.self), for: indexPath)
                 as? InputTableViewCell else {
                     return UITableViewCell(style: .default, reuseIdentifier: "Cell")
@@ -202,40 +198,44 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
             cell.backgroundColor = UIColor.transparentColor
             return cell
         }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        
+        let datePickerSelected = indexPath.section == 0
+        let absencePickerSelected = indexPath.row == 0
+        let isBonusRequest = items.count != 2
+        
+        if datePickerSelected {
             self.performSegue(withIdentifier: showDatePickerSegue,
                               sender: (indexPath.row == 1 ? true : false, startDate, endDate))
-        } else {
-            if indexPath.row == 0 && items.count == 2 {
-                self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
-            } else {
-                if isMultipleDaysSelected {
-                    if requestType == .bonus {
-                        tableDataProviderUseCase?.getBonusDaysDurationData(completion: { data in
-                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                        })
-                    } else {
-                        tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
-                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                        })
-                    }
-                } else {
-                    if requestType == .bonus {
-                        tableDataProviderUseCase?.getBonusDaysDurationData(completion: { data in
-                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                        })
-                    } else {
-                        tableDataProviderUseCase?.getDurationData(completion: { data in
-                            self.performSegue(withIdentifier: self.selectParametersSegue, sender: data)
-                        })
-                    }
-                }
-            }
+            return
         }
+        if absencePickerSelected && !isBonusRequest {
+            self.performSegue(withIdentifier: self.selectAbsenceSegue, sender: nil)
+            return
+        }
+        if isBonusRequest {
+            tableDataProviderUseCase?.getBonusDaysDurationData(completion: { data in
+                self.selectRequestParameters(data)
+            })
+            return
+        }
+        if isMultipleDaysSelected {
+            tableDataProviderUseCase?.getMultipleDaysDurationData(completion: { data in
+                self.selectRequestParameters(data)
+            })
+            return
+        }
+        tableDataProviderUseCase?.getDurationData(completion: { data in
+            self.selectRequestParameters(data)
+        })
+    }
+    
+    func selectRequestParameters(_ data: [SectionData]? = nil) {
+        performSegue(withIdentifier: self.selectParametersSegue, sender: data)
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -247,13 +247,11 @@ extension RequestTableViewController: SelectRequestParamProtocol {
     
     func didSelect(requestParam: String, requestParamType: String, index: Int) {
         selectedDuration = requestParam
-        if items.count == 2 {
-            tableView.cellForRow(at: IndexPath(row: 1, section: 1))?.detailTextLabel?.text = requestParam
-        } else {
-            tableView.cellForRow(at: IndexPath(row: 0, section: 1))?.detailTextLabel?.text = requestParam
-        }
+        let isNotBonusRequest = items.count == 2
+        tableView.cellForRow(at: IndexPath(row: isNotBonusRequest ? 1 : 0, section: 1))?.detailTextLabel?.text = requestParam
     }
 }
+
 extension RequestTableViewController: SelectAbsenceProtocol {
     func didSelect(absence: Absence) {
         tableView.cellForRow(at: IndexPath(row: 0, section: 1))?.detailTextLabel?.text = absence.name
@@ -267,11 +265,12 @@ extension RequestTableViewController: DatePickerProtocol {
         self.startDate = startDate
         self.endDate = endDate ?? startDate
         self.isMultipleDaysSelected = isMultipleDaysSelected
-        let formatter = DisplayedDateFormatter()
+        
         guard let startDateCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)),
             let endDateCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) else {
                 return
         }
+        let formatter = DisplayedDateFormatter()
         startDateCell.detailTextLabel?.text = formatter.string(from: startDate ?? Date())
         endDateCell.detailTextLabel?.text = formatter.string(from: endDate ?? startDate ?? Date())
     }

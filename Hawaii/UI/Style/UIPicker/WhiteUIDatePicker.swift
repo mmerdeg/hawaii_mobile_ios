@@ -18,11 +18,9 @@ import UIKit
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        // custom setup
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // custom setup
         self.datePickerMode = .date
     }
 }

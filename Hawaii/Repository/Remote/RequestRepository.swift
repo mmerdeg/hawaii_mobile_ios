@@ -20,6 +20,8 @@ class RequestRepository: RequestRepositoryProtocol {
     
     let userRequestsUrl = ApiConstants.baseUrl + "/requests/user"
     
+    let requestUrl = ApiConstants.baseUrl + "/requests"
+    
     let requestsToApproveUrl = ApiConstants.baseUrl + "/requests/approval"
     
     let requestsByTeamByMonthUrl = ApiConstants.baseUrl + "/requests/team"
@@ -49,6 +51,15 @@ class RequestRepository: RequestRepositoryProtocol {
             }
         }
     
+    }
+    
+    func getBy(id: Int, token: String, completion: @escaping (GenericResponse<Request>) -> Void) {
+        guard let url = URL(string: requestUrl + "/\(id)") else {
+            return
+        }
+        genericCodableRequest(value: Request.self, url, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
     }
     
     func getAll(token: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {

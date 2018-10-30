@@ -30,7 +30,7 @@ extension CAGradientLayer {
      */
     func createGradientImage() -> UIImage? {
         
-        var image: UIImage? = nil
+        var image: UIImage?
         UIGraphicsBeginImageContext(bounds.size)
         if let context = UIGraphicsGetCurrentContext() {
             render(in: context)
