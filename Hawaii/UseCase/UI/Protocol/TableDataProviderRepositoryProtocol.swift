@@ -17,9 +17,7 @@ protocol TableDataProviderRepositoryProtocol: GenericRepositoryProtocol {
     func getBonusData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void)
     
     func getLeaveTypeData(completion: @escaping ([Absence]) -> Void)
-    
-    func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void)
-    
+        
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
     
     func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void)

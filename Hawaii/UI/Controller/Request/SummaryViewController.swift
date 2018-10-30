@@ -179,29 +179,26 @@ class SummaryViewController: BaseViewController {
                 self.view.isUserInteractionEnabled = true
                 return
             }
-            if success {
-                guard let request = requestResponse.item else {
-                    self.stopActivityIndicatorSpinner()
-                    self.view.isUserInteractionEnabled = true
-                    return
-                }
-                self.requestUpdateDelegate?.didAdd(request: request)
-                guard let viewControllers: [UIViewController] = self.navigationController?.viewControllers else {
-                    self.navigationController?.popViewController(animated: true)
-                    self.stopActivityIndicatorSpinner()
-                    self.view.isUserInteractionEnabled = true
-                    return
-                }
-                self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+            if !success {
+                self.handleResponseFaliure(message: requestResponse.message)
+                self.view.isUserInteractionEnabled = true
+                return
+            }
+            guard let request = requestResponse.item else {
                 self.stopActivityIndicatorSpinner()
                 self.view.isUserInteractionEnabled = true
-            } else {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                                                    self.view.isUserInteractionEnabled = true
-                })
+                return
             }
+            self.requestUpdateDelegate?.didAdd(request: request)
+            guard let viewControllers: [UIViewController] = self.navigationController?.viewControllers else {
+                self.navigationController?.popViewController(animated: true)
+                self.stopActivityIndicatorSpinner()
+                self.view.isUserInteractionEnabled = true
+                return
+            }
+            self.navigationController?.popToViewController(viewControllers[viewControllers.count - 3], animated: true)
+            self.stopActivityIndicatorSpinner()
+            self.view.isUserInteractionEnabled = true
         }
     }
     

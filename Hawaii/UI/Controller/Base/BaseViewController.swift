@@ -51,4 +51,11 @@ class BaseViewController: UIViewController {
             self.progressHUD.hide()
         }
     }
+    
+    func handleResponseFaliure(message: String?) {
+        self.stopActivityIndicatorSpinner()
+        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: message ?? "",
+                                        viewController: self, completion: { _ in
+        })
+    }
 }

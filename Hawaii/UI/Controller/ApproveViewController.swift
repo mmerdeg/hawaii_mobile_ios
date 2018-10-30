@@ -88,25 +88,21 @@ class ApproveViewController: BaseViewController {
         fillCalendar()
         self.refreshControl.endRefreshing()
         lastTimeSynced = Date()
-        
     }
     
     func fillCalendar() {
         startActivityIndicatorSpinner()
-        self.requestUseCase.getAllPendingForApprover(approver: -1) { request in
-            guard let success = request.success else {
+        self.requestUseCase.getAllPendingForApprover(approver: -1) { response in
+            guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if !success {
                 self.refreshControl.endRefreshing()
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: request.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                })
+                self.handleResponseFaliure(message: response.message)
                 return
             }
-            self.requests = request.item ?? []
+            self.requests = response.item ?? []
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()

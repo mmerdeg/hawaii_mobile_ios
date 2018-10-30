@@ -18,8 +18,6 @@ protocol TableDataProviderUseCaseProtocol {
     
     func getLeaveTypeData(completion: @escaping ([String: [Absence]]) -> Void)
     
-    func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void)
-    
     func getDurationData(completion: @escaping ([SectionData]) -> Void)
     
     func getMultipleDaysDurationData(completion: @escaping ([SectionData]) -> Void)
@@ -58,12 +56,6 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     func getBonusData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
         tableDataProviderRepository?.getBonusData(completion: { data, bonusTypeData, response  in
             completion(data, Dictionary(grouping: bonusTypeData, by: { $0.absenceType ?? "" }), response)
-        })
-    }
-    
-    func getSicknessTypeData(completion: @escaping ([SectionData]) -> Void) {
-        tableDataProviderRepository?.getSicknessTypeData(completion: { data in
-            completion(data)
         })
     }
     

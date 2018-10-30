@@ -32,6 +32,7 @@ class CustomDatePickerTableViewController: BaseViewController {
     var endDate: Date?
     
     var startDateCalendar = Date()
+    
     var endDateCalendar = Date()
     
     var items: [Date] = []
@@ -44,17 +45,17 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         dateLabel.textColor = UIColor.primaryTextColor
         closeButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
+        
         collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
         collectionView?.register(UINib(nibName: String(describing: DatePickerCollectionViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: DatePickerCollectionViewCell.self))
-
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
-        
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         
         setupCalendarView()
@@ -84,46 +85,39 @@ class CustomDatePickerTableViewController: BaseViewController {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                self.holidays = holidays
-                self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
-                    guard let success = yearsResponse.success else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    if success {
-                        guard let startYear = yearsResponse.item?.first,
-                            let endYear = yearsResponse.item?.last else {
-                                return
-                        }
-                        let startDateString = "01 01 \(startYear)"
-                        let endDateString = "31 12 \(endYear)"
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "dd MM yyyy"
-                        self.startDateCalendar = dateFormatter.date(from: startDateString) ?? Date()
-                        self.endDateCalendar = dateFormatter.date(from: endDateString) ?? Date()
-                        DispatchQueue.main.async {
-                            self.collectionView.reloadData()
-                            self.stopActivityIndicatorSpinner()
-                            
-                            self.collectionView.scrollToDate(Date(), animateScroll: false)
-                        }
-                    } else {
-                        self.stopActivityIndicatorSpinner()
-                        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: holidaysResponse?.message ?? "",
-                                                        viewController: self, completion: { _ in
-                        })
-                    }
-                    
-                })
-                
-            } else {
-                
-                self.stopActivityIndicatorSpinner()
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: holidaysResponse?.message ?? "",
-                                                viewController: self, completion: { _ in
-                })
+            if !success {
+                self.handleResponseFaliure(message: holidaysResponse?.message)
+                return
             }
+            self.holidays = holidays
+            
+            self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+                guard let success = yearsResponse.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if !success {
+                    self.handleResponseFaliure(message: yearsResponse.message)
+                    return
+                }
+                guard let startYear = yearsResponse.item?.first,
+                    let endYear = yearsResponse.item?.last else {
+                        return
+                }
+                let startDateString = "01 01 \(startYear)"
+                let endDateString = "31 12 \(endYear)"
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MM yyyy"
+                self.startDateCalendar = dateFormatter.date(from: startDateString) ?? Date()
+                self.endDateCalendar = dateFormatter.date(from: endDateString) ?? Date()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.stopActivityIndicatorSpinner()
+                    
+                    self.collectionView.scrollToDate(Date(), animateScroll: false)
+                }
+                
+            })
         })
     }
     
@@ -178,26 +172,25 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             cell.cellState = cellState
             cell.setCell(processor: processor)
             return cell
-        } else {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: DatePickerCollectionViewCell.self),
-                                                      for: indexPath)
-                             as? DatePickerCollectionViewCell else {
-                return JTAppleCell()
-            }
-            if cellState.dateBelongsTo == .thisMonth {
-                if containsDate(date: date) {
-                    cell.backgroundColor = UIColor.remainingColor
-                } else {
-                    cell.backgroundColor = UIColor.transparentColor
-                }
+        }
+        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: DatePickerCollectionViewCell.self),
+                                                  for: indexPath)
+                         as? DatePickerCollectionViewCell else {
+            return JTAppleCell()
+        }
+        if cellState.dateBelongsTo == .thisMonth {
+            if containsDate(date: date) {
+                cell.backgroundColor = UIColor.remainingColor
             } else {
                 cell.backgroundColor = UIColor.transparentColor
             }
-            
-            cell.cellState = cellState
-            cell.setCell(processor: processor)
-            return cell
+        } else {
+            cell.backgroundColor = UIColor.transparentColor
         }
+        
+        cell.cellState = cellState
+        cell.setCell(processor: processor)
+        return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -221,13 +214,13 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             items =  [startDate ?? Date(), endDate ?? Date()]
             selectDates()
             collectionView.reloadData()
-        } else {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me",
-                                            viewController: self) { _ in
-            }
-            startDate = tempStartDate
-            endDate = tempEndDate
+            return
         }
+        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me",
+                                        viewController: self) { _ in
+        }
+        startDate = tempStartDate
+        endDate = tempEndDate
         
     }
     
@@ -247,15 +240,15 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
         
         if Calendar.current.compare(date, to: endDate, toGranularity: .day) == .orderedSame {
             items = [date, date]
-        } else {
-            items = [date]
-            while date < endDate {
-                guard let selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
-                    return
-                }
-                date = selectedDate
-                items.append(selectedDate)
+            return
+        }
+        items = [date]
+        while date < endDate {
+            guard let selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
+                return
             }
+            date = selectedDate
+            items.append(selectedDate)
         }
     }
     

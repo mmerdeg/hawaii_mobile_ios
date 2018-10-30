@@ -195,19 +195,16 @@ class HistoryViewController: BaseViewController {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                self.requests = response.item ?? []
-                self.filteredRequests = response.item ?? []
-                DispatchQueue.main.async {
-                    self.customView.removeFromSuperview()
-                    self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
-                    self.stopActivityIndicatorSpinner()
-                }
-            } else {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
-                                                viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
+            if !success {
+                self.handleResponseFaliure(message: response.message)
+                return
+            }
+            self.requests = response.item ?? []
+            self.filteredRequests = response.item ?? []
+            DispatchQueue.main.async {
+                self.customView.removeFromSuperview()
+                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                self.stopActivityIndicatorSpinner()
             }
         }
     }
@@ -356,10 +353,7 @@ extension HistoryViewController: RequestCancelationProtocol {
             }
             
             if !success {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                })
+                self.handleResponseFaliure(message: response.message)
                 return
             }
             guard let index = self.tableView.indexPath(for: cell) else {

@@ -25,8 +25,9 @@ class MoreViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileImage.kf.setImage(with: URL(string:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"))
+        let imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"
+        
+        profileImage.kf.setImage(with: URL(string: imageUrl))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
         profileImage.layer.borderColor = UIColor.white.cgColor

@@ -13,7 +13,6 @@ protocol SearchDialogProtocol: NSObjectProtocol {
     func dismissDialog()
     
     func didFilterBy(year: String, leave: Bool, sick: Bool, bonus: Bool)
-    
 }
 
 class SearchRequestsViewController: UIViewController {
@@ -66,7 +65,6 @@ class SearchRequestsViewController: UIViewController {
             if !success {
                 ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: yearsResponse.message ?? "",
                                                 viewController: self, completion: { _ in
-                                                    
                 })
                 return
             }

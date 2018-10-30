@@ -13,6 +13,7 @@ class TeamPreviewViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     weak var delegate: RequestDetailsDialogProtocol?
+    
     var requests: [Int: [Request]]?
     
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ extension TeamPreviewViewController: UITableViewDelegate, UITableViewDataSource 
         cell.request = Array(requests ?? [:])[indexPath.section].value[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = UIColor.primaryTextColor

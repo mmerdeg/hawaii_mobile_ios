@@ -130,10 +130,7 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                })
+                self.handleResponseFaliure(message: response.message)
                 return
             }
             

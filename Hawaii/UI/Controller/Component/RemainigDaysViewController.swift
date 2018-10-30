@@ -96,10 +96,7 @@ class RemainigDaysViewController: BaseViewController {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response?.message ?? "",
-                                                viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
+                self.handleResponseFaliure(message: response?.message)
                 return
             }
             self.user = response?.item

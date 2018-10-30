@@ -86,10 +86,7 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                })
+                self.handleResponseFaliure(message: response.message)
                 return
             }
             guard let users = response.users,

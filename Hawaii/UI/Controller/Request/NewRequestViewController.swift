@@ -163,7 +163,6 @@ class NewRequestViewController: BaseViewController {
                     self.stopActivityIndicatorSpinner()
                     return
             }
-
             let request = Request(approverId: nil, days: days, reason: cellText.trim(),
                                   requestStatus: RequestStatus.pending,
                                   absence: requestTableViewController.selectedAbsence, user: user)

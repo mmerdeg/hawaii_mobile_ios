@@ -200,68 +200,60 @@ class DashboardViewController: BaseViewController {
     
     @objc func fillCalendar() {
         startActivityIndicatorSpinner()
+        
         requestUseCase?.getAllForCalendar(completion: { requestResponse in
+            
             guard let success = requestResponse.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                self.items = requestResponse.item ?? [:]
-                self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
-                    guard let success = holidaysResponse?.success else {
+            if !success {
+                self.handleResponseFaliure(message: requestResponse.message)
+                return
+            }
+            self.items = requestResponse.item ?? [:]
+            
+            self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
+                
+                guard let success = holidaysResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
+                }
+                if !success {
+                    self.handleResponseFaliure(message: holidaysResponse?.message)
+                    return
+                }
+                self.holidays = holidays
+                
+                self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+                    guard let success = yearsResponse.success else {
                         self.stopActivityIndicatorSpinner()
                         return
                     }
-                    if success {
-                        self.holidays = holidays
-                        self.requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
-                            guard let success = yearsResponse.success else {
-                                self.stopActivityIndicatorSpinner()
-                                return
-                            }
-                            if success {
-                                guard let startYear = yearsResponse.item?.first,
-                                      let endYear = yearsResponse.item?.last else {
-                                        return
-                                }
-                                let startDateString = "01 01 \(startYear)"
-                                let endDateString = "31 12 \(endYear)"
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "dd MM yyyy"
-                                self.startDate = dateFormatter.date(from: startDateString) ?? Date()
-                                self.endDate = dateFormatter.date(from: endDateString) ?? Date()
-                                DispatchQueue.main.async {
-                                    self.collectionView.reloadData()
-                                    self.stopActivityIndicatorSpinner()
-                                    
-                                    self.collectionView.scrollToDate(Date(), animateScroll: false)
-                                }
-                            } else {
-                                self.stopActivityIndicatorSpinner()
-                                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
-                                                                message: holidaysResponse?.message ?? "",
-                                                                viewController: self, completion: { _ in
-                                })
-                            }
-                            
-                        })
-                        
-                    } else {
-                        
-                        self.stopActivityIndicatorSpinner()
-                        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
-                                                        message: holidaysResponse?.message ?? "",
-                                                        viewController: self, completion: { _ in
-                        })
+                    if !success {
+                        self.handleResponseFaliure(message: yearsResponse.message)
+                        return
                     }
+                    guard let startYear = yearsResponse.item?.first,
+                          let endYear = yearsResponse.item?.last else {
+                            return
+                    }
+                    let startDateString = "01 01 \(startYear)"
+                    let endDateString = "31 12 \(endYear)"
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd MM yyyy"
+                    self.startDate = dateFormatter.date(from: startDateString) ?? Date()
+                    self.endDate = dateFormatter.date(from: endDateString) ?? Date()
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                        self.stopActivityIndicatorSpinner()
+                        
+                        self.collectionView.scrollToDate(Date(), animateScroll: false)
+                    }
+                    
                 })
-            } else {
-                
-                self.stopActivityIndicatorSpinner()
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse.message ?? "",
-                                                viewController: self, completion: { _ in
-                })
-            }
+            })
+
         })
     }
     
