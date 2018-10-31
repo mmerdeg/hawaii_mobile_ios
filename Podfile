@@ -25,6 +25,7 @@ target 'Hawaii' do
   # Pods for Hawaii
 pod 'NotificationBannerSwift'
 common_pods_for_target
+
   target 'HawaiiTests' do
     inherit! :search_paths
     # Pods for testing
@@ -40,10 +41,19 @@ end
 target 'Hawaii production' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-pod 'NotificationBannerSwift'
+
   # Pods for Hawaii production
+pod 'NotificationBannerSwift'
 common_pods_for_target
 
+end
+
+target 'NotificationService' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for NotificationService
+common_pods_for_target
 end
 
 target 'RequestNotification' do
@@ -52,5 +62,4 @@ target 'RequestNotification' do
 
   # Pods for RequestNotification
 common_pods_for_target
-
 end

@@ -11,11 +11,17 @@ import Foundation
 class KeyChainRepository: KeyChainRepositoryProtocol {
     
     let applicationTag = "com.hawaii.keys."
+    #if PRODUCTION
+    let keychainAccessGroupName = "PH7K4ADL7R.myKeychainGroup1"
+    #else
+    let keychainAccessGroupName = "PH7K4ADL7R.myKeychainGroup1"
+    #endif
     
     func getItem(key: String) -> String {
         let getItemQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                             kSecAttrService as String: applicationTag,
                                             kSecAttrAccount as String: key,
+                                            kSecAttrAccessGroup as String: keychainAccessGroupName as AnyObject,
                                             kSecMatchLimit as String: kSecMatchLimitOne,
                                             kSecReturnAttributes as String: true,
                                             kSecReturnData as String: true]
@@ -43,6 +49,7 @@ class KeyChainRepository: KeyChainRepositoryProtocol {
         let data = value.data(using: String.Encoding.utf8, allowLossyConversion: false)
         let addItemQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                             kSecAttrService as String: applicationTag,
+                                            kSecAttrAccessGroup as String: keychainAccessGroupName as AnyObject,
                                             kSecAttrAccount as String: key,
                                             kSecValueData as String: data ?? ""]
         
@@ -56,6 +63,7 @@ class KeyChainRepository: KeyChainRepositoryProtocol {
     func removeItem(key: String) {
         let removeItemQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                                kSecAttrService as String: applicationTag,
+                                               kSecAttrAccessGroup as String: keychainAccessGroupName as AnyObject,
                                                kSecAttrAccount as String: key]
         let status = SecItemDelete(removeItemQuery as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
