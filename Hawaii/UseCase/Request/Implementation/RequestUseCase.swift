@@ -34,6 +34,8 @@ protocol RequestUseCaseProtocol {
     
     func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void)
     
+    func getAvailableRequestYearsForSearch(completion: @escaping (GenericResponse<Year>) -> Void)
+    
 }
 
 class RequestUseCase: RequestUseCaseProtocol {
@@ -123,6 +125,12 @@ class RequestUseCase: RequestUseCaseProtocol {
         requestRepository?.getAvailableRequestYears(token: getToken()) { requestsResponse in
             completion(requestsResponse)
         }
+    }
+    
+    func getAvailableRequestYearsForSearch(completion: @escaping (GenericResponse<Year>) -> Void) {
+        requestRepository?.getAvailableRequestYearsForSearch(token: getToken(), completion: { requestsResponse in
+            completion(requestsResponse)
+        })
     }
     
     func handle(_ response: GenericResponse<[Request]>?) -> GenericResponse<[Date: [Request]]> {

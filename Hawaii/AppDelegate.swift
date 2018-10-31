@@ -248,11 +248,7 @@ extension SwinjectStoryboard {
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
-            
-            defaultContainer.storyboardInitCompleted(NotificationViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-            }
-            
+        
         }
     }
     

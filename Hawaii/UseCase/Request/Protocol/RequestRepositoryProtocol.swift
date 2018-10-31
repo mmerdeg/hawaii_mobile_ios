@@ -33,4 +33,6 @@ protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     
     func getAvailableRequestYears(token: String, completion: @escaping (GenericResponse<Year>) -> Void)
     
+    func getAvailableRequestYearsForSearch(token: String, completion: @escaping (GenericResponse<Year>) -> Void)
+    
 }

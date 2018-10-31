@@ -51,7 +51,7 @@ class SearchRequestsViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
         
-        requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+        requestUseCase?.getAvailableRequestYearsForSearch(completion: { yearsResponse in
             guard let success = yearsResponse.success else {
                 return
             }

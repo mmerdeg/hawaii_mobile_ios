@@ -28,6 +28,10 @@ class RequestRepository: RequestRepositoryProtocol {
     
     let requestsByMonthUrl = ApiConstants.baseUrl + "/requests/month"
     
+    let requestYearsUrl = ApiConstants.baseUrl + "/requests" + "/years/range"
+    
+    let allowanceYearsUrl = ApiConstants.baseUrl  + "/allowances" + "/years/range"
+    
     func add(token: String, request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
         requests?.append(request)
         
@@ -160,8 +164,18 @@ class RequestRepository: RequestRepositoryProtocol {
         }
     }
     
+    func getAvailableRequestYearsForSearch(token: String, completion: @escaping (GenericResponse<Year>) -> Void) {
+        guard let url = URL(string: requestYearsUrl) else {
+            return
+        }
+        
+        genericCodableRequest(value: Year.self, url, method: .get, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
+    }
+    
     func getAvailableRequestYears(token: String, completion: @escaping (GenericResponse<Year>) -> Void) {
-        guard let url = URL(string: ApiConstants.requestYears) else {
+        guard let url = URL(string: allowanceYearsUrl) else {
             return
         }
         
