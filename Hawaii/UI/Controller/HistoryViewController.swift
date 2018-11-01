@@ -66,7 +66,7 @@ class HistoryViewController: BaseViewController {
         super.viewDidLoad()
         let refreshControlTitle = "Fetching Data ..."
         
-        title = LocalizedKeys.History.title.localized()
+        self.navigationItem.title = LocalizedKeys.History.title.localized()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil),

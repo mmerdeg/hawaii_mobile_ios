@@ -164,7 +164,7 @@
                             <constraint firstItem="cvl-Vo-8CM" firstAttribute="centerX" secondItem="Apj-XB-HUS" secondAttribute="centerX" id="PaQ-bb-dii"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This request is pending cancellation. If approved, the employees allowance will be reinstated." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rV-fq-Zmh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rV-fq-Zmh">
                         <rect key="frame" x="24" y="218" width="340" height="61"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="61" id="eq0-Pm-gJP"/>
@@ -238,13 +238,17 @@
                 <outlet property="cancelButton" destination="GnJ-JQ-qVX" id="VMp-za-cMi"/>
                 <outlet property="cardView" destination="cDI-dl-uaw" id="nwj-en-gE1"/>
                 <outlet property="date" destination="JDT-ZS-qIr" id="qev-70-7Mz"/>
+                <outlet property="requestDateTitle" destination="D7P-GM-2BY" id="gAW-Lp-EOL"/>
                 <outlet property="requestDates" destination="HhR-ga-jRP" id="bmq-vx-lrF"/>
                 <outlet property="requestDuration" destination="fUS-mg-hoM" id="kTf-5G-TKM"/>
+                <outlet property="requestDurationTitle" destination="fUS-mg-hoM" id="uiV-g8-WvQ"/>
                 <outlet property="requestImage" destination="cvl-Vo-8CM" id="POH-zl-Vhj"/>
                 <outlet property="requestImageFrame" destination="Apj-XB-HUS" id="uMj-as-VFN"/>
                 <outlet property="requestNotes" destination="MfP-J3-NtA" id="Fen-R2-uuF"/>
+                <outlet property="requestNotesTitle" destination="3IK-xi-4Hb" id="afs-NV-REX"/>
                 <outlet property="requestPerson" destination="1yQ-Cj-G2R" id="KdQ-Im-Qwa"/>
                 <outlet property="requestReason" destination="a1v-9Y-g79" id="ggd-rQ-TW6"/>
+                <outlet property="requestReasonTitle" destination="hGb-Aw-y0O" id="Jan-Br-pr5"/>
             </connections>
             <point key="canvasLocation" x="68.799999999999997" y="201.94902548725639"/>
         </tableViewCell>

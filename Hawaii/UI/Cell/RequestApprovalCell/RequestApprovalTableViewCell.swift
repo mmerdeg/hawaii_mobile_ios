@@ -32,6 +32,14 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestReason: UILabel!
     
+    @IBOutlet weak var requestReasonTitle: UILabel!
+    
+    @IBOutlet weak var requestNotesTitle: UILabel!
+    
+    @IBOutlet weak var requestDurationTitle: UILabel!
+    
+    @IBOutlet weak var requestDateTitle: UILabel!
+    
     weak var delegate: RequestApprovalProtocol?
     
     var request: Request? {
@@ -47,6 +55,14 @@ class RequestApprovalTableViewCell: UITableViewCell {
                   let userFullname = request?.user?.fullName else {
                     return
             }
+            
+            requestDateTitle.text = LocalizedKeys.Request.date.localized()
+            requestNotesTitle.text = LocalizedKeys.Request.notes.localized()
+            requestReasonTitle.text = LocalizedKeys.Summary.reason.localized()
+            requestDurationTitle.text = LocalizedKeys.Request.duration.localized()
+            additionalDesc.text = LocalizedKeys.Request.cancelationPendingDescription.localized()
+            cancelButton.setTitle(LocalizedKeys.General.reject.localized(), for: .normal)
+            acceptButton.setTitle(LocalizedKeys.General.approve.localized(), for: .normal)
             
             requestNotes.text = notes
             requestDuration.text = String(duration)

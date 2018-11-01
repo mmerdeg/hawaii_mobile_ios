@@ -22,7 +22,7 @@ class ApproveViewController: BaseViewController {
         
         let refreshControlTitle = "Fetching Data ..."
         
-        title = LocalizedKeys.Approval.title.localized()
+        self.navigationItem.title = LocalizedKeys.Approval.title.localized()
         tableView.delegate = self
         tableView.dataSource = self
         

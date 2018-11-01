@@ -6,6 +6,8 @@ public struct LocalizedKeys {
         static let errorTitle = "general.alert.errorTitle"
         static let cancel = "general.alert.cancel"
         static let ok = "general.alert.ok"
+        static let approve = "general.approve"
+        static let reject = "general.reject"
     }
 
     struct Request {
@@ -32,6 +34,9 @@ public struct LocalizedKeys {
         static let leave = "request.leave"
         static let sickness = "request.sickness"
         static let bonus = "request.bonus"
+        static let notes = "request.notes"
+        static let date = "request.date"
+        static let cancelationPendingDescription = "request.cancelationPendingDescription"
     }
     
     struct Api {
@@ -73,6 +78,8 @@ public struct LocalizedKeys {
     struct Team {
         static let title = "team.title"
         static let tabItemTitle = "team.tabItemTitle"
+        static let loadMore = "team.loadMore"
+        static let loadingMore = "team.loadingMore"
     }
     
     struct Approval {

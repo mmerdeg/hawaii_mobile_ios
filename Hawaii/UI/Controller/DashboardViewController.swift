@@ -57,7 +57,7 @@ class DashboardViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = LocalizedKeys.Dashboard.title.localized()
+        self.navigationItem.title = LocalizedKeys.Dashboard.title.localized()
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)

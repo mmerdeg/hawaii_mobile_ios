@@ -207,12 +207,16 @@
                 <outlet property="cancelButton" destination="Gry-CS-jb0" id="eHe-la-2X7"/>
                 <outlet property="cardView" destination="IdB-vE-0uK" id="KBC-DY-VQg"/>
                 <outlet property="date" destination="Q6R-x6-Cos" id="m2I-Eb-tD7"/>
+                <outlet property="requestDateTitle" destination="Rda-Yz-vMM" id="i3c-SP-nJn"/>
                 <outlet property="requestDates" destination="agW-6a-dAJ" id="2Na-Aj-irp"/>
                 <outlet property="requestDuration" destination="eLw-ud-0qs" id="Pmf-rW-fz8"/>
+                <outlet property="requestDurationTitle" destination="kQv-mE-Odu" id="L18-XV-O29"/>
                 <outlet property="requestImage" destination="gXn-VY-h8j" id="vU1-pY-x6B"/>
                 <outlet property="requestImageFrame" destination="jmx-hi-4OF" id="PSR-Zf-SX6"/>
                 <outlet property="requestNotes" destination="CjV-k9-aEj" id="38o-OQ-61h"/>
+                <outlet property="requestNotesTitle" destination="rCg-Dk-w4V" id="VEd-x5-zy7"/>
                 <outlet property="requestReason" destination="amn-Lz-fUh" id="RcC-OJ-dvf"/>
+                <outlet property="requestReasonTitle" destination="TIh-1i-w96" id="MMw-3Z-dkY"/>
                 <outlet property="requestStatus" destination="H53-KI-ADV" id="KAP-YM-hkP"/>
             </connections>
             <point key="canvasLocation" x="24" y="-4.9475262368815596"/>

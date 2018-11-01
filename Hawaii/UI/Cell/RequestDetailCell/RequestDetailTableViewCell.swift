@@ -26,6 +26,14 @@ class RequestDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var requestNotes: UILabel!
     
+    @IBOutlet weak var requestReasonTitle: UILabel!
+    
+    @IBOutlet weak var requestDurationTitle: UILabel!
+    
+    @IBOutlet weak var requestDateTitle: UILabel!
+    
+    @IBOutlet weak var requestNotesTitle: UILabel!
+    
     var isCancelHidden = false
     
     weak var requestCancelationDelegate: RequestCancelationProtocol?
@@ -47,6 +55,13 @@ class RequestDetailTableViewCell: UITableViewCell {
             if absenceType == AbsenceType.sick.rawValue {
                 color = AbsenceType.sick.backgoundColor ?? UIColor.sickColor
             }
+            
+            requestDateTitle.text = LocalizedKeys.Request.date.localized()
+            requestNotesTitle.text = LocalizedKeys.Request.notes.localized()
+            requestReasonTitle.text = LocalizedKeys.Summary.reason.localized()
+            requestDurationTitle.text = LocalizedKeys.Request.duration.localized()
+            cancelButton.setTitle(LocalizedKeys.General.cancel.localized(), for: .normal)
+            
             requestNotes.text = notes
             requestDuration.text = String(duration)
             requestStatus.text = status.description

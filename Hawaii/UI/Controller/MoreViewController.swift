@@ -19,7 +19,8 @@ class MoreViewController: BaseViewController {
         super.viewDidLoad()
         let imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"
         
-        title = LocalizedKeys.More.title.localized()
+        self.navigationItem.title = LocalizedKeys.More.title.localized()
+        signOutButton.setTitle(LocalizedKeys.More.signOut.localized(), for: .normal)
         profileImage.kf.setImage(with: URL(string: imageUrl))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false

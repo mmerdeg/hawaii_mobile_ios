@@ -1,6 +1,8 @@
 general.alert.errorTitle = "Error";
 general.alert.cancel = "Cancel";
 general.alert.ok = "Ok";
+general.approve = "Approve";
+general.reject = "Reject";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";
@@ -27,6 +29,9 @@ request.bonusRequest = "Bonus request";
 request.sickness = "Sickness";
 request.leave = "Leave";
 request.bonus = "Bonus";
+request.date = "Date";
+request.notes = "Notes";
+request.cancelationPendingDescription = "This request is pending cancellation. If approved, the employees allowance will be reinstated.";
 
 api.response.tooManyDays = "Invalid request, too many days selected";
 api.response.alreadyExists = "Alredy exists in database";
@@ -54,6 +59,8 @@ history.title = "History";
 
 team.tabItemTitle = "Team";
 team.title = "Team calendar";
+team.loadMore = "Load more";
+team.loadingMore = "Loading";
 
 approval.tabItemTitle = "Approval";
 approval.title = "Approve requests";

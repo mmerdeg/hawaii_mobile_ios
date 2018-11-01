@@ -60,7 +60,7 @@ class TeamCalendarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = LocalizedKeys.Team.title.localized()
+        self.navigationItem.title = LocalizedKeys.Team.title.localized()
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
