@@ -1,11 +1,3 @@
-//
-//  ProgressHUD.swift
-//  MagicChat
-//
-//  Created by Ivan Divljak on 5/17/18.
-//  Copyright © 2018 Mexonis. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

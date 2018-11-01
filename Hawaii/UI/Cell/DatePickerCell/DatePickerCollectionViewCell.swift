@@ -1,11 +1,3 @@
-//
-//  DatePickerCollectionViewCell.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 10/8/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 import Kingfisher
@@ -33,7 +25,7 @@ class DatePickerCollectionViewCell: JTAppleCell {
         }
     }
     
-    func setCell(processor: ImageProcessor) {
+    func setCell() {
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         handleCellText(cellState: cellState)
         self.layer.borderWidth = 0.5

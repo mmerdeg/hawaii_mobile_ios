@@ -1,0 +1,63 @@
+general.alert.errorTitle = "Error";
+general.alert.cancel = "Cancel";
+general.alert.ok = "Ok";
+
+request.status.pending = "Pending";
+request.status.approved = "Approved";
+request.status.rejected = "Rejected";
+request.status.canceled = "Canceled";
+request.status.cancelationPending = "Cancelation pending";
+
+request.duration.fullDay = "Full day";
+request.duration.morning = "Morning only";
+request.duration.afternoon = "Afternoon only";
+request.duration.afternoonFirst = "Afternoon first day";
+request.duration.morningLast = "Morning last day";
+request.duration.morningAndAfternoon = "Afternoon first day and morning last day";
+
+request.table.leaveType = "Type of leave";
+request.table.sicknessType = "Type of sickness";
+request.table.duration = "Duration";
+request.reasonPlaceholder = "Enter reason for leave";
+request.startDate = "Start date";
+request.endDate = "End date";
+request.sicknessRequest = "Sickness request";
+request.leaveRequest = "Leave request";
+request.bonusRequest = "Bonus request";
+request.sickness = "Sickness";
+request.leave = "Leave";
+request.bonus = "Bonus";
+
+api.response.tooManyDays = "Invalid request, too many days selected";
+api.response.alreadyExists = "Alredy exists in database";
+
+remainingDays.leave = "Leave";
+remainingDays.training = "Training";
+remainingDays.taken = "Taken";
+remainingDays.pending = "Pending";
+remainingDays.remainig = "Remaining";
+remainingDays.days = "days";
+
+summary.datesRequested = "Dates requested";
+summary.leaveRequested = "Leave requested";
+summary.leaveRemaining = "Leave remaining";
+summary.leavetype = "Leave type";
+summary.reason = "Reason";
+summary.submit = "Submit";
+
+filter.year = "Year";
+filter.filter = "Filter";
+
+dashboard.title = "Dashboard";
+
+history.title = "History";
+
+team.tabItemTitle = "Team";
+team.title = "Team calendar";
+
+approval.tabItemTitle = "Approval";
+approval.title = "Approve requests";
+
+more.title = "More";
+more.signOut = "Sign out";
+

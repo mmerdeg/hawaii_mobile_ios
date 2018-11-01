@@ -1,11 +1,3 @@
-//
-//  SummaryViewController.swift
-//  Hawaii
-//
-//  Created by Server on 10/9/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -54,7 +46,8 @@ class SummaryViewController: BaseViewController {
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     lazy var addRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(title: "Submit", style: UIBarButtonItemStyle.done, target: self, action: #selector(addRequest))
+        let item = UIBarButtonItem(title: LocalizedKeys.Summary.submit.localized(), style: UIBarButtonItemStyle.done,
+                                   target: self, action: #selector(addRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -93,6 +86,12 @@ class SummaryViewController: BaseViewController {
         leaveTypeLabel.text = leaveType
         leaveReasonLabel.text = request.reason
         
+        leaveTypeTitle.text = LocalizedKeys.Summary.leaveType.localized()
+        leaveRemainingTitle.text = LocalizedKeys.Summary.leaveRemaining.localized()
+        leaveRequestedTitle.text = LocalizedKeys.Summary.leaveRequested.localized()
+        datesRequiredTitle.text = LocalizedKeys.Summary.datesRequested.localized()
+        reasonTitle.text = LocalizedKeys.Summary.reason.localized()
+        
         handleAbsenceType(absenceType: absenceType)
         handleRemainingDays(absenceType: absenceType, days: days)
         handleDatesTaken(startDate: startDate, endDate: endDate)
@@ -113,13 +112,13 @@ class SummaryViewController: BaseViewController {
     
     func handleAbsenceType(absenceType: String) {
         if absenceType == AbsenceType.bonus.rawValue {
-            requestTitle.text = ViewConstants.bonusRequestTitle
+            requestTitle.text = LocalizedKeys.Request.bonusRequest.localized()
             hideRemainingDays()
         } else if absenceType == AbsenceType.sick.rawValue {
-            requestTitle.text = ViewConstants.sicknessRequestTitle
+            requestTitle.text = LocalizedKeys.Request.sicknessRequest.localized()
             hideRemainingDays()
         } else {
-            requestTitle.text = ViewConstants.leaveRequestTitle
+            requestTitle.text = LocalizedKeys.Request.leaveRequest.localized()
         }
     }
     

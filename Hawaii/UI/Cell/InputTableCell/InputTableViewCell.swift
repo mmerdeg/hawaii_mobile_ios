@@ -1,11 +1,3 @@
-//
-//  InputTableViewCell.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 9/24/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class InputTableViewCell: UITableViewCell {
@@ -15,7 +7,7 @@ class InputTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         inputReasonTextView.textColor = UIColor.lightGray
-        inputReasonTextView.text = ViewConstants.requestReasonPlaceholder
+        inputReasonTextView.text = LocalizedKeys.Request.reasonPlaceholder.localized()
         inputReasonTextView.delegate = self
     }
 }
@@ -31,7 +23,7 @@ extension InputTableViewCell: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = ViewConstants.requestReasonPlaceholder
+            textView.text = LocalizedKeys.Request.reasonPlaceholder.localized()
             textView.textColor = UIColor.lightGray
         }
     }

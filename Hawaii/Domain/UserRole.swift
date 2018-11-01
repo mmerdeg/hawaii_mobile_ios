@@ -1,11 +1,3 @@
-//
-//  UserRole.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 10/1/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 
 enum UserRole: String {

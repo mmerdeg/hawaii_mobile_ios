@@ -1,11 +1,3 @@
-//
-//  SearchUsersBaseViewController.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 10/10/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 protocol SearchUserSelectedProtocol: class {

@@ -1,11 +1,3 @@
-//
-//  RequestTableViewController.swift
-//  Hawaii
-//
-//  Created by Server on 7/2/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class RequestTableViewController: BaseViewController {
@@ -93,7 +85,7 @@ class RequestTableViewController: BaseViewController {
                 self.selectedAbsence = response.item?.first
             })
         } else {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: response.message ?? "",
                                             viewController: self, completion: { _ in
                 self.navigationController?.popViewController(animated: true)
             })

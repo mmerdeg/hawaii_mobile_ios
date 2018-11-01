@@ -1,11 +1,3 @@
-//
-//  LeaveRequest.swift
-//  Hawaii
-//
-//  Created by Server on 6/26/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -34,15 +26,15 @@ enum RequestStatus: String, Codable {
     var description: String? {
         switch self {
         case .pending:
-            return "Pending"
+            return LocalizedKeys.Request.pending.localized()
         case .approved:
-            return "Approved"
+            return LocalizedKeys.Request.approved.localized()
         case .canceled:
-            return "Canceled"
+            return LocalizedKeys.Request.canceled.localized()
         case .rejected:
-            return "Rejected"
+            return LocalizedKeys.Request.rejected.localized()
         case .cancelationPending:
-            return "Cancelation pending"
+            return LocalizedKeys.Request.cancelationPending.localized()
         }
     }
 }

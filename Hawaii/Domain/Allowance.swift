@@ -1,11 +1,3 @@
-//
-//  Allowance.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 8/31/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 
 struct Allowance: Codable {

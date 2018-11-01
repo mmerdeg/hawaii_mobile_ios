@@ -1,11 +1,3 @@
-//
-//  CalendarCellCollectionViewCell.swift
-//  Hawaii
-//
-//  Created by Server on 6/18/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 import Kingfisher
@@ -52,7 +44,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
         roundedHalvesView.layer.cornerRadius = roundedHalvesView.frame.size.height * 2 / 3
     }
     
-    func setCell(processor: ImageProcessor) {
+    func setCell() {
         handleCellText(cellState: cellState)
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         self.layer.borderWidth = 0.5

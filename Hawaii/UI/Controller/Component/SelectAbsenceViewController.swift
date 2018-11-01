@@ -1,11 +1,3 @@
-//
-//  SelectAbsenceViewController.swift
-//  Hawaii
-//
-//  Created by Server on 8/10/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 protocol SelectAbsenceProtocol: class {

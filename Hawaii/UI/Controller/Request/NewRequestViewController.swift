@@ -1,11 +1,3 @@
-//
-//  LeaveRequestViewController.swift
-//  Hawaii
-//
-//  Created by Server on 6/28/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class NewRequestViewController: BaseViewController {
@@ -55,11 +47,11 @@ class NewRequestViewController: BaseViewController {
         }
         switch absenceType {
         case .sick:
-            self.title = ViewConstants.sicknessRequestTitle
+            self.title = LocalizedKeys.Request.sicknessRequest.localized()
         case .bonus:
-            self.title = ViewConstants.bonusRequestTitle
+            self.title = LocalizedKeys.Request.bonusRequest.localized()
         default:
-            self.title = ViewConstants.leaveRequestTitle
+            self.title = LocalizedKeys.Request.leaveRequest.localized()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -142,13 +134,13 @@ class NewRequestViewController: BaseViewController {
                 return
         }
         if startDate > endDate {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: trickMessage,
+            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: trickMessage,
                                             viewController: self) { _ in
             }
             return
         }
-        if cellText.trim() == "" || cellText.trim() == ViewConstants.requestReasonPlaceholder {
-            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: reasonEmptyMessage,
+        if cellText.trim() == "" || cellText.trim() == LocalizedKeys.Request.reasonPlaceholder.localized() {
+            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: reasonEmptyMessage,
                                             viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }

@@ -65,6 +65,7 @@
                         <color key="selectedImageTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <outlet property="homeTabBar" destination="Zmb-uC-OX7" id="9Jc-uV-Vxo"/>
                         <segue destination="SUb-Na-fQi" kind="relationship" relationship="viewControllers" id="YCP-8y-Kxm"/>
                         <segue destination="kC7-5J-ZMT" kind="relationship" relationship="viewControllers" id="8Ro-0s-R67"/>
                         <segue destination="RzC-n6-LsE" kind="relationship" relationship="viewControllers" id="8tH-Vj-e25"/>
@@ -128,6 +129,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="execom" width="837" height="1152"/>
+        <image name="execom" width="1124" height="2000"/>
     </resources>
 </document>

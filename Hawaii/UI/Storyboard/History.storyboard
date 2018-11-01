@@ -153,9 +153,13 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="Iz3-P0-5yg" id="lUy-Cs-bmp"/>
+                        <outlet property="bonusLabel" destination="vPK-2Q-8eg" id="fXo-w3-PoJ"/>
                         <outlet property="bonusToggle" destination="ZLb-CH-3MO" id="APJ-Fv-HHm"/>
                         <outlet property="clickableView" destination="dJz-Fa-i4D" id="ICJ-3H-mJY"/>
+                        <outlet property="filterButton" destination="LtP-SE-lqO" id="FQG-Hk-Dke"/>
+                        <outlet property="leaveLabel" destination="UM0-r6-rG9" id="ZG2-0W-tJm"/>
                         <outlet property="leaveToogle" destination="qgS-RM-K0V" id="gcS-1M-e1E"/>
+                        <outlet property="sickLabel" destination="eI6-t4-wYC" id="iDq-l9-Ntc"/>
                         <outlet property="sickToggle" destination="Uhg-Hq-DmI" id="lm6-nB-7ri"/>
                         <outlet property="yearLabel" destination="yNP-vg-qO9" id="DZz-EX-GOM"/>
                         <outlet property="yearPicker" destination="Poz-Fr-B2z" id="9RC-00-6Pk"/>
@@ -163,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXT-7M-KaM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4621.6000000000004" y="152.47376311844079"/>
+            <point key="canvasLocation" x="4621.6000000000004" y="152.21674876847291"/>
         </scene>
         <!--History-->
         <scene sceneID="DE6-eL-b7H">

@@ -1,11 +1,3 @@
-//
-//  ViewUtility.swift
-//  Hawaii
-//
-//  Created by Server on 7/2/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -74,8 +66,8 @@ class ViewUtility {
                                     cancelable: Bool? = false, viewController: UIViewController,
                                     completion: @escaping (Bool) -> Void ) {
         
-        let okActionTitle = "OK"
-        let cancelActionTitle = "Cancel"
+        let okActionTitle = LocalizedKeys.General.ok.localized()
+        let cancelActionTitle = LocalizedKeys.General.cancel.localized()
         
         let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
         let mutableStringMessage = NSMutableAttributedString(string: message ,

@@ -1,11 +1,3 @@
-//
-//  SearchRequestsViewController.swift
-//  Hawaii
-//
-//  Created by Server on 8/13/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 protocol SearchDialogProtocol: NSObjectProtocol {
@@ -31,6 +23,14 @@ class SearchRequestsViewController: UIViewController {
   
     @IBOutlet weak var backgroundView: UIView!
     
+    @IBOutlet weak var filterButton: UIButton!
+    
+    @IBOutlet weak var leaveLabel: UILabel!
+    
+    @IBOutlet weak var sickLabel: UILabel!
+    
+    @IBOutlet weak var bonusLabel: UILabel!
+    
     weak var delegate: SearchDialogProtocol?
     
     var requestUseCase: RequestUseCaseProtocol?
@@ -55,6 +55,12 @@ class SearchRequestsViewController: UIViewController {
         yearLabel.textColor = UIColor.primaryTextColor
         yearPicker.tintColor = UIColor.primaryTextColor
         
+        yearLabel.text = LocalizedKeys.Filter.year.localized()
+        filterButton.setTitle(LocalizedKeys.Filter.filter.localized(), for: .normal) 
+        leaveLabel.text = LocalizedKeys.Request.leave.localized()
+        sickLabel.text = LocalizedKeys.Request.sickness.localized()
+        bonusLabel.text = LocalizedKeys.Request.bonus.localized()
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
         
@@ -63,7 +69,7 @@ class SearchRequestsViewController: UIViewController {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: yearsResponse.message ?? "",
+                ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: yearsResponse.message ?? "",
                                                 viewController: self, completion: { _ in
                 })
                 return

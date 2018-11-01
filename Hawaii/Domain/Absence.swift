@@ -1,11 +1,3 @@
-//
-//  Absence.swift
-//  Hawaii
-//
-//  Created by Server on 8/24/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

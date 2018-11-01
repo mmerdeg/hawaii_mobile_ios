@@ -1,10 +1,3 @@
-//
-//  ButtonStyleExtension.swift
-//
-//  Created by Marko Stajic on 3/29/17.
-//  Copyright © 2017 Execom. All rights reserved.
-//
-
 import UIKit
 import ECFoundationiOS
 

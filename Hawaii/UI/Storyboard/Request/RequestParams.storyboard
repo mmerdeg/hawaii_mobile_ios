@@ -207,6 +207,7 @@
                         <outlet property="closeButton" destination="W5k-7S-fUm" id="Rnv-R2-IRV"/>
                         <outlet property="collectionView" destination="HFV-cO-eV2" id="sfm-9L-uld"/>
                         <outlet property="dateLabel" destination="A6X-CQ-eCS" id="2uG-vU-tgL"/>
+                        <outlet property="okButton" destination="vb1-PB-Ttr" id="TXS-1D-cyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f2K-ai-w7G" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -1,11 +1,3 @@
-//
-//  TeamCalendarViewController.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 8/28/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 
@@ -26,8 +18,6 @@ class TeamCalendarViewController: BaseViewController {
     let showSearchUserSegue = "showSearchUser"
     
     let requestDetailsViewController = "RequestDetailsViewController"
-    
-    let processor = SVGProcessor()
     
     let formatter = DateFormatter()
     
@@ -69,6 +59,8 @@ class TeamCalendarViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = LocalizedKeys.Team.title.localized()
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
@@ -340,7 +332,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            cell.setCell(processor: processor)
+            cell.setCell()
             return cell
         }
         if segmentedControl.selectedSegmentIndex == 2 {
@@ -353,7 +345,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             cell.cellState = cellState
             let requests: [Request] = items[date] ?? []
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-            cell.setCell(processor: processor)
+            cell.setCell()
             return cell
         }
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
@@ -365,7 +357,7 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
         cell.cellState = cellState
         let requests: [Request] = items[date] ?? []
         cell.requests = requests
-        cell.setCell(processor: processor)
+        cell.setCell()
         return cell
     }
     

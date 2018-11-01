@@ -1,16 +1,16 @@
-//
-//  HomeViewController.swift
-//  Hawaii
-//
-//  Created by Server on 6/11/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 import EKBlurAlert
 
 class DashboardViewController: BaseViewController {
+    
+    let showNewRequestSegue = "showNewRequest"
+    
+    let showRequestDetailsSegue = "showRequestDetails"
+    
+    let showRemainingDaysViewController = "showRemainingDaysViewController"
+    
+    let showRemainingDaysSickViewController = "showRemainingDaysSickViewController"
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
@@ -23,20 +23,23 @@ class DashboardViewController: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var requestUseCase: RequestUseCaseProtocol?
+    
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
-    var items: [Date: [Request]] = [:]
-    var holidays: [Date: [PublicHoliday]] = [:]
-    var customView: UIView = UIView()
+    
     var remainingDaysViewController: RemainigDaysViewController?
+    
+    var items: [Date: [Request]] = [:]
+    
+    var holidays: [Date: [PublicHoliday]] = [:]
+    
+    var customView: UIView = UIView()
+    
     var lastTimeSynced: Date?
+    
     var startDate = Date()
+    
     var endDate = Date()
     
-    let processor = SVGProcessor()
-    let showNewRequestSegue = "showNewRequest"
-    let showRequestDetailsSegue = "showRequestDetails"
-    let showRemainingDaysViewController = "showRemainingDaysViewController"
-    let showRemainingDaysSickViewController = "showRemainingDaysSickViewController"
     let formatter = DateFormatter()
     
     lazy var addRequestItem: UIBarButtonItem = {
@@ -53,6 +56,8 @@ class DashboardViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = LocalizedKeys.Dashboard.title.localized()
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
@@ -314,7 +319,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            cell.setCell(processor: processor)
+            cell.setCell()
             return cell
         } else {
             guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
@@ -326,7 +331,7 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             cell.cellState = cellState
             let requests: [Request] = items[date] ?? []
             cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-            cell.setCell(processor: processor)
+            cell.setCell()
             return cell
         }
     }

@@ -1,11 +1,3 @@
-//
-//  RemainigDaysViewController.swift
-//  Hawaii
-//
-//  Created by Server on 7/4/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class RemainigDaysViewController: BaseViewController {
@@ -79,12 +71,16 @@ class RemainigDaysViewController: BaseViewController {
         pendingBar.backgroundColor = UIColor.pendingColor
         sicknessBar.backgroundColor = UIColor.rejectedColor
         
+        takenLabel.text = LocalizedKeys.RemainingDays.taken.localized()
+        pendingLabel.text = LocalizedKeys.RemainingDays.pending.localized()
+        remainingLabel.text = LocalizedKeys.RemainingDays.remaining.localized()
+        takenDaysLabel.text = LocalizedKeys.RemainingDays.days.localized()
     }
 
     func getData() {
         
-        let leaveLabel = "Leave"
-        let trainingLabel = "Training"
+        let leaveLabel = LocalizedKeys.RemainingDays.leave.localized()
+        let trainingLabel = LocalizedKeys.RemainingDays.training.localized()
         
         startActivityIndicatorSpinner()
         
@@ -138,7 +134,7 @@ class RemainigDaysViewController: BaseViewController {
       
         let workHours = 8.0
         let halfDayFormat = "%.1f"
-        let totalDaysLabelExtension = " Days"
+        let totalDaysLabelExtension = " " + LocalizedKeys.RemainingDays.days.localized().capitalized
         
         let totalDays = total / workHours
         self.totalDayNoLabel.text = (floor(totalDays) == totalDays ?

@@ -1,11 +1,3 @@
-//
-//  RequestRepository.swift
-//  Hawaii
-//
-//  Created by Server on 6/26/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import CodableAlamofire
 import Alamofire
@@ -39,11 +31,11 @@ class RequestRepository: RequestRepositoryProtocol {
             if response.statusCode == 416 {
                 completion(GenericResponse<Request> (success: false, item: nil, statusCode: response.statusCode,
                                                error: response.error,
-                                               message: "Invalid request, too many days selected"))
+                                               message: LocalizedKeys.Api.tooManyDays.localized()))
             } else if response.statusCode == 409 {
                 completion(GenericResponse<Request> (success: false, item: nil, statusCode: response.statusCode,
                                                error: response.error,
-                                               message: "Alredy exists in database"))
+                                               message: LocalizedKeys.Api.alreadyExists.localized()))
             } else {
                 completion(response)
             }

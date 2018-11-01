@@ -1,11 +1,3 @@
-//
-//  TeamPreviewTableViewCell.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 8/29/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class TeamPreviewTableViewCell: UITableViewCell {

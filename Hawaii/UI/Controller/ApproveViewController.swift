@@ -1,11 +1,3 @@
-//
-//  ApproveViewController.swift
-//  Hawaii
-//
-//  Created by Server on 8/13/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import EKBlurAlert
 
@@ -30,6 +22,7 @@ class ApproveViewController: BaseViewController {
         
         let refreshControlTitle = "Fetching Data ..."
         
+        title = LocalizedKeys.Approval.title.localized()
         tableView.delegate = self
         tableView.dataSource = self
         

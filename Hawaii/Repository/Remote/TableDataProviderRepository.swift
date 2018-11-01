@@ -1,11 +1,3 @@
-//
-//  LeaveTypeRepository.swift
-//  Hawaii
-//
-//  Created by Server on 6/29/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import CodableAlamofire
 import Alamofire
@@ -24,8 +16,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                     $0.absenceType == AbsenceType.nonDecuted.rawValue
             })
             
-            completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
-                        CellData(title: "Duration", description: DurationType.fullday.description)],
+            completion([CellData(title: LocalizedKeys.Request.leaveType.localized(), description: filteredAbsences?.first?.name),
+                        CellData(title: LocalizedKeys.Request.duration.localized(), description: DurationType.fullday.description)],
                        filteredAbsences ?? [],
                        GenericResponse<[Absence]>(genericResponse: response, item: filteredAbsences))
         }
@@ -40,8 +32,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.sick.rawValue
             })
-            completion([CellData(title: "Type of leave", description: filteredAbsences?.first?.name),
-                        CellData(title: "Duration", description: DurationType.fullday.description)],
+            completion([CellData(title: LocalizedKeys.Request.sicknessType.localized(), description: filteredAbsences?.first?.name),
+                        CellData(title: LocalizedKeys.Request.duration.localized(), description: DurationType.fullday.description)],
                        filteredAbsences ?? [],
                        GenericResponse<[Absence]>(genericResponse: response, item: filteredAbsences))
         }
@@ -57,7 +49,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
                 $0.absenceType == AbsenceType.bonus.rawValue
             })
             
-            completion([CellData(title: "Duration", description: DurationType.fullday.description)],
+            completion([CellData(title: LocalizedKeys.Request.duration.localized(), description: DurationType.fullday.description)],
                        filteredAbsences ?? [],
                        GenericResponse<[Absence]>(genericResponse: response, item: filteredAbsences))
         }
@@ -87,8 +79,8 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     }
     
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {
-       completion([ExpandableData(id: 0, expanded: true, title: "Start date", description: forDate),
-                   ExpandableData(id: 0, expanded: true, title: "End date", description: forDate)])
+       completion([ExpandableData(id: 0, expanded: true, title: LocalizedKeys.Request.startDate.localized(), description: forDate),
+                   ExpandableData(id: 0, expanded: true, title: LocalizedKeys.Request.endDate.localized(), description: forDate)])
     }
     
     func getBonusDaysDurationData(completion: @escaping ([SectionData]) -> Void) {

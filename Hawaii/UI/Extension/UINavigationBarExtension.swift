@@ -1,11 +1,3 @@
-//
-//  UINavigationBarExtension.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 10/23/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import UIKit
 

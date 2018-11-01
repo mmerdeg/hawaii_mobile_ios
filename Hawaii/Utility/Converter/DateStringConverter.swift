@@ -1,11 +1,3 @@
-//
-//  DateStringConverter.swift
-//  Hawaii
-//
-//  Created by Server on 10/29/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 
 class DateStringConverter {

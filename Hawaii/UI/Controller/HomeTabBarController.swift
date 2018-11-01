@@ -1,11 +1,3 @@
-//
-//  HomeTabBarController.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 10/1/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import Firebase
 import UserNotifications
@@ -17,12 +9,21 @@ class HomeTabBarController: UITabBarController {
     
     let gcmMessageIDKey = "gcm.message_id"
     
+    @IBOutlet weak var homeTabBar: UITabBar!
+    
     var userUseCase: UserUseCaseProtocol?
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        homeTabBar.items?[0].title = LocalizedKeys.Dashboard.title.localized()
+        homeTabBar.items?[1].title = LocalizedKeys.History.title.localized()
+        homeTabBar.items?[2].title = LocalizedKeys.Team.tabItemTitle.localized()
+        homeTabBar.items?[3].title = LocalizedKeys.Approval.tabItemTitle.localized()
+        homeTabBar.items?[4].title = LocalizedKeys.More.title.localized()
+        
         Messaging.messaging().delegate = self
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()

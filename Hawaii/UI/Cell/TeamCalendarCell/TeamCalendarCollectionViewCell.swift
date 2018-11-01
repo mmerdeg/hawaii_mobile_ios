@@ -1,11 +1,3 @@
-//
-//  TeamCalendarCollectionViewCell.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 8/28/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 import Kingfisher
@@ -43,7 +35,7 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
         super.awakeFromNib()
     }
     
-    func setCell(processor: ImageProcessor) {
+    func setCell() {
         self.layer.borderColor = UIColor.lightPrimaryColor.cgColor
         handleCellText(cellState: cellState)
         isEmpty.layer.cornerRadius = isEmpty.frame.width / 2

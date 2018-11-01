@@ -1,0 +1,63 @@
+general.alert.errorTitle = "Greska";
+general.alert.cancel = "Otkazi";
+general.alert.ok = "Ok";
+
+request.status.pending = "Na cekanju";
+request.status.approved = "Odobreno";
+request.status.rejected = "Odbijeno";
+request.status.canceled = "Otkazano";
+request.status.cancelationPending = "Ceka se otkazivanje";
+
+request.duration.fullDay = "Ceo dan";
+request.duration.morning = "Prepodne";
+request.duration.afternoon = "Poslepodne";
+request.duration.afternoonFirst = "Poslepodne prvog dana";
+request.duration.morningLast = "Prepodne poslednjeg dana";
+request.duration.morningAndAfternoon = "Poslepodne poslednjeg i prepodne prvog dana";
+
+request.table.leaveType = "Tip odsustva";
+request.table.sicknessType = "Tip bolesti";
+request.table.duration = "Trajanje";
+request.reasonPlaceholder = "Unesite razlog odsustva";
+request.startDate = "Pocetni datum";
+request.endDate = "Krajnji datum";
+request.sicknessRequest = "Zahtev za bolovanje";
+request.leaveRequest = "Zahtev za odsustvo";
+request.bonusRequest = "Zahtev za dodatne dane";
+request.sickness = "Bolovanje";
+request.leave = "Odsustvo";
+request.bonus = "Dodatni dani";
+
+api.response.tooManyDays = "Invalid request, too many days selected";
+api.response.alreadyExists = "Alredy exists in database";
+
+remainingDays.leave = "Slobodni dani";
+remainingDays.training = "Trening";
+remainingDays.taken = "Uzeto";
+remainingDays.pending = "Ceka se";
+remainingDays.remainig = "Preostalo";
+remainingDays.days = "dana";
+
+summary.datesRequested = "Trazeni datumi";
+summary.leaveRequested = "Tip odsustva";
+summary.leaveRemaining = "Preostalo odsustva";
+summary.leavetype = "Tip odsustva";
+summary.reason = "Razlog";
+summary.submit = "Posalji";
+
+filter.year = "Godina";
+filter.filter = "Filter";
+
+dashboard.title = "Domaca";
+
+history.title = "Istorija";
+
+team.tabItemTitle = "Tim";
+team.title = "Timski kalendar";
+
+approval.tabItemTitle = "Odobravanje";
+approval.title = "Odobri zahteve";
+
+more.title = "Jos";
+more.signOut = "Odjavi se";
+

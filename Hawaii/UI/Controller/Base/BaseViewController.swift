@@ -1,11 +1,3 @@
-//
-//  BaseViewController.swift
-//  Hawaii
-//
-//  Created by Server on 6/29/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 class BaseViewController: UIViewController {
@@ -54,7 +46,7 @@ class BaseViewController: UIViewController {
     
     func handleResponseFaliure(message: String?) {
         self.stopActivityIndicatorSpinner()
-        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: message ?? "",
+        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: message ?? "",
                                         viewController: self, completion: { _ in
         })
     }

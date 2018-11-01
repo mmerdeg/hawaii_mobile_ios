@@ -1,11 +1,3 @@
-//
-//  HistoryViewController.swift
-//  Hawaii
-//
-//  Created by Server on 6/29/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import EKBlurAlert
 
@@ -38,7 +30,9 @@ class HistoryViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     
     lazy var filterDisabled: UIBarButtonItem = {
-        var buttonImage = UIImage(named: "00 filter white 01")
+        let filterDisabledImageName = "00 filter white 01"
+        
+        var buttonImage = UIImage(named: filterDisabledImageName)
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         
         let button: UIButton = UIButton(type: UIButtonType.custom)
@@ -53,7 +47,9 @@ class HistoryViewController: BaseViewController {
     }()
     
     lazy var filterEnabled: UIBarButtonItem = {
-        var buttonImage = UIImage(named: "00 filter inactive white 01")
+        let filterEnabledImageName = "00 filter inactive white 01"
+        
+        var buttonImage = UIImage(named: filterEnabledImageName)
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         let button: UIButton = UIButton(type: UIButtonType.custom)
         button.setImage(buttonImage, for: UIControlState.normal)
@@ -68,6 +64,9 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let refreshControlTitle = "Fetching Data ..."
+        
+        title = LocalizedKeys.History.title.localized()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: RequestDetailTableViewCell.self), bundle: nil),
@@ -84,7 +83,7 @@ class HistoryViewController: BaseViewController {
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.accentColor
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
+        refreshControl.attributedTitle = NSAttributedString(string: refreshControlTitle, attributes: nil)
         fillCalendar()
         lastTimeSynced = Date()
     }
@@ -96,13 +95,8 @@ class HistoryViewController: BaseViewController {
         let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
         let seconds = components.second ?? ViewConstants.maxTimeElapsed
         if seconds >= ViewConstants.maxTimeElapsed {
-            if let selectedYear = selectedYear {
-                fillCalendatByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
-            } else {
-                fillCalendar()
-            }
+            refreshView()
         }
-        lastTimeSynced = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -132,8 +126,12 @@ class HistoryViewController: BaseViewController {
     
     @objc private func refreshData(_ sender: Any) {
         self.refreshControl.endRefreshing()
+        refreshView()
+    }
+    
+    func refreshView() {
         if let selectedYear = selectedYear {
-            fillCalendatByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
+            fillCalendarByParameter(year: selectedYear, leave: leaveParameter, sick: sickParameter, bonus: bonusParameter)
         } else {
             fillCalendar()
         }
@@ -141,17 +139,20 @@ class HistoryViewController: BaseViewController {
     }
     
     func presentBluredAlertView() {
+        let successTitle = "Success"
+        let alertMessage = "You have succesfully canceled a new request"
+        
         let alertView = EKBlurAlertView(frame: self.view.bounds)
-        let myImage = UIImage(named: "success") ?? UIImage()
+        let myImage = UIImage(named: successTitle.lowercased()) ?? UIImage()
         alertView.setCornerRadius(10)
         alertView.set(autoFade: true, after: 2)
         alertView.set(image: myImage)
-        alertView.set(headline: "Success")
-        alertView.set(subheading: "You have succesfully canceled a new request")
+        alertView.set(headline: successTitle)
+        alertView.set(subheading: alertMessage)
         view.addSubview(alertView)
     }
     
-    func fillCalendatByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {
+    func fillCalendarByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {
         guard let yearNo = Int(year) else {
             return
         }
@@ -160,31 +161,31 @@ class HistoryViewController: BaseViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         requestUseCase.getAllByDate(from: dateFormatter.date(from: startDate) ?? Date(),
-                                    toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
-                                        guard let success = response.success else {
-                                            self.stopActivityIndicatorSpinner()
-                                            return
-                                        }
-                                        if success {
-                                            self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
-                                                (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
-                                                    $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
-                                                    sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
-                                                    bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
-                                            } ?? []
-                                            self.filteredRequests = self.requests
-                                            DispatchQueue.main.async {
-                                                self.customView.removeFromSuperview()
-                                                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
-                                                self.stopActivityIndicatorSpinner()
-                                            }
-                                        } else {
-                                            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
-                                                                            message: response.message ?? "",
-                                                                            viewController: self, completion: { _ in
-                                                self.stopActivityIndicatorSpinner()
-                                            })
-                                        }
+            toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
+                    guard let success = response.success else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    if success {
+                        self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
+                            (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
+                                $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
+                                sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
+                                bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+                        } ?? []
+                        self.filteredRequests = self.requests
+                        DispatchQueue.main.async {
+                            self.customView.removeFromSuperview()
+                            self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                            self.stopActivityIndicatorSpinner()
+                        }
+                    } else {
+                        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
+                                                        message: response.message ?? "",
+                                                        viewController: self, completion: { _ in
+                            self.stopActivityIndicatorSpinner()
+                        })
+                    }
         }
     }
     
@@ -246,12 +247,12 @@ class HistoryViewController: BaseViewController {
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cellIdentifier = "Cell"
         tableView.separatorColor = UIColor.primaryColor
     
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RequestDetailTableViewCell.self), for: indexPath)
             as? RequestDetailTableViewCell else {
-                return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell.request = filteredRequests[indexPath.row]
         cell.requestCancelationDelegate = self
@@ -302,7 +303,7 @@ extension HistoryViewController: SearchDialogProtocol {
         } else {
             self.navigationItem.rightBarButtonItem = filterEnabled
         }
-        fillCalendatByParameter(year: year, leave: leave, sick: sick, bonus: bonus)
+        fillCalendarByParameter(year: year, leave: leave, sick: sick, bonus: bonus)
     }
     
     func dismissDialog() {

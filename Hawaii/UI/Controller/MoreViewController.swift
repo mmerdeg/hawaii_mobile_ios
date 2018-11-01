@@ -1,11 +1,3 @@
-//
-//  MoreViewController.swift
-//  Hawaii
-//
-//  Created by Server on 6/18/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import GoogleSignIn
 
@@ -27,6 +19,7 @@ class MoreViewController: BaseViewController {
         super.viewDidLoad()
         let imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"
         
+        title = LocalizedKeys.More.title.localized()
         profileImage.kf.setImage(with: URL(string: imageUrl))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false

@@ -1,11 +1,3 @@
-//
-//  RequestApprovalTableViewCell.swift
-//  Hawaii
-//
-//  Created by Server on 8/13/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 
 protocol RequestApprovalProtocol: class {

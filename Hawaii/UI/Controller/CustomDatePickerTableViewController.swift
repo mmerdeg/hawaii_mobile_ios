@@ -1,11 +1,3 @@
-//
-//  CustomDatePickerTableViewController.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 9/5/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
 
@@ -20,6 +12,8 @@ class CustomDatePickerTableViewController: BaseViewController {
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var closeButton: UIButton!
+    
+    @IBOutlet weak var okButton: UIButton!
     
     weak var delegate: DatePickerProtocol?
     
@@ -38,14 +32,17 @@ class CustomDatePickerTableViewController: BaseViewController {
     var items: [Date] = []
     
     var holidays: [Date: [PublicHoliday]] = [:]
+    
     var customView: UIView = UIView()
+    
     var isFirstSelected = false
+    
     let formatter = DateFormatter()
-    let processor = SVGProcessor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        okButton.setTitle(LocalizedKeys.General.ok.localized(), for: .normal)
         dateLabel.textColor = UIColor.primaryTextColor
         closeButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
@@ -78,6 +75,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             self.dateLabel.text = month + ", " + year
         }
     }
+    
     func fillCalendar() {
         startActivityIndicatorSpinner()
         self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
@@ -170,7 +168,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             }
             
             cell.cellState = cellState
-            cell.setCell(processor: processor)
+            cell.setCell()
             return cell
         }
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: DatePickerCollectionViewCell.self),
@@ -189,7 +187,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
         }
         
         cell.cellState = cellState
-        cell.setCell(processor: processor)
+        cell.setCell()
         return cell
     }
     
@@ -216,7 +214,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             collectionView.reloadData()
             return
         }
-        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: "Dont try to trick me",
+        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: "Dont try to trick me",
                                         viewController: self) { _ in
         }
         startDate = tempStartDate

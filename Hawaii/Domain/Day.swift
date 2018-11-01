@@ -1,11 +1,3 @@
-//
-//  Day.swift
-//  Hawaii
-//
-//  Created by Server on 6/28/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 
 enum DurationType: String, Codable {
@@ -20,17 +12,17 @@ enum DurationType: String, Codable {
     var description: String {
         switch self {
         case .fullday:
-            return "Full day"
+            return LocalizedKeys.Request.fullDay.localized()
         case .morning:
-            return "Morning only"
+            return LocalizedKeys.Request.morning.localized()
         case .afternoon:
-            return "Afternoon only"
+            return LocalizedKeys.Request.afternoon.localized()
         case .afternoonFirst:
-            return "Afternoon first day"
+            return LocalizedKeys.Request.afternoonFirst.localized()
         case .morningLast:
-            return "Morning last day"
+            return LocalizedKeys.Request.morningLast.localized()
         case .morningAndAfternoon:
-            return "Afternoon first day and morning last day"
+            return LocalizedKeys.Request.morningAndAfternoon.localized()
         }
     }
     
