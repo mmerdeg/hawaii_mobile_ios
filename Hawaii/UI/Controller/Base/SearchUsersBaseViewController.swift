@@ -26,13 +26,12 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let title = "Employees"
         
         setUpSearch()
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = searchController
         }
-        self.navigationItem.title = title
+        self.navigationItem.title = LocalizedKeys.Team.searchTitle.localized()
     }
     
     func loadMoreClicked(completion: @escaping () -> Void) {

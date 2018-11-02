@@ -77,6 +77,11 @@ class TeamCalendarViewController: BaseViewController {
         collectionView.scrollingMode = .stopAtEachCalendarFrame
         collectionView.backgroundColor = UIColor.lightPrimaryColor
         
+        segmentedControl.removeAllSegments()
+        segmentedControl.insertSegment(withTitle: LocalizedKeys.Team.segmentAll.localized(), at: 0, animated: false)
+        segmentedControl.insertSegment(withTitle: LocalizedKeys.Team.segmentTeam.localized(), at: 1, animated: false)
+        segmentedControl.insertSegment(withTitle: LocalizedKeys.Team.segmentPerson.localized(), at: 2, animated: false)
+
         self.refreshUI(date: lastDateInMonth)
         initFilterHeader()
         lastTimeSynced = Date()
@@ -271,7 +276,7 @@ class TeamCalendarViewController: BaseViewController {
             self.formatter.dateFormat = "yyyy"
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date)
+            let month = self.formatter.string(from: date).capitalized
             self.dateLabel.text = month+", "+year
             self.lastDateInMonth = date
             self.refreshUI(date: date)

@@ -2,7 +2,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    let progressHUD = ProgressHUD(text: "Please wait")
+    let progressHUD = ProgressHUD(text: LocalizedKeys.General.wait.localized())
 
     override func viewDidLoad() {
         super.viewDidLoad()

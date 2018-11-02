@@ -13,3 +13,7 @@ class ViewConstants {
     
     static let dateSourceFormat = "yyyy-MM-dd'T'HH:mm:ss"
 }
+
+struct NotificationNames {
+    static let refreshData = "refreshData"
+}

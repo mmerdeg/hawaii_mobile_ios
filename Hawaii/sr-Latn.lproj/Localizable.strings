@@ -1,63 +1,90 @@
-general.alert.errorTitle = "Greska";
-general.alert.cancel = "Otkazi";
+general.alert.errorTitle = "Greška";
+general.alert.cancel = "Otkaži";
 general.alert.ok = "Ok";
+general.alert.trickMessage = "Početni datum mora biti pre krajnjeg!";
+general.alert.reasonRequired = "Polje za razlog mora biti popunjeno.";
+general.alert.cancelRequestMessage = "Da li ste sigurni da želite da otkažete ovaj zahtev?";
+general.alert.canceledRequestMessage = "Uspešno ste otkazali zahtev.";
+general.alert.approveRequestMessage = "Da li ste sigurni da želite da odobrite ovaj zahtev?";
+general.alert.approvedRequestMessage = "Uspešno ste odobrili zahtev.";
+general.alert.rejectRequestMessage = "Da li ste sigurni da želite da odbijete ovaj zahtev?";
+general.alert.rejectedRequestMessage = "Uspešno ste odbili zahtev.";
 
-request.status.pending = "Na cekanju";
+general.approve = "Odobri";
+general.reject = "Odbij";
+general.wait = "Molimo, sačekajte";
+general.next = "Dalje";
+general.newRequestMenu = "Odaberite tip zahteva";
+general.success = "Uspešno izvršena operacija";
+general.confirm = "Potvrda";
+general.refresh = "Dobavljanje podataka ...";
+
+request.status.pending = "Na čekanju";
 request.status.approved = "Odobreno";
 request.status.rejected = "Odbijeno";
 request.status.canceled = "Otkazano";
-request.status.cancelationPending = "Ceka se otkazivanje";
+request.status.cancelationPending = "Čeka se otkazivanje";
 
 request.duration.fullDay = "Ceo dan";
 request.duration.morning = "Prepodne";
 request.duration.afternoon = "Poslepodne";
 request.duration.afternoonFirst = "Poslepodne prvog dana";
 request.duration.morningLast = "Prepodne poslednjeg dana";
-request.duration.morningAndAfternoon = "Poslepodne poslednjeg i prepodne prvog dana";
+request.duration.morningAndAfternoon = "Poslepodne prvog dana i prepodne poslednjeg dana";
 
 request.table.leaveType = "Tip odsustva";
-request.table.sicknessType = "Tip bolesti";
+request.table.sicknessType = "Tip bolovanja";
 request.table.duration = "Trajanje";
 request.reasonPlaceholder = "Unesite razlog odsustva";
-request.startDate = "Pocetni datum";
+request.startDate = "Početni datum";
 request.endDate = "Krajnji datum";
 request.sicknessRequest = "Zahtev za bolovanje";
 request.leaveRequest = "Zahtev za odsustvo";
-request.bonusRequest = "Zahtev za dodatne dane";
+request.bonusRequest = "Zahtev za bonus dane";
 request.sickness = "Bolovanje";
 request.leave = "Odsustvo";
-request.bonus = "Dodatni dani";
+request.bonus = "Bonus dani";
+request.date = "Datum";
+request.notes = "Beleške";
+request.cancelationPendingDescription = "Ovaj zahtev čeka otkazivanje. Ako se odobri, slobodni dani zaposlenog će biti vraćeni.";
+request.addMessage = "Uspešno ste dodali zahtev";
 
-api.response.tooManyDays = "Invalid request, too many days selected";
-api.response.alreadyExists = "Alredy exists in database";
+api.response.tooManyDays = "Zahtev nije validan, previše dana odabrano";
+api.response.alreadyExists = "Zahtev za neki od odabranih dana već postoji";
 
 remainingDays.leave = "Slobodni dani";
-remainingDays.training = "Trening";
+remainingDays.training = "Trening dani";
 remainingDays.taken = "Uzeto";
-remainingDays.pending = "Ceka se";
+remainingDays.pending = "Na čekanju";
 remainingDays.remainig = "Preostalo";
 remainingDays.days = "dana";
 
-summary.datesRequested = "Trazeni datumi";
-summary.leaveRequested = "Tip odsustva";
-summary.leaveRemaining = "Preostalo odsustva";
+summary.datesRequested = "Traženi datumi";
+summary.leaveRequested = "Traženo dana";
+summary.leaveRemaining = "Preostalo dana";
 summary.leavetype = "Tip odsustva";
 summary.reason = "Razlog";
-summary.submit = "Posalji";
+summary.submit = "Pošalji";
 
 filter.year = "Godina";
-filter.filter = "Filter";
+filter.filter = "Filtriraj";
 
-dashboard.title = "Domaca";
+dashboard.title = "Kalendar";
 
 history.title = "Istorija";
+history.segmentAll = "Svi zahtevi";
 
 team.tabItemTitle = "Tim";
 team.title = "Timski kalendar";
+team.loadMore = "Učitaj još";
+team.loadingMore = "Učitavanje";
+team.searchTitle = "Zaposleni";
+team.segmentAll = "Svi zaposleni";
+team.segmentTeam = "Moj tim";
+team.segmentPerson = "Po osobi";
 
 approval.tabItemTitle = "Odobravanje";
 approval.title = "Odobri zahteve";
 
-more.title = "Jos";
+more.title = "Još";
 more.signOut = "Odjavi se";
-

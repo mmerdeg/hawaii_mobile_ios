@@ -5,7 +5,7 @@ import NotificationBannerSwift
 
 class HomeTabBarController: UITabBarController {
     
-    let progressHUD = ProgressHUD(text: "Please wait")
+    let progressHUD = ProgressHUD(text: LocalizedKeys.General.wait.localized())
     
     let gcmMessageIDKey = "gcm.message_id"
     
@@ -17,7 +17,7 @@ class HomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         Messaging.messaging().delegate = self
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -37,6 +37,11 @@ class HomeTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        homeTabBar.items?[0].title = LocalizedKeys.Dashboard.title.localized()
+        homeTabBar.items?[1].title = LocalizedKeys.History.title.localized()
+        homeTabBar.items?[2].title = LocalizedKeys.Team.tabItemTitle.localized()
+        homeTabBar.items?[3].title = LocalizedKeys.Approval.tabItemTitle.localized()
+        homeTabBar.items?[4].title = LocalizedKeys.More.title.localized()
     }
     
     /**

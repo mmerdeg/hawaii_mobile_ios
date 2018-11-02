@@ -25,7 +25,6 @@ class SelectAbsenceViewController: BaseViewController {
 extension SelectAbsenceViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cellIdentifier = "Cell"
         
         let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifier)

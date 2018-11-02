@@ -71,7 +71,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             self.formatter.dateFormat = "yyyy"
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date)
+            let month = self.formatter.string(from: date).capitalized
             self.dateLabel.text = month + ", " + year
         }
     }
@@ -214,7 +214,8 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             collectionView.reloadData()
             return
         }
-        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: "Dont try to trick me",
+        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
+                                        message: LocalizedKeys.General.trickMessage.localized(),
                                         viewController: self) { _ in
         }
         startDate = tempStartDate

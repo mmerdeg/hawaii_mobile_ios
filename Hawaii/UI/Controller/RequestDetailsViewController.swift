@@ -93,8 +93,8 @@ extension RequestDetailsViewController: RequestCancelationProtocol {
     
     func requestCanceled(request: Request?, cell: RequestDetailTableViewCell) {
         
-        let confirmationAlertTitle = "Confirm"
-        let confirmationAlertMessage = "Are you sure you want to cancel this request?"
+        let confirmationAlertTitle = LocalizedKeys.General.confirm.localized()
+        let confirmationAlertMessage = LocalizedKeys.General.cancelRequestMessage.localized()
         
         guard let oldRequest = request,
             let newRequest = request else {

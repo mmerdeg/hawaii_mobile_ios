@@ -7,7 +7,11 @@ class HistoryViewController: BaseViewController {
     
     let searchRequestsSegue = "searchRequests"
     
-    let segmentedControl = UISegmentedControl(items: ["All", "Pending", "Approved", "Rejected", "Canceled"])
+    let segmentedControl = UISegmentedControl(items: [LocalizedKeys.History.segmentAll.localized(),
+                                                      LocalizedKeys.Request.pending.localized(),
+                                                      LocalizedKeys.Request.approved.localized(),
+                                                      LocalizedKeys.Request.rejected.localized(),
+                                                      LocalizedKeys.Request.canceled.localized()])
     
     var customView: UIView = UIView()
     
@@ -64,7 +68,7 @@ class HistoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let refreshControlTitle = "Fetching Data ..."
+        let refreshControlTitle = LocalizedKeys.General.refresh.localized()
         
         self.navigationItem.title = LocalizedKeys.History.title.localized()
         tableView.delegate = self
@@ -139,8 +143,8 @@ class HistoryViewController: BaseViewController {
     }
     
     func presentBluredAlertView() {
-        let successTitle = "Success"
-        let alertMessage = "You have succesfully canceled a new request"
+        let successTitle = LocalizedKeys.General.success.localized()
+        let alertMessage = LocalizedKeys.General.canceledRequestMessage.localized()
         
         let alertView = EKBlurAlertView(frame: self.view.bounds)
         let myImage = UIImage(named: successTitle.lowercased()) ?? UIImage()
@@ -336,7 +340,8 @@ extension HistoryViewController: RequestCancelationProtocol {
             status = .canceled
         }
         
-        ViewUtility.showAlertWithAction(title: "Confirm", message: "Are you sure you want to cancel this request?",
+        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.confirm.localized(),
+                                        message: LocalizedKeys.General.cancelRequestMessage.localized(),
                                         cancelable: true, viewController: self) { confirmed in
             if confirmed {
                 self.startActivityIndicatorSpinner()

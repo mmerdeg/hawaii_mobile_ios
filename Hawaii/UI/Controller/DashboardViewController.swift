@@ -122,23 +122,23 @@ class DashboardViewController: BaseViewController {
     
     func addRequest(_ date: Date? = nil) {
         
-        let leave = DialogWrapper(title: "Leave", uiAction: .default,
+        let leave = DialogWrapper(title: LocalizedKeys.Request.leave.localized(), uiAction: .default,
                                   handler: { _ in
                                     self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.deducted))
         })
-        let sick = DialogWrapper(title: "Sick", uiAction: .default,
+        let sick = DialogWrapper(title: LocalizedKeys.Request.sickness.localized(), uiAction: .default,
                                  handler: { _ in
                                     self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.sick))
         })
-        let bonus = DialogWrapper(title: "Bonus", uiAction: .default,
+        let bonus = DialogWrapper(title: LocalizedKeys.Request.bonus.localized(), uiAction: .default,
                                   handler: { _ in
                                     self.performSegue(withIdentifier: self.showNewRequestSegue, sender: (date, AbsenceType.bonus))
         })
-        let cancel = DialogWrapper(title: "Cancel", uiAction: .cancel)
+        let cancel = DialogWrapper(title: LocalizedKeys.General.cancel.localized(), uiAction: .cancel)
         
         ViewUtility.showCustomDialog(self,
                                      choices: [leave, sick, bonus, cancel],
-                                     title: "Choose Request Type"
+                                     title: LocalizedKeys.General.newRequestMenu.localized()
         )
     }
     
@@ -177,7 +177,7 @@ class DashboardViewController: BaseViewController {
             guard let remainingDaysViewController = self.remainingDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "Leave"
+            remainingDaysViewController.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
         } else if segue.identifier == showRemainingDaysSickViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -186,7 +186,7 @@ class DashboardViewController: BaseViewController {
             guard let remainingDaysViewController = self.remainingDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "Training"
+            remainingDaysViewController.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
         }
     }
     
@@ -198,7 +198,7 @@ class DashboardViewController: BaseViewController {
             self.formatter.dateFormat = "yyyy"
             let year = self.formatter.string(from: date)
             self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date)
+            let month = self.formatter.string(from: date).capitalized
             self.dateLabel.text = month+", "+year
         }
     }
@@ -283,8 +283,8 @@ class DashboardViewController: BaseViewController {
         alertView.setCornerRadius(10)
         alertView.set(autoFade: true, after: 2)
         alertView.set(image: myImage)
-        alertView.set(headline: "Success")
-        alertView.set(subheading: "You have succesfully added a new request")
+        alertView.set(headline: LocalizedKeys.General.success.localized())
+        alertView.set(subheading: LocalizedKeys.Request.addMessage.localized())
         view.addSubview(alertView)
     }
 }

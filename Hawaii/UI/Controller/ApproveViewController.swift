@@ -20,7 +20,7 @@ class ApproveViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let refreshControlTitle = "Fetching Data ..."
+        let refreshControlTitle = LocalizedKeys.General.refresh.localized()
         
         self.navigationItem.title = LocalizedKeys.Approval.title.localized()
         tableView.delegate = self
@@ -129,9 +129,9 @@ extension ApproveViewController: RequestApprovalProtocol {
     
     func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell) {
         
-        let confirmationAlertTitle = "Confirm"
-        let approveAlertMessage = "Are you sure you want to approve this request?"
-        let rejectAlertMessage = "Are you sure you want to reject this request?"
+        let confirmationAlertTitle = LocalizedKeys.General.confirm.localized()
+        let approveAlertMessage = LocalizedKeys.General.approveRequestMessage.localized()
+        let rejectAlertMessage = LocalizedKeys.General.rejectRequestMessage.localized()
         
         guard let request = request else {
             return
@@ -155,9 +155,9 @@ extension ApproveViewController: RequestApprovalProtocol {
     
     func presentBluredAlertView(_ isAccepted: Bool) {
         
-        let alertTitle = "Success"
-        let approveAlertMessage = "You have succesfully approved a request."
-        let rejectAlertMessage = "You have succesfully rejected a proposed request"
+        let alertTitle = LocalizedKeys.General.success.localized()
+        let approveAlertMessage = LocalizedKeys.General.approvedRequestMessage.localized()
+        let rejectAlertMessage = LocalizedKeys.General.rejectedRequestMessage.localized()
         
         let alertView = EKBlurAlertView(frame: self.view.bounds)
         let myImage = UIImage(named: alertTitle.lowercased()) ?? UIImage()

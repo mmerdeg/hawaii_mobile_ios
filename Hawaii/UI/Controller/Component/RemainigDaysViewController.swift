@@ -75,6 +75,7 @@ class RemainigDaysViewController: BaseViewController {
         pendingLabel.text = LocalizedKeys.RemainingDays.pending.localized()
         remainingLabel.text = LocalizedKeys.RemainingDays.remaining.localized()
         takenDaysLabel.text = LocalizedKeys.RemainingDays.days.localized()
+        remainingDaysLabel.text = LocalizedKeys.RemainingDays.days.localized()
     }
 
     func getData() {

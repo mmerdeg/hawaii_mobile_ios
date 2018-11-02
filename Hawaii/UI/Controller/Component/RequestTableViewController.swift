@@ -99,9 +99,9 @@ class RequestTableViewController: BaseViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let durationTitle = "Duration"
-        let leaveTitle = "Type of leave"
-        let sicknessTitle = "Type of sickness"
+        let durationTitle = LocalizedKeys.Request.duration.localized()
+        let leaveTitle = LocalizedKeys.Request.leaveType.localized()
+        let sicknessTitle = LocalizedKeys.Request.sicknessType.localized()
         
         if segue.identifier == selectParametersSegue {
             
@@ -166,8 +166,9 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        let cellIdentifier = "Cell"
+        
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifier)
         cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.selectionStyle = .none
         cell.accessoryType = .disclosureIndicator
@@ -184,7 +185,7 @@ extension RequestTableViewController: UITableViewDelegate, UITableViewDataSource
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: InputTableViewCell.self), for: indexPath)
                 as? InputTableViewCell else {
-                    return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                    return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
             }
             cell.backgroundColor = UIColor.transparentColor
             return cell

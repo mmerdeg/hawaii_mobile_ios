@@ -6,8 +6,22 @@ public struct LocalizedKeys {
         static let errorTitle = "general.alert.errorTitle"
         static let cancel = "general.alert.cancel"
         static let ok = "general.alert.ok"
+        static let trickMessage = "general.alert.trickMessage"
+        static let reasonRequired = "general.alert.reasonRequired"
+        static let cancelRequestMessage = "general.alert.cancelRequestMessage"
+        static let canceledRequestMessage = "general.alert.canceledRequestMessage"
+        static let approveRequestMessage = "general.alert.approveRequestMessage"
+        static let approvedRequestMessage = "general.alert.approvedRequestMessage"
+        static let rejectRequestMessage = "general.alert.rejectRequestMessage"
+        static let rejectedRequestMessage = "general.alert.rejectedRequestMessage"
         static let approve = "general.approve"
         static let reject = "general.reject"
+        static let wait = "general.wait"
+        static let next = "general.next"
+        static let newRequestMenu = "general.newRequestMenu"
+        static let success = "general.success"
+        static let confirm = "general.confirm"
+        static let refresh = "general.refresh"
     }
 
     struct Request {
@@ -37,6 +51,7 @@ public struct LocalizedKeys {
         static let notes = "request.notes"
         static let date = "request.date"
         static let cancelationPendingDescription = "request.cancelationPendingDescription"
+        static let addMessage = "request.addMessage"
     }
     
     struct Api {
@@ -73,6 +88,7 @@ public struct LocalizedKeys {
     
     struct History {
         static let title = "history.title"
+        static let segmentAll = "history.segmentAll"
     }
     
     struct Team {
@@ -80,6 +96,10 @@ public struct LocalizedKeys {
         static let tabItemTitle = "team.tabItemTitle"
         static let loadMore = "team.loadMore"
         static let loadingMore = "team.loadingMore"
+        static let searchTitle = "team.searchTitle"
+        static let segmentAll = "team.segmentAll"
+        static let segmentTeam = "team.segmentTeam"
+        static let segmentPerson = "team.segmentPerson"
     }
     
     struct Approval {

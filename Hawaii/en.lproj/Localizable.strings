@@ -1,8 +1,23 @@
 general.alert.errorTitle = "Error";
 general.alert.cancel = "Cancel";
 general.alert.ok = "Ok";
+general.alert.trickMessage = "Dont try to trick me";
+general.alert.reasonRequired = "Reason field is required";
+general.alert.cancelRequestMessage = "Are you sure you want to cancel this request?";
+general.alert.canceledRequestMessage = "You have succesfully canceled this request";
+general.alert.approveRequestMessage = "Are you sure you want to approve this request?";
+general.alert.approvedRequestMessage = "You have succesfully approved a request.";
+general.alert.rejectRequestMessage = "Are you sure you want to reject this request?";
+general.alert.rejectedRequestMessage = "You have succesfully rejected a proposed request";
+
 general.approve = "Approve";
 general.reject = "Reject";
+general.wait = "Please wait";
+general.next = "Next";
+general.newRequestMenu = "Choose Request Type";
+general.success = "Success";
+general.confirm = "Confirm";
+general.refresh = "Fetching Data ...";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";
@@ -32,6 +47,7 @@ request.bonus = "Bonus";
 request.date = "Date";
 request.notes = "Notes";
 request.cancelationPendingDescription = "This request is pending cancellation. If approved, the employees allowance will be reinstated.";
+request.addMessage = "You have succesfully added a new request";
 
 api.response.tooManyDays = "Invalid request, too many days selected";
 api.response.alreadyExists = "Alredy exists in database";
@@ -56,11 +72,16 @@ filter.filter = "Filter";
 dashboard.title = "Dashboard";
 
 history.title = "History";
+history.segmentAll = "All";
 
 team.tabItemTitle = "Team";
 team.title = "Team calendar";
 team.loadMore = "Load more";
 team.loadingMore = "Loading";
+team.searchTitle = "Employees";
+team.segmentAll = "All Employees";
+team.segmentTeam = "My team";
+team.segmentPerson = "Person";
 
 approval.tabItemTitle = "Approval";
 approval.title = "Approve requests";

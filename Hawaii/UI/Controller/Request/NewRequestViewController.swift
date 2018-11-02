@@ -30,7 +30,7 @@ class NewRequestViewController: BaseViewController {
     
     lazy var nextItem: UIBarButtonItem = {
         
-        let nextButtonTitle = "Next"
+        let nextButtonTitle = LocalizedKeys.General.next.localized()
         
         let item = UIBarButtonItem(title: nextButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
         item.tintColor = UIColor.primaryTextColor
@@ -108,8 +108,7 @@ class NewRequestViewController: BaseViewController {
             guard let remainingDaysViewController = self.remainingDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = "Leave"
-            
+            remainingDaysViewController.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
         } else if segue.identifier == showSummaryViewController {
             guard let controller = segue.destination as? SummaryViewController,
                   let request = sender as? Request else {
@@ -123,8 +122,8 @@ class NewRequestViewController: BaseViewController {
     
     @objc func newRequest() {
         
-        let trickMessage = "Dont try to trick me"
-        let reasonEmptyMessage = "Reason filed is required"
+        let trickMessage = LocalizedKeys.General.trickMessage.localized()
+        let reasonEmptyMessage = LocalizedKeys.General.reasonRequired.localized()
         
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
@@ -173,9 +172,9 @@ class NewRequestViewController: BaseViewController {
 extension NewRequestViewController: SelectAbsenceProtocol {
     func didSelect(absence: Absence) {
         if absence.absenceSubtype == "TRAINING" {
-            remainingDaysViewController?.mainLabelText = "Training"
+            remainingDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
         } else {
-            remainingDaysViewController?.mainLabelText = "Leave"
+            remainingDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
         }
     }
 }
