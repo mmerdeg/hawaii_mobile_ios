@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Leave Request-->
+        <!--New Request View Controller-->
         <scene sceneID="spd-Kd-unm">
             <objects>
-                <viewController title="Leave Request" modalTransitionStyle="flipHorizontal" id="EJI-Zz-68X" customClass="LeaveRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="EJI-Zz-68X" customClass="NewRequestViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PUn-XF-zsm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="6181" y="-2981"/>
         </scene>
-        <!--Request-->
+        <!--RequestParams-->
         <scene sceneID="PiL-eW-miW">
             <objects>
-                <viewControllerPlaceholder storyboardName="Request" id="xlg-4A-bCn" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="RequestParams" id="xlg-4A-bCn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YYx-bp-6DD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6182" y="-2897"/>

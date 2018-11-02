@@ -69,13 +69,18 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: getFirebaseToken(), completion: { response in
+        guard let firebaseToken = getFirebaseToken() else {
+            completion(GenericResponse<Any> (success: false, item: nil,
+                                             statusCode: 400, error: nil, message: "You didnt get push token, check support"))
+            return
+        }
+        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: firebaseToken, completion: { response in
             completion(response)
         })
     }
     
-    func getFirebaseToken() -> String {
-        return userDetailsUseCase?.getFirebaseToken() ?? ""
+    func getFirebaseToken() -> String? {
+        return userDetailsUseCase?.getFirebaseToken()
     }
 
     func getToken() -> String {

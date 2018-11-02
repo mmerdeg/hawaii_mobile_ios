@@ -209,7 +209,7 @@ class TeamCalendarViewController: BaseViewController {
                             }
                         }
                     } else {
-                        ViewUtility.showAlertWithAction(title: "Error",
+                        ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle,
                                                         message: holidaysResponse?.message ?? "",
                                                         viewController: self, completion: { _ in
                             self.stopActivityIndicatorSpinner()
@@ -217,7 +217,8 @@ class TeamCalendarViewController: BaseViewController {
                     }
                 })
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: yearsResponse.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: yearsResponse.message ?? "",
+                                                viewController: self, completion: { _ in
                 self.stopActivityIndicatorSpinner()
                 })
             }
@@ -244,7 +245,8 @@ class TeamCalendarViewController: BaseViewController {
                 }
             }
         } else {
-            ViewUtility.showAlertWithAction(title: "Error", message: requestResponse?.message ?? "", viewController: self, completion: { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse?.message ?? "",
+                                            viewController: self, completion: { _ in
                 self.stopActivityIndicatorSpinner()
             })
         }

@@ -7,8 +7,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     
     var userUseCase: UserUseCaseProtocol?
     
-    var label = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeGoogleSignIn()
@@ -19,6 +17,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             print(error.localizedDescription)
             return
         }
+        //print(user.authentication.idToken, user.authentication.idTokenExpirationDate, user.authentication.accessToken, user.authentication.accessTokenExpirationDate)
         guard let accessToken = user.authentication.accessToken,
               let userUseCase = userUseCase else {
             return
@@ -37,12 +36,31 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 self.userDetailsUseCase?.setToken(token: token)
                 self.userUseCase?.createUser(entity: user, completion: { _ in
                     self.stopActivityIndicatorSpinner()
-                    self.navigateToHome()
+                    self.userUseCase?.setFirebaseToken { firebaseResponse in
+                        guard let success = response.success else {
+                            self.stopActivityIndicatorSpinner()
+                            return
+                        }
+                        if !success {
+                            guard let code = firebaseResponse?.statusCode else {
+                                return
+                            }
+                            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: firebaseResponse?.message ?? "",
+                                                            viewController: self, completion: { _ in
+                                                                self.stopActivityIndicatorSpinner()
+                            })
+                            if code == 400 {
+                                self.navigateToHome()
+                            }
+                        }
+                        self.navigateToHome()
+                    }
                 })
             } else {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()
-                ViewUtility.showAlertWithAction(title: "Error", message: response.message ?? "", viewController: self, completion: { _ in
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
+                                                viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
                 })
             }
@@ -80,11 +98,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "homeVCSegue", sender: self)
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

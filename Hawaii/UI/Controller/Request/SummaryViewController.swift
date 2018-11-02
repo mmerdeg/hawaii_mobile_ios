@@ -67,31 +67,39 @@ class SummaryViewController: BaseViewController {
             var color = request.requestStatus?.backgoundColor,
             let startDate = request.days?.first?.date,
             let endDate = request.days?.last?.date,
-            let dayNo = request.days?.count,
             let leaveType = request.absence?.name,
-            let absenceType = request.absence?.absenceType,
-            let remainingDaysString = remainingDaysNo,
-            let remainingDays = Int(remainingDaysString)
+            let days = request.days,
+            let absenceType = request.absence?.absenceType
         else {
             return
         }
         self.navigationItem.rightBarButtonItem = addRequestItem
         
         color = absenceType == AbsenceType.sick.rawValue ? UIColor.sickColor : color
+        
         reasonTitle.textColor = UIColor.primaryTextColor
         datesRequiredTitle.textColor = UIColor.primaryTextColor
         leaveRequestedTitle.textColor = UIColor.primaryTextColor
         leaveTypeTitle.textColor = UIColor.primaryTextColor
         leaveRemainingTitle.textColor = UIColor.primaryTextColor
-        
-        let formatter = DisplayedDateFormatter()
-        let start = formatter.string(from: startDate)
-        let end = formatter.string(from: endDate)
-        datesLabel.text = start == end ? start : start + " - " + end
-        datesLabel.textColor = UIColor.primaryTextColor
+        requestTitle.textColor = UIColor.primaryTextColor
+        leaveRequestedLabel.textColor = UIColor.primaryTextColor
+        leaveReasonLabel.textColor = UIColor.primaryTextColor
+        leaveTypeLabel.textColor = UIColor.primaryTextColor
+        leaveRemainingLabel.textColor = UIColor.primaryTextColor
         
         cardView.backgroundColor = UIColor.lightPrimaryColor
         
+        leaveTypeLabel.text = leaveType
+        leaveReasonLabel.text = request.reason
+        
+        handleAbsenceType(absenceType: absenceType)
+        handleRemainingDays(absenceType: absenceType, days: days)
+        handleDatesTaken(startDate: startDate, endDate: endDate)
+        displayImage(color: color, imageUrl: imageUrl)
+    }
+    
+    func displayImage(color: UIColor, imageUrl: String) {
         requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
         requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
         requestImage.tintColor = UIColor.primaryColor
@@ -101,28 +109,26 @@ class SummaryViewController: BaseViewController {
         requestImageFrame.backgroundColor = color
         requestImageFrame.layer.cornerRadius = requestImageFrame.frame.height / 2
         requestImageFrame.layer.masksToBounds = true
-        
-        leaveRequestedLabel.text = String(dayNo) + " day(s)"
-        leaveRequestedLabel.textColor = UIColor.primaryTextColor
-        
-        leaveTypeLabel.text = leaveType
-        leaveTypeLabel.textColor = UIColor.primaryTextColor
-        
-        leaveReasonLabel.text = request.reason
-        leaveReasonLabel.textColor = UIColor.primaryTextColor
-        
+    }
+    
+    func handleAbsenceType(absenceType: String) {
         if absenceType == AbsenceType.bonus.rawValue {
-            requestTitle.text = "Bonus request"
+            requestTitle.text = ViewConstants.bonusRequestTitle
             hideRemainingDays()
         } else if absenceType == AbsenceType.sick.rawValue {
-            requestTitle.text = "Sickness request"
+            requestTitle.text = ViewConstants.sicknessRequestTitle
             hideRemainingDays()
         } else {
-            requestTitle.text = "Leave request"
-            leaveRemainingLabel.text = String(remainingDays - dayNo) + " day(s)"
-            leaveRemainingLabel.textColor = UIColor.primaryTextColor
+            requestTitle.text = ViewConstants.leaveRequestTitle
         }
-        requestTitle.textColor = UIColor.primaryTextColor
+    }
+    
+    func handleDatesTaken(startDate: Date, endDate: Date) {
+        let formatter = DisplayedDateFormatter()
+        let start = formatter.string(from: startDate)
+        let end = formatter.string(from: endDate)
+        datesLabel.text = start == end ? start : start + " - " + end
+        datesLabel.textColor = UIColor.primaryTextColor
     }
     
     func hideRemainingDays() {
@@ -132,6 +138,29 @@ class SummaryViewController: BaseViewController {
         leaveRemainingLabelHeight.constant = 0
         leaveRemainingTitleHeight.constant = 0
         self.view.layoutIfNeeded()
+    }
+    
+    func handleRemainingDays(absenceType: String, days: [Day]) {
+        
+        let halfDayFormat = "%.1f"
+        let daysLabelExtension = " day(s)"
+        
+        guard let remainingDaysString = remainingDaysNo else {
+            return
+        }
+        let half = days.contains { day -> Bool in
+            day.duration != DurationType.fullday
+        }
+        let requestedDays = Double(days.count) - (half ? 0.5 : 0)
+        
+        let remainingDays = absenceType == AbsenceType.nonDecuted.rawValue ? Double(remainingDaysString) ?? 0 :
+            (Double(remainingDaysString) ?? 0) - requestedDays
+        
+        leaveRemainingLabel.text = (floor(remainingDays) == remainingDays ?
+            String(describing: Int(remainingDays)) : String(format: halfDayFormat, remainingDays)) + daysLabelExtension
+        
+        leaveRequestedLabel.text = (floor(requestedDays) == requestedDays ?
+            String(describing: Int(requestedDays)) : String(format: halfDayFormat, requestedDays)) + daysLabelExtension
     }
     
     @objc func addRequest() {
@@ -167,7 +196,7 @@ class SummaryViewController: BaseViewController {
                 self.stopActivityIndicatorSpinner()
                 self.view.isUserInteractionEnabled = true
             } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: requestResponse.message ?? "",
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: requestResponse.message ?? "",
                                                 viewController: self, completion: { _ in
                                                     self.stopActivityIndicatorSpinner()
                                                     self.view.isUserInteractionEnabled = true

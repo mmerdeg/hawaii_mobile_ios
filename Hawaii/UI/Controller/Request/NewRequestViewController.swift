@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaveRequestViewController: BaseViewController {
+class NewRequestViewController: BaseViewController {
     
     let showDatePickerViewControllerSegue = "showDatePickerViewController"
     
@@ -30,18 +30,37 @@ class LeaveRequestViewController: BaseViewController {
     
     var userUseCase: UserUseCaseProtocol?
     
+    var requestUseCase: RequestUseCaseProtocol?
+    
     var selectedDate: Date?
     
-    lazy var addLeaveRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.done, target: self, action: #selector(addRequest))
+    var absenceType: AbsenceType?
+    
+    lazy var nextItem: UIBarButtonItem = {
+        
+        let nextButtonTitle = "Next"
+        
+        let item = UIBarButtonItem(title: nextButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = addLeaveRequestItem
+        self.navigationItem.rightBarButtonItem = nextItem
         self.scrollView.delegate = self
+        
+        guard let absenceType = absenceType else {
+            return
+        }
+        switch absenceType {
+        case .sick:
+            self.title = ViewConstants.sicknessRequestTitle
+        case .bonus:
+            self.title = ViewConstants.bonusRequestTitle
+        default:
+            self.title = ViewConstants.leaveRequestTitle
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -67,9 +86,17 @@ class LeaveRequestViewController: BaseViewController {
         scrollView.contentInset = contentInset
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard let absenceType = absenceType else {
+            return false
+        }
+        return identifier != showRemainingDaysViewController || absenceType != .bonus && absenceType != .sick
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showRequestTableViewController {
-            guard let controller = segue.destination as? RequestTableViewController else {
+            guard let controller = segue.destination as? RequestTableViewController,
+                let absenceType = absenceType else {
                 return
             }
             self.requestTableViewController = controller
@@ -78,8 +105,9 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             requestTableViewController.delegate = self
-            requestTableViewController.requestType = .deducted
+            requestTableViewController.requestType = absenceType
             addChildViewController(controller)
+            
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
@@ -89,6 +117,7 @@ class LeaveRequestViewController: BaseViewController {
                 return
             }
             remainingDaysViewController.mainLabelText = "Leave"
+            
         } else if segue.identifier == showSummaryViewController {
             guard let controller = segue.destination as? SummaryViewController,
                   let request = sender as? Request else {
@@ -96,11 +125,15 @@ class LeaveRequestViewController: BaseViewController {
             }
             controller.request = request
             controller.requestUpdateDelegate = self.requestUpdateDelegate
-            controller.remainingDaysNo = self.remainingDaysViewController?.remainingDayNoLabel.text
+            controller.remainingDaysNo = self.remainingDaysViewController?.remainingDayNoLabel.text ?? "0"
         }
     }
     
-    @objc func addRequest() {
+    @objc func newRequest() {
+        
+        let trickMessage = "Dont try to trick me"
+        let reasonEmptyMessage = "Reason filed is required"
+        
         guard let startDate = requestTableViewController?.startDate,
               let endDate = requestTableViewController?.endDate,
               let requestTableViewController = requestTableViewController,
@@ -109,41 +142,20 @@ class LeaveRequestViewController: BaseViewController {
                 return
         }
         if startDate > endDate {
-            ViewUtility.showAlertWithAction(title: "Error", message: "Dont try to trick me", viewController: self) { _ in
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: trickMessage,
+                                            viewController: self) { _ in
             }
             return
         }
-        if cellText.trim() == "" || cellText.trim() == "Enter reason for leave" {
-            ViewUtility.showAlertWithAction(title: "Error", message: "Reason filed is required", viewController: self) { _ in
+        if cellText.trim() == "" || cellText.trim() == ViewConstants.requestReasonPlaceholder {
+            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: reasonEmptyMessage,
+                                            viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }
             return
         }
         let durationType = requestTableViewController.getDurationSelection()
-        
-        var days: [Day] = []
-        switch durationType {
-        case .afternoonFirst:
-            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
-            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-        case .morningLast:
-            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate.yesterday) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
-        case .morningAndAfternoon:
-            days.append(Day(id: nil, date: startDate, duration: DurationType.afternoon, requestId: nil))
-            for currentDate in getDaysBetweeen(startDate: startDate.tomorrow, endDate: endDate.yesterday) {
-                days.append(Day(id: nil, date: currentDate, duration: DurationType.fullday, requestId: nil))
-            }
-            days.append(Day(id: nil, date: endDate, duration: DurationType.morning, requestId: nil))
-        default:
-            for currentDate in getDaysBetweeen(startDate: startDate, endDate: endDate) {
-                days.append(Day(id: nil, date: currentDate, duration: durationType, requestId: nil))
-            }
-        }
+        let days = requestUseCase?.populateDaysBetween(startDate: startDate, endDate: endDate, durationType: durationType)
         
         userUseCase?.readUser(completion: { userResult in
             
@@ -165,27 +177,9 @@ class LeaveRequestViewController: BaseViewController {
     func getDateFormatter() -> DateFormatter {
         return RequestDateFormatter()
     }
-    
-    func getDaysBetweeen(startDate: Date, endDate: Date) -> [Date] {
-        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-        guard let numberOfDays = components.day else {
-            return []
-        }
-        if Calendar.current.compare(startDate, to: endDate, toGranularity: .day) == .orderedSame {
-            return [startDate]
-        } else if numberOfDays == 0 {
-            return [startDate, endDate]
-        }
-        var dates: [Date] = []
-        for currentDay in 0...numberOfDays {
-            dates.append(startDate.addingTimeInterval(24 * 3600 * Double(currentDay)))
-        }
-        return dates
-    }
-
 }
 
-extension LeaveRequestViewController: SelectAbsenceProtocol {
+extension NewRequestViewController: SelectAbsenceProtocol {
     func didSelect(absence: Absence) {
         if absence.absenceSubtype == "TRAINING" {
             remainingDaysViewController?.mainLabelText = "Training"
@@ -195,8 +189,8 @@ extension LeaveRequestViewController: SelectAbsenceProtocol {
     }
 }
 
-extension LeaveRequestViewController: UIScrollViewDelegate {
+extension NewRequestViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-      //  self.view.endEditing(true)
+//        self.view.endEditing(true)
     }
 }

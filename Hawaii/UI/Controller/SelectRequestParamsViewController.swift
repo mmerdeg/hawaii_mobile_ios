@@ -31,12 +31,14 @@ class SelectRequestParamsViewController: BaseViewController {
 extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        let cellIdentifier = "Cell"
+        
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellIdentifier)
         tableView.backgroundColor = UIColor.clear
         
         guard let items = items,
               let title = items[indexPath.section].cells?[indexPath.row].title else {
-            return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell.textLabel?.text = title
         cell.backgroundColor = UIColor.clear
@@ -46,12 +48,14 @@ extension SelectRequestParamsViewController: UITableViewDataSource, UITableViewD
         cell.selectedBackgroundView = backgroundView
         return cell
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let items = items else {
                 return ""
         }
         return items[section].name
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let items = items else {
                 return 0

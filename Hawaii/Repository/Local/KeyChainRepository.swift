@@ -17,7 +17,7 @@ class KeyChainRepository: KeyChainRepositoryProtocol {
     let keychainAccessGroupName = "PH7K4ADL7R.myKeychainGroup1"
     #endif
     
-    func getItem(key: String) -> String {
+    func getItem(key: String) -> String? {
         let getItemQuery: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                             kSecAttrService as String: applicationTag,
                                             kSecAttrAccount as String: key,
@@ -29,17 +29,17 @@ class KeyChainRepository: KeyChainRepositoryProtocol {
         let status = SecItemCopyMatching(getItemQuery as CFDictionary, &itemRef)
         guard status != errSecItemNotFound else {
             print("Item not found!")
-            return ""
+            return nil
         }
         guard status == errSecSuccess else {
             print("Item retrieving failed!")
-            return ""
+            return nil
         }
         
         guard let existingItem = itemRef as? [String: Any],
             let itemData = existingItem[kSecValueData as String] as? Data,
             let itemString = String(data: itemData, encoding: String.Encoding.utf8) else {
-                return ""
+                return nil
         }
         return itemString
     }

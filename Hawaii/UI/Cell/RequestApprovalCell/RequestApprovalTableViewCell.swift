@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol RequestApprovalProtocol: class {
     func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell)
@@ -56,7 +57,6 @@ class RequestApprovalTableViewCell: UITableViewCell {
                     return
             }
             
-            date.text = "submission date"
             requestNotes.text = notes
             requestDuration.text = String(duration)
             requestPerson.text = userFullname
@@ -66,10 +66,12 @@ class RequestApprovalTableViewCell: UITableViewCell {
             let start = formatter.string(from: startDate)
             let end = formatter.string(from: endDate)
             requestDates.text = start == end ? start : start + " - " + end
+            
             cardView.backgroundColor = UIColor.lightPrimaryColor
-            date.text = convertDateString(dateString: request?.submissionTime ?? "",
-                                          fromFormat: "yyyy-MM-dd'T'HH:mm:ss",
-                                          toFormat: "dd.MM.yyyy.")
+            
+            date.text = DateStringConverter.convertDateString(dateString: request?.submissionTime ?? "",
+                                          fromFormat: ViewConstants.dateSourceFormat,
+                                          toFormat: formatter.format)
             
             requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
@@ -95,21 +97,8 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         backgroundColor = UIColor.primaryColor
-        selectionStyle = UITableViewCellSelectionStyle.none
-    }
-    
-    func convertDateString(dateString: String, fromFormat sourceFormat: String, toFormat desFormat: String) -> String {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = sourceFormat
-        dateFormatter.calendar = Calendar(identifier: .iso8601)
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let date = dateFormatter.date(from: dateString)
-        dateFormatter.dateFormat = desFormat
-        
-        return dateFormatter.string(from: date ?? Date())
+        selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
     @IBAction func rejectClicked(_ sender: Any) {

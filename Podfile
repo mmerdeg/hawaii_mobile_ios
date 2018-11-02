@@ -48,18 +48,20 @@ common_pods_for_target
 
 end
 
-target 'NotificationService' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for NotificationService
-common_pods_for_target
+target 'RequestNotification' do
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for Hawaii production
+    common_pods_for_target
+    
 end
 
-target 'RequestNotification' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for RequestNotification
-common_pods_for_target
+target 'RequestServiceNotification' do
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for Hawaii production
+    common_pods_for_target
+    
 end

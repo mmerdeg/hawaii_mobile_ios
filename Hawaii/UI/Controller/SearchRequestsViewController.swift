@@ -18,23 +18,31 @@ protocol SearchDialogProtocol: NSObjectProtocol {
 
 class SearchRequestsViewController: UIViewController {
     
-    var items: [Int] = []
-    
     @IBOutlet weak var bonusToggle: UISwitch!
+  
     @IBOutlet weak var sickToggle: UISwitch!
+   
     @IBOutlet weak var leaveToogle: UISwitch!
+   
     @IBOutlet weak var clickableView: UIView!
+   
     @IBOutlet weak var yearPicker: UIPickerView!
+  
     @IBOutlet weak var yearLabel: UILabel!
+  
     @IBOutlet weak var backgroundView: UIView!
-    
-    var leaveParameter = true
-    var sickParameter = true
-    var bonusParameter = true
     
     weak var delegate: SearchDialogProtocol?
     
     var requestUseCase: RequestUseCaseProtocol?
+    
+    var items: [Int] = []
+   
+    var leaveParameter = true
+   
+    var sickParameter = true
+   
+    var bonusParameter = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,29 +63,26 @@ class SearchRequestsViewController: UIViewController {
             guard let success = yearsResponse.success else {
                 return
             }
-            if success {
-                guard let startYear = yearsResponse.item?.first,
-                      let endYear = yearsResponse.item?.last else {
-                        return
-                }
-                var tempYear = startYear
-                while tempYear <= endYear {
-                    self.items.append(tempYear)
-                    tempYear += 1
-                }
-                self.yearPicker.reloadAllComponents()
-            } else {
-                ViewUtility.showAlertWithAction(title: "Error", message: yearsResponse.message ?? "", viewController: self, completion: { _ in
-                    
+            if !success {
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: yearsResponse.message ?? "",
+                                                viewController: self, completion: { _ in
+                                                    
                 })
+                return
             }
+            guard let startYear = yearsResponse.item?.first,
+                  let endYear = yearsResponse.item?.last else {
+                    return
+            }
+            var tempYear = startYear
+            while tempYear <= endYear {
+                self.items.append(tempYear)
+                tempYear += 1
+            }
+            self.yearPicker.reloadAllComponents()
         })
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     @objc func  dismissDialog() {
         delegate?.dismissDialog()
         dismiss(animated: true, completion: nil)

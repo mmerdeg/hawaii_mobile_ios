@@ -5,13 +5,25 @@ import Swinject
 import SwinjectStoryboard
 import Firebase
 import UserNotifications
+import NotificationBannerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    var userUseCase: UserUseCaseProtocol?
+    
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
     var isFirebaseInitialized = false
+    
+    let gcmMessageIDKey = "gcm.message_id"
+    
+//    let container = SwinjectStoryboard.defaultContainer
+//    userUseCase = container.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+//    userDetailsUseCase = container.resolve(UserDetailsUseCaseProtocol.self,
+//    name: String(describing: UserDetailsUseCaseProtocol.self))
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -21,6 +33,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         chooseInitialView()
         StyleSetup.setStyles()
         
+        
+        FirebaseApp.configure()
+        
+        // [START set_messaging_delegate]
+        Messaging.messaging().delegate = self
+        
+        let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
+                                                title: "Accept",
+                                                options: UNNotificationActionOptions(rawValue: 0))
+        let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
+                                                 title: "Decline",
+                                                 options: UNNotificationActionOptions(rawValue: 0))
+        
+        if #available(iOS 11.0, *) {
+            let meetingInviteCategory =
+                UNNotificationCategory(identifier: "requestNotification",
+                                       actions: [acceptAction, declineAction],
+                                       intentIdentifiers: [],
+                                       hiddenPreviewsBodyPlaceholder: "",
+                                       options: .customDismissAction)
+
+            UNUserNotificationCenter.current().setNotificationCategories([meetingInviteCategory])
+        } else {
+            // Fallback on earlier versions
+        }
+
+        if #available(iOS 10, *) { // iOS 10 support
+            //create the notificationCenter
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            // set the type as sound or badge
+            center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
+                if granted {
+                    print("Notification Enabled Successfully")
+                }else{
+                    print("Some Error Occure")
+                }
+            }
+            application.registerForRemoteNotifications()
+        }
+        
+        // [END register_for_notifications]
         return true
     }
     
@@ -44,11 +98,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-                                             as? UITabBarController else {
-                return
+            userUseCase?.setFirebaseToken { _ in
+                guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+                    as? UITabBarController else {
+                        return
+                }
+                self.window?.rootViewController = homeTabBarController
             }
-            self.window?.rootViewController = homeTabBarController
+            
         } else {
             guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: "SignInViewController")
                                              as? SignInViewController else {
@@ -58,7 +115,127 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.makeKeyAndVisible()
     }
+    
+    // [START receive_message]
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    // [END receive_message]
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
+    // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
+    // the FCM registration token.
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+        
+        // With swizzling disabled you must set the APNs token here.
+        Messaging.messaging().apnsToken = deviceToken
+    }
 
+}
+
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        guard let userInfo = notification.request.content.userInfo["aps"] as? [String: Any],
+            let alert = userInfo["alert"] as? [String: Any],
+            let body = alert["body"] as? String,
+            let title = alert["title"] as? String,
+            let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
+                return
+        }
+        let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
+        
+        switch status {
+        case .approved:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .success)
+            banner.show()
+        case .rejected:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
+            banner.show()
+        case .pending:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
+            banner.show()
+        default:
+            let banner = NotificationBanner(title: title, subtitle: body, style: .info)
+            banner.show()
+        }
+        NotificationCenter.default.post(name:
+            NSNotification.Name(rawValue: NotificationNames.refreshData),
+                                        object: nil, userInfo: nil)
+        completionHandler([.badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler()
+    }
+}
+// [END ios_10_message_handling]
+
+extension AppDelegate: MessagingDelegate {
+    // [START refresh_token]
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict: [String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"),
+                                        object: nil, userInfo: dataDict)
+        userDetailsUseCase?.setFirebaseToken(fcmToken)
+    }
+    // [END refresh_token]
+    // [START ios_10_data_message]
+    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
+    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("Received data message: \(remoteMessage.appData)")
+    }
+    // [END ios_10_data_message]
 }
 
 extension SwinjectStoryboard {
@@ -171,16 +348,13 @@ extension SwinjectStoryboard {
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(LeaveRequestViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(NewRequestViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(SummaryViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-            }
-            
-            defaultContainer.storyboardInitCompleted(SickRequestViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(RemainigDaysViewController.self) { resolver, controller in
@@ -231,10 +405,6 @@ extension SwinjectStoryboard {
                 controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                     name: String(describing: PublicHolidayUseCaseProtocol.self))
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-            }
-            
-            defaultContainer.storyboardInitCompleted(BonusRequestViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in

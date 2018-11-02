@@ -21,27 +21,30 @@ class ApproveViewController: BaseViewController {
     
     var requests: [Request] = []
     
-    private let refreshControl = UIRefreshControl()
-    
     var lastTimeSynced: Date?
+    
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let refreshControlTitle = "Fetching Data ..."
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
         let nib = UINib(nibName: String(describing: RequestApprovalTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestApprovalTableViewCell.self))
         tableView.tableFooterView = UIView()
+        
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
         
-        // Add Refresh Control to Table View
         tableView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.accentColor
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Data ...", attributes: nil)
+        refreshControl.attributedTitle = NSAttributedString(string: refreshControlTitle, attributes: nil)
         fillCalendar()
         lastTimeSynced = Date()
     }
@@ -95,36 +98,33 @@ class ApproveViewController: BaseViewController {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                self.requests = request.item ?? []
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.stopActivityIndicatorSpinner()
-                }
-            } else {
+            if !success {
                 self.refreshControl.endRefreshing()
-                ViewUtility.showAlertWithAction(title: "Error", message: request.message ?? "", viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: request.message ?? "",
+                                                viewController: self, completion: { _ in
+                                                    self.stopActivityIndicatorSpinner()
                 })
+                return
+            }
+            self.requests = request.item ?? []
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.stopActivityIndicatorSpinner()
             }
         }
-        
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
 }
+
 extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "Cell"
         
         tableView.separatorColor = UIColor.primaryColor
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RequestApprovalTableViewCell.self), for: indexPath)
             as? RequestApprovalTableViewCell else {
-                return UITableViewCell(style: .default, reuseIdentifier: "Cell")
+                return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         cell.request = requests[indexPath.row]
         cell.delegate = self
@@ -137,12 +137,16 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ApproveViewController: RequestApprovalProtocol {
+    
     func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell) {
+        
+        let confirmationAlertTitle = "Confirm"
+        let approveAlertMessage = "Are you sure you want to approve this request?"
+        let rejectAlertMessage = "Are you sure you want to reject this request?"
         
         guard let request = request else {
             return
         }
-        
         var status: RequestStatus
         var message: String
         if request.requestStatus == .cancelationPending {
@@ -150,10 +154,9 @@ extension ApproveViewController: RequestApprovalProtocol {
         } else {
             status = isAccepted ? .approved : .rejected
         }
-        message = isAccepted ? "Are you sure you want to approve this request?"
-                                : "Are you sure you want to reject this request?"
+        message = isAccepted ? approveAlertMessage : rejectAlertMessage
         
-        ViewUtility.showAlertWithAction(title: "Confirm", message: message, cancelable: true,
+        ViewUtility.showAlertWithAction(title: confirmationAlertTitle, message: message, cancelable: true,
                                         viewController: self) { confirmed in
             if confirmed {
                 self.updateRequest(request: request, status: status, cell: cell, isAccepted: isAccepted)
@@ -162,14 +165,20 @@ extension ApproveViewController: RequestApprovalProtocol {
     }
     
     func presentBluredAlertView(_ isAccepted: Bool) {
+        
+        let alertTitle = "Success"
+        let approveAlertMessage = "You have succesfully approved a request."
+        let rejectAlertMessage = "You have succesfully rejected a proposed request"
+        
         let alertView = EKBlurAlertView(frame: self.view.bounds)
-        let myImage = UIImage(named: "success") ?? UIImage()
+        let myImage = UIImage(named: alertTitle.lowercased()) ?? UIImage()
+        
         alertView.setCornerRadius(10)
         alertView.set(autoFade: true, after: 2)
         alertView.set(image: myImage)
-        alertView.set(headline: "Success")
-        let message = isAccepted ? "You have succesfully approved a request."
-            : "You have succesfully rejected a proposed request"
+        alertView.set(headline: alertTitle)
+        
+        let message = isAccepted ? approveAlertMessage : rejectAlertMessage
         alertView.set(subheading: message)
         view.addSubview(alertView)
     }
