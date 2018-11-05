@@ -39,17 +39,14 @@ class ApproveViewController: BaseViewController {
         refreshControl.tintColor = UIColor.accentColor
         refreshControl.attributedTitle = NSAttributedString(string: refreshControlTitle, attributes: nil)
         fillCalendar()
-        lastTimeSynced = Date()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? ViewConstants.maxTimeElapsed
-        if seconds >= ViewConstants.maxTimeElapsed {
+    
+        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
             fillCalendar()
         }
-        lastTimeSynced = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +77,6 @@ class ApproveViewController: BaseViewController {
     @objc private func refreshData(_ sender: Any) {
         fillCalendar()
         self.refreshControl.endRefreshing()
-        lastTimeSynced = Date()
     }
     
     func fillCalendar() {
@@ -100,6 +96,7 @@ class ApproveViewController: BaseViewController {
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
             }
+            self.lastTimeSynced = Date()
         }
     }
 }
@@ -145,7 +142,7 @@ extension ApproveViewController: RequestApprovalProtocol {
         }
         message = isAccepted ? approveAlertMessage : rejectAlertMessage
         
-        ViewUtility.showAlertWithAction(title: confirmationAlertTitle, message: message, cancelable: true,
+        AlertPresenter.showAlertWithAction(title: confirmationAlertTitle, message: message, cancelable: true,
                                         viewController: self) { confirmed in
             if confirmed {
                 self.updateRequest(request: request, status: status, cell: cell, isAccepted: isAccepted)

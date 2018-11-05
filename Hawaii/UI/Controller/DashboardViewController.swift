@@ -67,7 +67,6 @@ class DashboardViewController: BaseViewController {
         collectionView?.register(UINib(nibName: String(describing: PublicHolidayTableViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: PublicHolidayTableViewCell.self))
         
-        // Do any additional setup after loading the view.
         collectionView.calendarDataSource = self
         collectionView.calendarDelegate = self
         
@@ -77,18 +76,14 @@ class DashboardViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = addRequestItem
         self.navigationItem.leftBarButtonItem = refreshItem
         fillCalendar()
-        lastTimeSynced = Date()
         setupCalendarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? ViewConstants.maxTimeElapsed
-        if seconds >= ViewConstants.maxTimeElapsed {
+        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
             fillCalendar()
         }
-        lastTimeSynced = Date()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,7 +131,7 @@ class DashboardViewController: BaseViewController {
         })
         let cancel = DialogWrapper(title: LocalizedKeys.General.cancel.localized(), uiAction: .cancel)
         
-        ViewUtility.showCustomDialog(self,
+        AlertPresenter.showCustomDialog(self,
                                      choices: [leave, sick, bonus, cancel],
                                      title: LocalizedKeys.General.newRequestMenu.localized()
         )
@@ -255,10 +250,9 @@ class DashboardViewController: BaseViewController {
                         
                         self.collectionView.scrollToDate(Date(), animateScroll: false)
                     }
-                    
+                    self.lastTimeSynced = Date()
                 })
             })
-
         })
     }
     

@@ -133,13 +133,13 @@ class NewRequestViewController: BaseViewController {
                 return
         }
         if startDate > endDate {
-            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: trickMessage,
+            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: trickMessage,
                                             viewController: self) { _ in
             }
             return
         }
         if cellText.trim() == "" || cellText.trim() == LocalizedKeys.Request.reasonPlaceholder.localized() {
-            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: reasonEmptyMessage,
+            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: reasonEmptyMessage,
                                             viewController: self) { _ in
                 cell.inputReasonTextView.becomeFirstResponder()
             }

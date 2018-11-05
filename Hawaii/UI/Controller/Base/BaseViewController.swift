@@ -46,7 +46,7 @@ class BaseViewController: UIViewController {
     
     func handleResponseFaliure(message: String?) {
         self.stopActivityIndicatorSpinner()
-        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: message ?? "",
+        AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: message ?? "",
                                         viewController: self, completion: { _ in
         })
     }

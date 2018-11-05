@@ -131,7 +131,7 @@
 		30FD36AE214A5E530047038C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
 		30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
 		30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* TableDataProviderRepository.swift */; };
-		30FD36B2214A5E530047038C /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
+		30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		30FD36B3214A5E530047038C /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
 		30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHUD.swift */; };
@@ -231,8 +231,14 @@
 		3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42F4BC20CE7946002661AF /* DashboardViewController.swift */; };
 		3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */; };
 		3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */; };
+		3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
+		3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
+		3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
+		3E6EBC5221904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
+		3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
+		3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
-		3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* ViewUtility.swift */; };
+		3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
 		3E80631021873600009224BD /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
 		3E80631121873600009224BD /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
@@ -470,8 +476,11 @@
 		3E42F4BC20CE7946002661AF /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainigDaysViewController.swift; sourceTree = "<group>"; };
 		3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUpdateProtocol.swift; sourceTree = "<group>"; };
+		3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateFormatter.swift; sourceTree = "<group>"; };
+		3E6EBC5021904E100043EDBD /* CalendarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
+		3E6EBC532190730E0043EDBD /* RefreshUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUtils.swift; sourceTree = "<group>"; };
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
-		3E72645020EA1D0600DC7240 /* ViewUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtility.swift; sourceTree = "<group>"; };
+		3E72645020EA1D0600DC7240 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
 		3E80630F21873600009224BD /* DateStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateStringConverter.swift; sourceTree = "<group>"; };
 		3E832311216CAD570068E37F /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -894,6 +903,7 @@
 			children = (
 				3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */,
 				3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */,
+				3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */,
 			);
 			path = DateFormatter;
 			sourceTree = "<group>";
@@ -904,6 +914,7 @@
 				3E80630B218735DC009224BD /* Converter */,
 				3E21DF01218366ED0002BED8 /* Extension */,
 				3E5622D12178C72400B376E0 /* DateFormatter */,
+				3E6EBC5021904E100043EDBD /* CalendarUtils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -919,9 +930,10 @@
 		3E72644F20EA1CE100DC7240 /* ViewUtility */ = {
 			isa = PBXGroup;
 			children = (
-				3E72645020EA1D0600DC7240 /* ViewUtility.swift */,
+				3E72645020EA1D0600DC7240 /* AlertPresenter.swift */,
 				302EE17B21353539001355E9 /* ProgressHUD.swift */,
 				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
+				3E6EBC532190730E0043EDBD /* RefreshUtils.swift */,
 			);
 			path = ViewUtility;
 			sourceTree = "<group>";
@@ -1836,10 +1848,11 @@
 				3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
 				30FD36AE214A5E530047038C /* Day.swift in Sources */,
+				3E6EBC5221904E100043EDBD /* CalendarUtils.swift in Sources */,
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
 				30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */,
-				30FD36B2214A5E530047038C /* ViewUtility.swift in Sources */,
+				30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */,
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
 				3E35CAA1215E15150042E65A /* UserDao.swift in Sources */,
@@ -1871,7 +1884,9 @@
 				3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
+				3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
+				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1937,13 +1952,14 @@
 				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
+				3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
 				305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
 				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepository.swift in Sources */,
-				3E72645120EA1D0600DC7240 /* ViewUtility.swift in Sources */,
+				3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */,
 				302EE1832135744D001355E9 /* CalendarType.swift in Sources */,
 				3E35CAA0215E15150042E65A /* UserDao.swift in Sources */,
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
@@ -1972,7 +1988,9 @@
 				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
+				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
+				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

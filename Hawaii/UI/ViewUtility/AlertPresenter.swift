@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ViewUtility {
+class AlertPresenter {
     
     static let titleKey = "attributedTitle"
     

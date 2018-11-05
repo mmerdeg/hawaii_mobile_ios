@@ -69,7 +69,7 @@ class SearchRequestsViewController: UIViewController {
                 return
             }
             if !success {
-                ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: yearsResponse.message ?? "",
+                AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: yearsResponse.message ?? "",
                                                 viewController: self, completion: { _ in
                 })
                 return

@@ -17,9 +17,7 @@ class TeamCalendarViewController: BaseViewController {
     
     let showSearchUserSegue = "showSearchUser"
     
-    let requestDetailsViewController = "RequestDetailsViewController"
-    
-    let formatter = DateFormatter()
+    let calendarUtils = CalendarUtils()
     
     var requestUseCase: RequestUseCaseProtocol?
     
@@ -61,10 +59,12 @@ class TeamCalendarViewController: BaseViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = LocalizedKeys.Team.title.localized()
+        
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         previousButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame
+        
         collectionView?.register(UINib(nibName: String(describing: CalendarCellCollectionViewCell.self), bundle: nil),
                                  forCellWithReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self))
         collectionView?.register(UINib(nibName: String(describing: TeamCalendarCollectionViewCell.self), bundle: nil),
@@ -84,15 +84,12 @@ class TeamCalendarViewController: BaseViewController {
 
         self.refreshUI(date: lastDateInMonth)
         initFilterHeader()
-        lastTimeSynced = Date()
         self.navigationItem.leftBarButtonItem = refreshItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? ViewConstants.maxTimeElapsed
-        if seconds >= ViewConstants.maxTimeElapsed {
+        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
             self.refreshUI(date: lastDateInMonth)
         }
         lastTimeSynced = Date()
@@ -174,12 +171,9 @@ class TeamCalendarViewController: BaseViewController {
                 let endYear = yearsResponse.item?.last else {
                     return
             }
-            let startDateString = "01 01 \(startYear)"
-            let endDateString = "31 12 \(endYear)"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MM yyyy"
-            self.startDate = dateFormatter.date(from: startDateString) ?? Date()
-            self.endDate = dateFormatter.date(from: endDateString) ?? Date()
+            self.startDate = self.calendarUtils.getStartDate(startYear: startYear)
+            self.endDate = self.calendarUtils.getEndDate(endYear: endYear)
+            
             self.publicHolidaysUseCase?.getHolidays(completion: { holidays, holidaysResponse in
                 guard let success = holidaysResponse?.success else {
                     self.stopActivityIndicatorSpinner()
@@ -217,6 +211,7 @@ class TeamCalendarViewController: BaseViewController {
                         self.handle(requestResponse)
                     }
                 }
+                self.lastTimeSynced = Date()
             })
         })
         
@@ -246,6 +241,10 @@ class TeamCalendarViewController: BaseViewController {
     }
     
     func showDetails(_ requests: [Request]) {
+        
+        let requestDetailsViewController = "RequestDetailsViewController"
+        let dashboardStoryboard = "Dashboard"
+        
         if segmentedControl.selectedSegmentIndex != 2 {
             self.performSegue(withIdentifier: teamDetailsSegue, sender: requests)
             return
@@ -257,7 +256,7 @@ class TeamCalendarViewController: BaseViewController {
                 self.navigationController?.view.bringSubview(toFront: self.customView)
             })
         }
-        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        let storyboard = UIStoryboard(name: dashboardStoryboard, bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: requestDetailsViewController)
                                                                     as? RequestDetailsViewController else {
             return
@@ -273,11 +272,7 @@ class TeamCalendarViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            self.formatter.dateFormat = "yyyy"
-            let year = self.formatter.string(from: date)
-            self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date).capitalized
-            self.dateLabel.text = month+", "+year
+            self.dateLabel.text = self.calendarUtils.formatCalendarHeader(date: date)
             self.lastDateInMonth = date
             self.refreshUI(date: date)
         }
@@ -308,12 +303,7 @@ class TeamCalendarViewController: BaseViewController {
 
 extension TeamCalendarViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.locale = Calendar.current.locale
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
-        return parameters
+        return ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
     }
 }
 
@@ -321,16 +311,10 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
                   forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else {
-                return
-        }
-        sharedFunctionToConfigureCell(myCustomCell: cell, cellState: cellState, date: date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         if holidays.keys.contains(date) {
-            
             guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: PublicHolidayTableViewCell.self), for: indexPath)
                 as? PublicHolidayTableViewCell else {
                     return JTAppleCell()
@@ -342,9 +326,8 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
         }
         if segmentedControl.selectedSegmentIndex == 2 {
             guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
-                                                          for: indexPath)
-                as? CalendarCellCollectionViewCell else {
-                    return JTAppleCell()
+                                                          for: indexPath) as? CalendarCellCollectionViewCell else {
+                return JTAppleCell()
             }
             
             cell.cellState = cellState
@@ -354,14 +337,12 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
             return cell
         }
         guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: TeamCalendarCollectionViewCell.self),
-                                                      for: indexPath)
-            as? TeamCalendarCollectionViewCell else {
-                return JTAppleCell()
+                                                      for: indexPath) as? TeamCalendarCollectionViewCell else {
+            return JTAppleCell()
         }
         
         cell.cellState = cellState
-        let requests: [Request] = items[date] ?? []
-        cell.requests = requests
+        cell.requests = items[date] ?? []
         cell.setCell()
         return cell
     }
@@ -385,9 +366,6 @@ extension TeamCalendarViewController: JTAppleCalendarViewDelegate {
                 showDetails(requests)
             }
         }
-    }
-    
-    func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

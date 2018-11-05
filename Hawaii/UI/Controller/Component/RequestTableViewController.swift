@@ -85,7 +85,7 @@ class RequestTableViewController: BaseViewController {
                 self.selectedAbsence = response.item?.first
             })
         } else {
-            ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: response.message ?? "",
+            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: response.message ?? "",
                                             viewController: self, completion: { _ in
                 self.navigationController?.popViewController(animated: true)
             })
@@ -138,7 +138,7 @@ class RequestTableViewController: BaseViewController {
                 let params = sender as? (Bool, Date, Date) else {
                     return
             }
-            controller.isFirstSelected = params.0
+            controller.isStartSelected = params.0
             controller.startDate = params.1
             controller.endDate = params.2
             controller.delegate = self

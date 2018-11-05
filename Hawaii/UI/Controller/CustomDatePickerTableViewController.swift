@@ -35,9 +35,9 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     var customView: UIView = UIView()
     
-    var isFirstSelected = false
+    var isStartSelected = false
     
-    let formatter = DateFormatter()
+    let calendarUtils = CalendarUtils()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +57,8 @@ class CustomDatePickerTableViewController: BaseViewController {
         
         setupCalendarView()
         items = [startDate ?? Date(), endDate ?? Date()]
-        selectDates()
-        isFirstSelected ? collectionView.scrollToDate(endDate ?? Date(), animateScroll: false)
+        items = calendarUtils.selectDates(items)
+        isStartSelected ? collectionView.scrollToDate(endDate ?? Date(), animateScroll: false)
             : collectionView.scrollToDate(startDate ?? Date(), animateScroll: false)
         fillCalendar()
     }
@@ -68,11 +68,7 @@ class CustomDatePickerTableViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            self.formatter.dateFormat = "yyyy"
-            let year = self.formatter.string(from: date)
-            self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date).capitalized
-            self.dateLabel.text = month + ", " + year
+            self.dateLabel.text = self.calendarUtils.formatCalendarHeader(date: date)
         }
     }
     
@@ -102,19 +98,14 @@ class CustomDatePickerTableViewController: BaseViewController {
                     let endYear = yearsResponse.item?.last else {
                         return
                 }
-                let startDateString = "01 01 \(startYear)"
-                let endDateString = "31 12 \(endYear)"
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "dd MM yyyy"
-                self.startDateCalendar = dateFormatter.date(from: startDateString) ?? Date()
-                self.endDateCalendar = dateFormatter.date(from: endDateString) ?? Date()
+                self.startDateCalendar = self.calendarUtils.getStartDate(startYear: startYear)
+                self.endDateCalendar = self.calendarUtils.getEndDate(endYear: endYear)
+                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.stopActivityIndicatorSpinner()
-                    
                     self.collectionView.scrollToDate(Date(), animateScroll: false)
                 }
-                
             })
         })
     }
@@ -128,7 +119,7 @@ class CustomDatePickerTableViewController: BaseViewController {
     }
     
     @IBAction func acceptClicked(_ sender: Any) {
-        selectDates()
+        items = calendarUtils.selectDates(items)
         delegate?.selectedDate(startDate: startDate, endDate: endDate,
                                isMultipleDaysSelected: items.count >= 2 && Calendar.current.compare(startDate ?? Date(),
                                                                                                     to: endDate ?? Date(),
@@ -139,12 +130,7 @@ class CustomDatePickerTableViewController: BaseViewController {
 
 extension CustomDatePickerTableViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.locale = Calendar.current.locale
-        
-        let parameters = ConfigurationParameters(startDate: startDateCalendar, endDate: endDateCalendar, firstDayOfWeek: .monday)
-        return parameters
+        return ConfigurationParameters(startDate: startDateCalendar, endDate: endDateCalendar, firstDayOfWeek: .monday)
     }
 }
 
@@ -177,7 +163,7 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
             return JTAppleCell()
         }
         if cellState.dateBelongsTo == .thisMonth {
-            if containsDate(date: date) {
+            if calendarUtils.containsDate(date: date, items: items) {
                 cell.backgroundColor = UIColor.remainingColor
             } else {
                 cell.backgroundColor = UIColor.transparentColor
@@ -194,7 +180,8 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         let tempStartDate = startDate
         let tempEndDate = endDate
-        if isFirstSelected {
+        
+        if isStartSelected {
             endDate = date
         } else {
             startDate = date
@@ -206,21 +193,19 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
                 endDate = startDate
             }
         }
-        if Calendar.current.compare(startDate ?? Date(), to: endDate ?? Date(), toGranularity: .day) == .orderedAscending ||
-            Calendar.current.compare(startDate ?? Date(), to: endDate ?? Date(), toGranularity: .day) == .orderedSame {
-            items = []
+        
+        if calendarUtils.isDateOrderValid(startDate: startDate, endDate: endDate) {
             items =  [startDate ?? Date(), endDate ?? Date()]
-            selectDates()
+            items = calendarUtils.selectDates(items)
             collectionView.reloadData()
             return
         }
-        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
+        AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
                                         message: LocalizedKeys.General.trickMessage.localized(),
                                         viewController: self) { _ in
         }
         startDate = tempStartDate
         endDate = tempEndDate
-        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -232,32 +217,4 @@ extension CustomDatePickerTableViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
     }
-    
-    func selectDates() {
-        var date = items.first ?? Date()// first date
-        let endDate = items.last ?? Date()// last date
-        
-        if Calendar.current.compare(date, to: endDate, toGranularity: .day) == .orderedSame {
-            items = [date, date]
-            return
-        }
-        items = [date]
-        while date < endDate {
-            guard let selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: date) else {
-                return
-            }
-            date = selectedDate
-            items.append(selectedDate)
-        }
-    }
-    
-    func containsDate(date: Date) -> Bool {
-        for tempDate in items {
-            if Calendar.current.compare(date, to: tempDate, toGranularity: .day) == .orderedSame {
-                return true
-            }
-        }
-        return false
-    }
-    
 }

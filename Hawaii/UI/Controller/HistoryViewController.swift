@@ -12,6 +12,7 @@ class HistoryViewController: BaseViewController {
                                                       LocalizedKeys.Request.approved.localized(),
                                                       LocalizedKeys.Request.rejected.localized(),
                                                       LocalizedKeys.Request.canceled.localized()])
+    let calendarUtils = CalendarUtils()
     
     var customView: UIView = UIView()
     
@@ -89,16 +90,13 @@ class HistoryViewController: BaseViewController {
         refreshControl.tintColor = UIColor.accentColor
         refreshControl.attributedTitle = NSAttributedString(string: refreshControlTitle, attributes: nil)
         fillCalendar()
-        lastTimeSynced = Date()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.selectedSegmentIndex = 0
-        
-        let components = Calendar.current.dateComponents([.second], from: lastTimeSynced ?? Date(), to: Date())
-        let seconds = components.second ?? ViewConstants.maxTimeElapsed
-        if seconds >= ViewConstants.maxTimeElapsed {
+
+        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
             refreshView()
         }
     }
@@ -160,36 +158,30 @@ class HistoryViewController: BaseViewController {
         guard let yearNo = Int(year) else {
             return
         }
-        let startDate = "01-01-\(year)"
-        let endDate = "31-12-\(year)"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        requestUseCase.getAllByDate(from: dateFormatter.date(from: startDate) ?? Date(),
-            toDate: dateFormatter.date(from: endDate) ?? Date()) { response in
-                    guard let success = response.success else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    if success {
-                        self.requests = response.item?.filter { self.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
-                            (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
-                                $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
-                                sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
-                                bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
-                        } ?? []
-                        self.filteredRequests = self.requests
-                        DispatchQueue.main.async {
-                            self.customView.removeFromSuperview()
-                            self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
-                            self.stopActivityIndicatorSpinner()
-                        }
-                    } else {
-                        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
-                                                        message: response.message ?? "",
-                                                        viewController: self, completion: { _ in
-                            self.stopActivityIndicatorSpinner()
-                        })
-                    }
+        let startDate = calendarUtils.getStartDate(startYear: yearNo)
+        let endDate = calendarUtils.getEndDate(endYear: yearNo)
+
+        requestUseCase.getAllByDate(from: startDate, toDate: endDate) { response in
+            guard let success = response.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if !success {
+                self.handleResponseFaliure(message: response.message)
+                return
+            }
+            self.requests = response.item?.filter { self.calendarUtils.inSelectedYear(year: yearNo, days: $0.days ?? []) &&
+                (leave ? ($0.absence?.absenceType == AbsenceType.deducted.rawValue ||
+                    $0.absence?.absenceType == AbsenceType.nonDecuted.rawValue) : false ||
+                    sick ? ($0.absence?.absenceType == AbsenceType.sick.rawValue) : false ||
+                    bonus ? ($0.absence?.absenceType == AbsenceType.bonus.rawValue): false)
+            } ?? []
+            self.filteredRequests = self.requests
+            DispatchQueue.main.async {
+                self.customView.removeFromSuperview()
+                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                self.stopActivityIndicatorSpinner()
+            }
         }
     }
     
@@ -248,6 +240,7 @@ class HistoryViewController: BaseViewController {
     }
 
 }
+
 extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -302,11 +295,10 @@ extension HistoryViewController: SearchDialogProtocol {
         sickParameter = sick
         bonusParameter = bonus
         selectedYear = year
-        if leaveParameter && sickParameter && bonusParameter {
-           self.navigationItem.rightBarButtonItem = filterDisabled
-        } else {
-            self.navigationItem.rightBarButtonItem = filterEnabled
-        }
+        
+        self.navigationItem.rightBarButtonItem = leaveParameter && sickParameter && bonusParameter ?
+            filterDisabled : filterEnabled
+        
         fillCalendarByParameter(year: year, leave: leave, sick: sick, bonus: bonus)
     }
     
@@ -314,17 +306,6 @@ extension HistoryViewController: SearchDialogProtocol {
         DispatchQueue.main.async {
             self.customView.removeFromSuperview()
         }
-    }
-    
-    func inSelectedYear(year: Int, days: [Day]) -> Bool {
-        let calendar = Calendar.current
-        
-        guard let firstDate = days.first?.date,
-            let lastDate = days.last?.date else {
-                return false
-        }
-        return calendar.component(.year, from: firstDate) == year ||
-                calendar.component(.year, from: lastDate) == year
     }
 }
 
@@ -340,7 +321,7 @@ extension HistoryViewController: RequestCancelationProtocol {
             status = .canceled
         }
         
-        ViewUtility.showAlertWithAction(title: LocalizedKeys.General.confirm.localized(),
+        AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.confirm.localized(),
                                         message: LocalizedKeys.General.cancelRequestMessage.localized(),
                                         cancelable: true, viewController: self) { confirmed in
             if confirmed {
