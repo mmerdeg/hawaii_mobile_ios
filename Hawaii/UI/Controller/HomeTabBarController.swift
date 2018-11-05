@@ -23,6 +23,11 @@ class HomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         userUseCase?.readUser(completion: { user in
             if user?.userRole ?? "" != UserRole.hrMenager.rawValue {
                 let indexToRemove = 3
@@ -33,10 +38,19 @@ class HomeTabBarController: UITabBarController {
                 }
             }
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        self.userUseCase?.setFirebaseToken { firebaseResponse in
+            guard let success = firebaseResponse?.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if !success {
+                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: firebaseResponse?.message ?? "",
+                                                viewController: self, completion: { _ in
+                                                    self.stopActivityIndicatorSpinner()
+                })
+            }
+        }
     }
     
     /**

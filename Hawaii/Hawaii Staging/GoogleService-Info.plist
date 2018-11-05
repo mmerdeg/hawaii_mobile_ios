@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>457075610951-301qn4rq6ksmrief6ci2c822u83fva83.apps.googleusercontent.com</string>
+	<string>91011414864-lhksqbp773psgr784ihlv8q3mq84ic90.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.457075610951-301qn4rq6ksmrief6ci2c822u83fva83</string>
+	<string>com.googleusercontent.apps.91011414864-lhksqbp773psgr784ihlv8q3mq84ic90</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC4jKu1Kv9z3CkGR9uhhUkMVa6KxNhLD8Q</string>
+	<string>AIzaSyAqlfxwjb33XXiFwoUVGKbBBtlKCnL91oM</string>
 	<key>GCM_SENDER_ID</key>
-	<string>457075610951</string>
+	<string>91011414864</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.hawaii.staging</string>
 	<key>PROJECT_ID</key>
-	<string>hawaii-ca781</string>
+	<string>hawaii-207710</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hawaii-ca781.appspot.com</string>
+	<string>hawaii-207710.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:457075610951:ios:af1b6226bc246458</string>
+	<string>1:91011414864:ios:af1b6226bc246458</string>
 	<key>DATABASE_URL</key>
-	<string>https://hawaii-ca781.firebaseio.com</string>
+	<string>https://hawaii-207710.firebaseio.com</string>
 </dict>
 </plist>

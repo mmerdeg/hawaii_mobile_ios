@@ -30,10 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID = "91011414864-e6j3me9ij99sk8gu6ikgad55qcdtobpl.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().serverClientID = "91011414864-oscjl6qmm6qds4kuvvh1j991rgvker3h.apps.googleusercontent.com"
-        chooseInitialView()
+        
+        let container = SwinjectStoryboard.defaultContainer
+        
+        userUseCase = container.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+        userDetailsUseCase = container.resolve(UserDetailsUseCaseProtocol.self,
+                                              name: String(describing: UserDetailsUseCaseProtocol.self))
         StyleSetup.setStyles()
-        
-        
         FirebaseApp.configure()
         
         // [START set_messaging_delegate]
@@ -45,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
                                                  title: "Decline",
                                                  options: UNNotificationActionOptions(rawValue: 0))
-        
+
         if #available(iOS 11.0, *) {
             let meetingInviteCategory =
                 UNNotificationCategory(identifier: "requestNotification",
@@ -64,17 +67,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let center = UNUserNotificationCenter.current()
             center.delegate = self
             // set the type as sound or badge
-            center.requestAuthorization(options: [.sound,.alert,.badge]) { (granted, error) in
+            center.requestAuthorization(options: [.sound, .alert, .badge]) { granted, error in
                 if granted {
                     print("Notification Enabled Successfully")
-                }else{
+                } else {
                     print("Some Error Occure")
                 }
             }
             application.registerForRemoteNotifications()
         }
-        
+
         // [END register_for_notifications]
+        
+        chooseInitialView()
         return true
     }
     
@@ -98,14 +103,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
-            userUseCase?.setFirebaseToken { _ in
-                guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
-                    as? UITabBarController else {
-                        return
-                }
-                self.window?.rootViewController = homeTabBarController
+            guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
+                as? UITabBarController else {
+                    return
             }
-            
+            self.window?.rootViewController = homeTabBarController
         } else {
             guard let signInViewController = mainStoryboard.instantiateViewController (withIdentifier: "SignInViewController")
                                              as? SignInViewController else {

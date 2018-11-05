@@ -28,42 +28,21 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if success {
-                guard let token = response.item?.0,
-                      let user = response.item?.1 else {
-                        return
-                }
-                self.userDetailsUseCase?.setToken(token: token)
-                self.userUseCase?.createUser(entity: user, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                    self.userUseCase?.setFirebaseToken { firebaseResponse in
-                        guard let success = response.success else {
-                            self.stopActivityIndicatorSpinner()
-                            return
-                        }
-                        if !success {
-                            guard let code = firebaseResponse?.statusCode else {
-                                return
-                            }
-                            ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: firebaseResponse?.message ?? "",
-                                                            viewController: self, completion: { _ in
-                                                                self.stopActivityIndicatorSpinner()
-                            })
-                            if code == 400 {
-                                self.navigateToHome()
-                            }
-                        }
-                        self.navigateToHome()
-                    }
-                })
-            } else {
+            if !success {
                 GIDSignIn.sharedInstance().signOut()
                 GIDSignIn.sharedInstance().disconnect()
-                ViewUtility.showAlertWithAction(title: ViewConstants.errorDialogTitle, message: response.message ?? "",
-                                                viewController: self, completion: { _ in
-                    self.stopActivityIndicatorSpinner()
-                })
+                //self.handleResponseFaliure(message: response.message)
+                return
             }
+            guard let token = response.item?.0,
+                let user = response.item?.1 else {
+                    return
+            }
+            self.userDetailsUseCase?.setToken(token: token)
+            self.userUseCase?.createUser(entity: user, completion: { _ in
+                self.stopActivityIndicatorSpinner()
+                self.navigateToHome()
+            })
         }
 
     }

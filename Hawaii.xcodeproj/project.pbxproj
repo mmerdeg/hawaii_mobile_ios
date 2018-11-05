@@ -70,8 +70,6 @@
 		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
-		30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3051684B217DACF900AAEA7D /* GoogleService-Info.plist */; };
-		30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30516850217DACF900AAEA7D /* GoogleService-Info.plist */; };
 		30516857217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
 		30516858217DAD8200AAEA7D /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516856217DAD8200AAEA7D /* NotificationNames.swift */; };
 		3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
@@ -104,6 +102,13 @@
 		307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
 		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
+		309747102190299F0083E177 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
+		3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471B21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097471F21906DEE0083E177 /* GoogleService-Info.plist */; };
+		3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097472121906E0B0083E177 /* GoogleService-Info.plist */; };
 		309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
@@ -457,8 +462,6 @@
 		3042CA8221536DF9002446FE /* Pagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
 		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		3051684B217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30516850217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30516855217DAD0D00AAEA7D /* Hawaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hawaii.entitlements; sourceTree = "<group>"; };
 		30516856217DAD8200AAEA7D /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
@@ -486,6 +489,10 @@
 		307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicHolidayTableViewCell.xib; sourceTree = "<group>"; };
 		30741359214650AE00F05427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		3097471821902D8A0083E177 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
+		3097471D219030C10083E177 /* RequestNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequestNotification.entitlements; sourceTree = "<group>"; };
+		3097471F21906DEE0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3097472121906E0B0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		309B6CDC2162AA570046EFE9 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		309B6CEB2164EF5E0046EFE9 /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
@@ -682,6 +689,7 @@
 		302DED3A218C80100002D6B4 /* RequestNotification */ = {
 			isa = PBXGroup;
 			children = (
+				3097471D219030C10083E177 /* RequestNotification.entitlements */,
 				302DED3B218C80100002D6B4 /* NotificationViewController.swift */,
 				302DED3D218C80100002D6B4 /* MainInterface.storyboard */,
 				302DED40218C80100002D6B4 /* Info.plist */,
@@ -702,8 +710,8 @@
 		3051684A217DACF900AAEA7D /* Hawaii Staging */ = {
 			isa = PBXGroup;
 			children = (
+				3097471F21906DEE0083E177 /* GoogleService-Info.plist */,
 				3EB5644420CA69EA00501CAC /* Info.plist */,
-				3051684B217DACF900AAEA7D /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Staging";
 			sourceTree = "<group>";
@@ -712,7 +720,7 @@
 			isa = PBXGroup;
 			children = (
 				30A770682188A93200540A93 /* Info-Prod.plist */,
-				30516850217DACF900AAEA7D /* GoogleService-Info.plist */,
+				3097472121906E0B0083E177 /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Production";
 			sourceTree = "<group>";
@@ -1025,6 +1033,7 @@
 				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
+				3097471821902D8A0083E177 /* EncodableExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1536,6 +1545,11 @@
 				TargetAttributes = {
 					302DED36218C80100002D6B4 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					302DED4D218C80F30002D6B4 = {
 						CreatedOnToolsVersion = 10.0;
@@ -1673,6 +1687,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
@@ -1695,7 +1710,6 @@
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
-				30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
 				30FD36E6214A5E530047038C /* credentials.plist in Resources */,
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
@@ -1723,6 +1737,7 @@
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,
+				3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */,
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
@@ -1733,7 +1748,6 @@
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
-				30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
 				30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */,
@@ -2101,12 +2115,14 @@
 				302DED76218C91E80002D6B4 /* DisplayedDateFormatter.swift in Sources */,
 				302DED66218C834E0002D6B4 /* Day.swift in Sources */,
 				302DED72218C91820002D6B4 /* RequestApprovalTableViewCell.swift in Sources */,
+				309747102190299F0083E177 /* GenericResponse.swift in Sources */,
 				302DED6A218C83A30002D6B4 /* ApiConstants.swift in Sources */,
 				302DED74218C919F0002D6B4 /* ViewConstants.swift in Sources */,
 				302DED64218C832B0002D6B4 /* UIColorExtension.swift in Sources */,
 				302DED5B218C81B60002D6B4 /* Request.swift in Sources */,
 				302DED6F218C916D0002D6B4 /* DateStringConverter.swift in Sources */,
 				302DED5D218C83050002D6B4 /* User.swift in Sources */,
+				3097471B21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				302DED6D218C8A780002D6B4 /* RequestDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2128,6 +2144,7 @@
 				302DED5A218C81B40002D6B4 /* Request.swift in Sources */,
 				302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */,
 				302DED77218C91E90002D6B4 /* DisplayedDateFormatter.swift in Sources */,
+				3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				302DED65218C832C0002D6B4 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2149,6 +2166,7 @@
 				3E35CA9D215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
+				3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
 				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
 				3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */,
@@ -2251,6 +2269,7 @@
 				3E35CA9C215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
+				3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
 				3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */,
@@ -2419,6 +2438,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F02EC0B938AF0CDD7696359A /* Pods-RequestNotification.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2443,6 +2463,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;

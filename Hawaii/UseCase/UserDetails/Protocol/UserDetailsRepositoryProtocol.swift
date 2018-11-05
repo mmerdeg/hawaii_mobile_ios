@@ -29,5 +29,7 @@ protocol UserDetailsRepositoryProtocol {
     func getFirebaseToken() -> String?
     
     func setFirebaseToken(_ token: String)
+    
+    func removeFirebaseToken()
 
 }

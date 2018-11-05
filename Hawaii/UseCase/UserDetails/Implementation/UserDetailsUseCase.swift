@@ -29,11 +29,13 @@ protocol UserDetailsUseCaseProtocol {
     func getFirebaseToken() -> String?
 
     func setFirebaseToken(_ token: String)
+    
+    func removeData()
 
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
-
+    
     let userDetailsRepository: UserDetailsRepositoryProtocol!
     
     init(userDetailsRepository: UserDetailsRepositoryProtocol) {
@@ -63,6 +65,13 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     func removeEmail() {
         userDetailsRepository.removeEmail()
     }
+    
+    func removeData() {
+        userDetailsRepository.removeEmail()
+        userDetailsRepository.removeToken()
+        userDetailsRepository.removeFirebaseToken()
+    }
+    
     func getLoadMore() -> Bool {
         return userDetailsRepository.getLoadMore()
     }

@@ -189,17 +189,3 @@ class RequestRepository: RequestRepositoryProtocol {
         return [authHeader: token]
     }
 }
-
-extension Encodable {
-    var dictionary: [String: Any]? {
-        let encoder = JSONEncoder()
-        let formatter = RequestDateFormatter()
-        
-        encoder.dateEncodingStrategy = .formatted(formatter)
-        
-        guard let data = try? encoder.encode(self) else {
-            return nil
-        }
-        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
-    }
-}
