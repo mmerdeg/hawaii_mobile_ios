@@ -104,7 +104,7 @@ class CustomDatePickerTableViewController: BaseViewController {
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                     self.stopActivityIndicatorSpinner()
-                    self.collectionView.scrollToDate(Date(), animateScroll: false)
+                    self.collectionView.scrollToDate(self.endDate ?? Date(), animateScroll: false)
                 }
             })
         })

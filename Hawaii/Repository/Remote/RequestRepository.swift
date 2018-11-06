@@ -12,11 +12,17 @@ class RequestRepository: RequestRepositoryProtocol {
     
     let userRequestsUrl = ApiConstants.baseUrl + "/requests/user"
     
+    let requestUrl = ApiConstants.baseUrl + "/requests"
+    
     let requestsToApproveUrl = ApiConstants.baseUrl + "/requests/approval"
     
     let requestsByTeamByMonthUrl = ApiConstants.baseUrl + "/requests/team"
     
     let requestsByMonthUrl = ApiConstants.baseUrl + "/requests/month"
+    
+    let requestYearsUrl = ApiConstants.baseUrl + "/requests" + "/years/range"
+    
+    let allowanceYearsUrl = ApiConstants.baseUrl  + "/allowances" + "/years/range"
     
     func add(token: String, request: Request, completion: @escaping (GenericResponse<Request>) -> Void) {
         requests?.append(request)
@@ -41,6 +47,15 @@ class RequestRepository: RequestRepositoryProtocol {
             }
         }
     
+    }
+    
+    func getBy(id: Int, token: String, completion: @escaping (GenericResponse<Request>) -> Void) {
+        guard let url = URL(string: requestUrl + "/\(id)") else {
+            return
+        }
+        genericCodableRequest(value: Request.self, url, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
     }
     
     func getAll(token: String, completion: @escaping (GenericResponse<[Request]>) -> Void) {
@@ -141,8 +156,18 @@ class RequestRepository: RequestRepositoryProtocol {
         }
     }
     
+    func getAvailableRequestYearsForSearch(token: String, completion: @escaping (GenericResponse<Year>) -> Void) {
+        guard let url = URL(string: requestYearsUrl) else {
+            return
+        }
+        
+        genericCodableRequest(value: Year.self, url, method: .get, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
+    }
+    
     func getAvailableRequestYears(token: String, completion: @escaping (GenericResponse<Year>) -> Void) {
-        guard let url = URL(string: ApiConstants.requestYears) else {
+        guard let url = URL(string: allowanceYearsUrl) else {
             return
         }
         
@@ -154,19 +179,5 @@ class RequestRepository: RequestRepositoryProtocol {
     func getHeaders(token: String) -> HTTPHeaders {
         let authHeader = "X-AUTH-TOKEN"
         return [authHeader: token]
-    }
-}
-
-extension Encodable {
-    var dictionary: [String: Any]? {
-        let encoder = JSONEncoder()
-        let formatter = RequestDateFormatter()
-        
-        encoder.dateEncodingStrategy = .formatted(formatter)
-        
-        guard let data = try? encoder.encode(self) else {
-            return nil
-        }
-        return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
     }
 }

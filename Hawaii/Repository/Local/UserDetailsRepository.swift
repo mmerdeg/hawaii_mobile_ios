@@ -38,6 +38,10 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
         keyChainRepository?.removeItem(key: tokenKey)
     }
     
+    func removeFirebaseToken() {
+        keyChainRepository?.removeItem(key: firebaseTokenKey)
+    }
+    
     func getEmail() -> String? {
         return keyChainRepository?.getItem(key: emailKey)
     }

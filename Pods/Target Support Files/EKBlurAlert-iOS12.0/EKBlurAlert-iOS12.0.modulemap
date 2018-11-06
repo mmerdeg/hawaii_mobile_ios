@@ -1,0 +1,6 @@
+framework module EKBlurAlert {
+  umbrella header "EKBlurAlert-iOS12.0-umbrella.h"
+
+  export *
+  module * { export * }
+}
