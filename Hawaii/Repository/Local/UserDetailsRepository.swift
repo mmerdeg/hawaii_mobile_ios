@@ -14,6 +14,8 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let firebaseTokenKey = "firebaseToken"
     
+    let pictureUrlKey = "pictureUrl"
+    
     init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
@@ -52,6 +54,19 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     func removeEmail() {
         keyChainRepository?.removeItem(key: emailKey)
+    }
+    
+    func getPictureUrl() -> String? {
+        var pictureUrl: String?
+        if userDefaults.object(forKey: pictureUrlKey) != nil {
+            pictureUrl = userDefaults.string(forKey: pictureUrlKey)
+        }
+        return pictureUrl
+    }
+    
+    func setPictureUrl(_ pictureUrl: String) {
+        userDefaults.set(pictureUrl, forKey: pictureUrlKey)
+        userDefaults.synchronize()
     }
     
     func getLoadMore() -> Bool {

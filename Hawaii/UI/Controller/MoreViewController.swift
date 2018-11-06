@@ -17,16 +17,20 @@ class MoreViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"
+       
+        let genericProfileImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTuYaHTYdunFCkaR7OwwMXMP_pwTxs_atlJRwBKekLVMl1iQVdag"
+        let imageUrl = userDetailsUseCase?.getPictureUrl() ?? genericProfileImageUrl
         
         self.navigationItem.title = LocalizedKeys.More.title.localized()
         signOutButton.setTitle(LocalizedKeys.More.signOut.localized(), for: .normal)
+        
         profileImage.kf.setImage(with: URL(string: imageUrl))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.cornerRadius = 120 / 2
         profileImage.clipsToBounds = true
+        
         userUseCase?.readUser(completion: { user in
             DispatchQueue.main.async {
                 self.nameLabel.text = user?.fullName
@@ -47,7 +51,7 @@ class MoreViewController: BaseViewController {
             if !success {
                 AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "",
                                                 viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
+                    self.stopActivityIndicatorSpinner()
                 })
             }
             self.removeUserDetails()

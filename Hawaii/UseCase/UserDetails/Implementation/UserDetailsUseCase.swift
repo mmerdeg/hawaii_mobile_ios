@@ -18,12 +18,15 @@ protocol UserDetailsUseCaseProtocol {
     
     func setLoadMore(_ loadMore: Bool)
     
+    func getPictureUrl() -> String?
+    
+    func setPictureUrl(_ pictureUrl: String)
+    
     func getFirebaseToken() -> String?
 
     func setFirebaseToken(_ token: String)
     
     func removeData()
-
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
@@ -70,6 +73,14 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setLoadMore(_ loadMore: Bool) {
         userDetailsRepository.setLoadMore(loadMore)
+    }
+    
+    func getPictureUrl() -> String? {
+        return userDetailsRepository.getPictureUrl()
+    }
+    
+    func setPictureUrl(_ pictureUrl: String) {
+        userDetailsRepository.setPictureUrl(pictureUrl)
     }
     
     func getFirebaseToken() -> String? {

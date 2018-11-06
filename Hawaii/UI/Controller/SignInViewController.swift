@@ -23,7 +23,14 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
               let userUseCase = userUseCase else {
             return
         }
+        
         userDetailsUseCase?.setEmail(user.profile.email)
+        
+        let dimension = round(100 * UIScreen.main.scale)
+        if let picture = user.profile.imageURL(withDimension: UInt(dimension)) {
+            userDetailsUseCase?.setPictureUrl(picture.absoluteString)
+        }
+
         userUseCase.signIn(accessToken: accessToken) { response in
             guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
