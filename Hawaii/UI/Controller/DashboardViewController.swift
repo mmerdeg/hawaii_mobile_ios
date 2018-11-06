@@ -40,7 +40,7 @@ class DashboardViewController: BaseViewController {
     
     var endDate = Date()
     
-    let formatter = DateFormatter()
+    let calendarUtils = CalendarUtils()
     
     lazy var addRequestItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addRequestViaItem))
@@ -190,11 +190,7 @@ class DashboardViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            self.formatter.dateFormat = "yyyy"
-            let year = self.formatter.string(from: date)
-            self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date).capitalized
-            self.dateLabel.text = month+", "+year
+            self.dateLabel.text = self.calendarUtils.formatCalendarHeader(date: date)
         }
     }
     
@@ -285,23 +281,13 @@ class DashboardViewController: BaseViewController {
 
 extension DashboardViewController: JTAppleCalendarViewDataSource {
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        formatter.dateFormat = "dd MM yyyy"
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.locale = Calendar.current.locale
-        
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
-        return parameters
+        return ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: .monday)
     }
 }
 
 extension DashboardViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell,
                   forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self), for: indexPath)
-            as? CalendarCellCollectionViewCell else {
-                return
-        }
-        sharedFunctionToConfigureCell(myCustomCell: cell, cellState: cellState, date: date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
@@ -315,19 +301,18 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
             cell.cellState = cellState
             cell.setCell()
             return cell
-        } else {
-            guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
-                                                          for: indexPath)
-                as? CalendarCellCollectionViewCell else {
-                    return JTAppleCell()
-            }
-            
-            cell.cellState = cellState
-            let requests: [Request] = items[date] ?? []
-            cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
-            cell.setCell()
-            return cell
         }
+        guard let cell = calendar.dequeueReusableCell(withReuseIdentifier: String(describing: CalendarCellCollectionViewCell.self),
+                                                      for: indexPath)
+            as? CalendarCellCollectionViewCell else {
+                return JTAppleCell()
+        }
+        
+        cell.cellState = cellState
+        let requests: [Request] = items[date] ?? []
+        cell.requests = requests.isEmpty || requests.count > 2 ? nil : requests
+        cell.setCell()
+        return cell
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
@@ -342,12 +327,6 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
         } else {
             addRequest(date)
         }
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-    }
-    
-    func sharedFunctionToConfigureCell(myCustomCell: CalendarCellCollectionViewCell, cellState: CellState, date: Date) {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -370,13 +349,11 @@ extension DashboardViewController: RequestUpdateProtocol {
     func didAdd(request: Request) {
         request.days?.forEach({ day in
             if let date = day.date {
-                if items[date] != nil {
-                    if !(items[date]?.contains(request) ?? true) &&
+                if items[date] != nil && !(items[date]?.contains(request) ?? true) &&
                         request.requestStatus != RequestStatus.canceled &&
                         request.requestStatus != RequestStatus.rejected &&
                         request.absence?.absenceType != AbsenceType.bonus.rawValue {
                         items[date]?.append(request)
-                    }
                 } else {
                     items[date] = [request]
                 }
