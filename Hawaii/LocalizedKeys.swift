@@ -6,6 +6,8 @@ public struct LocalizedKeys {
         static let errorTitle = "general.alert.errorTitle"
         static let cancel = "general.alert.cancel"
         static let ok = "general.alert.ok"
+        static let yes = "general.alert.yes"
+        static let no = "general.alert.no"
         static let trickMessage = "general.alert.trickMessage"
         static let reasonRequired = "general.alert.reasonRequired"
         static let cancelRequestMessage = "general.alert.cancelRequestMessage"
@@ -75,6 +77,7 @@ public struct LocalizedKeys {
         static let leaveType = "summary.leavetype"
         static let reason = "summary.reason"
         static let submit = "summary.submit"
+        static let days = "summary.days"
     }
     
     struct Filter {

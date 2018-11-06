@@ -5,7 +5,7 @@ import NotificationBannerSwift
 
 class HomeTabBarController: UITabBarController {
     
-    let progressHUD = ProgressHUD(text: LocalizedKeys.General.wait.localized())
+    let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
     
     let gcmMessageIDKey = "gcm.message_id"
     
@@ -23,12 +23,10 @@ class HomeTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         userUseCase?.readUser(completion: { user in
-            if user?.userRole ?? "" != UserRole.hrMenager.rawValue {
-                let indexToRemove = 3
-                if self.viewControllers?.count ?? 0 == 5 {
-                    DispatchQueue.main.async {
-                        self.viewControllers?.remove(at: indexToRemove)
-                    }
+            if user?.userRole ?? "" != UserRole.hrMenager.rawValue && self.viewControllers?.count ?? 0 == 5 {
+                DispatchQueue.main.async {
+                    let indexToRemove = 3
+                    self.viewControllers?.remove(at: indexToRemove)
                 }
             }
         })
@@ -44,12 +42,12 @@ class HomeTabBarController: UITabBarController {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            if !success {
-                AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "",
-                                                viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
-                })
+            if success {
+                return
             }
+            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "", viewController: self, completion: { _ in
+                    self.stopActivityIndicatorSpinner()
+            })
         }
     }
     

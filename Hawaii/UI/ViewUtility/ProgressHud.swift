@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ProgressHUD: UIVisualEffectView {
+class ProgressHud: UIVisualEffectView {
     
     var text: String? {
         didSet {

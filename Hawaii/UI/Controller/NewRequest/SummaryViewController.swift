@@ -141,8 +141,7 @@ class SummaryViewController: BaseViewController {
     
     func handleRemainingDays(absenceType: String, days: [Day]) {
         
-        let halfDayFormat = "%.1f"
-        let daysLabelExtension = " day(s)"
+        let daysLabelExtension = LocalizedKeys.Summary.days.localized()
         
         guard let remainingDaysString = remainingDaysNo else {
             return
@@ -156,10 +155,10 @@ class SummaryViewController: BaseViewController {
             (Double(remainingDaysString) ?? 0) - requestedDays
         
         leaveRemainingLabel.text = (floor(remainingDays) == remainingDays ?
-            String(describing: Int(remainingDays)) : String(format: halfDayFormat, remainingDays)) + daysLabelExtension
+            String(describing: Int(remainingDays)) : String(format: ViewConstants.halfDayFormat, remainingDays)) + daysLabelExtension
         
         leaveRequestedLabel.text = (floor(requestedDays) == requestedDays ?
-            String(describing: Int(requestedDays)) : String(format: halfDayFormat, requestedDays)) + daysLabelExtension
+            String(describing: Int(requestedDays)) : String(format: ViewConstants.halfDayFormat, requestedDays)) + daysLabelExtension
     }
     
     @objc func addRequest() {

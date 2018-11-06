@@ -181,7 +181,7 @@
                                                     <constraint firstAttribute="height" constant="150" id="QNJ-fa-TxE"/>
                                                 </constraints>
                                                 <connections>
-                                                    <segue destination="pWK-zL-GDT" kind="embed" identifier="showRemainingDaysViewController" id="pCA-5R-dBx"/>
+                                                    <segue destination="pWK-zL-GDT" kind="embed" identifier="showRemainingLeaveDaysViewController" id="pCA-5R-dBx"/>
                                                 </connections>
                                             </containerView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1QF-Ws-pM2">
@@ -194,7 +194,7 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MHx-by-oiF">
                                                 <rect key="frame" x="0.0" y="701" width="375" height="150"/>
                                                 <connections>
-                                                    <segue destination="pWK-zL-GDT" kind="embed" identifier="showRemainingDaysSickViewController" id="TXB-yP-tc9"/>
+                                                    <segue destination="pWK-zL-GDT" kind="embed" identifier="showRemainingTrainingDaysViewController" id="TXB-yP-tc9"/>
                                                 </connections>
                                             </containerView>
                                         </subviews>
@@ -351,7 +351,7 @@
         <image name="00 dashboard white 01" width="48" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TXB-yP-tc9"/>
+        <segue reference="pCA-5R-dBx"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

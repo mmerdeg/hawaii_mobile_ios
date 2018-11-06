@@ -8,9 +8,9 @@ class DashboardViewController: BaseViewController {
     
     let showRequestDetailsSegue = "showRequestDetails"
     
-    let showRemainingDaysViewController = "showRemainingDaysViewController"
+    let showRemainingLeaveDaysViewController = "showRemainingLeaveDaysViewController"
     
-    let showRemainingDaysSickViewController = "showRemainingDaysSickViewController"
+    let showRemainingTrainingDaysViewController = "showRemainingTrainingDaysViewController"
     
     @IBOutlet weak var collectionView: JTAppleCalendarView!
     
@@ -26,9 +26,9 @@ class DashboardViewController: BaseViewController {
     
     var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
     
-    var remainingDaysViewController: RemainigDaysViewController?
+    var remainingLeaveDaysViewController: RemainigDaysViewController?
     
-    var remainingSickDaysViewController: RemainigDaysViewController?
+    var remainingTrainingDaysViewController: RemainigDaysViewController?
     
     var items: [Date: [Request]] = [:]
     
@@ -168,25 +168,19 @@ class DashboardViewController: BaseViewController {
             }
             controller.requests = requests
             controller.delegate = self
-        } else if segue.identifier == showRemainingDaysViewController {
+        } else if segue.identifier == showRemainingLeaveDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
             }
-            self.remainingDaysViewController = controller
-            guard let remainingDaysViewController = self.remainingDaysViewController else {
-                return
-            }
-            remainingDaysViewController.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
-        } else if segue.identifier == showRemainingDaysSickViewController {
+            self.remainingLeaveDaysViewController = controller
+            self.remainingLeaveDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
+        } else if segue.identifier == showRemainingTrainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
             }
-            self.remainingSickDaysViewController = controller
-            guard let remainingSickDaysViewController = self.remainingSickDaysViewController else {
-                return
-            }
-            remainingDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
-            remainingSickDaysViewController.mainLabelText = "Training"
+            self.remainingTrainingDaysViewController = controller
+            self.remainingLeaveDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.leave.localized()
+            self.remainingTrainingDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
         }
     }
     
@@ -195,11 +189,7 @@ class DashboardViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            self.formatter.dateFormat = "yyyy"
-            let year = self.formatter.string(from: date)
-            self.formatter.dateFormat = "MMMM"
-            let month = self.formatter.string(from: date).capitalized
-            self.dateLabel.text = month+", "+year
+            self.dateLabel.text = self.calendarUtils.formatCalendarHeader(date: date)
             self.lastDateInMonth = date
         }
     }
@@ -244,12 +234,9 @@ class DashboardViewController: BaseViewController {
                           let endYear = yearsResponse.item?.last else {
                             return
                     }
-                    let startDateString = "01 01 \(startYear)"
-                    let endDateString = "31 12 \(endYear)"
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd MM yyyy"
-                    self.startDate = dateFormatter.date(from: startDateString) ?? Date()
-                    self.endDate = dateFormatter.date(from: endDateString) ?? Date()
+                    self.startDate = self.calendarUtils.getStartDate(startYear: startYear)
+                    self.endDate = self.calendarUtils.getEndDate(endYear: endYear)
+                    
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                         self.stopActivityIndicatorSpinner()
@@ -262,10 +249,6 @@ class DashboardViewController: BaseViewController {
         })
     }
     
-    func handleCellLeave(cell: CalendarCellCollectionViewCell, cellState: CellState) {
-        
-    }
-    
     @IBAction func nextMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.next, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
@@ -275,17 +258,6 @@ class DashboardViewController: BaseViewController {
     @IBAction func previousMonthPressed(_ sender: Any) {
         collectionView.scrollToSegment(.previous, triggerScrollToDateDelegate: true,
                                        animateScroll: true, extraAddedOffset: 0.0)
-    }
-    
-    func presentBluredAlertView() {
-        let alertView = EKBlurAlertView(frame: self.view.bounds)
-        let myImage = UIImage(named: "success") ?? UIImage()
-        alertView.setCornerRadius(10)
-        alertView.set(autoFade: true, after: 2)
-        alertView.set(image: myImage)
-        alertView.set(headline: LocalizedKeys.General.success.localized())
-        alertView.set(subheading: LocalizedKeys.Request.addMessage.localized())
-        view.addSubview(alertView)
     }
 }
 
@@ -329,20 +301,19 @@ extension DashboardViewController: JTAppleCalendarViewDelegate {
         guard let calendarCell = cell as? CalendarCellCollectionViewCell else {
             return
         }
-        if calendarCell.requests != nil {
-            guard let requests = calendarCell.requests else {
-                return
-            }
-            showDetails(requests)
-        } else {
+        if calendarCell.requests == nil {
             addRequest(date)
+            return
         }
+        guard let requests = calendarCell.requests else {
+            return
+        }
+        showDetails(requests)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
     }
-    
 }
 
 extension DashboardViewController: RequestDetailsDialogProtocol {
@@ -351,9 +322,8 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
             self.customView.removeFromSuperview()
         }
         fillCalendar()
-        remainingDaysViewController?.getData()
-        remainingSickDaysViewController?.getData()
-        
+        remainingLeaveDaysViewController?.getData()
+        remainingTrainingDaysViewController?.getData()
     }
 }
 
@@ -372,17 +342,15 @@ extension DashboardViewController: RequestUpdateProtocol {
                 }
             }
         })
-        presentBluredAlertView()
+        AlertPresenter.presentBluredAlertView(view: self.view,
+                                              message: LocalizedKeys.Request.addMessage.localized())
         collectionView.reloadData()
         self.collectionView.scrollToDate(request.days?.first?.date ?? Date(), animateScroll: false)
     }
     
     func didRemove(request: Request) {
-        
     }
     
     func didEdit(request: Request) {
-        
     }
-    
 }

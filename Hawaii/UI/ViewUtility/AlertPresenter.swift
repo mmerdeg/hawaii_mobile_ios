@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import EKBlurAlert
 
 class AlertPresenter {
     
@@ -94,6 +95,56 @@ class AlertPresenter {
         }
         alert.view.tintColor = UIColor.primaryColor
         viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    /**
+     Show alert with yes and no button.
+     
+     - Parameter title:          Alert title.
+     - Parameter message:        Alert message.
+     - Parameter viewController: Alert's owner.
+     
+     */
+    static func showAlertWithYesNoAction(title: String, message: String,
+                                         viewController: UIViewController,
+                                         completion: @escaping (Bool) -> Void ) {
+        
+        let yesActionTitle = LocalizedKeys.General.yes.localized()
+        let noActionTitle = LocalizedKeys.General.no.localized()
+        
+        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringMessage = NSMutableAttributedString(string: message ,
+                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.setValue(mutableStringTitle, forKey: titleKey)
+        alert.setValue(mutableStringMessage, forKey: messageKey)
+        
+        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.default) { _ in
+            completion(true)
+        }
+        alert.addAction(yesAction)
+        
+        let noAction = UIAlertAction(title: noActionTitle, style: UIAlertActionStyle.cancel) { _ in
+            completion(false)
+        }
+        alert.addAction(noAction)
+
+        alert.view.tintColor = UIColor.primaryColor
+        viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    static func presentBluredAlertView(view: UIView, message: String) {
+        let imageName = "success"
+        let successTitle = LocalizedKeys.General.success.localized()
+        
+        let alertView = EKBlurAlertView(frame: view.bounds)
+        let myImage = UIImage(named: imageName) ?? UIImage()
+        alertView.setCornerRadius(10)
+        alertView.set(autoFade: true, after: 2)
+        alertView.set(image: myImage)
+        alertView.set(headline: successTitle)
+        alertView.set(subheading: message)
+        view.addSubview(alertView)
     }
 
 }

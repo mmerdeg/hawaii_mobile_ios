@@ -134,24 +134,24 @@ class RemainigDaysViewController: BaseViewController {
     func populateViewData(total: Double, taken: Double, pending: Double) {
       
         let workHours = 8.0
-        let halfDayFormat = "%.1f"
+        
         let totalDaysLabelExtension = " " + LocalizedKeys.RemainingDays.days.localized().capitalized
         
         let totalDays = total / workHours
         self.totalDayNoLabel.text = (floor(totalDays) == totalDays ?
-            String(describing: Int(totalDays)) : String(format: halfDayFormat, totalDays)) + totalDaysLabelExtension
+            String(describing: Int(totalDays)) : String(format: ViewConstants.halfDayFormat, totalDays)) + totalDaysLabelExtension
         
         let takenAnnualDays = taken / workHours
         self.takenDayNoLabel.text = floor(takenAnnualDays) == takenAnnualDays ?
-            String(describing: Int(takenAnnualDays)) : String(format: halfDayFormat, takenAnnualDays)
+            String(describing: Int(takenAnnualDays)) : String(format: ViewConstants.halfDayFormat, takenAnnualDays)
         
         let remainingDays = totalDays - takenAnnualDays
         self.remainingDayNoLabel.text = floor(remainingDays) == remainingDays ?
-            String(describing: Int(remainingDays)) : String(format: halfDayFormat, remainingDays)
+            String(describing: Int(remainingDays)) : String(format: ViewConstants.halfDayFormat, remainingDays)
         
         let pendingDays = pending / workHours
         self.pendingDayNoLabel.text = floor(pendingDays) == pendingDays ?
-            String(describing: Int(pendingDays)) : String(format: halfDayFormat, pendingDays)
+            String(describing: Int(pendingDays)) : String(format: ViewConstants.halfDayFormat, pendingDays)
         
         let barWidth = self.progressBar.frame.width
         

@@ -53,7 +53,7 @@
 		302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */; };
 		302EE1772133F5C4001355E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
 		302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
-		302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHUD.swift */; };
+		302EE17C21353539001355E9 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHud.swift */; };
 		302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18021356C93001355E9 /* TeamCalendarViewController.swift */; };
 		302EE1832135744D001355E9 /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
@@ -176,7 +176,7 @@
 		30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		30FD36B3214A5E530047038C /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
-		30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHUD.swift */; };
+		30FD36B5214A5E530047038C /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHud.swift */; };
 		30FD36B6214A5E530047038C /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45D20E645AC00DB2CF7 /* SectionData.swift */; };
 		30FD36B7214A5E530047038C /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45920E6379200DB2CF7 /* CellData.swift */; };
 		30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
@@ -460,7 +460,7 @@
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		302EE1782133FD1B001355E9 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
-		302EE17B21353539001355E9 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		302EE17B21353539001355E9 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		302EE18021356C93001355E9 /* TeamCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarViewController.swift; sourceTree = "<group>"; };
 		302EE1822135744D001355E9 /* CalendarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarType.swift; sourceTree = "<group>"; };
 		302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -766,6 +766,34 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		3E0FCE7A21919CFF00E987F8 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				302EE18021356C93001355E9 /* TeamCalendarViewController.swift */,
+				307413082136673100F05427 /* TeamPreviewViewController.swift */,
+				30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
+		3E0FCE7B21919D1F00E987F8 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */,
+				3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		3E0FCE7C21919D5600E987F8 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				3E42F4BC20CE7946002661AF /* DashboardViewController.swift */,
+				3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		3E1047B12181DDD0003ECC4C /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,14 +936,16 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		3E28E79820E511C600F1C6D5 /* Request */ = {
+		3E28E79820E511C600F1C6D5 /* NewRequest */ = {
 			isa = PBXGroup;
 			children = (
 				3E5C2AD72109F36200706E82 /* Protocol */,
 				3E28E79920E5121700F1C6D5 /* NewRequestViewController.swift */,
+				3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */,
+				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
 				3E832311216CAD570068E37F /* SummaryViewController.swift */,
 			);
-			path = Request;
+			path = NewRequest;
 			sourceTree = "<group>";
 		};
 		3E2D45A9216209AB002A512C /* User */ = {
@@ -1087,7 +1117,7 @@
 			isa = PBXGroup;
 			children = (
 				3E72645020EA1D0600DC7240 /* AlertPresenter.swift */,
-				302EE17B21353539001355E9 /* ProgressHUD.swift */,
+				302EE17B21353539001355E9 /* ProgressHud.swift */,
 				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
 				3E6EBC532190730E0043EDBD /* RefreshUtils.swift */,
 			);
@@ -1342,20 +1372,14 @@
 			children = (
 				3E80631C21875442009224BD /* Base */,
 				3E72645220EA294E00DC7240 /* Component */,
-				3E28E79820E511C600F1C6D5 /* Request */,
+				3E28E79820E511C600F1C6D5 /* NewRequest */,
+				3E0FCE7C21919D5600E987F8 /* Dashboard */,
+				3E0FCE7B21919D1F00E987F8 /* History */,
+				3E0FCE7A21919CFF00E987F8 /* Team */,
 				3EB5643A20CA69E900501CAC /* SignInViewController.swift */,
 				3E236F2820D7AA10006AEF29 /* MoreViewController.swift */,
-				3E42F4BC20CE7946002661AF /* DashboardViewController.swift */,
-				3E28E79020E3876D00F1C6D5 /* RequestDetailsViewController.swift */,
-				3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */,
-				3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */,
-				3E3550FB21216F4300B43B57 /* SearchRequestsViewController.swift */,
 				3E35510321217BC400B43B57 /* ApproveViewController.swift */,
-				302EE18021356C93001355E9 /* TeamCalendarViewController.swift */,
-				307413082136673100F05427 /* TeamPreviewViewController.swift */,
-				30741342213FCB4B00F05427 /* CustomDatePickerTableViewController.swift */,
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
-				30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2245,7 +2269,7 @@
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
 				3E35CAA1215E15150042E65A /* UserDao.swift in Sources */,
-				30FD36B5214A5E530047038C /* ProgressHUD.swift in Sources */,
+				30FD36B5214A5E530047038C /* ProgressHud.swift in Sources */,
 				309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */,
@@ -2354,7 +2378,7 @@
 				3E35CAA0215E15150042E65A /* UserDao.swift in Sources */,
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
 				3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */,
-				302EE17C21353539001355E9 /* ProgressHUD.swift in Sources */,
+				302EE17C21353539001355E9 /* ProgressHud.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E1E17D6218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */,

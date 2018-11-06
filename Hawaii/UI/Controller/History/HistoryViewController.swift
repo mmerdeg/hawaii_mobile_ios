@@ -140,20 +140,6 @@ class HistoryViewController: BaseViewController {
         lastTimeSynced = Date()
     }
     
-    func presentBluredAlertView() {
-        let successTitle = LocalizedKeys.General.success.localized()
-        let alertMessage = LocalizedKeys.General.canceledRequestMessage.localized()
-        
-        let alertView = EKBlurAlertView(frame: self.view.bounds)
-        let myImage = UIImage(named: successTitle.lowercased()) ?? UIImage()
-        alertView.setCornerRadius(10)
-        alertView.set(autoFade: true, after: 2)
-        alertView.set(image: myImage)
-        alertView.set(headline: successTitle)
-        alertView.set(subheading: alertMessage)
-        view.addSubview(alertView)
-    }
-    
     func fillCalendarByParameter(year: String, leave: Bool, sick: Bool, bonus: Bool) {
         guard let yearNo = Int(year) else {
             return
@@ -321,9 +307,9 @@ extension HistoryViewController: RequestCancelationProtocol {
             status = .canceled
         }
         
-        AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.confirm.localized(),
+        AlertPresenter.showAlertWithYesNoAction(title: LocalizedKeys.General.confirm.localized(),
                                         message: LocalizedKeys.General.cancelRequestMessage.localized(),
-                                        cancelable: true, viewController: self) { confirmed in
+                                        viewController: self) { confirmed in
             if confirmed {
                 self.startActivityIndicatorSpinner()
                 self.updateRequest(request: newRequest, oldRequest: oldRequest, status: status, cell: cell)
@@ -356,7 +342,8 @@ extension HistoryViewController: RequestCancelationProtocol {
             } else {
                 self.filteredRequests[index.row] = updatedRequest
             }
-            self.presentBluredAlertView()
+            AlertPresenter.presentBluredAlertView(view: self.view,
+                                                  message: LocalizedKeys.General.canceledRequestMessage.localized())
             self.tableView.reloadData()
             self.stopActivityIndicatorSpinner()
         }

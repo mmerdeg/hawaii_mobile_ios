@@ -150,36 +150,20 @@ extension ApproveViewController: RequestApprovalProtocol {
         }
     }
     
-    func presentBluredAlertView(_ isAccepted: Bool) {
-        
-        let alertTitle = LocalizedKeys.General.success.localized()
-        let approveAlertMessage = LocalizedKeys.General.approvedRequestMessage.localized()
-        let rejectAlertMessage = LocalizedKeys.General.rejectedRequestMessage.localized()
-        
-        let alertView = EKBlurAlertView(frame: self.view.bounds)
-        let myImage = UIImage(named: alertTitle.lowercased()) ?? UIImage()
-        
-        alertView.setCornerRadius(10)
-        alertView.set(autoFade: true, after: 2)
-        alertView.set(image: myImage)
-        alertView.set(headline: alertTitle)
-        
-        let message = isAccepted ? approveAlertMessage : rejectAlertMessage
-        alertView.set(subheading: message)
-        view.addSubview(alertView)
-    }
-    
     func updateRequest(request: Request, status: RequestStatus, cell: RequestApprovalTableViewCell, isAccepted: Bool) {
         startActivityIndicatorSpinner()
-        requestUseCase.updateRequest(request: Request(request: request,
-                                                      requestStatus: status)) { _ in
-                                                        guard let index = self.tableView.indexPath(for: cell) else {
-                                                            return
-                                                        }
-                                                        self.stopActivityIndicatorSpinner()
-                                                        self.presentBluredAlertView(isAccepted)
-                                                        self.requests.remove(at: index.row)
-                                                        self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+        requestUseCase.updateRequest(request: Request(request: request, requestStatus: status)) { _ in
+            guard let index = self.tableView.indexPath(for: cell) else {
+                return
+            }
+            self.stopActivityIndicatorSpinner()
+            
+            let alertMessage = isAccepted ? LocalizedKeys.General.approvedRequestMessage.localized()
+                : LocalizedKeys.General.rejectedRequestMessage.localized()
+            AlertPresenter.presentBluredAlertView(view: self.view, message: alertMessage)
+            
+            self.requests.remove(at: index.row)
+            self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
         }
     }
 }

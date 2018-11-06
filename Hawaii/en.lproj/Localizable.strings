@@ -1,6 +1,8 @@
 general.alert.errorTitle = "Error";
 general.alert.cancel = "Cancel";
 general.alert.ok = "Ok";
+general.alert.yes = "Yes";
+general.alert.no = "No";
 general.alert.trickMessage = "Dont try to trick me";
 general.alert.reasonRequired = "Reason field is required";
 general.alert.cancelRequestMessage = "Are you sure you want to cancel this request?";
@@ -65,6 +67,7 @@ summary.leaveRemaining = "Leave remaining";
 summary.leavetype = "Leave type";
 summary.reason = "Reason";
 summary.submit = "Submit";
+summary.days = " day(s)";
 
 filter.year = "Year";
 filter.filter = "Filter";

@@ -12,6 +12,8 @@ class ViewConstants {
     static let maxTimeElapsed = 15
     
     static let dateSourceFormat = "yyyy-MM-dd'T'HH:mm:ss"
+    
+    static let halfDayFormat = "%.1f"
 }
 
 struct NotificationNames {

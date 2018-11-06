@@ -84,5 +84,7 @@ identifier_name:
     - add
     - src
     - iv
+    - no
+    - yes
  
 reporter: "xcode"
