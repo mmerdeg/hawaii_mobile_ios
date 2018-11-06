@@ -8,6 +8,8 @@ protocol RequestUseCaseProtocol {
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
+    func getBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void)
+    
     func getAllBy(id: Int, completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void)
     
     func add(request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
@@ -23,6 +25,8 @@ protocol RequestUseCaseProtocol {
     func getAllForEmployee(byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
     func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void)
+    
+    func getAvailableRequestYearsForSearch(completion: @escaping (GenericResponse<Year>) -> Void)
     
     func populateDaysBetween(startDate: Date, endDate: Date, durationType: DurationType) -> [Day]
 }
@@ -40,6 +44,12 @@ class RequestUseCase: RequestUseCaseProtocol {
         self.requestRepository = entityRepository
         self.userUseCase = userUseCase
         self.userDetailsUseCase = userDetailsUseCase
+    }
+    
+    func getBy(id: Int, completion: @escaping (GenericResponse<Request>) -> Void) {
+        requestRepository?.getBy(id: id, token: getToken(), completion: { response in
+            completion(response)
+        })
     }
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {
@@ -108,6 +118,12 @@ class RequestUseCase: RequestUseCaseProtocol {
         requestRepository?.getAvailableRequestYears(token: getToken()) { requestsResponse in
             completion(requestsResponse)
         }
+    }
+    
+    func getAvailableRequestYearsForSearch(completion: @escaping (GenericResponse<Year>) -> Void) {
+        requestRepository?.getAvailableRequestYearsForSearch(token: getToken(), completion: { requestsResponse in
+            completion(requestsResponse)
+        })
     }
     
     func handle(_ response: GenericResponse<[Request]>?) -> GenericResponse<[Date: [Request]]> {

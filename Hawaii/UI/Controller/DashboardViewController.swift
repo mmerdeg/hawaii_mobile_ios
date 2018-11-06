@@ -28,6 +28,8 @@ class DashboardViewController: BaseViewController {
     
     var remainingDaysViewController: RemainigDaysViewController?
     
+    var remainingSickDaysViewController: RemainigDaysViewController?
+    
     var items: [Date: [Request]] = [:]
     
     var holidays: [Date: [PublicHoliday]] = [:]
@@ -39,6 +41,8 @@ class DashboardViewController: BaseViewController {
     var startDate = Date()
     
     var endDate = Date()
+
+    var lastDateInMonth = Date()
     
     let calendarUtils = CalendarUtils()
     
@@ -177,11 +181,12 @@ class DashboardViewController: BaseViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {
                 return
             }
-            self.remainingDaysViewController = controller
-            guard let remainingDaysViewController = self.remainingDaysViewController else {
+            self.remainingSickDaysViewController = controller
+            guard let remainingSickDaysViewController = self.remainingSickDaysViewController else {
                 return
             }
-            remainingDaysViewController.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
+            remainingDaysViewController?.mainLabelText = LocalizedKeys.RemainingDays.training.localized()
+            remainingSickDaysViewController.mainLabelText = "Training"
         }
     }
     
@@ -190,7 +195,12 @@ class DashboardViewController: BaseViewController {
             guard let date = visibleDates.monthDates.last?.date else {
                 return
             }
-            self.dateLabel.text = self.calendarUtils.formatCalendarHeader(date: date)
+            self.formatter.dateFormat = "yyyy"
+            let year = self.formatter.string(from: date)
+            self.formatter.dateFormat = "MMMM"
+            let month = self.formatter.string(from: date).capitalized
+            self.dateLabel.text = month+", "+year
+            self.lastDateInMonth = date
         }
     }
     
@@ -244,7 +254,7 @@ class DashboardViewController: BaseViewController {
                         self.collectionView.reloadData()
                         self.stopActivityIndicatorSpinner()
                         
-                        self.collectionView.scrollToDate(Date(), animateScroll: false)
+                        self.collectionView.scrollToDate(self.lastDateInMonth, animateScroll: false)
                     }
                     self.lastTimeSynced = Date()
                 })
@@ -341,6 +351,9 @@ extension DashboardViewController: RequestDetailsDialogProtocol {
             self.customView.removeFromSuperview()
         }
         fillCalendar()
+        remainingDaysViewController?.getData()
+        remainingSickDaysViewController?.getData()
+        
     }
 }
 

@@ -8,12 +8,45 @@
 
 /* Begin PBXBuildFile section */
 		0FEB42E150B94A71508CDC03 /* Pods_Hawaii_production.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */; };
+		2B72872914C0F270A3550B14 /* Pods_RequestServiceNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA095813D1D2079780FEFD5 /* Pods_RequestServiceNotification.framework */; };
 		30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* RequestParams.storyboard */; };
 		30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* RequestParams.storyboard */; };
 		30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
+		302DED38218C80100002D6B4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF6218AF2220000A8A3 /* UserNotifications.framework */; };
+		302DED39218C80100002D6B4 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */; };
+		302DED3C218C80100002D6B4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED3B218C80100002D6B4 /* NotificationViewController.swift */; };
+		302DED3F218C80100002D6B4 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		302DED43218C80100002D6B4 /* RequestNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED37218C80100002D6B4 /* RequestNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED50218C80F30002D6B4 /* NotificationService.swift */; };
+		302DED55218C80F30002D6B4 /* RequestServiceNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		302DED59218C81A30002D6B4 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
+		302DED5A218C81B40002D6B4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
+		302DED5B218C81B60002D6B4 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
+		302DED5D218C83050002D6B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
+		302DED61218C83060002D6B4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
+		302DED62218C830B0002D6B4 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
+		302DED63218C830B0002D6B4 /* Allowance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30741326213968E800F05427 /* Allowance.swift */; };
+		302DED64218C832B0002D6B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
+		302DED65218C832C0002D6B4 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
+		302DED66218C834E0002D6B4 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
+		302DED67218C834F0002D6B4 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
+		302DED68218C836E0002D6B4 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
+		302DED69218C836F0002D6B4 /* Absence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED6ED8321300CCB001436FE /* Absence.swift */; };
+		302DED6A218C83A30002D6B4 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE72177590200C7F784 /* ApiConstants.swift */; };
+		302DED6B218C83A30002D6B4 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DE72177590200C7F784 /* ApiConstants.swift */; };
+		302DED6D218C8A780002D6B4 /* RequestDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */; };
+		302DED6E218C8A790002D6B4 /* RequestDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DF0217783CD00C7F784 /* RequestDateFormatter.swift */; };
+		302DED6F218C916D0002D6B4 /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
+		302DED71218C916F0002D6B4 /* DateStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E80630F21873600009224BD /* DateStringConverter.swift */; };
+		302DED72218C91820002D6B4 /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
+		302DED73218C91830002D6B4 /* RequestApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550FF2121797E00B43B57 /* RequestApprovalTableViewCell.swift */; };
+		302DED74218C919F0002D6B4 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DEA21777B7300C7F784 /* ViewConstants.swift */; };
+		302DED75218C91A00002D6B4 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DEA21777B7300C7F784 /* ViewConstants.swift */; };
+		302DED76218C91E80002D6B4 /* DisplayedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */; };
+		302DED77218C91E90002D6B4 /* DisplayedDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E892DED21777E8E00C7F784 /* DisplayedDateFormatter.swift */; };
 		302EE16D2133C93B001355E9 /* ECFoundationiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; };
 		302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		302EE1732133F549001355E9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
@@ -37,8 +70,7 @@
 		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
-		30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3051684B217DACF900AAEA7D /* GoogleService-Info.plist */; };
-		30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30516850217DACF900AAEA7D /* GoogleService-Info.plist */; };
+		30516851217DACF900AAEA7D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
@@ -69,6 +101,16 @@
 		307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */; };
 		3074135A214650AF00F05427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30741359214650AE00F05427 /* Assets.xcassets */; };
 		3074135E2147E53200F05427 /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074135D2147E53200F05427 /* Year.swift */; };
+		307D6AED2191761A009F3104 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 307D6AEB2191761A009F3104 /* MainInterface.storyboard */; };
+		307D6AEF219176CF009F3104 /* LocalizedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E17D5218B054E00868667 /* LocalizedKeys.swift */; };
+		307D6AF3219176CF009F3104 /* LocalizedKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E17D5218B054E00868667 /* LocalizedKeys.swift */; };
+		309747102190299F0083E177 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303C44292154C746003F16CC /* GenericResponse.swift */; };
+		3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471B21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
+		3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097471F21906DEE0083E177 /* GoogleService-Info.plist */; };
+		3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097472121906E0B0083E177 /* GoogleService-Info.plist */; };
 		309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
@@ -270,10 +312,25 @@
 		3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */; };
 		3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */; };
 		682DDCDE6AE8A763DE840C0E /* Pods_HawaiiTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */; };
+		83936CD7CB23FB49C3512731 /* Pods_RequestNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A30AD16633AF3D3C5171823 /* Pods_RequestNotification.framework */; };
 		848C43317462A4E1A2DFBFBA /* Pods_Hawaii.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		302DED41218C80100002D6B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EB5642D20CA69E900501CAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 302DED36218C80100002D6B4;
+			remoteInfo = RequestNotification;
+		};
+		302DED53218C80F30002D6B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3EB5642D20CA69E900501CAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 302DED4D218C80F30002D6B4;
+			remoteInfo = RequestServiceNotification;
+		};
 		302EE16F2133C93B001355E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */;
@@ -333,6 +390,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		301F8E7F2186F1F100164761 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				302DED55218C80F30002D6B4 /* RequestServiceNotification.appex in Embed App Extensions */,
+				302DED43218C80100002D6B4 /* RequestNotification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		302EE1712133C93B001355E9 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +411,16 @@
 				302EE16E2133C93B001355E9 /* ECFoundationiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		306687FA21898B27006A1157 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		30FD36EA214A5E530047038C /* Embed Frameworks */ = {
@@ -358,11 +437,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		021622DC34E948FDE2083C45 /* Pods_RequestNotificationProd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotificationProd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.release.xcconfig"; sourceTree = "<group>"; };
+		0A758A83E4302D02554FF452 /* Pods_NotificationService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA095813D1D2079780FEFD5 /* Pods_RequestServiceNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestServiceNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.release.xcconfig"; sourceTree = "<group>"; };
+		1A30AD16633AF3D3C5171823 /* Pods_RequestNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* RequestParams.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestParams.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
 		3013932B215CBE8F00F65B7F /* NewRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRequest.storyboard; sourceTree = "<group>"; };
+		301CECF6218AF2220000A8A3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		302DED37218C80100002D6B4 /* RequestNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RequestNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		302DED3B218C80100002D6B4 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		302DED40218C80100002D6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RequestServiceNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		302DED50218C80F30002D6B4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		302DED52218C80F30002D6B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		302DED6C218C88360002D6B4 /* RequestServiceNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequestServiceNotification.entitlements; sourceTree = "<group>"; };
 		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -378,9 +471,6 @@
 		3042CA8221536DF9002446FE /* Pagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagable.swift; sourceTree = "<group>"; };
 		3042CA8421536E9F002446FE /* Sort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		3042CA8821536EF6002446FE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		3042CA9121539EC6002446FE /* Hawaii production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hawaii production.entitlements"; sourceTree = "<group>"; };
-		3051684B217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		30516850217DACF900AAEA7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30516855217DAD0D00AAEA7D /* Hawaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hawaii.entitlements; sourceTree = "<group>"; };
 		30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
 		30516867217F48EB00AAEA7D /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
@@ -388,6 +478,7 @@
 		305A01AC215908EB0008B4EA /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		305A01AD215908EB0008B4EA /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		305A01B2215928A00008B4EA /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
+		306687EA2188AC7C006A1157 /* HawaiiProd.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HawaiiProd.entitlements; sourceTree = "<group>"; };
 		307413082136673100F05427 /* TeamPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewViewController.swift; sourceTree = "<group>"; };
 		3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPreviewTableViewCell.swift; sourceTree = "<group>"; };
 		3074130E2136680100F05427 /* TeamPreviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamPreviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -406,6 +497,11 @@
 		307413562142809B00F05427 /* PublicHolidayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublicHolidayTableViewCell.xib; sourceTree = "<group>"; };
 		30741359214650AE00F05427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3074135D2147E53200F05427 /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		307D6AEC2191761A009F3104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3097471821902D8A0083E177 /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
+		3097471D219030C10083E177 /* RequestNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequestNotification.entitlements; sourceTree = "<group>"; };
+		3097471F21906DEE0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3097472121906E0B0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		309B6CDC2162AA570046EFE9 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		309B6CEB2164EF5E0046EFE9 /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
@@ -415,10 +511,10 @@
 		309B6D61216736880046EFE9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		30A770682188A93200540A93 /* Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Prod.plist"; sourceTree = "<group>"; };
 		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Hawaii copy-Info.plist"; path = "/Users/idivljak/Desktop/hawaii_mobile_ios/Hawaii copy-Info.plist"; sourceTree = "<absolute>"; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -509,17 +605,40 @@
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
 		3ED6ED8321300CCB001436FE /* Absence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Absence.swift; sourceTree = "<group>"; };
 		3EF556692179FE0C00A7664D /* KeyChainRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainRepositoryProtocol.swift; sourceTree = "<group>"; };
+		455D1283C29DABEB28903EE7 /* Pods-RequestServiceNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestServiceNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E75A8E608CFAB8216A254E4 /* Pods-Hawaii.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.release.xcconfig"; sourceTree = "<group>"; };
 		833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii_production.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6699C9F01E0482629659F20 /* Pods-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotificationService/Pods-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
+		B71F7498EC002CA6BE77BB19 /* Pods-RequestServiceNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestServiceNotification.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification.release.xcconfig"; sourceTree = "<group>"; };
 		BC7C625CC9F3A3F6686D84F5 /* Pods-Hawaii production.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.release.xcconfig"; sourceTree = "<group>"; };
+		C7F9D02FA06753A8457E7E6D /* Pods-RequestNotificationProd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotificationProd.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotificationProd/Pods-RequestNotificationProd.debug.xcconfig"; sourceTree = "<group>"; };
 		E192188DA1C740EBA3E792FB /* Pods-HawaiiTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiTests/Pods-HawaiiTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HawaiiTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F02EC0B938AF0CDD7696359A /* Pods-RequestNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestNotification.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		FED3B1BE1BD44E45DDA89D4B /* Pods_Hawaii.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hawaii.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		302DED34218C80100002D6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302DED39218C80100002D6B4 /* UserNotificationsUI.framework in Frameworks */,
+				302DED38218C80100002D6B4 /* UserNotifications.framework in Frameworks */,
+				83936CD7CB23FB49C3512731 /* Pods_RequestNotification.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		302DED4B218C80F30002D6B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B72872914C0F270A3550B14 /* Pods_RequestServiceNotification.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD36CE214A5E530047038C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,14 +685,49 @@
 				833390A2B3CA2577DBCA0F3D /* Pods_Hawaii_production.framework */,
 				E9E693C143783B3082D393E0 /* Pods_HawaiiTests.framework */,
 				914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */,
+				021622DC34E948FDE2083C45 /* Pods_RequestNotificationProd.framework */,
+				0A758A83E4302D02554FF452 /* Pods_NotificationService.framework */,
+				301CECF6218AF2220000A8A3 /* UserNotifications.framework */,
+				301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */,
+				1A30AD16633AF3D3C5171823 /* Pods_RequestNotification.framework */,
+				0AA095813D1D2079780FEFD5 /* Pods_RequestServiceNotification.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		301F8E652186E59A00164761 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		302DED3A218C80100002D6B4 /* RequestNotification */ = {
+			isa = PBXGroup;
+			children = (
+				3097471D219030C10083E177 /* RequestNotification.entitlements */,
+				302DED3B218C80100002D6B4 /* NotificationViewController.swift */,
+				307D6AEB2191761A009F3104 /* MainInterface.storyboard */,
+				302DED40218C80100002D6B4 /* Info.plist */,
+			);
+			path = RequestNotification;
+			sourceTree = "<group>";
+		};
+		302DED4F218C80F30002D6B4 /* RequestServiceNotification */ = {
+			isa = PBXGroup;
+			children = (
+				302DED6C218C88360002D6B4 /* RequestServiceNotification.entitlements */,
+				302DED50218C80F30002D6B4 /* NotificationService.swift */,
+				302DED52218C80F30002D6B4 /* Info.plist */,
+			);
+			path = RequestServiceNotification;
 			sourceTree = "<group>";
 		};
 		3051684A217DACF900AAEA7D /* Hawaii Staging */ = {
 			isa = PBXGroup;
 			children = (
-				3051684B217DACF900AAEA7D /* GoogleService-Info.plist */,
+				3097471F21906DEE0083E177 /* GoogleService-Info.plist */,
+				3EB5644420CA69EA00501CAC /* Info.plist */,
 			);
 			path = "Hawaii Staging";
 			sourceTree = "<group>";
@@ -581,7 +735,8 @@
 		3051684F217DACF900AAEA7D /* Hawaii Production */ = {
 			isa = PBXGroup;
 			children = (
-				30516850217DACF900AAEA7D /* GoogleService-Info.plist */,
+				30A770682188A93200540A93 /* Info-Prod.plist */,
+				3097472121906E0B0083E177 /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Production";
 			sourceTree = "<group>";
@@ -894,6 +1049,7 @@
 				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
+				3097471821902D8A0083E177 /* EncodableExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1099,15 +1255,16 @@
 		3EB5642C20CA69E900501CAC = {
 			isa = PBXGroup;
 			children = (
-				3042CA9121539EC6002446FE /* Hawaii production.entitlements */,
 				3E15C40C20E61AAD00DB2CF7 /* ECFoundation.xcodeproj */,
 				3EB5643720CA69E900501CAC /* Hawaii */,
 				3EB5644C20CA69EA00501CAC /* HawaiiTests */,
 				3EB5645720CA69EA00501CAC /* HawaiiUITests */,
+				302DED3A218C80100002D6B4 /* RequestNotification */,
+				302DED4F218C80F30002D6B4 /* RequestServiceNotification */,
 				3EB5643620CA69E900501CAC /* Products */,
 				F28D0C5FDB4E4C6C7D92927D /* Pods */,
 				08624EF672D76C3B7D6C231E /* Frameworks */,
-				30FD36F0214A5E540047038C /* Hawaii copy-Info.plist */,
+				301F8E652186E59A00164761 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1118,6 +1275,8 @@
 				3EB5644920CA69EA00501CAC /* HawaiiTests.xctest */,
 				3EB5645420CA69EA00501CAC /* HawaiiUITests.xctest */,
 				30FD36EF214A5E530047038C /* Hawaii production.app */,
+				302DED37218C80100002D6B4 /* RequestNotification.appex */,
+				302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1125,6 +1284,7 @@
 		3EB5643720CA69E900501CAC /* Hawaii */ = {
 			isa = PBXGroup;
 			children = (
+				306687EA2188AC7C006A1157 /* HawaiiProd.entitlements */,
 				30516855217DAD0D00AAEA7D /* Hawaii.entitlements */,
 				3051684F217DACF900AAEA7D /* Hawaii Production */,
 				3051684A217DACF900AAEA7D /* Hawaii Staging */,
@@ -1138,7 +1298,6 @@
 				3E987AEF20E518630083BB18 /* .swiftlint.yml */,
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
 				3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */,
-				3EB5644420CA69EA00501CAC /* Info.plist */,
 				30ABE94E21785335007E6122 /* GoogleService-Info.plist */,
 				3E834B602100A8B90038BC96 /* credentials.plist */,
 				3E1E17D3218B043400868667 /* Localizable.strings */,
@@ -1254,6 +1413,12 @@
 				070573B026EEC25E02C6F5C9 /* Pods-HawaiiTests.release.xcconfig */,
 				5D6DC09B6997EC82C11A1F00 /* Pods-HawaiiUITests.debug.xcconfig */,
 				1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */,
+				19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */,
+				C7F9D02FA06753A8457E7E6D /* Pods-RequestNotificationProd.debug.xcconfig */,
+				A6699C9F01E0482629659F20 /* Pods-NotificationService.debug.xcconfig */,
+				F02EC0B938AF0CDD7696359A /* Pods-RequestNotification.debug.xcconfig */,
+				455D1283C29DABEB28903EE7 /* Pods-RequestServiceNotification.debug.xcconfig */,
+				B71F7498EC002CA6BE77BB19 /* Pods-RequestServiceNotification.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1261,6 +1426,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		302DED36218C80100002D6B4 /* RequestNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 302DED49218C80100002D6B4 /* Build configuration list for PBXNativeTarget "RequestNotification" */;
+			buildPhases = (
+				AD9A0A678375645E46715953 /* [CP] Check Pods Manifest.lock */,
+				302DED33218C80100002D6B4 /* Sources */,
+				302DED34218C80100002D6B4 /* Frameworks */,
+				302DED35218C80100002D6B4 /* Resources */,
+				11870B5C73C06243C85153C4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RequestNotification;
+			productName = RequestNotification;
+			productReference = 302DED37218C80100002D6B4 /* RequestNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		302DED4D218C80F30002D6B4 /* RequestServiceNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 302DED56218C80F30002D6B4 /* Build configuration list for PBXNativeTarget "RequestServiceNotification" */;
+			buildPhases = (
+				9C0571A01006155F9E587EC6 /* [CP] Check Pods Manifest.lock */,
+				302DED4A218C80F30002D6B4 /* Sources */,
+				302DED4B218C80F30002D6B4 /* Frameworks */,
+				302DED4C218C80F30002D6B4 /* Resources */,
+				DB97E84B67C6CDA581AA2EFC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RequestServiceNotification;
+			productName = RequestServiceNotification;
+			productReference = 302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		30FD367A214A5E530047038C /* Hawaii production */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30FD36EC214A5E530047038C /* Build configuration list for PBXNativeTarget "Hawaii production" */;
@@ -1273,11 +1476,14 @@
 				30FD36EA214A5E530047038C /* Embed Frameworks */,
 				5DEAF544C4FE7C02D1F33015 /* [CP] Embed Pods Frameworks */,
 				872AA06CA4560ECF1E7CC76C /* [CP] Copy Pods Resources */,
+				301F8E7F2186F1F100164761 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				30FD367B214A5E530047038C /* PBXTargetDependency */,
+				302DED42218C80100002D6B4 /* PBXTargetDependency */,
+				302DED54218C80F30002D6B4 /* PBXTargetDependency */,
 			);
 			name = "Hawaii production";
 			productName = Hawaii;
@@ -1296,6 +1502,7 @@
 				302EE1712133C93B001355E9 /* Embed Frameworks */,
 				F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */,
 				CA66B9DED7106AA4AFF2F018 /* [CP] Copy Pods Resources */,
+				306687FA21898B27006A1157 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1351,14 +1558,36 @@
 		3EB5642D20CA69E900501CAC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Server;
 				TargetAttributes = {
+					302DED36218C80100002D6B4 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					302DED4D218C80F30002D6B4 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
 					30FD367A214A5E530047038C = {
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -1373,7 +1602,13 @@
 						CreatedOnToolsVersion = 9.3;
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 1;
 							};
 							com.apple.Push = {
@@ -1415,6 +1650,8 @@
 				3EB5644820CA69EA00501CAC /* HawaiiTests */,
 				3EB5645320CA69EA00501CAC /* HawaiiUITests */,
 				30FD367A214A5E530047038C /* Hawaii production */,
+				302DED36218C80100002D6B4 /* RequestNotification */,
+				302DED4D218C80F30002D6B4 /* RequestServiceNotification */,
 			);
 		};
 /* End PBXProject section */
@@ -1451,10 +1688,27 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		302DED35218C80100002D6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302DED3F218C80100002D6B4 /* (null) in Resources */,
+				307D6AED2191761A009F3104 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		302DED4C218C80F30002D6B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD36D3214A5E530047038C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
@@ -1477,7 +1731,6 @@
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
-				30516854217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
 				30FD36E6214A5E530047038C /* credentials.plist in Resources */,
 				3E1E17D1218B043400868667 /* Localizable.strings in Resources */,
@@ -1506,6 +1759,7 @@
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,
+				3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */,
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
@@ -1516,7 +1770,7 @@
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
-				30516851217DACF900AAEA7D /* GoogleService-Info.plist in Resources */,
+				30516851217DACF900AAEA7D /* (null) in Resources */,
 				3E1E17D0218B043400868667 /* Localizable.strings in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
@@ -1542,6 +1796,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11870B5C73C06243C85153C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		30FD36E9214A5E530047038C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1575,25 +1847,41 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/EKBlurAlert/EKBlurAlert.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
-				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS10.0/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS12.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS12.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS12.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS12.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS12.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS12.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS12.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS12.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS12.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS12.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS12.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS12.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS12.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS12.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS12.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS12.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1676,6 +1964,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9C0571A01006155F9E587EC6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RequestServiceNotification-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A25E18A7044E1FF574BAB78F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1688,6 +1994,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-HawaiiTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD9A0A678375645E46715953 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RequestNotification-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1730,6 +2054,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DB97E84B67C6CDA581AA2EFC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1737,25 +2079,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/EKBlurAlert/EKBlurAlert.framework",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS10.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS10.0/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS10.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS10.0/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
-				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
-				"${BUILT_PRODUCTS_DIR}/YLProgressBar/YLProgressBar.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS10.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS10.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1787,6 +2129,52 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		302DED33218C80100002D6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302DED62218C830B0002D6B4 /* Allowance.swift in Sources */,
+				307D6AEF219176CF009F3104 /* LocalizedKeys.swift in Sources */,
+				302DED3C218C80100002D6B4 /* NotificationViewController.swift in Sources */,
+				302DED68218C836E0002D6B4 /* Absence.swift in Sources */,
+				302DED76218C91E80002D6B4 /* DisplayedDateFormatter.swift in Sources */,
+				302DED66218C834E0002D6B4 /* Day.swift in Sources */,
+				302DED72218C91820002D6B4 /* RequestApprovalTableViewCell.swift in Sources */,
+				309747102190299F0083E177 /* GenericResponse.swift in Sources */,
+				302DED6A218C83A30002D6B4 /* ApiConstants.swift in Sources */,
+				302DED74218C919F0002D6B4 /* ViewConstants.swift in Sources */,
+				302DED64218C832B0002D6B4 /* UIColorExtension.swift in Sources */,
+				302DED5B218C81B60002D6B4 /* Request.swift in Sources */,
+				302DED6F218C916D0002D6B4 /* DateStringConverter.swift in Sources */,
+				302DED5D218C83050002D6B4 /* User.swift in Sources */,
+				3097471B21902D8A0083E177 /* EncodableExtension.swift in Sources */,
+				302DED6D218C8A780002D6B4 /* RequestDateFormatter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		302DED4A218C80F30002D6B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				302DED67218C834F0002D6B4 /* Day.swift in Sources */,
+				307D6AF3219176CF009F3104 /* LocalizedKeys.swift in Sources */,
+				302DED69218C836F0002D6B4 /* Absence.swift in Sources */,
+				302DED61218C83060002D6B4 /* User.swift in Sources */,
+				302DED59218C81A30002D6B4 /* GenericResponse.swift in Sources */,
+				302DED6E218C8A790002D6B4 /* RequestDateFormatter.swift in Sources */,
+				302DED63218C830B0002D6B4 /* Allowance.swift in Sources */,
+				302DED75218C91A00002D6B4 /* ViewConstants.swift in Sources */,
+				302DED73218C91830002D6B4 /* RequestApprovalTableViewCell.swift in Sources */,
+				302DED71218C916F0002D6B4 /* DateStringConverter.swift in Sources */,
+				302DED6B218C83A30002D6B4 /* ApiConstants.swift in Sources */,
+				302DED5A218C81B40002D6B4 /* Request.swift in Sources */,
+				302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */,
+				302DED77218C91E90002D6B4 /* DisplayedDateFormatter.swift in Sources */,
+				3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */,
+				302DED65218C832C0002D6B4 /* UIColorExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		30FD367E214A5E530047038C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1804,6 +2192,7 @@
 				3E35CA9D215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				30FD3689214A5E530047038C /* RequestApprovalTableViewCell.swift in Sources */,
 				30FD368A214A5E530047038C /* RequestRepositoryProtocol.swift in Sources */,
+				3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
 				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
 				3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */,
@@ -1908,6 +2297,7 @@
 				3E35CA9C215E14E70042E65A /* UserDaoProtocol.swift in Sources */,
 				3E42592720E25B5A00F22BBD /* RequestRepositoryProtocol.swift in Sources */,
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
+				3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
 				3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */,
@@ -2014,6 +2404,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		302DED42218C80100002D6B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 302DED36218C80100002D6B4 /* RequestNotification */;
+			targetProxy = 302DED41218C80100002D6B4 /* PBXContainerItemProxy */;
+		};
+		302DED54218C80F30002D6B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 302DED4D218C80F30002D6B4 /* RequestServiceNotification */;
+			targetProxy = 302DED53218C80F30002D6B4 /* PBXContainerItemProxy */;
+		};
 		302EE1702133C93B001355E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ECFoundationiOS;
@@ -2037,6 +2437,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		307D6AEB2191761A009F3104 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				307D6AEC2191761A009F3104 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		3E1E17D3218B043400868667 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2067,6 +2475,104 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		302DED44218C80100002D6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F02EC0B938AF0CDD7696359A /* Pods-RequestNotification.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		302DED45218C80100002D6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19563E80279192AB7202214C /* Pods-RequestNotification.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestNotification/RequestNotification.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		302DED57218C80F30002D6B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 455D1283C29DABEB28903EE7 /* Pods-RequestServiceNotification.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestServiceNotification/RequestServiceNotification.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestServiceNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestServiceNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		302DED58218C80F30002D6B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71F7498EC002CA6BE77BB19 /* Pods-RequestServiceNotification.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RequestServiceNotification/RequestServiceNotification.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PH7K4ADL7R;
+				INFOPLIST_FILE = RequestServiceNotification/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hawaii.production.RequestServiceNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		30FD36ED214A5E530047038C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */;
@@ -2074,7 +2580,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hawaii production.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Hawaii/HawaiiProd.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2083,7 +2589,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = "Hawaii copy-Info.plist";
+				INFOPLIST_FILE = "Hawaii/Hawaii Production/Info-Prod.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2109,7 +2615,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "Hawaii production.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Hawaii/HawaiiProd.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PH7K4ADL7R;
@@ -2118,7 +2624,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = "Hawaii copy-Info.plist";
+				INFOPLIST_FILE = "Hawaii/Hawaii Production/Info-Prod.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2270,7 +2776,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = Hawaii/Info.plist;
+				INFOPLIST_FILE = "Hawaii/Hawaii Staging/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2305,7 +2811,7 @@
 					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
 					"$(SRCROOT)/**",
 				);
-				INFOPLIST_FILE = Hawaii/Info.plist;
+				INFOPLIST_FILE = "Hawaii/Hawaii Staging/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2412,6 +2918,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		302DED49218C80100002D6B4 /* Build configuration list for PBXNativeTarget "RequestNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				302DED44218C80100002D6B4 /* Debug */,
+				302DED45218C80100002D6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		302DED56218C80F30002D6B4 /* Build configuration list for PBXNativeTarget "RequestServiceNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				302DED57218C80F30002D6B4 /* Debug */,
+				302DED58218C80F30002D6B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		30FD36EC214A5E530047038C /* Build configuration list for PBXNativeTarget "Hawaii production" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

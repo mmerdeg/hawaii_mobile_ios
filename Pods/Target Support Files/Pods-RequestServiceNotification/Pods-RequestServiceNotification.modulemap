@@ -1,0 +1,6 @@
+framework module Pods_RequestServiceNotification {
+  umbrella header "Pods-RequestServiceNotification-umbrella.h"
+
+  export *
+  module * { export * }
+}

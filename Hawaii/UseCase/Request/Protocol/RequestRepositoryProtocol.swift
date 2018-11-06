@@ -5,6 +5,8 @@ protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     
     func getAll(token: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
+    func getBy(id: Int, token: String, completion: @escaping (GenericResponse<Request>) -> Void)
+    
     func getAllBy(token: String, id: Int, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
     func add(token: String, request: Request, completion: @escaping (GenericResponse<Request>) -> Void)
@@ -22,5 +24,7 @@ protocol RequestRepositoryProtocol: GenericRepositoryProtocol {
     func getAllForEmployee(token: String, byEmail email: String, completion: @escaping (GenericResponse<[Request]>) -> Void)
     
     func getAvailableRequestYears(token: String, completion: @escaping (GenericResponse<Year>) -> Void)
+    
+    func getAvailableRequestYearsForSearch(token: String, completion: @escaping (GenericResponse<Year>) -> Void)
     
 }

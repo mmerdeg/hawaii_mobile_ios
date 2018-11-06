@@ -38,16 +38,30 @@ class MoreViewController: BaseViewController {
     @IBAction func onSignOutPressed(_ sender: Any) {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
-        removeUserDetails()
-        navigateToSignIn()
+        
+        self.userUseCase?.setEmptyFirebaseToken { firebaseResponse in
+            guard let success = firebaseResponse?.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if !success {
+                AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "",
+                                                viewController: self, completion: { _ in
+                                                    self.stopActivityIndicatorSpinner()
+                })
+            }
+            self.removeUserDetails()
+            self.navigateToSignIn()
+        }
+        
     }
     
     func removeUserDetails() {
         guard let userDetailsUseCase = userDetailsUseCase else {
             return
         }
-        userDetailsUseCase.removeToken()
         userDetailsUseCase.removeEmail()
+        userDetailsUseCase.removeToken()
     }
     
     func navigateToSignIn() {

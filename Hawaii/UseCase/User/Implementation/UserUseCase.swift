@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 
 protocol UserUseCaseProtocol {
     
@@ -9,6 +10,8 @@ protocol UserUseCaseProtocol {
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
+    
+    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func createUser(entity: User, completion: @escaping (Int) -> Void)
     
@@ -61,13 +64,35 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: getFirebaseToken(), completion: { response in
+        if let firebaseToken = getFirebaseToken() {
+            userRepository?.setFirebaseToken(token: getToken(), firebaseToken: firebaseToken, completion: { response in
+                completion(response)
+            })
+        } else {
+            InstanceID.instanceID().instanceID { result, error in
+                if let error = error {
+                    completion(GenericResponse<Any> (success: false, item: nil,
+                                                     statusCode: 400, error: error, message: "You didnt get push token, check support"))
+                } else if let result = result {
+                    print("Remote instance ID token: \(result.token)")
+                    self.userDetailsUseCase?.setFirebaseToken(result.token)
+                    self.userRepository?.setFirebaseToken(token: self.getToken(), firebaseToken: result.token, completion: { response in
+                        completion(response)
+                    })
+                }
+            }
+        }
+        
+    }
+    
+    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: "", completion: { response in
             completion(response)
         })
     }
     
-    func getFirebaseToken() -> String {
-        return userDetailsUseCase?.getFirebaseToken() ?? ""
+    func getFirebaseToken() -> String? {
+        return userDetailsUseCase?.getFirebaseToken()
     }
 
     func getToken() -> String {

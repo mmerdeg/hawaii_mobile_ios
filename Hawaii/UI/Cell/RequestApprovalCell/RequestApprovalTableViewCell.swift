@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 protocol RequestApprovalProtocol: class {
     func requestAction(request: Request?, isAccepted: Bool, cell: RequestApprovalTableViewCell)
@@ -105,7 +106,7 @@ class RequestApprovalTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.primaryColor
-        selectionStyle = UITableViewCellSelectionStyle.none
+        selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
     @IBAction func rejectClicked(_ sender: Any) {

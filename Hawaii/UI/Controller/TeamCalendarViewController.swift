@@ -234,7 +234,7 @@ class TeamCalendarViewController: BaseViewController {
             self.collectionView.reloadData()
             self.stopActivityIndicatorSpinner()
             if self.initialMonth {
-                self.collectionView.scrollToDate(Date(), animateScroll: false)
+                self.collectionView.scrollToDate(self.lastDateInMonth, animateScroll: false)
                 self.initialMonth = false
             }
         }

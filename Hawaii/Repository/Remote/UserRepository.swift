@@ -74,7 +74,7 @@ class UserRepository: UserRepositoryProtocol {
         }
         let accessTokenKey = "Authorization"
         let headers = HTTPHeaders.init(dictionaryLiteral: (accessTokenKey, accessToken))
-        
+
         Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let user = response.value,
                 let token = response.response?.allHeaderFields[self.authHeader] as? String else {
@@ -83,6 +83,7 @@ class UserRepository: UserRepositoryProtocol {
                                                                message: response.error?.localizedDescription))
                     return
             }
+            
             completion(GenericResponse<(String, User)>(success: true, item: (token, user),
                                                        statusCode: response.response?.statusCode,
                                                        error: nil, message: nil))
