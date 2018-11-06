@@ -20,6 +20,9 @@ general.newRequestMenu = "Odaberite tip zahteva";
 general.success = "Uspešno izvršena operacija";
 general.confirm = "Potvrda";
 general.refresh = "Dobavljanje podataka ...";
+general.signIn = "Prijavi se";
+general.close = "Zatvori";
+general.back = "Nazad";
 
 request.status.pending = "Na čekanju";
 request.status.approved = "Odobreno";
@@ -37,7 +40,7 @@ request.duration.morningAndAfternoon = "Poslepodne prvog dana i prepodne posledn
 request.table.leaveType = "Tip odsustva";
 request.table.sicknessType = "Tip bolovanja";
 request.table.duration = "Trajanje";
-request.reasonPlaceholder = "Unesite razlog odsustva";
+request.reasonPlaceholder = "Unesite razlog";
 request.startDate = "Početni datum";
 request.endDate = "Krajnji datum";
 request.sicknessRequest = "Zahtev za bolovanje";
@@ -89,5 +92,5 @@ team.segmentPerson = "Po osobi";
 approval.tabItemTitle = "Odobravanje";
 approval.title = "Odobri zahteve";
 
-more.title = "Još";
+more.title = "Ostalo";
 more.signOut = "Odjavi se";

@@ -158,6 +158,10 @@ class DashboardViewController: BaseViewController {
             let data = sender as? (Date, AbsenceType) else {
                 return
             }
+            let back = UIBarButtonItem()
+            back.title = LocalizedKeys.General.back.localized()
+            navigationItem.backBarButtonItem = back
+            
             controller.selectedDate = data.0
             controller.absenceType = data.1
             controller.requestUpdateDelegate = self

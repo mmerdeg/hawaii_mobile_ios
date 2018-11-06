@@ -40,7 +40,8 @@ class TeamCalendarCollectionViewCell: JTAppleCell {
         handleCellText(cellState: cellState)
         isEmpty.layer.cornerRadius = isEmpty.frame.width / 2
         isEmpty.backgroundColor = requests?.isEmpty ?? true ||
-            NSCalendar.current.isDateInWeekend(cellState.date) ? UIColor.transparentColor: UIColor.accentColor
+            NSCalendar.current.isDateInWeekend(cellState.date) ||
+            cellState.dateBelongsTo != .thisMonth ? UIColor.transparentColor: UIColor.accentColor
         self.layer.borderWidth = 0.5
         layoutIfNeeded()
     }

@@ -167,7 +167,7 @@
 		30FD36A5214A5E530047038C /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
 		30FD36A6214A5E530047038C /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */; };
 		30FD36A8214A5E530047038C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
-		30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
+		30FD36AB214A5E530047038C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */; };
 		30FD36AC214A5E530047038C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
 		30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
 		30FD36AE214A5E530047038C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
@@ -217,6 +217,8 @@
 		30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		30FD36EB214A5E530047038C /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */; };
+		3E0FCE872191CF4600E987F8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FCE862191CF4600E987F8 /* SignInButton.swift */; };
+		3E0FCE882191CF4600E987F8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FCE862191CF4600E987F8 /* SignInButton.swift */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
 		3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36920E6151900DB2CF7 /* StyleSetup.swift */; };
 		3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
@@ -239,7 +241,7 @@
 		3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2820D7AA10006AEF29 /* MoreViewController.swift */; };
 		3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
-		3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */; };
+		3E28E78220E36BAE00F1C6D5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */; };
 		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
 		3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
 		3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
@@ -517,6 +519,7 @@
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
+		3E0FCE862191CF4600E987F8 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
 		3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleExtension.swift; sourceTree = "<group>"; };
@@ -540,7 +543,7 @@
 		3E236F2820D7AA10006AEF29 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCellCollectionViewCell.xib; sourceTree = "<group>"; };
-		3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCalendar.storyboard; sourceTree = "<group>"; };
@@ -794,14 +797,14 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		3E1047B12181DDD0003ECC4C /* Request */ = {
+		3E1047B12181DDD0003ECC4C /* NewRequest */ = {
 			isa = PBXGroup;
 			children = (
 				30139322215CA90800F65B7F /* RequestParams.storyboard */,
 				3013932B215CBE8F00F65B7F /* NewRequest.storyboard */,
 				3E832317216CADCC0068E37F /* Summary.storyboard */,
 			);
-			path = Request;
+			path = NewRequest;
 			sourceTree = "<group>";
 		};
 		3E1047B52181E02D003ECC4C /* Component */ = {
@@ -870,13 +873,13 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
-		3E15C46220E64CEB00DB2CF7 /* UI */ = {
+		3E15C46220E64CEB00DB2CF7 /* TableDataProvider */ = {
 			isa = PBXGroup;
 			children = (
 				3E15C46620E64D2300DB2CF7 /* Implementation */,
 				3E15C46520E64D1C00DB2CF7 /* Protocol */,
 			);
-			path = UI;
+			path = TableDataProvider;
 			sourceTree = "<group>";
 		};
 		3E15C46520E64D1C00DB2CF7 /* Protocol */ = {
@@ -926,7 +929,7 @@
 			isa = PBXGroup;
 			children = (
 				3E1047B52181E02D003ECC4C /* Component */,
-				3E1047B12181DDD0003ECC4C /* Request */,
+				3E1047B12181DDD0003ECC4C /* NewRequest */,
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
 				3E28E78A20E3845300F1C6D5 /* History.storyboard */,
 				3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */,
@@ -1039,7 +1042,7 @@
 				3E35CA9A215E14C60042E65A /* User */,
 				30741344214274FF00F05427 /* PublicHoliday */,
 				3EBD33F921061CFB00EAFE69 /* UserDetails */,
-				3E15C46220E64CEB00DB2CF7 /* UI */,
+				3E15C46220E64CEB00DB2CF7 /* TableDataProvider */,
 				3E42592520E259F500F22BBD /* Request */,
 			);
 			path = UseCase;
@@ -1074,12 +1077,13 @@
 			isa = PBXGroup;
 			children = (
 				3E42592C20E26A1900F22BBD /* UIColorExtension.swift */,
-				3E28E78120E36BAE00F1C6D5 /* UIButtonExtension.swift */,
+				3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */,
 				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
 				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
 				3097471821902D8A0083E177 /* EncodableExtension.swift */,
+				3E0FCE862191CF4600E987F8 /* SignInButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2254,7 +2258,7 @@
 				3E832313216CAD570068E37F /* SummaryViewController.swift in Sources */,
 				30FD36A8214A5E530047038C /* Request.swift in Sources */,
 				303C44312154E246003F16CC /* GenericRepositoryProtocol.swift in Sources */,
-				30FD36AB214A5E530047038C /* UIButtonExtension.swift in Sources */,
+				30FD36AB214A5E530047038C /* RoundedButton.swift in Sources */,
 				3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
@@ -2280,6 +2284,7 @@
 				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCase.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
+				3E0FCE882191CF4600E987F8 /* SignInButton.swift in Sources */,
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
 				30FD36BD214A5E530047038C /* DashboardViewController.swift in Sources */,
@@ -2362,7 +2367,7 @@
 				309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
 				3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
-				3E28E78220E36BAE00F1C6D5 /* UIButtonExtension.swift in Sources */,
+				3E28E78220E36BAE00F1C6D5 /* RoundedButton.swift in Sources */,
 				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
 				302EE1772133F5C4001355E9 /* User.swift in Sources */,
@@ -2385,6 +2390,7 @@
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3E35CA95215E148E0042E65A /* UserDb.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */,
+				3E0FCE872191CF4600E987F8 /* SignInButton.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,

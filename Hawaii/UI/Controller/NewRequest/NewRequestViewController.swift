@@ -40,6 +40,7 @@ class NewRequestViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = nextItem
+
         self.scrollView.delegate = self
         
         guard let absenceType = absenceType else {

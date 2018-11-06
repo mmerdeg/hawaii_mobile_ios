@@ -20,6 +20,9 @@ general.newRequestMenu = "Choose Request Type";
 general.success = "Success";
 general.confirm = "Confirm";
 general.refresh = "Fetching Data ...";
+general.signIn = "Sign in";
+general.close = "Close";
+general.back = "Back";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";

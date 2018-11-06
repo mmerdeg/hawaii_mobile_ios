@@ -7,11 +7,10 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     
     var userUseCase: UserUseCaseProtocol?
     
-    @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var signInButton: SignInButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
         initializeGoogleSignIn()
     }
 

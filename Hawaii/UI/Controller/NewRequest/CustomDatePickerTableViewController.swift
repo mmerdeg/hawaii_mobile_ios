@@ -43,6 +43,7 @@ class CustomDatePickerTableViewController: BaseViewController {
         super.viewDidLoad()
         
         okButton.setTitle(LocalizedKeys.General.ok.localized(), for: .normal)
+        closeButton.setTitle(LocalizedKeys.General.close.localized(), for: .normal)
         dateLabel.textColor = UIColor.primaryTextColor
         closeButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
         customView.frame = self.view.frame

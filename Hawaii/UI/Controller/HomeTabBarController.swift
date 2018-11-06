@@ -45,7 +45,8 @@ class HomeTabBarController: UITabBarController {
             if success {
                 return
             }
-            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "", viewController: self, completion: { _ in
+            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
+                                               message: firebaseResponse?.message ?? "", viewController: self, completion: { _ in
                     self.stopActivityIndicatorSpinner()
             })
         }

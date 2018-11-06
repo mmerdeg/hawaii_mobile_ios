@@ -19,15 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var isFirebaseInitialized = false
     
     let gcmMessageIDKey = "gcm.message_id"
-    
-//    let container = SwinjectStoryboard.defaultContainer
-//    userUseCase = container.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-//    userDetailsUseCase = container.resolve(UserDetailsUseCaseProtocol.self,
-//    name: String(describing: UserDetailsUseCaseProtocol.self))
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
         GIDSignIn.sharedInstance().clientID = "91011414864-e6j3me9ij99sk8gu6ikgad55qcdtobpl.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().serverClientID = "91011414864-oscjl6qmm6qds4kuvvh1j991rgvker3h.apps.googleusercontent.com"
         
@@ -39,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         StyleSetup.setStyles()
         FirebaseApp.configure()
         
-        // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         
         let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
@@ -58,15 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                        options: .customDismissAction)
 
             UNUserNotificationCenter.current().setNotificationCategories([meetingInviteCategory])
-        } else {
-            // Fallback on earlier versions
         }
 
-        if #available(iOS 10, *) { // iOS 10 support
-            //create the notificationCenter
+        if #available(iOS 10, *) {
             let center = UNUserNotificationCenter.current()
             center.delegate = self
-            // set the type as sound or badge
             center.requestAuthorization(options: [.sound, .alert, .badge]) { granted, _ in
                 if granted {
                     print("Notification Enabled Successfully")
@@ -76,9 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             application.registerForRemoteNotifications()
         }
-
-        // [END register_for_notifications]
-        
         chooseInitialView()
         return true
     }
@@ -118,59 +105,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
     }
     
-    // [START receive_message]
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
+
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
-        print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
+        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
-        print(userInfo)
-        
         completionHandler(UIBackgroundFetchResult.newData)
     }
-    // [END receive_message]
+
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }
     
-    // This function is added here only for debugging purposes, and can be removed if swizzling is enabled.
-    // If swizzling is disabled then this function must be implemented so that the APNs token can be paired to
-    // the FCM registration token.
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
-        
-        // With swizzling disabled you must set the APNs token here.
         Messaging.messaging().apnsToken = deviceToken
     }
 
 }
 
-// [START ios_10_message_handling]
 @available(iOS 10, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -207,21 +173,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
+
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
-        print(userInfo)
-        
         completionHandler()
     }
 }
-// [END ios_10_message_handling]
 
 extension AppDelegate: MessagingDelegate {
-    // [START refresh_token]
+
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         
@@ -230,14 +191,10 @@ extension AppDelegate: MessagingDelegate {
                                         object: nil, userInfo: dataDict)
         userDetailsUseCase?.setFirebaseToken(fcmToken)
     }
-    // [END refresh_token]
-    // [START ios_10_data_message]
-    // Receive data messages on iOS 10+ directly from FCM (bypassing APNs) when the app is in the foreground.
-    // To enable direct data messages, you can set Messaging.messaging().shouldEstablishDirectChannel to true.
+
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
     }
-    // [END ios_10_data_message]
 }
 
 extension SwinjectStoryboard {
@@ -413,14 +370,12 @@ extension SwinjectStoryboard {
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
-                
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
-        
         }
     }
     
