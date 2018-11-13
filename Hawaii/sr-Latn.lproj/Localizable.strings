@@ -23,6 +23,8 @@ general.refresh = "Dobavljanje podataka ...";
 general.signIn = "Prijavi se";
 general.close = "Zatvori";
 general.back = "Nazad";
+general.accept = "Prihvati";
+general.decline = "Odustani";
 
 request.status.pending = "Na čekanju";
 request.status.approved = "Odobreno";
