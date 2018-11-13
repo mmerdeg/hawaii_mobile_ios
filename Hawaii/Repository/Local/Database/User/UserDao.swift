@@ -40,6 +40,7 @@ class UserDao: UserDaoProtocol {
                     do {
                         let values: [Any] = [ entity.id ?? -1,
                                               entity.teamId ?? -1,
+                                              entity.teamName ?? "",
                                               entity.leaveProfileId ?? -1,
                                               entity.fullName ?? "",
                                               entity.email ?? "",

@@ -77,6 +77,10 @@
 		30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
 		3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */; };
 		3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */; };
+		3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055C53E219ABC100066F0E0 /* EmptyView.swift */; };
+		3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055C53E219ABC100066F0E0 /* EmptyView.swift */; };
+		3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3055C541219ABC440066F0E0 /* EmptyView.xib */; };
+		3055C543219ABC440066F0E0 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3055C541219ABC440066F0E0 /* EmptyView.xib */; };
 		305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
 		305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305A01AD215908EB0008B4EA /* InputTableViewCell.xib */; };
 		305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305A01AC215908EB0008B4EA /* InputTableViewCell.swift */; };
@@ -477,6 +481,8 @@
 		30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersTableViewController.swift; sourceTree = "<group>"; };
 		30516867217F48EB00AAEA7D /* GradientExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientExtension.swift; sourceTree = "<group>"; };
 		3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
+		3055C53E219ABC100066F0E0 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		3055C541219ABC440066F0E0 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		305A01AC215908EB0008B4EA /* InputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
 		305A01AD215908EB0008B4EA /* InputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputTableViewCell.xib; sourceTree = "<group>"; };
 		305A01B2215928A00008B4EA /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
@@ -742,6 +748,15 @@
 				3097472121906E0B0083E177 /* GoogleService-Info.plist */,
 			);
 			path = "Hawaii Production";
+			sourceTree = "<group>";
+		};
+		3055C53D219ABBF90066F0E0 /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				3055C53E219ABC100066F0E0 /* EmptyView.swift */,
+				3055C541219ABC440066F0E0 /* EmptyView.xib */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 		30741344214274FF00F05427 /* PublicHoliday */ = {
@@ -1361,6 +1376,7 @@
 		3EB5646620CA909000501CAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3055C53D219ABBF90066F0E0 /* EmptyView */,
 				3E72644F20EA1CE100DC7240 /* ViewUtility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
@@ -1739,6 +1755,7 @@
 				3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */,
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
+				3055C543219ABC440066F0E0 /* EmptyView.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -1781,6 +1798,7 @@
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
+				3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
@@ -2303,6 +2321,7 @@
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
 				3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
+				3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
 				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
@@ -2409,6 +2428,7 @@
 				3E42592920E25B7500F22BBD /* RequestRepository.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
+				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
 				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,

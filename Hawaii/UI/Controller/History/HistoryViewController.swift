@@ -78,6 +78,10 @@ class HistoryViewController: BaseViewController {
                            forCellReuseIdentifier: String(describing: RequestDetailTableViewCell.self))
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
+        tableView.backgroundView = EmptyView(frame: tableView.frame,
+                                             titleText: LocalizedKeys.History.emptyTitle.localized(),
+                                             descText: LocalizedKeys.History.emptyDescription.localized(),
+                                             backgroundImage:  #imageLiteral(resourceName: "empty"))
         customView.frame = self.view.frame
         self.navigationItem.rightBarButtonItem = filterDisabled
         
@@ -211,6 +215,7 @@ class HistoryViewController: BaseViewController {
             controller.leaveParameter = leaveParameter
             controller.sickParameter = sickParameter
             controller.bonusParameter = bonusParameter
+            
         }
     }
     
@@ -243,6 +248,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = !filteredRequests.isEmpty
         return filteredRequests.count
     }
     

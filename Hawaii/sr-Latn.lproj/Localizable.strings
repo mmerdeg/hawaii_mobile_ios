@@ -94,3 +94,12 @@ approval.title = "Odobri zahteve";
 
 more.title = "Ostalo";
 more.signOut = "Odjavi se";
+
+approval.emptyTitle = "No more requests to approve";
+approval.emptyDescription = "You are doing a good job, keep it up";
+
+history.emptyTitle = "No more requests to approve";
+history.emptyDescription = "You are doing a good job, keep it up";
+
+team.emptyTitle = "No more requests to approve";
+team.emptyDescription = "You are doing a good job, keep it up";

@@ -33,6 +33,11 @@ class ApproveViewController: BaseViewController {
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
         
+        tableView.backgroundView = EmptyView(frame: tableView.frame,
+                                                  titleText: LocalizedKeys.Approval.emptyTitle.localized(),
+                                                  descText: LocalizedKeys.Approval.emptyDescription.localized(),
+                                                  backgroundImage: #imageLiteral(resourceName: "empty"))
+        
         tableView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
@@ -118,6 +123,7 @@ extension ApproveViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.backgroundView?.isHidden = !requests.isEmpty
         return requests.count
     }
 }

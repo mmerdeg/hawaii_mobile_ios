@@ -6,7 +6,7 @@ class TeamPreviewViewController: BaseViewController {
     
     weak var delegate: RequestDetailsDialogProtocol?
     
-    var requests: [Int: [Request]]?
+    var requests: [String: [Request]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()

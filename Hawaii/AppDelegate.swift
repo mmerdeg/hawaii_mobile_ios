@@ -18,13 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var isFirebaseInitialized = false
     
+    #if PRODUCTION
+    let clientId = "91011414864-fse65f2pje2rgmobdqu8n67ld8pk6mhr.apps.googleusercontent.com"
+    #else
+    let clientId = "91011414864-9igmd38tpgbklpgkdpcogh9j6h7e2rt9.apps.googleusercontent.com"
+    #endif
+    
     let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        GIDSignIn.sharedInstance().clientID = "91011414864-e6j3me9ij99sk8gu6ikgad55qcdtobpl.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().serverClientID = "91011414864-oscjl6qmm6qds4kuvvh1j991rgvker3h.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().clientID = clientId
         
         let container = SwinjectStoryboard.defaultContainer
         
@@ -80,11 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func chooseInitialView() {
         
         let signIn = GIDSignIn.sharedInstance()
-        signIn?.scopes = ["https://www.googleapis.com/auth/plus.login",
-                          "https://www.googleapis.com/auth/plus.me",
-                          "https://www.googleapis.com/auth/userinfo.email",
-                          "https://www.googleapis.com/auth/userinfo.profile",
-                          "https://www.googleapis.com/auth/calendar"]
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

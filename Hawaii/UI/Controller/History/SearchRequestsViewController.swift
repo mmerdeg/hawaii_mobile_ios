@@ -36,6 +36,10 @@ class SearchRequestsViewController: UIViewController {
     var requestUseCase: RequestUseCaseProtocol?
     
     var items: [Int] = []
+    
+    var startYear = 0
+    
+    var endYear = 0
    
     var leaveParameter = true
    
@@ -63,28 +67,12 @@ class SearchRequestsViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
-        
-        requestUseCase?.getAvailableRequestYearsForSearch(completion: { yearsResponse in
-            guard let success = yearsResponse.success else {
-                return
-            }
-            if !success {
-                AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: yearsResponse.message ?? "",
-                                                viewController: self, completion: { _ in
-                })
-                return
-            }
-            guard let startYear = yearsResponse.item?.first,
-                  let endYear = yearsResponse.item?.last else {
-                    return
-            }
-            var tempYear = startYear
-            while tempYear <= endYear {
-                self.items.append(tempYear)
-                tempYear += 1
-            }
-            self.yearPicker.reloadAllComponents()
-        })
+        var tempYear = startYear
+        while tempYear <= endYear {
+            self.items.append(tempYear)
+            tempYear += 1
+        }
+        self.yearPicker.reloadAllComponents()
     }
 
     @objc func  dismissDialog() {

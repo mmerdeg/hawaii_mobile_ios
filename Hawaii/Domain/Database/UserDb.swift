@@ -4,6 +4,7 @@ struct UserDb: Codable {
     
     let id: Int?
     let teamId: Int?
+    let teamName: String?
     let leaveProfileId: Int?
     let fullName: String?
     let email: String?
@@ -15,11 +16,12 @@ struct UserDb: Codable {
 
 extension UserDb {
     
-    init(userDb: UserDb? = nil, id: Int? = nil, teamId: Int? = nil, leaveProfileId: Int? = nil,
+    init(userDb: UserDb? = nil, id: Int? = nil, teamId: Int? = nil, teamName: String? = nil, leaveProfileId: Int? = nil,
          fullName: String? = nil, email: String? = nil, userRole: String? = nil,
          jobTitle: String? = nil, active: Bool? = nil, yearsOfService: Int? = nil) {
         self.id = id ?? userDb?.id
         self.teamId = teamId ?? userDb?.teamId
+        self.teamName = teamName ?? userDb?.teamName
         self.leaveProfileId = leaveProfileId ?? userDb?.leaveProfileId
         self.fullName = fullName ?? userDb?.fullName
         self.email = email ?? userDb?.email
@@ -33,6 +35,7 @@ extension UserDb {
         print(parameters)
         guard let id = parameters["id"] as? Int,
             let teamId = parameters["team_id"] as? Int,
+            let teamName = parameters["team_name"] as? String,
             let leaveProfileId = parameters["leave_profile_id"] as? Int,
             let fullName = parameters["full_name"] as? String,
             let email = parameters["email"] as? String,
@@ -45,6 +48,7 @@ extension UserDb {
         }
         self.id = id
         self.teamId = teamId
+        self.teamName = teamName
         self.leaveProfileId = leaveProfileId
         self.fullName = fullName
         self.email = email
@@ -63,11 +67,12 @@ extension UserDb {
         self.userRole = entity.userRole
         self.jobTitle = entity.jobTitle
         self.active = entity.active
+        self.teamName = entity.teamName
         self.yearsOfService = entity.yearsOfService
     }
     
     func toUser() -> User {
-        return User(id: self.id, teamId: self.teamId, leaveProfileId: self.leaveProfileId,
+        return User(id: self.id, teamId: self.teamId, teamName: self.teamName, leaveProfileId: self.leaveProfileId,
                     fullName: self.fullName, email: self.email, userRole: self.userRole,
                     jobTitle: self.jobTitle, active: self.active, yearsOfService: self.yearsOfService, allowances: [])
     }

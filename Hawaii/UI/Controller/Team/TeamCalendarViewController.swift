@@ -141,7 +141,7 @@ class TeamCalendarViewController: BaseViewController {
                     return
             }
             
-            controller.requests = Dictionary(grouping: requests, by: { $0.user?.teamId ?? -1 })
+            controller.requests = Dictionary(grouping: requests, by: { $0.user?.teamName ?? "" })
         } else if segue.identifier == showSearchUserSegue {
             guard let controller = segue.destination as? SearchUsersBaseViewController else {
                 return

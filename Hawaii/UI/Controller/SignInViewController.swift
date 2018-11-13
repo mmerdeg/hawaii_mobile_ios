@@ -20,6 +20,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             return
         }
         guard let accessToken = user.authentication.accessToken,
+              let idToken = user.authentication.idToken,
               let userUseCase = userUseCase else {
             return
         }

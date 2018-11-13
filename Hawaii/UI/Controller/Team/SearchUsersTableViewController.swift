@@ -26,13 +26,11 @@ class SearchUsersTableViewController: UITableViewController {
         self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.view.backgroundColor = UIColor.darkPrimaryColor
         self.tableView.separatorStyle = .none
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if users.isEmpty {
-            tableView.backgroundView?.isHidden = false
-            return 0
-        }
+        tableView.backgroundView?.isHidden = !users.isEmpty
         guard let loadMore = userDetailsUseCase?.getLoadMore() else {
             return users.count
         }

@@ -4,6 +4,7 @@ struct User: Codable {
     
     let id: Int?
     let teamId: Int?
+    let teamName: String?
     let leaveProfileId: Int?
     let fullName: String?
     let email: String?

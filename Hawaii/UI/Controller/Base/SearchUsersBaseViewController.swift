@@ -32,6 +32,15 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
             self.navigationItem.searchController = searchController
         }
         self.navigationItem.title = LocalizedKeys.Team.searchTitle.localized()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view = EmptyView(frame: self.view.frame,
+                              titleText: LocalizedKeys.Team.emptyTitle.localized(),
+                              descText: LocalizedKeys.Team.emptyDescription.localized(),
+                              backgroundImage: #imageLiteral(resourceName: "empty"))
     }
     
     func loadMoreClicked(completion: @escaping () -> Void) {

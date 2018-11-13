@@ -95,6 +95,8 @@ public struct LocalizedKeys {
     struct History {
         static let title = "history.title"
         static let segmentAll = "history.segmentAll"
+        static let emptyTitle = "history.emptyTitle"
+        static let emptyDescription = "history.emptyDescription"
     }
     
     struct Team {
@@ -106,11 +108,15 @@ public struct LocalizedKeys {
         static let segmentAll = "team.segmentAll"
         static let segmentTeam = "team.segmentTeam"
         static let segmentPerson = "team.segmentPerson"
+        static let emptyTitle = "team.emptyTitle"
+        static let emptyDescription = "team.emptyDescription"
     }
     
     struct Approval {
         static let title = "approval.title"
         static let tabItemTitle = "approval.tabItemTitle"
+        static let emptyTitle = "approval.emptyTitle"
+        static let emptyDescription = "approval.emptyDescription"
     }
     
     struct More {
