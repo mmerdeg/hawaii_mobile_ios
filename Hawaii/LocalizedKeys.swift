@@ -27,6 +27,8 @@ public struct LocalizedKeys {
         static let signIn = "general.signIn"
         static let close = "general.close"
         static let back = "general.back"
+        static let accept = "general.accept"
+        static let decline = "general.decline"
     }
 
     struct Request {

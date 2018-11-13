@@ -40,15 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         Messaging.messaging().delegate = self
-        
-        let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
-                                                title: "Accept",
-                                                options: UNNotificationActionOptions(rawValue: 0))
-        let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
-                                                 title: "Decline",
-                                                 options: UNNotificationActionOptions(rawValue: 0))
 
         if #available(iOS 11.0, *) {
+            let acceptAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
+                                                    title: LocalizedKeys.General.accept.localized(),
+                                                    options: UNNotificationActionOptions(rawValue: 0))
+            let declineAction = UNNotificationAction(identifier: "DECLINE_ACTION",
+                                                     title: LocalizedKeys.General.decline.localized(),
+                                                     options: UNNotificationActionOptions(rawValue: 0))
+            
             let meetingInviteCategory =
                 UNNotificationCategory(identifier: "requestNotification",
                                        actions: [acceptAction, declineAction],
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if granted {
                     print("Notification Enabled Successfully")
                 } else {
-                    print("Some Error Occure")
+                    print("Some Error Occured")
                 }
             }
             application.registerForRemoteNotifications()

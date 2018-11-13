@@ -23,6 +23,8 @@ general.refresh = "Fetching Data ...";
 general.signIn = "Sign in";
 general.close = "Close";
 general.back = "Back";
+general.accept = "Accept";
+general.decline = "Decline";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";
