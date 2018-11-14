@@ -26,6 +26,8 @@ protocol UserDetailsUseCaseProtocol {
 
     func setFirebaseToken(_ token: String)
     
+    func removeFirebaseToken()
+    
     func removeData()
 }
 
@@ -89,6 +91,10 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setFirebaseToken(_ token: String) {
         userDetailsRepository.setFirebaseToken(token)
+    }
+    
+    func removeFirebaseToken() {
+        userDetailsRepository.removeFirebaseToken()
     }
 
 }
