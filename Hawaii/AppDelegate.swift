@@ -83,9 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func chooseInitialView() {
-        
-        let signIn = GIDSignIn.sharedInstance()
-        
+                
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         

@@ -27,16 +27,17 @@ class HomeTabBarController: UITabBarController {
                 DispatchQueue.main.async {
                     let indexToRemove = 3
                     self.viewControllers?.remove(at: indexToRemove)
-                    
-                    self.homeTabBar.items?[0].title = LocalizedKeys.Dashboard.title.localized()
-                    self.homeTabBar.items?[1].title = LocalizedKeys.History.title.localized()
-                    self.homeTabBar.items?[2].title = LocalizedKeys.Team.tabItemTitle.localized()
-                    self.homeTabBar.items?[3].title = self.homeTabBar.items?.count == 3 ? LocalizedKeys.More.title.localized() :
-                        LocalizedKeys.Approval.tabItemTitle.localized()
-                    self.homeTabBar.items?[4].title = LocalizedKeys.More.title.localized()
+                    self.homeTabBar.items?[3].title = LocalizedKeys.More.title.localized()
                 }
             }
         })
+        
+        homeTabBar.items?[0].title = LocalizedKeys.Dashboard.title.localized()
+        homeTabBar.items?[1].title = LocalizedKeys.History.title.localized()
+        homeTabBar.items?[2].title = LocalizedKeys.Team.tabItemTitle.localized()
+        homeTabBar.items?[3].title = homeTabBar.items?.count == 3 ? LocalizedKeys.More.title.localized() :
+            LocalizedKeys.Approval.tabItemTitle.localized()
+        homeTabBar.items?[4].title = LocalizedKeys.More.title.localized()
         
         self.userUseCase?.setFirebaseToken { firebaseResponse in
             guard let success = firebaseResponse?.success else {

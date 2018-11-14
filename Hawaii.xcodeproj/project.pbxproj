@@ -1132,7 +1132,7 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		3E72644F20EA1CE100DC7240 /* ViewUtility */ = {
+		3E72644F20EA1CE100DC7240 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				3E72645020EA1D0600DC7240 /* AlertPresenter.swift */,
@@ -1140,7 +1140,7 @@
 				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
 				3E6EBC532190730E0043EDBD /* RefreshUtils.swift */,
 			);
-			path = ViewUtility;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		3E72645220EA294E00DC7240 /* Component */ = {
@@ -1377,7 +1377,7 @@
 			isa = PBXGroup;
 			children = (
 				3055C53D219ABBF90066F0E0 /* EmptyView */,
-				3E72644F20EA1CE100DC7240 /* ViewUtility */,
+				3E72644F20EA1CE100DC7240 /* Utility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
 				3E42592B20E26A0700F22BBD /* Extension */,
