@@ -185,11 +185,11 @@ extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
-        
-        let dataDict: [String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"),
-                                        object: nil, userInfo: dataDict)
+        userDetailsUseCase?.removeFirebaseToken()
         userDetailsUseCase?.setFirebaseToken(fcmToken)
+        NotificationCenter.default.post(name:
+            NSNotification.Name(rawValue: NotificationNames.refreshFirebaseToken),
+                                        object: nil, userInfo: nil)
     }
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
