@@ -16,6 +16,8 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let pictureUrlKey = "pictureUrl"
     
+    let hasRunBeforeKey = "hasRunBefore"
+    
     init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
@@ -79,6 +81,19 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     func setLoadMore(_ loadMore: Bool) {
         userDefaults.set(loadMore, forKey: loadMoreKey)
+        userDefaults.synchronize()
+    }
+    
+    func hasRunBefore() -> Bool {
+        var hasRunBefore = false
+        if userDefaults.object(forKey: hasRunBeforeKey) != nil {
+            hasRunBefore = userDefaults.bool(forKey: hasRunBeforeKey)
+        }
+        return hasRunBefore
+    }
+    
+    func setRunBefore(_ hasRunBefore: Bool) {
+        userDefaults.set(hasRunBefore, forKey: hasRunBeforeKey)
         userDefaults.synchronize()
     }
 }

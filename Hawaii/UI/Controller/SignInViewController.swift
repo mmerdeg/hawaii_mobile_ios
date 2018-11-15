@@ -49,8 +49,22 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
             }
             self.userDetailsUseCase?.setToken(token: token)
             self.userUseCase?.createUser(entity: user, completion: { _ in
-                self.stopActivityIndicatorSpinner()
-                self.navigateToHome()
+                
+                self.userUseCase?.setFirebaseToken { firebaseResponse in
+                    guard let firebaseResponseSuccess = firebaseResponse?.success else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    if !firebaseResponseSuccess {
+                        GIDSignIn.sharedInstance().signOut()
+                        GIDSignIn.sharedInstance().disconnect()
+                        self.handleResponseFaliure(message: firebaseResponse?.message)
+                        return
+                    }
+                    self.stopActivityIndicatorSpinner()
+                    self.navigateToHome()
+                }
+                
             })
         }
 

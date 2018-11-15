@@ -4,8 +4,6 @@ import Alamofire
 
 class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
     
-    let authHeader = "X-AUTH-TOKEN"
-    
     let publicHolidaysUrl = ApiConstants.baseUrl + "/publicholidays"
     
     func getHolidays(token: String, completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void) {
@@ -21,7 +19,7 @@ class PublicHolidayRepository: PublicHolidayRepositoryProtocol {
     }
     
     func getHeaders(token: String) -> HTTPHeaders {
-        return [authHeader: token]
+        return [ApiConstants.authHeader: token]
     }
     
 }

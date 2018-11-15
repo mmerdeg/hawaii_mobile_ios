@@ -40,13 +40,25 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        userRepository?.getUsersByParameter(token: getToken(), parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
+        guard let token = getToken() else {
+            completion(UsersResponse(success: false, users: nil, statusCode: 401, maxUsers: nil,
+                                     error: nil,
+                                     message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.getUsersByParameter(token: token, parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        userRepository?.getUser(token: getToken(), email: getEmail()) { response in
+        guard let token = getToken() else {
+            completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
+                                             error: nil,
+                                             message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.getUser(token: token, email: getEmail()) { response in
             completion(response)
         }
     }
@@ -65,7 +77,13 @@ class UserUseCase: UserUseCaseProtocol {
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
         if let firebaseToken = getFirebaseToken() {
-            userRepository?.setFirebaseToken(token: getToken(), firebaseToken: firebaseToken, completion: { response in
+            guard let token = getToken() else {
+                completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                  error: nil,
+                                                  message: LocalizedKeys.General.emptyToken.localized()))
+                return
+            }
+            userRepository?.setFirebaseToken(token: token, firebaseToken: firebaseToken, completion: { response in
                 completion(response)
             })
         } else {
@@ -75,8 +93,15 @@ class UserUseCase: UserUseCaseProtocol {
                                                      statusCode: 400, error: error, message: "You didnt get push token, check support"))
                 } else if let result = result {
                     print("Remote instance ID token: \(result.token)")
+                    self.userDetailsUseCase?.removeFirebaseToken()
                     self.userDetailsUseCase?.setFirebaseToken(result.token)
-                    self.userRepository?.setFirebaseToken(token: self.getToken(), firebaseToken: result.token, completion: { response in
+                    guard let token = self.getToken() else {
+                        completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                          error: nil,
+                                                          message: LocalizedKeys.General.emptyToken.localized()))
+                        return
+                    }
+                    self.userRepository?.setFirebaseToken(token: token, firebaseToken: result.token, completion: { response in
                         completion(response)
                     })
                 }
@@ -86,7 +111,13 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        userRepository?.setFirebaseToken(token: getToken(), firebaseToken: "", completion: { response in
+        guard let token = getToken() else {
+            completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                            error: nil,
+                                                            message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.setFirebaseToken(token: token, firebaseToken: "", completion: { response in
             completion(response)
         })
     }
@@ -95,8 +126,8 @@ class UserUseCase: UserUseCaseProtocol {
         return userDetailsUseCase?.getFirebaseToken()
     }
 
-    func getToken() -> String {
-        return userDetailsUseCase?.getToken() ?? ""
+    func getToken() -> String? {
+        return userDetailsUseCase?.getToken()
     }
     
     func getEmail() -> String {

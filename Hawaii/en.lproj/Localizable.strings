@@ -25,6 +25,7 @@ general.close = "Close";
 general.back = "Back";
 general.accept = "Accept";
 general.decline = "Decline";
+general.emptyToken = "We cannot acces your token from keychain, try loging in again";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";

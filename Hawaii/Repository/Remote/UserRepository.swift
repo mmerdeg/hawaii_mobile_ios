@@ -4,8 +4,6 @@ import CodableAlamofire
 
 class UserRepository: UserRepositoryProtocol {
     
-    let authHeader = "X-AUTH-TOKEN"
-    
     let signInUrl = ApiConstants.baseUrl + "/signin"
     
     let getUserUrl = ApiConstants.baseUrl + "/users"
@@ -28,7 +26,7 @@ class UserRepository: UserRepositoryProtocol {
         Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
-                    completion(UsersResponse(success: false, users: nil, maxUsers: nil,
+                    completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
                                              error: response.error,
                                              message: response.error?.localizedDescription))
                     return
@@ -36,11 +34,11 @@ class UserRepository: UserRepositoryProtocol {
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    completion(UsersResponse(success: true, users: searchedContent.content,
+                    completion(UsersResponse(success: true, users: searchedContent.content, statusCode: response.response?.statusCode,
                                              maxUsers: searchedContent.totalElements, error: nil, message: nil))
                 case .failure(let error):
                     print(error)
-                    completion(UsersResponse(success: false, users: nil, maxUsers: nil,
+                    completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
                                              error: response.error,
                                              message: response.error?.localizedDescription))
                 }
@@ -77,7 +75,7 @@ class UserRepository: UserRepositoryProtocol {
 
         Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let user = response.value,
-                let token = response.response?.allHeaderFields[self.authHeader] as? String else {
+                let token = response.response?.allHeaderFields[ApiConstants.authHeader] as? String else {
                     completion(GenericResponse<(String, User)>(success: false, item: nil, statusCode: response.response?.statusCode,
                                                                error: response.error,
                                                                message: response.error?.localizedDescription))
@@ -91,7 +89,7 @@ class UserRepository: UserRepositoryProtocol {
     }
     
     func getHeaders(token: String) -> HTTPHeaders {
-        return [authHeader: token]
+        return [ApiConstants.authHeader: token]
     }
     
 }

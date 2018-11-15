@@ -184,12 +184,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
         userDetailsUseCase?.removeFirebaseToken()
         userDetailsUseCase?.setFirebaseToken(fcmToken)
-        NotificationCenter.default.post(name:
-            NSNotification.Name(rawValue: NotificationNames.refreshFirebaseToken),
-                                        object: nil, userInfo: nil)
+        guard let hasRunBefore = userDetailsUseCase?.hasRunBefore() else {
+            return
+        }
+        if !hasRunBefore {
+            userDetailsUseCase?.setRunBefore(true)
+            userDetailsUseCase?.removeToken()
+        }
+        userUseCase?.setFirebaseToken { _ in
+            
+        }
     }
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -198,6 +204,7 @@ extension AppDelegate: MessagingDelegate {
 }
 
 extension SwinjectStoryboard {
+    
     @objc class func setup() {
         
         DatabaseInitializer().initialize { databaseQueue, dispatchQueue in
@@ -277,7 +284,9 @@ extension SwinjectStoryboard {
                                       name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
                 TableDataProviderUseCase(
                     tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                 name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository)
+                                                                  name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository,
+                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                         name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
             }
             
             defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in

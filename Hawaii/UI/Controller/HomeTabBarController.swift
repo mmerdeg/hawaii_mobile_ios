@@ -37,53 +37,8 @@ class HomeTabBarController: UITabBarController {
                 }
             }
         })
-        
-        refreshFirebaseToken()
+    
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        addObservers()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObservers()
-    }
-    
-    @objc private func refreshFirebaseToken() {
-        self.userUseCase?.setFirebaseToken { firebaseResponse in
-            guard let success = firebaseResponse?.success else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            if success {
-                return
-            }
-            AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(),
-                                               message: firebaseResponse?.message ?? "", viewController: self, completion: { _ in
-                                                self.stopActivityIndicatorSpinner()
-            })
-        }
-    }
-    
-    /**
-        Adds observer for refresh data event.
-     */
-    func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshFirebaseToken),
-                                               name: NSNotification.Name(rawValue: NotificationNames.refreshFirebaseToken), object: nil)
-    }
-    
-    /**
-        Removes observer for refresh data event.
-     */
-    func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.refreshFirebaseToken), object: nil)
-    }
-    
-    
-
     
     /**
      Show spinner.

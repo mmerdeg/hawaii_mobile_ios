@@ -90,8 +90,7 @@ class NotificationService: UNNotificationServiceExtension {
     }
     
     func getHeaders(token: String) -> HTTPHeaders {
-        let authHeader = "X-AUTH-TOKEN"
-        return [authHeader: token]
+        return [ApiConstants.authHeader: token]
     }
     
     func getDecoder() -> JSONDecoder {

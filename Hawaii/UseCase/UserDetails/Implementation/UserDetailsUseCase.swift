@@ -29,6 +29,10 @@ protocol UserDetailsUseCaseProtocol {
     func removeFirebaseToken()
     
     func removeData()
+    
+    func hasRunBefore() -> Bool
+    
+    func setRunBefore(_ hasRunBefore: Bool)
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
@@ -97,4 +101,11 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         userDetailsRepository.removeFirebaseToken()
     }
 
+    func hasRunBefore() -> Bool {
+        return userDetailsRepository.hasRunBefore()
+    }
+    
+    func setRunBefore(_ hasRunBefore: Bool) {
+        userDetailsRepository.setRunBefore(hasRunBefore)
+    }
 }

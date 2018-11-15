@@ -27,5 +27,9 @@ protocol UserDetailsRepositoryProtocol {
     func setFirebaseToken(_ token: String)
     
     func removeFirebaseToken()
+    
+    func hasRunBefore() -> Bool
+    
+    func setRunBefore(_ hasRunBefore: Bool)
 
 }
