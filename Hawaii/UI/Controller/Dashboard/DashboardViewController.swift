@@ -1,6 +1,7 @@
 import UIKit
 import JTAppleCalendar
 import EKBlurAlert
+import GoogleSignIn
 
 class DashboardViewController: BaseViewController {
     
@@ -199,6 +200,7 @@ class DashboardViewController: BaseViewController {
     }
     
     @objc func fillCalendar() {
+        GIDSignIn.sharedInstance()?.signInSilently()
         startActivityIndicatorSpinner()
         
         requestUseCase?.getAllForCalendar(completion: { requestResponse in

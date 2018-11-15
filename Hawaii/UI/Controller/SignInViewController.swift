@@ -27,45 +27,46 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         
         userDetailsUseCase?.setEmail(user.profile.email)
         
+        userDetailsUseCase?.setToken(token: idToken)
+        
         let dimension = round(100 * UIScreen.main.scale)
         if let picture = user.profile.imageURL(withDimension: UInt(dimension)) {
             userDetailsUseCase?.setPictureUrl(picture.absoluteString)
         }
 
-        userUseCase.signIn(accessToken: accessToken) { response in
-            guard let success = response.success else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            if !success {
-                GIDSignIn.sharedInstance().signOut()
-                GIDSignIn.sharedInstance().disconnect()
-                self.handleResponseFaliure(message: response.message)
-                return
-            }
-            guard let token = response.item?.0,
-                  let user = response.item?.1 else {
-                    return
-            }
-            self.userDetailsUseCase?.setToken(token: token)
-            self.userUseCase?.createUser(entity: user, completion: { _ in
-                
-                self.userUseCase?.setFirebaseToken { firebaseResponse in
-                    guard let firebaseResponseSuccess = firebaseResponse?.success else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    if !firebaseResponseSuccess {
-                        GIDSignIn.sharedInstance().signOut()
-                        GIDSignIn.sharedInstance().disconnect()
-                        self.handleResponseFaliure(message: firebaseResponse?.message)
-                        return
-                    }
-                    self.stopActivityIndicatorSpinner()
-                    self.navigateToHome()
-                }
-                
-            })
+        userUseCase.getUser { response in
+            
+            self.navigateToHome()
+//            guard let success = response?.success else {
+//                self.stopActivityIndicatorSpinner()
+//                return
+//            }
+//            if !success {
+//                GIDSignIn.sharedInstance().signOut()
+//                GIDSignIn.sharedInstance().disconnect()
+//                self.handleResponseFaliure(message: response?.message)
+//                return
+//            }
+//            guard let user = response?.item else {
+//                return
+//            }
+//            self.userUseCase?.createUser(entity: user, completion: { _ in
+//                
+//                self.userUseCase?.setFirebaseToken { firebaseResponse in
+//                    guard let firebaseResponseSuccess = firebaseResponse?.success else {
+//                        self.stopActivityIndicatorSpinner()
+//                        return
+//                    }
+//                    if !firebaseResponseSuccess {
+//                        GIDSignIn.sharedInstance().signOut()
+//                        GIDSignIn.sharedInstance().disconnect()
+//                        self.handleResponseFaliure(message: firebaseResponse?.message)
+//                        return
+//                    }
+//                    self.stopActivityIndicatorSpinner()
+//                }
+//                
+//            })
         }
 
     }

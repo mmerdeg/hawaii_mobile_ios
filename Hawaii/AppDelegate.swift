@@ -284,7 +284,8 @@ extension SwinjectStoryboard {
                                       name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
                 TableDataProviderUseCase(
                     tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                                  name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository,
+                                                                  name: String(describing: TableDataProviderRepositoryProtocol.self))
+                                                                  ?? tableDataProviderRepository,
                     userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                          name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
             }
