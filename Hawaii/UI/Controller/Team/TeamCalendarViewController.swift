@@ -89,9 +89,6 @@ class TeamCalendarViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
-            self.refreshUI(date: lastDateInMonth)
-        }
         lastTimeSynced = Date()
     }
     

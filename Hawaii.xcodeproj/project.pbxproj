@@ -13,6 +13,10 @@
 		30092B20219DACA200244F09 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E17D3218B043400868667 /* Localizable.strings */; };
 		30092B22219DACE300244F09 /* JwtExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B21219DACE300244F09 /* JwtExtenstion.swift */; };
 		30092B23219DACE300244F09 /* JwtExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B21219DACE300244F09 /* JwtExtenstion.swift */; };
+		30092B27219E9F3E00244F09 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B26219E9F3E00244F09 /* main.swift */; };
+		30092B28219E9F3F00244F09 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B26219E9F3E00244F09 /* main.swift */; };
+		30092B2D219E9F8E00244F09 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B2C219E9F8E00244F09 /* TimerApplication.swift */; };
+		30092B2E219E9F8E00244F09 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B2C219E9F8E00244F09 /* TimerApplication.swift */; };
 		30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* RequestParams.storyboard */; };
 		30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139322215CA90800F65B7F /* RequestParams.storyboard */; };
 		30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
@@ -22,7 +26,7 @@
 		302DED38218C80100002D6B4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF6218AF2220000A8A3 /* UserNotifications.framework */; };
 		302DED39218C80100002D6B4 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */; };
 		302DED3C218C80100002D6B4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED3B218C80100002D6B4 /* NotificationViewController.swift */; };
-		302DED3F218C80100002D6B4 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		302DED3F218C80100002D6B4 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		302DED43218C80100002D6B4 /* RequestNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED37218C80100002D6B4 /* RequestNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED50218C80F30002D6B4 /* NotificationService.swift */; };
 		302DED55218C80F30002D6B4 /* RequestServiceNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -74,7 +78,7 @@
 		3042CA8721536EA3002446FE /* Pagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8221536DF9002446FE /* Pagable.swift */; };
 		3042CA8921536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
 		3042CA8A21536EF6002446FE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3042CA8821536EF6002446FE /* Page.swift */; };
-		30516851217DACF900AAEA7D /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		30516851217DACF900AAEA7D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
@@ -423,16 +427,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		306687FA21898B27006A1157 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		30FD36EA214A5E530047038C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +449,8 @@
 		1A30AD16633AF3D3C5171823 /* Pods_RequestNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RequestNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E0CA3260D0F8FB0452B9929 /* Pods-HawaiiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HawaiiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HawaiiUITests/Pods-HawaiiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		30092B21219DACE300244F09 /* JwtExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtExtenstion.swift; sourceTree = "<group>"; };
+		30092B26219E9F3E00244F09 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		30092B2C219E9F8E00244F09 /* TimerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplication.swift; sourceTree = "<group>"; };
 		30139322215CA90800F65B7F /* RequestParams.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestParams.storyboard; sourceTree = "<group>"; };
 		30139325215CAACB00F65B7F /* RemainingDays.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RemainingDays.storyboard; sourceTree = "<group>"; };
 		3013932B215CBE8F00F65B7F /* NewRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRequest.storyboard; sourceTree = "<group>"; };
@@ -1349,6 +1345,8 @@
 				3EB5646620CA909000501CAC /* UI */,
 				3E5C2AD42109CABB00706E82 /* Utility */,
 				3EB5643820CA69E900501CAC /* AppDelegate.swift */,
+				30092B2C219E9F8E00244F09 /* TimerApplication.swift */,
+				30092B26219E9F3E00244F09 /* main.swift */,
 				30741359214650AE00F05427 /* Assets.xcassets */,
 				3E987AEF20E518630083BB18 /* .swiftlint.yml */,
 				3EB5643C20CA69E900501CAC /* Main.storyboard */,
@@ -1552,7 +1550,6 @@
 				302EE1712133C93B001355E9 /* Embed Frameworks */,
 				F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */,
 				CA66B9DED7106AA4AFF2F018 /* [CP] Copy Pods Resources */,
-				306687FA21898B27006A1157 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1742,7 +1739,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				302DED3F218C80100002D6B4 /* BuildFile in Resources */,
+				302DED3F218C80100002D6B4 /* (null) in Resources */,
 				30092B1C219DACA000244F09 /* Localizable.strings in Resources */,
 				307D6AED2191761A009F3104 /* MainInterface.storyboard in Resources */,
 			);
@@ -1824,7 +1821,7 @@
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
-				30516851217DACF900AAEA7D /* BuildFile in Resources */,
+				30516851217DACF900AAEA7D /* (null) in Resources */,
 				3E1E17D0218B043400868667 /* Localizable.strings in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
@@ -2223,6 +2220,7 @@
 			files = (
 				30FD367F214A5E530047038C /* SignInViewController.swift in Sources */,
 				30FD3680214A5E530047038C /* Year.swift in Sources */,
+				30092B28219E9F3F00244F09 /* main.swift in Sources */,
 				30FD3681214A5E530047038C /* WhiteUIDatePicker.swift in Sources */,
 				30FD3682214A5E530047038C /* RemainigDaysViewController.swift in Sources */,
 				30FD3683214A5E530047038C /* RequestUseCase.swift in Sources */,
@@ -2238,6 +2236,7 @@
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B23219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
+				30092B2E219E9F8E00244F09 /* TimerApplication.swift in Sources */,
 				3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */,
 				3042CA8621536E9F002446FE /* Sort.swift in Sources */,
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
@@ -2331,6 +2330,7 @@
 			files = (
 				3074135E2147E53200F05427 /* Year.swift in Sources */,
 				3E15C45020E62AD300DB2CF7 /* WhiteUIDatePicker.swift in Sources */,
+				30092B27219E9F3E00244F09 /* main.swift in Sources */,
 				3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */,
 				3E42592220E259C800F22BBD /* RequestUseCase.swift in Sources */,
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
@@ -2346,6 +2346,7 @@
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B22219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
+				30092B2D219E9F8E00244F09 /* TimerApplication.swift in Sources */,
 				3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,

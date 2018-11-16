@@ -7,7 +7,7 @@ import Firebase
 import UserNotifications
 import NotificationBannerSwift
 
-@UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -140,28 +140,39 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        guard let userInfo = notification.request.content.userInfo["aps"] as? [String: Any],
-            let alert = userInfo["alert"] as? [String: Any],
-            let body = alert["body"] as? String,
-            let title = alert["title"] as? String,
-            let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
-                return
+        guard let aps = notification.request.content.userInfo["aps"] as? [String: Any],
+              let alert = aps["alert"] as? [String: Any],
+              let body = alert["body"] as? String,
+              let title = alert["title"] as? String else {
+            return
         }
-        let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
-        
-        switch status {
-        case .approved:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .success)
-            banner.show()
-        case .rejected:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
-            banner.show()
-        case .pending:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
-            banner.show()
-        default:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .info)
-            banner.show()
+        print(notification.request.content.userInfo)
+        if aps["category"] != nil {
+                let banner = NotificationBanner(title: title, subtitle: body, style: .info)
+                banner.show()
+                userDetailsUseCase?.setRefreshApproveScreen(true)
+        } else {
+            guard let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
+                    return
+            }
+            
+            let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
+            
+            switch status {
+            case .approved:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .success)
+                banner.show()
+            case .rejected:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
+                banner.show()
+            case .pending:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
+                banner.show()
+            default:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .info)
+                banner.show()
+            }
+           
         }
         NotificationCenter.default.post(name:
             NSNotification.Name(rawValue: NotificationNames.refreshData),
@@ -337,6 +348,8 @@ extension SwinjectStoryboard {
             defaultContainer.storyboardInitCompleted(ApproveViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(RequestDetailsViewController.self) { resolver, controller in

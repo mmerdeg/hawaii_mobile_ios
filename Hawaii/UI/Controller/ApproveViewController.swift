@@ -11,6 +11,8 @@ class ApproveViewController: BaseViewController {
     
     var userUseCase: UserUseCaseProtocol?
     
+    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
     var requests: [Request] = []
     
     var lastTimeSynced: Date?
@@ -33,10 +35,7 @@ class ApproveViewController: BaseViewController {
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
         
-        tableView.backgroundView = EmptyView(frame: tableView.frame,
-                                                  titleText: LocalizedKeys.Approval.emptyTitle.localized(),
-                                                  descText: LocalizedKeys.Approval.emptyDescription.localized(),
-                                                  backgroundImage: #imageLiteral(resourceName: "empty"))
+        
         
         tableView.refreshControl = refreshControl
         
@@ -48,9 +47,12 @@ class ApproveViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
-        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
+        tableView.backgroundView = EmptyView(frame: tableView.frame,
+                                             titleText: LocalizedKeys.Approval.emptyTitle.localized(),
+                                             backgroundImage: #imageLiteral(resourceName: "empty"))
+        if userDetailsUseCase?.doesApproveScreenNeedsRefresh() ?? true {
             fillCalendar()
+            userDetailsUseCase?.setRefreshApproveScreen(false)
         }
     }
     

@@ -80,7 +80,6 @@ class HistoryViewController: BaseViewController {
         tableView.backgroundColor = UIColor.primaryColor
         tableView.backgroundView = EmptyView(frame: tableView.frame,
                                              titleText: LocalizedKeys.History.emptyTitle.localized(),
-                                             descText: LocalizedKeys.History.emptyDescription.localized(),
                                              backgroundImage: #imageLiteral(resourceName: "empty"))
         customView.frame = self.view.frame
         self.navigationItem.rightBarButtonItem = filterDisabled
@@ -100,9 +99,6 @@ class HistoryViewController: BaseViewController {
         super.viewWillAppear(animated)
         segmentedControl.selectedSegmentIndex = 0
 
-        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
-            refreshView()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

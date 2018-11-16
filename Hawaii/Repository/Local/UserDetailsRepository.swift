@@ -18,6 +18,8 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let hasRunBeforeKey = "hasRunBefore"
     
+    let doesApproveScreenNeedsRefreshKey = "doesApproveScreenNeedsRefresh"
+    
     init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
@@ -96,4 +98,18 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
         userDefaults.set(hasRunBefore, forKey: hasRunBeforeKey)
         userDefaults.synchronize()
     }
+    
+    func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool) {
+        userDefaults.set(doesApproveScreenNeedsRefresh, forKey: doesApproveScreenNeedsRefreshKey)
+        userDefaults.synchronize()
+    }
+    
+    func doesApproveScreenNeedsRefresh() -> Bool {
+        var doesApproveScreenNeedsRefresh = false
+        if userDefaults.object(forKey: doesApproveScreenNeedsRefreshKey) != nil {
+            doesApproveScreenNeedsRefresh = userDefaults.bool(forKey: doesApproveScreenNeedsRefreshKey)
+        }
+        return doesApproveScreenNeedsRefresh
+    }
+    
 }

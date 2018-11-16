@@ -34,6 +34,10 @@ protocol UserDetailsUseCaseProtocol {
     
     func hasRunBefore() -> Bool
     
+    func doesApproveScreenNeedsRefresh() -> Bool
+    
+    func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool)
+    
     func setRunBefore(_ hasRunBefore: Bool)
 }
 
@@ -117,6 +121,14 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setRunBefore(_ hasRunBefore: Bool) {
         userDetailsRepository.setRunBefore(hasRunBefore)
+    }
+    
+    func doesApproveScreenNeedsRefresh() -> Bool {
+        return userDetailsRepository.doesApproveScreenNeedsRefresh()
+    }
+    
+    func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool) {
+        userDetailsRepository.setRefreshApproveScreen(doesApproveScreenNeedsRefresh)
     }
     
     func isTokenExpired(token: String?) -> Bool {

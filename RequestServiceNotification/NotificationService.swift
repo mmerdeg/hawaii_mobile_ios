@@ -46,10 +46,12 @@ class NotificationService: UNNotificationServiceExtension {
                 }
                 
                 if success {
-                    guard let request = requestResponse.item else {
+                    guard let requestObject = requestResponse.item else {
                         return
                     }
-                    bestAttemptContent.userInfo = ["request": (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(request))) as? [String: Any] ?? [:]]
+                    bestAttemptContent.userInfo = ["request": (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(requestObject))) as? [String: Any] ?? [:],
+                                                   "aps": request.content.userInfo["aps"] ?? [:],
+                                                   "requestStatus": request.content.userInfo["requestStatus"] ?? [:]]
                 }
                 contentHandler(bestAttemptContent)
             }
