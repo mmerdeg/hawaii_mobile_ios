@@ -7,7 +7,6 @@ import Firebase
 import UserNotifications
 import NotificationBannerSwift
 
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -138,28 +137,39 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        guard let userInfo = notification.request.content.userInfo["aps"] as? [String: Any],
-            let alert = userInfo["alert"] as? [String: Any],
-            let body = alert["body"] as? String,
-            let title = alert["title"] as? String,
-            let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
-                return
+        guard let aps = notification.request.content.userInfo["aps"] as? [String: Any],
+              let alert = aps["alert"] as? [String: Any],
+              let body = alert["body"] as? String,
+              let title = alert["title"] as? String else {
+            return
         }
-        let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
-        
-        switch status {
-        case .approved:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .success)
-            banner.show()
-        case .rejected:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
-            banner.show()
-        case .pending:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
-            banner.show()
-        default:
-            let banner = NotificationBanner(title: title, subtitle: body, style: .info)
-            banner.show()
+        print(notification.request.content.userInfo)
+        if aps["category"] != nil {
+                let banner = NotificationBanner(title: title, subtitle: body, style: .info)
+                banner.show()
+                userDetailsUseCase?.setRefreshApproveScreen(true)
+        } else {
+            guard let requestStatus = notification.request.content.userInfo["requestStatus"] as? String else {
+                    return
+            }
+            
+            let status = RequestStatus(rawValue: requestStatus) ?? RequestStatus.rejected
+            
+            switch status {
+            case .approved:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .success)
+                banner.show()
+            case .rejected:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .danger)
+                banner.show()
+            case .pending:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .warning)
+                banner.show()
+            default:
+                let banner = NotificationBanner(title: title, subtitle: body, style: .info)
+                banner.show()
+            }
+           
         }
         NotificationCenter.default.post(name:
             NSNotification.Name(rawValue: NotificationNames.refreshData),
@@ -182,12 +192,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
         userDetailsUseCase?.removeFirebaseToken()
         userDetailsUseCase?.setFirebaseToken(fcmToken)
-        NotificationCenter.default.post(name:
-            NSNotification.Name(rawValue: NotificationNames.refreshFirebaseToken),
-                                        object: nil, userInfo: nil)
+        guard let hasRunBefore = userDetailsUseCase?.hasRunBefore() else {
+            return
+        }
+        if !hasRunBefore {
+            userDetailsUseCase?.setRunBefore(true)
+            userDetailsUseCase?.removeToken()
+        }
+        userUseCase?.setFirebaseToken { _ in
+            
+        }
     }
 
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -196,6 +212,7 @@ extension AppDelegate: MessagingDelegate {
 }
 
 extension SwinjectStoryboard {
+    
     @objc class func setup() {
         
         DatabaseInitializer().initialize { databaseQueue, dispatchQueue in
@@ -209,6 +226,7 @@ extension SwinjectStoryboard {
             let userDetailsRepository = UserDetailsRepository(keyChainRepository: keyChainRepository)
             let userRepository = UserRepository()
             let tableDataProviderRepository = TableDataProviderRepository()
+            let teamRepository = TeamRepository()
             
             // UseCase
             
@@ -220,6 +238,11 @@ extension SwinjectStoryboard {
             defaultContainer.register(UserDaoProtocol.self, name: String(describing: UserDaoProtocol.self)) { _ in
                 userDao
             }
+            
+            defaultContainer.register(TeamRepositoryProtocol.self, name: String(describing: TeamRepositoryProtocol.self)) { _ in
+                teamRepository
+            }
+            
             defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
                 requestRepository
             }
@@ -275,13 +298,26 @@ extension SwinjectStoryboard {
                                       name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
                 TableDataProviderUseCase(
                     tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                 name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository)
+                                                                  name: String(describing: TableDataProviderRepositoryProtocol.self))
+                                                                  ?? tableDataProviderRepository,
+                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                         name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
             }
             
             defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
                 UserDetailsUseCase(
                     userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
                                            name: String(describing: UserDetailsRepositoryProtocol.self)) ?? userDetailsRepository)
+            }
+            
+            defaultContainer.register(TeamUseCaseProtocol.self,
+                                      name: String(describing: TeamUseCaseProtocol.self)) { resolver in
+                                        TeamUseCase(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
+                                                                                         ?? userDetailsUseCase,
+                                                    teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
+                                                                                     name: String(describing: TeamRepositoryProtocol.self))
+                                                                                     ?? teamRepository)
             }
             
             // View Controller
@@ -325,6 +361,8 @@ extension SwinjectStoryboard {
             defaultContainer.storyboardInitCompleted(ApproveViewController.self) { resolver, controller in
                 controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(RequestDetailsViewController.self) { resolver, controller in
@@ -374,7 +412,23 @@ extension SwinjectStoryboard {
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
+            
+            defaultContainer.storyboardInitCompleted(UsersMenagementViewController.self) { resolver, controller in
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(TeamsMenagementViewController.self) { resolver, controller in
+                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
+                                                                    name: String(describing: TeamUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(PublicHolidaysMenagementViewController.self) { resolver, controller in
+                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                   name: String(describing: PublicHolidayUseCaseProtocol.self))
+            }
+            
         }
+        
     }
     
 }

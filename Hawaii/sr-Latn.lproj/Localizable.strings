@@ -25,6 +25,7 @@ general.close = "Zatvori";
 general.back = "Nazad";
 general.accept = "Prihvati";
 general.decline = "Odustani";
+general.emptyToken = "Ne mozemo da pristupimo tokenu,probajte da se ulogujete ponovo";
 
 request.status.pending = "Na čekanju";
 request.status.approved = "Odobreno";

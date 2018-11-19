@@ -1,4 +1,6 @@
 import Foundation
+import GoogleSignIn
+import JWTDecode
 
 protocol UserDetailsUseCaseProtocol {
     
@@ -29,6 +31,14 @@ protocol UserDetailsUseCaseProtocol {
     func removeFirebaseToken()
     
     func removeData()
+    
+    func hasRunBefore() -> Bool
+    
+    func doesApproveScreenNeedsRefresh() -> Bool
+    
+    func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool)
+    
+    func setRunBefore(_ hasRunBefore: Bool)
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
@@ -40,7 +50,15 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     }
     
     func getToken() -> String? {
-        return userDetailsRepository.getToken()
+        
+        let token = userDetailsRepository.getToken()
+//        if isTokenExpired(token: token) {
+//            GIDSignIn.sharedInstance()?.signInSilently()
+//        }
+        #warning("Watch for this")
+        return token
+        
+       // return userDetailsRepository.getToken()
     }
     
     func setToken(token: String) {
@@ -97,4 +115,31 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
         userDetailsRepository.removeFirebaseToken()
     }
 
+    func hasRunBefore() -> Bool {
+        return userDetailsRepository.hasRunBefore()
+    }
+    
+    func setRunBefore(_ hasRunBefore: Bool) {
+        userDetailsRepository.setRunBefore(hasRunBefore)
+    }
+    
+    func doesApproveScreenNeedsRefresh() -> Bool {
+        return userDetailsRepository.doesApproveScreenNeedsRefresh()
+    }
+    
+    func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool) {
+        userDetailsRepository.setRefreshApproveScreen(doesApproveScreenNeedsRefresh)
+    }
+    
+    func isTokenExpired(token: String?) -> Bool {
+        guard let token = token else {
+            return true
+        }
+        do {
+            let jwt = try decode(jwt: token)
+            return jwt.expired
+        } catch {
+            return true
+        }
+    }
 }

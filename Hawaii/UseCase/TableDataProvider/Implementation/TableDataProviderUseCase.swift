@@ -23,30 +23,55 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
     
     var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
     
-    init(tableDataProviderRepository: TableDataProviderRepositoryProtocol) {
+    let userDetailsUseCase: UserDetailsUseCaseProtocol?
+    
+    init(tableDataProviderRepository: TableDataProviderRepositoryProtocol, userDetailsUseCase: UserDetailsUseCaseProtocol) {
         self.tableDataProviderRepository = tableDataProviderRepository
+        self.userDetailsUseCase = userDetailsUseCase
     }
 
     func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
-        tableDataProviderRepository?.getLeaveData(completion: { data, leaveTypeData, response in
+        guard let token = getToken() else {
+            completion([], [:], GenericResponse<[Absence]> (success: false, item: nil, statusCode: 401,
+                                           error: nil,
+                                           message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        tableDataProviderRepository?.getLeaveData(token: token, completion: { data, leaveTypeData, response in
             completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), response)
         })
     }
     
     func getLeaveTypeData(completion: @escaping ([String: [Absence]]) -> Void) {
-        tableDataProviderRepository?.getLeaveTypeData(completion: { data in
+        guard let token = getToken() else {
+            completion([:])
+            return
+        }
+        tableDataProviderRepository?.getLeaveTypeData(token: token, completion: { data in
             completion(Dictionary(grouping: data, by: { $0.absenceType ?? "" }))
         })
     }
     
     func getSicknessData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
-        tableDataProviderRepository?.getSicknessData(completion: { data, leaveTypeData, response in
+        guard let token = getToken() else {
+            completion([], [:], GenericResponse<[Absence]> (success: false, item: nil, statusCode: 401,
+                                                            error: nil,
+                                                            message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        tableDataProviderRepository?.getSicknessData(token: token, completion: { data, leaveTypeData, response in
             completion(data, Dictionary(grouping: leaveTypeData, by: { $0.absenceType ?? "" }), response)
         })
     }
     
     func getBonusData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void) {
-        tableDataProviderRepository?.getBonusData(completion: { data, bonusTypeData, response  in
+        guard let token = getToken() else {
+            completion([], [:], GenericResponse<[Absence]> (success: false, item: nil, statusCode: 401,
+                                                            error: nil,
+                                                            message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        tableDataProviderRepository?.getBonusData(token: token, completion: { data, bonusTypeData, response  in
             completion(data, Dictionary(grouping: bonusTypeData, by: { $0.absenceType ?? "" }), response)
         })
     }
@@ -73,5 +98,9 @@ class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
         tableDataProviderRepository?.getBonusDaysDurationData(completion: { data in
             completion(data)
         })
+    }
+    
+    func getToken() -> String? {
+        return userDetailsUseCase?.getToken()
     }
 }

@@ -13,17 +13,16 @@ class EmptyView: UIView {
     
     var view: UIView!
     
-    @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
-    var tempTitleText: String!
-    var tempDescText: String!
-    var tempImage: UIImage!
+    var tempTitleText: String?
+    var tempImage: UIImage?
     
-    init(frame: CGRect, titleText: String, descText: String, backgroundImage: UIImage) {
+    let imageRotationAngle = 0.1
+    
+    init(frame: CGRect, titleText: String, backgroundImage: UIImage) {
         super.init(frame: frame)
         self.tempTitleText = titleText
-        self.tempDescText = descText
         self.tempImage = backgroundImage
         xibSetup()
     }
@@ -31,16 +30,27 @@ class EmptyView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetup()
+        print("ads")
     }
     
     func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        titleLabel.text = tempTitleText
-        descLabel.text = tempDescText
-        backgroundImage.image = tempImage
+        titleLabel.text = tempTitleText ?? ""
+        backgroundImage.image = tempImage ?? UIImage()
+        backgroundImage.transform = backgroundImage.transform.rotated(by: CGFloat(-imageRotationAngle))
+        rotateView(targetView: backgroundImage)
         addSubview(view)
+    }
+    
+    private func rotateView(targetView: UIView, duration: Double = 0.3) {
+        
+        UIView.animate(withDuration: duration, delay: 0, options: [.repeat, .autoreverse], animations: {
+            
+            targetView.transform = targetView.transform.rotated(by: CGFloat(2 * self.imageRotationAngle))
+            
+        }, completion: nil)
     }
     
     func loadViewFromNib() -> UIView {

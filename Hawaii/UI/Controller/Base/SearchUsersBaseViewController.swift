@@ -39,7 +39,6 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
         super.viewDidAppear(animated)
         self.view = EmptyView(frame: self.view.frame,
                               titleText: LocalizedKeys.Team.emptyTitle.localized(),
-                              descText: LocalizedKeys.Team.emptyDescription.localized(),
                               backgroundImage: #imageLiteral(resourceName: "empty"))
     }
     

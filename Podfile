@@ -16,6 +16,8 @@ def common_pods_for_target
     pod 'EKBlurAlert'
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
+    pod 'JWTDecode', '~> 2.1'
+    pod 'Eureka'
 end
 
 target 'Hawaii' do

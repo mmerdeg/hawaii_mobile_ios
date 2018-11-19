@@ -3,6 +3,7 @@ PODS:
   - CodableAlamofire (1.1.0):
     - Alamofire (~> 4.0)
   - EKBlurAlert (1.0.0)
+  - Eureka (4.3.0)
   - Firebase/Core (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
@@ -82,6 +83,7 @@ PODS:
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
   - JTAppleCalendar (7.1.6)
+  - JWTDecode (2.1.1)
   - Kingfisher (4.10.0)
   - MarqueeLabel/Swift (3.2.0)
   - nanopb (0.3.901):
@@ -104,11 +106,13 @@ PODS:
 DEPENDENCIES:
   - CodableAlamofire
   - EKBlurAlert
+  - Eureka
   - Firebase/Core
   - Firebase/Messaging
   - FMDB
   - GoogleSignIn
   - JTAppleCalendar
+  - JWTDecode (~> 2.1)
   - Kingfisher
   - NotificationBannerSwift
   - PocketSVG
@@ -122,6 +126,7 @@ SPEC REPOS:
     - Alamofire
     - CodableAlamofire
     - EKBlurAlert
+    - Eureka
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -136,6 +141,7 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - JTAppleCalendar
+    - JWTDecode
     - Kingfisher
     - MarqueeLabel
     - nanopb
@@ -152,6 +158,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
   EKBlurAlert: a88cf9b7bdff848348f3fa9c15164f7aa91fd637
+  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -166,6 +173,7 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
+  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -178,6 +186,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
   YLProgressBar: 365b6c5e934be18b661f79413db33c993c8e8251
 
-PODFILE CHECKSUM: 652be32369993e2c64fb99506da04670c75b1975
+PODFILE CHECKSUM: 85047b4734abe85dc8ea5c587e4e89cee3f8647d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.2

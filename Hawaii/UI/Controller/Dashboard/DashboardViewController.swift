@@ -85,9 +85,6 @@ class DashboardViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if RefreshUtils.shouldRefreshData(lastTimeSynced) {
-            fillCalendar()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
