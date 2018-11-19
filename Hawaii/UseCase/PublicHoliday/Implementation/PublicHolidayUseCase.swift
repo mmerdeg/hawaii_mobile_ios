@@ -3,6 +3,8 @@ import Foundation
 protocol PublicHolidayUseCaseProtocol {
     
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void)
+    
+    func getAllByYear(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void)
 }
 
 class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
@@ -17,7 +19,13 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
     }
     
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
-        publicHolidayRepository?.getHolidays(token: getToken()) { response in
+        guard let token = getToken() else {
+            completion(([:], GenericResponse<[PublicHoliday]> (success: false, item: nil, statusCode: 401,
+                                                               error: nil,
+                                                               message: LocalizedKeys.General.emptyToken.localized())))
+            return
+        }
+        publicHolidayRepository?.getHolidays(token: token) { response in
             guard let holidays = response?.item else {
                 return
             }
@@ -25,7 +33,22 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
         }
     }
     
-    func getToken() -> String {
-        return userDetailsUseCase?.getToken() ?? ""
+    func getAllByYear(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
+        guard let token = getToken() else {
+            completion(([:], GenericResponse<[PublicHoliday]> (success: false, item: nil, statusCode: 401,
+                                                               error: nil,
+                                                               message: LocalizedKeys.General.emptyToken.localized())))
+            return
+        }
+        publicHolidayRepository?.getHolidays(token: token) { response in
+            guard let holidays = response?.item else {
+                return
+            }
+            completion((Dictionary(grouping: holidays, by: { $0.date ?? Date() }), response))
+        }
+    }
+    
+    func getToken() -> String? {
+        return userDetailsUseCase?.getToken()
     }
 }

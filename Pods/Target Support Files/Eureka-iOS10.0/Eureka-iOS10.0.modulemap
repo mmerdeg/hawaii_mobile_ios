@@ -1,0 +1,6 @@
+framework module Eureka {
+  umbrella header "Eureka-iOS10.0-umbrella.h"
+
+  export *
+  module * { export * }
+}

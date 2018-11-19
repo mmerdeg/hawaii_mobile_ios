@@ -34,9 +34,7 @@ class ApproveViewController: BaseViewController {
         
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
-        
-        
-        
+         
         tableView.refreshControl = refreshControl
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)

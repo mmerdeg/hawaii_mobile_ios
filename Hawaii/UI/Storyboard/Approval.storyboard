@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gc1-LA-eAL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VIT-pE-T01">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="490-4Z-IJJ" customClass="ApproveViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mec-uv-9S8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aC0-w3-KiA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -39,30 +39,243 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ijC-iI-z8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="178.56071964017991"/>
+            <point key="canvasLocation" x="3009" y="-738"/>
+        </scene>
+        <!--Menagement-->
+        <scene sceneID="9mo-Uh-ltl">
+            <objects>
+                <viewController id="sW1-Cg-YSi" customClass="MenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T6a-B3-xx6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbF-a3-0dK">
+                                <rect key="frame" x="44" y="188.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="6nE-Dl-mdu"/>
+                                    <constraint firstAttribute="width" secondItem="dbF-a3-0dK" secondAttribute="height" multiplier="1:1" id="m40-mp-Mv3"/>
+                                </constraints>
+                                <state key="normal" image="team"/>
+                                <connections>
+                                    <segue destination="490-4Z-IJJ" kind="show" id="zEM-tj-imA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4X-JE-f24">
+                                <rect key="frame" x="231.5" y="188.5" width="100" height="100"/>
+                                <state key="normal" image="enterprise"/>
+                                <connections>
+                                    <segue destination="vJH-Sa-i7X" kind="show" id="8T9-xY-JNI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIl-5c-uyk">
+                                <rect key="frame" x="231.5" y="393.5" width="100" height="100"/>
+                                <state key="normal" image="sunbed"/>
+                                <connections>
+                                    <segue destination="ItV-V8-hNv" kind="show" id="cRd-dF-IwV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G80-eE-gDk">
+                                <rect key="frame" x="44" y="393.5" width="100" height="100"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="4iw-8i-mhM" kind="show" id="hm4-Wh-B6N"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="G80-eE-gDk" firstAttribute="top" secondItem="qIl-5c-uyk" secondAttribute="top" id="3EC-ds-AQg"/>
+                            <constraint firstItem="dbF-a3-0dK" firstAttribute="centerY" secondItem="Pnq-Gk-NOd" secondAttribute="centerY" multiplier="0.7" id="3yo-n5-Z6k"/>
+                            <constraint firstItem="n4X-JE-f24" firstAttribute="top" secondItem="dbF-a3-0dK" secondAttribute="top" id="6de-gg-sSC"/>
+                            <constraint firstItem="dbF-a3-0dK" firstAttribute="centerX" secondItem="Pnq-Gk-NOd" secondAttribute="centerX" multiplier="0.5" id="Bfe-xe-TnL"/>
+                            <constraint firstItem="n4X-JE-f24" firstAttribute="width" secondItem="dbF-a3-0dK" secondAttribute="width" id="CK4-6P-TPQ"/>
+                            <constraint firstItem="qIl-5c-uyk" firstAttribute="height" secondItem="dbF-a3-0dK" secondAttribute="height" id="Gi5-4O-r7b"/>
+                            <constraint firstItem="n4X-JE-f24" firstAttribute="height" secondItem="dbF-a3-0dK" secondAttribute="height" id="JsT-ah-bL8"/>
+                            <constraint firstItem="qIl-5c-uyk" firstAttribute="width" secondItem="dbF-a3-0dK" secondAttribute="width" id="Qw8-Ir-mZc"/>
+                            <constraint firstItem="n4X-JE-f24" firstAttribute="centerX" secondItem="Pnq-Gk-NOd" secondAttribute="centerX" multiplier="1.5" id="U7e-Wb-5Zt"/>
+                            <constraint firstItem="G80-eE-gDk" firstAttribute="centerX" secondItem="dbF-a3-0dK" secondAttribute="centerX" id="Y6g-1h-NGH"/>
+                            <constraint firstItem="G80-eE-gDk" firstAttribute="centerY" secondItem="qIl-5c-uyk" secondAttribute="centerY" id="dpq-jH-2MB"/>
+                            <constraint firstItem="n4X-JE-f24" firstAttribute="bottom" secondItem="dbF-a3-0dK" secondAttribute="bottom" id="jgf-UG-AHr"/>
+                            <constraint firstItem="qIl-5c-uyk" firstAttribute="centerX" secondItem="Pnq-Gk-NOd" secondAttribute="centerX" multiplier="1.5" id="o6X-eV-Jsb"/>
+                            <constraint firstItem="qIl-5c-uyk" firstAttribute="centerY" secondItem="Pnq-Gk-NOd" secondAttribute="centerY" multiplier="1.3" id="t5O-qE-gQL"/>
+                            <constraint firstItem="G80-eE-gDk" firstAttribute="leading" secondItem="dbF-a3-0dK" secondAttribute="leading" id="zMm-PL-iLy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pnq-Gk-NOd"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Menagement" id="nbl-aa-Nzt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eh0-gM-zyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2164" y="178.56071964017991"/>
+        </scene>
+        <!--Employee Menagement-->
+        <scene sceneID="OOh-hG-rkd">
+            <objects>
+                <viewController id="vJH-Sa-i7X" customClass="UsersMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yv8-W9-Zet">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YIo-Qd-nuc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YIo-Qd-nuc" firstAttribute="top" secondItem="SDe-D6-8nd" secondAttribute="top" id="2fQ-ny-gNy"/>
+                            <constraint firstItem="YIo-Qd-nuc" firstAttribute="centerX" secondItem="SDe-D6-8nd" secondAttribute="centerX" id="Elk-P7-cju"/>
+                            <constraint firstItem="YIo-Qd-nuc" firstAttribute="leading" secondItem="SDe-D6-8nd" secondAttribute="leading" id="GsU-Kh-wgp"/>
+                            <constraint firstItem="YIo-Qd-nuc" firstAttribute="centerY" secondItem="SDe-D6-8nd" secondAttribute="centerY" id="LR6-hB-dvl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SDe-D6-8nd"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Employee Menagement" id="22W-yj-M3l"/>
+                    <connections>
+                        <outlet property="tableView" destination="YIo-Qd-nuc" id="3Au-gE-jZz"/>
+                        <segue destination="Yfm-0w-vSP" kind="show" identifier="menageUser" id="GTt-WX-R7I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g3q-Sm-npn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="35"/>
+        </scene>
+        <!--User Menagement View Controller-->
+        <scene sceneID="2kY-Dl-QdH">
+            <objects>
+                <viewController id="Yfm-0w-vSP" customClass="UserMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u2o-dr-CaP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="pvx-sP-Ggb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yYQ-Uc-mbr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3954" y="35"/>
+        </scene>
+        <!--Team Menagement View Controller-->
+        <scene sceneID="py5-zM-6kg">
+            <objects>
+                <viewController id="C6h-Ss-sPD" customClass="TeamMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SXj-CG-N1T">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3FG-er-bz5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qIq-7m-QKY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3988" y="761"/>
+        </scene>
+        <!--Public Holiday Menagement View Controller-->
+        <scene sceneID="mVX-dG-Mwl">
+            <objects>
+                <viewController id="JJ6-JF-V8V" customClass="PublicHolidayMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I72-Tl-nxX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="esP-kP-uPY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j99-uR-Qa4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4015" y="1484"/>
+        </scene>
+        <!--Team Menagement-->
+        <scene sceneID="aRg-hU-Mbq">
+            <objects>
+                <viewController id="4iw-8i-mhM" customClass="TeamsMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2uN-5j-LGK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xxI-5L-tHu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xxI-5L-tHu" firstAttribute="leading" secondItem="PLs-An-EYl" secondAttribute="leading" id="BuK-we-GHh"/>
+                            <constraint firstItem="xxI-5L-tHu" firstAttribute="top" secondItem="PLs-An-EYl" secondAttribute="top" id="CqP-3s-meA"/>
+                            <constraint firstItem="xxI-5L-tHu" firstAttribute="centerX" secondItem="PLs-An-EYl" secondAttribute="centerX" id="Dtf-Ot-ioG"/>
+                            <constraint firstItem="xxI-5L-tHu" firstAttribute="centerY" secondItem="PLs-An-EYl" secondAttribute="centerY" id="iCf-p3-rXb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PLs-An-EYl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Team Menagement" id="VnT-YZ-vOe"/>
+                    <connections>
+                        <outlet property="tableView" destination="xxI-5L-tHu" id="O5E-Kh-Ddg"/>
+                        <segue destination="C6h-Ss-sPD" kind="show" id="UCN-KC-Mtr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bes-Q4-ghm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="761"/>
+        </scene>
+        <!--Holiday Menagement-->
+        <scene sceneID="ZYs-8V-zlk">
+            <objects>
+                <viewController id="ItV-V8-hNv" customClass="PublicHolidaysMenagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y0X-hs-fkv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="1IX-5z-kNJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="separatorInset" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1IX-5z-kNJ" firstAttribute="leading" secondItem="xWq-S9-j7s" secondAttribute="leading" id="9El-ba-Lp8"/>
+                            <constraint firstItem="xWq-S9-j7s" firstAttribute="bottom" secondItem="1IX-5z-kNJ" secondAttribute="bottom" id="9ne-80-aZp"/>
+                            <constraint firstItem="1IX-5z-kNJ" firstAttribute="top" secondItem="xWq-S9-j7s" secondAttribute="top" id="SMo-qV-6FZ"/>
+                            <constraint firstItem="xWq-S9-j7s" firstAttribute="bottom" secondItem="1IX-5z-kNJ" secondAttribute="bottom" id="gTK-hb-ij6"/>
+                            <constraint firstItem="1IX-5z-kNJ" firstAttribute="centerX" secondItem="xWq-S9-j7s" secondAttribute="centerX" id="sec-gT-EWd"/>
+                            <constraint firstItem="1IX-5z-kNJ" firstAttribute="centerY" secondItem="xWq-S9-j7s" secondAttribute="centerY" id="v51-Z1-4HR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xWq-S9-j7s"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holiday Menagement" id="XmH-LU-HUV"/>
+                    <connections>
+                        <outlet property="tableView" destination="1IX-5z-kNJ" id="uo5-lB-oCF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uig-ki-xDH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="1484"/>
         </scene>
         <!--Approval-->
-        <scene sceneID="KQQ-i8-ZFU">
+        <scene sceneID="Wh0-xy-oAC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gc1-LA-eAL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Approval" image="00 approval white 02" id="KeV-4t-7VP"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VIT-pE-T01" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Approval" image="00 approval white 02" id="Bye-UB-bdG"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="aJX-lh-v0C">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mkK-q6-bcA">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="490-4Z-IJJ" kind="relationship" relationship="rootViewController" id="xTz-NR-U8x"/>
+                        <segue destination="sW1-Cg-YSi" kind="relationship" relationship="rootViewController" id="gHK-1n-Lk4"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hGz-fl-J7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0aR-Zj-4HN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="178.56071964017991"/>
+            <point key="canvasLocation" x="1177" y="179"/>
         </scene>
     </scenes>
     <resources>
         <image name="00 approval white 02" width="48" height="32"/>
+        <image name="enterprise" width="384" height="384"/>
+        <image name="sunbed" width="48" height="48"/>
+        <image name="team" width="409.60000610351562" height="409.60000610351562"/>
     </resources>
 </document>

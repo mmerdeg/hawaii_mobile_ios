@@ -7,7 +7,6 @@ import Firebase
 import UserNotifications
 import NotificationBannerSwift
 
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -229,6 +228,7 @@ extension SwinjectStoryboard {
             let userDetailsRepository = UserDetailsRepository(keyChainRepository: keyChainRepository)
             let userRepository = UserRepository()
             let tableDataProviderRepository = TableDataProviderRepository()
+            let teamRepository = TeamRepository()
             
             // UseCase
             
@@ -240,6 +240,11 @@ extension SwinjectStoryboard {
             defaultContainer.register(UserDaoProtocol.self, name: String(describing: UserDaoProtocol.self)) { _ in
                 userDao
             }
+            
+            defaultContainer.register(TeamRepositoryProtocol.self, name: String(describing: TeamRepositoryProtocol.self)) { _ in
+                teamRepository
+            }
+            
             defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
                 requestRepository
             }
@@ -305,6 +310,16 @@ extension SwinjectStoryboard {
                 UserDetailsUseCase(
                     userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
                                            name: String(describing: UserDetailsRepositoryProtocol.self)) ?? userDetailsRepository)
+            }
+            
+            defaultContainer.register(TeamUseCaseProtocol.self,
+                                      name: String(describing: TeamUseCaseProtocol.self)) { resolver in
+                                        TeamUseCase(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
+                                                                                         ?? userDetailsUseCase,
+                                                    teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
+                                                                                     name: String(describing: TeamRepositoryProtocol.self))
+                                                                                     ?? teamRepository)
             }
             
             // View Controller
@@ -399,7 +414,23 @@ extension SwinjectStoryboard {
                 controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
+            
+            defaultContainer.storyboardInitCompleted(UsersMenagementViewController.self) { resolver, controller in
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(TeamsMenagementViewController.self) { resolver, controller in
+                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
+                                                                    name: String(describing: TeamUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(PublicHolidaysMenagementViewController.self) { resolver, controller in
+                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                   name: String(describing: PublicHolidayUseCaseProtocol.self))
+            }
+            
         }
+        
     }
     
 }

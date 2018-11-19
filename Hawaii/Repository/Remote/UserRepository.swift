@@ -45,6 +45,15 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
+    func getAll(token: String, completion: @escaping (GenericResponse<[User]>) -> Void) {
+        guard let url = URL(string: getUserUrl) else {
+            return
+        }
+        genericCodableRequest(value: [User].self, url, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
+    }
+    
     func setFirebaseToken(token: String, firebaseToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
             guard let url = URL(string: firebaseTokenUrl) else {
                 return

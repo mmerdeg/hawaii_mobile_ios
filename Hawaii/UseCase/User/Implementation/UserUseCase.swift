@@ -9,6 +9,8 @@ protocol UserUseCaseProtocol {
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
     
+    func getAll(completion: @escaping ([String: [User]], GenericResponse<[User]>) -> Void)
+    
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
@@ -49,6 +51,18 @@ class UserUseCase: UserUseCaseProtocol {
         userRepository?.getUsersByParameter(token: token, parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
+    }
+    
+    func getAll(completion: @escaping ([String: [User]], GenericResponse<[User]>) -> Void) {
+        guard let token = getToken() else {
+            completion([:], GenericResponse<[User]> (success: false, item: nil, statusCode: 401,
+                                              error: nil,
+                                              message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.getAll(token: token, completion: { response in
+            completion(Dictionary(grouping: response.item ?? [], by: { $0.teamName ?? "" }), response)
+        })
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {

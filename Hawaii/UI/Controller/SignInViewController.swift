@@ -14,15 +14,52 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         initializeGoogleSignIn()
     }
 
+    
+    #if PRODUCTION
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
             return
         }
         guard let accessToken = user.authentication.accessToken,
-              let idToken = user.authentication.idToken,
-              let userUseCase = userUseCase else {
+            let userUseCase = userUseCase else {
+                return
+        }
+        userDetailsUseCase?.setEmail(user.profile.email)
+        userUseCase.signIn(accessToken: accessToken) { response in
+            guard let success = response.success else {
+                self.stopActivityIndicatorSpinner()
+                return
+            }
+            if !success {
+                GIDSignIn.sharedInstance().signOut()
+                GIDSignIn.sharedInstance().disconnect()
+                self.handleResponseFaliure(message: response.message)
+                return
+            }
+            guard let token = response.item?.0,
+                let user = response.item?.1 else {
+                    return
+            }
+            self.userDetailsUseCase?.setToken(token: token)
+            self.userUseCase?.createUser(entity: user, completion: { _ in
+                self.stopActivityIndicatorSpinner()
+                self.navigateToHome()
+            })
+        }
+
+    }
+    
+    #else
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
             return
+        }
+        guard let accessToken = user.authentication.accessToken,
+            let idToken = user.authentication.idToken,
+            let userUseCase = userUseCase else {
+                return
         }
         
         userDetailsUseCase?.setEmail(user.profile.email)
@@ -69,8 +106,9 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 
             })
         }
-
+        
     }
+    #endif
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         stopActivityIndicatorSpinner()
