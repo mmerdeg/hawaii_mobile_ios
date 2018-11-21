@@ -18,5 +18,8 @@ class ViewConstants {
 
 struct NotificationNames {
     static let refreshData = "refreshData"
+    
     static let refreshFirebaseToken = "refreshFirebaseToken"
+    
+    static let refreshToken = "refreshToken"
 }
