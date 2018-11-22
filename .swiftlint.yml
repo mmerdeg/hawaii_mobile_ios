@@ -44,8 +44,8 @@ function_parameter_count:
   warning: 8
 
 function_body_length:
-  warning: 130
-  error: 130
+  warning: 170
+  error: 170
  
 type_name:
   min_length:

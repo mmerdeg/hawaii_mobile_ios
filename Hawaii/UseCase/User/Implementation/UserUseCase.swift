@@ -3,15 +3,19 @@ import Firebase
 
 protocol UserUseCaseProtocol {
     
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
-    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
     
+    func getAll(completion: @escaping ([String: [User]], [String: Int], GenericResponse<[User]>) -> Void)
+    
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void)
+    
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
-    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
+    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void)
+    
+    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func createUser(entity: User, completion: @escaping (Int) -> Void)
     
@@ -19,7 +23,7 @@ protocol UserUseCaseProtocol {
 }
 
 class UserUseCase: UserUseCaseProtocol {
-    
+
     let userRepository: UserRepositoryProtocol?
     
     let userDao: UserDaoProtocol?
@@ -31,12 +35,6 @@ class UserUseCase: UserUseCaseProtocol {
         self.userRepository = userRepository
         self.userDao = userDao
         self.userDetailsUseCase = userDetailsUseCase
-    }
-    
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
-        userRepository?.signIn(accessToken: accessToken) { response in
-            completion(response)
-        }
     }
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
@@ -51,6 +49,39 @@ class UserUseCase: UserUseCaseProtocol {
         }
     }
     
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        guard let token = getToken() else {
+            completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
+                                                error: nil,
+                                                message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.add(token: token, user: user, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func getAll(completion: @escaping ([String: [User]], [String: Int], GenericResponse<[User]>) -> Void) {
+        guard let token = getToken() else {
+            completion([:], [:], GenericResponse<[User]> (success: false, item: nil, statusCode: 401,
+                                              error: nil,
+                                              message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.getAll(token: token, completion: { response in
+            let users = response.item ?? []
+            var teamIdDictionary: [String: Int] = [:]
+            for user in users {
+                guard let userTeamId = user.teamId,
+                      let userTeamName = user.teamName else {
+                    continue
+                }
+                teamIdDictionary[userTeamName] = userTeamId
+            }
+            completion(Dictionary(grouping: response.item ?? [], by: { $0.teamName ?? "" }), teamIdDictionary, response)
+        })
+    }
+    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let token = getToken() else {
             completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
@@ -61,6 +92,18 @@ class UserUseCase: UserUseCaseProtocol {
         userRepository?.getUser(token: token, email: getEmail()) { response in
             completion(response)
         }
+    }
+    
+    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        guard let token = getToken() else {
+            completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
+                                              error: nil,
+                                              message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.update(token: token, user: user, completion: { response in
+            completion(response)
+        })
     }
     
     func createUser(entity: User, completion: @escaping (Int) -> Void) {
@@ -76,6 +119,11 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+        guard let token = getToken() else {
+            completion(GenericResponse<Any> (success: false, item: nil,
+                                             statusCode: 403, error: nil, message: "Couldn't get access token"))
+            return
+        }
         if let firebaseToken = getFirebaseToken() {
             guard let token = getToken() else {
                 completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
@@ -83,7 +131,8 @@ class UserUseCase: UserUseCaseProtocol {
                                                   message: LocalizedKeys.General.emptyToken.localized()))
                 return
             }
-            userRepository?.setFirebaseToken(token: token, firebaseToken: firebaseToken, completion: { response in
+            let pushTokenDTO = PushTokenDTO(pushToken: firebaseToken, name: UIDevice.current.name, platform: Platform.iOS)
+            userRepository?.setFirebaseToken(token: token, pushTokenDTO: pushTokenDTO, completion: { response in
                 completion(response)
             })
         } else {
@@ -101,7 +150,8 @@ class UserUseCase: UserUseCaseProtocol {
                                                           message: LocalizedKeys.General.emptyToken.localized()))
                         return
                     }
-                    self.userRepository?.setFirebaseToken(token: token, firebaseToken: result.token, completion: { response in
+                    let pushTokenDTO = PushTokenDTO(pushToken: result.token, name: UIDevice.current.name, platform: Platform.iOS)
+                    self.userRepository?.setFirebaseToken(token: token, pushTokenDTO: pushTokenDTO, completion: { response in
                         completion(response)
                     })
                 }
@@ -110,14 +160,14 @@ class UserUseCase: UserUseCaseProtocol {
         
     }
     
-    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let token = getToken() else {
             completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
                                                             error: nil,
                                                             message: LocalizedKeys.General.emptyToken.localized()))
             return
         }
-        userRepository?.setFirebaseToken(token: token, firebaseToken: "", completion: { response in
+        userRepository?.deleteFirebaseToken(token: token, pushTokenDTO: PushTokenDTO(), completion: { response in
             completion(response)
         })
     }
@@ -134,3 +184,4 @@ class UserUseCase: UserUseCaseProtocol {
         return userDetailsUseCase?.getEmail() ?? ""
     }
 }
+

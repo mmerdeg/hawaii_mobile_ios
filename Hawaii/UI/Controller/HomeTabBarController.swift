@@ -27,7 +27,6 @@ class HomeTabBarController: UITabBarController {
                 DispatchQueue.main.async {
                     let indexToRemove = 3
                     self.viewControllers?.remove(at: indexToRemove)
-                    
                     self.homeTabBar.items?[0].title = LocalizedKeys.Dashboard.title.localized()
                     self.homeTabBar.items?[1].title = LocalizedKeys.History.title.localized()
                     self.homeTabBar.items?[2].title = LocalizedKeys.Team.tabItemTitle.localized()

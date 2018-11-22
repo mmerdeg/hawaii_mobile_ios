@@ -3,6 +3,7 @@ PODS:
   - CodableAlamofire (1.1.0):
     - Alamofire (~> 4.0)
   - EKBlurAlert (1.0.0)
+  - Eureka (4.3.0)
   - Firebase/Core (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.3.0)
@@ -105,6 +106,7 @@ PODS:
 DEPENDENCIES:
   - CodableAlamofire
   - EKBlurAlert
+  - Eureka
   - Firebase/Core
   - Firebase/Messaging
   - FMDB
@@ -124,6 +126,7 @@ SPEC REPOS:
     - Alamofire
     - CodableAlamofire
     - EKBlurAlert
+    - Eureka
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -155,6 +158,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   CodableAlamofire: e2d2edcec7cf413f7862c30c8fa98eded27a83f9
   EKBlurAlert: a88cf9b7bdff848348f3fa9c15164f7aa91fd637
+  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
@@ -182,6 +186,6 @@ SPEC CHECKSUMS:
   SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
   YLProgressBar: 365b6c5e934be18b661f79413db33c993c8e8251
 
-PODFILE CHECKSUM: 38530621398ddb1f2c8b72705b1de85a8fac5a2e
+PODFILE CHECKSUM: 85047b4734abe85dc8ea5c587e4e89cee3f8647d
 
 COCOAPODS: 1.6.0.beta.2

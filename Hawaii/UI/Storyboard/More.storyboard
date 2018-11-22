@@ -77,11 +77,11 @@
             </objects>
             <point key="canvasLocation" x="1844" y="1154.5727136431785"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--More-->
         <scene sceneID="jJB-Tl-jYw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l68-Bs-Wvo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="00 more white 01" id="EuP-hi-dZU"/>
+                    <tabBarItem key="tabBarItem" title="More" image="00 more white 01" id="EuP-hi-dZU"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="cnN-f4-kO8">

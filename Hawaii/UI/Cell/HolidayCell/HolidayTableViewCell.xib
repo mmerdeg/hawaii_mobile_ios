@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="HolidayTableViewCell" customModule="Hawaii" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sunbed" translatesAutoresizingMaskIntoConstraints="NO" id="Cyq-k6-pvH" customClass="RoundedImageView" customModule="Hawaii" customModuleProvider="target">
+                        <rect key="frame" x="16" y="6.5" width="56" height="56"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="5LN-6I-gb6"/>
+                            <constraint firstAttribute="width" secondItem="Cyq-k6-pvH" secondAttribute="height" multiplier="1:1" id="vXb-4d-Jm5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAH-fA-Oq2">
+                        <rect key="frame" x="102" y="6.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWI-Of-8k1">
+                        <rect key="frame" x="102" y="41.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="oWI-Of-8k1" firstAttribute="leading" secondItem="nAH-fA-Oq2" secondAttribute="leading" id="4TB-sA-pbZ"/>
+                    <constraint firstItem="nAH-fA-Oq2" firstAttribute="leading" secondItem="Cyq-k6-pvH" secondAttribute="trailing" constant="30" id="N69-Hr-WDf"/>
+                    <constraint firstItem="oWI-Of-8k1" firstAttribute="bottom" secondItem="Cyq-k6-pvH" secondAttribute="bottom" id="OHz-Wc-gfU"/>
+                    <constraint firstItem="Cyq-k6-pvH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="VRf-cv-72Y"/>
+                    <constraint firstItem="Cyq-k6-pvH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="lzf-wS-7yq"/>
+                    <constraint firstItem="Cyq-k6-pvH" firstAttribute="top" secondItem="nAH-fA-Oq2" secondAttribute="top" id="mfx-bn-dMS"/>
+                    <constraint firstItem="Cyq-k6-pvH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="wc5-LD-Uya"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="oWI-Of-8k1" id="FtX-AY-J50"/>
+                <outlet property="holidayImage" destination="Cyq-k6-pvH" id="CKg-WF-AAp"/>
+                <outlet property="nameLabel" destination="nAH-fA-Oq2" id="YLC-W7-J7O"/>
+            </connections>
+            <point key="canvasLocation" x="140.80000000000001" y="165.51724137931035"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="sunbed" width="48" height="48"/>
+    </resources>
+</document>
