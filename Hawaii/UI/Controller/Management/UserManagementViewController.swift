@@ -108,13 +108,13 @@ class UserManagementViewController: FormViewController {
                 row.selectorTitle = "Pick user role"
                 row.options = ["HR_MANAGER", "APPROVER", "USER"]
                 row.value = user?.userRole    // initially selected
-                }.cellSetup({ cell, _ in
+            }.cellSetup({ cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
-                }).cellUpdate({ cell, _ in
+            }).cellUpdate({ cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
-                })
+            })
             <<< SwitchRow("active") { row in
                 row.value = user?.active
                 row.title = (user?.active ?? false) ? "Active" : "Not active"
