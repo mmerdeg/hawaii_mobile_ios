@@ -42,37 +42,19 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
-        guard let token = getToken() else {
-            completion(UsersResponse(success: false, users: nil, statusCode: 401, maxUsers: nil,
-                                     error: nil,
-                                     message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.getUsersByParameter(token: token, parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
+        userRepository?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
     }
     
     func getAll(completion: @escaping ([String: [User]], GenericResponse<[User]>) -> Void) {
-        guard let token = getToken() else {
-            completion([:], GenericResponse<[User]> (success: false, item: nil, statusCode: 401,
-                                              error: nil,
-                                              message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.getAll(token: token, completion: { response in
+        userRepository?.getAll(completion: { response in
             completion(Dictionary(grouping: response.item ?? [], by: { $0.teamName ?? "" }), response)
         })
     }
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
-                                             error: nil,
-                                             message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.getUser(token: token, email: getEmail()) { response in
+        userRepository?.getUser(email: getEmail()) { response in
             completion(response)
         }
     }
@@ -91,13 +73,7 @@ class UserUseCase: UserUseCaseProtocol {
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
         if let firebaseToken = getFirebaseToken() {
-            guard let token = getToken() else {
-                completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                                  error: nil,
-                                                  message: LocalizedKeys.General.emptyToken.localized()))
-                return
-            }
-            userRepository?.setFirebaseToken(token: token, firebaseToken: firebaseToken, completion: { response in
+            userRepository?.setFirebaseToken(firebaseToken: firebaseToken, completion: { response in
                 completion(response)
             })
         } else {
@@ -109,13 +85,7 @@ class UserUseCase: UserUseCaseProtocol {
                     print("Remote instance ID token: \(result.token)")
                     self.userDetailsUseCase?.removeFirebaseToken()
                     self.userDetailsUseCase?.setFirebaseToken(result.token)
-                    guard let token = self.getToken() else {
-                        completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                                          error: nil,
-                                                          message: LocalizedKeys.General.emptyToken.localized()))
-                        return
-                    }
-                    self.userRepository?.setFirebaseToken(token: token, firebaseToken: result.token, completion: { response in
+                    self.userRepository?.setFirebaseToken(firebaseToken: result.token, completion: { response in
                         completion(response)
                     })
                 }
@@ -125,23 +95,13 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                                            error: nil,
-                                                            message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.setFirebaseToken(token: token, firebaseToken: "", completion: { response in
+        userRepository?.setFirebaseToken(firebaseToken: "", completion: { response in
             completion(response)
         })
     }
     
     func getFirebaseToken() -> String? {
         return userDetailsUseCase?.getFirebaseToken()
-    }
-
-    func getToken() -> String? {
-        return userDetailsUseCase?.getToken()
     }
     
     func getEmail() -> String {

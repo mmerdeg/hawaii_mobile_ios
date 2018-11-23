@@ -6,11 +6,11 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     
     let leaveTypesUrl = ApiConstants.baseUrl  + "/leavetypes"
     
-    func getLeaveData(token: String, completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
+    func getLeaveData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
-        genericCodableRequest(value: [Absence].self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.deducted.rawValue ||
                     $0.absenceType == AbsenceType.nonDecuted.rawValue
@@ -23,12 +23,12 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         }
     }
     
-    func getSicknessData(token: String, completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
+    func getSicknessData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         
-        genericCodableRequest(value: [Absence].self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.sick.rawValue
             })
@@ -39,12 +39,12 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         }
     }
     
-    func getBonusData(token: String, completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
+    func getBonusData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void) {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
         
-        genericCodableRequest(value: [Absence].self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [Absence].self, url) { response in
             let filteredAbsences = response.item?.filter({
                 $0.absenceType == AbsenceType.bonus.rawValue
             })
@@ -56,11 +56,11 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         
     }
     
-    func getLeaveTypeData(token: String, completion: @escaping ([Absence]) -> Void) {
+    func getLeaveTypeData(completion: @escaping ([Absence]) -> Void) {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
-        SessionManager.getSession().request(url, headers: getHeaders(token: token)).responseDecodableObject { (response: DataResponse<[Absence]>) in
+        SessionManager.getSession().request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
             completion(response.result.value ?? [])
         }
     }
@@ -85,10 +85,6 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
     
     func getBonusDaysDurationData(completion: @escaping ([SectionData]) -> Void) {
         completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil)])])
-    }
-    
-    func getHeaders(token: String) -> HTTPHeaders {
-        return [ApiConstants.authHeader: token]
     }
     
 }

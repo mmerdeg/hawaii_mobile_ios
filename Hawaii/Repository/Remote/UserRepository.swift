@@ -12,7 +12,7 @@ class UserRepository: UserRepositoryProtocol {
     
     let firebaseTokenUrl = ApiConstants.baseUrl + "/token"
     
-    func getUsersByParameter(token: String, parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
+    func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
         guard let url = URL(string: searchUsersUrl) else {
             return
         }
@@ -23,7 +23,7 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
+        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
                     completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
@@ -45,32 +45,32 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
-    func getAll(token: String, completion: @escaping (GenericResponse<[User]>) -> Void) {
+    func getAll(completion: @escaping (GenericResponse<[User]>) -> Void) {
         guard let url = URL(string: getUserUrl) else {
             return
         }
-        genericCodableRequest(value: [User].self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [User].self, url) { response in
             completion(response)
         }
     }
     
-    func setFirebaseToken(token: String, firebaseToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func setFirebaseToken(firebaseToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
             guard let url = URL(string: firebaseTokenUrl) else {
                 return
             }
             let pushTokenKey = "pushToken"
 
             let params = [pushTokenKey: firebaseToken] as [String: Any]
-            genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+            genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
                 completion(response)
             }
     }
     
-    func getUser(token: String, email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
+    func getUser(email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let url = URL(string: getUserUrl + "/\(email)") else {
             return
         }
-        genericCodableRequest(value: User.self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: User.self, url) { response in
             completion(response)
         }
     }
@@ -82,7 +82,7 @@ class UserRepository: UserRepositoryProtocol {
         let accessTokenKey = "Authorization"
         let headers = HTTPHeaders.init(dictionaryLiteral: (accessTokenKey, accessToken))
 
-        SessionManager.getSession().request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
+        Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let user = response.value,
                 let token = response.response?.allHeaderFields[ApiConstants.authHeader] as? String else {
                     completion(GenericResponse<(String, User)>(success: false, item: nil, statusCode: response.response?.statusCode,
@@ -96,9 +96,4 @@ class UserRepository: UserRepositoryProtocol {
                                                        error: nil, message: nil))
         }
     }
-    
-    func getHeaders(token: String) -> HTTPHeaders {
-        return [ApiConstants.authHeader: token]
-    }
-    
 }

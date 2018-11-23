@@ -191,9 +191,7 @@ extension SwinjectStoryboard {
             defaultContainer.register(PublicHolidayUseCaseProtocol.self, name: String(describing: PublicHolidayUseCaseProtocol.self)) { resolver in
                 PublicHolidayUseCase(
                     publicHolidayRepository: resolver.resolve(PublicHolidayRepositoryProtocol.self,
-                                             name: String(describing: PublicHolidayRepositoryProtocol.self)) ?? publicHolidayRepository,
-                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                        name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
+                                             name: String(describing: PublicHolidayRepositoryProtocol.self)) ?? publicHolidayRepository)
             }
             
             defaultContainer.register(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self)) { resolver in
@@ -211,9 +209,7 @@ extension SwinjectStoryboard {
                     entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
                                       name: String(describing: RequestRepositoryProtocol.self)) ?? requestRepository,
                     userUseCase: resolver.resolve(UserUseCaseProtocol.self,
-                                 name: String(describing: UserUseCaseProtocol.self)) ?? userUseCase,
-                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                        name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
+                                 name: String(describing: UserUseCaseProtocol.self)) ?? userUseCase)
             }
             
             defaultContainer.register(TableDataProviderUseCaseProtocol.self,
@@ -221,9 +217,7 @@ extension SwinjectStoryboard {
                 TableDataProviderUseCase(
                     tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
                                                                   name: String(describing: TableDataProviderRepositoryProtocol.self))
-                                                                  ?? tableDataProviderRepository,
-                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                         name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
+                                                                  ?? tableDataProviderRepository)
             }
             
             defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
@@ -234,10 +228,7 @@ extension SwinjectStoryboard {
             
             defaultContainer.register(TeamUseCaseProtocol.self,
                                       name: String(describing: TeamUseCaseProtocol.self)) { resolver in
-                                        TeamUseCase(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
-                                                                                         ?? userDetailsUseCase,
-                                                    teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
+                                        TeamUseCase(teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
                                                                                      name: String(describing: TeamRepositoryProtocol.self))
                                                                                      ?? teamRepository)
             }
