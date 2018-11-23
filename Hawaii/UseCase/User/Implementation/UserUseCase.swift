@@ -130,4 +130,3 @@ class UserUseCase: UserUseCaseProtocol {
         return userDetailsUseCase?.getEmail() ?? ""
     }
 }
-

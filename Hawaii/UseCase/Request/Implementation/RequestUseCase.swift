@@ -49,7 +49,7 @@ class RequestUseCase: RequestUseCaseProtocol {
     }
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void) {
-        requestRepository?.getAll() { requests in
+        requestRepository?.getAll { requests in
             completion(requests)
         }
     }
@@ -67,7 +67,7 @@ class RequestUseCase: RequestUseCaseProtocol {
     }
     
     func getAllForCalendar(completion: @escaping (GenericResponse<[Date: [Request]]>) -> Void) {
-        requestRepository?.getAll() { response in
+        requestRepository?.getAll { response in
             completion(self.handle(response))
         }
     }
@@ -111,7 +111,7 @@ class RequestUseCase: RequestUseCaseProtocol {
     }
     
     func getAvailableRequestYears(completion: @escaping (GenericResponse<Year>) -> Void) {
-        requestRepository?.getAvailableRequestYears() { requestsResponse in
+        requestRepository?.getAvailableRequestYears { requestsResponse in
             completion(requestsResponse)
         }
     }

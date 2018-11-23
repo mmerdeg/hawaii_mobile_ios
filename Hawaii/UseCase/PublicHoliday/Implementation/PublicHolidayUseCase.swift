@@ -22,7 +22,7 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
     }
     
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
-        publicHolidayRepository?.getHolidays() { response in
+        publicHolidayRepository?.getHolidays { response in
             guard let holidays = response?.item else {
                 return
             }
@@ -31,7 +31,7 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
     }
     
     func getAllByYear(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
-        publicHolidayRepository?.getHolidays() { response in
+        publicHolidayRepository?.getHolidays { response in
             guard let holidays = response?.item else {
                 return
             }
