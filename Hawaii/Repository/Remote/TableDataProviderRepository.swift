@@ -60,7 +60,7 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
-        Alamofire.request(url, headers: getHeaders(token: token)).responseDecodableObject { (response: DataResponse<[Absence]>) in
+        SessionManager.getSession().request(url, headers: getHeaders(token: token)).responseDecodableObject { (response: DataResponse<[Absence]>) in
             completion(response.result.value ?? [])
         }
     }

@@ -1,17 +1,20 @@
 import Foundation
 import Alamofire
 import GoogleSignIn
+import SwinjectStoryboard
+import Swinject
 
 class Interceptor: RequestAdapter {
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
-    
+    var userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
+                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
         
         guard let userDetailsUseCase = self.userDetailsUseCase else {
             return urlRequest
         }
+        
         let token = getValidToken(token: userDetailsUseCase.getToken())
         urlRequest.setValue(token, forHTTPHeaderField: ApiConstants.authHeader)
         
@@ -22,33 +25,13 @@ class Interceptor: RequestAdapter {
         guard let token = token else {
             return nil
         }
-        addObservers()
         
-        if TokenUtils.isTokenExpired(token: token) {
-            GIDSignIn.sharedInstance()?.signInSilently()
+        if !TokenUtils.isTokenExpired(token: token) {
+            return token
         }
         
-        // OVDE SAD TREBA DA CEKAM TOKEN
-        return ""
+        GIDSignIn.sharedInstance()?.signInSilently()
+        return userDetailsUseCase?.getToken()
     }
     
-    @objc func onTokenRefresh(_ notification: Notification) {
-        guard let userDetailsUseCase = self.userDetailsUseCase else {
-            return
-        }
-        let token = userDetailsUseCase.getToken()
-        
-        // KOJI DOBIJEM OVDE
-        
-        removeObservers()
-    }
-    
-    func addObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onTokenRefresh),
-                                               name: NSNotification.Name(rawValue: NotificationNames.refreshToken), object: nil)
-    }
-
-    func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.refreshToken), object: nil)
-    }
 }

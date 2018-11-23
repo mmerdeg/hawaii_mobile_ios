@@ -1,7 +1,7 @@
 import UIKit
 import GoogleSignIn
 
-class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+class SignInViewController: BaseViewController, GIDSignInUIDelegate {
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
@@ -11,31 +11,25 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeGoogleSignIn()
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
-
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        guard let idToken = user.authentication.idToken,
-            let userUseCase = userUseCase else {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        addObservers()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObservers()
+    }
+    
+    @objc func onSignIn(_ notification: Notification) {
+        startActivityIndicatorSpinner()
+        
+        guard let userUseCase = userUseCase else {
                 return
         }
-        
-        userDetailsUseCase?.setEmail(user.profile.email)
-        
-        userDetailsUseCase?.setToken(token: idToken)
-        NotificationCenter.default.post(name:
-            NSNotification.Name(rawValue: NotificationNames.refreshToken),
-                                        object: nil, userInfo: nil)
-        
-        let dimension = round(100 * UIScreen.main.scale)
-        if let picture = user.profile.imageURL(withDimension: UInt(dimension)) {
-            userDetailsUseCase?.setPictureUrl(picture.absoluteString)
-        }
-        startActivityIndicatorSpinner()
         userUseCase.getUser { response in
             
             guard let success = response?.success else {
@@ -71,7 +65,15 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 
             })
         }
-        
+    }
+
+    func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onSignIn),
+                                               name: NSNotification.Name(rawValue: NotificationNames.signedIn), object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: NotificationNames.signedIn), object: nil)
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -94,16 +96,9 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         GIDSignIn.sharedInstance().signIn()
     }
     
-    func initializeGoogleSignIn() {
-        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-    }
-    
     func navigateToHome() {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "homeVCSegue", sender: self)
         }
     }
-    
 }

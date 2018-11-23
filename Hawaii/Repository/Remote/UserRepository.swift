@@ -23,7 +23,7 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
+        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
                     completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
@@ -82,7 +82,7 @@ class UserRepository: UserRepositoryProtocol {
         let accessTokenKey = "Authorization"
         let headers = HTTPHeaders.init(dictionaryLiteral: (accessTokenKey, accessToken))
 
-        Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
+        SessionManager.getSession().request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
             guard let user = response.value,
                 let token = response.response?.allHeaderFields[ApiConstants.authHeader] as? String else {
                     completion(GenericResponse<(String, User)>(success: false, item: nil, statusCode: response.response?.statusCode,
