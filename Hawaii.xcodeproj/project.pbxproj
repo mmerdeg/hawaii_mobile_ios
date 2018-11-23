@@ -92,7 +92,6 @@
 		302EE1732133F549001355E9 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1722133F549001355E9 /* UserRepository.swift */; };
 		302EE1752133F587001355E9 /* UserRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */; };
 		302EE1772133F5C4001355E9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1762133F5C4001355E9 /* User.swift */; };
-		302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
 		302EE17C21353539001355E9 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE17B21353539001355E9 /* ProgressHud.swift */; };
 		302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18021356C93001355E9 /* TeamCalendarViewController.swift */; };
 		302EE1832135744D001355E9 /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
@@ -211,7 +210,6 @@
 		30FD3692214A5E530047038C /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
 		30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */; };
 		30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F920E61A6500DB2CF7 /* UIFontExtension.swift */; };
-		30FD3695214A5E530047038C /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1782133FD1B001355E9 /* UserUseCase.swift */; };
 		30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE18421358499001355E9 /* TeamCalendarCollectionViewCell.swift */; };
 		30FD3698214A5E530047038C /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
 		30FD369A214A5E530047038C /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79920E5121700F1C6D5 /* NewRequestViewController.swift */; };
@@ -350,6 +348,8 @@
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
+		3E78685C21A85A00001562C3 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E78685B21A85A00001562C3 /* UserUseCase.swift */; };
+		3E78685D21A85A00001562C3 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E78685B21A85A00001562C3 /* UserUseCase.swift */; };
 		3E7C98CC21A2AEC600AF7A10 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C98CB21A2AEC600AF7A10 /* SessionManager.swift */; };
 		3E7C98CD21A2AEC600AF7A10 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C98CB21A2AEC600AF7A10 /* SessionManager.swift */; };
 		3E7C98CF21A2B04200AF7A10 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C98CE21A2B04200AF7A10 /* Interceptor.swift */; };
@@ -551,7 +551,6 @@
 		302EE1722133F549001355E9 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		302EE1742133F587001355E9 /* UserRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302EE1762133F5C4001355E9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		302EE1782133FD1B001355E9 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		302EE17B21353539001355E9 /* ProgressHud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
 		302EE18021356C93001355E9 /* TeamCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCalendarViewController.swift; sourceTree = "<group>"; };
 		302EE1822135744D001355E9 /* CalendarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarType.swift; sourceTree = "<group>"; };
@@ -682,6 +681,7 @@
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
+		3E78685B21A85A00001562C3 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		3E7C98CB21A2AEC600AF7A10 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		3E7C98CE21A2B04200AF7A10 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		3E7C98D121A3034500AF7A10 /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
@@ -1195,7 +1195,7 @@
 		3E2D45B821622476002A512C /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				302EE1782133FD1B001355E9 /* UserUseCase.swift */,
+				3E78685B21A85A00001562C3 /* UserUseCase.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -2504,7 +2504,6 @@
 				306F1C8C21A2A7D900E2D27B /* TeamTableViewCell.swift in Sources */,
 				30092B4E219EF54C00244F09 /* TeamManagementViewController.swift in Sources */,
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
-				30FD3695214A5E530047038C /* UserUseCase.swift in Sources */,
 				30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3E7C98CD21A2AEC600AF7A10 /* SessionManager.swift in Sources */,
 				3E60E76221A82F8F00EFE824 /* NotificationDelegate.swift in Sources */,
@@ -2518,6 +2517,7 @@
 				30FD369D214A5E530047038C /* Allowance.swift in Sources */,
 				30FD369E214A5E530047038C /* Absence.swift in Sources */,
 				30092B57219EF75D00244F09 /* Team.swift in Sources */,
+				3E78685D21A85A00001562C3 /* UserUseCase.swift in Sources */,
 				3042CA8A21536EF6002446FE /* Page.swift in Sources */,
 				3044DF0221A450640068E2B7 /* PushTokenDTO.swift in Sources */,
 				30FD369F214A5E530047038C /* TableDataProviderUseCase.swift in Sources */,
@@ -2638,7 +2638,6 @@
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				306F1C8B21A2A7D900E2D27B /* TeamTableViewCell.swift in Sources */,
 				30092B4D219EF54C00244F09 /* TeamManagementViewController.swift in Sources */,
-				302EE1792133FD1B001355E9 /* UserUseCase.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
 				3E7C98CC21A2AEC600AF7A10 /* SessionManager.swift in Sources */,
@@ -2653,6 +2652,7 @@
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				30092B56219EF75D00244F09 /* Team.swift in Sources */,
+				3E78685C21A85A00001562C3 /* UserUseCase.swift in Sources */,
 				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				3044DF0121A450640068E2B7 /* PushTokenDTO.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,

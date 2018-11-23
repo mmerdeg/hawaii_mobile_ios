@@ -59,8 +59,8 @@ class UserUseCase: UserUseCaseProtocol {
             var teamIdDictionary: [String: Int] = [:]
             for user in users {
                 guard let userTeamId = user.teamId,
-                      let userTeamName = user.teamName else {
-                    continue
+                    let userTeamName = user.teamName else {
+                        continue
                 }
                 teamIdDictionary[userTeamName] = userTeamId
             }
@@ -69,13 +69,8 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func getAllApprovers(completion: @escaping (GenericResponse<[User]>) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<[User]> (success: false, item: nil, statusCode: 401,
-                                                          error: nil,
-                                                          message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.getAll(token: token, completion: { response in
+        
+        userRepository?.getAll(completion: { response in
             let userApprovers = response.item?.filter { $0.userRole == UserRole.hrManager.rawValue }
             completion(GenericResponse<[User]> (success: response.success, item: userApprovers, statusCode: response.statusCode,
                                                 error: response.error,
@@ -90,13 +85,7 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func update(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
-                                              error: nil,
-                                              message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.update(token: token, user: user, completion: { response in
+        userRepository?.update(user: user, completion: { response in
             completion(response)
         })
     }
@@ -108,13 +97,7 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                              error: nil,
-                                              message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        userRepository?.delete(token: token, user: user, completion: { response in
+        userRepository?.delete(user: user, completion: { response in
             completion(response)
         })
     }
@@ -126,9 +109,9 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-
+        
         if let firebaseToken = getFirebaseToken() {
-
+            
             let pushTokenDTO = PushTokenDTO(pushToken: firebaseToken, name: UIDevice.current.name, platform: Platform.iOS)
             userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
                 completion(response)

@@ -15,7 +15,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 return
         }
         print(notification.request.content.userInfo)
-        if aps["category"] != nil {
+        if aps["category"] != nil && (aps["category"] as? String ?? "") == "requestNotification" {
             let banner = NotificationBanner(title: title, subtitle: body, style: .info)
             banner.show()
             userDetailsUseCase?.setRefreshApproveScreen(true)

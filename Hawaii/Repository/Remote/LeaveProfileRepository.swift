@@ -14,18 +14,13 @@ class LeaveProfileRepository: LeaveProfileRepositoryProtocol {
     
     let leaveProfileUrl = ApiConstants.baseUrl + "/leaveprofiles"
     
-    func get(token: String, completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void) {
+    func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void) {
         guard let url = URL(string: leaveProfileUrl) else {
             return
         }
         
-        genericCodableRequest(value: [LeaveProfile].self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [LeaveProfile].self, url) { response in
             completion(response)
         }
     }
-    
-    func getHeaders(token: String) -> HTTPHeaders {
-        return [ApiConstants.authHeader: token]
-    }
-
 }

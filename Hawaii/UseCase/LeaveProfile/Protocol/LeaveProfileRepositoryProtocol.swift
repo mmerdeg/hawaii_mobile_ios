@@ -10,6 +10,6 @@ import Foundation
 
 protocol LeaveProfileRepositoryProtocol: GenericRepositoryProtocol {
     
-    func get(token: String, completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
+    func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
     
 }

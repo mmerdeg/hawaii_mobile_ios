@@ -12,16 +12,7 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         GIDSignIn.sharedInstance().uiDelegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         addObservers()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObservers()
     }
     
     @objc func onSignIn(_ notification: Notification) {
@@ -46,7 +37,7 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            self.userUseCase?.createUser(entity: user, completion: { _ in
+            self.userUseCase?.create(entity: user, completion: { _ in
                 
                 self.userUseCase?.setFirebaseToken { firebaseResponse in
                     guard let firebaseResponseSuccess = firebaseResponse?.success else {

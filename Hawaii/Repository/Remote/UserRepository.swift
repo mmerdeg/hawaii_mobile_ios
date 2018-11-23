@@ -52,19 +52,19 @@ class UserRepository: UserRepositoryProtocol {
         let activeKey = "active"
         
         let params = [activeKey: true] as [String: Any]
-        genericCodableRequest(value: [User].self, url, parameters: params, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [User].self, url, parameters: params) { response in
             completion(response)
         }
     }
     
-    func getAllApprovers(token: String, completion: @escaping (GenericResponse<[User]>) -> Void) {
+    func getAllApprovers(completion: @escaping (GenericResponse<[User]>) -> Void) {
         guard let url = URL(string: getUserUrl) else {
             return
         }
         let activeKey = "active"
         
         let params = [activeKey: true] as [String: Any]
-        genericCodableRequest(value: [User].self, url, parameters: params, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [User].self, url, parameters: params) { response in
             completion(response)
         }
     }
@@ -91,18 +91,18 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
-    func delete(token: String, user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let id = user.id,
             let url = URL(string: getUserUrl + "/\(id)") else {
                 return
         }
         
-        genericJSONRequest(url, method: HTTPMethod.delete, headers: getHeaders(token: token)) { response in
+        genericJSONRequest(url, method: HTTPMethod.delete) { response in
             completion(response)
         }
     }
     
-    func deleteFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func deleteFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let url = URL(string: firebaseTokenUrl) else {
             return
         }
@@ -111,7 +111,7 @@ class UserRepository: UserRepositoryProtocol {
         let pushTokenKey = "pushToken"
         
         let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
             completion(response)
         }
         #else
@@ -123,7 +123,7 @@ class UserRepository: UserRepositoryProtocol {
         #endif
     }
     
-    func setFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let url = URL(string: firebaseTokenUrl) else {
             return
         }
@@ -132,7 +132,7 @@ class UserRepository: UserRepositoryProtocol {
         let pushTokenKey = "pushToken"
         
         let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
             completion(response)
         }
         #else

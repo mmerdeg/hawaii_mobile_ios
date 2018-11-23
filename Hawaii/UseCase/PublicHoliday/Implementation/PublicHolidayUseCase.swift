@@ -31,13 +31,8 @@ class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
     }
     
     func getAllByYear(completion: @escaping (([Int: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void) {
-        guard let token = getToken() else {
-            completion(([:], GenericResponse<[PublicHoliday]> (success: false, item: nil, statusCode: 401,
-                                                               error: nil,
-                                                               message: LocalizedKeys.General.emptyToken.localized())))
-            return
-        }
-        publicHolidayRepository?.getHolidays(token: token) { response in
+
+        publicHolidayRepository?.getHolidays{ response in
             guard let holidays = response?.item else {
                 return
             }
