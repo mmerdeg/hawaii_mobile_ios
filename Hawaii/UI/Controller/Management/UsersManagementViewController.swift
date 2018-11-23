@@ -50,6 +50,10 @@ class UsersManagementViewController: BaseViewController {
         tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = addBarItem
         self.navigationItem.leftBarButtonItem = editBarItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fillData()
     }
     
@@ -146,11 +150,23 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
             AlertPresenter.showAlertWithAction(title: confirmationAlertTitle, message: approveAlertMessage, cancelable: true,
                                                viewController: self) { confirmed in
                                                 if confirmed {
-                                                    var usersInSourceSection = Array(self.users ?? [:])[indexPath.section].value
-                                                    let sourceSection = Array(self.users ?? [:])[indexPath.section].key
-                                                    usersInSourceSection.remove(at: indexPath.row)
-                                                    self.users?[sourceSection] = usersInSourceSection
-                                                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                                                    let selectedUser = Array(self.users ?? [:])[indexPath.section].value[indexPath.row]
+                                                    self.userUseCase?.delete(user: selectedUser, completion: { response in
+                                                        guard let success = response?.success else {
+                                                            self.stopActivityIndicatorSpinner()
+                                                            return
+                                                        }
+                                                        if !success {
+                                                            self.stopActivityIndicatorSpinner()
+                                                            self.handleResponseFaliure(message: response?.message)
+                                                            return
+                                                        }
+                                                        var usersInSourceSection = Array(self.users ?? [:])[indexPath.section].value
+                                                        let sourceSection = Array(self.users ?? [:])[indexPath.section].key
+                                                        usersInSourceSection.remove(at: indexPath.row)
+                                                        self.users?[sourceSection] = usersInSourceSection
+                                                        self.tableView.deleteRows(at: [indexPath], with: .fade)
+                                                    })
                                                 }
             }
         }
@@ -179,7 +195,7 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
         let updatedUser = User(user: selectedUser,
                                teamId: usersById?[String(describing: Array(users ?? [:])[destinationIndexPath.section].key)],
                                teamName: destinationSection)
-        self.userUseCase?.updateUser(user: updatedUser, completion: { response in
+        self.userUseCase?.update(user: updatedUser, completion: { response in
             guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 self.view.isUserInteractionEnabled = true

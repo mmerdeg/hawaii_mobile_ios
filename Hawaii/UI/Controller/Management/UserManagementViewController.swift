@@ -17,9 +17,15 @@ class UserManagementViewController: FormViewController {
     
     var teamUseCase: TeamUseCaseProtocol?
     
+    var leaveProfileUseCase: LeaveProfileUseCaseProtocol?
+    
     var teams: [Team]?
     
+    var leaveProfiles: [LeaveProfile]?
+    
     var selectedTeam: Team?
+    
+    var selectedLeaveProfile: LeaveProfile?
     
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
     
@@ -55,12 +61,35 @@ class UserManagementViewController: FormViewController {
             }
         })
         
+        self.leaveProfileUseCase?.get(completion: { response in
+            guard let success = response?.success else {
+                return
+            }
+            if !success {
+                return
+            }
+            self.leaveProfiles = response?.item
+            let leaveProfileRow: PushRow<String> = self.form.rowBy(tag: "leaveProfile") ?? PushRow()
+            guard let leaveProfiles = self.leaveProfiles else {
+                return
+            }
+            let leaveProfileStringArray = leaveProfiles.map({ (item: LeaveProfile) -> String in
+                item.name ?? ""
+            })
+            leaveProfileRow.options = leaveProfileStringArray
+            leaveProfileRow.value = String(describing: self.user?.leaveProfileId)
+            DispatchQueue.main.async {
+                leaveProfileRow.reload()
+            }
+        })
+        
         form +++ Section("Basic Info")
             <<< TextRow("fullName") { row in
                 row.title = "Full name"
                 row.placeholder = "Enter full name"
                 row.value = user?.fullName
-                
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                 cell.titleLabel?.textColor = UIColor.primaryTextColor
                 cell.textField.textColor = UIColor.primaryTextColor
@@ -76,6 +105,8 @@ class UserManagementViewController: FormViewController {
                 row.title = "Email "
                 row.placeholder = "Enter email here"
                 row.value = user?.email
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
@@ -92,6 +123,8 @@ class UserManagementViewController: FormViewController {
                 row.title = "Job title"
                 row.placeholder = "Enter Job title"
                 row.value = user?.jobTitle
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
@@ -108,6 +141,8 @@ class UserManagementViewController: FormViewController {
                 row.selectorTitle = "Pick user role"
                 row.options = ["HR_MANAGER", "APPROVER", "USER"]
                 row.value = user?.userRole    // initially selected
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
@@ -132,6 +167,8 @@ class UserManagementViewController: FormViewController {
             <<< IntRow("yearsOfService") {
                 $0.title = "Years of service"
                 $0.value = user?.yearsOfService ?? 0
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
@@ -147,7 +184,9 @@ class UserManagementViewController: FormViewController {
                 $0.title = "Team "
                 $0.selectorTitle = "Select team"
                 $0.value = user?.teamName
-            }.cellSetup({ cell, row in
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }.cellSetup({ cell, _ in
                 cell.backgroundColor = UIColor.primaryColor
                 cell.textLabel?.textColor = UIColor.primaryTextColor
             }).cellUpdate({ cell, row in
@@ -159,17 +198,23 @@ class UserManagementViewController: FormViewController {
                     }
                 })
             })
-            <<< PushRow<Int>("leaveProfile") {
+            <<< PushRow<String>("leaveProfile") {
                 $0.title = "LeaveProfile"
                 $0.selectorTitle = "Select profile"
-                $0.options = [1, 2, 3, 4]
-                $0.value = user?.leaveProfileId
+                $0.value = String(describing: user?.leaveProfileId)
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
             }.cellSetup({ cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
-            }).cellUpdate({ cell, _ in
+            }).cellUpdate({ cell, row in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
+                    self.leaveProfiles?.forEach({ item in
+                        if item.name == row.value {
+                            self.selectedLeaveProfile = item
+                        }
+                    })
             })
         
     }
@@ -180,8 +225,8 @@ class UserManagementViewController: FormViewController {
         if isValid.isEmpty {
             if let user = user {
                 
-                let editUser = User(user: user, values: values, team: selectedTeam)
-                self.userUseCase?.updateUser(user: editUser, completion: { response in
+                let editUser = User(user: user, values: values, team: selectedTeam, leaveProfile: selectedLeaveProfile)
+                self.userUseCase?.update(user: editUser, completion: { response in
                     guard let success = response.success else {
                         self.stopActivityIndicatorSpinner()
                         return
@@ -194,7 +239,7 @@ class UserManagementViewController: FormViewController {
                     self.popViewController()
                 })
             } else {
-                let newUser = User(values: values, team: selectedTeam)
+                let newUser = User(values: values, team: selectedTeam, leaveProfile: selectedLeaveProfile)
                 self.userUseCase?.add(user: newUser, completion: { response in
                     guard let success = response.success else {
                         self.stopActivityIndicatorSpinner()

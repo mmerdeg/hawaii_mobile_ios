@@ -50,6 +50,10 @@ class TeamsManagementViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = addBarItem
         self.navigationItem.leftBarButtonItem = editBarItem
         self.tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fillData()
     }
     

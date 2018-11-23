@@ -136,14 +136,17 @@ class AlertPresenter {
     static func presentBluredAlertView(view: UIView, message: String) {
         let imageName = "success"
         let successTitle = LocalizedKeys.General.success.localized()
-        
-        let alertView = EKBlurAlertView(frame: view.bounds)
         let myImage = UIImage(named: imageName) ?? UIImage()
-        alertView.setCornerRadius(10)
-        alertView.set(autoFade: true, after: 2)
-        alertView.set(image: myImage)
-        alertView.set(headline: successTitle)
-        alertView.set(subheading: message)
+        let alertView = EKBlurAlertView(frame: view.bounds,
+                                        titleFont: UIFont.systemFont(ofSize: 17),
+                                        subTitleFont: UIFont.systemFont(ofSize: 17),
+                                        image: myImage,
+                                        title: successTitle,
+                                        subtitle: message,
+                                        autoFade: true,
+                                        after: 2,
+                                        radius: 15,
+                                        blurEffect: .light)
         view.addSubview(alertView)
     }
 
