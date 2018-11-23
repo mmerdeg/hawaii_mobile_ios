@@ -33,7 +33,7 @@ class TeamManagementViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedTeamApprovers = team?.users
+        selectedTeamApprovers = team?.teamApprovers
         self.tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
         form +++ Section("Basic Info")
@@ -105,8 +105,8 @@ class TeamManagementViewController: FormViewController {
                     })
                     
                 })
-                $0.displayValueFor = { set in
-                        return set?.array.map { $0.fullName ?? "" }.sorted().joined(separator: ", ")
+                $0.displayValueFor = {
+                    $0?.array.map { $0.fullName ?? "" }.sorted().joined(separator: ", ")
                 }
             }.onPresent { from, to in
                 to.sectionKeyForValue = { $0.fullName?.first?.description ?? ""}
@@ -130,7 +130,7 @@ class TeamManagementViewController: FormViewController {
         if isValid.isEmpty {
             if let team = team {
                 
-                let tempTeam = Team(team: team, values: values)
+                let tempTeam = Team(team: team, values: values, teamApprovers: selectedTeamApprovers)
                 self.teamUseCase?.update(team: tempTeam, completion: { response in
                     guard let success = response.success else {
                         self.stopActivityIndicatorSpinner()
@@ -144,7 +144,7 @@ class TeamManagementViewController: FormViewController {
                     self.popViewController()
                 })
             } else {
-                let tempTeam = Team(values: values)
+                let tempTeam = Team(values: values, teamApprovers: selectedTeamApprovers)
                 self.teamUseCase?.add(team: tempTeam, completion: { response in
                     guard let success = response.success else {
                         self.stopActivityIndicatorSpinner()

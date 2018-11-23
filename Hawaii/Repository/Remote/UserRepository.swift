@@ -125,16 +125,24 @@ class UserRepository: UserRepositoryProtocol {
     }
     
     func setFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
-            guard let url = URL(string: firebaseTokenUrl) else {
-                return
-            }
+        guard let url = URL(string: firebaseTokenUrl) else {
+            return
+        }
         
+        #if PRODUCTION
+        let pushTokenKey = "pushToken"
+        
+        let params = [pushTokenKey: ""] as [String: Any]
+        genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+            completion(response)
+        }
+        #else
         let params = pushTokenDTO.dictionary
         genericJSONRequest(url, method: HTTPMethod.post,
                            parameters: params, encoding: JSONEncoding.default, headers: getHeaders(token: token)) { response in
                             completion(response)
         }
-        
+        #endif
     }
     
     func getUser(token: String, email: String, completion: @escaping (GenericResponse<User>?) -> Void) {

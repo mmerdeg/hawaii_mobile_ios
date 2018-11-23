@@ -94,7 +94,7 @@ class UserUseCase: UserUseCaseProtocol {
             return
         }
         userRepository?.getAll(token: token, completion: { response in
-            let userApprovers = response.item?.filter { $0.userRole == UserRole.hrManager.rawValue}
+            let userApprovers = response.item?.filter { $0.userRole == UserRole.hrManager.rawValue }
             completion(GenericResponse<[User]> (success: response.success, item: userApprovers, statusCode: response.statusCode,
                                                 error: response.error,
                                                 message: response.message))
