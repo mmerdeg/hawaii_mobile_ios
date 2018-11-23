@@ -30,6 +30,7 @@ public struct LocalizedKeys {
         static let accept = "general.accept"
         static let decline = "general.decline"
         static let emptyToken = "general.emptyToken"
+        static let deleteMessage = "general.alert.deleteMessage"
     }
 
     struct Request {

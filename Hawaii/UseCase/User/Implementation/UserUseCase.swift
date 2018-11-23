@@ -3,17 +3,19 @@ import Firebase
 
 protocol UserUseCaseProtocol {
     
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void)
-    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void)
     
-    func getAll(completion: @escaping ([String: [User]], GenericResponse<[User]>) -> Void)
+    func getAll(completion: @escaping ([String: [User]], [String: Int], GenericResponse<[User]>) -> Void)
+    
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void)
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
-    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
+    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void)
+    
+    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func createUser(entity: User, completion: @escaping (Int) -> Void)
     
@@ -21,7 +23,7 @@ protocol UserUseCaseProtocol {
 }
 
 class UserUseCase: UserUseCaseProtocol {
-    
+
     let userRepository: UserRepositoryProtocol?
     
     let userDao: UserDaoProtocol?
@@ -35,21 +37,30 @@ class UserUseCase: UserUseCaseProtocol {
         self.userDetailsUseCase = userDetailsUseCase
     }
     
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
-        userRepository?.signIn(accessToken: accessToken) { response in
-            completion(response)
-        }
-    }
-    
     func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
         userRepository?.getUsersByParameter(parameter: parameter, page: page, numberOfItems: numberOfItems) { response in
             completion(response)
         }
     }
     
-    func getAll(completion: @escaping ([String: [User]], GenericResponse<[User]>) -> Void) {
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        userRepository?.add(user: user, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func getAll(completion: @escaping ([String: [User]], [String: Int], GenericResponse<[User]>) -> Void) {
         userRepository?.getAll(completion: { response in
-            completion(Dictionary(grouping: response.item ?? [], by: { $0.teamName ?? "" }), response)
+            let users = response.item ?? []
+            var teamIdDictionary: [String: Int] = [:]
+            for user in users {
+                guard let userTeamId = user.teamId,
+                      let userTeamName = user.teamName else {
+                    continue
+                }
+                teamIdDictionary[userTeamName] = userTeamId
+            }
+            completion(Dictionary(grouping: response.item ?? [], by: { $0.teamName ?? "" }), teamIdDictionary, response)
         })
     }
     
@@ -57,6 +68,12 @@ class UserUseCase: UserUseCaseProtocol {
         userRepository?.getUser(email: getEmail()) { response in
             completion(response)
         }
+    }
+    
+    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        userRepository?.update(user: user, completion: { response in
+            completion(response)
+        })
     }
     
     func createUser(entity: User, completion: @escaping (Int) -> Void) {
@@ -72,8 +89,11 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+
         if let firebaseToken = getFirebaseToken() {
-            userRepository?.setFirebaseToken(firebaseToken: firebaseToken, completion: { response in
+
+            let pushTokenDTO = PushTokenDTO(pushToken: firebaseToken, name: UIDevice.current.name, platform: Platform.iOS)
+            userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
                 completion(response)
             })
         } else {
@@ -85,7 +105,9 @@ class UserUseCase: UserUseCaseProtocol {
                     print("Remote instance ID token: \(result.token)")
                     self.userDetailsUseCase?.removeFirebaseToken()
                     self.userDetailsUseCase?.setFirebaseToken(result.token)
-                    self.userRepository?.setFirebaseToken(firebaseToken: result.token, completion: { response in
+                    
+                    let pushTokenDTO = PushTokenDTO(pushToken: result.token, name: UIDevice.current.name, platform: Platform.iOS)
+                    self.userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
                         completion(response)
                     })
                 }
@@ -94,8 +116,8 @@ class UserUseCase: UserUseCaseProtocol {
         
     }
     
-    func setEmptyFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        userRepository?.setFirebaseToken(firebaseToken: "", completion: { response in
+    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
+        userRepository?.deleteFirebaseToken(pushTokenDTO: PushTokenDTO(), completion: { response in
             completion(response)
         })
     }
@@ -108,3 +130,4 @@ class UserUseCase: UserUseCaseProtocol {
         return userDetailsUseCase?.getEmail() ?? ""
     }
 }
+

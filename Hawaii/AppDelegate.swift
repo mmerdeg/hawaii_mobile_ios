@@ -127,7 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("APNs token retrieved: \(deviceToken)")
         Messaging.messaging().apnsToken = deviceToken
     }
 
@@ -326,16 +325,31 @@ extension SwinjectStoryboard {
                                                                  name: String(describing: UserDetailsUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(UsersMenagementViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(UsersManagementViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(TeamsMenagementViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(TeamsManagementViewController.self) { resolver, controller in
                 controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
                                                                     name: String(describing: TeamUseCaseProtocol.self))
             }
             
-            defaultContainer.storyboardInitCompleted(PublicHolidaysMenagementViewController.self) { resolver, controller in
+            defaultContainer.storyboardInitCompleted(PublicHolidaysManagementViewController.self) { resolver, controller in
+                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
+                                                                   name: String(describing: PublicHolidayUseCaseProtocol.self))
+            }
+            defaultContainer.storyboardInitCompleted(UserManagementViewController.self) { resolver, controller in
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
+                                                          name: String(describing: TeamUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(TeamManagementViewController.self) { resolver, controller in
+                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
+                                                          name: String(describing: TeamUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(PublicHolidayManagementViewController.self) { resolver, controller in
                 controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
             }

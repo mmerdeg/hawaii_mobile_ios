@@ -45,7 +45,7 @@ extension GenericRepositoryProtocol {
                 METHOD: \(method.rawValue)
                 HEADERS: \(headers ?? [:])
                 BODY: \(parameters ?? [:])
-            *******************************
+            *******************************\n
             """
         )
         SessionManager.getSession().request(url, method: method, parameters: parameters,
@@ -55,7 +55,7 @@ extension GenericRepositoryProtocol {
     }
     
     func genericStringRequest(_ url: URL, method: HTTPMethod,
-                              parameters: Parameters?, encoding: ParameterEncoding = URLEncoding.default,
+                              parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default,
                               headers: HTTPHeaders? = nil,
                               completion: @escaping (GenericResponse<String>) -> Void) {
         let completionHandler: (_ response: DataResponse<String>) -> Void = { (response: DataResponse<String>) in
@@ -78,7 +78,7 @@ extension GenericRepositoryProtocol {
                 METHOD: \(method.rawValue)
                 HEADERS: \(headers ?? [:])
                 BODY: \(parameters ?? [:])
-            *******************************
+            *******************************\n
             """
         )
         SessionManager.getSession().request(url, method: method, parameters: parameters,
@@ -87,7 +87,7 @@ extension GenericRepositoryProtocol {
     }
     
     func genericJSONRequest(_ url: URL, method: HTTPMethod,
-                            parameters: Parameters?, encoding: ParameterEncoding = URLEncoding.default,
+                            parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default,
                             headers: HTTPHeaders? = nil,
                             completion: @escaping (GenericResponse<Any>) -> Void) {
         let completionHandler: (_ response: DataResponse<Any>) -> Void = { (response: DataResponse<Any>) in
@@ -110,7 +110,7 @@ extension GenericRepositoryProtocol {
                 METHOD: \(method.rawValue)
                 HEADERS: \(headers ?? [:])
                 BODY: \(parameters ?? [:])
-            *******************************
+            *******************************\n
             """
         )
         SessionManager.getSession().request(url, method: method, parameters: parameters,

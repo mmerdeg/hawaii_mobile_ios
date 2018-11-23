@@ -11,6 +11,7 @@ general.alert.approveRequestMessage = "Da li ste sigurni da želite da odobrite 
 general.alert.approvedRequestMessage = "Uspešno ste odobrili zahtev.";
 general.alert.rejectRequestMessage = "Da li ste sigurni da želite da odbijete ovaj zahtev?";
 general.alert.rejectedRequestMessage = "Uspešno ste odbili zahtev.";
+general.alert.deleteMessage = "Da li ste sigurni da želite da obrisete ovaj objekat?";
 
 general.approve = "Odobri";
 general.reject = "Odbij";

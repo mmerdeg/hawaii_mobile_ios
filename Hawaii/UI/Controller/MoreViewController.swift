@@ -43,7 +43,7 @@ class MoreViewController: BaseViewController {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
         
-        self.userUseCase?.setEmptyFirebaseToken { firebaseResponse in
+        self.userUseCase?.deleteFirebaseToken { firebaseResponse in
             guard let success = firebaseResponse?.success else {
                 self.stopActivityIndicatorSpinner()
                 return

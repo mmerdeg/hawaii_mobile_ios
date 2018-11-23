@@ -31,10 +31,7 @@ class HolidayTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor.white
-//        holidayImage.backgroundColor = UIColor.darkPrimaryColor
-//        holidayImage.layer.cornerRadius = holidayImage.frame.height / 2
-//        holidayImage.layer.masksToBounds = true
+        self.backgroundColor = UIColor.primaryColor
     }
     
 }

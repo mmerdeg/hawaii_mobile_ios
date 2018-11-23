@@ -54,16 +54,74 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
-    func setFirebaseToken(firebaseToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        guard let url = URL(string: getUserUrl),
+            let userParameters = user.dictionary else {
+                return
+        }
+        genericCodableRequest(value: User.self, url, method: .post,
+                              parameters: userParameters, encoding: JSONEncoding.default) { response in
+                                if response.statusCode == 416 {
+                                    completion(GenericResponse<User> (success: false, item: nil, statusCode: response.statusCode,
+                                                                         error: response.error,
+                                                                         message: LocalizedKeys.Api.tooManyDays.localized()))
+                                } else if response.statusCode == 409 {
+                                    completion(GenericResponse<User> (success: false, item: nil, statusCode: response.statusCode,
+                                                                         error: response.error,
+                                                                         message: LocalizedKeys.Api.alreadyExists.localized()))
+                                } else {
+                                    completion(response)
+                                }
+        }
+    }
+    
+    func deleteFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        guard let url = URL(string: firebaseTokenUrl) else {
+            return
+        }
+        
+        #if PRODUCTION
+        guard let pushToken = pushTokenDTO.pushToken else {
+            return
+        }
+        let pushTokenKey = "pushToken"
+        
+        let params = [pushTokenKey: pushToken] as [String: Any]
+        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
+            completion(response)
+        }
+        #else
+        let params = pushTokenDTO.dictionary
+        genericJSONRequest(url, method: HTTPMethod.post,
+                           parameters: params, encoding: JSONEncoding.default) { response in
+                            completion(response)
+        }
+        #endif
+    }
+    
+    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
             guard let url = URL(string: firebaseTokenUrl) else {
                 return
             }
-            let pushTokenKey = "pushToken"
-
-            let params = [pushTokenKey: firebaseToken] as [String: Any]
-            genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
-                completion(response)
-            }
+        
+        #if PRODUCTION
+        guard let pushToken = pushTokenDTO.pushToken else {
+            return
+        }
+        let pushTokenKey = "pushToken"
+        
+        let params = [pushTokenKey: pushToken] as [String: Any]
+        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
+            completion(response)
+        }
+        #else
+        let params = pushTokenDTO.dictionary
+        genericJSONRequest(url, method: HTTPMethod.post,
+                           parameters: params, encoding: JSONEncoding.default) { response in
+                            completion(response)
+        }
+        #endif
+        
     }
     
     func getUser(email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
@@ -72,6 +130,18 @@ class UserRepository: UserRepositoryProtocol {
         }
         genericCodableRequest(value: User.self, url) { response in
             completion(response)
+        }
+    }
+    
+    func update(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+        guard let url = URL(string: getUserUrl),
+            let userParameters = user.dictionary else {
+                return
+        }
+        genericCodableRequest(value: User.self, url, method: .put,
+                              parameters: userParameters,
+                              encoding: JSONEncoding.default) { response in
+                                completion(response)
         }
     }
     
