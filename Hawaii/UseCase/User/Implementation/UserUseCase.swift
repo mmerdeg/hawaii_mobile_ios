@@ -9,21 +9,25 @@ protocol UserUseCaseProtocol {
     
     func getAll(completion: @escaping ([String: [User]], [String: Int], GenericResponse<[User]>) -> Void)
     
+    func getAllApprovers(completion: @escaping (GenericResponse<[User]>) -> Void)
+    
     func add(user: User, completion: @escaping (GenericResponse<User>) -> Void)
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
-    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void)
+    func update(user: User, completion: @escaping (GenericResponse<User>) -> Void)
     
     func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
     
-    func createUser(entity: User, completion: @escaping (Int) -> Void)
+    func create(entity: User, completion: @escaping (Int) -> Void)
+    
+    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func readUser(completion: @escaping (User?) -> Void)
 }
 
 class UserUseCase: UserUseCaseProtocol {
-
+    
     let userRepository: UserRepositoryProtocol?
     
     let userDao: UserDaoProtocol?
@@ -82,6 +86,21 @@ class UserUseCase: UserUseCaseProtocol {
         })
     }
     
+    func getAllApprovers(completion: @escaping (GenericResponse<[User]>) -> Void) {
+        guard let token = getToken() else {
+            completion(GenericResponse<[User]> (success: false, item: nil, statusCode: 401,
+                                                          error: nil,
+                                                          message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.getAll(token: token, completion: { response in
+            let userApprovers = response.item?.filter { $0.userRole == UserRole.hrManager.rawValue}
+            completion(GenericResponse<[User]> (success: response.success, item: userApprovers, statusCode: response.statusCode,
+                                                error: response.error,
+                                                message: response.message))
+        })
+    }
+    
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let token = getToken() else {
             completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
@@ -94,7 +113,7 @@ class UserUseCase: UserUseCaseProtocol {
         }
     }
     
-    func updateUser(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+    func update(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
         guard let token = getToken() else {
             completion(GenericResponse<User> (success: false, item: nil, statusCode: 401,
                                               error: nil,
@@ -106,10 +125,22 @@ class UserUseCase: UserUseCaseProtocol {
         })
     }
     
-    func createUser(entity: User, completion: @escaping (Int) -> Void) {
+    func create(entity: User, completion: @escaping (Int) -> Void) {
         userDao?.create(entity: entity) { id in
             completion(id)
         }
+    }
+    
+    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        guard let token = getToken() else {
+            completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                              error: nil,
+                                              message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
+        userRepository?.delete(token: token, user: user, completion: { response in
+            completion(response)
+        })
     }
     
     func readUser(completion: @escaping (User?) -> Void) {
@@ -119,11 +150,6 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Any> (success: false, item: nil,
-                                             statusCode: 403, error: nil, message: "Couldn't get access token"))
-            return
-        }
         if let firebaseToken = getFirebaseToken() {
             guard let token = getToken() else {
                 completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
@@ -184,4 +210,3 @@ class UserUseCase: UserUseCaseProtocol {
         return userDetailsUseCase?.getEmail() ?? ""
     }
 }
-

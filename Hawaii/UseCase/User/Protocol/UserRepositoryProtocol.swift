@@ -10,9 +10,14 @@ protocol UserRepositoryProtocol: GenericRepositoryProtocol {
     
     func getAll(token: String, completion: @escaping (GenericResponse<[User]>) -> Void)
     
+    func getAllApprovers(token: String, completion: @escaping (GenericResponse<[User]>) -> Void)
+    
     func update(token: String, user: User, completion: @escaping (GenericResponse<User>) -> Void)
+    
+    func delete(token: String, user: User, completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func setFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func deleteFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void)
+
 }

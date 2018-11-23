@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Codable {
+struct User: Codable, Hashable, CustomStringConvertible {
     
     let id: Int?
     let teamId: Int?
@@ -14,6 +14,9 @@ struct User: Codable {
     let active: Bool?
     let yearsOfService: Int?
     let allowances: [Allowance]?
+
+    
+    var description : String { return fullName ?? ""}
     
 }
 
@@ -36,11 +39,11 @@ extension User {
         self.allowances = allowances ?? user?.allowances
     }
     
-    init(user: User? = nil, values: [String: Any?], team: Team? = nil) {
+    init(user: User? = nil, values: [String: Any?], team: Team? = nil, leaveProfile: LeaveProfile? = nil) {
         self.id = user?.id
         self.teamId = team?.id ?? user?.teamId
         self.teamName = team?.name ?? user?.teamName
-        self.leaveProfileId = values["leaveProfile"] as? Int ?? user?.leaveProfileId
+        self.leaveProfileId = leaveProfile?.id ?? user?.leaveProfileId
         self.fullName = values["fullName"] as? String ?? user?.fullName
         self.email = values["email"] as? String ?? user?.email
         self.userRole = values["userRole"] as? String ?? user?.userRole
@@ -53,5 +56,9 @@ extension User {
     
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

@@ -15,7 +15,7 @@ class PublicHolidaysManagementViewController: BaseViewController {
     
     var publicHolidayUseCase: PublicHolidayUseCaseProtocol?
     
-    var holidays: [Date: [PublicHoliday]]?
+    var holidays: [Int: [PublicHoliday]]?
     
     let managePublicHolidaySegue = "managePublicHoliday"
     
@@ -47,6 +47,10 @@ class PublicHolidaysManagementViewController: BaseViewController {
         self.navigationItem.leftBarButtonItem = editBarItem
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fillData()
     }
     
@@ -145,6 +149,20 @@ extension PublicHolidaysManagementViewController: UITableViewDataSource, UITable
             AlertPresenter.showAlertWithAction(title: confirmationAlertTitle, message: approveAlertMessage, cancelable: true,
                                                viewController: self) { confirmed in
                                                 if confirmed {
+                                                    let selectedHoliday = Array(self.holidays ?? [:])[indexPath.section].value[indexPath.row]
+                                                    self.publicHolidayUseCase?.delete(holiday: selectedHoliday, completion: { response in
+                                                        guard let success = response?.success else {
+                                                            self.stopActivityIndicatorSpinner()
+                                                            return
+                                                        }
+                                                        if !success {
+                                                            self.stopActivityIndicatorSpinner()
+                                                            self.handleResponseFaliure(message: response?.message)
+                                                            return
+                                                        }
+                                                        
+                                                    })
+                                                    #warning("Dont forget to bring back")
                                                     var holidaysInSourceSection = Array(self.holidays ?? [:])[indexPath.section].value
                                                     let sourceSection = Array(self.holidays ?? [:])[indexPath.section].key
                                                     holidaysInSourceSection.remove(at: indexPath.row)

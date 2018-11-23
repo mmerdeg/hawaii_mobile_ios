@@ -14,15 +14,12 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         initializeGoogleSignIn()
     }
 
-    
-    #if PRODUCTION
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
             return
         }
-        guard let accessToken = user.authentication.accessToken,
-              let idToken = user.authentication.idToken,
+        guard let idToken = user.authentication.idToken,
               let userUseCase = userUseCase else {
                 return
         }
@@ -53,7 +50,7 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
                 self.stopActivityIndicatorSpinner()
                 return
             }
-            self.userUseCase?.createUser(entity: user, completion: { _ in
+            self.userUseCase?.create(entity: user, completion: { _ in
                 
                 self.userUseCase?.setFirebaseToken { firebaseResponse in
                     guard let firebaseResponseSuccess = firebaseResponse?.success else {
@@ -74,7 +71,6 @@ class SignInViewController: BaseViewController, GIDSignInDelegate, GIDSignInUIDe
         }
         
     }
-    #endif
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         stopActivityIndicatorSpinner()

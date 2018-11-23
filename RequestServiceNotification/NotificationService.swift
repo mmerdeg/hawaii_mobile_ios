@@ -19,7 +19,7 @@ class NotificationService: UNNotificationServiceExtension {
     
     let applicationTag = "com.hawaii.keys."
     
-    let requestUrl = "https://hawaii2.execom.eu/requests"
+    let requestUrl = ApiConstants.baseUrl + "/requests"
     
     let tokenKey = "token"
     

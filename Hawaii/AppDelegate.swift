@@ -143,7 +143,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             return
         }
         print(notification.request.content.userInfo)
-        if aps["category"] != nil {
+        if aps["category"] != nil && (aps["category"] as? String ?? "") == "requestNotification" {
                 let banner = NotificationBanner(title: title, subtitle: body, style: .info)
                 banner.show()
                 userDetailsUseCase?.setRefreshApproveScreen(true)
@@ -193,6 +193,7 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         userDetailsUseCase?.removeFirebaseToken()
         userDetailsUseCase?.setFirebaseToken(fcmToken)
+        print("Token aaaaaaa", fcmToken)
         guard let hasRunBefore = userDetailsUseCase?.hasRunBefore() else {
             return
         }
@@ -226,7 +227,7 @@ extension SwinjectStoryboard {
             let userRepository = UserRepository()
             let tableDataProviderRepository = TableDataProviderRepository()
             let teamRepository = TeamRepository()
-            
+            let leaveProfileRepository = LeaveProfileRepository()
             // UseCase
             
             let userDetailsUseCase = UserDetailsUseCase(userDetailsRepository: userDetailsRepository)
@@ -240,6 +241,10 @@ extension SwinjectStoryboard {
             
             defaultContainer.register(TeamRepositoryProtocol.self, name: String(describing: TeamRepositoryProtocol.self)) { _ in
                 teamRepository
+            }
+            
+            defaultContainer.register(LeaveProfileRepositoryProtocol.self, name: String(describing: LeaveProfileRepositoryProtocol.self)) { _ in
+                leaveProfileRepository
             }
             
             defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
@@ -317,6 +322,16 @@ extension SwinjectStoryboard {
                                                     teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
                                                                                      name: String(describing: TeamRepositoryProtocol.self))
                                                                                      ?? teamRepository)
+            }
+            
+            defaultContainer.register(LeaveProfileUseCaseProtocol.self,
+                                      name: String(describing: LeaveProfileUseCaseProtocol.self)) { resolver in
+                                        LeaveProfileUseCase(userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                                            ?? userDetailsUseCase,
+                                                            leaveProfileRepository: resolver.resolve(LeaveProfileRepositoryProtocol.self,
+                                                                                                            name: String(describing: LeaveProfileRepositoryProtocol.self))
+                                                ?? leaveProfileRepository)
             }
             
             // View Controller
@@ -429,11 +444,14 @@ extension SwinjectStoryboard {
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
                 controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
                                                           name: String(describing: TeamUseCaseProtocol.self))
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
+                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(TeamManagementViewController.self) { resolver, controller in
                 controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
                                                           name: String(describing: TeamUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(PublicHolidayManagementViewController.self) { resolver, controller in

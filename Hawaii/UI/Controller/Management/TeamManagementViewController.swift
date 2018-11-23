@@ -13,9 +13,17 @@ class TeamManagementViewController: FormViewController {
     
     var teamUseCase: TeamUseCaseProtocol?
     
+    var userUseCase: UserUseCaseProtocol?
+    
     var team: Team?
     
+    var selectedTeamApprovers: [User]?
+    
+    var approvers: [User]?
+    
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
+    
+    let showApprovePickerSegue = "showApprovePicker"
     
     lazy var doneBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneEditing))
@@ -25,6 +33,7 @@ class TeamManagementViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedTeamApprovers = team?.users
         self.tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
         form +++ Section("Basic Info")
@@ -32,7 +41,8 @@ class TeamManagementViewController: FormViewController {
                 row.title = "Team name"
                 row.placeholder = "Enter team name"
                 row.value = team?.name
-                
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
@@ -48,6 +58,8 @@ class TeamManagementViewController: FormViewController {
                 row.title = "Email "
                 row.placeholder = "Enter email here"
                 row.value = team?.emails
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
@@ -71,6 +83,43 @@ class TeamManagementViewController: FormViewController {
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             }.cellUpdate { cell, _ in
                     cell.textLabel?.textColor = UIColor.primaryTextColor
+            }
+        
+            <<< MultipleSelectorRow<User>("teamApprover") {
+                $0.title = "Pick team approver"
+                $0.value = Set(selectedTeamApprovers ?? [])
+                $0.optionsProvider = .lazy({ form, completion in
+                    let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                    form.tableView.backgroundView = activityView
+                    activityView.startAnimating()
+                    self.userUseCase?.getAllApprovers(completion: { response in
+                        guard let success = response.success else {
+                            return
+                        }
+                        if !success {
+                            return
+                        }
+                        self.approvers = response.item
+                        form.tableView.backgroundView = nil
+                        completion(self.approvers)
+                    })
+                    
+                })
+                $0.displayValueFor = { set in
+                        return set?.array.map { $0.fullName ?? "" }.sorted().joined(separator: ", ")
+                }
+            }.onPresent { from, to in
+                to.sectionKeyForValue = { $0.fullName?.first?.description ?? ""}
+                    from.tableView.backgroundColor = UIColor.primaryColor
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from,
+                                                                           action: #selector(self.multipleSelectorDone))
+            }.cellSetup { cell, _ in
+                    cell.backgroundColor = UIColor.primaryColor
+                    cell.textLabel?.textColor = UIColor.primaryTextColor
+            }.cellUpdate { cell, row in
+                    cell.backgroundColor = UIColor.primaryColor
+                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                self.selectedTeamApprovers = row.value?.array
             }
         
     }
@@ -135,5 +184,16 @@ class TeamManagementViewController: FormViewController {
         AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: message ?? "",
                                            viewController: self, completion: { _ in
         })
+    }
+    
+    @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+
+}
+
+extension Set {
+    var array: [Element] {
+        return Array(self)
     }
 }

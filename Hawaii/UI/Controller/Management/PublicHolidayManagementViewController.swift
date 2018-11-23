@@ -32,20 +32,24 @@ class PublicHolidayManagementViewController: FormViewController {
                 row.title = "Holiday name"
                 row.placeholder = "Enter holiday name"
                 row.value = holiday?.name
+                row.add(rule: RuleRequired())
+                row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, textRow in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
                     textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
                     cell.backgroundColor = UIColor.primaryColor
-            }).cellUpdate({ cell, textRow in
+            }).cellUpdate({ cell, row in
                     cell.titleLabel?.textColor = UIColor.primaryTextColor
                     cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
+                    row.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
                     cell.backgroundColor = UIColor.primaryColor
             })
             <<< DateRow("date") {
                 $0.title = "Holiday date"
-                $0.value = holiday?.date
+                $0.value = holiday?.date ?? Date()
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
             }.cellSetup({ cell, _ in
                     cell.textLabel?.textColor = UIColor.primaryTextColor
                     cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
@@ -105,6 +109,8 @@ class PublicHolidayManagementViewController: FormViewController {
                     self.popViewController()
                 })
             }
+        } else {
+            
         }
     }
     

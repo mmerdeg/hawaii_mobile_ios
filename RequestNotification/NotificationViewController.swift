@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
+import Kingfisher
 import Alamofire
 import CodableAlamofire
 import ECFoundationiOS
@@ -34,9 +35,9 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     var request: Request?
     
-    let baseUrl = "https://hawaii2.execom.eu"
+    let baseUrl = ApiConstants.baseUrl
     
-    let requestsUrl = "https://hawaii2.execom.eu/requests"
+    let requestsUrl =  ApiConstants.baseUrl + "/requests"
     
     let applicationTag = "com.hawaii.keys."
     
