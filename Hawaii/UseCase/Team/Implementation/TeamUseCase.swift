@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TeamUseCaseProtocol {
-    func getTeams(completion: @escaping (GenericResponse<[Team]>?) -> Void)
+    func get(completion: @escaping (GenericResponse<[Team]>?) -> Void)
     
     func add(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
     
@@ -30,14 +30,14 @@ class TeamUseCase: TeamUseCaseProtocol {
         self.teamRepository = teamRepository
     }
     
-    func getTeams(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
+    func get(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
         guard let token = getToken() else {
             completion(GenericResponse<[Team]>(success: false, item: nil, statusCode: 401,
                                                error: nil,
                                                message: LocalizedKeys.General.emptyToken.localized()))
             return
         }
-        teamRepository?.getTeams(token: token, completion: { response in
+        teamRepository?.get(token: token, completion: { response in
             completion(response)
         })
     }

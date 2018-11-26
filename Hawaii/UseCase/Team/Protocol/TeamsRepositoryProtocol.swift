@@ -10,7 +10,7 @@ import Foundation
 
 protocol TeamRepositoryProtocol: GenericRepositoryProtocol {
     
-    func getTeams(token: String, completion: @escaping (GenericResponse<[Team]>?) -> Void)
+    func get(token: String, completion: @escaping (GenericResponse<[Team]>?) -> Void)
     
     func add(token: String, team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
     

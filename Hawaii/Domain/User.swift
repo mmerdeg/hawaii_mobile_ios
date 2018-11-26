@@ -14,10 +14,7 @@ struct User: Codable, Hashable, CustomStringConvertible {
     let active: Bool?
     let yearsOfService: Int?
     let allowances: [Allowance]?
-
-    
     var description : String { return fullName ?? ""}
-    
 }
 
 extension User {

@@ -39,7 +39,7 @@ class UserManagementViewController: FormViewController {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.black
         self.navigationItem.rightBarButtonItem = doneBarItem
-        self.teamUseCase?.getTeams(completion: { response in
+        self.teamUseCase?.get(completion: { response in
             guard let success = response?.success else {
                 return
             }

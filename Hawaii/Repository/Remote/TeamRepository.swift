@@ -14,7 +14,7 @@ class TeamRepository: TeamRepositoryProtocol {
     
     let teamsUrl = ApiConstants.baseUrl + "/teams"
     
-    func getTeams(token: String, completion: @escaping (GenericResponse<[Team]>?) -> Void) {
+    func get(token: String, completion: @escaping (GenericResponse<[Team]>?) -> Void) {
         guard let url = URL(string: teamsUrl) else {
             return
         }

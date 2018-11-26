@@ -59,7 +59,7 @@ class TeamsManagementViewController: BaseViewController {
     
     func fillData() {
         startActivityIndicatorSpinner()
-        self.teamUseCase?.getTeams(completion: { response in
+        self.teamUseCase?.get(completion: { response in
             guard let success = response?.success else {
                 self.stopActivityIndicatorSpinner()
                 return

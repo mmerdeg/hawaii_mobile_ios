@@ -14,11 +14,11 @@ class UsersManagementViewController: BaseViewController {
     
     var userUseCase: UserUseCaseProtocol?
     
+    var teamUseCase: TeamUseCaseProtocol?
+    
     weak var delegate: RequestDetailsDialogProtocol?
     
-    var users: [String: [User]]?
-    
-    var usersById: [String: Int]?
+    var usersByTeam: [Team]?
     
     let manageUserSegue = "manageUser"
     
@@ -86,7 +86,7 @@ class UsersManagementViewController: BaseViewController {
 
     func fillData() {
         startActivityIndicatorSpinner()
-        self.userUseCase?.getAll(completion: { users, usersById, response  in
+        self.teamUseCase?.getAll(completion: { users, usersById, response  in
             guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()
                 return
@@ -96,8 +96,7 @@ class UsersManagementViewController: BaseViewController {
                 self.handleResponseFaliure(message: response.message)
                 return
             }
-            self.users = users
-            self.usersById = usersById
+            self.usersByTeam = users
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
