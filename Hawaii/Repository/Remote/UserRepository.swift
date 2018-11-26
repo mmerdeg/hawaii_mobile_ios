@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import CodableAlamofire
 
-class UserRepository: UserRepositoryProtocol {
+class UserRepository: SessionManager, UserRepositoryProtocol {
     
     let signInUrl = ApiConstants.baseUrl + "/signin"
     
@@ -23,7 +23,7 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params).validate()
+        session.request(url, method: HTTPMethod.get, parameters: params).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
                     completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
@@ -68,7 +68,6 @@ class UserRepository: UserRepositoryProtocol {
             completion(response)
         }
     }
-    
     
     func add(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
         guard let url = URL(string: getUserUrl),

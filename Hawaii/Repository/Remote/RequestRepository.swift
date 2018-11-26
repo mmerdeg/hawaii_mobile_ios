@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class RequestRepository: RequestRepositoryProtocol {
+class RequestRepository: SessionManager, RequestRepositoryProtocol {
     
     var requests: [Request]!
     
