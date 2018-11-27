@@ -57,19 +57,21 @@ class SignInUseCase: NSObject, SignInUseCaseProtocol {
         let oldToken = userDetailsUseCase?.getToken()
         
         userDetailsUseCase?.setToken(token: idToken)
-
-        if let refreshTokenGroup = refreshTokenGroup {
-            refreshTokenGroup.leave()
-        }
         
         let dimension = round(100 * UIScreen.main.scale)
         if let picture = user.profile.imageURL(withDimension: UInt(dimension)) {
             userDetailsUseCase?.setPictureUrl(picture.absoluteString)
         }
         
-        if oldToken == nil || !TokenUtils.isTokenExpired(token: oldToken) {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationNames.signedIn),
-                                            object: nil, userInfo: nil)
+        let isSilentSignIn = oldToken != nil && TokenUtils.isTokenExpired(token: oldToken)
+       
+        if isSilentSignIn {
+            if let refreshTokenGroup = refreshTokenGroup {
+                refreshTokenGroup.leave()
+            }
+            return
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationNames.signedIn),
+                                        object: nil, userInfo: nil)
     }
 }
