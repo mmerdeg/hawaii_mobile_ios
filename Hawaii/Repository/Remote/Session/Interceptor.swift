@@ -35,9 +35,9 @@ class Interceptor: InterceptorProtocol {
             return nil
         }
         
-//        if !TokenUtils.isTokenExpired(token: token) {
-//            return token
-//        }
+        if !TokenUtils.isTokenExpired(token: token) {
+            return token
+        }
         
         signInUseCase.refreshToken()
         
