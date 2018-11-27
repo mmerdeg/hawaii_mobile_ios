@@ -50,7 +50,7 @@ class Interceptor: InterceptorProtocol {
         }
         print("""
             *******************************
-            REQUEST
+            REQUEST (\(Date()))
             URL: \(String(describing: url))
             METHOD: \(String(describing: urlRequest.httpMethod ?? ""))
             BODY: \(NSString(data: urlRequest.httpBody ?? Data(), encoding: String.Encoding.utf8.rawValue) ?? "")
