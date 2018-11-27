@@ -1,12 +1,15 @@
 import Foundation
 import Alamofire
+import SwinjectStoryboard
 
 class SessionManager: GenericRepositoryProtocol {
     
     let session = Alamofire.SessionManager.default
+    let queue = DispatchQueue(label: "background", qos: .background, attributes: .concurrent)
 
     init() {
-        session.adapter = Interceptor()
+        session.adapter = SwinjectStoryboard.defaultContainer.resolve(InterceptorProtocol.self,
+                                                                          name: String(describing: InterceptorProtocol.self))
     }
     
     func genericCodableRequest<T: Codable >(value: T.Type, _ url: URL, method: HTTPMethod = .get,
@@ -36,10 +39,13 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        session.request(url, method: method, parameters: parameters,
-                                            encoding: encoding).validate().responseDecodableObject(keyPath: nil,
-                                                                                                   decoder: codableDecoder ?? getDecoder(),
-                                                                                                   completionHandler: completionHandler)
+        queue.async {
+            self.session.request(url, method: method, parameters: parameters,
+                            encoding: encoding).validate().responseDecodableObject(keyPath: nil,
+                                                                                   decoder: codableDecoder ?? self.getDecoder(),
+                                                                                   completionHandler: completionHandler)
+        }
+       
     }
     
     func genericStringRequest(_ url: URL, method: HTTPMethod,
@@ -69,9 +75,10 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        session.request(url, method: method, parameters: parameters,
+        queue.async {
+        self.session.request(url, method: method, parameters: parameters,
                                             encoding: encoding).validate().responseString(completionHandler: completionHandler)
-        
+        }
     }
     
     func genericJSONRequest(_ url: URL, method: HTTPMethod,
@@ -101,8 +108,10 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        session.request(url, method: method, parameters: parameters,
+        queue.async {
+        self.session.request(url, method: method, parameters: parameters,
                                             encoding: encoding).validate().responseJSON(completionHandler: completionHandler)
+        }
     }
     
     func getDecoder() -> JSONDecoder {

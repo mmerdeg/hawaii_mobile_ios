@@ -4,7 +4,17 @@ import GoogleSignIn
 import SwinjectStoryboard
 import Swinject
 
-class Interceptor: RequestAdapter {
+protocol InterceptorProtocol: RequestAdapter {
+    func getValidToken() -> String?
+}
+
+class Interceptor: InterceptorProtocol {
+    
+    var signInUseCase: SignInUseCaseProtocol?
+    
+    init(signInUseCase: SignInUseCaseProtocol) {
+        self.signInUseCase = signInUseCase
+    }
     
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
@@ -20,15 +30,17 @@ class Interceptor: RequestAdapter {
         let userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
                                                                          name: String(describing: UserDetailsUseCaseProtocol.self))
         
-        guard let token = userDetailsUseCase?.getToken() else {
+        guard let token = userDetailsUseCase?.getToken(),
+            let signInUseCase = signInUseCase else {
             return nil
         }
         
-        if !TokenUtils.isTokenExpired(token: token) {
-            return token
-        }
+//        if !TokenUtils.isTokenExpired(token: token) {
+//            return token
+//        }
         
-        GIDSignIn.sharedInstance()?.signInSilently()
+        signInUseCase.refreshToken()
+        
         return userDetailsUseCase?.getToken()
     }
     

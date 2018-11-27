@@ -335,8 +335,6 @@
 		3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */; };
 		3E60E75B21A8299700EFE824 /* MessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */; };
 		3E60E75C21A8299700EFE824 /* MessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */; };
-		3E60E75E21A829FE00EFE824 /* SignInDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75D21A829FE00EFE824 /* SignInDelegate.swift */; };
-		3E60E75F21A829FE00EFE824 /* SignInDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75D21A829FE00EFE824 /* SignInDelegate.swift */; };
 		3E60E76121A82F8F00EFE824 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */; };
 		3E60E76221A82F8F00EFE824 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */; };
 		3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
@@ -379,6 +377,8 @@
 		3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5644120CA69EA00501CAC /* LaunchScreen.storyboard */; };
 		3EB5644E20CA69EA00501CAC /* HawaiiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5644D20CA69EA00501CAC /* HawaiiTests.swift */; };
 		3EB5645920CA69EA00501CAC /* HawaiiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5645820CA69EA00501CAC /* HawaiiUITests.swift */; };
+		3EBC9EB321AC157F002937E5 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBC9EB221AC157F002937E5 /* SignInUseCase.swift */; };
+		3EBC9EB421AC16F5002937E5 /* SignInUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBC9EB221AC157F002937E5 /* SignInUseCase.swift */; };
 		3EBD33F721061C9F00EAFE69 /* UserDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */; };
 		3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */; };
 		3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */; };
@@ -673,7 +673,6 @@
 		3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainigDaysViewController.swift; sourceTree = "<group>"; };
 		3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUpdateProtocol.swift; sourceTree = "<group>"; };
 		3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingDelegate.swift; sourceTree = "<group>"; };
-		3E60E75D21A829FE00EFE824 /* SignInDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDelegate.swift; sourceTree = "<group>"; };
 		3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateFormatter.swift; sourceTree = "<group>"; };
 		3E6EBC5021904E100043EDBD /* CalendarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
@@ -707,6 +706,7 @@
 		3EB5645420CA69EA00501CAC /* HawaiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HawaiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB5645820CA69EA00501CAC /* HawaiiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HawaiiUITests.swift; sourceTree = "<group>"; };
 		3EB5645A20CA69EA00501CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EBC9EB221AC157F002937E5 /* SignInUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCase.swift; sourceTree = "<group>"; };
 		3EBD33F621061C9F00EAFE69 /* UserDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepository.swift; sourceTree = "<group>"; };
 		3EBD33FC21061D2F00EAFE69 /* UserDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsUseCase.swift; sourceTree = "<group>"; };
 		3EBD33FE21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -1255,6 +1255,7 @@
 		3E42592020E259AC00F22BBD /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				3EBC9EAE21AC1573002937E5 /* SignIn */,
 				302A589621A69DCA000778C6 /* LeaveProfile */,
 				30092B58219EF92200244F09 /* Team */,
 				3E35CA9A215E14C60042E65A /* User */,
@@ -1341,7 +1342,6 @@
 			isa = PBXGroup;
 			children = (
 				3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */,
-				3E60E75D21A829FE00EFE824 /* SignInDelegate.swift */,
 				3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */,
 			);
 			path = Delegate;
@@ -1611,7 +1611,6 @@
 				3E72644F20EA1CE100DC7240 /* Utility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
 				3E28E78520E3774500F1C6D5 /* Storyboard */,
-				3E42592B20E26A0700F22BBD /* Extension */,
 				3E236F2A20D7CCCE006AEF29 /* Cell */,
 				3EB5646720CA909800501CAC /* Controller */,
 			);
@@ -1621,6 +1620,7 @@
 		3EB5646720CA909800501CAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E42592B20E26A0700F22BBD /* Extension */,
 				30092B35219EBA9B00244F09 /* Management */,
 				3E80631C21875442009224BD /* Base */,
 				3E72645220EA294E00DC7240 /* Component */,
@@ -1634,6 +1634,14 @@
 				309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3EBC9EAE21AC1573002937E5 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				3EBC9EB221AC157F002937E5 /* SignInUseCase.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		3EBD33F921061CFB00EAFE69 /* UserDetails */ = {
@@ -2512,6 +2520,7 @@
 				30FD369A214A5E530047038C /* NewRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
 				3E80631121873600009224BD /* DateStringConverter.swift in Sources */,
+				3EBC9EB421AC16F5002937E5 /* SignInUseCase.swift in Sources */,
 				302A589E21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */,
 				30FD369D214A5E530047038C /* Allowance.swift in Sources */,
@@ -2569,7 +2578,6 @@
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
 				30FD36BD214A5E530047038C /* DashboardViewController.swift in Sources */,
-				3E60E75F21A829FE00EFE824 /* SignInDelegate.swift in Sources */,
 				30FD36BF214A5E530047038C /* SearchRequestsViewController.swift in Sources */,
 				3E2D45B3216223C0002A512C /* DatabaseInitializer.swift in Sources */,
 				30FD36C0214A5E530047038C /* UserPreviewTableViewCell.swift in Sources */,
@@ -2637,6 +2645,7 @@
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				306F1C8B21A2A7D900E2D27B /* TeamTableViewCell.swift in Sources */,
+				3EBC9EB321AC157F002937E5 /* SignInUseCase.swift in Sources */,
 				30092B4D219EF54C00244F09 /* TeamManagementViewController.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
 				3EBD33FF21061D5500EAFE69 /* UserDetailsRepositoryProtocol.swift in Sources */,
@@ -2704,7 +2713,6 @@
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
 				3E28E79120E3876D00F1C6D5 /* RequestDetailsViewController.swift in Sources */,
-				3E60E75E21A829FE00EFE824 /* SignInDelegate.swift in Sources */,
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */,

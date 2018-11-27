@@ -15,30 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var userDetailsUseCase: UserDetailsUseCaseProtocol?
     
-    var isFirebaseInitialized = false
+    var signInUseCase: SignInUseCaseProtocol?
     
-    #if PRODUCTION
-    let clientId = "91011414864-fse65f2pje2rgmobdqu8n67ld8pk6mhr.apps.googleusercontent.com"
-    #else
-    let clientId = "91011414864-9igmd38tpgbklpgkdpcogh9j6h7e2rt9.apps.googleusercontent.com"
-    #endif
+    var isFirebaseInitialized = false
     
     let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions
         launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        GIDSignIn.sharedInstance().clientID = clientId
-        GIDSignIn.sharedInstance().shouldFetchBasicProfile = true
-        GIDSignIn.sharedInstance().delegate = self
         
         let container = SwinjectStoryboard.defaultContainer
         
         userUseCase = container.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
         userDetailsUseCase = container.resolve(UserDetailsUseCaseProtocol.self,
                                               name: String(describing: UserDetailsUseCaseProtocol.self))
+        signInUseCase = container.resolve(SignInUseCaseProtocol.self, name: String(describing: SignInUseCaseProtocol.self))
+        
         StyleSetup.setStyles()
         FirebaseApp.configure()
+        signInUseCase?.initGoogleSignIn()
         
         Messaging.messaging().delegate = self
 
@@ -138,20 +133,57 @@ extension SwinjectStoryboard {
         
         DatabaseInitializer().initialize { databaseQueue, dispatchQueue in
             
+            // Mandatory registration order section
+            
+            let keyChainRepository = KeyChainRepository()
+            let userDetailsRepository = UserDetailsRepository(keyChainRepository: keyChainRepository)
+          
+            let userDetailsUseCase = UserDetailsUseCase(userDetailsRepository: userDetailsRepository)
+            
+            let refreshTokenGroup = DispatchGroup()
+            let signInUseCase = SignInUseCase(userDetailsUseCase: userDetailsUseCase, refreshTokenGroup: refreshTokenGroup)
+            
+            defaultContainer.register(KeyChainRepositoryProtocol.self, name: String(describing: KeyChainRepositoryProtocol.self)) { _ in
+                keyChainRepository
+            }
+            
+            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { resolver in
+                UserDetailsRepository(
+                    keyChainRepository: resolver.resolve(KeyChainRepositoryProtocol.self,
+                                                         name: String(describing: KeyChainRepositoryProtocol.self)) ?? keyChainRepository)
+            }
+            
+            defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
+                UserDetailsUseCase(
+                    userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
+                                                            name: String(describing: UserDetailsRepositoryProtocol.self)) ?? userDetailsRepository)
+            }
+            
+            defaultContainer.register(SignInUseCaseProtocol.self, name: String(describing: SignInUseCaseProtocol.self)) { resolver in
+                SignInUseCase(
+                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
+                                                         name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase,
+                    refreshTokenGroup: refreshTokenGroup)
+            }
+            
+            defaultContainer.register(InterceptorProtocol.self, name: String(describing: InterceptorProtocol.self)) { resolver in
+                Interceptor(
+                    signInUseCase: resolver.resolve(SignInUseCaseProtocol.self,
+                                                    name: String(describing: SignInUseCaseProtocol.self)) ?? signInUseCase)
+            }
+            
             // Repository
             
             let userDao = UserDao(dispatchQueue: dispatchQueue, databaseQueue: databaseQueue)
             let requestRepository = RequestRepository()
             let publicHolidayRepository = PublicHolidayRepository()
-            let keyChainRepository = KeyChainRepository()
-            let userDetailsRepository = UserDetailsRepository(keyChainRepository: keyChainRepository)
             let userRepository = UserRepository()
             let tableDataProviderRepository = TableDataProviderRepository()
             let teamRepository = TeamRepository()
             let leaveProfileRepository = LeaveProfileRepository()
+            
             // UseCase
             
-            let userDetailsUseCase = UserDetailsUseCase(userDetailsRepository: userDetailsRepository)
             let userUseCase = UserUseCase(userRepository: userRepository, userDao: userDao, userDetailsUseCase: userDetailsUseCase)
             
             // Repository registration
@@ -171,22 +203,17 @@ extension SwinjectStoryboard {
             defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
                 requestRepository
             }
+            
             defaultContainer.register(PublicHolidayRepositoryProtocol.self, name: String(describing: PublicHolidayRepositoryProtocol.self)) { _ in
                 publicHolidayRepository
             }
+            
             defaultContainer.register(UserRepositoryProtocol.self, name: String(describing: UserRepositoryProtocol.self)) { _ in
                 userRepository
             }
+            
             defaultContainer.register(TableDataProviderRepository.self, name: String(describing: TableDataProviderRepositoryProtocol.self)) { _ in
                 tableDataProviderRepository
-            }
-            defaultContainer.register(KeyChainRepositoryProtocol.self, name: String(describing: KeyChainRepositoryProtocol.self)) { _ in
-                keyChainRepository
-            }
-            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { resolver in
-                UserDetailsRepository(
-                    keyChainRepository: resolver.resolve(KeyChainRepositoryProtocol.self,
-                                        name: String(describing: KeyChainRepositoryProtocol.self)) ?? keyChainRepository)
             }
             
             // UseCase registration
@@ -215,32 +242,23 @@ extension SwinjectStoryboard {
                                  name: String(describing: UserUseCaseProtocol.self)) ?? userUseCase)
             }
             
-            defaultContainer.register(TableDataProviderUseCaseProtocol.self,
-                                      name: String(describing: TableDataProviderUseCaseProtocol.self)) { resolver in
+            defaultContainer.register(TableDataProviderUseCaseProtocol.self, name: String(describing: TableDataProviderUseCaseProtocol.self))
+            { resolver in
                 TableDataProviderUseCase(
                     tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                                  name: String(describing: TableDataProviderRepositoryProtocol.self))
-                                                                  ?? tableDataProviderRepository)
+                                                 name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository)
             }
             
-            defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
-                UserDetailsUseCase(
-                    userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
-                                           name: String(describing: UserDetailsRepositoryProtocol.self)) ?? userDetailsRepository)
+            defaultContainer.register(TeamUseCaseProtocol.self, name: String(describing: TeamUseCaseProtocol.self)) { resolver in
+                TeamUseCase(
+                    teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
+                                    name: String(describing: TeamRepositoryProtocol.self)) ?? teamRepository)
             }
             
-            defaultContainer.register(TeamUseCaseProtocol.self,
-                                      name: String(describing: TeamUseCaseProtocol.self)) { resolver in
-                                        TeamUseCase(teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
-                                                                                     name: String(describing: TeamRepositoryProtocol.self))
-                                                                                     ?? teamRepository)
-            }
-            
-            defaultContainer.register(LeaveProfileUseCaseProtocol.self,
-                                      name: String(describing: LeaveProfileUseCaseProtocol.self)) { resolver in
-                                        LeaveProfileUseCase(leaveProfileRepository: resolver.resolve(LeaveProfileRepositoryProtocol.self,
-                                                                                                            name: String(describing: LeaveProfileRepositoryProtocol.self))
-                                                ?? leaveProfileRepository)
+            defaultContainer.register(LeaveProfileUseCaseProtocol.self, name: String(describing: LeaveProfileUseCaseProtocol.self)) { resolver in
+                LeaveProfileUseCase(
+                    leaveProfileRepository: resolver.resolve(LeaveProfileRepositoryProtocol.self,
+                                            name: String(describing: LeaveProfileRepositoryProtocol.self)) ?? leaveProfileRepository)
             }
             
             // View Controller
