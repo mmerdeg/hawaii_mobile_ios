@@ -60,8 +60,10 @@ class TableDataProviderRepository: SessionManager, TableDataProviderRepositoryPr
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
-        session.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-            completion(response.result.value ?? [])
+        DispatchQueue.global(qos: .background).async {
+            self.session.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
+                completion(response.result.value ?? [])
+            }
         }
     }
     

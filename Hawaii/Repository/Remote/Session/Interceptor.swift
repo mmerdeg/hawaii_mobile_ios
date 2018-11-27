@@ -18,7 +18,7 @@ class Interceptor: InterceptorProtocol {
     
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
-        
+
         let token = getValidToken()
         urlRequest.setValue(token, forHTTPHeaderField: ApiConstants.authHeader)
         

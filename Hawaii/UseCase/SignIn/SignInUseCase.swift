@@ -44,7 +44,7 @@ class SignInUseCase: NSObject, SignInUseCaseProtocol {
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print(OperationQueue.current?.underlyingQueue?.label ?? "None")
+
         if let error = error {
             print(error.localizedDescription)
             return

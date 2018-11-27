@@ -74,9 +74,11 @@ class NotificationService: UNNotificationServiceExtension {
                                                      message: response.error?.localizedDescription))
             }
         }
-        Alamofire.request(url, method: .get, headers: getHeaders(token: token)).validate().responseDecodableObject(keyPath: nil,
-                                                                                                                   decoder: getDecoder(),
-                                                                                                                   completionHandler: completionHandler)
+        DispatchQueue.global(qos: .background).async {
+            Alamofire.request(url, method: .get, headers: self.getHeaders(token: token)).validate().responseDecodableObject(keyPath: nil,
+                                                                                                                       decoder: self.getDecoder(),
+                                                                                                                       completionHandler: completionHandler)
+        }
     }
     
     func convertDateString(dateString: String, fromFormat sourceFormat: String, toFormat desFormat: String) -> String {

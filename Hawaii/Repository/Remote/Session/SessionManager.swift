@@ -39,7 +39,7 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        queue.async {
+        DispatchQueue.global(qos: .background).async {
             self.session.request(url, method: method, parameters: parameters,
                             encoding: encoding).validate().responseDecodableObject(keyPath: nil,
                                                                                    decoder: codableDecoder ?? self.getDecoder(),
@@ -75,8 +75,8 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        queue.async {
-        self.session.request(url, method: method, parameters: parameters,
+        DispatchQueue.global(qos: .background).async {
+            self.session.request(url, method: method, parameters: parameters,
                                             encoding: encoding).validate().responseString(completionHandler: completionHandler)
         }
     }
@@ -108,8 +108,8 @@ class SessionManager: GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        queue.async {
-        self.session.request(url, method: method, parameters: parameters,
+        DispatchQueue.global(qos: .background).async {
+            self.session.request(url, method: method, parameters: parameters,
                                             encoding: encoding).validate().responseJSON(completionHandler: completionHandler)
         }
     }

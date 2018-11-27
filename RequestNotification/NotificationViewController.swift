@@ -173,12 +173,14 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                                                      message: response.error?.localizedDescription))
             }
         }
-        Alamofire.request(url, method: .put,
-                          parameters: requestParameters,
-                          encoding: JSONEncoding.default,
-                          headers: getHeaders(token: token)).validate().responseDecodableObject(keyPath: nil,
-                                                                                                decoder: getDecoder(),
-                                                                                                completionHandler: completionHandler)
+        DispatchQueue.global(qos: .background).async {
+            Alamofire.request(url, method: .put,
+                              parameters: requestParameters,
+                              encoding: JSONEncoding.default,
+                              headers: self.getHeaders(token: token)).validate().responseDecodableObject(keyPath: nil,
+                                                                                                    decoder: self.getDecoder(),
+                                                                                                    completionHandler: completionHandler)
+        }
     }
     
     func getHeaders(token: String) -> HTTPHeaders {
