@@ -22,6 +22,8 @@ class Interceptor: InterceptorProtocol {
         let token = getValidToken()
         urlRequest.setValue(token, forHTTPHeaderField: ApiConstants.authHeader)
         
+        printRequest(urlRequest: urlRequest)
+        
         return urlRequest
     }
     
@@ -29,7 +31,6 @@ class Interceptor: InterceptorProtocol {
         
         let userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
                                                                          name: String(describing: UserDetailsUseCaseProtocol.self))
-        
         guard let token = userDetailsUseCase?.getToken(),
             let signInUseCase = signInUseCase else {
             return nil
@@ -38,10 +39,24 @@ class Interceptor: InterceptorProtocol {
         if !TokenUtils.isTokenExpired(token: token) {
             return token
         }
-        
         signInUseCase.refreshToken()
         
         return userDetailsUseCase?.getToken()
     }
     
+    func printRequest(urlRequest: URLRequest) {
+        guard let url = urlRequest.url else {
+            return
+        }
+        print("""
+            *******************************
+            REQUEST
+            URL: \(String(describing: url))
+            METHOD: \(String(describing: urlRequest.httpMethod ?? ""))
+            BODY: \(NSString(data: urlRequest.httpBody ?? Data(), encoding: String.Encoding.utf8.rawValue) ?? "")
+            HEADERS: \(urlRequest.allHTTPHeaderFields ?? [:])
+            *******************************\n
+            """
+        )
+    }
 }

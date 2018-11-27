@@ -5,7 +5,6 @@ import SwinjectStoryboard
 class SessionManager: GenericRepositoryProtocol {
     
     let session = Alamofire.SessionManager.default
-    let queue = DispatchQueue(label: "background", qos: .background, attributes: .concurrent)
 
     init() {
         session.adapter = SwinjectStoryboard.defaultContainer.resolve(InterceptorProtocol.self,
@@ -29,19 +28,9 @@ class SessionManager: GenericRepositoryProtocol {
             }
         }
         
-        print("""
-            *******************************
-            REQUEST
-            URL: \(url)
-            METHOD: \(method.rawValue)
-            HEADERS: \(headers ?? [:])
-            BODY: \(parameters ?? [:])
-            *******************************\n
-            """
-        )
         DispatchQueue.global(qos: .background).async {
             self.session.request(url, method: method, parameters: parameters,
-                            encoding: encoding).validate().responseDecodableObject(keyPath: nil,
+                            encoding: encoding, headers: headers).validate().responseDecodableObject(keyPath: nil,
                                                                                    decoder: codableDecoder ?? self.getDecoder(),
                                                                                    completionHandler: completionHandler)
         }
@@ -65,19 +54,10 @@ class SessionManager: GenericRepositoryProtocol {
                                                     message: response.error?.localizedDescription))
             }
         }
-        print("""
-            *******************************
-            REQUEST
-            URL: \(url)
-            METHOD: \(method.rawValue)
-            HEADERS: \(headers ?? [:])
-            BODY: \(parameters ?? [:])
-            *******************************\n
-            """
-        )
+
         DispatchQueue.global(qos: .background).async {
             self.session.request(url, method: method, parameters: parameters,
-                                            encoding: encoding).validate().responseString(completionHandler: completionHandler)
+                                 encoding: encoding, headers: headers).validate().responseString(completionHandler: completionHandler)
         }
     }
     
@@ -98,19 +78,10 @@ class SessionManager: GenericRepositoryProtocol {
                                                  message: response.error?.localizedDescription))
             }
         }
-        print("""
-            *******************************
-            REQUEST
-            URL: \(url)
-            METHOD: \(method.rawValue)
-            HEADERS: \(headers ?? [:])
-            BODY: \(parameters ?? [:])
-            *******************************\n
-            """
-        )
+
         DispatchQueue.global(qos: .background).async {
             self.session.request(url, method: method, parameters: parameters,
-                                            encoding: encoding).validate().responseJSON(completionHandler: completionHandler)
+                                            encoding: encoding, headers: headers).validate().responseJSON(completionHandler: completionHandler)
         }
     }
     
