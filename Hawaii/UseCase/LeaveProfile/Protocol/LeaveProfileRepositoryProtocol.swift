@@ -1,14 +1,6 @@
-//
-//  LeaveProfileRepositoryProtocol.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 11/22/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 
-protocol LeaveProfileRepositoryProtocol: GenericRepositoryProtocol {
+protocol LeaveProfileRepositoryProtocol {
     
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
     

@@ -1,16 +1,8 @@
-//
-//  LeaveProfileRepository.swift
-//  Hawaii
-//
-//  Created by Ivan Divljak on 11/22/18.
-//  Copyright © 2018 Server. All rights reserved.
-//
-
 import Foundation
 import CodableAlamofire
 import Alamofire
 
-class LeaveProfileRepository: LeaveProfileRepositoryProtocol {
+class LeaveProfileRepository: SessionManager, LeaveProfileRepositoryProtocol {
     
     let leaveProfileUrl = ApiConstants.baseUrl + "/leaveprofiles"
     

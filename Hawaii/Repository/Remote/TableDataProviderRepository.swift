@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
+class TableDataProviderRepository: SessionManager, TableDataProviderRepositoryProtocol {
     
     let leaveTypesUrl = ApiConstants.baseUrl  + "/leavetypes"
     
@@ -60,8 +60,10 @@ class TableDataProviderRepository: TableDataProviderRepositoryProtocol {
         guard let url = URL(string: leaveTypesUrl) else {
             return
         }
-        SessionManager.getSession().request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
-            completion(response.result.value ?? [])
+        DispatchQueue.global(qos: .background).async {
+            self.session.request(url).responseDecodableObject { (response: DataResponse<[Absence]>) in
+                completion(response.result.value ?? [])
+            }
         }
     }
     

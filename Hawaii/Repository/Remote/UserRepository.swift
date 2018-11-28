@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import CodableAlamofire
 
-class UserRepository: UserRepositoryProtocol {
+class UserRepository: SessionManager, UserRepositoryProtocol {
     
     let signInUrl = ApiConstants.baseUrl + "/signin"
     
@@ -23,26 +23,28 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params).validate()
-            .responseDecodableObject { (response: DataResponse<Page>) in
-                guard let searchedContent = response.result.value else {
-                    completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
-                                             error: response.error,
-                                             message: response.error?.localizedDescription))
-                    return
+        DispatchQueue.global(qos: .background).async {
+            self.session.request(url, method: HTTPMethod.get, parameters: params).validate()
+                .responseDecodableObject { (response: DataResponse<Page>) in
+                    guard let searchedContent = response.result.value else {
+                        completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
+                                                 error: response.error,
+                                                 message: response.error?.localizedDescription))
+                        return
+                    }
+                    switch response.result {
+                    case .success:
+                        print("Validation Successful")
+                        completion(UsersResponse(success: true, users: searchedContent.content, statusCode: response.response?.statusCode,
+                                                 maxUsers: searchedContent.totalElements, error: nil, message: nil))
+                    case .failure(let error):
+                        print(error)
+                        completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
+                                                 error: response.error,
+                                                 message: response.error?.localizedDescription))
+                    }
                 }
-                switch response.result {
-                case .success:
-                    print("Validation Successful")
-                    completion(UsersResponse(success: true, users: searchedContent.content, statusCode: response.response?.statusCode,
-                                             maxUsers: searchedContent.totalElements, error: nil, message: nil))
-                case .failure(let error):
-                    print(error)
-                    completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
-                                             error: response.error,
-                                             message: response.error?.localizedDescription))
-                }
-            }
+        }
     }
     
     func getAll(completion: @escaping (GenericResponse<[User]>) -> Void) {
@@ -141,28 +143,6 @@ class UserRepository: UserRepositoryProtocol {
                               parameters: userParameters,
                               encoding: JSONEncoding.default) { response in
                                 completion(response)
-        }
-    }
-    
-    func signIn(accessToken: String, completion: @escaping (GenericResponse<(String, User)>) -> Void) {
-        guard let url = URL(string: signInUrl) else {
-            return
-        }
-        let accessTokenKey = "Authorization"
-        let headers = HTTPHeaders.init(dictionaryLiteral: (accessTokenKey, accessToken))
-
-        Alamofire.request(url, headers: headers).validate().responseDecodableObject { (response: DataResponse<User>) in
-            guard let user = response.value,
-                let token = response.response?.allHeaderFields[ApiConstants.authHeader] as? String else {
-                    completion(GenericResponse<(String, User)>(success: false, item: nil, statusCode: response.response?.statusCode,
-                                                               error: response.error,
-                                                               message: response.error?.localizedDescription))
-                    return
-            }
-            
-            completion(GenericResponse<(String, User)>(success: true, item: (token, user),
-                                                       statusCode: response.response?.statusCode,
-                                                       error: nil, message: nil))
         }
     }
 }

@@ -4,34 +4,59 @@ import GoogleSignIn
 import SwinjectStoryboard
 import Swinject
 
-class Interceptor: RequestAdapter {
+protocol InterceptorProtocol: RequestAdapter {
+    func getValidToken() -> String?
+}
+
+class Interceptor: InterceptorProtocol {
     
-    var userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
-                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
+    var signInUseCase: SignInUseCaseProtocol?
+    
+    init(signInUseCase: SignInUseCaseProtocol) {
+        self.signInUseCase = signInUseCase
+    }
+    
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         var urlRequest = urlRequest
-        
-        guard let userDetailsUseCase = self.userDetailsUseCase else {
-            return urlRequest
-        }
-        
-        let token = getValidToken(token: userDetailsUseCase.getToken())
+
+        let token = getValidToken()
         urlRequest.setValue(token, forHTTPHeaderField: ApiConstants.authHeader)
+        
+        printRequest(urlRequest: urlRequest)
         
         return urlRequest
     }
     
-    func getValidToken(token: String?) -> String? {
-        guard let token = token else {
+    func getValidToken() -> String? {
+        
+        let userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
+                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
+        guard let token = userDetailsUseCase?.getToken(),
+            let signInUseCase = signInUseCase else {
             return nil
         }
         
         if !TokenUtils.isTokenExpired(token: token) {
             return token
         }
+        signInUseCase.refreshToken()
         
-        GIDSignIn.sharedInstance()?.signInSilently()
         return userDetailsUseCase?.getToken()
     }
     
+    func printRequest(urlRequest: URLRequest) {
+        guard let url = urlRequest.url else {
+            return
+        }
+        print("""
+            *******************************
+            REQUEST (\(Date()))
+            URL: \(String(describing: url))
+            METHOD: \(String(describing: urlRequest.httpMethod ?? ""))
+            BODY: \(NSString(data: urlRequest.httpBody ?? Data(), encoding: String.Encoding.utf8.rawValue) ?? "")
+            HEADERS: \(urlRequest.allHTTPHeaderFields ?? [:])
+            *******************************\n
+            """
+        )
+    }
 }
