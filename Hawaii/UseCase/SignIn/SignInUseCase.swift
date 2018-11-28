@@ -63,7 +63,7 @@ class SignInUseCase: NSObject, SignInUseCaseProtocol {
             userDetailsUseCase?.setPictureUrl(picture.absoluteString)
         }
         
-        let isSilentSignIn = oldToken != nil && TokenUtils.isTokenExpired(token: oldToken)
+        let isSilentSignIn = oldToken != nil
        
         if isSilentSignIn {
             if let refreshTokenGroup = refreshTokenGroup {

@@ -22,6 +22,8 @@ class HomeTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        homeTabBar.tintColor = UIColor.primaryTextColor
+        homeTabBar.unselectedItemTintColor = UIColor.tabBarItemColor
         userUseCase?.readUser(completion: { user in
             if user?.userRole ?? "" != UserRole.hrManager.rawValue && self.viewControllers?.count ?? 0 == 5 {
                 DispatchQueue.main.async {

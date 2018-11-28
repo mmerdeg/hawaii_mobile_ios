@@ -57,6 +57,8 @@ class RequestApprovalTableViewCell: UITableViewCell {
                     return
             }
             
+            initTextColors()
+            
             requestDateTitle.text = LocalizedKeys.Request.date.localized()
             requestNotesTitle.text = LocalizedKeys.Request.notes.localized()
             requestReasonTitle.text = LocalizedKeys.Summary.reason.localized()
@@ -83,7 +85,7 @@ class RequestApprovalTableViewCell: UITableViewCell {
             
             requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
-            requestImage.tintColor = UIColor.primaryColor
+            requestImage.tintColor = UIColor.statusIconColor
             requestImage.backgroundColor = color
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true
@@ -115,5 +117,19 @@ class RequestApprovalTableViewCell: UITableViewCell {
     
     @IBAction func acceptClicked(_ sender: Any) {
         delegate?.requestAction(request: request, isAccepted: true, cell: self)
+    }
+    
+    func initTextColors() {
+        requestDateTitle.textColor = UIColor.primaryTextColor
+        requestNotesTitle.textColor = UIColor.primaryTextColor
+        requestReasonTitle.textColor = UIColor.primaryTextColor
+        requestDurationTitle.textColor = UIColor.primaryTextColor
+        additionalDesc.textColor = UIColor.primaryTextColor
+        
+        requestNotes.textColor = UIColor.primaryTextColor
+        requestDuration.textColor = UIColor.primaryTextColor
+        requestPerson.textColor = UIColor.primaryTextColor
+        requestReason.textColor = UIColor.primaryTextColor
+        requestDates.textColor = UIColor.primaryTextColor
     }
 }

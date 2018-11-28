@@ -27,9 +27,12 @@ class MoreViewController: BaseViewController {
         profileImage.kf.setImage(with: URL(string: imageUrl))
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
-        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderColor = UIColor.primaryTextColor.cgColor
         profileImage.layer.cornerRadius = 120 / 2
         profileImage.clipsToBounds = true
+        
+        emailLabel.textColor = UIColor.primaryTextColor
+        nameLabel.textColor = UIColor.primaryTextColor
         
         userUseCase?.readUser(completion: { user in
             DispatchQueue.main.async {

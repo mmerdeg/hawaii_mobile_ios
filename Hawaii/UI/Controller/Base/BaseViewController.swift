@@ -50,4 +50,11 @@ class BaseViewController: UIViewController {
                                         viewController: self, completion: { _ in
         })
     }
+    
+    func changeSchemeTo(colorScheme: ColorScheme) {
+        UIColor.initWithColorScheme(colorScheme: colorScheme)
+        for subview in self.view.subviews {
+            subview.layoutIfNeeded()
+        }
+    }
 }

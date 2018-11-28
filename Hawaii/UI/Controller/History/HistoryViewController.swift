@@ -195,7 +195,7 @@ class HistoryViewController: BaseViewController {
     func initFilterHeader() {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.tintColor = UIColor.accentColor
-        segmentedControl.backgroundColor = UIColor.black
+        segmentedControl.backgroundColor = UIColor.darkPrimaryColor
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
         let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)

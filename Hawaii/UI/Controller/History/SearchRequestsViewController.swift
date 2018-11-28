@@ -57,6 +57,9 @@ class SearchRequestsViewController: UIViewController {
         
         backgroundView.backgroundColor = UIColor.primaryColor
         yearLabel.textColor = UIColor.primaryTextColor
+        leaveLabel.textColor = UIColor.primaryTextColor
+        sickLabel.textColor = UIColor.primaryTextColor
+        bonusLabel.textColor = UIColor.primaryTextColor
         yearPicker.tintColor = UIColor.primaryTextColor
         
         yearLabel.text = LocalizedKeys.Filter.year.localized()
@@ -102,6 +105,6 @@ extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDele
     }
  
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: String(describing: items[row]), attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        return NSAttributedString(string: String(describing: items[row]), attributes: [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor])
     }
 }
