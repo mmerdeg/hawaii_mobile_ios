@@ -48,8 +48,8 @@ extension GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseDecodableObject(keyPath: nil,
+        SessionManager.getSession().request(url, method: method, parameters: parameters,
+                                            encoding: encoding).validate().responseDecodableObject(keyPath: nil,
                                                                                decoder: codableDecoder ?? getDecoder(),
                                                                                completionHandler: completionHandler)
     }
@@ -81,8 +81,8 @@ extension GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseString(completionHandler: completionHandler)
+        SessionManager.getSession().request(url, method: method, parameters: parameters,
+                                            encoding: encoding).validate().responseString(completionHandler: completionHandler)
         
     }
     
@@ -113,8 +113,8 @@ extension GenericRepositoryProtocol {
             *******************************\n
             """
         )
-        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding,
-                          headers: headers).validate().responseJSON(completionHandler: completionHandler)
+        SessionManager.getSession().request(url, method: method, parameters: parameters,
+                                            encoding: encoding).validate().responseJSON(completionHandler: completionHandler)
     }
     
     func getDecoder() -> JSONDecoder {

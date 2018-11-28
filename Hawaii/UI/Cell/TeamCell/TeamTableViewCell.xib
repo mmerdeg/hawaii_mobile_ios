@@ -12,22 +12,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="91" id="KGk-i7-Jjw" customClass="TeamTableViewCell" customModule="Hawaii" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="TeamTableViewCell" customModule="Hawaii" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google" translatesAutoresizingMaskIntoConstraints="NO" id="2Ui-uT-j44" customClass="RoundedImageView" customModule="Hawaii" customModuleProvider="target">
-                        <rect key="frame" x="16" y="18" width="56" height="56"/>
+                        <rect key="frame" x="16" y="17.5" width="36" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="56" id="DdJ-6A-8tt"/>
+                            <constraint firstAttribute="width" constant="36" id="DdJ-6A-8tt"/>
                             <constraint firstAttribute="width" secondItem="2Ui-uT-j44" secondAttribute="height" multiplier="1:1" id="v6F-tY-aE5"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O14-Ub-cB4">
-                        <rect key="frame" x="102" y="18" width="42" height="21"/>
+                        <rect key="frame" x="68" y="17.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83o-qc-EAe">
-                        <rect key="frame" x="102" y="53" width="42" height="21"/>
+                        <rect key="frame" x="68" y="32.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,8 +47,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="83o-qc-EAe" firstAttribute="leading" secondItem="O14-Ub-cB4" secondAttribute="leading" id="3Q1-DG-dY8"/>
-                    <constraint firstItem="2Ui-uT-j44" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17.5" id="Uoz-hF-zZX"/>
-                    <constraint firstItem="O14-Ub-cB4" firstAttribute="leading" secondItem="2Ui-uT-j44" secondAttribute="trailing" constant="30" id="bLC-Kj-Ddl"/>
+                    <constraint firstItem="2Ui-uT-j44" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="W63-0H-w7y"/>
+                    <constraint firstItem="O14-Ub-cB4" firstAttribute="leading" secondItem="2Ui-uT-j44" secondAttribute="trailing" constant="16" id="bLC-Kj-Ddl"/>
                     <constraint firstItem="2Ui-uT-j44" firstAttribute="top" secondItem="O14-Ub-cB4" secondAttribute="top" id="cDQ-AK-iln"/>
                     <constraint firstItem="2Ui-uT-j44" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hDC-EY-5fc"/>
                     <constraint firstItem="83o-qc-EAe" firstAttribute="bottom" secondItem="2Ui-uT-j44" secondAttribute="bottom" id="kop-lh-a6m"/>
@@ -62,7 +62,7 @@
                 <outlet property="teamImage" destination="2Ui-uT-j44" id="euH-OM-lZz"/>
                 <outlet property="teamNameLabel" destination="O14-Ub-cB4" id="GEY-P5-Tvz"/>
             </connections>
-            <point key="canvasLocation" x="137.59999999999999" y="175.86206896551727"/>
+            <point key="canvasLocation" x="137.59999999999999" y="185.30734632683661"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -20,65 +20,33 @@ protocol TeamUseCaseProtocol {
 
 class TeamUseCase: TeamUseCaseProtocol {
     
-    let userDetailsUseCase: UserDetailsUseCaseProtocol?
-    
     let teamRepository: TeamRepositoryProtocol?
     
-    init(userDetailsUseCase: UserDetailsUseCaseProtocol,
-         teamRepository: TeamRepositoryProtocol) {
-        self.userDetailsUseCase = userDetailsUseCase
+    init(teamRepository: TeamRepositoryProtocol) {
         self.teamRepository = teamRepository
     }
     
     func get(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<[Team]>(success: false, item: nil, statusCode: 401,
-                                               error: nil,
-                                               message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        teamRepository?.get(token: token, completion: { response in
+        teamRepository?.get(completion: { response in
             completion(response)
         })
     }
     
     func add(team: Team, completion: @escaping (GenericResponse<Team>) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Team> (success: false, item: nil, statusCode: 401,
-                                                       error: nil,
-                                                       message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        teamRepository?.add(token: token, team: team, completion: { response in
+        teamRepository?.add(team: team, completion: { response in
             completion(response)
         })
     }
     
     func update(team: Team, completion: @escaping (GenericResponse<Team>) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Team> (success: false, item: nil, statusCode: 401,
-                                                       error: nil,
-                                                       message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        teamRepository?.update(token: token, team: team, completion: { response in
+        teamRepository?.update(team: team, completion: { response in
             completion(response)
         })
     }
     
     func delete(team: Team, completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                             error: nil,
-                                             message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        teamRepository?.delete(token: token, team: team, completion: { response in
+        teamRepository?.delete(team: team, completion: { response in
             completion(response)
         })
-    }
-    
-    func getToken() -> String? {
-        return userDetailsUseCase?.getToken()
     }
 }

@@ -10,12 +10,12 @@ import Foundation
 
 protocol TeamRepositoryProtocol: GenericRepositoryProtocol {
     
-    func get(token: String, completion: @escaping (GenericResponse<[Team]>?) -> Void)
+    func get(completion: @escaping (GenericResponse<[Team]>?) -> Void)
     
-    func add(token: String, team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
+    func add(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
     
-    func update(token: String, team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
+    func update(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
     
-    func delete(token: String, team: Team, completion: @escaping (GenericResponse<Any>?) -> Void)
+    func delete(team: Team, completion: @escaping (GenericResponse<Any>?) -> Void)
     
 }

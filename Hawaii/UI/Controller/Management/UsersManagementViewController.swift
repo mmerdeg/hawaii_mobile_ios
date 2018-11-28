@@ -86,17 +86,17 @@ class UsersManagementViewController: BaseViewController {
 
     func fillData() {
         startActivityIndicatorSpinner()
-        self.teamUseCase?.getAll(completion: { users, usersById, response  in
-            guard let success = response.success else {
+        self.teamUseCase?.get(completion: { response  in
+            guard let success = response?.success else {
                 self.stopActivityIndicatorSpinner()
                 return
             }
             if !success {
                 self.stopActivityIndicatorSpinner()
-                self.handleResponseFaliure(message: response.message)
+                self.handleResponseFaliure(message: response?.message)
                 return
             }
-            self.usersByTeam = users
+            self.usersByTeam = response?.item
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.stopActivityIndicatorSpinner()
@@ -114,27 +114,20 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
             as? UserPreviewTableViewCell else {
                 return UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
-        cell.user = Array(users ?? [:])[indexPath.section].value[indexPath.row]
+        cell.user = usersByTeam?[indexPath.section].users?[indexPath.row]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.textColor = UIColor.primaryTextColor
-        label.text = String(describing: Array(users ?? [:])[section].key)
-        return label
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return usersByTeam?[section].name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Array(users ?? [:])[section].value.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20.0
+        return usersByTeam?[section].users?.count ?? 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return users?.count ?? 0
+        return usersByTeam?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -149,7 +142,9 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
             AlertPresenter.showAlertWithAction(title: confirmationAlertTitle, message: approveAlertMessage, cancelable: true,
                                                viewController: self) { confirmed in
                                                 if confirmed {
-                                                    let selectedUser = Array(self.users ?? [:])[indexPath.section].value[indexPath.row]
+                                                    guard let selectedUser = self.usersByTeam?[indexPath.section].users?[indexPath.row] else {
+                                                        return
+                                                    }
                                                     self.userUseCase?.delete(user: selectedUser, completion: { response in
                                                         guard let success = response?.success else {
                                                             self.stopActivityIndicatorSpinner()
@@ -160,10 +155,10 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
                                                             self.handleResponseFaliure(message: response?.message)
                                                             return
                                                         }
-                                                        var usersInSourceSection = Array(self.users ?? [:])[indexPath.section].value
-                                                        let sourceSection = Array(self.users ?? [:])[indexPath.section].key
-                                                        usersInSourceSection.remove(at: indexPath.row)
-                                                        self.users?[sourceSection] = usersInSourceSection
+                                                        var usersInSourceSection = self.usersByTeam?[indexPath.section].users
+                                                        usersInSourceSection?.remove(at: indexPath.row)
+                                                        let team = Team(team: self.usersByTeam?[indexPath.row], users: usersInSourceSection)
+                                                        self.usersByTeam?[indexPath.section] = Team(team: team, users: usersInSourceSection)
                                                         self.tableView.deleteRows(at: [indexPath], with: .fade)
                                                     })
                                                 }
@@ -172,7 +167,7 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: manageUserSegue, sender: Array(users ?? [:])[indexPath.section].value[indexPath.row] )
+        self.performSegue(withIdentifier: manageUserSegue, sender: usersByTeam?[indexPath.section].users?[indexPath.row] )
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -180,20 +175,22 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        var usersInSourceSection = Array(users ?? [:])[sourceIndexPath.section].value
-        let selectedUser = Array(users ?? [:])[sourceIndexPath.section].value[sourceIndexPath.row]
-        let sourceSection = String(describing: Array(users ?? [:])[sourceIndexPath.section].key)
-        var usersInDestinationSection = Array(users ?? [:])[destinationIndexPath.section].value
-        let destinationSection = String(describing: Array(users ?? [:])[destinationIndexPath.section].key)
+        var usersInSourceSection = self.usersByTeam?[sourceIndexPath.section].users
+        var usersInDestinationSection = self.usersByTeam?[destinationIndexPath.section].users
+        guard let selectedUser = self.usersByTeam?[sourceIndexPath.section].users?[sourceIndexPath.row] else {
+            return
+        }
         
-        usersInSourceSection.remove(at: sourceIndexPath.row)
-        users?[sourceSection] = usersInSourceSection
-        usersInDestinationSection.insert(selectedUser, at: destinationIndexPath.row)
-        users?[destinationSection] = usersInDestinationSection
+        usersInSourceSection?.remove(at: sourceIndexPath.row)
+        var team = Team(team: self.usersByTeam?[sourceIndexPath.section], users: usersInSourceSection)
+        usersByTeam?[sourceIndexPath.section] = Team(team: team, users: usersInSourceSection)
+        usersInDestinationSection?.insert(selectedUser, at: destinationIndexPath.row)
+        team = Team(team: self.usersByTeam?[destinationIndexPath.section], users: usersInDestinationSection)
+        usersByTeam?[destinationIndexPath.section] = Team(team: team, users: usersInDestinationSection)
         startActivityIndicatorSpinner()
         let updatedUser = User(user: selectedUser,
-                               teamId: usersById?[String(describing: Array(users ?? [:])[destinationIndexPath.section].key)],
-                               teamName: destinationSection)
+                               teamId: usersByTeam?[destinationIndexPath.section].id,
+                               teamName: usersByTeam?[destinationIndexPath.section].name)
         self.userUseCase?.update(user: updatedUser, completion: { response in
             guard let success = response.success else {
                 self.stopActivityIndicatorSpinner()

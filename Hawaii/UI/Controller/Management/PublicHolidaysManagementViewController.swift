@@ -114,11 +114,8 @@ extension PublicHolidaysManagementViewController: UITableViewDataSource, UITable
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.textColor = UIColor.primaryTextColor
-        label.text = String(describing: 2018 + section)
-        return label
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return String(describing: Array(self.holidays ?? [:])[section].key)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,10 +124,6 @@ extension PublicHolidaysManagementViewController: UITableViewDataSource, UITable
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return holidays?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20.0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

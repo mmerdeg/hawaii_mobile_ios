@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class TeamManagementViewController: FormViewController {
+class TeamManagementViewController: BaseFormViewController {
     
     var teamUseCase: TeamUseCaseProtocol?
     
@@ -19,10 +19,14 @@ class TeamManagementViewController: FormViewController {
     
     var selectedTeamApprovers: [User]?
     
+    var pendingRequestWorkItem: DispatchWorkItem?
+    
+    var searchController: UISearchController?
+    
     var approvers: [User]?
     
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
-    
+
     let showApprovePickerSegue = "showApprovePicker"
     
     lazy var doneBarItem: UIBarButtonItem = {
@@ -33,6 +37,14 @@ class TeamManagementViewController: FormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController = UISearchController(searchResultsController: nil)
+        searchController?.hidesNavigationBarDuringPresentation = true
+        searchController?.searchBar.searchBarStyle = .minimal
+        searchController?.searchBar.keyboardAppearance = .dark
+        searchController?.searchResultsUpdater = self
+        searchController?.searchBar.tintColor = UIColor.white
+        searchController?.searchBar.barTintColor = UIColor.white
+        searchController?.searchBar.barStyle = .black
         selectedTeamApprovers = team?.teamApprovers
         self.tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
@@ -43,16 +55,10 @@ class TeamManagementViewController: FormViewController {
                 row.value = team?.name
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
-            }.cellSetup({ cell, textRow in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
-            }).cellUpdate({ cell, textRow in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
+            }.cellSetup({ cell, row in
+                    self.setTextInput(cell: cell, row: row)
+            }).cellUpdate({ cell, row in
+                    self.setTextInput(cell: cell, row: row)
             })
             <<< EmailRow("email") { row in
                 row.title = "Email "
@@ -60,31 +66,22 @@ class TeamManagementViewController: FormViewController {
                 row.value = team?.emails
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
-            }.cellSetup({ cell, textRow in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
-            }).cellUpdate({ cell, textRow in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
+            }.cellSetup({ cell, row in
+                    self.setEmailInput(cell: cell, row: row)
+            }).cellUpdate({ cell, row in
+                    self.setEmailInput(cell: cell, row: row)
             })
             <<< SwitchRow("active") { row in
                 row.value = team?.active
                 row.title = (team?.active ?? false) ? "Active" : "Not active"
             }.onChange { row in
-                    row.title = (row.value ?? false) ? "Active": "Not active"
-                    row.updateCell()
+                row.title = (row.value ?? false) ? "Active": "Not active"
+                row.updateCell()
             }.cellSetup { cell, _ in
-                    cell.switchControl.tintColor = UIColor.accentColor
-                    cell.backgroundColor = UIColor.primaryColor
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                    self.setSwitchInput(cell: cell)
             }.cellUpdate { cell, _ in
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             }
-        
             <<< MultipleSelectorRow<User>("teamApprover") {
                 $0.title = "Pick team approver"
                 $0.value = Set(selectedTeamApprovers ?? [])
@@ -109,10 +106,14 @@ class TeamManagementViewController: FormViewController {
                     $0?.array.map { $0.fullName ?? "" }.sorted().joined(separator: ", ")
                 }
             }.onPresent { from, to in
-                to.sectionKeyForValue = { $0.fullName?.first?.description ?? ""}
-                    from.tableView.backgroundColor = UIColor.primaryColor
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from,
+                to.sectionKeyForValue = { $0.fullName?.first?.description ?? "" }
+                from.tableView.backgroundColor = UIColor.primaryColor
+                to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from,
                                                                            action: #selector(self.multipleSelectorDone))
+                
+                if #available(iOS 11.0, *) {
+                    to.navigationItem.searchController = self.searchController
+                }
             }.cellSetup { cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
@@ -186,14 +187,32 @@ class TeamManagementViewController: FormViewController {
         })
     }
     
-    @objc func multipleSelectorDone(_ item:UIBarButtonItem) {
+    @objc func multipleSelectorDone(_ item: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
 
 }
 
-extension Set {
-    var array: [Element] {
-        return Array(self)
+extension TeamManagementViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        pendingRequestWorkItem?.cancel()
+
+        let requestWorkItem = DispatchWorkItem { [weak self] in
+            self?.performSearch()
+        }
+        pendingRequestWorkItem = requestWorkItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250), execute: requestWorkItem)
+    }
+    
+    @objc func performSearch() {
+        let approverSelector: MultipleSelectorRow<User> = form.rowBy(tag: "teamApprover") ?? MultipleSelectorRow()
+        print(approverSelector.value, approverSelector.options)
+        let searchValue = searchController?.searchBar.text ?? ""
+        let searchUsers = approvers?.filter({ (item: User) -> Bool in
+            return item.fullName?.containsIgnoringCase(find: searchValue) ?? false
+        })
+        approverSelector.options = []
+        approverSelector.reload()
     }
 }

@@ -10,33 +10,43 @@ import Foundation
 
 protocol LeaveProfileUseCaseProtocol {
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
+    
+    func add(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void)
+    
+    func update(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void)
+    
+    func delete(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<Any>?) -> Void)
 }
 
 class LeaveProfileUseCase: LeaveProfileUseCaseProtocol {
     
-    let userDetailsUseCase: UserDetailsUseCaseProtocol?
-    
     let leaveProfileRepository: LeaveProfileRepositoryProtocol?
     
-    init(userDetailsUseCase: UserDetailsUseCaseProtocol,
-         leaveProfileRepository: LeaveProfileRepositoryProtocol) {
-        self.userDetailsUseCase = userDetailsUseCase
+    init(leaveProfileRepository: LeaveProfileRepositoryProtocol) {
         self.leaveProfileRepository = leaveProfileRepository
     }
     
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void) {
-        guard let token = getToken() else {
-            completion(GenericResponse<[LeaveProfile]>(success: false, item: nil, statusCode: 401,
-                                               error: nil,
-                                               message: LocalizedKeys.General.emptyToken.localized()))
-            return
-        }
-        leaveProfileRepository?.get(token: token, completion: { response in
+        leaveProfileRepository?.get(completion: { response in
             completion(response)
         })
     }
     
-    func getToken() -> String? {
-        return userDetailsUseCase?.getToken()
+    func add(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void) {
+        leaveProfileRepository?.add(leaveProfile: leaveProfile, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func update(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void) {
+        leaveProfileRepository?.update(leaveProfile: leaveProfile, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func delete(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        leaveProfileRepository?.delete(leaveProfile: leaveProfile, completion: { response in
+            completion(response)
+        })
     }
 }

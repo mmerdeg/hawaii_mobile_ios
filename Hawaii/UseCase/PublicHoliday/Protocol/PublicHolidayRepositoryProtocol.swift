@@ -2,12 +2,12 @@ import Foundation
 
 protocol PublicHolidayRepositoryProtocol: GenericRepositoryProtocol {
     
-    func getHolidays(token: String, completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void)
+    func getHolidays(completion: @escaping (GenericResponse<[PublicHoliday]>?) -> Void)
     
-    func add(token: String, holiday: PublicHoliday, completion: @escaping (GenericResponse<PublicHoliday>) -> Void)
+    func add(holiday: PublicHoliday, completion: @escaping (GenericResponse<PublicHoliday>) -> Void)
     
-    func update(token: String, holiday: PublicHoliday, completion: @escaping (GenericResponse<PublicHoliday>) -> Void)
+    func update(holiday: PublicHoliday, completion: @escaping (GenericResponse<PublicHoliday>) -> Void)
     
-    func delete(token: String, holiday: PublicHoliday, completion: @escaping (GenericResponse<Any>?) -> Void)
+    func delete(holiday: PublicHoliday, completion: @escaping (GenericResponse<Any>?) -> Void)
     
 }

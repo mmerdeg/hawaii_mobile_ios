@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Codable, Hashable, CustomStringConvertible {
+struct User: Codable, CustomStringConvertible {
     
     let id: Int?
     let teamId: Int?
@@ -14,7 +14,25 @@ struct User: Codable, Hashable, CustomStringConvertible {
     let active: Bool?
     let yearsOfService: Int?
     let allowances: [Allowance]?
-    var description : String { return fullName ?? ""}
+    var description : String { return fullName ?? "" }
+}
+
+extension User: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+//extension User: SearchItem {
+//    func matchesSearchQuery(_ query: String) -> Bool {
+//        return fullName?.contains(query) ?? false
+//    }
+//}
+
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 extension User {
@@ -50,12 +68,5 @@ extension User {
         self.allowances = user?.allowances
         self.userPushTokens = user?.userPushTokens
     }
-    
-    static func == (lhs: User, rhs: User) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+
 }

@@ -24,6 +24,7 @@ general.refresh = "Dobavljanje podataka ...";
 general.signIn = "Prijavi se";
 general.close = "Zatvori";
 general.back = "Nazad";
+general.delete = "Obrisi";
 general.accept = "Prihvati";
 general.decline = "Odustani";
 general.emptyToken = "Ne mozemo da pristupimo tokenu,probajte da se ulogujete ponovo";
@@ -98,6 +99,10 @@ approval.title = "Odobri zahteve";
 
 more.title = "Ostalo";
 more.signOut = "Odjavi se";
+more.manageUsers = "Manage users";
+more.manageTeams = "Manage teams";
+more.manageHolidays = "Manage holidays";
+more.manageLeaveProfiles = "Manage leave profiles";
 
 approval.emptyTitle = "No more requests to approve";
 approval.emptyDescription = "You are doing a good job, keep it up";

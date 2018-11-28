@@ -50,15 +50,7 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     }
     
     func getToken() -> String? {
-        
-        let token = userDetailsRepository.getToken()
-//        if isTokenExpired(token: token) {
-//            GIDSignIn.sharedInstance()?.signInSilently()
-//        }
-        #warning("Watch for this")
-        return token
-        
-       // return userDetailsRepository.getToken()
+        return userDetailsRepository.getToken()
     }
     
     func setToken(token: String) {

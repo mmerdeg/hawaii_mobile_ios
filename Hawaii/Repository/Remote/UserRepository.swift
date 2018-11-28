@@ -12,7 +12,7 @@ class UserRepository: UserRepositoryProtocol {
     
     let firebaseTokenUrl = ApiConstants.baseUrl + "/token"
     
-    func getUsersByParameter(token: String, parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
+    func getUsersByParameter(parameter: String, page: Int, numberOfItems: Int, completion: @escaping (UsersResponse) -> Void) {
         guard let url = URL(string: searchUsersUrl) else {
             return
         }
@@ -23,7 +23,7 @@ class UserRepository: UserRepositoryProtocol {
         
         let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
         
-        Alamofire.request(url, method: HTTPMethod.get, parameters: params, headers: getHeaders(token: token)).validate()
+        SessionManager.getSession().request(url, method: HTTPMethod.get, parameters: params).validate()
             .responseDecodableObject { (response: DataResponse<Page>) in
                 guard let searchedContent = response.result.value else {
                     completion(UsersResponse(success: false, users: nil, statusCode: response.response?.statusCode, maxUsers: nil,
@@ -45,39 +45,37 @@ class UserRepository: UserRepositoryProtocol {
             }
     }
     
-    func getAll(token: String, completion: @escaping (GenericResponse<[User]>) -> Void) {
+    func getAll(completion: @escaping (GenericResponse<[User]>) -> Void) {
         guard let url = URL(string: getUserUrl) else {
             return
         }
         let activeKey = "active"
         
         let params = [activeKey: true] as [String: Any]
-        genericCodableRequest(value: [User].self, url, parameters: params, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [User].self, url, parameters: params) { response in
             completion(response)
         }
     }
     
-    func getAllApprovers(token: String, completion: @escaping (GenericResponse<[User]>) -> Void) {
+    func getAllApprovers(completion: @escaping (GenericResponse<[User]>) -> Void) {
         guard let url = URL(string: getUserUrl) else {
             return
         }
         let activeKey = "active"
         
         let params = [activeKey: true] as [String: Any]
-        genericCodableRequest(value: [User].self, url, parameters: params, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: [User].self, url, parameters: params) { response in
             completion(response)
         }
     }
     
-    
-    func add(token: String, user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+    func add(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
         guard let url = URL(string: getUserUrl),
             let userParameters = user.dictionary else {
                 return
         }
         genericCodableRequest(value: User.self, url, method: .post,
-                              parameters: userParameters, encoding: JSONEncoding.default,
-                              headers: getHeaders(token: token)) { response in
+                              parameters: userParameters, encoding: JSONEncoding.default) { response in
                                 if response.statusCode == 416 {
                                     completion(GenericResponse<User> (success: false, item: nil, statusCode: response.statusCode,
                                                                          error: response.error,
@@ -92,77 +90,56 @@ class UserRepository: UserRepositoryProtocol {
         }
     }
     
-    func delete(token: String, user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let id = user.id,
             let url = URL(string: getUserUrl + "/\(id)") else {
                 return
         }
         
-        genericJSONRequest(url, method: HTTPMethod.delete, headers: getHeaders(token: token)) { response in
+        genericJSONRequest(url, method: HTTPMethod.delete) { response in
             completion(response)
         }
     }
     
-    func deleteFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func deleteFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        guard let id = pushTokenDTO.pushTokenId,
+              let url = URL(string: firebaseTokenUrl + "/\(id)") else {
+            return
+        }
+        genericJSONRequest(url, method: HTTPMethod.delete) { response in
+            completion(response)
+        }
+    }
+    
+    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void) {
         guard let url = URL(string: firebaseTokenUrl) else {
             return
         }
+        let params = pushTokenDTO.dictionary
         
-        #if PRODUCTION
-        let pushTokenKey = "pushToken"
-        
-        let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: PushTokenDTO.self, url, method: HTTPMethod.post,
+                              parameters: params, encoding: JSONEncoding.default) { response in
             completion(response)
         }
-        #else
-        let params = pushTokenDTO.dictionary
-        genericJSONRequest(url, method: HTTPMethod.post,
-                           parameters: params, encoding: JSONEncoding.default, headers: getHeaders(token: token)) { response in
-                            completion(response)
-        }
-        #endif
     }
     
-    func setFirebaseToken(token: String, pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let url = URL(string: firebaseTokenUrl) else {
-            return
-        }
-        
-        #if PRODUCTION
-        let pushTokenKey = "pushToken"
-        
-        let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params, headers: getHeaders(token: token)) { response in
-            completion(response)
-        }
-        #else
-        let params = pushTokenDTO.dictionary
-        genericJSONRequest(url, method: HTTPMethod.post,
-                           parameters: params, encoding: JSONEncoding.default, headers: getHeaders(token: token)) { response in
-                            completion(response)
-        }
-        #endif
-    }
-    
-    func getUser(token: String, email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
+    func getUser(email: String, completion: @escaping (GenericResponse<User>?) -> Void) {
         guard let url = URL(string: getUserUrl + "/\(email)") else {
             return
         }
-        genericCodableRequest(value: User.self, url, headers: getHeaders(token: token)) { response in
+        genericCodableRequest(value: User.self, url) { response in
             completion(response)
         }
     }
     
-    func update(token: String, user: User, completion: @escaping (GenericResponse<User>) -> Void) {
+    func update(user: User, completion: @escaping (GenericResponse<User>) -> Void) {
         guard let url = URL(string: getUserUrl),
             let userParameters = user.dictionary else {
                 return
         }
         genericCodableRequest(value: User.self, url, method: .put,
                               parameters: userParameters,
-                              encoding: JSONEncoding.default,
-                              headers: getHeaders(token: token)) { response in
+                              encoding: JSONEncoding.default) { response in
                                 completion(response)
         }
     }
@@ -188,9 +165,4 @@ class UserRepository: UserRepositoryProtocol {
                                                        error: nil, message: nil))
         }
     }
-    
-    func getHeaders(token: String) -> HTTPHeaders {
-        return [ApiConstants.authHeader: token]
-    }
-    
 }
