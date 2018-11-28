@@ -17,17 +17,6 @@ extension UIColor {
 
     @nonobjc static var tabBarItemColor: UIColor = #colorLiteral(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
     
-//    @nonobjc static var darkPrimaryColor: UIColor = #colorLiteral(red: 0.6196078431, green: 0.6196078431, blue: 0.6196078431, alpha: 1)
-//
-//    @nonobjc static var primaryColor: UIColor = #colorLiteral(red: 0.8659581218, green: 0.8659581218, blue: 0.8659581218, alpha: 1)
-//
-//    @nonobjc static var lightPrimaryColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//
-//    @nonobjc static var primaryTextColor: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//
-    
-//    @nonobjc static var tabBarItemColor: UIColor = #colorLiteral(red: 0.3351443528, green: 0.3351443528, blue: 0.3351443528, alpha: 1)
-    
     static func initWithColorScheme(colorScheme: ColorScheme) {
         switch colorScheme {
         case .light:

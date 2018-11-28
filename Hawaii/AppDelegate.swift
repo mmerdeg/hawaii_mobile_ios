@@ -83,6 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
+        if let userDetailsUseCase = userDetailsUseCase {
+            UIColor.initWithColorScheme(colorScheme: userDetailsUseCase.isLightThemeSelected() ? .light : .dark)
+        }
+        
         if GIDSignIn.sharedInstance().hasAuthInKeychain() {
             guard let homeTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "HomeTabBarController")
                 as? UITabBarController else {

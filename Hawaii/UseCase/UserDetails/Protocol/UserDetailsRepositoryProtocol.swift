@@ -36,4 +36,7 @@ protocol UserDetailsRepositoryProtocol {
     
     func setRunBefore(_ hasRunBefore: Bool)
 
+    func isLightThemeSelected() -> Bool
+    
+    func setLightThemeSelected(_ isLightThemeSelected: Bool)
 }

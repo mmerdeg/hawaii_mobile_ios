@@ -309,6 +309,10 @@
 		30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		30FD36EB214A5E530047038C /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */; };
+		3E0B2D2321AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
+		3E0B2D2421AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
+		3E0B2D2521AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */; };
+		3E0B2D2621AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */; };
 		3E0FCE872191CF4600E987F8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FCE862191CF4600E987F8 /* SignInButton.swift */; };
 		3E0FCE882191CF4600E987F8 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0FCE862191CF4600E987F8 /* SignInButton.swift */; };
 		3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */; };
@@ -663,6 +667,8 @@
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
 		3B2D4CA4CA024A2F86C4C321 /* Pods-Hawaii.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii.debug.xcconfig"; sourceTree = "<group>"; };
+		3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
+		3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
 		3E0FCE862191CF4600E987F8 /* SignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
 		3E15C36620E60F0800DB2CF7 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3E15C36920E6151900DB2CF7 /* StyleSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSetup.swift; sourceTree = "<group>"; };
@@ -1046,6 +1052,15 @@
 			path = Implementation;
 			sourceTree = "<group>";
 		};
+		3E0B2D2021AEDD2000C5D04F /* ThemeCell */ = {
+			isa = PBXGroup;
+			children = (
+				3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */,
+				3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */,
+			);
+			path = ThemeCell;
+			sourceTree = "<group>";
+		};
 		3E0FCE7A21919CFF00E987F8 /* Team */ = {
 			isa = PBXGroup;
 			children = (
@@ -1191,6 +1206,7 @@
 		3E236F2A20D7CCCE006AEF29 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				3E0B2D2021AEDD2000C5D04F /* ThemeCell */,
 				3027D26021AD34C200094D5C /* LeaveProfileCell */,
 				3027D25221AC2AFD00094D5C /* ProfileCell */,
 				306F1C8F21A3F75300E2D27B /* UsersManagement */,
@@ -2081,6 +2097,7 @@
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
+				3E0B2D2621AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */,
 				3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
 				3027D24721AC1D6700094D5C /* deleteToken.sql in Resources */,
@@ -2140,6 +2157,7 @@
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
+				3E0B2D2521AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				306F1C8D21A2A7D900E2D27B /* TeamTableViewCell.xib in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
@@ -2665,6 +2683,7 @@
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
+				3E0B2D2421AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */,
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
 				3E1E17D7218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
@@ -2808,6 +2827,7 @@
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
 				3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				302EE17C21353539001355E9 /* ProgressHud.swift in Sources */,
+				3E0B2D2321AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */,
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E1E17D6218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */,

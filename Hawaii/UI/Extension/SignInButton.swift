@@ -19,7 +19,7 @@ class SignInButton: UIButton {
         let title = LocalizedKeys.General.signIn.localized()
     
         let attrs = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15),
-                     NSAttributedStringKey.foregroundColor: UIColor.lightPrimaryColor]
+                     NSAttributedStringKey.foregroundColor: UIColor.black]
         let boldString = NSMutableAttributedString(string: title, attributes: attrs)
         self.setAttributedTitle(boldString, for: .normal)
         

@@ -20,6 +20,8 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
     
     let doesApproveScreenNeedsRefreshKey = "doesApproveScreenNeedsRefresh"
     
+    let lightThemeSelectedKey = "lightThemeSelected"
+    
     init(keyChainRepository: KeyChainRepositoryProtocol) {
         self.keyChainRepository = keyChainRepository
     }
@@ -110,6 +112,19 @@ class UserDetailsRepository: UserDetailsRepositoryProtocol {
             doesApproveScreenNeedsRefresh = userDefaults.bool(forKey: doesApproveScreenNeedsRefreshKey)
         }
         return doesApproveScreenNeedsRefresh
+    }
+    
+    func isLightThemeSelected() -> Bool {
+        var isLightThemeSelected = false
+        if userDefaults.object(forKey: lightThemeSelectedKey) != nil {
+            isLightThemeSelected = userDefaults.bool(forKey: lightThemeSelectedKey)
+        }
+        return isLightThemeSelected
+    }
+    
+    func setLightThemeSelected(_ isLightThemeSelected: Bool) {
+        userDefaults.set(isLightThemeSelected, forKey: lightThemeSelectedKey)
+        userDefaults.synchronize()
     }
     
 }
