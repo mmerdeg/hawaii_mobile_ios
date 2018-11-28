@@ -16,7 +16,7 @@ protocol UserRepositoryProtocol {
     
     func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void)
     
-    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void)
+    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void)
     
     func deleteFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void)
 }

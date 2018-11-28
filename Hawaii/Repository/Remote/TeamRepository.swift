@@ -6,7 +6,7 @@ class TeamRepository: SessionManager, TeamRepositoryProtocol {
     
     let teamsUrl = ApiConstants.baseUrl + "/teams"
     
-    func getTeams(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
+    func get(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
         guard let url = URL(string: teamsUrl) else {
             return
         }

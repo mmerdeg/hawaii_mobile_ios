@@ -45,6 +45,40 @@
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
+		3027D23821AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
+		3027D23921AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
+		3027D23A21AC195600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
+		3027D23B21AC195600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
+		3027D23D21AC1B4700094D5C /* readToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23C21AC1B4700094D5C /* readToken.sql */; };
+		3027D23E21AC1B4700094D5C /* readToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23C21AC1B4700094D5C /* readToken.sql */; };
+		3027D24021AC1C6900094D5C /* createToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23F21AC1C6900094D5C /* createToken.sql */; };
+		3027D24121AC1C6900094D5C /* createToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23F21AC1C6900094D5C /* createToken.sql */; };
+		3027D24621AC1D6700094D5C /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteToken.sql */; };
+		3027D24721AC1D6700094D5C /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteToken.sql */; };
+		3027D24B21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */; };
+		3027D24C21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */; };
+		3027D24D21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */; };
+		3027D24E21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */; };
+		3027D25321AC31C600094D5C /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
+		3027D25421AC31C700094D5C /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
+		3027D25621AD311000094D5C /* LeaveProfilesManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */; };
+		3027D25721AD311000094D5C /* LeaveProfilesManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */; };
+		3027D25921AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */; };
+		3027D25A21AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */; };
+		3027D25C21AD31F500094D5C /* SetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25B21AD31F500094D5C /* SetExtension.swift */; };
+		3027D25D21AD31F500094D5C /* SetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25B21AD31F500094D5C /* SetExtension.swift */; };
+		3027D25E21AD324200094D5C /* SetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25B21AD31F500094D5C /* SetExtension.swift */; };
+		3027D25F21AD324200094D5C /* SetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D25B21AD31F500094D5C /* SetExtension.swift */; };
+		3027D26921AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26721AD351400094D5C /* LeaveProfileTableViewCell.swift */; };
+		3027D26A21AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26721AD351400094D5C /* LeaveProfileTableViewCell.swift */; };
+		3027D26B21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3027D26821AD351400094D5C /* LeaveProfileTableViewCell.xib */; };
+		3027D26C21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3027D26821AD351400094D5C /* LeaveProfileTableViewCell.xib */; };
+		3027D26E21AD52AA00094D5C /* MultipleSelectionWithSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */; };
+		3027D26F21AD52AA00094D5C /* MultipleSelectionWithSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */; };
+		3027D27021AD538300094D5C /* MultipleSelectionWithSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */; };
+		3027D27121AD538400094D5C /* MultipleSelectionWithSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */; };
+		3027D27321AE7F9100094D5C /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D27221AE7F9100094D5C /* BaseFormViewController.swift */; };
+		3027D27421AE7F9100094D5C /* BaseFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D27221AE7F9100094D5C /* BaseFormViewController.swift */; };
 		302A589121A69DA0000778C6 /* LeaveProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A589021A69DA0000778C6 /* LeaveProfileRepository.swift */; };
 		302A589221A69DA0000778C6 /* LeaveProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A589021A69DA0000778C6 /* LeaveProfileRepository.swift */; };
 		302A589A21A69DE9000778C6 /* LeaveProfileRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302A589921A69DE9000778C6 /* LeaveProfileRepositoryProtocol.swift */; };
@@ -537,6 +571,19 @@
 		3013932B215CBE8F00F65B7F /* NewRequest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewRequest.storyboard; sourceTree = "<group>"; };
 		301CECF6218AF2220000A8A3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		3027D23721AC161600094D5C /* PushTokenDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenDb.swift; sourceTree = "<group>"; };
+		3027D23C21AC1B4700094D5C /* readToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readToken.sql; sourceTree = "<group>"; };
+		3027D23F21AC1C6900094D5C /* createToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = createToken.sql; sourceTree = "<group>"; };
+		3027D24521AC1D6700094D5C /* deleteToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteToken.sql; sourceTree = "<group>"; };
+		3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
+		3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfilesManagementViewController.swift; sourceTree = "<group>"; };
+		3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfileManagementViewController.swift; sourceTree = "<group>"; };
+		3027D25B21AD31F500094D5C /* SetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetExtension.swift; sourceTree = "<group>"; };
+		3027D26721AD351400094D5C /* LeaveProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfileTableViewCell.swift; sourceTree = "<group>"; };
+		3027D26821AD351400094D5C /* LeaveProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveProfileTableViewCell.xib; sourceTree = "<group>"; };
+		3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionWithSearch.swift; sourceTree = "<group>"; };
+		3027D27221AE7F9100094D5C /* BaseFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFormViewController.swift; sourceTree = "<group>"; };
 		302A589021A69DA0000778C6 /* LeaveProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfileRepository.swift; sourceTree = "<group>"; };
 		302A589921A69DE9000778C6 /* LeaveProfileRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfileRepositoryProtocol.swift; sourceTree = "<group>"; };
 		302A589C21A69E1D000778C6 /* LeaveProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfile.swift; sourceTree = "<group>"; };
@@ -820,6 +867,8 @@
 				30092B3F219EC2D300244F09 /* UsersManagementViewController.swift */,
 				30092B42219EC2E600244F09 /* PublicHolidaysManagementViewController.swift */,
 				30092B4F219EF68E00244F09 /* TeamsManagementViewController.swift */,
+				3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */,
+				3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -854,6 +903,24 @@
 			children = (
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		3027D25221AC2AFD00094D5C /* ProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */,
+				3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */,
+			);
+			path = ProfileCell;
+			sourceTree = "<group>";
+		};
+		3027D26021AD34C200094D5C /* LeaveProfileCell */ = {
+			isa = PBXGroup;
+			children = (
+				3027D26721AD351400094D5C /* LeaveProfileTableViewCell.swift */,
+				3027D26821AD351400094D5C /* LeaveProfileTableViewCell.xib */,
+			);
+			path = LeaveProfileCell;
 			sourceTree = "<group>";
 		};
 		302A589621A69DCA000778C6 /* LeaveProfile */ = {
@@ -1115,6 +1182,8 @@
 				309B6D61216736880046EFE9 /* StringExtension.swift */,
 				3E21DF05218367190002BED8 /* DateExtension.swift */,
 				30092B21219DACE300244F09 /* JwtExtenstion.swift */,
+				3027D25B21AD31F500094D5C /* SetExtension.swift */,
+				3027D26D21AD52AA00094D5C /* MultipleSelectionWithSearch.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1122,6 +1191,8 @@
 		3E236F2A20D7CCCE006AEF29 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				3027D26021AD34C200094D5C /* LeaveProfileCell */,
+				3027D25221AC2AFD00094D5C /* ProfileCell */,
 				306F1C8F21A3F75300E2D27B /* UsersManagement */,
 				306F1C8821A2A6BF00E2D27B /* TeamCell */,
 				306F1C7B21A29EA700E2D27B /* HolidayCell */,
@@ -1171,6 +1242,9 @@
 				309B6CF2216603F00046EFE9 /* readUser.sql */,
 				309B6CF8216604270046EFE9 /* deleteUser.sql */,
 				309B6CFE216605710046EFE9 /* createUser.sql */,
+				3027D23C21AC1B4700094D5C /* readToken.sql */,
+				3027D23F21AC1C6900094D5C /* createToken.sql */,
+				3027D24521AC1D6700094D5C /* deleteToken.sql */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1179,6 +1253,7 @@
 			isa = PBXGroup;
 			children = (
 				3E35CA94215E148E0042E65A /* UserDb.swift */,
+				3027D23721AC161600094D5C /* PushTokenDb.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -1481,6 +1556,7 @@
 			children = (
 				3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */,
 				30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */,
+				3027D27221AE7F9100094D5C /* BaseFormViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2007,6 +2083,7 @@
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
 				3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
+				3027D24721AC1D6700094D5C /* deleteToken.sql in Resources */,
 				30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */,
 				30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */,
 				30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */,
@@ -2014,6 +2091,7 @@
 				30FD36DF214A5E530047038C /* PublicHolidayTableViewCell.xib in Resources */,
 				309B6CFA216604270046EFE9 /* deleteUser.sql in Resources */,
 				30FD36E0214A5E530047038C /* TeamPreviewTableViewCell.xib in Resources */,
+				3027D24121AC1C6900094D5C /* createToken.sql in Resources */,
 				30FD36E1214A5E530047038C /* RequestApprovalTableViewCell.xib in Resources */,
 				30FD36E2214A5E530047038C /* Assets.xcassets in Resources */,
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
@@ -2021,7 +2099,9 @@
 				309B6CF4216603F00046EFE9 /* readUser.sql in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
+				3027D26C21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */,
 				306F1C8421A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
+				3027D24E21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
@@ -2030,6 +2110,7 @@
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
 				30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */,
 				30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */,
+				3027D23E21AC1B4700094D5C /* readToken.sql in Resources */,
 				30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2045,10 +2126,12 @@
 				309B6CF3216603F00046EFE9 /* readUser.sql in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
 				302EE18721358499001355E9 /* TeamCalendarCollectionViewCell.xib in Resources */,
+				3027D26B21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
+				3027D23D21AC1B4700094D5C /* readToken.sql in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
@@ -2060,17 +2143,20 @@
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
 				306F1C8D21A2A7D900E2D27B /* TeamTableViewCell.xib in Resources */,
 				3EB5643E20CA69E900501CAC /* Main.storyboard in Resources */,
+				3027D24D21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */,
 				3E832318216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6CFF216605710046EFE9 /* createUser.sql in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
+				3027D24621AC1D6700094D5C /* deleteToken.sql in Resources */,
 				306F1C8321A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
 				30516851217DACF900AAEA7D /* (null) in Resources */,
 				3E1E17D0218B043400868667 /* Localizable.strings in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
 				30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */,
+				3027D24021AC1C6900094D5C /* createToken.sql in Resources */,
 				30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2421,6 +2507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3027D27021AD538300094D5C /* MultipleSelectionWithSearch.swift in Sources */,
 				3044DF0A21A55B280068E2B7 /* Team.swift in Sources */,
 				302DED62218C830B0002D6B4 /* Allowance.swift in Sources */,
 				307D6AEF219176CF009F3104 /* LocalizedKeys.swift in Sources */,
@@ -2428,6 +2515,7 @@
 				302DED3C218C80100002D6B4 /* NotificationViewController.swift in Sources */,
 				3044DF0321A450640068E2B7 /* PushTokenDTO.swift in Sources */,
 				302DED68218C836E0002D6B4 /* Absence.swift in Sources */,
+				3027D23A21AC195600094D5C /* PushTokenDb.swift in Sources */,
 				302DED76218C91E80002D6B4 /* DisplayedDateFormatter.swift in Sources */,
 				302DED66218C834E0002D6B4 /* Day.swift in Sources */,
 				302DED72218C91820002D6B4 /* RequestApprovalTableViewCell.swift in Sources */,
@@ -2435,10 +2523,12 @@
 				302DED6A218C83A30002D6B4 /* ApiConstants.swift in Sources */,
 				302DED74218C919F0002D6B4 /* ViewConstants.swift in Sources */,
 				302DED64218C832B0002D6B4 /* UIColorExtension.swift in Sources */,
+				3027D25321AC31C600094D5C /* UserRole.swift in Sources */,
 				302DED5B218C81B60002D6B4 /* Request.swift in Sources */,
 				302DED6F218C916D0002D6B4 /* DateStringConverter.swift in Sources */,
 				302DED5D218C83050002D6B4 /* User.swift in Sources */,
 				3097471B21902D8A0083E177 /* EncodableExtension.swift in Sources */,
+				3027D25E21AD324200094D5C /* SetExtension.swift in Sources */,
 				302DED6D218C8A780002D6B4 /* RequestDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2447,6 +2537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3027D27121AD538400094D5C /* MultipleSelectionWithSearch.swift in Sources */,
 				3044DF0E21A55B280068E2B7 /* Team.swift in Sources */,
 				302DED67218C834F0002D6B4 /* Day.swift in Sources */,
 				307D6AF3219176CF009F3104 /* LocalizedKeys.swift in Sources */,
@@ -2454,6 +2545,7 @@
 				302DED69218C836F0002D6B4 /* Absence.swift in Sources */,
 				3044DF0421A450640068E2B7 /* PushTokenDTO.swift in Sources */,
 				302DED61218C83060002D6B4 /* User.swift in Sources */,
+				3027D23B21AC195600094D5C /* PushTokenDb.swift in Sources */,
 				302DED59218C81A30002D6B4 /* GenericResponse.swift in Sources */,
 				302DED6E218C8A790002D6B4 /* RequestDateFormatter.swift in Sources */,
 				302DED63218C830B0002D6B4 /* Allowance.swift in Sources */,
@@ -2461,10 +2553,12 @@
 				302DED73218C91830002D6B4 /* RequestApprovalTableViewCell.swift in Sources */,
 				302DED71218C916F0002D6B4 /* DateStringConverter.swift in Sources */,
 				302DED6B218C83A30002D6B4 /* ApiConstants.swift in Sources */,
+				3027D25421AC31C700094D5C /* UserRole.swift in Sources */,
 				302DED5A218C81B40002D6B4 /* Request.swift in Sources */,
 				302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */,
 				302DED77218C91E90002D6B4 /* DisplayedDateFormatter.swift in Sources */,
 				3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */,
+				3027D25F21AD324200094D5C /* SetExtension.swift in Sources */,
 				302DED65218C832C0002D6B4 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2502,6 +2596,7 @@
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
 				30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */,
 				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
+				3027D26A21AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
 				305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */,
 				30092B41219EC2D300244F09 /* UsersManagementViewController.swift in Sources */,
 				30092B5D219EF94000244F09 /* TeamsRepositoryProtocol.swift in Sources */,
@@ -2510,6 +2605,7 @@
 				30FD3692214A5E530047038C /* ExpandableData.swift in Sources */,
 				30FD3693214A5E530047038C /* RequestUpdateProtocol.swift in Sources */,
 				306F1C8C21A2A7D900E2D27B /* TeamTableViewCell.swift in Sources */,
+				3027D23921AC161600094D5C /* PushTokenDb.swift in Sources */,
 				30092B4E219EF54C00244F09 /* TeamManagementViewController.swift in Sources */,
 				30FD3694214A5E530047038C /* UIFontExtension.swift in Sources */,
 				30FD3697214A5E530047038C /* TeamCalendarCollectionViewCell.swift in Sources */,
@@ -2539,6 +2635,7 @@
 				30FD36A3214A5E530047038C /* StyleSetup.swift in Sources */,
 				30FD36A4214A5E530047038C /* TableDataProviderRepositoryProtocol.swift in Sources */,
 				30FD36A5214A5E530047038C /* UserRepository.swift in Sources */,
+				3027D25721AD311000094D5C /* LeaveProfilesManagementViewController.swift in Sources */,
 				30FD36A6214A5E530047038C /* UserRepositoryProtocol.swift in Sources */,
 				309B6D63216736890046EFE9 /* StringExtension.swift in Sources */,
 				3E832313216CAD570068E37F /* SummaryViewController.swift in Sources */,
@@ -2556,6 +2653,7 @@
 				3E6EBC5221904E100043EDBD /* CalendarUtils.swift in Sources */,
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
+				3027D26F21AD52AA00094D5C /* MultipleSelectionWithSearch.swift in Sources */,
 				30FD36B1214A5E530047038C /* TableDataProviderRepository.swift in Sources */,
 				30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */,
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
@@ -2563,6 +2661,7 @@
 				3E35CAA1215E15150042E65A /* UserDao.swift in Sources */,
 				30FD36B5214A5E530047038C /* ProgressHud.swift in Sources */,
 				309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */,
+				3027D27421AE7F9100094D5C /* BaseFormViewController.swift in Sources */,
 				303C44342154F101003F16CC /* UsersResponse.swift in Sources */,
 				3E892DEC21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				30FD36B6214A5E530047038C /* SectionData.swift in Sources */,
@@ -2582,9 +2681,11 @@
 				3E2D45B3216223C0002A512C /* DatabaseInitializer.swift in Sources */,
 				30FD36C0214A5E530047038C /* UserPreviewTableViewCell.swift in Sources */,
 				3E7C98D321A3034500AF7A10 /* TokenUtils.swift in Sources */,
+				3027D25D21AD31F500094D5C /* SetExtension.swift in Sources */,
 				30FD36C1214A5E530047038C /* PublicHolidayRepositoryProtocol.swift in Sources */,
 				3E21DF07218367190002BED8 /* DateExtension.swift in Sources */,
 				30FD36C2214A5E530047038C /* TeamPreviewViewController.swift in Sources */,
+				3027D24C21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */,
 				30FD36C5214A5E530047038C /* PublicHolidayRepository.swift in Sources */,
 				30FD36C6214A5E530047038C /* ApproveViewController.swift in Sources */,
 				30FD36C7214A5E530047038C /* UserDetailsRepository.swift in Sources */,
@@ -2601,6 +2702,7 @@
 				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 				302A589B21A69DE9000778C6 /* LeaveProfileRepositoryProtocol.swift in Sources */,
+				3027D25A21AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2637,6 +2739,7 @@
 				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
 				3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
+				3027D26921AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
 				305A01AE215908EB0008B4EA /* InputTableViewCell.swift in Sources */,
 				30092B40219EC2D300244F09 /* UsersManagementViewController.swift in Sources */,
 				30092B5C219EF94000244F09 /* TeamsRepositoryProtocol.swift in Sources */,
@@ -2645,6 +2748,7 @@
 				3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */,
 				3E15C3FC20E61A6500DB2CF7 /* UIFontExtension.swift in Sources */,
 				306F1C8B21A2A7D900E2D27B /* TeamTableViewCell.swift in Sources */,
+				3027D23821AC161600094D5C /* PushTokenDb.swift in Sources */,
 				3EBC9EB321AC157F002937E5 /* SignInUseCase.swift in Sources */,
 				30092B4D219EF54C00244F09 /* TeamManagementViewController.swift in Sources */,
 				302EE18621358499001355E9 /* TeamCalendarCollectionViewCell.swift in Sources */,
@@ -2674,6 +2778,7 @@
 				302EE18121356C93001355E9 /* TeamCalendarViewController.swift in Sources */,
 				3E15C36A20E6151900DB2CF7 /* StyleSetup.swift in Sources */,
 				3E15C46820E64D3300DB2CF7 /* TableDataProviderRepositoryProtocol.swift in Sources */,
+				3027D25621AD311000094D5C /* LeaveProfilesManagementViewController.swift in Sources */,
 				309B6D62216736880046EFE9 /* StringExtension.swift in Sources */,
 				3E832312216CAD570068E37F /* SummaryViewController.swift in Sources */,
 				302EE1732133F549001355E9 /* UserRepository.swift in Sources */,
@@ -2691,6 +2796,7 @@
 				3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */,
 				3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */,
 				3E28E79720E4AEA100F1C6D5 /* Day.swift in Sources */,
+				3027D26E21AD52AA00094D5C /* MultipleSelectionWithSearch.swift in Sources */,
 				305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
@@ -2698,6 +2804,7 @@
 				3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */,
 				302EE1832135744D001355E9 /* CalendarType.swift in Sources */,
 				3E35CAA0215E15150042E65A /* UserDao.swift in Sources */,
+				3027D27321AE7F9100094D5C /* BaseFormViewController.swift in Sources */,
 				3E3550F6211D937B00B43B57 /* ArrayExtension.swift in Sources */,
 				3E892DEB21777B7300C7F784 /* ViewConstants.swift in Sources */,
 				302EE17C21353539001355E9 /* ProgressHud.swift in Sources */,
@@ -2717,9 +2824,11 @@
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */,
 				3E7C98D221A3034500AF7A10 /* TokenUtils.swift in Sources */,
+				3027D25C21AD31F500094D5C /* SetExtension.swift in Sources */,
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
 				3E21DF06218367190002BED8 /* DateExtension.swift in Sources */,
 				307413482142754600F05427 /* PublicHolidayRepositoryProtocol.swift in Sources */,
+				3027D24B21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */,
 				307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */,
 				307413502142770000F05427 /* PublicHolidayRepository.swift in Sources */,
 				3E35510421217BC400B43B57 /* ApproveViewController.swift in Sources */,
@@ -2736,6 +2845,7 @@
 				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 				302A589A21A69DE9000778C6 /* LeaveProfileRepositoryProtocol.swift in Sources */,
+				3027D25921AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

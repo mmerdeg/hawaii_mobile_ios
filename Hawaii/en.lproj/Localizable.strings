@@ -17,6 +17,7 @@ general.approve = "Approve";
 general.reject = "Reject";
 general.wait = "Please wait";
 general.next = "Next";
+general.delete = "Delete";
 general.newRequestMenu = "Choose Request Type";
 general.success = "Success";
 general.confirm = "Confirm";
@@ -98,6 +99,10 @@ approval.title = "Approve requests";
 
 more.title = "More";
 more.signOut = "Sign out";
+more.manageUsers = "Manage users";
+more.manageTeams = "Manage teams";
+more.manageHolidays = "Manage holidays";
+more.manageLeaveProfiles = "Manage leave profiles";
 
 approval.emptyTitle = "No more requests to approve";
 approval.emptyDescription = "You are doing a good job, keep it up";

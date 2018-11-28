@@ -31,6 +31,7 @@ public struct LocalizedKeys {
         static let decline = "general.decline"
         static let emptyToken = "general.emptyToken"
         static let deleteMessage = "general.alert.deleteMessage"
+        static let delete = "general.delete"
     }
 
     struct Request {
@@ -126,5 +127,9 @@ public struct LocalizedKeys {
     struct More {
         static let title = "more.title"
         static let signOut = "more.signOut"
+        static let manageUsers = "more.manageUsers"
+        static let manageTeams = "more.manageTeams"
+        static let manageHolidays = "more.manageHolidays"
+        static let manageLeaveProfiles = "more.manageLeaveProfiles"
     }
 }

@@ -356,6 +356,8 @@ extension SwinjectStoryboard {
             
             defaultContainer.storyboardInitCompleted(UsersManagementViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
+                                                          name: String(describing: TeamUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(TeamsManagementViewController.self) { resolver, controller in
@@ -379,6 +381,16 @@ extension SwinjectStoryboard {
                 controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
                                                           name: String(describing: TeamUseCaseProtocol.self))
                 controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(LeaveProfileManagementViewController.self) { resolver, controller in
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
+                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
+            }
+            
+            defaultContainer.storyboardInitCompleted(LeaveProfilesManagementViewController.self) { resolver, controller in
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
+                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
             }
             
             defaultContainer.storyboardInitCompleted(PublicHolidayManagementViewController.self) { resolver, controller in

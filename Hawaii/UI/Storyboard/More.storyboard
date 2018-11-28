@@ -10,72 +10,40 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--More-->
-        <scene sceneID="LPM-8p-JU6">
+        <!--More View Controller-->
+        <scene sceneID="zkl-Av-sNd">
             <objects>
-                <viewController id="htc-E0-zC2" customClass="MoreViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VE9-Mn-ft4">
+                <viewController id="ixX-w2-zxf" customClass="MoreViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9gA-Zj-76r">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bnP-HR-5fh">
-                                <rect key="frame" x="127.5" y="32" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="3E3-bA-pOg"/>
-                                    <constraint firstAttribute="width" secondItem="bnP-HR-5fh" secondAttribute="height" multiplier="1:1" id="qbI-Np-sOJ"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svj-aa-ADA">
-                                <rect key="frame" x="164.5" y="184" width="46.5" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unx-sN-1Fn">
-                                <rect key="frame" x="165.5" y="221" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCU-NF-zFQ">
-                                <rect key="frame" x="48" y="274" width="279" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="YxX-1G-B7S"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Sign out"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonStyle" value="redAndRounded"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onSignOutPressed:" destination="htc-E0-zC2" eventType="touchUpInside" id="e05-Ja-KMh"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Cyo-IH-acU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="svj-aa-ADA" firstAttribute="top" secondItem="bnP-HR-5fh" secondAttribute="bottom" constant="32" id="Liw-Yn-stc"/>
-                            <constraint firstItem="unx-sN-1Fn" firstAttribute="centerX" secondItem="svj-aa-ADA" secondAttribute="centerX" id="Nak-Ia-awd"/>
-                            <constraint firstItem="VCU-NF-zFQ" firstAttribute="centerX" secondItem="t9a-W3-8v8" secondAttribute="centerX" id="ZLk-6S-VCF"/>
-                            <constraint firstItem="VCU-NF-zFQ" firstAttribute="leading" secondItem="t9a-W3-8v8" secondAttribute="leading" constant="48" id="efe-xW-369"/>
-                            <constraint firstItem="svj-aa-ADA" firstAttribute="centerX" secondItem="bnP-HR-5fh" secondAttribute="centerX" id="fFx-cA-UQM"/>
-                            <constraint firstItem="bnP-HR-5fh" firstAttribute="centerX" secondItem="t9a-W3-8v8" secondAttribute="centerX" id="gYz-YP-56r"/>
-                            <constraint firstItem="bnP-HR-5fh" firstAttribute="top" secondItem="t9a-W3-8v8" secondAttribute="top" constant="32" id="nVa-Ye-9fl"/>
-                            <constraint firstItem="VCU-NF-zFQ" firstAttribute="top" secondItem="unx-sN-1Fn" secondAttribute="bottom" constant="32" id="qmt-EP-Mee"/>
-                            <constraint firstItem="unx-sN-1Fn" firstAttribute="top" secondItem="svj-aa-ADA" secondAttribute="bottom" constant="14" id="xsE-xB-W1l"/>
+                            <constraint firstItem="Cyo-IH-acU" firstAttribute="centerX" secondItem="Xaz-JN-WuL" secondAttribute="centerX" id="6zA-ZW-RVe"/>
+                            <constraint firstItem="Cyo-IH-acU" firstAttribute="centerY" secondItem="Xaz-JN-WuL" secondAttribute="centerY" id="dt7-0N-eda"/>
+                            <constraint firstItem="Cyo-IH-acU" firstAttribute="top" secondItem="Xaz-JN-WuL" secondAttribute="top" id="lRu-CT-gah"/>
+                            <constraint firstItem="Cyo-IH-acU" firstAttribute="leading" secondItem="Xaz-JN-WuL" secondAttribute="leading" id="rKU-rK-Ce8"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="t9a-W3-8v8"/>
+                        <viewLayoutGuide key="safeArea" id="Xaz-JN-WuL"/>
                     </view>
-                    <navigationItem key="navigationItem" title="More" id="751-m1-4az"/>
+                    <navigationItem key="navigationItem" id="PNZ-hr-iGA"/>
                     <connections>
-                        <outlet property="emailLabel" destination="unx-sN-1Fn" id="nee-Ld-f34"/>
-                        <outlet property="nameLabel" destination="svj-aa-ADA" id="VYj-cV-X7S"/>
-                        <outlet property="profileImage" destination="bnP-HR-5fh" id="GG2-Mg-i0z"/>
-                        <outlet property="signOutButton" destination="VCU-NF-zFQ" id="8e5-hC-E6e"/>
+                        <outlet property="tableView" destination="Cyo-IH-acU" id="SBs-1i-PET"/>
+                        <segue destination="2jQ-PP-z9w" kind="show" identifier="showUsersManagement" id="hXO-Mr-lls"/>
+                        <segue destination="U85-Wx-gSk" kind="show" identifier="showTeamsManagement" id="IOj-KC-W7K"/>
+                        <segue destination="43I-FY-JFI" kind="show" identifier="showHolidayManagement" id="1WW-V6-2gy"/>
+                        <segue destination="il9-ck-xrw" kind="show" identifier="showLeaveProfilesManagement" id="y59-CM-boz"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mze-pQ-kKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BSW-Gv-fRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="1154.5727136431785"/>
+            <point key="canvasLocation" x="1593" y="1012"/>
         </scene>
         <!--More-->
         <scene sceneID="jJB-Tl-jYw">
@@ -90,12 +58,207 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="htc-E0-zC2" kind="relationship" relationship="rootViewController" id="R8U-yc-i1m"/>
+                        <segue destination="ixX-w2-zxf" kind="relationship" relationship="rootViewController" id="n5k-ei-s90"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="979-zi-uCo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969" y="1155"/>
+            <point key="canvasLocation" x="510" y="1012"/>
+        </scene>
+        <!--Employee Menagement-->
+        <scene sceneID="kHG-xM-f7S">
+            <objects>
+                <viewController id="2jQ-PP-z9w" customClass="UsersManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5xZ-iX-UT7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-Fg-ffd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="centerY" secondItem="2ju-2G-vHh" secondAttribute="centerY" id="0ea-IC-Gfo"/>
+                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="leading" secondItem="2ju-2G-vHh" secondAttribute="leading" id="Qca-2V-ssl"/>
+                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="top" secondItem="2ju-2G-vHh" secondAttribute="top" id="ckq-R3-cxQ"/>
+                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="centerX" secondItem="2ju-2G-vHh" secondAttribute="centerX" id="lPg-c1-YRG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2ju-2G-vHh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Employee Menagement" id="CCf-mW-Jel"/>
+                    <connections>
+                        <outlet property="tableView" destination="uNd-Fg-ffd" id="jod-SH-RKn"/>
+                        <segue destination="kKO-SZ-vI5" kind="show" identifier="manageUser" id="VdT-iZ-efK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mMq-63-P4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="35"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="BYV-zX-1Qm">
+            <objects>
+                <viewController id="kKO-SZ-vI5" customClass="UserManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eUC-ac-2ra">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JHY-p6-b0O"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="User" id="RTw-XC-j46"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WBX-qZ-GTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3954" y="35"/>
+        </scene>
+        <!--Team-->
+        <scene sceneID="Dbm-8R-EDa">
+            <objects>
+                <viewController id="YAZ-XA-LzD" customClass="TeamManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lRK-cG-UKa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="lkD-y4-OgC"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Team" id="ZzJ-Zn-G2e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="30e-y1-rvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="761"/>
+        </scene>
+        <!--Holiday-->
+        <scene sceneID="qjy-Fy-OSK">
+            <objects>
+                <viewController id="OXl-Ed-HmI" customClass="PublicHolidayManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z8a-sy-Qbh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="8JX-WO-EMc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holiday" id="FNc-32-jDU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="He6-A5-9tJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="1484"/>
+        </scene>
+        <!--Team Menagement-->
+        <scene sceneID="Fnc-qu-qt2">
+            <objects>
+                <viewController id="U85-Wx-gSk" customClass="TeamsManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d0i-xf-ohB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LhF-d7-Qfi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="leading" secondItem="sxt-nO-NWc" secondAttribute="leading" id="1tU-SJ-91w"/>
+                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="centerY" secondItem="sxt-nO-NWc" secondAttribute="centerY" id="hwK-Ow-6yz"/>
+                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="top" secondItem="sxt-nO-NWc" secondAttribute="top" id="nzf-Ew-2sQ"/>
+                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="centerX" secondItem="sxt-nO-NWc" secondAttribute="centerX" id="tsf-vW-gIR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sxt-nO-NWc"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Team Menagement" id="W7X-Iq-l4R"/>
+                    <connections>
+                        <outlet property="tableView" destination="LhF-d7-Qfi" id="Sxb-u3-i2R"/>
+                        <segue destination="YAZ-XA-LzD" kind="show" identifier="manageTeam" id="PkN-n6-If9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpT-co-TQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="761"/>
+        </scene>
+        <!--Leave types-->
+        <scene sceneID="CGy-4A-pnX">
+            <objects>
+                <viewController id="il9-ck-xrw" customClass="LeaveProfilesManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pNo-Qn-f9n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBf-bE-N1f">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HBf-bE-N1f" firstAttribute="centerX" secondItem="osi-EK-JfS" secondAttribute="centerX" id="4PV-rI-dhb"/>
+                            <constraint firstItem="HBf-bE-N1f" firstAttribute="leading" secondItem="osi-EK-JfS" secondAttribute="leading" id="N6u-4V-Ec1"/>
+                            <constraint firstItem="HBf-bE-N1f" firstAttribute="top" secondItem="osi-EK-JfS" secondAttribute="top" id="QZJ-R7-8dg"/>
+                            <constraint firstItem="HBf-bE-N1f" firstAttribute="centerY" secondItem="osi-EK-JfS" secondAttribute="centerY" id="m6P-GY-xJc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="osi-EK-JfS"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Leave types" id="YRU-Nc-lgv"/>
+                    <connections>
+                        <outlet property="tableView" destination="HBf-bE-N1f" id="zOf-gl-SaZ"/>
+                        <segue destination="LLb-er-4Db" kind="show" identifier="manageLeaveProfile" id="fxc-tY-wCw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d5r-BO-iaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="2206"/>
+        </scene>
+        <!--Holiday Menagement-->
+        <scene sceneID="B2S-tm-fON">
+            <objects>
+                <viewController id="43I-FY-JFI" customClass="PublicHolidaysManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dR6-bW-41A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="41T-g6-Q8D">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="41T-g6-Q8D" firstAttribute="top" secondItem="2cB-OS-N5K" secondAttribute="top" id="b5M-zj-pgu"/>
+                            <constraint firstItem="41T-g6-Q8D" firstAttribute="centerX" secondItem="2cB-OS-N5K" secondAttribute="centerX" id="dPx-dA-riJ"/>
+                            <constraint firstItem="41T-g6-Q8D" firstAttribute="leading" secondItem="2cB-OS-N5K" secondAttribute="leading" id="j0X-Xd-3vB"/>
+                            <constraint firstItem="41T-g6-Q8D" firstAttribute="centerY" secondItem="2cB-OS-N5K" secondAttribute="centerY" id="nu5-bH-Eh6"/>
+                            <constraint firstItem="2cB-OS-N5K" firstAttribute="bottom" secondItem="41T-g6-Q8D" secondAttribute="bottom" id="o5g-xE-056"/>
+                            <constraint firstItem="2cB-OS-N5K" firstAttribute="bottom" secondItem="41T-g6-Q8D" secondAttribute="bottom" id="uoZ-tv-uJe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2cB-OS-N5K"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holiday Menagement" id="XRk-bi-vMC"/>
+                    <connections>
+                        <outlet property="tableView" destination="41T-g6-Q8D" id="D2D-7b-spB"/>
+                        <segue destination="OXl-Ed-HmI" kind="show" identifier="managePublicHoliday" id="eS6-AB-9O0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bEi-Su-2dK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="1484"/>
+        </scene>
+        <!--Leave type-->
+        <scene sceneID="MMn-Uy-LFV">
+            <objects>
+                <viewController id="LLb-er-4Db" customClass="LeaveProfileManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ylR-Mj-tPM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="I3p-Pv-O6Z"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Leave type" id="pXD-68-aby"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="om7-or-Uqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="2205"/>
         </scene>
     </scenes>
     <resources>

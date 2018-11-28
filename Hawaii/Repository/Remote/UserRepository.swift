@@ -104,45 +104,25 @@ class UserRepository: SessionManager, UserRepositoryProtocol {
     }
     
     func deleteFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let url = URL(string: firebaseTokenUrl) else {
+        guard let id = pushTokenDTO.pushTokenId,
+              let url = URL(string: firebaseTokenUrl + "/\(id)") else {
             return
         }
-        
-        #if PRODUCTION
-        let pushTokenKey = "pushToken"
-        
-        let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
+        genericJSONRequest(url, method: HTTPMethod.delete) { response in
             completion(response)
         }
-        #else
-        let params = pushTokenDTO.dictionary
-        genericJSONRequest(url, method: HTTPMethod.post,
-                           parameters: params, encoding: JSONEncoding.default) { response in
-                            completion(response)
-        }
-        #endif
     }
     
-    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<Any>?) -> Void) {
+    func setFirebaseToken(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void) {
         guard let url = URL(string: firebaseTokenUrl) else {
             return
         }
+        let params = pushTokenDTO.dictionary
         
-        #if PRODUCTION
-        let pushTokenKey = "pushToken"
-        
-        let params = [pushTokenKey: ""] as [String: Any]
-        genericJSONRequest(url, method: HTTPMethod.put, parameters: params) { response in
+        genericCodableRequest(value: PushTokenDTO.self, url, method: HTTPMethod.post,
+                              parameters: params, encoding: JSONEncoding.default) { response in
             completion(response)
         }
-        #else
-        let params = pushTokenDTO.dictionary
-        genericJSONRequest(url, method: HTTPMethod.post,
-                           parameters: params, encoding: JSONEncoding.default) { response in
-                            completion(response)
-        }
-        #endif
     }
     
     func getUser(email: String, completion: @escaping (GenericResponse<User>?) -> Void) {

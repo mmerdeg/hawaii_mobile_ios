@@ -10,6 +10,12 @@ import Foundation
 
 protocol LeaveProfileUseCaseProtocol {
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
+    
+    func add(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void)
+    
+    func update(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void)
+    
+    func delete(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<Any>?) -> Void)
 }
 
 class LeaveProfileUseCase: LeaveProfileUseCaseProtocol {
@@ -22,6 +28,24 @@ class LeaveProfileUseCase: LeaveProfileUseCaseProtocol {
     
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void) {
         leaveProfileRepository?.get(completion: { response in
+            completion(response)
+        })
+    }
+    
+    func add(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void) {
+        leaveProfileRepository?.add(leaveProfile: leaveProfile, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func update(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void) {
+        leaveProfileRepository?.update(leaveProfile: leaveProfile, completion: { response in
+            completion(response)
+        })
+    }
+    
+    func delete(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        leaveProfileRepository?.delete(leaveProfile: leaveProfile, completion: { response in
             completion(response)
         })
     }

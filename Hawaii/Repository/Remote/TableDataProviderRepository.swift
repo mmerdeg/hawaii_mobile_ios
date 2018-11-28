@@ -80,6 +80,17 @@ class TableDataProviderRepository: SessionManager, TableDataProviderRepositoryPr
                                                    CellData(title: DurationType.morningAndAfternoon.description, description: nil)])])
     }
     
+    func getMoreData(completion: @escaping ([SectionData]) -> Void) {
+        completion([SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil),
+                                                   CellData(title: DurationType.afternoonFirst.description, description: nil),
+                                                   CellData(title: DurationType.morningLast.description, description: nil),
+                                                   CellData(title: DurationType.morningAndAfternoon.description, description: nil)]),
+                    SectionData(name: nil, cells: [CellData(title: DurationType.fullday.description, description: nil),
+                                                   CellData(title: DurationType.afternoonFirst.description, description: nil),
+                                                   CellData(title: DurationType.morningLast.description, description: nil),
+                                                   CellData(title: DurationType.morningAndAfternoon.description, description: nil)])])
+    }
+    
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void) {
        completion([ExpandableData(id: 0, expanded: true, title: LocalizedKeys.Request.startDate.localized(), description: forDate),
                    ExpandableData(id: 0, expanded: true, title: LocalizedKeys.Request.endDate.localized(), description: forDate)])

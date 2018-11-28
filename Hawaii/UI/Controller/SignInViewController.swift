@@ -37,6 +37,7 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
                 self.stopActivityIndicatorSpinner()
                 return
             }
+            
             self.userUseCase?.create(entity: user, completion: { _ in
                 
                 self.userUseCase?.setFirebaseToken { firebaseResponse in
@@ -50,10 +51,17 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
                         self.handleResponseFaliure(message: firebaseResponse?.message)
                         return
                     }
-                    self.stopActivityIndicatorSpinner()
-                    self.navigateToHome()
+                    guard let token = firebaseResponse?.item else {
+                        self.stopActivityIndicatorSpinner()
+                        return
+                    }
+                    self.userUseCase?.create(entity: token, completion: { _ in
+                        self.navigateToHome()
+                        self.stopActivityIndicatorSpinner()
+                    })
+
                 }
-                
+
             })
         }
     }

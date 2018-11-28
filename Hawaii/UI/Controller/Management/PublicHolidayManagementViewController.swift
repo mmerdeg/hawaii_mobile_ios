@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class PublicHolidayManagementViewController: FormViewController {
+class PublicHolidayManagementViewController: BaseFormViewController {
     
     var publicHolidayUseCase: PublicHolidayUseCaseProtocol?
     
@@ -34,30 +34,20 @@ class PublicHolidayManagementViewController: FormViewController {
                 row.value = holiday?.name
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
-            }.cellSetup({ cell, textRow in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    textRow.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
+            }.cellSetup({ cell, row in
+                    self.setTextInput(cell: cell, row: row)
             }).cellUpdate({ cell, row in
-                    cell.titleLabel?.textColor = UIColor.primaryTextColor
-                    cell.textField.textColor = UIColor.primaryTextColor
-                    row.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
+                    self.setTextInput(cell: cell, row: row)
             })
             <<< DateRow("date") {
                 $0.title = "Holiday date"
                 $0.value = holiday?.date ?? Date()
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
-            }.cellSetup({ cell, _ in
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
-                    cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                    cell.backgroundColor = UIColor.primaryColor
-            }).cellUpdate({ cell, _ in
-                cell.textLabel?.textColor = UIColor.primaryTextColor
-                cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
-                cell.backgroundColor = UIColor.primaryColor
+            }.cellSetup({ cell, row in
+                    self.setDateInput(cell: cell, row: row)
+            }).cellUpdate({ cell, row in
+                self.setDateInput(cell: cell, row: row)
             })
             <<< SwitchRow("active") { row in
                 row.value = holiday?.active
@@ -66,9 +56,7 @@ class PublicHolidayManagementViewController: FormViewController {
                     row.title = (row.value ?? false) ? "Active": "Not active"
                     row.updateCell()
             }.cellSetup { cell, _ in
-                    cell.switchControl.tintColor = UIColor.accentColor
-                    cell.backgroundColor = UIColor.primaryColor
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                    self.setSwitchInput(cell: cell)
             }.cellUpdate { cell, _ in
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             }
