@@ -21,6 +21,8 @@ class SummaryViewController: BaseViewController {
     
     @IBOutlet weak var cardView: UIView!
     
+    @IBOutlet weak var dividor: UIView!
+    
     @IBOutlet weak var datesRequiredTitle: UILabel!
     
     @IBOutlet weak var leaveRequestedTitle: UILabel!
@@ -80,7 +82,8 @@ class SummaryViewController: BaseViewController {
         leaveReasonLabel.textColor = UIColor.primaryTextColor
         leaveTypeLabel.textColor = UIColor.primaryTextColor
         leaveRemainingLabel.textColor = UIColor.primaryTextColor
-        
+        dividor.backgroundColor = UIColor.primaryColor
+            
         cardView.backgroundColor = UIColor.lightPrimaryColor
         
         leaveTypeLabel.text = leaveType
@@ -101,7 +104,7 @@ class SummaryViewController: BaseViewController {
     func displayImage(color: UIColor, imageUrl: String) {
         requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
         requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
-        requestImage.tintColor = UIColor.primaryColor
+        requestImage.tintColor = UIColor.statusIconColor
         requestImage.backgroundColor = color
         requestImage.layer.cornerRadius = requestImage.frame.height / 2
         requestImage.layer.masksToBounds = true

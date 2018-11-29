@@ -43,7 +43,7 @@ class TeamPreviewTableViewCell: UITableViewCell {
             
             requestImage.kf.setImage(with: URL(string: ViewConstants.baseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
-            requestImage.tintColor = UIColor.primaryColor
+            requestImage.tintColor = UIColor.statusIconColor
             requestImage.layer.cornerRadius = requestImage.frame.height / 2
             requestImage.layer.masksToBounds = true
             requestImage.backgroundColor = color

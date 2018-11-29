@@ -24,6 +24,8 @@ class MoreViewController: BaseViewController {
         self.navigationItem.title = LocalizedKeys.More.title.localized()
         tableView.register(UINib(nibName: String(describing: ProfileTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: String(describing: ProfileTableViewCell.self))
+        tableView.register(UINib(nibName: String(describing: ThemeTableViewCell.self), bundle: nil),
+                           forCellReuseIdentifier: String(describing: ThemeTableViewCell.self))
         tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -96,10 +98,10 @@ class MoreViewController: BaseViewController {
 
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section != 1 {
-            return 1
+        if section != adminSection {
+            return section == 0 ? 1 : 2
         }
-        return isAdmin() ? 4 : 1
+        return isAdmin() ? 4 : 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,7 +119,12 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
                 return getDefaultCell(text: LocalizedKeys.More.manageLeaveProfiles.localized())
             }
         } else {
-            return getDefaultCell(text: LocalizedKeys.More.signOut.localized())
+            switch indexPath.row {
+            case 0:
+                return getThemeCell(indexPath: indexPath) ?? UITableViewCell()
+            default:
+                return getDefaultCell(text: LocalizedKeys.More.signOut.localized())
+            }
         }
     }
     
@@ -127,7 +134,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         } else if section == adminSection && isAdmin() {
             return "Admin section"
         } else {
-            return "Additional info"
+            return "Additional options"
         }
     }
     
@@ -170,6 +177,17 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.user = user
         cell.imageUrl = userDetailsUseCase?.getPictureUrl()
+        return cell
+    }
+    
+    func getThemeCell(indexPath: IndexPath) -> ThemeTableViewCell? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ThemeTableViewCell.self),
+                                                       for: indexPath)
+            as? ThemeTableViewCell else {
+                return nil
+        }
+        cell.userDetailsUseCase = userDetailsUseCase
+        cell.themeSwitch.isOn = userDetailsUseCase?.isLightThemeSelected() ?? false
         return cell
     }
     

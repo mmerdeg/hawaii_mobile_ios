@@ -32,7 +32,7 @@ class AlertPresenter {
                                                              attributes: [NSAttributedStringKey.font: UIFont.primary(),
                                                                           NSAttributedStringKey.paragraphStyle: paragraphStyle])
         let dialogue = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        dialogue.view.tintColor = UIColor.primaryColor
+        dialogue.view.tintColor = UIColor.black
         dialogue.setValue(mutableStringTitle, forKey: titleKey)
         if message != nil {
             dialogue.setValue(mutableStringMessage, forKey: messageKey)

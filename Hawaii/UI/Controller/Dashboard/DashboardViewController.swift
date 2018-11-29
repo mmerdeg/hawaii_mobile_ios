@@ -139,6 +139,7 @@ class DashboardViewController: BaseViewController {
     }
     
     func showDetails(_ requests: [Request]) {
+        self.changeSchemeTo(colorScheme: .light)
         self.navigationController?.view.addSubview(customView)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {

@@ -39,6 +39,10 @@ protocol UserDetailsUseCaseProtocol {
     func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool)
     
     func setRunBefore(_ hasRunBefore: Bool)
+    
+    func isLightThemeSelected() -> Bool
+    
+    func setLightThemeSelected(_ isLightThemeSelected: Bool)
 }
 
 class UserDetailsUseCase: UserDetailsUseCaseProtocol {
@@ -121,6 +125,14 @@ class UserDetailsUseCase: UserDetailsUseCaseProtocol {
     
     func setRefreshApproveScreen(_ doesApproveScreenNeedsRefresh: Bool) {
         userDetailsRepository.setRefreshApproveScreen(doesApproveScreenNeedsRefresh)
+    }
+    
+    func isLightThemeSelected() -> Bool {
+        return userDetailsRepository.isLightThemeSelected()
+    }
+    
+    func setLightThemeSelected(_ isLightThemeSelected: Bool) {
+        userDetailsRepository.setLightThemeSelected(isLightThemeSelected)
     }
     
     func isTokenExpired(token: String?) -> Bool {

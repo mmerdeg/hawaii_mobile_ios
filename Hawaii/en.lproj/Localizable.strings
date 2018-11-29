@@ -103,6 +103,7 @@ more.manageUsers = "Manage users";
 more.manageTeams = "Manage teams";
 more.manageHolidays = "Manage holidays";
 more.manageLeaveProfiles = "Manage leave profiles";
+more.theme = "Light theme";
 
 approval.emptyTitle = "No more requests to approve";
 approval.emptyDescription = "You are doing a good job, keep it up";

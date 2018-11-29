@@ -131,5 +131,6 @@ public struct LocalizedKeys {
         static let manageTeams = "more.manageTeams"
         static let manageHolidays = "more.manageHolidays"
         static let manageLeaveProfiles = "more.manageLeaveProfiles"
+        static let theme = "more.theme"
     }
 }

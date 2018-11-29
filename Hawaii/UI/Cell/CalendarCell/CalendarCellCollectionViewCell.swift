@@ -62,7 +62,7 @@ class CalendarCellCollectionViewCell: JTAppleCell {
                 || cellState.day == DaysOfWeek.saturday || cellState.day == DaysOfWeek.sunday {
                 continue
             }
-            dateLabel.textColor = UIColor.darkPrimaryColor
+            dateLabel.textColor = UIColor.statusIconColor
             let backgroundColor = request.absence?.absenceType == AbsenceType.sick.rawValue ? UIColor.sickColor :
                 request.requestStatus?.backgoundColor ?? UIColor.clear
             let imageUrl = URL(string: ViewConstants.baseUrl + "/" + (request.absence?.iconUrl ?? ""))
