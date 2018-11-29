@@ -18,6 +18,8 @@ class UserDao: UserDaoProtocol {
     var emptyTokenQuery: String?
     
     var readTokenQuery: String?
+    
+    var readTokensQuery: String?
 
     init(dispatchQueue: DispatchQueue, databaseQueue: FMDatabaseQueue) {
         self.databaseQueue = databaseQueue
@@ -31,7 +33,8 @@ class UserDao: UserDaoProtocol {
               let readUserUrl = bundle.url(forResource: "readUser", withExtension: sqlExtension),
               let createTokenUrl = bundle.url(forResource: "createToken", withExtension: sqlExtension),
               let emptyTokenUrl = bundle.url(forResource: "deleteToken", withExtension: sqlExtension),
-              let readTokenUrl = bundle.url(forResource: "readToken", withExtension: sqlExtension) else {
+              let readTokenUrl = bundle.url(forResource: "readToken", withExtension: sqlExtension),
+              let readTokensUrl = bundle.url(forResource: "readTokens", withExtension: sqlExtension) else {
                 return
         }
         readUserQuery = (try? String(contentsOf: readUserUrl))
@@ -41,32 +44,29 @@ class UserDao: UserDaoProtocol {
         readTokenQuery = (try? String(contentsOf: readTokenUrl))
         createTokenQuery = (try? String(contentsOf: createTokenUrl))
         emptyTokenQuery = (try? String(contentsOf: emptyTokenUrl))
+        
+        readTokensQuery = (try? String(contentsOf: readTokensUrl))
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        emptyUsers { success in
-            if !success {
-                return
-            }
-            self.dispatchQueue?.async {
-                self.databaseQueue?.inTransaction { database, _ in
-                    do {
-                        let values: [Any] = [ entity.id ?? -1,
-                                              entity.teamId ?? -1,
-                                              entity.teamName ?? "",
-                                              entity.leaveProfileId ?? -1,
-                                              entity.fullName ?? "",
-                                              entity.email ?? "",
-                                              entity.userRole ?? "",
-                                              entity.jobTitle ?? "",
-                                              entity.active ?? false,
-                                              entity.yearsOfService ?? -1]
-                        try database.executeUpdate(self.createUserQuery ?? "", values: values)
-                        completion(Int(database.lastInsertRowId))
-                    } catch {
-                        print(error.localizedDescription)
-                        completion(-1)
-                    }
+        self.dispatchQueue?.async {
+            self.databaseQueue?.inTransaction { database, _ in
+                do {
+                    let values: [Any] = [ entity.id ?? -1,
+                                          entity.teamId ?? -1,
+                                          entity.teamName ?? "",
+                                          entity.leaveProfileId ?? -1,
+                                          entity.fullName ?? "",
+                                          entity.email ?? "",
+                                          entity.userRole ?? "",
+                                          entity.jobTitle ?? "",
+                                          entity.active ?? false,
+                                          entity.yearsOfService ?? -1]
+                    try database.executeUpdate(self.createUserQuery ?? "", values: values)
+                    completion(Int(database.lastInsertRowId))
+                } catch {
+                    print(error.localizedDescription)
+                    completion(-1)
                 }
             }
         }
@@ -103,37 +103,60 @@ class UserDao: UserDaoProtocol {
         }
     }
     
-    func create(entity: PushTokenDTO, completion: @escaping (Int) -> Void) {
-        deleteTokens { success in
-            if !success {
-                return
-            }
-            self.dispatchQueue?.async {
-                self.databaseQueue?.inTransaction { database, _ in
-                    do {
-                        let values: [Any] = [ entity.pushTokenId ?? -1,
-                                              entity.name ?? "",
-                                              entity.platform ?? Platform.iOS,
-                                              entity.pushToken ?? ""]
-                        try database.executeUpdate(self.createTokenQuery ?? "", values: values)
-                        completion(Int(database.lastInsertRowId))
-                    } catch {
-                        print(error.localizedDescription)
-                        completion(-1)
-                    }
+    func create(entity: PushTokenDTO, userId: Int, completion: @escaping (Int) -> Void) {
+        self.dispatchQueue?.async {
+            self.databaseQueue?.inTransaction { database, _ in
+                do {
+                    let values: [Any] = [ entity.pushTokenId ?? -1,
+                                          entity.name ?? "",
+                                          entity.platform ?? Platform.iOS,
+                                          entity.pushToken ?? "",
+                                          userId]
+                    try database.executeUpdate(self.createTokenQuery ?? "", values: values)
+                    completion(Int(database.lastInsertRowId))
+                } catch {
+                    print(error.localizedDescription)
+                    completion(-1)
                 }
             }
         }
     }
     
-    func read(completion: @escaping (PushTokenDTO?) -> Void) {
+    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void) {
+        guard let readTokensQuery = readTokensQuery else {
+            completion(nil)
+            return
+        }
+        dispatchQueue?.async {
+            self.databaseQueue?.inTransaction { database, _ in
+                let values: [Any] = [ userId ]
+                guard let resultSet = try? database.executeQuery(readTokensQuery, values: values) else {
+                    completion(nil)
+                    return
+                }
+                var tokens: [PushTokenDTO] = []
+                while resultSet.next() {
+                    guard let result = resultSet.resultDictionary as? [String: Any],
+                          let tokenDb = PushTokenDb(parameters: result) else {
+                            completion(nil)
+                            return
+                    }
+                    tokens.append(tokenDb.toPushToken())
+                }
+                completion(tokens)
+            }
+        }
+    }
+    
+    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void) {
         guard let readTokenQuery = readTokenQuery else {
             completion(nil)
             return
         }
         dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
-                guard let resultSet = try? database.executeQuery(readTokenQuery, values: nil) else {
+                let values: [Any] = [ pushToken ]
+                guard let resultSet = try? database.executeQuery(readTokenQuery, values: values) else {
                     completion(nil)
                     return
                 }

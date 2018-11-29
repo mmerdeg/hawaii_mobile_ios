@@ -55,11 +55,10 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
                         self.stopActivityIndicatorSpinner()
                         return
                     }
-                    self.userUseCase?.create(entity: token, completion: { _ in
+                    self.userUseCase?.create(entity: token, userId: nil, completion: { _ in
                         self.navigateToHome()
                         self.stopActivityIndicatorSpinner()
                     })
-
                 }
 
             })

@@ -398,6 +398,10 @@ extension SwinjectStoryboard {
                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
             }
             
+            defaultContainer.storyboardInitCompleted(ProfileViewController.self) { resolver, controller in
+                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+            }
+            
         }
         
     }

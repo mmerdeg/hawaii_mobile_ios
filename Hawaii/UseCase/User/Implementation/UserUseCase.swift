@@ -25,13 +25,15 @@ protocol UserUseCaseProtocol {
     
     func readUser(completion: @escaping (User?) -> Void)
     
-    func create(entity: PushTokenDTO, completion: @escaping (Int) -> Void)
+    func create(entity: PushTokenDTO, userId: Int?, completion: @escaping (Int) -> Void)
     
-    func read(completion: @escaping (PushTokenDTO?) -> Void)
+    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void)
+    
+    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void)
 }
 
 class UserUseCase: UserUseCaseProtocol {
-    
+
     let userRepository: UserRepositoryProtocol?
     
     let userDao: UserDaoProtocol?
@@ -95,9 +97,30 @@ class UserUseCase: UserUseCaseProtocol {
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        userDao?.create(entity: entity) { id in
-            completion(id)
-        }
+        userDao?.deleteTokens(completion: { tokenSuccess in
+            if !tokenSuccess {
+                completion(-1)
+                return
+            }
+            self.userDao?.emptyUsers { success in
+                if !success {
+                    completion(-1)
+                    return
+                }
+                self.userDao?.create(entity: entity) { id in
+                    guard let pushTokens = entity.userPushTokens else {
+                        completion(-1)
+                        return
+                    }
+                    for pushToken in pushTokens {
+                        self.create(entity: pushToken, userId: id, completion: { _ in
+                            
+                        })
+                    }
+                    completion(id)
+                }
+            }
+        })
     }
     
     func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
@@ -108,7 +131,12 @@ class UserUseCase: UserUseCaseProtocol {
     
     func readUser(completion: @escaping (User?) -> Void) {
         userDao?.read { user in
-            completion(user)
+            guard let userId = user?.id else {
+                return
+            }
+            self.read(userId: userId, completion: { pushTokens in
+                completion(User(user: user, userPushTokens: pushTokens))
+            })
         }
     }
     
@@ -140,8 +168,23 @@ class UserUseCase: UserUseCaseProtocol {
         
     }
     
+    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void) {
+        userDao?.read(userId: userId, completion: { tokens in
+            completion(tokens)
+        })
+    }
+    
+    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void) {
+        userDao?.read(pushToken: pushToken, completion: { token in
+            completion(token)
+        })
+    }
+    
     func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        self.read(completion: { pushToken in
+        guard let pushToken = userDetailsUseCase?.getFirebaseToken() else {
+            return
+        }
+        self.read(pushToken: pushToken, completion: { pushToken in
             guard let pushToken = pushToken else {
                 return
             }
@@ -151,16 +194,22 @@ class UserUseCase: UserUseCaseProtocol {
         })
     }
     
-    func create(entity: PushTokenDTO, completion: @escaping (Int) -> Void) {
-        userDao?.create(entity: entity, completion: { response in
-            completion(response)
-        })
-    }
-    
-    func read(completion: @escaping (PushTokenDTO?) -> Void) {
-        userDao?.read(completion: { response in
-            completion(response)
-        })
+    func create(entity: PushTokenDTO, userId: Int? = nil, completion: @escaping (Int) -> Void) {
+        if let userId = userId {
+            self.userDao?.create(entity: entity, userId: userId, completion: { response in
+                completion(response)
+            })
+        } else {
+            self.readUser(completion: { user in
+                guard let userId = user?.id else {
+                    return
+                }
+                self.userDao?.create(entity: entity, userId: userId, completion: { response in
+                    completion(response)
+                })
+            })
+        }
+        
     }
     
     func getFirebaseToken() -> String? {

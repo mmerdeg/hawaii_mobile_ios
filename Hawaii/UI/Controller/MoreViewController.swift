@@ -15,6 +15,7 @@ class MoreViewController: BaseViewController {
     let showHolidaysManagementSegue = "showHolidayManagement"
     let showTeamsManagementSegue = "showTeamsManagement"
     let showLeaveProfilesManagementSegue = "showLeaveProfilesManagement"
+    let editTokenSegue = "editToken"
     
     var user: User?
     
@@ -82,6 +83,15 @@ class MoreViewController: BaseViewController {
         window.rootViewController = signInViewController
         window.makeKeyAndVisible()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == editTokenSegue {
+            guard let controller = segue.destination as? ProfileViewController else {
+                return
+            }
+            controller.user = user
+        }
+    }
 }
 
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
@@ -122,7 +132,9 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == 0 {
+            self.performSegue(withIdentifier: editTokenSegue, sender: nil)
+        } else if indexPath.section == 2 {
             signOut()
         } else if indexPath.section == adminSection {
             if isAdmin() {

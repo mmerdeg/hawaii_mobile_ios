@@ -19,6 +19,18 @@ struct PushTokenDTO: Codable {
     let platform: Platform?
 }
 
+extension PushTokenDTO: Equatable {
+    static func == (lhs: PushTokenDTO, rhs: PushTokenDTO) -> Bool {
+        return lhs.pushTokenId == rhs.pushTokenId
+    }
+}
+
+extension PushTokenDTO: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(pushTokenId)
+    }
+}
+
 extension PushTokenDTO {
     init(pushTokenDTO: PushTokenDTO? = nil, pushTokenId: Int? = nil, pushToken: String? = nil,
          name: String? = nil, platform: Platform? = nil) {

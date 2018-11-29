@@ -1,1 +1,1 @@
-SELECT * FROM token LIMIT 1;
+SELECT * FROM token where push_token like ? LIMIT 1;

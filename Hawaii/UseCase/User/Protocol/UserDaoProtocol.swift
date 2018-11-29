@@ -8,9 +8,12 @@ protocol UserDaoProtocol {
     
     func emptyUsers(completion: @escaping (Bool) -> Void)
     
-    func create(entity: PushTokenDTO, completion: @escaping (Int) -> Void)
+    func create(entity: PushTokenDTO, userId: Int, completion: @escaping (Int) -> Void)
     
-    func read(completion: @escaping (PushTokenDTO?) -> Void)
+    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void)
     
     func deleteTokens(completion: @escaping (Bool) -> Void)
+    
+    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void)
+    
 }

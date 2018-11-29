@@ -58,18 +58,6 @@ extension UserDb {
         self.yearsOfService = yearsOfService
     }
     
-    init(entity: User) {
-        self.id = entity.id
-        self.teamId = entity.teamId
-        self.leaveProfileId = entity.leaveProfileId
-        self.fullName = entity.fullName
-        self.email = entity.email
-        self.userRole = entity.userRole
-        self.jobTitle = entity.jobTitle
-        self.active = entity.active
-        self.teamName = entity.teamName
-        self.yearsOfService = entity.yearsOfService
-    }
     
     func toUser() -> User {
         return User(id: self.id, teamId: self.teamId, teamName: self.teamName, leaveProfileId: self.leaveProfileId,

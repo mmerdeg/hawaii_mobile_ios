@@ -8,13 +8,25 @@
 
 import Foundation
 
-struct Team: Codable, Equatable, Hashable {
+struct Team: Codable {
     let active: Bool?
     let emails: String?
     let id: Int?
     let name: String?
     let teamApprovers: [User]?
     let users: [User]?
+}
+
+extension Team: Equatable {
+    static func == (lhs: Team, rhs: Team) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension Team: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 extension Team {
@@ -39,11 +51,5 @@ extension Team {
         self.users = users ?? team?.users
     }
     
-    static func == (lhs: Team, rhs: Team) -> Bool {
-        return lhs.id == rhs.id
-    }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
 }

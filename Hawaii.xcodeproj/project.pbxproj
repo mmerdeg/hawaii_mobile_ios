@@ -222,6 +222,10 @@
 		30A08D46216B880000FF8B2D /* DatePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A08D43216B880000FF8B2D /* DatePickerCollectionViewCell.swift */; };
 		30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
 		30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */; };
+		30B2FD4B21AE8FAD0054EAB6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */; };
+		30B2FD4C21AE8FAD0054EAB6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */; };
+		30B2FD5221AEA9EF0054EAB6 /* readTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */; };
+		30B2FD5321AEA9EF0054EAB6 /* readTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -659,6 +663,8 @@
 		30A08D44216B880000FF8B2D /* DatePickerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCollectionViewCell.xib; sourceTree = "<group>"; };
 		30A770682188A93200540A93 /* Info-Prod.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-Prod.plist"; sourceTree = "<group>"; };
 		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readTokens.sql; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -869,6 +875,7 @@
 				30092B4F219EF68E00244F09 /* TeamsManagementViewController.swift */,
 				3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */,
 				3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */,
+				30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -1245,6 +1252,7 @@
 				3027D23C21AC1B4700094D5C /* readToken.sql */,
 				3027D23F21AC1C6900094D5C /* createToken.sql */,
 				3027D24521AC1D6700094D5C /* deleteToken.sql */,
+				30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2092,6 +2100,7 @@
 				309B6CFA216604270046EFE9 /* deleteUser.sql in Resources */,
 				30FD36E0214A5E530047038C /* TeamPreviewTableViewCell.xib in Resources */,
 				3027D24121AC1C6900094D5C /* createToken.sql in Resources */,
+				30B2FD5321AEA9EF0054EAB6 /* readTokens.sql in Resources */,
 				30FD36E1214A5E530047038C /* RequestApprovalTableViewCell.xib in Resources */,
 				30FD36E2214A5E530047038C /* Assets.xcassets in Resources */,
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
@@ -2131,6 +2140,7 @@
 				3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
+				30B2FD5221AEA9EF0054EAB6 /* readTokens.sql in Resources */,
 				3027D23D21AC1B4700094D5C /* readToken.sql in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
@@ -2685,6 +2695,7 @@
 				30FD36C1214A5E530047038C /* PublicHolidayRepositoryProtocol.swift in Sources */,
 				3E21DF07218367190002BED8 /* DateExtension.swift in Sources */,
 				30FD36C2214A5E530047038C /* TeamPreviewViewController.swift in Sources */,
+				30B2FD4C21AE8FAD0054EAB6 /* ProfileViewController.swift in Sources */,
 				3027D24C21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */,
 				30FD36C5214A5E530047038C /* PublicHolidayRepository.swift in Sources */,
 				30FD36C6214A5E530047038C /* ApproveViewController.swift in Sources */,
@@ -2828,6 +2839,7 @@
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
 				3E21DF06218367190002BED8 /* DateExtension.swift in Sources */,
 				307413482142754600F05427 /* PublicHolidayRepositoryProtocol.swift in Sources */,
+				30B2FD4B21AE8FAD0054EAB6 /* ProfileViewController.swift in Sources */,
 				3027D24B21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */,
 				307413092136673100F05427 /* TeamPreviewViewController.swift in Sources */,
 				307413502142770000F05427 /* PublicHolidayRepository.swift in Sources */,

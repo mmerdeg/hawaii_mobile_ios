@@ -94,7 +94,7 @@ class UserRepository: SessionManager, UserRepositoryProtocol {
     
     func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void) {
         guard let id = user.id,
-            let url = URL(string: getUserUrl + "/\(id)") else {
+              let url = URL(string: getUserUrl + "/\(id)") else {
                 return
         }
         

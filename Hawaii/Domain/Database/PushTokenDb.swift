@@ -14,15 +14,17 @@ struct PushTokenDb: Codable {
     let name: String?
     let pushTokenId: Int?
     let platform: Platform?
+    let userId: Int?
 }
 
 extension PushTokenDb {
-    init(pushTokenDTO: PushTokenDb? = nil, pushTokenId: Int? = nil, pushToken: String? = nil,
-         name: String? = nil, platform: Platform? = nil) {
-        self.pushTokenId = pushTokenId ?? pushTokenDTO?.pushTokenId
-        self.pushToken = pushToken ?? pushTokenDTO?.pushToken
-        self.name = name ?? pushTokenDTO?.name
-        self.platform = platform ?? pushTokenDTO?.platform
+    init(pushTokenDb: PushTokenDb? = nil, pushTokenId: Int? = nil, pushToken: String? = nil,
+         name: String? = nil, platform: Platform? = nil, userId: Int? = nil) {
+        self.pushTokenId = pushTokenId ?? pushTokenDb?.pushTokenId
+        self.pushToken = pushToken ?? pushTokenDb?.pushToken
+        self.name = name ?? pushTokenDb?.name
+        self.platform = platform ?? pushTokenDb?.platform
+        self.userId = userId ?? pushTokenDb?.userId
     }
     
     init?(parameters: [String: Any]) {
@@ -30,7 +32,8 @@ extension PushTokenDb {
         guard let id = parameters["id"] as? Int,
             let name = parameters["name"] as? String,
             let platform = parameters["platform"] as? String,
-            let pushToken = parameters["push_token"] as? String else {
+            let pushToken = parameters["push_token"] as? String,
+            let userId = parameters["user_id"] as? Int else {
                 print("Error getting User data")
                 return nil
         }
@@ -38,13 +41,7 @@ extension PushTokenDb {
         self.name = name
         self.platform = Platform(rawValue: platform)
         self.pushToken = pushToken
-    }
-    
-    init(entity: PushTokenDTO) {
-        self.pushTokenId = entity.pushTokenId
-        self.name = entity.name
-        self.platform = entity.platform
-        self.pushToken = entity.pushToken
+        self.userId = userId
     }
     
     func toPushToken() -> PushTokenDTO {
