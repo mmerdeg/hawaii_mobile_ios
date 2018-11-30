@@ -70,12 +70,18 @@ class SearchRequestsViewController: UIViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissDialog))
         clickableView.addGestureRecognizer(tap)
-        var tempYear = startYear
-        while tempYear <= endYear {
-            self.items.append(tempYear)
-            tempYear += 1
-        }
-        self.yearPicker.reloadAllComponents()
+        requestUseCase?.getAvailableRequestYears(completion: { yearsResponse in
+            guard let startYear = yearsResponse.item?.first,
+                let endYear = yearsResponse.item?.last else {
+                    return
+            }
+            var tempYear = startYear
+            while tempYear <= endYear {
+                self.items.append(tempYear)
+                tempYear += 1
+            }
+            self.yearPicker.reloadAllComponents()
+        })
     }
 
     @objc func  dismissDialog() {
@@ -105,6 +111,7 @@ extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDele
     }
  
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: String(describing: items[row]), attributes: [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor])
+        return NSAttributedString(string: String(describing: items[row]),
+                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor])
     }
 }

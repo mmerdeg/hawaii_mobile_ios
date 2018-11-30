@@ -28,6 +28,7 @@ general.delete = "Obrisi";
 general.accept = "Prihvati";
 general.decline = "Odustani";
 general.emptyToken = "Ne mozemo da pristupimo tokenu,probajte da se ulogujete ponovo";
+general.equalToken = "Current device token cannot be removed!";
 
 request.status.pending = "Na čekanju";
 request.status.approved = "Odobreno";
@@ -103,6 +104,8 @@ more.manageUsers = "Manage users";
 more.manageTeams = "Manage teams";
 more.manageHolidays = "Manage holidays";
 more.manageLeaveProfiles = "Manage leave profiles";
+more.manageDevices = "Manage devices";
+more.tokenScreenTitle = "Devices";
 more.theme = "Svetla tema";
 
 approval.emptyTitle = "No more requests to approve";
@@ -113,3 +116,37 @@ history.emptyDescription = "You are doing a good job, keep it up";
 
 team.emptyTitle = "No more requests to approve";
 team.emptyDescription = "You are doing a good job, keep it up";
+
+userManagement.nameTitle = "Team name";
+userManagement.namePlaceholder = "Enter team name";
+userManagement.emailTitle = "Email";
+userManagement.emailPlaceholder = "Enter email here";
+userManagement.activeEnabled = "Active";
+userManagement.activeDisabled = "Not active";
+userManagement.teamApproverTitle = "Pick team approver";
+userManagement.teamApproverPlaceholder = "";
+
+userManagement.fullNameTitle = "Full name";
+userManagement.fullNamePlaceholder = "Enter full name";
+userManagement.emailTitle = "Email";
+userManagement.emailPlaceholder = "Enter email here";
+userManagement.activeEnabled = "Active";
+userManagement.activeDisabled = "Not active";
+userManagement.jobTitleTitle = "Job title";
+userManagement.jobTitlePlaceholder = "Enter Job title";
+userManagement.userRoleTitle = "User role title";
+userManagement.userRolePlaceholder = "Pick user role";
+userManagement.yearsOfServiceTitle = "Years of service";
+serManagement.yearsOfServicePlaceholder = "";
+userManagement.teamTitle = "Team";
+userManagement.teamPlaceholder = "Select team";
+userManagement.leaveProfileTitle = "Leave Profile";
+userManagement.leaveProfilePlaceholder = "Select leave profile";
+userManagement.basicSection = "Basic info";
+userManagement.companySection = "Company info";
+userManagement.additionalSection = "Additional info";
+
+token.deviceName = "Device name";
+token.notificationToken = "Device notification token";
+token.platform = "Device platform";
+token.createdDate = "Creation date";

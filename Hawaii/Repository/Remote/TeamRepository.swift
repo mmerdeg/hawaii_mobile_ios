@@ -10,8 +10,8 @@ class TeamRepository: SessionManager, TeamRepositoryProtocol {
         guard let url = URL(string: teamsUrl) else {
             return
         }
-        let activeKey = "active"
-        let params = [activeKey: true]
+        let activeKey = "deleted"
+        let params = [activeKey: false]
         
         genericCodableRequest(value: [Team].self, url, parameters: params) { response in
             completion(response)

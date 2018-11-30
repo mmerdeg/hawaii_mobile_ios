@@ -28,6 +28,7 @@ general.back = "Back";
 general.accept = "Accept";
 general.decline = "Decline";
 general.emptyToken = "We cannot acces your token from keychain, try loging in again";
+general.equalToken = "Current device token cannot be removed!";
 
 request.status.pending = "Pending";
 request.status.approved = "Approved";
@@ -103,6 +104,8 @@ more.manageUsers = "Manage users";
 more.manageTeams = "Manage teams";
 more.manageHolidays = "Manage holidays";
 more.manageLeaveProfiles = "Manage leave profiles";
+more.manageDevices = "Manage devices";
+more.tokenScreenTitle = "Devices";
 more.theme = "Light theme";
 
 approval.emptyTitle = "No more requests to approve";
@@ -113,6 +116,42 @@ history.emptyDescription = "You are doing a good job, keep it up";
 
 team.emptyTitle = "No more requests to approve";
 team.emptyDescription = "You are doing a good job, keep it up";
+
+
+teamManagement.nameTitle = "Team name";
+teamManagement.namePlaceholder = "Enter team name";
+teamManagement.emailTitle = "Email";
+teamManagement.emailPlaceholder = "Enter email here";
+teamManagement.activeEnabled = "Active";
+teamManagement.activeDisabled = "Not active";
+teamManagement.teamApproverTitle = "Pick team approver";
+teamManagement.teamApproverPlaceholder = "";
+
+userManagement.fullNameTitle = "Full name";
+userManagement.fullNamePlaceholder = "Enter full name";
+userManagement.emailTitle = "Email";
+userManagement.emailPlaceholder = "Enter email here";
+userManagement.activeEnabled = "Active";
+userManagement.activeDisabled = "Not active";
+userManagement.jobTitleTitle = "Job title";
+userManagement.jobTitlePlaceholder = "Enter Job title";
+userManagement.userRoleTitle = "User role title";
+userManagement.userRolePlaceholder = "Pick user role";
+userManagement.yearsOfServiceTitle = "Years of service";
+serManagement.yearsOfServicePlaceholder = "";
+userManagement.teamTitle = "Team";
+userManagement.teamPlaceholder = "Select team";
+userManagement.leaveProfileTitle = "Leave Profile";
+userManagement.leaveProfilePlaceholder = "Select leave profile";
+userManagement.basicSection = "Basic info";
+userManagement.companySection = "Company info";
+userManagement.additionalSection = "Additional info";
+
+token.deviceName = "Device name";
+token.notificationToken = "Device notification token";
+token.platform = "Device platform";
+token.createdDate = "Creation date";
+
 
 
 

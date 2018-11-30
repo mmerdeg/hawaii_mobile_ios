@@ -25,7 +25,10 @@ class HomeTabBarController: UITabBarController {
         homeTabBar.tintColor = UIColor.primaryTextColor
         homeTabBar.unselectedItemTintColor = UIColor.tabBarItemColor
         userUseCase?.readUser(completion: { user in
-            if user?.userRole ?? "" != UserRole.hrManager.rawValue && self.viewControllers?.count ?? 0 == 5 {
+            guard let user = user else {
+                return
+            }
+            if user.userRole ?? "" != UserRole.hrManager.rawValue && self.viewControllers?.count ?? 0 == 5 {
                 DispatchQueue.main.async {
                     let indexToRemove = 3
                     self.viewControllers?.remove(at: indexToRemove)

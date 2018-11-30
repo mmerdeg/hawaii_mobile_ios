@@ -100,7 +100,7 @@ extension LeaveProfilesManagementViewController: UITableViewDelegate, UITableVie
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive,
-                                              title: LocalizedKeys.General.delete.localized()) { action, view, handler in
+                                              title: LocalizedKeys.General.delete.localized()) { _, view, handler in
             guard let selectedLeaveProfile = self.leaveProfiles?[indexPath.row] else {
                 return
             }

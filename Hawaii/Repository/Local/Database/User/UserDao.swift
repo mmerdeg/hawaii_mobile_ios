@@ -9,17 +9,19 @@ class UserDao: UserDaoProtocol {
 
     var createUserQuery: String?
 
-    var emptyUsersQuery: String?
+    var deleteUsersQuery: String?
     
     var readUserQuery: String?
     
     var createTokenQuery: String?
     
-    var emptyTokenQuery: String?
+    var deleteTokensQuery: String?
     
     var readTokenQuery: String?
     
     var readTokensQuery: String?
+    
+    var deleteTokenQuery: String?
 
     init(dispatchQueue: DispatchQueue, databaseQueue: FMDatabaseQueue) {
         self.databaseQueue = databaseQueue
@@ -29,27 +31,29 @@ class UserDao: UserDaoProtocol {
         let bundle = Bundle.main
         
         guard let createUserUrl = bundle.url(forResource: "createUser", withExtension: sqlExtension),
-              let emptyUsersUrl = bundle.url(forResource: "deleteUser", withExtension: sqlExtension),
+              let deleteUsersUrl = bundle.url(forResource: "deleteUser", withExtension: sqlExtension),
               let readUserUrl = bundle.url(forResource: "readUser", withExtension: sqlExtension),
               let createTokenUrl = bundle.url(forResource: "createToken", withExtension: sqlExtension),
-              let emptyTokenUrl = bundle.url(forResource: "deleteToken", withExtension: sqlExtension),
+              let deleteTokensUrl = bundle.url(forResource: "deleteTokens", withExtension: sqlExtension),
               let readTokenUrl = bundle.url(forResource: "readToken", withExtension: sqlExtension),
-              let readTokensUrl = bundle.url(forResource: "readTokens", withExtension: sqlExtension) else {
+              let readTokensUrl = bundle.url(forResource: "readTokens", withExtension: sqlExtension),
+              let deleteTokenUrl = bundle.url(forResource: "deleteToken", withExtension: sqlExtension) else {
                 return
         }
         readUserQuery = (try? String(contentsOf: readUserUrl))
         createUserQuery = (try? String(contentsOf: createUserUrl))
-        emptyUsersQuery = (try? String(contentsOf: emptyUsersUrl))
+        deleteUsersQuery = (try? String(contentsOf: deleteUsersUrl))
         
         readTokenQuery = (try? String(contentsOf: readTokenUrl))
         createTokenQuery = (try? String(contentsOf: createTokenUrl))
-        emptyTokenQuery = (try? String(contentsOf: emptyTokenUrl))
+        deleteTokensQuery = (try? String(contentsOf: deleteTokensUrl))
         
         readTokensQuery = (try? String(contentsOf: readTokensUrl))
+        deleteTokenQuery = (try? String(contentsOf: deleteTokenUrl))
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.async {
+        self.dispatchQueue?.sync {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.id ?? -1,
@@ -63,10 +67,42 @@ class UserDao: UserDaoProtocol {
                                           entity.active ?? false,
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
-                    completion(Int(database.lastInsertRowId))
+                    DispatchQueue.main.async {
+                        print("Upisao usera")
+                        completion(Int(database.lastInsertRowId))
+                    }
                 } catch {
                     print(error.localizedDescription)
-                    completion(-1)
+                    DispatchQueue.main.async {
+                        print("Nije upisao usera")
+                        completion(-1)
+                    }
+                }
+            }
+        }
+    }
+    
+    func create(entity: [PushTokenDTO], userId: Int, completion: @escaping (Int) -> Void) {
+        self.dispatchQueue?.sync {
+            self.databaseQueue?.inTransaction { database, _ in
+                do {
+                    for pushToken in entity {
+                        let values: [Any] = [ pushToken.pushTokenId ?? -1,
+                                              pushToken.name ?? "",
+                                              pushToken.platform?.rawValue ?? Platform.iOS.rawValue,
+                                              pushToken.pushToken ?? "",
+                                              userId]
+                        try database.executeUpdate(self.createTokenQuery ?? "", values: values)
+                    }
+                    DispatchQueue.main.async(execute: {
+                        completion(userId)
+                    })
+                } catch {
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        print("Nije pisao token")
+                        completion(-1)
+                    }
                 }
             }
         }
@@ -80,15 +116,20 @@ class UserDao: UserDaoProtocol {
         dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 guard let resultSet = try? database.executeQuery(readUserQuery, values: nil) else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                           let userDb = UserDb(parameters: result) else {
-                            completion(nil)
+                            DispatchQueue.main.async {
+                                completion(nil)
+                            }
                             return
                     }
+                    print("Procitao usera")
                     completion(userDb.toUser())
                 }
             }
@@ -98,25 +139,34 @@ class UserDao: UserDaoProtocol {
     func emptyUsers(completion: @escaping (Bool) -> Void) {
         dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
-                completion(database.executeStatements(self.emptyUsersQuery ?? ""))
+                DispatchQueue.main.async {
+                    print("Obrisao usere")
+                    completion(database.executeStatements(self.deleteUsersQuery ?? ""))
+                }
             }
         }
     }
     
     func create(entity: PushTokenDTO, userId: Int, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.async {
+        self.dispatchQueue?.sync {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.pushTokenId ?? -1,
                                           entity.name ?? "",
-                                          entity.platform ?? Platform.iOS,
+                                          entity.platform?.rawValue ?? Platform.iOS.rawValue,
                                           entity.pushToken ?? "",
                                           userId]
                     try database.executeUpdate(self.createTokenQuery ?? "", values: values)
-                    completion(Int(database.lastInsertRowId))
+                    DispatchQueue.main.async {
+                        print("Upisao token")
+                        completion(Int(database.lastInsertRowId))
+                    }
                 } catch {
                     print(error.localizedDescription)
-                    completion(-1)
+                    DispatchQueue.main.async {
+                        print("Nije pisao token")
+                        completion(-1)
+                    }
                 }
             }
         }
@@ -131,19 +181,26 @@ class UserDao: UserDaoProtocol {
             self.databaseQueue?.inTransaction { database, _ in
                 let values: [Any] = [ userId ]
                 guard let resultSet = try? database.executeQuery(readTokensQuery, values: values) else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
                 var tokens: [PushTokenDTO] = []
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                           let tokenDb = PushTokenDb(parameters: result) else {
-                            completion(nil)
+                            DispatchQueue.main.async {
+                                completion(nil)
+                            }
                             return
                     }
                     tokens.append(tokenDb.toPushToken())
                 }
-                completion(tokens)
+                DispatchQueue.main.async {
+                    print("Tokeni")
+                    completion(tokens)
+                }
             }
         }
     }
@@ -157,16 +214,45 @@ class UserDao: UserDaoProtocol {
             self.databaseQueue?.inTransaction { database, _ in
                 let values: [Any] = [ pushToken ]
                 guard let resultSet = try? database.executeQuery(readTokenQuery, values: values) else {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                     return
                 }
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                         let tokenDb = PushTokenDb(parameters: result) else {
-                            completion(nil)
+                            DispatchQueue.main.async {
+                                completion(nil)
+                            }
                             return
                     }
-                    completion(tokenDb.toPushToken())
+                    DispatchQueue.main.async {
+                        print("Citanje tokena")
+                        completion(tokenDb.toPushToken())
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteToken(pushToken: String, completion: @escaping (Bool) -> Void) {
+        guard let deleteTokenQuery = deleteTokenQuery else {
+            completion(false)
+            return
+        }
+        dispatchQueue?.async {
+            self.databaseQueue?.inTransaction { database, _ in
+                let values: [Any] = [ pushToken ]
+                guard let _ = try? database.executeUpdate(deleteTokenQuery, values: values) else {
+                    DispatchQueue.main.async {
+                        completion(false)
+                    }
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("Obrisao token")
+                    completion(true)
                 }
             }
         }
@@ -175,7 +261,10 @@ class UserDao: UserDaoProtocol {
     func deleteTokens(completion: @escaping (Bool) -> Void) {
         dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
-                completion(database.executeStatements(self.emptyTokenQuery ?? ""))
+                DispatchQueue.main.async {
+                    print("Obrisao tokene")
+                    completion(database.executeStatements(self.deleteTokensQuery ?? ""))
+                }
             }
         }
     }

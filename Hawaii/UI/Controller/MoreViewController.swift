@@ -15,7 +15,7 @@ class MoreViewController: BaseViewController {
     let showHolidaysManagementSegue = "showHolidayManagement"
     let showTeamsManagementSegue = "showTeamsManagement"
     let showLeaveProfilesManagementSegue = "showLeaveProfilesManagement"
-    let editTokenSegue = "editToken"
+    let profileManagementSegue = "profileManagement"
     
     var user: User?
     
@@ -29,6 +29,10 @@ class MoreViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        Thread.printCurrent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         userUseCase?.readUser(completion: { user in
             DispatchQueue.main.async {
                 self.user = user
@@ -41,7 +45,7 @@ class MoreViewController: BaseViewController {
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
     
-        self.userUseCase?.deleteFirebaseToken { firebaseResponse in
+        self.userUseCase?.deleteFirebaseToken(pushToken: nil) { firebaseResponse in
             guard let success = firebaseResponse?.success else {
                 self.stopActivityIndicatorSpinner()
                 return
@@ -87,7 +91,7 @@ class MoreViewController: BaseViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == editTokenSegue {
+        if segue.identifier == profileManagementSegue {
             guard let controller = segue.destination as? ProfileViewController else {
                 return
             }
@@ -99,7 +103,7 @@ class MoreViewController: BaseViewController {
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section != adminSection {
-            return section == 0 ? 1 : 2
+            return section == 0 ? 1 : 3
         }
         return isAdmin() ? 4 : 2
     }
@@ -122,6 +126,8 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 return getThemeCell(indexPath: indexPath) ?? UITableViewCell()
+            case 1:
+                return getDefaultCell(text: LocalizedKeys.More.manageDevices.localized())
             default:
                 return getDefaultCell(text: LocalizedKeys.More.signOut.localized())
             }
@@ -139,10 +145,12 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            self.performSegue(withIdentifier: editTokenSegue, sender: nil)
-        } else if indexPath.section == 2 {
-            signOut()
+        if indexPath.section == 2 {
+            if indexPath.row == 1 {
+                self.performSegue(withIdentifier: profileManagementSegue, sender: nil)
+            } else {
+                signOut()
+            }
         } else if indexPath.section == adminSection {
             if isAdmin() {
                 switch indexPath.row {
@@ -156,7 +164,11 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
                     performSegue(withIdentifier: showLeaveProfilesManagementSegue, sender: nil)
                 }
             } else {
-                signOut()
+                if indexPath.row == 1 {
+                    self.performSegue(withIdentifier: profileManagementSegue, sender: nil)
+                } else {
+                    signOut()
+                }
             }
         }
     }
@@ -197,4 +209,10 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+}
+
+extension Thread {
+    class func printCurrent() {
+        print("\r⚡️: \(Thread.current)\r" + "🏭: \(OperationQueue.current?.underlyingQueue?.label ?? "None")\r")
+    }
 }

@@ -50,8 +50,8 @@ class TeamManagementViewController: BaseFormViewController {
         self.navigationItem.rightBarButtonItem = doneBarItem
         form +++ Section("Basic Info")
             <<< TextRow("name") { row in
-                row.title = "Team name"
-                row.placeholder = "Enter team name"
+                row.title = LocalizedKeys.TeamManagement.nameTitle.localized()
+                row.placeholder = LocalizedKeys.TeamManagement.namePlaceholder.localized()
                 row.value = team?.name
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -61,8 +61,8 @@ class TeamManagementViewController: BaseFormViewController {
                     self.setTextInput(cell: cell, row: row)
             })
             <<< EmailRow("email") { row in
-                row.title = "Email "
-                row.placeholder = "Enter email here"
+                row.title = LocalizedKeys.TeamManagement.emailTitle.localized()
+                row.placeholder = LocalizedKeys.TeamManagement.emailPlaceholder.localized()
                 row.value = team?.emails
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -73,9 +73,9 @@ class TeamManagementViewController: BaseFormViewController {
             })
             <<< SwitchRow("active") { row in
                 row.value = team?.active
-                row.title = (team?.active ?? false) ? "Active" : "Not active"
+                row.title = (team?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
             }.onChange { row in
-                row.title = (row.value ?? false) ? "Active": "Not active"
+                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                     self.setSwitchInput(cell: cell)
@@ -83,7 +83,7 @@ class TeamManagementViewController: BaseFormViewController {
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             }
             <<< MultipleSelectorRow<User>("teamApprover") {
-                $0.title = "Pick team approver"
+                $0.title = LocalizedKeys.TeamManagement.teamApproverTitle.localized()
                 $0.value = Set(selectedTeamApprovers ?? [])
                 $0.optionsProvider = .lazy({ form, completion in
                     let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -206,13 +206,6 @@ extension TeamManagementViewController: UISearchResultsUpdating {
     }
     
     @objc func performSearch() {
-        let approverSelector: MultipleSelectorRow<User> = form.rowBy(tag: "teamApprover") ?? MultipleSelectorRow()
-        print(approverSelector.value, approverSelector.options)
-        let searchValue = searchController?.searchBar.text ?? ""
-        let searchUsers = approvers?.filter({ (item: User) -> Bool in
-            return item.fullName?.containsIgnoringCase(find: searchValue) ?? false
-        })
-        approverSelector.options = []
-        approverSelector.reload()
+        
     }
 }

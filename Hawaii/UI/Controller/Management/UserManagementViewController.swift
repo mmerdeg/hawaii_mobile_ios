@@ -40,10 +40,10 @@ class UserManagementViewController: BaseFormViewController {
         self.tableView.backgroundColor = UIColor.black
         self.navigationItem.rightBarButtonItem = doneBarItem
         
-        form +++ Section("Basic Info")
+        form +++ Section(LocalizedKeys.UserManagement.basicSection.localized())
             <<< TextRow("fullName") { row in
-                row.title = "Full name"
-                row.placeholder = "Enter full name"
+                row.title = LocalizedKeys.UserManagement.fullNameTitle.localized()
+                row.placeholder = LocalizedKeys.UserManagement.fullNamePlaceholder.localized()
                 row.value = user?.fullName
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -53,8 +53,8 @@ class UserManagementViewController: BaseFormViewController {
                 self.setTextInput(cell: cell, row: row)
             })
             <<< EmailRow("email") { row in
-                row.title = "Email "
-                row.placeholder = "Enter email here"
+                row.title = LocalizedKeys.UserManagement.emailTitle.localized()
+                row.placeholder = LocalizedKeys.UserManagement.emailPlaceholder.localized()
                 row.value = user?.email
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -63,10 +63,10 @@ class UserManagementViewController: BaseFormViewController {
             }).cellUpdate({ cell, row in
                     self.setEmailInput(cell: cell, row: row)
             })
-            +++ Section("Company info")
+            +++ Section(LocalizedKeys.UserManagement.companySection.localized())
             <<< TextRow("jobTitle") { row in
-                row.title = "Job title"
-                row.placeholder = "Enter Job title"
+                row.title = LocalizedKeys.UserManagement.jobTitleTitle.localized()
+                row.placeholder = LocalizedKeys.UserManagement.jobTitlePlaceholder.localized()
                 row.value = user?.jobTitle
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -76,8 +76,8 @@ class UserManagementViewController: BaseFormViewController {
                 self.setTextInput(cell: cell, row: row)
             })
             <<< PushRow<String>("userRole") { row in
-                row.title = "User role title"
-                row.selectorTitle = "Pick user role"
+                row.title = LocalizedKeys.UserManagement.userRoleTitle.localized()
+                row.selectorTitle = LocalizedKeys.UserManagement.userRolePlaceholder.localized()
                 row.options = ["HR_MANAGER", "APPROVER", "USER"]
                 row.value = user?.userRole    // initially selected
                 row.add(rule: RuleRequired())
@@ -91,18 +91,18 @@ class UserManagementViewController: BaseFormViewController {
             })
             <<< SwitchRow("active") { row in
                 row.value = user?.active
-                row.title = (user?.active ?? false) ? "Active" : "Not active"
+                row.title = (user?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
             }.onChange { row in
-                row.title = (row.value ?? false) ? "Active": "Not active"
+                row.title = (self.user?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                 self.setSwitchInput(cell: cell)
             }.cellUpdate { cell, _ in
                 cell.textLabel?.textColor = UIColor.primaryTextColor
             }
-            +++ Section("Additional info")
+            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized())
             <<< IntRow("yearsOfService") {
-                $0.title = "Years of service"
+                $0.title = LocalizedKeys.UserManagement.yearsOfServiceTitle.localized()
                 $0.value = user?.yearsOfService
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -112,8 +112,8 @@ class UserManagementViewController: BaseFormViewController {
                 self.setIntInput(cell: cell, row: row)
             })
             <<< PushRow<String>("team") {
-                $0.title = "Team "
-                $0.selectorTitle = "Select team"
+                $0.title = LocalizedKeys.UserManagement.teamTitle.localized()
+                $0.selectorTitle = LocalizedKeys.UserManagement.teamPlaceholder.localized()
                 $0.value = user?.teamName
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -150,8 +150,8 @@ class UserManagementViewController: BaseFormViewController {
                 })
             })
             <<< PushRow<String>("leaveProfile") {
-                $0.title = "Leave Profile"
-                $0.selectorTitle = "Select profile"
+                $0.title = LocalizedKeys.UserManagement.leaveProfileTitle.localized()
+                $0.selectorTitle = LocalizedKeys.UserManagement.leaveProfilePlaceholder.localized()
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
                 $0.optionsProvider = .lazy({ form, completion in

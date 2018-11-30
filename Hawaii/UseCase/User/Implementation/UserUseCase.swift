@@ -13,23 +13,17 @@ protocol UserUseCaseProtocol {
     
     func add(user: User, completion: @escaping (GenericResponse<User>) -> Void)
     
+    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void)
+    
     func setFirebaseToken(completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void)
     
     func update(user: User, completion: @escaping (GenericResponse<User>) -> Void)
     
-    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void)
+    func deleteFirebaseToken(pushToken: String?, completion: @escaping (GenericResponse<Any>?) -> Void)
     
     func create(entity: User, completion: @escaping (Int) -> Void)
     
-    func delete(user: User, completion: @escaping (GenericResponse<Any>?) -> Void)
-    
     func readUser(completion: @escaping (User?) -> Void)
-    
-    func create(entity: PushTokenDTO, userId: Int?, completion: @escaping (Int) -> Void)
-    
-    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void)
-    
-    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void)
 }
 
 class UserUseCase: UserUseCaseProtocol {
@@ -86,7 +80,19 @@ class UserUseCase: UserUseCaseProtocol {
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         userRepository?.getUser(email: getEmail()) { response in
-            completion(response)
+            if !(response?.success ?? false) {
+                    completion(response)
+                    return
+            } else {
+                guard let user = response?.item else {
+                    completion(response)
+                    return
+                }
+                self.create(entity: user, completion: { _ in
+                    completion(response)
+                    return
+                })
+            }
         }
     }
     
@@ -112,12 +118,9 @@ class UserUseCase: UserUseCaseProtocol {
                         completion(-1)
                         return
                     }
-                    for pushToken in pushTokens {
-                        self.create(entity: pushToken, userId: id, completion: { _ in
-                            
-                        })
-                    }
-                    completion(id)
+                    self.userDao?.create(entity: pushTokens, userId: id, completion: { _ in
+                        completion(id)
+                    })
                 }
             }
         })
@@ -132,9 +135,10 @@ class UserUseCase: UserUseCaseProtocol {
     func readUser(completion: @escaping (User?) -> Void) {
         userDao?.read { user in
             guard let userId = user?.id else {
+                completion(nil)
                 return
             }
-            self.read(userId: userId, completion: { pushTokens in
+            self.userDao?.read(userId: userId, completion: { pushTokens in
                 completion(User(user: user, userPushTokens: pushTokens))
             })
         }
@@ -145,71 +149,91 @@ class UserUseCase: UserUseCaseProtocol {
         if let firebaseToken = getFirebaseToken() {
             
             let pushTokenDTO = PushTokenDTO(pushToken: firebaseToken, name: UIDevice.current.name, platform: Platform.iOS)
-            userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
+            setTokenService(pushTokenDTO: pushTokenDTO) { response in
                 completion(response)
-            })
+            }
         } else {
             InstanceID.instanceID().instanceID { result, error in
                 if let error = error {
                     completion(GenericResponse<PushTokenDTO> (success: false, item: nil,
                                                      statusCode: 400, error: error, message: "You didnt get push token, check support"))
                 } else if let result = result {
-                    print("Remote instance ID token: \(result.token)")
                     self.userDetailsUseCase?.removeFirebaseToken()
                     self.userDetailsUseCase?.setFirebaseToken(result.token)
-                    
                     let pushTokenDTO = PushTokenDTO(pushToken: result.token, name: UIDevice.current.name, platform: Platform.iOS)
-                    self.userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
+                    self.setTokenService(pushTokenDTO: pushTokenDTO) { response in
                         completion(response)
-                    })
+                    }
+                    
                 }
             }
         }
         
     }
     
-    func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void) {
-        userDao?.read(userId: userId, completion: { tokens in
-            completion(tokens)
+    func setTokenService(pushTokenDTO: PushTokenDTO, completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void) {
+        self.userRepository?.setFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
+            if !(response?.success ?? false) {
+                completion(response)
+            } else {
+                self.readUser(completion: { user in
+                    guard let userId = user?.id else {
+                        completion(response)
+                        return
+                    }
+                    self.userDao?.create(entity: pushTokenDTO, userId: userId, completion: { _ in
+                        completion(response)
+                    })
+                })
+                
+            }
         })
     }
     
-    func read(pushToken: String, completion: @escaping (PushTokenDTO?) -> Void) {
-        userDao?.read(pushToken: pushToken, completion: { token in
-            completion(token)
-        })
-    }
-    
-    func deleteFirebaseToken(completion: @escaping (GenericResponse<Any>?) -> Void) {
-        guard let pushToken = userDetailsUseCase?.getFirebaseToken() else {
-            return
-        }
-        self.read(pushToken: pushToken, completion: { pushToken in
-            guard let pushToken = pushToken else {
+    func deleteFirebaseToken(pushToken: String? = nil, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        if let pushToken = pushToken {
+            guard let devicePushToken = userDetailsUseCase?.getFirebaseToken() else {
+                completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                            error: nil,
+                                                            message: LocalizedKeys.General.emptyToken.localized()))
                 return
             }
-            self.userRepository?.deleteFirebaseToken(pushTokenDTO: pushToken, completion: { response in
+            if devicePushToken == pushToken {
+                completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                 error: nil,
+                                                 message: LocalizedKeys.General.equalToken.localized()))
+                return
+            }
+            deleteFirebaseService(pushToken: pushToken) { response in
                 completion(response)
-            })
-        })
+            }
+        } else {
+            guard let pushToken = userDetailsUseCase?.getFirebaseToken() else {
+                completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
+                                                 error: nil,
+                                                 message: LocalizedKeys.General.emptyToken.localized()))
+                return
+            }
+            deleteFirebaseService(pushToken: pushToken) { response in
+                completion(response)
+            }
+        }
     }
     
-    func create(entity: PushTokenDTO, userId: Int? = nil, completion: @escaping (Int) -> Void) {
-        if let userId = userId {
-            self.userDao?.create(entity: entity, userId: userId, completion: { response in
-                completion(response)
-            })
-        } else {
-            self.readUser(completion: { user in
-                guard let userId = user?.id else {
-                    return
+    func deleteFirebaseService(pushToken: String, completion: @escaping (GenericResponse<Any>?) -> Void) {
+        self.userDao?.read(pushToken: pushToken, completion: { pushTokenDTO in
+            guard let pushTokenDTO = pushTokenDTO else {
+                return
+            }
+            self.userRepository?.deleteFirebaseToken(pushTokenDTO: pushTokenDTO, completion: { response in
+                if !(response?.success ?? false) {
+                    completion(response)
                 }
-                self.userDao?.create(entity: entity, userId: userId, completion: { response in
+                self.userDao?.deleteToken(pushToken: pushToken, completion: { _ in
                     completion(response)
                 })
             })
-        }
-        
+        })
     }
     
     func getFirebaseToken() -> String? {

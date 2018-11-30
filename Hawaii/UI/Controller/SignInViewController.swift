@@ -33,35 +33,21 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
                 self.handleResponseFaliure(message: response?.message)
                 return
             }
-            guard let user = response?.item else {
-                self.stopActivityIndicatorSpinner()
-                return
-            }
-            
-            self.userUseCase?.create(entity: user, completion: { _ in
-                
-                self.userUseCase?.setFirebaseToken { firebaseResponse in
-                    guard let firebaseResponseSuccess = firebaseResponse?.success else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    if !firebaseResponseSuccess {
-                        GIDSignIn.sharedInstance().signOut()
-                        GIDSignIn.sharedInstance().disconnect()
-                        self.handleResponseFaliure(message: firebaseResponse?.message)
-                        return
-                    }
-                    guard let token = firebaseResponse?.item else {
-                        self.stopActivityIndicatorSpinner()
-                        return
-                    }
-                    self.userUseCase?.create(entity: token, userId: nil, completion: { _ in
-                        self.navigateToHome()
-                        self.stopActivityIndicatorSpinner()
-                    })
+            self.userUseCase?.setFirebaseToken { firebaseResponse in
+                guard let firebaseResponseSuccess = firebaseResponse?.success else {
+                    self.stopActivityIndicatorSpinner()
+                    return
                 }
+                if !firebaseResponseSuccess {
+                    GIDSignIn.sharedInstance().signOut()
+                    GIDSignIn.sharedInstance().disconnect()
+                    self.handleResponseFaliure(message: firebaseResponse?.message)
+                    return
+                }
+                self.navigateToHome()
+                self.stopActivityIndicatorSpinner()
 
-            })
+            }
         }
     }
 
@@ -96,7 +82,22 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
     
     func navigateToHome() {
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "homeVCSegue", sender: self)
+            let mainStoryboardTitle = "Main"
+            let homeTabBarControllerTitle = "HomeTabBarController"
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let window = appDelegate.window else {
+                    return
+            }
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: mainStoryboardTitle, bundle: nil)
+            
+            guard let homeTabBarController = mainStoryboard.instantiateViewController (withIdentifier: homeTabBarControllerTitle)
+                as? UITabBarController else {
+                    return
+            }
+            
+            window.rootViewController = homeTabBarController
+            window.makeKeyAndVisible()
         }
     }
 }

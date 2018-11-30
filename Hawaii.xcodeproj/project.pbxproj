@@ -53,8 +53,8 @@
 		3027D23E21AC1B4700094D5C /* readToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23C21AC1B4700094D5C /* readToken.sql */; };
 		3027D24021AC1C6900094D5C /* createToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23F21AC1C6900094D5C /* createToken.sql */; };
 		3027D24121AC1C6900094D5C /* createToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D23F21AC1C6900094D5C /* createToken.sql */; };
-		3027D24621AC1D6700094D5C /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteToken.sql */; };
-		3027D24721AC1D6700094D5C /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteToken.sql */; };
+		3027D24621AC1D6700094D5C /* deleteTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteTokens.sql */; };
+		3027D24721AC1D6700094D5C /* deleteTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24521AC1D6700094D5C /* deleteTokens.sql */; };
 		3027D24B21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */; };
 		3027D24C21AC2AF300094D5C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */; };
 		3027D24D21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */; };
@@ -226,6 +226,20 @@
 		30B2FD4C21AE8FAD0054EAB6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */; };
 		30B2FD5221AEA9EF0054EAB6 /* readTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */; };
 		30B2FD5321AEA9EF0054EAB6 /* readTokens.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */; };
+		30B2FD5B21B1130B0054EAB6 /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */; };
+		30B2FD5C21B1130B0054EAB6 /* deleteToken.sql in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */; };
+		30B2FD6421B13E690054EAB6 /* EmployeeManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6321B13E690054EAB6 /* EmployeeManagement.storyboard */; };
+		30B2FD6521B13E690054EAB6 /* EmployeeManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6321B13E690054EAB6 /* EmployeeManagement.storyboard */; };
+		30B2FD6821B13E840054EAB6 /* TeamManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6721B13E840054EAB6 /* TeamManagement.storyboard */; };
+		30B2FD6921B13E840054EAB6 /* TeamManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6721B13E840054EAB6 /* TeamManagement.storyboard */; };
+		30B2FD6C21B13E9D0054EAB6 /* ProfileManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6B21B13E9D0054EAB6 /* ProfileManagement.storyboard */; };
+		30B2FD6D21B13E9D0054EAB6 /* ProfileManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6B21B13E9D0054EAB6 /* ProfileManagement.storyboard */; };
+		30B2FD7021B13EBF0054EAB6 /* LeaveTypeManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6F21B13EBF0054EAB6 /* LeaveTypeManagement.storyboard */; };
+		30B2FD7121B13EBF0054EAB6 /* LeaveTypeManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD6F21B13EBF0054EAB6 /* LeaveTypeManagement.storyboard */; };
+		30B2FD7421B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */; };
+		30B2FD7521B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */; };
+		30B2FD7721B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
+		30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -582,7 +596,7 @@
 		3027D23721AC161600094D5C /* PushTokenDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenDb.swift; sourceTree = "<group>"; };
 		3027D23C21AC1B4700094D5C /* readToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readToken.sql; sourceTree = "<group>"; };
 		3027D23F21AC1C6900094D5C /* createToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = createToken.sql; sourceTree = "<group>"; };
-		3027D24521AC1D6700094D5C /* deleteToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteToken.sql; sourceTree = "<group>"; };
+		3027D24521AC1D6700094D5C /* deleteTokens.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteTokens.sql; sourceTree = "<group>"; };
 		3027D24921AC2AF300094D5C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		3027D24A21AC2AF300094D5C /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveProfilesManagementViewController.swift; sourceTree = "<group>"; };
@@ -669,6 +683,13 @@
 		30ABE94E21785335007E6122 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = readTokens.sql; sourceTree = "<group>"; };
+		30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = deleteToken.sql; sourceTree = "<group>"; };
+		30B2FD6321B13E690054EAB6 /* EmployeeManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmployeeManagement.storyboard; sourceTree = "<group>"; };
+		30B2FD6721B13E840054EAB6 /* TeamManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamManagement.storyboard; sourceTree = "<group>"; };
+		30B2FD6B21B13E9D0054EAB6 /* ProfileManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileManagement.storyboard; sourceTree = "<group>"; };
+		30B2FD6F21B13EBF0054EAB6 /* LeaveTypeManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaveTypeManagement.storyboard; sourceTree = "<group>"; };
+		30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PublicHolidayManagement.storyboard; sourceTree = "<group>"; };
+		30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenViewController.swift; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -882,6 +903,7 @@
 				3027D25521AD311000094D5C /* LeaveProfilesManagementViewController.swift */,
 				3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */,
 				30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */,
+				30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -1057,6 +1079,46 @@
 				3074134D2142761C00F05427 /* PublicHolidayUseCase.swift */,
 			);
 			path = Implementation;
+			sourceTree = "<group>";
+		};
+		30B2FD5F21B13E4F0054EAB6 /* EmployeeManagement */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD6321B13E690054EAB6 /* EmployeeManagement.storyboard */,
+			);
+			path = EmployeeManagement;
+			sourceTree = "<group>";
+		};
+		30B2FD6621B13E730054EAB6 /* TeamManagement */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD6721B13E840054EAB6 /* TeamManagement.storyboard */,
+			);
+			path = TeamManagement;
+			sourceTree = "<group>";
+		};
+		30B2FD6A21B13E890054EAB6 /* ProfileManagement */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD6B21B13E9D0054EAB6 /* ProfileManagement.storyboard */,
+			);
+			path = ProfileManagement;
+			sourceTree = "<group>";
+		};
+		30B2FD6E21B13EA40054EAB6 /* LeaveTypeManagement */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD6F21B13EBF0054EAB6 /* LeaveTypeManagement.storyboard */,
+			);
+			path = LeaveTypeManagement;
+			sourceTree = "<group>";
+		};
+		30B2FD7221B13EC40054EAB6 /* PublicHolidayManagement */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */,
+			);
+			path = PublicHolidayManagement;
 			sourceTree = "<group>";
 		};
 		3E0B2D2021AEDD2000C5D04F /* ThemeCell */ = {
@@ -1235,6 +1297,11 @@
 		3E28E78520E3774500F1C6D5 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				30B2FD7221B13EC40054EAB6 /* PublicHolidayManagement */,
+				30B2FD6E21B13EA40054EAB6 /* LeaveTypeManagement */,
+				30B2FD6A21B13E890054EAB6 /* ProfileManagement */,
+				30B2FD6621B13E730054EAB6 /* TeamManagement */,
+				30B2FD5F21B13E4F0054EAB6 /* EmployeeManagement */,
 				3E1047B52181E02D003ECC4C /* Component */,
 				3E1047B12181DDD0003ECC4C /* NewRequest */,
 				3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */,
@@ -1267,8 +1334,9 @@
 				309B6CFE216605710046EFE9 /* createUser.sql */,
 				3027D23C21AC1B4700094D5C /* readToken.sql */,
 				3027D23F21AC1C6900094D5C /* createToken.sql */,
-				3027D24521AC1D6700094D5C /* deleteToken.sql */,
+				3027D24521AC1D6700094D5C /* deleteTokens.sql */,
 				30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */,
+				30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2108,7 +2176,7 @@
 				3E0B2D2621AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */,
 				3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				30FD36D9214A5E530047038C /* More.storyboard in Resources */,
-				3027D24721AC1D6700094D5C /* deleteToken.sql in Resources */,
+				3027D24721AC1D6700094D5C /* deleteTokens.sql in Resources */,
 				30FD36DA214A5E530047038C /* TeamCalendar.storyboard in Resources */,
 				30FD36DB214A5E530047038C /* LaunchScreen.storyboard in Resources */,
 				30FD36DD214A5E530047038C /* RequestDetailTableViewCell.xib in Resources */,
@@ -2119,6 +2187,9 @@
 				3027D24121AC1C6900094D5C /* createToken.sql in Resources */,
 				30B2FD5321AEA9EF0054EAB6 /* readTokens.sql in Resources */,
 				30FD36E1214A5E530047038C /* RequestApprovalTableViewCell.xib in Resources */,
+				30B2FD7121B13EBF0054EAB6 /* LeaveTypeManagement.storyboard in Resources */,
+				30B2FD6521B13E690054EAB6 /* EmployeeManagement.storyboard in Resources */,
+				30B2FD6921B13E840054EAB6 /* TeamManagement.storyboard in Resources */,
 				30FD36E2214A5E530047038C /* Assets.xcassets in Resources */,
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				306F1C8E21A2A7D900E2D27B /* TeamTableViewCell.xib in Resources */,
@@ -2129,12 +2200,15 @@
 				306F1C8421A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
 				3027D24E21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */,
 				309B6D00216605710046EFE9 /* createUser.sql in Resources */,
+				30B2FD6D21B13E9D0054EAB6 /* ProfileManagement.storyboard in Resources */,
 				30FD36E4214A5E530047038C /* History.storyboard in Resources */,
 				30FD36E5214A5E530047038C /* Approval.storyboard in Resources */,
 				30FD36E6214A5E530047038C /* credentials.plist in Resources */,
 				3E1E17D1218B043400868667 /* Localizable.strings in Resources */,
+				30B2FD7521B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */,
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
 				30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */,
+				30B2FD5C21B1130B0054EAB6 /* deleteToken.sql in Resources */,
 				30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */,
 				3027D23E21AC1B4700094D5C /* readToken.sql in Resources */,
 				30A08D48216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */,
@@ -2148,6 +2222,7 @@
 				3074133D213E83E700F05427 /* LoadMoreTableViewCell.xib in Resources */,
 				305A01AF215908EB0008B4EA /* InputTableViewCell.xib in Resources */,
 				3E987AF020E518630083BB18 /* .swiftlint.yml in Resources */,
+				30B2FD6C21B13E9D0054EAB6 /* ProfileManagement.storyboard in Resources */,
 				309B6CF9216604270046EFE9 /* deleteUser.sql in Resources */,
 				309B6CF3216603F00046EFE9 /* readUser.sql in Resources */,
 				3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */,
@@ -2161,11 +2236,14 @@
 				3027D23D21AC1B4700094D5C /* readToken.sql in Resources */,
 				3EB5644320CA69EA00501CAC /* LaunchScreen.storyboard in Resources */,
 				3E28E79520E3C2F900F1C6D5 /* RequestDetailTableViewCell.xib in Resources */,
+				30B2FD6821B13E840054EAB6 /* TeamManagement.storyboard in Resources */,
 				3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */,
 				307413582142809B00F05427 /* PublicHolidayTableViewCell.xib in Resources */,
+				30B2FD6421B13E690054EAB6 /* EmployeeManagement.storyboard in Resources */,
 				3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */,
 				307413102136680100F05427 /* TeamPreviewTableViewCell.xib in Resources */,
 				3E3551022121797E00B43B57 /* RequestApprovalTableViewCell.xib in Resources */,
+				30B2FD5B21B1130B0054EAB6 /* deleteToken.sql in Resources */,
 				309B6CEC2164EF5E0046EFE9 /* schema.sql in Resources */,
 				3E0B2D2521AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */,
 				3074135A214650AF00F05427 /* Assets.xcassets in Resources */,
@@ -2174,10 +2252,12 @@
 				3027D24D21AC2AF300094D5C /* ProfileTableViewCell.xib in Resources */,
 				3E832318216CADCC0068E37F /* Summary.storyboard in Resources */,
 				309B6CFF216605710046EFE9 /* createUser.sql in Resources */,
+				30B2FD7021B13EBF0054EAB6 /* LeaveTypeManagement.storyboard in Resources */,
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
+				30B2FD7421B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
-				3027D24621AC1D6700094D5C /* deleteToken.sql in Resources */,
+				3027D24621AC1D6700094D5C /* deleteTokens.sql in Resources */,
 				306F1C8321A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
 				30516851217DACF900AAEA7D /* (null) in Resources */,
 				3E1E17D0218B043400868667 /* Localizable.strings in Resources */,
@@ -2648,6 +2728,7 @@
 				302A589E21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCase.swift in Sources */,
 				30FD369D214A5E530047038C /* Allowance.swift in Sources */,
+				30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */,
 				30FD369E214A5E530047038C /* Absence.swift in Sources */,
 				30092B57219EF75D00244F09 /* Team.swift in Sources */,
 				3E78685D21A85A00001562C3 /* UserUseCase.swift in Sources */,
@@ -2793,6 +2874,7 @@
 				302A589D21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30741327213968E800F05427 /* Allowance.swift in Sources */,
 				3ED6ED8421300CCB001436FE /* Absence.swift in Sources */,
+				30B2FD7721B141D20054EAB6 /* PushTokenViewController.swift in Sources */,
 				3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCase.swift in Sources */,
 				30092B56219EF75D00244F09 /* Team.swift in Sources */,
 				3E78685C21A85A00001562C3 /* UserUseCase.swift in Sources */,

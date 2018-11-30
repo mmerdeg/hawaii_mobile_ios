@@ -28,13 +28,11 @@ extension PushTokenDb {
     }
     
     init?(parameters: [String: Any]) {
-        print(parameters)
         guard let id = parameters["id"] as? Int,
             let name = parameters["name"] as? String,
             let platform = parameters["platform"] as? String,
             let pushToken = parameters["push_token"] as? String,
             let userId = parameters["user_id"] as? Int else {
-                print("Error getting User data")
                 return nil
         }
         self.pushTokenId = id

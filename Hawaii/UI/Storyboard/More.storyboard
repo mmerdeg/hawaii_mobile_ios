@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
-        <scene sceneID="xlE-lN-5bG">
-            <objects>
-                <viewController id="4Yk-u2-BpV" customClass="ProfileViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="s4t-eL-hhP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="ySo-QY-yPF"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EUE-DK-8Iq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1588" y="199"/>
-        </scene>
         <!--More View Controller-->
         <scene sceneID="zkl-Av-sNd">
             <objects>
@@ -50,11 +35,11 @@
                     <navigationItem key="navigationItem" id="PNZ-hr-iGA"/>
                     <connections>
                         <outlet property="tableView" destination="Cyo-IH-acU" id="SBs-1i-PET"/>
-                        <segue destination="2jQ-PP-z9w" kind="show" identifier="showUsersManagement" id="hXO-Mr-lls"/>
-                        <segue destination="U85-Wx-gSk" kind="show" identifier="showTeamsManagement" id="IOj-KC-W7K"/>
-                        <segue destination="43I-FY-JFI" kind="show" identifier="showHolidayManagement" id="1WW-V6-2gy"/>
-                        <segue destination="il9-ck-xrw" kind="show" identifier="showLeaveProfilesManagement" id="y59-CM-boz"/>
-                        <segue destination="4Yk-u2-BpV" kind="show" identifier="editToken" id="SZP-CG-PzW"/>
+                        <segue destination="c3B-cL-koW" kind="show" identifier="showUsersManagement" id="0oY-e7-vsm"/>
+                        <segue destination="Jme-WX-Yv7" kind="show" identifier="showTeamsManagement" id="uFo-xj-wJZ"/>
+                        <segue destination="2fR-EY-iRe" kind="show" identifier="showHolidayManagement" id="H3c-We-Imy"/>
+                        <segue destination="2B5-yv-hRW" kind="show" identifier="showLeaveProfilesManagement" id="Fbp-Wb-Gvp"/>
+                        <segue destination="ieA-53-NVb" kind="show" identifier="profileManagement" id="Vfd-Ui-GnN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSW-Gv-fRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -81,200 +66,45 @@
             </objects>
             <point key="canvasLocation" x="510" y="1012"/>
         </scene>
-        <!--Employee Menagement-->
-        <scene sceneID="kHG-xM-f7S">
+        <!--ProfileManagement-->
+        <scene sceneID="PlQ-n8-PMy">
             <objects>
-                <viewController id="2jQ-PP-z9w" customClass="UsersManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5xZ-iX-UT7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="uNd-Fg-ffd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="centerY" secondItem="2ju-2G-vHh" secondAttribute="centerY" id="0ea-IC-Gfo"/>
-                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="leading" secondItem="2ju-2G-vHh" secondAttribute="leading" id="Qca-2V-ssl"/>
-                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="top" secondItem="2ju-2G-vHh" secondAttribute="top" id="ckq-R3-cxQ"/>
-                            <constraint firstItem="uNd-Fg-ffd" firstAttribute="centerX" secondItem="2ju-2G-vHh" secondAttribute="centerX" id="lPg-c1-YRG"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="2ju-2G-vHh"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Employee Menagement" id="CCf-mW-Jel"/>
-                    <connections>
-                        <outlet property="tableView" destination="uNd-Fg-ffd" id="jod-SH-RKn"/>
-                        <segue destination="kKO-SZ-vI5" kind="show" identifier="manageUser" id="VdT-iZ-efK"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mMq-63-P4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="ProfileManagement" id="ieA-53-NVb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m0c-RU-yoM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3009" y="35"/>
+            <point key="canvasLocation" x="2407" y="724"/>
         </scene>
-        <!--User-->
-        <scene sceneID="BYV-zX-1Qm">
+        <!--EmployeeManagement-->
+        <scene sceneID="eiD-So-scp">
             <objects>
-                <viewController id="kKO-SZ-vI5" customClass="UserManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eUC-ac-2ra">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="JHY-p6-b0O"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="User" id="RTw-XC-j46"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WBX-qZ-GTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="EmployeeManagement" id="c3B-cL-koW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jUZ-xz-1OB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3954" y="35"/>
+            <point key="canvasLocation" x="2422" y="888"/>
         </scene>
-        <!--Team-->
-        <scene sceneID="Dbm-8R-EDa">
+        <!--TeamManagement-->
+        <scene sceneID="DUR-BF-FoD">
             <objects>
-                <viewController id="YAZ-XA-LzD" customClass="TeamManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lRK-cG-UKa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="lkD-y4-OgC"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Team" id="ZzJ-Zn-G2e"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="30e-y1-rvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="TeamManagement" id="Jme-WX-Yv7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LsN-av-JrH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3953" y="761"/>
+            <point key="canvasLocation" x="2385" y="1011"/>
         </scene>
-        <!--Holiday-->
-        <scene sceneID="qjy-Fy-OSK">
+        <!--PublicHolidayManagement-->
+        <scene sceneID="x0V-Bj-VGD">
             <objects>
-                <viewController id="OXl-Ed-HmI" customClass="PublicHolidayManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Z8a-sy-Qbh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="8JX-WO-EMc"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Holiday" id="FNc-32-jDU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="He6-A5-9tJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="PublicHolidayManagement" id="2fR-EY-iRe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4kb-t1-kqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3953" y="1484"/>
+            <point key="canvasLocation" x="2426" y="1121"/>
         </scene>
-        <!--Team Menagement-->
-        <scene sceneID="Fnc-qu-qt2">
+        <!--LeaveTypeManagement-->
+        <scene sceneID="wef-Vg-Iz6">
             <objects>
-                <viewController id="U85-Wx-gSk" customClass="TeamsManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="d0i-xf-ohB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LhF-d7-Qfi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="leading" secondItem="sxt-nO-NWc" secondAttribute="leading" id="1tU-SJ-91w"/>
-                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="centerY" secondItem="sxt-nO-NWc" secondAttribute="centerY" id="hwK-Ow-6yz"/>
-                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="top" secondItem="sxt-nO-NWc" secondAttribute="top" id="nzf-Ew-2sQ"/>
-                            <constraint firstItem="LhF-d7-Qfi" firstAttribute="centerX" secondItem="sxt-nO-NWc" secondAttribute="centerX" id="tsf-vW-gIR"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="sxt-nO-NWc"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Team Menagement" id="W7X-Iq-l4R"/>
-                    <connections>
-                        <outlet property="tableView" destination="LhF-d7-Qfi" id="Sxb-u3-i2R"/>
-                        <segue destination="YAZ-XA-LzD" kind="show" identifier="manageTeam" id="PkN-n6-If9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mpT-co-TQe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="LeaveTypeManagement" id="2B5-yv-hRW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FfL-QT-TVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3009" y="761"/>
-        </scene>
-        <!--Leave types-->
-        <scene sceneID="CGy-4A-pnX">
-            <objects>
-                <viewController id="il9-ck-xrw" customClass="LeaveProfilesManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pNo-Qn-f9n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBf-bE-N1f">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="HBf-bE-N1f" firstAttribute="centerX" secondItem="osi-EK-JfS" secondAttribute="centerX" id="4PV-rI-dhb"/>
-                            <constraint firstItem="HBf-bE-N1f" firstAttribute="leading" secondItem="osi-EK-JfS" secondAttribute="leading" id="N6u-4V-Ec1"/>
-                            <constraint firstItem="HBf-bE-N1f" firstAttribute="top" secondItem="osi-EK-JfS" secondAttribute="top" id="QZJ-R7-8dg"/>
-                            <constraint firstItem="HBf-bE-N1f" firstAttribute="centerY" secondItem="osi-EK-JfS" secondAttribute="centerY" id="m6P-GY-xJc"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="osi-EK-JfS"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Leave types" id="YRU-Nc-lgv"/>
-                    <connections>
-                        <outlet property="tableView" destination="HBf-bE-N1f" id="zOf-gl-SaZ"/>
-                        <segue destination="LLb-er-4Db" kind="show" identifier="manageLeaveProfile" id="fxc-tY-wCw"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d5r-BO-iaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3009" y="2206"/>
-        </scene>
-        <!--Holiday Menagement-->
-        <scene sceneID="B2S-tm-fON">
-            <objects>
-                <viewController id="43I-FY-JFI" customClass="PublicHolidaysManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dR6-bW-41A">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="41T-g6-Q8D">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="separatorInset" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="41T-g6-Q8D" firstAttribute="top" secondItem="2cB-OS-N5K" secondAttribute="top" id="b5M-zj-pgu"/>
-                            <constraint firstItem="41T-g6-Q8D" firstAttribute="centerX" secondItem="2cB-OS-N5K" secondAttribute="centerX" id="dPx-dA-riJ"/>
-                            <constraint firstItem="41T-g6-Q8D" firstAttribute="leading" secondItem="2cB-OS-N5K" secondAttribute="leading" id="j0X-Xd-3vB"/>
-                            <constraint firstItem="41T-g6-Q8D" firstAttribute="centerY" secondItem="2cB-OS-N5K" secondAttribute="centerY" id="nu5-bH-Eh6"/>
-                            <constraint firstItem="2cB-OS-N5K" firstAttribute="bottom" secondItem="41T-g6-Q8D" secondAttribute="bottom" id="o5g-xE-056"/>
-                            <constraint firstItem="2cB-OS-N5K" firstAttribute="bottom" secondItem="41T-g6-Q8D" secondAttribute="bottom" id="uoZ-tv-uJe"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="2cB-OS-N5K"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Holiday Menagement" id="XRk-bi-vMC"/>
-                    <connections>
-                        <outlet property="tableView" destination="41T-g6-Q8D" id="D2D-7b-spB"/>
-                        <segue destination="OXl-Ed-HmI" kind="show" identifier="managePublicHoliday" id="eS6-AB-9O0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bEi-Su-2dK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3009" y="1484"/>
-        </scene>
-        <!--Leave type-->
-        <scene sceneID="MMn-Uy-LFV">
-            <objects>
-                <viewController id="LLb-er-4Db" customClass="LeaveProfileManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ylR-Mj-tPM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="I3p-Pv-O6Z"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Leave type" id="pXD-68-aby"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="om7-or-Uqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3953" y="2205"/>
+            <point key="canvasLocation" x="2426" y="1219"/>
         </scene>
     </scenes>
     <resources>

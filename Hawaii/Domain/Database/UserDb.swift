@@ -32,7 +32,6 @@ extension UserDb {
     }
     
     init?(parameters: [String: Any]) {
-        print(parameters)
         guard let id = parameters["id"] as? Int,
             let teamId = parameters["team_id"] as? Int,
             let teamName = parameters["team_name"] as? String,
@@ -43,7 +42,6 @@ extension UserDb {
             let jobTitle = parameters["job_title"] as? String,
             let active = parameters["active"] as? Bool,
             let yearsOfService = parameters["years_of_service"] as? Int else {
-                print("Error getting User data")
                 return nil
         }
         self.id = id

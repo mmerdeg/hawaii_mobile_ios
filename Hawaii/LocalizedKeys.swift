@@ -30,6 +30,7 @@ public struct LocalizedKeys {
         static let accept = "general.accept"
         static let decline = "general.decline"
         static let emptyToken = "general.emptyToken"
+        static let equalToken = "general.equalToken"
         static let deleteMessage = "general.alert.deleteMessage"
         static let delete = "general.delete"
     }
@@ -131,6 +132,49 @@ public struct LocalizedKeys {
         static let manageTeams = "more.manageTeams"
         static let manageHolidays = "more.manageHolidays"
         static let manageLeaveProfiles = "more.manageLeaveProfiles"
+        static let manageDevices = "more.manageDevices"
         static let theme = "more.theme"
+        static let tokenScreenTitle = "more.tokenScreenTitle"
+    }
+    
+    struct TeamManagement {
+        static let nameTitle = "teamManagement.nameTitle"
+        static let namePlaceholder = "teamManagement.namePlaceholder"
+        static let emailTitle = "teamManagement.emailTitle"
+        static let emailPlaceholder = "teamManagement.emailPlaceholder"
+        static let activeEnabled = "teamManagement.activeEnabled"
+        static let activeDisabled = "teamManagement.activeDisabled"
+        static let teamApproverTitle = "teamManagement.teamApproverTitle"
+        static let teamApproverPlaceholder = "teamManagement.teamApproverPlaceholder"
+    }
+    
+    struct UserManagement {
+        static let fullNameTitle = "userManagement.fullNameTitle"
+        static let fullNamePlaceholder = "userManagement.fullNamePlaceholder"
+        static let emailTitle = "userManagement.emailTitle"
+        static let emailPlaceholder = "userManagement.emailPlaceholder"
+        static let activeEnabled = "userManagement.activeEnabled"
+        static let activeDisabled = "userManagement.activeDisabled"
+        static let jobTitleTitle = "userManagement.jobTitleTitle"
+        static let jobTitlePlaceholder = "userManagement.jobTitlePlaceholder"
+        static let userRoleTitle = "userManagement.userRoleTitle"
+        static let userRolePlaceholder = "userManagement.userRolePlaceholder"
+        static let yearsOfServiceTitle = "userManagement.yearsOfServiceTitle"
+        static let yearsOfServicePlaceholder = "userManagement.yearsOfServicePlaceholder"
+        static let teamTitle = "userManagement.teamTitle"
+        static let teamPlaceholder = "userManagement.teamPlaceholder"
+        static let leaveProfileTitle = "userManagement.leaveProfileTitle"
+        static let leaveProfilePlaceholder = "userManagement.leaveProfilePlaceholder"
+        static let basicSection = "userManagement.basicSection"
+        static let additionalSection = "userManagement.additionalSection"
+        static let companySection = "userManagement.companySection"
+    }
+    
+    struct Token {
+        static let deviceName = "token.deviceName"
+        static let notificationToken = "token.notificationToken"
+        static let platform = "token.platform"
+        static let createdDate = "token.createdDate"
+        
     }
 }

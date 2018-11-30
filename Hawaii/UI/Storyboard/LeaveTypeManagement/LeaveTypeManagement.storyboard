@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="atx-6S-KhO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Leave types-->
+        <scene sceneID="ATw-cQ-dv5">
+            <objects>
+                <viewController id="atx-6S-KhO" customClass="LeaveProfilesManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VeT-z8-7ct">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x6x-nI-vB3">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="x6x-nI-vB3" firstAttribute="leading" secondItem="vD5-EZ-Zrs" secondAttribute="leading" id="12x-EG-Msq"/>
+                            <constraint firstItem="x6x-nI-vB3" firstAttribute="centerY" secondItem="vD5-EZ-Zrs" secondAttribute="centerY" id="1YH-c0-pEt"/>
+                            <constraint firstItem="x6x-nI-vB3" firstAttribute="top" secondItem="vD5-EZ-Zrs" secondAttribute="top" id="eVA-c0-pHb"/>
+                            <constraint firstItem="x6x-nI-vB3" firstAttribute="centerX" secondItem="vD5-EZ-Zrs" secondAttribute="centerX" id="m94-fx-OEC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vD5-EZ-Zrs"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Leave types" id="ohu-mS-Mz0"/>
+                    <connections>
+                        <outlet property="tableView" destination="x6x-nI-vB3" id="mq9-KP-ylg"/>
+                        <segue destination="7nN-9v-PTL" kind="show" identifier="manageLeaveProfile" id="hud-zH-faH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ets-wR-oT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3009" y="2206"/>
+        </scene>
+        <!--Leave type-->
+        <scene sceneID="C4I-A9-POq">
+            <objects>
+                <viewController id="7nN-9v-PTL" customClass="LeaveProfileManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tbi-Fm-hpf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4dO-et-BD0"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Leave type" id="1Bu-Vs-oYs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Bc-eI-Ewm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="2205"/>
+        </scene>
+    </scenes>
+</document>

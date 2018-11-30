@@ -8,8 +8,21 @@
 
 import Foundation
 
-enum Platform: String, Codable {
+enum Platform: String, Codable, Hashable {
     case iOS = "IOS"
+    case android = "ANDROID"
+    var hashValue: Int {
+        return self.rawValue.hashValue
+    }
+    
+    var description: String {
+        switch self {
+        case .iOS:
+            return "iOS"
+        default:
+            return "Android"
+        }
+    }
 }
 
 struct PushTokenDTO: Codable {

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bbc-K3-Fmk">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Holiday-->
+        <scene sceneID="1WT-DK-a0p">
+            <objects>
+                <viewController id="RS2-SC-FmQ" customClass="PublicHolidayManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8ya-57-9UU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="XPX-qQ-2US"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holiday" id="Lgb-XK-9Lc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tlM-O4-Pls" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3953" y="1381"/>
+        </scene>
+        <!--Holiday Menagement-->
+        <scene sceneID="Kvu-FA-qQk">
+            <objects>
+                <viewController id="Bbc-K3-Fmk" customClass="PublicHolidaysManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="way-zG-XNA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="LeE-YJ-0Qz">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="17" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LeE-YJ-0Qz" firstAttribute="leading" secondItem="pfn-Wr-PuP" secondAttribute="leading" id="7Dp-iT-gN7"/>
+                            <constraint firstItem="LeE-YJ-0Qz" firstAttribute="centerY" secondItem="pfn-Wr-PuP" secondAttribute="centerY" id="8kb-ii-6eY"/>
+                            <constraint firstItem="pfn-Wr-PuP" firstAttribute="bottom" secondItem="LeE-YJ-0Qz" secondAttribute="bottom" id="8uv-A6-y1u"/>
+                            <constraint firstItem="LeE-YJ-0Qz" firstAttribute="top" secondItem="pfn-Wr-PuP" secondAttribute="top" id="Jy5-8a-yC6"/>
+                            <constraint firstItem="pfn-Wr-PuP" firstAttribute="bottom" secondItem="LeE-YJ-0Qz" secondAttribute="bottom" id="Tx1-no-Diq"/>
+                            <constraint firstItem="LeE-YJ-0Qz" firstAttribute="centerX" secondItem="pfn-Wr-PuP" secondAttribute="centerX" id="aeT-50-tHA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pfn-Wr-PuP"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Holiday Menagement" id="uU9-Iu-WHX"/>
+                    <connections>
+                        <outlet property="tableView" destination="LeE-YJ-0Qz" id="rhL-cw-O36"/>
+                        <segue destination="RS2-SC-FmQ" kind="show" identifier="managePublicHoliday" id="EB1-KP-4iF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="odj-HZ-RH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3038" y="1382"/>
+        </scene>
+    </scenes>
+</document>
