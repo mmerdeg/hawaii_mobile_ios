@@ -105,7 +105,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         if section != adminSection {
             return section == 0 ? 1 : 3
         }
-        return isAdmin() ? 4 : 2
+        return isAdmin() ? 4 : 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -137,7 +137,7 @@ class UserDao: UserDaoProtocol {
     }
     
     func emptyUsers(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.async {
+        dispatchQueue?.sync {
             self.databaseQueue?.inTransaction { database, _ in
                 DispatchQueue.main.async {
                     print("Obrisao usere")
@@ -259,7 +259,7 @@ class UserDao: UserDaoProtocol {
     }
     
     func deleteTokens(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.async {
+        dispatchQueue?.sync {
             self.databaseQueue?.inTransaction { database, _ in
                 DispatchQueue.main.async {
                     print("Obrisao tokene")
