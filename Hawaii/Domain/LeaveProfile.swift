@@ -16,7 +16,6 @@ struct LeaveProfile: Codable, Equatable, Hashable {
     let maxCarriedOver: Int?
     let name: String?
     let training: Int?
-    let users: [User]?
 }
 
 extension LeaveProfile {
@@ -28,7 +27,6 @@ extension LeaveProfile {
         self.maxBonusDays = values["maxBonusDays"] as? Int ?? leaveProfile?.maxBonusDays
         self.training = values["training"] as? Int ?? leaveProfile?.training
         self.maxCarriedOver = values["maxCarriedOver"] as? Int ?? leaveProfile?.maxCarriedOver
-        self.users = leaveProfile?.users
     }
     
     init(leaveProfile: LeaveProfile? = nil, id: Int? = nil,
@@ -41,7 +39,6 @@ extension LeaveProfile {
         self.maxBonusDays = maxBonusDays ?? leaveProfile?.maxBonusDays
         self.training = training ?? leaveProfile?.training
         self.maxCarriedOver = maxCarriedOver ?? leaveProfile?.maxCarriedOver
-        self.users = users ?? leaveProfile?.users
     }
     
     static func == (lhs: LeaveProfile, rhs: LeaveProfile) -> Bool {

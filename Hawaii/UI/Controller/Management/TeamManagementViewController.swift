@@ -71,11 +71,11 @@ class TeamManagementViewController: BaseFormViewController {
             }).cellUpdate({ cell, row in
                     self.setEmailInput(cell: cell, row: row)
             })
-            <<< SwitchRow("active") { row in
-                row.value = team?.active
-                row.title = (team?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
+            <<< SwitchRow("deleted") { row in
+                row.value = team?.deleted
+                row.title = (team?.deleted ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() : LocalizedKeys.TeamManagement.deletedDisabled.localized()
             }.onChange { row in
-                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
+                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() : LocalizedKeys.TeamManagement.deletedDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                     self.setSwitchInput(cell: cell)

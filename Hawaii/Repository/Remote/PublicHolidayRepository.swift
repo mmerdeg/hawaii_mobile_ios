@@ -10,8 +10,8 @@ class PublicHolidayRepository: SessionManager, PublicHolidayRepositoryProtocol {
         guard let url = URL(string: publicHolidaysUrl) else {
             return
         }
-        let activeKey = "deleted"
-        let params = [activeKey: false]
+        let deletedKey = "deleted"
+        let params = [deletedKey: false]
         
         genericCodableRequest(value: [PublicHoliday].self, url, parameters: params) { response in
             completion(response)

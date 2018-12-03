@@ -27,19 +27,19 @@ struct Absence: Codable {
     let absenceSubtype: String?
     let absenceType: String?
     let comment: String?
-    let active: Bool?
+    let deleted: Bool?
     let iconUrl: String?
 }
 extension Absence {
     init(absence: Absence? = nil, id: Int? = nil, name: String? = nil, absenceSubtype: String? = nil ,
-         absenceType: String? = nil, comment: String? = nil, active: Bool? = nil,
+         absenceType: String? = nil, comment: String? = nil, deleted: Bool? = nil,
          iconUrl: String? = nil) {
         self.id = id ?? absence?.id
         self.name = name ?? absence?.name
         self.absenceSubtype = absenceSubtype ?? absence?.absenceSubtype
         self.absenceType = absenceType ?? absence?.absenceType
         self.comment = comment ?? absence?.comment
-        self.active = active ?? absence?.active
+        self.deleted = deleted ?? absence?.deleted
         self.iconUrl = iconUrl ?? absence?.iconUrl
         
     }

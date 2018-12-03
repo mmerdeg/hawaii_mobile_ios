@@ -121,8 +121,8 @@ userManagement.nameTitle = "Team name";
 userManagement.namePlaceholder = "Enter team name";
 userManagement.emailTitle = "Email";
 userManagement.emailPlaceholder = "Enter email here";
-userManagement.activeEnabled = "Active";
-userManagement.activeDisabled = "Not active";
+userManagement.deletedEnabled = "Deleted";
+userManagement.deletedDisabled = "Not deleted";
 userManagement.teamApproverTitle = "Pick team approver";
 userManagement.teamApproverPlaceholder = "";
 
@@ -130,8 +130,8 @@ userManagement.fullNameTitle = "Full name";
 userManagement.fullNamePlaceholder = "Enter full name";
 userManagement.emailTitle = "Email";
 userManagement.emailPlaceholder = "Enter email here";
-userManagement.activeEnabled = "Active";
-userManagement.activeDisabled = "Not active";
+userManagement.deletedEnabled = "Deleted";
+userManagement.deletedDisabled = "Not deleted";
 userManagement.jobTitleTitle = "Job title";
 userManagement.jobTitlePlaceholder = "Enter Job title";
 userManagement.userRoleTitle = "User role title";
@@ -145,6 +145,9 @@ userManagement.leaveProfilePlaceholder = "Select leave profile";
 userManagement.basicSection = "Basic info";
 userManagement.companySection = "Company info";
 userManagement.additionalSection = "Additional info";
+userManagement.activeEnabled = "Active";
+userManagement.activeDisabled = "Not active";
+
 
 token.deviceName = "Device name";
 token.notificationToken = "Device notification token";

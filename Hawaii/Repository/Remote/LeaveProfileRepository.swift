@@ -10,8 +10,9 @@ class LeaveProfileRepository: SessionManager, LeaveProfileRepositoryProtocol {
         guard let url = URL(string: leaveProfileUrl) else {
             return
         }
-        
-        genericCodableRequest(value: [LeaveProfile].self, url) { response in
+        let deletedKey = "deleted"
+        let params = [deletedKey: false]
+        genericCodableRequest(value: [LeaveProfile].self, url, parameters: params) { response in
             completion(response)
         }
     }

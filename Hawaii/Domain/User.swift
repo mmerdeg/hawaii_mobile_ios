@@ -12,9 +12,10 @@ struct User: Codable, CustomStringConvertible {
     let userPushTokens: [PushTokenDTO]?
     let jobTitle: String?
     let active: Bool?
+    let deleted: Bool?
     let yearsOfService: Int?
     let allowances: [Allowance]?
-    var description : String { return fullName ?? "" }
+    var description: String { return fullName ?? "" }
 }
 
 extension User: Hashable {
@@ -22,12 +23,6 @@ extension User: Hashable {
         hasher.combine(id)
     }
 }
-
-//extension User: SearchItem {
-//    func matchesSearchQuery(_ query: String) -> Bool {
-//        return fullName?.contains(query) ?? false
-//    }
-//}
 
 extension User: Equatable {
     static func == (lhs: User, rhs: User) -> Bool {
@@ -39,7 +34,7 @@ extension User {
     init(user: User? = nil, id: Int? = nil, teamId: Int? = nil,
          teamName: String? = nil, leaveProfileId: Int? = nil, fullName: String? = nil,
          email: String? = nil, userRole: String? = nil, userPushTokens: [PushTokenDTO]? = nil, jobTitle: String? = nil,
-         active: Bool? = nil, yearsOfService: Int? = nil, allowances: [Allowance]? = nil) {
+         deleted: Bool? = nil, active: Bool? = nil, yearsOfService: Int? = nil, allowances: [Allowance]? = nil) {
         self.id = id ?? user?.id
         self.teamId = teamId ?? user?.teamId
         self.teamName = teamName ?? user?.teamName
@@ -49,6 +44,7 @@ extension User {
         self.userRole = userRole ?? user?.userRole
         self.jobTitle = jobTitle ?? user?.jobTitle
         self.userPushTokens = userPushTokens ?? user?.userPushTokens
+        self.deleted = deleted ?? user?.deleted
         self.active = active ?? user?.active
         self.yearsOfService = yearsOfService ?? user?.yearsOfService
         self.allowances = allowances ?? user?.allowances
@@ -63,10 +59,11 @@ extension User {
         self.email = values["email"] as? String ?? user?.email
         self.userRole = values["userRole"] as? String ?? user?.userRole
         self.jobTitle = values["jobTitle"] as? String ?? user?.jobTitle
-        self.active = values["active"] as? Bool ?? user?.active
+        self.deleted = values["deleted"] as? Bool ?? user?.deleted
         self.yearsOfService = values["yearsOfService"] as? Int ?? user?.yearsOfService
         self.allowances = user?.allowances
         self.userPushTokens = user?.userPushTokens
+        self.active = values["active"] as? Bool ?? user?.active
     }
 
 }

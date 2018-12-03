@@ -64,7 +64,7 @@ class UserDao: UserDaoProtocol {
                                           entity.email ?? "",
                                           entity.userRole ?? "",
                                           entity.jobTitle ?? "",
-                                          entity.active ?? false,
+                                          entity.deleted ?? false,
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
                     DispatchQueue.main.async {

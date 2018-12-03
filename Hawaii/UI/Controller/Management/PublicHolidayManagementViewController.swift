@@ -49,11 +49,11 @@ class PublicHolidayManagementViewController: BaseFormViewController {
             }).cellUpdate({ cell, row in
                 self.setDateInput(cell: cell, row: row)
             })
-            <<< SwitchRow("active") { row in
-                row.value = holiday?.active
-                row.title = (holiday?.active ?? false) ? "Active" : "Not active"
+            <<< SwitchRow("deleted") { row in
+                row.value = holiday?.deleted
+                row.title = (holiday?.deleted ?? false) ? "Deleted" : "Not deleted"
             }.onChange { row in
-                    row.title = (row.value ?? false) ? "Active": "Not active"
+                    row.title = (row.value ?? false) ? "Deleted": "Not deleted"
                     row.updateCell()
             }.cellSetup { cell, _ in
                     self.setSwitchInput(cell: cell)

@@ -10,7 +10,7 @@ struct UserDb: Codable {
     let email: String?
     let userRole: String?
     let jobTitle: String?
-    let active: Bool?
+    let deleted: Bool?
     let yearsOfService: Int?
 }
 
@@ -18,7 +18,7 @@ extension UserDb {
     
     init(userDb: UserDb? = nil, id: Int? = nil, teamId: Int? = nil, teamName: String? = nil, leaveProfileId: Int? = nil,
          fullName: String? = nil, email: String? = nil, userRole: String? = nil,
-         jobTitle: String? = nil, active: Bool? = nil, yearsOfService: Int? = nil) {
+         jobTitle: String? = nil, deleted: Bool? = nil, yearsOfService: Int? = nil) {
         self.id = id ?? userDb?.id
         self.teamId = teamId ?? userDb?.teamId
         self.teamName = teamName ?? userDb?.teamName
@@ -27,7 +27,7 @@ extension UserDb {
         self.email = email ?? userDb?.email
         self.userRole = userRole ?? userDb?.userRole
         self.jobTitle = jobTitle ?? userDb?.jobTitle
-        self.active = active ?? userDb?.active
+        self.deleted = deleted ?? userDb?.deleted
         self.yearsOfService = yearsOfService ?? userDb?.yearsOfService
     }
     
@@ -40,7 +40,7 @@ extension UserDb {
             let email = parameters["email"] as? String,
             let userRole = parameters["user_role"] as? String,
             let jobTitle = parameters["job_title"] as? String,
-            let active = parameters["active"] as? Bool,
+            let deleted = parameters["deleted"] as? Bool,
             let yearsOfService = parameters["years_of_service"] as? Int else {
                 return nil
         }
@@ -52,14 +52,13 @@ extension UserDb {
         self.email = email
         self.userRole = userRole
         self.jobTitle = jobTitle
-        self.active = active
+        self.deleted = deleted
         self.yearsOfService = yearsOfService
     }
-    
     
     func toUser() -> User {
         return User(id: self.id, teamId: self.teamId, teamName: self.teamName, leaveProfileId: self.leaveProfileId,
                     fullName: self.fullName, email: self.email, userRole: self.userRole,
-                    jobTitle: self.jobTitle, active: self.active, yearsOfService: self.yearsOfService, allowances: [])
+                    jobTitle: self.jobTitle, deleted: self.deleted, yearsOfService: self.yearsOfService, allowances: [])
     }
 }

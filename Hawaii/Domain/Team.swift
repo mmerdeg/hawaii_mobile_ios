@@ -9,7 +9,7 @@
 import Foundation
 
 struct Team: Codable {
-    let active: Bool?
+    let deleted: Bool?
     let emails: String?
     let id: Int?
     let name: String?
@@ -34,18 +34,18 @@ extension Team {
     init(team: Team? = nil, values: [String: Any?], teamApprovers: [User]? = nil) {
         self.id = team?.id
         self.emails = values["email"] as? String ?? team?.emails
-        self.active = values["active"] as? Bool ?? team?.active
+        self.deleted = values["deleted"] as? Bool ?? team?.deleted
         self.name = values["name"] as? String ?? team?.name
         self.teamApprovers = teamApprovers ?? team?.teamApprovers
         self.users = team?.users
     }
     
     init(team: Team? = nil, id: Int? = nil,
-         active: Bool? = nil, emails: String? = nil,
+         deleted: Bool? = nil, emails: String? = nil,
          name: String? = nil, teamApprovers: [User]? = nil, users: [User]?) {
         self.id = id ?? team?.id
         self.emails = emails ?? team?.emails
-        self.active = active ?? team?.active
+        self.deleted = deleted ?? team?.deleted
         self.name = name ?? team?.name
         self.teamApprovers = teamApprovers ?? team?.teamApprovers
         self.users = users ?? team?.users

@@ -89,16 +89,28 @@ class UserManagementViewController: BaseFormViewController {
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             })
-            <<< SwitchRow("active") { row in
-                row.value = user?.active
-                row.title = (user?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
+            <<< SwitchRow("deleted") { row in
+                row.value = user?.deleted
+                row.title = (user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() : LocalizedKeys.UserManagement.deletedDisabled.localized()
             }.onChange { row in
-                row.title = (self.user?.active ?? false) ? LocalizedKeys.TeamManagement.activeEnabled.localized() : LocalizedKeys.TeamManagement.activeDisabled.localized()
+                row.title = (self.user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() : LocalizedKeys.UserManagement.deletedDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                 self.setSwitchInput(cell: cell)
             }.cellUpdate { cell, _ in
                 cell.textLabel?.textColor = UIColor.primaryTextColor
+            }
+            
+            <<< SwitchRow("active") { row in
+                row.value = user?.active
+                row.title = (user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() : LocalizedKeys.UserManagement.activeDisabled.localized()
+                }.onChange { row in
+                    row.title = (self.user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() : LocalizedKeys.UserManagement.activeDisabled.localized()
+                    row.updateCell()
+                }.cellSetup { cell, _ in
+                    self.setSwitchInput(cell: cell)
+                }.cellUpdate { cell, _ in
+                    cell.textLabel?.textColor = UIColor.primaryTextColor
             }
             +++ Section(LocalizedKeys.UserManagement.additionalSection.localized())
             <<< IntRow("yearsOfService") {
