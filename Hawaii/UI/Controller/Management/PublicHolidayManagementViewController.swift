@@ -11,7 +11,7 @@ import Eureka
 
 class PublicHolidayManagementViewController: BaseFormViewController {
     
-    var publicHolidayUseCase: PublicHolidayUseCaseProtocol?
+    var publicHolidayUseCase: PublicHolidayUseCase?
     
     var holiday: PublicHoliday?
     

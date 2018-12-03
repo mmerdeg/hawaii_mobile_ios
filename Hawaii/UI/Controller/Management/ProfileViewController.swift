@@ -19,7 +19,7 @@ class ProfileViewController: BaseFormViewController {
         return item
     }()
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     var user: User?
     
@@ -33,14 +33,6 @@ class ProfileViewController: BaseFormViewController {
         super.viewDidLoad()
         self.navigationItem.title = LocalizedKeys.More.tokenScreenTitle.localized()
         self.navigationItem.rightBarButtonItem = doneBarItem
-        Thread.printCurrent()
-        
-        let pushToken1 = PushTokenDTO(pushTokenId: 1, pushToken: "Token1", name: "Ivan's Iphone", platform: Platform.iOS)
-        let pushToken2 = PushTokenDTO(pushTokenId: 2, pushToken: "Token2", name: "Stefan's Android", platform: Platform.android)
-        let pushToken3 = PushTokenDTO(pushTokenId: 3, pushToken: "Token3", name: "Monika's Android", platform: Platform.android)
-        let pushToken4 = PushTokenDTO(pushTokenId: 4, pushToken: "Token4", name: "Olivera's Iphone", platform: Platform.iOS)
-        
-        //var pushTokens = [pushToken1, pushToken2, pushToken3, pushToken4]
         pushTokens = user?.userPushTokens
         
         deviceSection = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],

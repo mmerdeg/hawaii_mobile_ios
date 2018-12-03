@@ -7,7 +7,7 @@ class ThemeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var themeSwitch: UISwitch!
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -20,9 +20,9 @@ class NewRequestViewController: BaseViewController {
     
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
     var selectedDate: Date?
     

@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bills-illustration" translatesAutoresizingMaskIntoConstraints="NO" id="ula-a8-tAA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ula-a8-tAA">
                     <rect key="frame" x="50" y="125" width="220" height="220"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ula-a8-tAA" secondAttribute="height" multiplier="1:1" id="aEb-hK-5W3"/>
@@ -50,7 +50,4 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
-    <resources>
-        <image name="bills-illustration" width="16" height="16"/>
-    </resources>
 </document>

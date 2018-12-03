@@ -11,7 +11,7 @@ import Eureka
 
 class LeaveProfileManagementViewController: BaseFormViewController {
     
-    var leaveProfileUseCase: LeaveProfileUseCaseProtocol?
+    var leaveProfileUseCase: LeaveProfileUseCase?
     
     var leaveProfile: LeaveProfile?
     

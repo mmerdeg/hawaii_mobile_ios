@@ -1,6 +1,6 @@
 import Foundation
 
-protocol UserRepositoryProtocol {
+protocol UserRepository {
     
     func getUser(email: String, completion: @escaping (GenericResponse<User>?) -> Void)
     

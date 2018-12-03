@@ -51,5 +51,4 @@ extension Team {
         self.users = users ?? team?.users
     }
     
-    
 }

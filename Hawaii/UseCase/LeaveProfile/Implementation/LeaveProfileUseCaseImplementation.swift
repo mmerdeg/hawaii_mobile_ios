@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol LeaveProfileUseCaseProtocol {
+protocol LeaveProfileUseCase {
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
     
     func add(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<LeaveProfile>) -> Void)
@@ -18,11 +18,11 @@ protocol LeaveProfileUseCaseProtocol {
     func delete(leaveProfile: LeaveProfile, completion: @escaping (GenericResponse<Any>?) -> Void)
 }
 
-class LeaveProfileUseCase: LeaveProfileUseCaseProtocol {
+class LeaveProfileUseCaseImplementation: LeaveProfileUseCase {
     
-    let leaveProfileRepository: LeaveProfileRepositoryProtocol?
+    let leaveProfileRepository: LeaveProfileRepository?
     
-    init(leaveProfileRepository: LeaveProfileRepositoryProtocol) {
+    init(leaveProfileRepository: LeaveProfileRepository) {
         self.leaveProfileRepository = leaveProfileRepository
     }
     

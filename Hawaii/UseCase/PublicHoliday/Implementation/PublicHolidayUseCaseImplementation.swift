@@ -1,6 +1,6 @@
 import Foundation
 
-protocol PublicHolidayUseCaseProtocol {
+protocol PublicHolidayUseCase {
     
     func getHolidays(completion: @escaping (([Date: [PublicHoliday]], GenericResponse<[PublicHoliday]>?)) -> Void)
     
@@ -13,11 +13,11 @@ protocol PublicHolidayUseCaseProtocol {
     func delete(holiday: PublicHoliday, completion: @escaping (GenericResponse<Any>?) -> Void)
 }
 
-class PublicHolidayUseCase: PublicHolidayUseCaseProtocol {
+class PublicHolidayUseCaseImplementation: PublicHolidayUseCase {
     
-    let publicHolidayRepository: PublicHolidayRepositoryProtocol?
+    let publicHolidayRepository: PublicHolidayRepository?
     
-    init(publicHolidayRepository: PublicHolidayRepositoryProtocol) {
+    init(publicHolidayRepository: PublicHolidayRepository) {
         self.publicHolidayRepository = publicHolidayRepository
     }
     

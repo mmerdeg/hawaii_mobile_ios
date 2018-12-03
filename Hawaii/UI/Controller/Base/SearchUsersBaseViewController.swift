@@ -8,9 +8,9 @@ class SearchUsersBaseViewController: BaseViewController, SearchUserProtocol {
     
     var resultsController: SearchUsersTableViewController?
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     var searchController: UISearchController?
     

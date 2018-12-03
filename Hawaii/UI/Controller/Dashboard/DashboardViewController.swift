@@ -22,9 +22,9 @@ class DashboardViewController: BaseViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
-    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCase?
     
     var remainingLeaveDaysViewController: RemainigDaysViewController?
     

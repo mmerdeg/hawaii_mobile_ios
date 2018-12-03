@@ -11,9 +11,9 @@ class HomeTabBarController: UITabBarController {
     
     @IBOutlet weak var homeTabBar: UITabBar!
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
 
     override func viewDidLoad() {
         super.viewDidLoad()

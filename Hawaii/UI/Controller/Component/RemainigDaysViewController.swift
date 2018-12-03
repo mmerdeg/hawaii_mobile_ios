@@ -38,7 +38,7 @@ class RemainigDaysViewController: BaseViewController {
     
     var mainLabelText: String?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     var user: User?
     

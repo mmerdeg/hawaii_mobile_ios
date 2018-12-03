@@ -13,11 +13,11 @@ class UserManagementViewController: BaseFormViewController {
     
     var user: User?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var teamUseCase: TeamUseCaseProtocol?
+    var teamUseCase: TeamUseCase?
     
-    var leaveProfileUseCase: LeaveProfileUseCaseProtocol?
+    var leaveProfileUseCase: LeaveProfileUseCase?
     
     var teams: [Team]?
     
@@ -91,9 +91,11 @@ class UserManagementViewController: BaseFormViewController {
             })
             <<< SwitchRow("deleted") { row in
                 row.value = user?.deleted
-                row.title = (user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() : LocalizedKeys.UserManagement.deletedDisabled.localized()
+                row.title = (user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() :
+                    LocalizedKeys.UserManagement.deletedDisabled.localized()
             }.onChange { row in
-                row.title = (self.user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() : LocalizedKeys.UserManagement.deletedDisabled.localized()
+                row.title = (self.user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() :
+                    LocalizedKeys.UserManagement.deletedDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                 self.setSwitchInput(cell: cell)
@@ -103,14 +105,16 @@ class UserManagementViewController: BaseFormViewController {
             
             <<< SwitchRow("active") { row in
                 row.value = user?.active
-                row.title = (user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() : LocalizedKeys.UserManagement.activeDisabled.localized()
-                }.onChange { row in
-                    row.title = (self.user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() : LocalizedKeys.UserManagement.activeDisabled.localized()
-                    row.updateCell()
-                }.cellSetup { cell, _ in
-                    self.setSwitchInput(cell: cell)
-                }.cellUpdate { cell, _ in
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                row.title = (user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
+                    LocalizedKeys.UserManagement.activeDisabled.localized()
+            }.onChange { row in
+                row.title = (self.user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
+                    LocalizedKeys.UserManagement.activeDisabled.localized()
+                row.updateCell()
+            }.cellSetup { cell, _ in
+                self.setSwitchInput(cell: cell)
+            }.cellUpdate { cell, _ in
+                cell.textLabel?.textColor = UIColor.primaryTextColor
             }
             +++ Section(LocalizedKeys.UserManagement.additionalSection.localized())
             <<< IntRow("yearsOfService") {
@@ -119,7 +123,7 @@ class UserManagementViewController: BaseFormViewController {
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
             }.cellSetup({ cell, row in
-                    self.setIntInput(cell: cell, row: row)
+                self.setIntInput(cell: cell, row: row)
             }).cellUpdate({ cell, row in
                 self.setIntInput(cell: cell, row: row)
             })

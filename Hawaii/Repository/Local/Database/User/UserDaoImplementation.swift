@@ -1,7 +1,7 @@
 import Foundation
 import FMDB
 
-class UserDaoImplementation: UserDaoProtocol {
+class UserDaoImplementation: UserDao {
     
     var databaseQueue: FMDatabaseQueue?
 

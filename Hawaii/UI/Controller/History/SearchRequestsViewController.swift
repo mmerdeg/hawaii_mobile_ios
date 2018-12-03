@@ -33,7 +33,7 @@ class SearchRequestsViewController: UIViewController {
     
     weak var delegate: SearchDialogProtocol?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
     var items: [Int] = []
     

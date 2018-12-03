@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class PublicHolidayMenagementViewController: FormViewController {
+class PublicHolidayMenagementViewController: BaseFormViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +24,13 @@ class PublicHolidayMenagementViewController: FormViewController {
             }
             <<< SwitchRow("Active") { row in      // initializer
                 row.title = "Not Active"
-                }.onChange { row in
+            }.onChange { row in
                     row.title = (row.value ?? false) ? "Active" : "Not active"
                     row.updateCell()
-                }.cellSetup { _, _ in
+            }.cellSetup { _, _ in
                     
-                }.cellUpdate { cell, _ in
-                    cell.textLabel?.font = .italicSystemFont(ofSize: 18.0)
+            }.cellUpdate { cell, _ in
+                cell.textLabel?.font = .italicSystemFont(ofSize: 18.0)
         }
         
     }

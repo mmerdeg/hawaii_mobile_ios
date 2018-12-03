@@ -11,9 +11,9 @@ import Eureka
 
 class TeamManagementViewController: BaseFormViewController {
     
-    var teamUseCase: TeamUseCaseProtocol?
+    var teamUseCase: TeamUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     var team: Team?
     
@@ -73,9 +73,11 @@ class TeamManagementViewController: BaseFormViewController {
             })
             <<< SwitchRow("deleted") { row in
                 row.value = team?.deleted
-                row.title = (team?.deleted ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() : LocalizedKeys.TeamManagement.deletedDisabled.localized()
+                row.title = (team?.deleted ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
+                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
             }.onChange { row in
-                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() : LocalizedKeys.TeamManagement.deletedDisabled.localized()
+                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
+                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
                     self.setSwitchInput(cell: cell)

@@ -16,7 +16,7 @@ class RequestTableViewController: BaseViewController {
     
     var requestType: AbsenceType?
     
-    var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
+    var tableDataProviderUseCase: TableDataProviderUseCase?
     
     var selectedDuration = ""
     

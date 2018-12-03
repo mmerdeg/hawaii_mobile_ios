@@ -2,7 +2,7 @@ import Foundation
 import GoogleSignIn
 import JWTDecode
 
-protocol UserDetailsUseCaseProtocol {
+protocol UserDetailsUseCase {
     
     func getToken() -> String?
     
@@ -45,11 +45,11 @@ protocol UserDetailsUseCaseProtocol {
     func setLightThemeSelected(_ isLightThemeSelected: Bool)
 }
 
-class UserDetailsUseCase: UserDetailsUseCaseProtocol {
+class UserDetailsUseCaseImplementation: UserDetailsUseCase {
     
-    let userDetailsRepository: UserDetailsRepositoryProtocol!
+    let userDetailsRepository: UserDetailsRepository!
     
-    init(userDetailsRepository: UserDetailsRepositoryProtocol) {
+    init(userDetailsRepository: UserDetailsRepository) {
         self.userDetailsRepository = userDetailsRepository
     }
     

@@ -5,7 +5,7 @@ class PublicHolidaysManagementViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var searchableId: Int?
     
-    var publicHolidayUseCase: PublicHolidayUseCaseProtocol?
+    var publicHolidayUseCase: PublicHolidayUseCase?
     
     var holidays: [Int: [PublicHoliday]]?
     
@@ -145,14 +145,13 @@ extension PublicHolidaysManagementViewController: UITableViewDataSource, UITable
                                                             self.handleResponseFaliure(message: response?.message)
                                                             return
                                                         }
-                                                        
+                                                        var holidaysInSourceSection = Array(self.holidays ?? [:])[indexPath.section].value
+                                                        let sourceSection = Array(self.holidays ?? [:])[indexPath.section].key
+                                                        holidaysInSourceSection.remove(at: indexPath.row)
+                                                        self.holidays?[sourceSection] = holidaysInSourceSection
+                                                        self.tableView.deleteRows(at: [indexPath], with: .fade)
                                                     })
-                                                    #warning("Dont forget to bring back")
-                                                    var holidaysInSourceSection = Array(self.holidays ?? [:])[indexPath.section].value
-                                                    let sourceSection = Array(self.holidays ?? [:])[indexPath.section].key
-                                                    holidaysInSourceSection.remove(at: indexPath.row)
-                                                    self.holidays?[sourceSection] = holidaysInSourceSection
-                                                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                                                    
                                                 }
             }
         }

@@ -11,11 +11,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
-    var signInUseCase: SignInUseCaseProtocol?
+    var signInUseCase: SignInUseCase?
     
     var isFirebaseInitialized = false
     
@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let container = SwinjectStoryboard.defaultContainer
         
-        userUseCase = container.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-        userDetailsUseCase = container.resolve(UserDetailsUseCaseProtocol.self,
-                                              name: String(describing: UserDetailsUseCaseProtocol.self))
-        signInUseCase = container.resolve(SignInUseCaseProtocol.self, name: String(describing: SignInUseCaseProtocol.self))
+        userUseCase = container.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+        userDetailsUseCase = container.resolve(UserDetailsUseCase.self,
+                                              name: String(describing: UserDetailsUseCase.self))
+        signInUseCase = container.resolve(SignInUseCase.self, name: String(describing: SignInUseCase.self))
         
         StyleSetup.setStyles()
         FirebaseApp.configure()
@@ -140,270 +140,270 @@ extension SwinjectStoryboard {
             // Mandatory registration order section
             
             let keyChainRepository = KeyChainRepository()
-            let userDetailsRepository = UserDetailsRepository(keyChainRepository: keyChainRepository)
+            let userDetailsRepository = UserDetailsRepositoryImplementation(keyChainRepository: keyChainRepository)
           
-            let userDetailsUseCase = UserDetailsUseCase(userDetailsRepository: userDetailsRepository)
+            let userDetailsUseCase = UserDetailsUseCaseImplementation(userDetailsRepository: userDetailsRepository)
             
             let refreshTokenGroup = DispatchGroup()
-            let signInUseCase = SignInUseCase(userDetailsUseCase: userDetailsUseCase, refreshTokenGroup: refreshTokenGroup)
+            let signInUseCase = SignInUseCaseImplementation(userDetailsUseCase: userDetailsUseCase, refreshTokenGroup: refreshTokenGroup)
             
             defaultContainer.register(KeyChainRepositoryProtocol.self, name: String(describing: KeyChainRepositoryProtocol.self)) { _ in
                 keyChainRepository
             }
             
-            defaultContainer.register(UserDetailsRepositoryProtocol.self, name: String(describing: UserDetailsRepositoryProtocol.self)) { resolver in
-                UserDetailsRepository(
+            defaultContainer.register(UserDetailsRepository.self, name: String(describing: UserDetailsRepository.self)) { resolver in
+                UserDetailsRepositoryImplementation(
                     keyChainRepository: resolver.resolve(KeyChainRepositoryProtocol.self,
                                                          name: String(describing: KeyChainRepositoryProtocol.self)) ?? keyChainRepository)
             }
             
-            defaultContainer.register(UserDetailsUseCaseProtocol.self, name: String(describing: UserDetailsUseCaseProtocol.self)) { resolver in
-                UserDetailsUseCase(
-                    userDetailsRepository: resolver.resolve(UserDetailsRepositoryProtocol.self,
-                                                            name: String(describing: UserDetailsRepositoryProtocol.self)) ?? userDetailsRepository)
+            defaultContainer.register(UserDetailsUseCase.self, name: String(describing: UserDetailsUseCase.self)) { resolver in
+                UserDetailsUseCaseImplementation(
+                    userDetailsRepository: resolver.resolve(UserDetailsRepository.self,
+                                                            name: String(describing: UserDetailsRepository.self)) ?? userDetailsRepository)
             }
             
-            defaultContainer.register(SignInUseCaseProtocol.self, name: String(describing: SignInUseCaseProtocol.self)) { resolver in
-                SignInUseCase(
-                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                         name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase,
+            defaultContainer.register(SignInUseCase.self, name: String(describing: SignInUseCase.self)) { resolver in
+                SignInUseCaseImplementation(
+                    userDetailsUseCase: resolver.resolve(UserDetailsUseCase.self,
+                                                         name: String(describing: UserDetailsUseCase.self)) ?? userDetailsUseCase,
                     refreshTokenGroup: refreshTokenGroup)
             }
             
             defaultContainer.register(InterceptorProtocol.self, name: String(describing: InterceptorProtocol.self)) { resolver in
                 Interceptor(
-                    signInUseCase: resolver.resolve(SignInUseCaseProtocol.self,
-                                                    name: String(describing: SignInUseCaseProtocol.self)) ?? signInUseCase)
+                    signInUseCase: resolver.resolve(SignInUseCase.self,
+                                                    name: String(describing: SignInUseCase.self)) ?? signInUseCase)
             }
             
             // Repository
             
-            let userDao = UserDao(dispatchQueue: dispatchQueue, databaseQueue: databaseQueue)
-            let requestRepository = RequestRepository()
-            let publicHolidayRepository = PublicHolidayRepository()
-            let userRepository = UserRepository()
-            let tableDataProviderRepository = TableDataProviderRepository()
-            let teamRepository = TeamRepository()
-            let leaveProfileRepository = LeaveProfileRepository()
+            let userDao = UserDaoImplementation(dispatchQueue: dispatchQueue, databaseQueue: databaseQueue)
+            let requestRepository = RequestRepositoryImplementation()
+            let publicHolidayRepository = PublicHolidayRepositoryImplementation()
+            let userRepository = UserRepositoryImplementation()
+            let tableDataProviderRepository = TableDataProviderRepositoryImplementation()
+            let teamRepository = TeamRepositoryImplementation()
+            let leaveProfileRepository = LeaveProfileRepositoryImplementation()
             
             // UseCase
             
-            let userUseCase = UserUseCase(userRepository: userRepository, userDao: userDao, userDetailsUseCase: userDetailsUseCase)
+            let userUseCase = UserUseCaseImplementation(userRepository: userRepository, userDao: userDao, userDetailsUseCase: userDetailsUseCase)
             
             // Repository registration
             
-            defaultContainer.register(UserDaoProtocol.self, name: String(describing: UserDaoProtocol.self)) { _ in
+            defaultContainer.register(UserDao.self, name: String(describing: UserDao.self)) { _ in
                 userDao
             }
             
-            defaultContainer.register(TeamRepositoryProtocol.self, name: String(describing: TeamRepositoryProtocol.self)) { _ in
+            defaultContainer.register(TeamRepository.self, name: String(describing: TeamRepository.self)) { _ in
                 teamRepository
             }
             
-            defaultContainer.register(LeaveProfileRepositoryProtocol.self, name: String(describing: LeaveProfileRepositoryProtocol.self)) { _ in
+            defaultContainer.register(LeaveProfileRepository.self, name: String(describing: LeaveProfileRepository.self)) { _ in
                 leaveProfileRepository
             }
             
-            defaultContainer.register(RequestRepositoryProtocol.self, name: String(describing: RequestRepositoryProtocol.self)) { _ in
+            defaultContainer.register(RequestRepository.self, name: String(describing: RequestRepository.self)) { _ in
                 requestRepository
             }
             
-            defaultContainer.register(PublicHolidayRepositoryProtocol.self, name: String(describing: PublicHolidayRepositoryProtocol.self)) { _ in
+            defaultContainer.register(PublicHolidayRepository.self, name: String(describing: PublicHolidayRepository.self)) { _ in
                 publicHolidayRepository
             }
             
-            defaultContainer.register(UserRepositoryProtocol.self, name: String(describing: UserRepositoryProtocol.self)) { _ in
+            defaultContainer.register(UserRepository.self, name: String(describing: UserRepository.self)) { _ in
                 userRepository
             }
             
-            defaultContainer.register(TableDataProviderRepository.self, name: String(describing: TableDataProviderRepositoryProtocol.self)) { _ in
+            defaultContainer.register(TableDataProviderRepositoryImplementation.self, name: String(describing: TableDataProviderRepository.self)) { _ in
                 tableDataProviderRepository
             }
             
             // UseCase registration
             
-            defaultContainer.register(PublicHolidayUseCaseProtocol.self, name: String(describing: PublicHolidayUseCaseProtocol.self)) { resolver in
-                PublicHolidayUseCase(
-                    publicHolidayRepository: resolver.resolve(PublicHolidayRepositoryProtocol.self,
-                                             name: String(describing: PublicHolidayRepositoryProtocol.self)) ?? publicHolidayRepository)
+            defaultContainer.register(PublicHolidayUseCase.self, name: String(describing: PublicHolidayUseCase.self)) { resolver in
+                PublicHolidayUseCaseImplementation(
+                    publicHolidayRepository: resolver.resolve(PublicHolidayRepository.self,
+                                             name: String(describing: PublicHolidayRepository.self)) ?? publicHolidayRepository)
             }
             
-            defaultContainer.register(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self)) { resolver in
-                UserUseCase(
-                    userRepository: resolver.resolve(UserRepositoryProtocol.self,
-                                     name: String(describing: UserRepositoryProtocol.self)) ?? userRepository,
-                    userDao: resolver.resolve(UserDaoProtocol.self,
-                             name: String(describing: UserDaoProtocol.self)) ?? userDao,
-                    userDetailsUseCase: resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                        name: String(describing: UserDetailsUseCaseProtocol.self)) ?? userDetailsUseCase)
+            defaultContainer.register(UserUseCase.self, name: String(describing: UserUseCase.self)) { resolver in
+                UserUseCaseImplementation(
+                    userRepository: resolver.resolve(UserRepository.self,
+                                     name: String(describing: UserRepository.self)) ?? userRepository,
+                    userDao: resolver.resolve(UserDao.self,
+                             name: String(describing: UserDao.self)) ?? userDao,
+                    userDetailsUseCase: resolver.resolve(UserDetailsUseCase.self,
+                                        name: String(describing: UserDetailsUseCase.self)) ?? userDetailsUseCase)
             }
             
-            defaultContainer.register(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self)) { resolver in
-                RequestUseCase(
-                    entityRepository: resolver.resolve(RequestRepositoryProtocol.self,
-                                      name: String(describing: RequestRepositoryProtocol.self)) ?? requestRepository,
-                    userUseCase: resolver.resolve(UserUseCaseProtocol.self,
-                                 name: String(describing: UserUseCaseProtocol.self)) ?? userUseCase)
+            defaultContainer.register(RequestUseCase.self, name: String(describing: RequestUseCase.self)) { resolver in
+                RequestUseCaseImplementation(
+                    entityRepository: resolver.resolve(RequestRepository.self,
+                                      name: String(describing: RequestRepository.self)) ?? requestRepository,
+                    userUseCase: resolver.resolve(UserUseCase.self,
+                                 name: String(describing: UserUseCase.self)) ?? userUseCase)
             }
             
-            defaultContainer.register(TableDataProviderUseCaseProtocol.self,
-                                      name: String(describing: TableDataProviderUseCaseProtocol.self)){ resolver in
-                TableDataProviderUseCase(
-                    tableDataProviderRepository: resolver.resolve(TableDataProviderRepositoryProtocol.self,
-                                                 name: String(describing: TableDataProviderRepositoryProtocol.self)) ?? tableDataProviderRepository)
+            defaultContainer.register(TableDataProviderUseCase.self,
+                                      name: String(describing: TableDataProviderUseCase.self)) { resolver in
+                TableDataProviderUseCaseImplementation(
+                    tableDataProviderRepository: resolver.resolve(TableDataProviderRepository.self,
+                                                 name: String(describing: TableDataProviderRepository.self)) ?? tableDataProviderRepository)
             }
             
-            defaultContainer.register(TeamUseCaseProtocol.self, name: String(describing: TeamUseCaseProtocol.self)) { resolver in
-                TeamUseCase(
-                    teamRepository: resolver.resolve(TeamRepositoryProtocol.self,
-                                    name: String(describing: TeamRepositoryProtocol.self)) ?? teamRepository)
+            defaultContainer.register(TeamUseCase.self, name: String(describing: TeamUseCase.self)) { resolver in
+                TeamUseCaseImplementation(
+                    teamRepository: resolver.resolve(TeamRepository.self,
+                                    name: String(describing: TeamRepository.self)) ?? teamRepository)
             }
             
-            defaultContainer.register(LeaveProfileUseCaseProtocol.self, name: String(describing: LeaveProfileUseCaseProtocol.self)) { resolver in
-                LeaveProfileUseCase(
-                    leaveProfileRepository: resolver.resolve(LeaveProfileRepositoryProtocol.self,
-                                            name: String(describing: LeaveProfileRepositoryProtocol.self)) ?? leaveProfileRepository)
+            defaultContainer.register(LeaveProfileUseCase.self, name: String(describing: LeaveProfileUseCase.self)) { resolver in
+                LeaveProfileUseCaseImplementation(
+                    leaveProfileRepository: resolver.resolve(LeaveProfileRepository.self,
+                                            name: String(describing: LeaveProfileRepository.self)) ?? leaveProfileRepository)
             }
             
             // View Controller
             
             defaultContainer.storyboardInitCompleted(DashboardViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
-                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
+                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCase.self,
+                                                                    name: String(describing: PublicHolidayUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(TeamCalendarViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
-                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
+                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCase.self,
+                                                                    name: String(describing: PublicHolidayUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersBaseViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(NewRequestViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SummaryViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(RemainigDaysViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(HistoryViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(ApproveViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(RequestDetailsViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(RequestTableViewController.self) { resolver, controller in
-                controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
-                                                                       name: String(describing: TableDataProviderUseCaseProtocol.self))
+                controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCase.self,
+                                                                       name: String(describing: TableDataProviderUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SignInViewController.self) { resolver, controller in
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(MoreViewController.self) { resolver, controller in
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SelectAbsenceViewController.self) { resolver, controller in
-                controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCaseProtocol.self,
-                                                                       name: String(describing: TableDataProviderUseCaseProtocol.self))
+                controller.tableDataProviderUseCase = resolver.resolve(TableDataProviderUseCase.self,
+                                                                       name: String(describing: TableDataProviderUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SearchRequestsViewController.self) { resolver, controller in
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(CustomDatePickerTableViewController.self) { resolver, controller in
-                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
-                                                                    name: String(describing: PublicHolidayUseCaseProtocol.self))
-                controller.requestUseCase = resolver.resolve(RequestUseCaseProtocol.self, name: String(describing: RequestUseCaseProtocol.self))
+                controller.publicHolidaysUseCase = resolver.resolve(PublicHolidayUseCase.self,
+                                                                    name: String(describing: PublicHolidayUseCase.self))
+                controller.requestUseCase = resolver.resolve(RequestUseCase.self, name: String(describing: RequestUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(HomeTabBarController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(SearchUsersTableViewController.self) { resolver, controller in
-                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCaseProtocol.self,
-                                                                 name: String(describing: UserDetailsUseCaseProtocol.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(UsersManagementViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
-                                                          name: String(describing: TeamUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCase.self,
+                                                          name: String(describing: TeamUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(TeamsManagementViewController.self) { resolver, controller in
-                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
-                                                                    name: String(describing: TeamUseCaseProtocol.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCase.self,
+                                                                    name: String(describing: TeamUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(PublicHolidaysManagementViewController.self) { resolver, controller in
-                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
-                                                                   name: String(describing: PublicHolidayUseCaseProtocol.self))
+                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCase.self,
+                                                                   name: String(describing: PublicHolidayUseCase.self))
             }
             defaultContainer.storyboardInitCompleted(UserManagementViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
-                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
-                                                          name: String(describing: TeamUseCaseProtocol.self))
-                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
-                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCase.self,
+                                                          name: String(describing: TeamUseCase.self))
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCase.self,
+                                                                  name: String(describing: LeaveProfileUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(TeamManagementViewController.self) { resolver, controller in
-                controller.teamUseCase = resolver.resolve(TeamUseCaseProtocol.self,
-                                                          name: String(describing: TeamUseCaseProtocol.self))
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.teamUseCase = resolver.resolve(TeamUseCase.self,
+                                                          name: String(describing: TeamUseCase.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(LeaveProfileManagementViewController.self) { resolver, controller in
-                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
-                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCase.self,
+                                                                  name: String(describing: LeaveProfileUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(LeaveProfilesManagementViewController.self) { resolver, controller in
-                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCaseProtocol.self,
-                                                                  name: String(describing: LeaveProfileUseCaseProtocol.self))
+                controller.leaveProfileUseCase = resolver.resolve(LeaveProfileUseCase.self,
+                                                                  name: String(describing: LeaveProfileUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(PublicHolidayManagementViewController.self) { resolver, controller in
-                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCaseProtocol.self,
-                                                                   name: String(describing: PublicHolidayUseCaseProtocol.self))
+                controller.publicHolidayUseCase = resolver.resolve(PublicHolidayUseCase.self,
+                                                                   name: String(describing: PublicHolidayUseCase.self))
             }
             
             defaultContainer.storyboardInitCompleted(ProfileViewController.self) { resolver, controller in
-                controller.userUseCase = resolver.resolve(UserUseCaseProtocol.self, name: String(describing: UserUseCaseProtocol.self))
+                controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
             }
             
         }

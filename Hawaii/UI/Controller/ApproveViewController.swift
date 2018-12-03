@@ -7,11 +7,11 @@ class ApproveViewController: BaseViewController {
     
     var customView: UIView = UIView()
     
-    var requestUseCase: RequestUseCaseProtocol!
+    var requestUseCase: RequestUseCase!
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
     var requests: [Request] = []
     

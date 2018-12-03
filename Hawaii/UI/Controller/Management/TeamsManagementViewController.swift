@@ -14,7 +14,7 @@ class TeamsManagementViewController: BaseViewController {
     
     var searchableId: Int?
     
-    var teamUseCase: TeamUseCaseProtocol?
+    var teamUseCase: TeamUseCase?
     
     var teams: [Team]?
     

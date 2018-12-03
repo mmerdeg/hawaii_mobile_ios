@@ -1,6 +1,6 @@
 import Foundation
 
-protocol LeaveProfileRepositoryProtocol {
+protocol LeaveProfileRepository {
     
     func get(completion: @escaping (GenericResponse<[LeaveProfile]>?) -> Void)
     

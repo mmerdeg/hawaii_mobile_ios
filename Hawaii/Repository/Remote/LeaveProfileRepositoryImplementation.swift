@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class LeaveProfileRepository: SessionManager, LeaveProfileRepositoryProtocol {
+class LeaveProfileRepositoryImplementation: SessionManager, LeaveProfileRepository {
     
     let leaveProfileUrl = ApiConstants.baseUrl + "/leaveprofiles"
     

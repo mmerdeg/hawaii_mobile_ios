@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-protocol RequestRepositoryProtocol {
+protocol RequestRepository {
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void)
     

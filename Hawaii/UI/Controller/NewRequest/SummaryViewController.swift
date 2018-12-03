@@ -41,7 +41,7 @@ class SummaryViewController: BaseViewController {
     
     var remainingDaysNo: String?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
     var request: Request?
     

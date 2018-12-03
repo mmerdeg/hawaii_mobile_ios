@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct PushTokenDb: Codable {
     let pushToken: String?
     let name: String?

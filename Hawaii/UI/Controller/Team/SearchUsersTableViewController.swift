@@ -9,7 +9,7 @@ protocol SearchUserProtocol: class {
 
 class SearchUsersTableViewController: UITableViewController {
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
     var searchableId: Int?
     

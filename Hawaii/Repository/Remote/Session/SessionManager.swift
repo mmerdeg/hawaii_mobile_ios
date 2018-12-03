@@ -23,7 +23,7 @@ class SessionManager: GenericRepositoryProtocol {
             case .failure(let error):
                 print(error)
                 
-                print(response.request?.url)
+                print(response.request?.url ?? "")
                 completion(GenericResponse<T> (success: false, item: nil, statusCode: response.response?.statusCode,
                                                error: error,
                                                message: response.error?.localizedDescription))
@@ -50,7 +50,7 @@ class SessionManager: GenericRepositoryProtocol {
                                                     statusCode: response.response?.statusCode, error: nil, message: nil))
             case .failure(let error):
                 print(error)
-                print(response.request?.url)
+                print(response.request?.url ?? "")
                 completion(GenericResponse<String> (success: false, item: nil, statusCode: response.response?.statusCode,
                                                     error: response.error,
                                                     message: response.error?.localizedDescription))
@@ -75,7 +75,7 @@ class SessionManager: GenericRepositoryProtocol {
             case .failure(let error):
                 print(error)
                 
-                print(response.request?.url)
+                print(response.request?.url ?? "")
                 completion(GenericResponse<Any> (success: false, item: nil, statusCode: response.response?.statusCode,
                                                  error: response.error,
                                                  message: response.error?.localizedDescription))

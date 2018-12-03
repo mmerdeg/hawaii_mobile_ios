@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import CodableAlamofire
 
-class UserRepository: SessionManager, UserRepositoryProtocol {
+class UserRepositoryImplementation: SessionManager, UserRepository {
     
     let signInUrl = ApiConstants.baseUrl + "/signin"
     

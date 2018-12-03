@@ -11,9 +11,9 @@ import GoogleSignIn
 
 class ProfileTableViewCell: UITableViewCell {
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     @IBOutlet weak var emailLabel: UILabel!
     

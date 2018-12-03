@@ -1,14 +1,14 @@
 import Foundation
 import GoogleSignIn
 
-protocol SignInUseCaseProtocol: GIDSignInDelegate {
+protocol SignInUseCase: GIDSignInDelegate {
     
     func initGoogleSignIn()
     
     func refreshToken()
 }
 
-class SignInUseCase: NSObject, SignInUseCaseProtocol {
+class SignInUseCaseImplementation: NSObject, SignInUseCase {
 
     #if PRODUCTION
     let clientId = "91011414864-fse65f2pje2rgmobdqu8n67ld8pk6mhr.apps.googleusercontent.com"
@@ -16,11 +16,11 @@ class SignInUseCase: NSObject, SignInUseCaseProtocol {
     let clientId = "91011414864-9igmd38tpgbklpgkdpcogh9j6h7e2rt9.apps.googleusercontent.com"
     #endif
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
     var refreshTokenGroup: DispatchGroup?
     
-    init(userDetailsUseCase: UserDetailsUseCaseProtocol, refreshTokenGroup: DispatchGroup) {
+    init(userDetailsUseCase: UserDetailsUseCase, refreshTokenGroup: DispatchGroup) {
         self.userDetailsUseCase = userDetailsUseCase
         self.refreshTokenGroup = refreshTokenGroup
     }

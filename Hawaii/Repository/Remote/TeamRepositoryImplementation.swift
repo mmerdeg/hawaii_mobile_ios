@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class TeamRepository: SessionManager, TeamRepositoryProtocol {
+class TeamRepositoryImplementation: SessionManager, TeamRepository {
     
     let teamsUrl = ApiConstants.baseUrl + "/teams"
     

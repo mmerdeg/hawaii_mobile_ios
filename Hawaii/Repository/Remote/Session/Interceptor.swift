@@ -10,9 +10,9 @@ protocol InterceptorProtocol: RequestAdapter {
 
 class Interceptor: InterceptorProtocol {
     
-    var signInUseCase: SignInUseCaseProtocol?
+    var signInUseCase: SignInUseCase?
     
-    init(signInUseCase: SignInUseCaseProtocol) {
+    init(signInUseCase: SignInUseCase) {
         self.signInUseCase = signInUseCase
     }
     
@@ -29,8 +29,8 @@ class Interceptor: InterceptorProtocol {
     
     func getValidToken() -> String? {
         
-        let userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCaseProtocol.self,
-                                                                         name: String(describing: UserDetailsUseCaseProtocol.self))
+        let userDetailsUseCase = SwinjectStoryboard.defaultContainer.resolve(UserDetailsUseCase.self,
+                                                                         name: String(describing: UserDetailsUseCase.self))
         guard let token = userDetailsUseCase?.getToken(),
             let signInUseCase = signInUseCase else {
             return nil

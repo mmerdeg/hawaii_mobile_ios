@@ -9,7 +9,8 @@
 import Foundation
 import Eureka
 
-//open class _SearchSelectorViewController<Row: SelectableRowType, OptionsRow: OptionsProviderRow>: SelectorViewController<OptionsRow>, UISearchResultsUpdating where Row.Cell.Value: SearchItem {
+//open class _SearchSelectorViewController<Row: SelectableRowType,
+//OptionsRow: OptionsProviderRow>: SelectorViewController<OptionsRow>, UISearchResultsUpdating where Row.Cell.Value: SearchItem {
 //    
 //    let searchController = UISearchController(searchResultsController: nil)
 //    
@@ -71,13 +72,16 @@ import Eureka
 //    }
 //}
 //
-//open class SearchSelectorViewController<OptionsRow: OptionsProviderRow>: _SearchSelectorViewController<ListCheckRow<OptionsRow.OptionsProviderType.Option>, OptionsRow> where OptionsRow.OptionsProviderType.Option: SearchItem {
+//open class SearchSelectorViewController<OptionsRow: OptionsProviderRow>:
+//_SearchSelectorViewController<ListCheckRow<OptionsRow.OptionsProviderType.Option>,
+//OptionsRow> where OptionsRow.OptionsProviderType.Option: SearchItem {
 //}
 //
 //open class _SearchPushRow<Cell: CellType> : SelectorRow<Cell> where Cell: BaseCell, Cell.Value : SearchItem {
 //    public required init(tag: String?) {
 //        super.init(tag: tag)
-//        presentationMode = .show(controllerProvider: ControllerProvider.callback { return SearchSelectorViewController<SelectorRow<Cell>> { _ in } }, onDismiss: { vc in
+//        presentationMode = .show(controllerProvider: ControllerProvider.callback {
+//return SearchSelectorViewController<SelectorRow<Cell>> { _ in } }, onDismiss: { vc in
 //            let _ = vc.navigationController?.popViewController(animated: true) })
 //    }
 //}

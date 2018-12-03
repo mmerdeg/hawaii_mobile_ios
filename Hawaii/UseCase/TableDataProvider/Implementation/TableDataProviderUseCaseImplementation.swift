@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TableDataProviderUseCaseProtocol {
+protocol TableDataProviderUseCase {
     
     func getLeaveData(completion: @escaping ([CellData], [String: [Absence]], GenericResponse<[Absence]>) -> Void)
     
@@ -19,11 +19,11 @@ protocol TableDataProviderUseCaseProtocol {
     func getExpandableData(forDate: Date, completion: @escaping ([ExpandableData]) -> Void)
 }
 
-class TableDataProviderUseCase: TableDataProviderUseCaseProtocol {
+class TableDataProviderUseCaseImplementation: TableDataProviderUseCase {
     
-    var tableDataProviderRepository: TableDataProviderRepositoryProtocol?
+    var tableDataProviderRepository: TableDataProviderRepository?
     
-    init(tableDataProviderRepository: TableDataProviderRepositoryProtocol) {
+    init(tableDataProviderRepository: TableDataProviderRepository) {
         self.tableDataProviderRepository = tableDataProviderRepository
     }
 

@@ -17,9 +17,9 @@ class CustomDatePickerTableViewController: BaseViewController {
     
     weak var delegate: DatePickerProtocol?
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
-    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCase?
     
     var startDate: Date?
     

@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class PublicHolidayRepository: SessionManager, PublicHolidayRepositoryProtocol {
+class PublicHolidayRepositoryImplementation: SessionManager, PublicHolidayRepository {
     
     let publicHolidaysUrl = ApiConstants.baseUrl + "/publicholidays"
     

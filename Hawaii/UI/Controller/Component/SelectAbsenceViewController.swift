@@ -10,7 +10,7 @@ class SelectAbsenceViewController: BaseViewController {
     
     weak var delegate: SelectAbsenceProtocol?
     
-    var tableDataProviderUseCase: TableDataProviderUseCaseProtocol?
+    var tableDataProviderUseCase: TableDataProviderUseCase?
     
     var items: [String: [Absence]]?
     

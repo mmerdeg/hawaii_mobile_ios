@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TeamUseCaseProtocol {
+protocol TeamUseCase {
     func get(completion: @escaping (GenericResponse<[Team]>?) -> Void)
     
     func add(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
@@ -18,11 +18,11 @@ protocol TeamUseCaseProtocol {
     func delete(team: Team, completion: @escaping (GenericResponse<Any>?) -> Void)
 }
 
-class TeamUseCase: TeamUseCaseProtocol {
+class TeamUseCaseImplementation: TeamUseCase {
     
-    let teamRepository: TeamRepositoryProtocol?
+    let teamRepository: TeamRepository?
     
-    init(teamRepository: TeamRepositoryProtocol) {
+    init(teamRepository: TeamRepository) {
         self.teamRepository = teamRepository
     }
     

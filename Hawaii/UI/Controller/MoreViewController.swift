@@ -3,9 +3,9 @@ import GoogleSignIn
 
 class MoreViewController: BaseViewController {
 
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,7 +29,6 @@ class MoreViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        Thread.printCurrent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -209,10 +208,4 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-}
-
-extension Thread {
-    class func printCurrent() {
-        print("\r⚡️: \(Thread.current)\r" + "🏭: \(OperationQueue.current?.underlyingQueue?.label ?? "None")\r")
-    }
 }

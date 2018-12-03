@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TeamRepositoryProtocol {
+protocol TeamRepository {
     
     func get(completion: @escaping (GenericResponse<[Team]>?) -> Void)
     

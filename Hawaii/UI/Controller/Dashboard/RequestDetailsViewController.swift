@@ -14,9 +14,9 @@ class RequestDetailsViewController: BaseViewController {
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
-    var requestUseCase: RequestUseCaseProtocol!
+    var requestUseCase: RequestUseCase!
     
-    var userUseCase: UserUseCaseProtocol!
+    var userUseCase: UserUseCase!
     
     weak var delegate: RequestDetailsDialogProtocol?
     

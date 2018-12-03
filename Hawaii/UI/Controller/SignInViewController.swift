@@ -3,9 +3,9 @@ import GoogleSignIn
 
 class SignInViewController: BaseViewController, GIDSignInUIDelegate {
     
-    var userDetailsUseCase: UserDetailsUseCaseProtocol?
+    var userDetailsUseCase: UserDetailsUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     @IBOutlet weak var signInButton: SignInButton!
     
@@ -83,7 +83,7 @@ class SignInViewController: BaseViewController, GIDSignInUIDelegate {
     func navigateToHome() {
         DispatchQueue.main.async {
             let mainStoryboardTitle = "Main"
-            let homeTabBarControllerTitle = "HomeTabBarController"
+            let homeTabBarControllerTitle = String(describing: HomeTabBarController.self)
             
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
                 let window = appDelegate.window else {

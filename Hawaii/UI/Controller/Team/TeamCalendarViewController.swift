@@ -19,11 +19,11 @@ class TeamCalendarViewController: BaseViewController {
     
     let calendarUtils = CalendarUtils()
     
-    var requestUseCase: RequestUseCaseProtocol?
+    var requestUseCase: RequestUseCase?
     
-    var publicHolidaysUseCase: PublicHolidayUseCaseProtocol?
+    var publicHolidaysUseCase: PublicHolidayUseCase?
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
     var lastTimeSynced: Date?
     

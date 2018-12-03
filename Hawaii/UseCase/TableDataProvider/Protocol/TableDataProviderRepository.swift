@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TableDataProviderRepositoryProtocol: GenericRepositoryProtocol {
+protocol TableDataProviderRepository: GenericRepositoryProtocol {
     
     func getLeaveData(completion: @escaping ([CellData], [Absence], GenericResponse<[Absence]>) -> Void)
     

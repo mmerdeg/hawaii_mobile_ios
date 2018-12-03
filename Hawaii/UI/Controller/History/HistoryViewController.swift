@@ -16,7 +16,7 @@ class HistoryViewController: BaseViewController {
     
     var customView: UIView = UIView()
     
-    var requestUseCase: RequestUseCaseProtocol!
+    var requestUseCase: RequestUseCase!
     
     var requests: [Request] = []
     

@@ -1,6 +1,6 @@
 import Foundation
 
-class UserDetailsRepository: UserDetailsRepositoryProtocol {
+class UserDetailsRepositoryImplementation: UserDetailsRepository {
     
     var keyChainRepository: KeyChainRepositoryProtocol?
     

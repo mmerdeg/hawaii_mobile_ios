@@ -1,7 +1,15 @@
+//
+//  UserUseCaseImplementation.swift
+//  Hawaii
+//
+//  Created by Ivan Divljak on 12/3/18.
+//  Copyright © 2018 Server. All rights reserved.
+//
+
 import Foundation
 import Firebase
 
-protocol UserUseCaseProtocol {
+protocol UserUseCase {
     
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void)
     
@@ -26,16 +34,16 @@ protocol UserUseCaseProtocol {
     func readUser(completion: @escaping (User?) -> Void)
 }
 
-class UserUseCaseImplementation: UserUseCaseProtocol {
-
-    let userRepository: UserRepositoryProtocol?
+class UserUseCaseImplementation: UserUseCase {
     
-    let userDao: UserDaoProtocol?
+    let userRepository: UserRepository?
     
-    let userDetailsUseCase: UserDetailsUseCaseProtocol?
+    let userDao: UserDao?
     
-    init(userRepository: UserRepositoryProtocol, userDao: UserDaoProtocol,
-         userDetailsUseCase: UserDetailsUseCaseProtocol) {
+    let userDetailsUseCase: UserDetailsUseCase?
+    
+    init(userRepository: UserRepository, userDao: UserDao,
+         userDetailsUseCase: UserDetailsUseCase) {
         self.userRepository = userRepository
         self.userDao = userDao
         self.userDetailsUseCase = userDetailsUseCase
@@ -81,8 +89,8 @@ class UserUseCaseImplementation: UserUseCaseProtocol {
     func getUser(completion: @escaping (GenericResponse<User>?) -> Void) {
         userRepository?.getUser(email: getEmail()) { response in
             if !(response?.success ?? false) {
-                    completion(response)
-                    return
+                completion(response)
+                return
             } else {
                 guard let user = response?.item else {
                     completion(response)
@@ -156,7 +164,7 @@ class UserUseCaseImplementation: UserUseCaseProtocol {
             InstanceID.instanceID().instanceID { result, error in
                 if let error = error {
                     completion(GenericResponse<PushTokenDTO> (success: false, item: nil,
-                                                     statusCode: 400, error: error, message: "You didnt get push token, check support"))
+                                                              statusCode: 400, error: error, message: "You didnt get push token, check support"))
                 } else if let result = result {
                     self.userDetailsUseCase?.removeFirebaseToken()
                     self.userDetailsUseCase?.setFirebaseToken(result.token)
@@ -194,8 +202,8 @@ class UserUseCaseImplementation: UserUseCaseProtocol {
         if let pushToken = pushToken {
             guard let devicePushToken = userDetailsUseCase?.getFirebaseToken() else {
                 completion(GenericResponse<Any> (success: false, item: nil, statusCode: 401,
-                                                            error: nil,
-                                                            message: LocalizedKeys.General.emptyToken.localized()))
+                                                 error: nil,
+                                                 message: LocalizedKeys.General.emptyToken.localized()))
                 return
             }
             if devicePushToken == pushToken {

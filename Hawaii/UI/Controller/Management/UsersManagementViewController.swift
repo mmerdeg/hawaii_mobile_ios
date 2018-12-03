@@ -12,9 +12,9 @@ class UsersManagementViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var userUseCase: UserUseCaseProtocol?
+    var userUseCase: UserUseCase?
     
-    var teamUseCase: TeamUseCaseProtocol?
+    var teamUseCase: TeamUseCase?
     
     weak var delegate: RequestDetailsDialogProtocol?
     

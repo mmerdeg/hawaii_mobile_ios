@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import CodableAlamofire
 
-protocol RequestUseCaseProtocol {
+protocol RequestUseCase {
     
     func getAll(completion: @escaping (GenericResponse<[Request]>) -> Void)
     
@@ -31,13 +31,13 @@ protocol RequestUseCaseProtocol {
     func populateDaysBetween(startDate: Date, endDate: Date, durationType: DurationType) -> [Day]
 }
 
-class RequestUseCase: RequestUseCaseProtocol {
+class RequestUseCaseImplementation: RequestUseCase {
     
-    let requestRepository: RequestRepositoryProtocol?
+    let requestRepository: RequestRepository?
     
-    let userUseCase: UserUseCaseProtocol?
+    let userUseCase: UserUseCase?
     
-    init(entityRepository: RequestRepositoryProtocol, userUseCase: UserUseCaseProtocol) {
+    init(entityRepository: RequestRepository, userUseCase: UserUseCase) {
         self.requestRepository = entityRepository
         self.userUseCase = userUseCase
     }
