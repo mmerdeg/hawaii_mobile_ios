@@ -22,4 +22,6 @@ struct NotificationNames {
     static let refreshFirebaseToken = "refreshFirebaseToken"
     
     static let signedIn = "signedIn"
+    
+    static let themeChanged = "themeChanged"
 }
