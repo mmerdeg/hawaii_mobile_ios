@@ -48,8 +48,7 @@ class UsersManagementViewController: BaseViewController {
                            forCellReuseIdentifier: String(describing: UserPreviewTableViewCell.self))
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = UIColor.primaryColor
-        self.navigationItem.rightBarButtonItem = addBarItem
-        self.navigationItem.leftBarButtonItem = editBarItem
+        self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,12 +63,10 @@ class UsersManagementViewController: BaseViewController {
     @objc func showEditing() {
         if self.tableView.isEditing == true {
             self.tableView.isEditing = false
-            self.navigationItem.rightBarButtonItem = addBarItem
-            self.navigationItem.leftBarButtonItem = editBarItem
+            self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
         } else {
             self.tableView.isEditing = true
-            self.navigationItem.rightBarButtonItem = doneBarItem
-            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItems = [doneBarItem]
         }
     }
     

@@ -404,6 +404,8 @@ extension SwinjectStoryboard {
             
             defaultContainer.storyboardInitCompleted(ProfileViewController.self) { resolver, controller in
                 controller.userUseCase = resolver.resolve(UserUseCase.self, name: String(describing: UserUseCase.self))
+                controller.userDetailsUseCase = resolver.resolve(UserDetailsUseCase.self,
+                                                                 name: String(describing: UserDetailsUseCase.self))
             }
             
         }

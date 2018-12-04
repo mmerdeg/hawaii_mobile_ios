@@ -52,6 +52,7 @@ class SignInUseCaseImplementation: NSObject, SignInUseCase {
         guard let idToken = user.authentication.idToken else {
             return
         }
+        print("&&&&&&&&&&&&&&&&&",idToken)
         userDetailsUseCase?.setEmail(user.profile.email)
         
         let oldToken = userDetailsUseCase?.getToken()

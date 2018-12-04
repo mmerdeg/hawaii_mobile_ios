@@ -100,7 +100,7 @@ class UserDaoImplementation: UserDao {
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije pisao token")
+                        print("Nije upisao tokene")
                         completion(-1)
                     }
                 }
@@ -113,13 +113,16 @@ class UserDaoImplementation: UserDao {
             completion(nil)
             return
         }
-        dispatchQueue?.sync {
+        dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 guard let resultSet = try? database.executeQuery(readUserQuery, values: nil) else {
                     DispatchQueue.main.async {
                         completion(nil)
                     }
                     return
+                }
+                if !resultSet.hasAnotherRow() {
+                    completion(nil)
                 }
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
@@ -148,7 +151,7 @@ class UserDaoImplementation: UserDao {
     }
     
     func create(entity: PushTokenDTO, userId: Int, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.pushTokenId ?? -1,
@@ -164,7 +167,7 @@ class UserDaoImplementation: UserDao {
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije pisao token")
+                        print("Nije upisao token")
                         completion(-1)
                     }
                 }
@@ -185,6 +188,9 @@ class UserDaoImplementation: UserDao {
                         completion(nil)
                     }
                     return
+                }
+                if !resultSet.hasAnotherRow() {
+                    completion(nil)
                 }
                 var tokens: [PushTokenDTO] = []
                 while resultSet.next() {
@@ -219,6 +225,10 @@ class UserDaoImplementation: UserDao {
                     }
                     return
                 }
+                if !resultSet.hasAnotherRow() {
+                    completion(nil)
+                }
+                
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                         let tokenDb = PushTokenDb(parameters: result) else {

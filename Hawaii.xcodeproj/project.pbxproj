@@ -242,6 +242,20 @@
 		30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
 		30B2FD7A21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
 		30B2FD7B21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
+		30B2FD7D21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
+		30B2FD7E21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
+		30B2FD8821B538670054EAB6 /* CollapsableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8621B538670054EAB6 /* CollapsableSection.swift */; };
+		30B2FD8921B538670054EAB6 /* CollapsableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8621B538670054EAB6 /* CollapsableSection.swift */; };
+		30B2FD8A21B538670054EAB6 /* CollapsableSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD8721B538670054EAB6 /* CollapsableSection.xib */; };
+		30B2FD8B21B538670054EAB6 /* CollapsableSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD8721B538670054EAB6 /* CollapsableSection.xib */; };
+		30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
+		30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
+		30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
+		30B2FD9221B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
+		30B2FD9521B666A60054EAB6 /* LeaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9421B666A60054EAB6 /* LeaveData.swift */; };
+		30B2FD9621B666A60054EAB6 /* LeaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9421B666A60054EAB6 /* LeaveData.swift */; };
+		30B2FD9821B667030054EAB6 /* TrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9721B667030054EAB6 /* TrainingData.swift */; };
+		30B2FD9921B667030054EAB6 /* TrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9721B667030054EAB6 /* TrainingData.swift */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -691,6 +705,13 @@
 		30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PublicHolidayManagement.storyboard; sourceTree = "<group>"; };
 		30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenViewController.swift; sourceTree = "<group>"; };
 		30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseImplementation.swift; sourceTree = "<group>"; };
+		30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
+		30B2FD8621B538670054EAB6 /* CollapsableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsableSection.swift; sourceTree = "<group>"; };
+		30B2FD8721B538670054EAB6 /* CollapsableSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsableSection.xib; sourceTree = "<group>"; };
+		30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
+		30B2FD9021B553890054EAB6 /* CustomFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFooter.xib; sourceTree = "<group>"; };
+		30B2FD9421B666A60054EAB6 /* LeaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveData.swift; sourceTree = "<group>"; };
+		30B2FD9721B667030054EAB6 /* TrainingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingData.swift; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -904,6 +925,7 @@
 				3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */,
 				30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */,
 				30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */,
+				30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -1119,6 +1141,33 @@
 				30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */,
 			);
 			path = PublicHolidayManagement;
+			sourceTree = "<group>";
+		};
+		30B2FD8521B538360054EAB6 /* CollapsableSection */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD8621B538670054EAB6 /* CollapsableSection.swift */,
+				30B2FD8721B538670054EAB6 /* CollapsableSection.xib */,
+			);
+			path = CollapsableSection;
+			sourceTree = "<group>";
+		};
+		30B2FD8F21B553230054EAB6 /* CustomFooter */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */,
+				30B2FD9021B553890054EAB6 /* CustomFooter.xib */,
+			);
+			path = CustomFooter;
+			sourceTree = "<group>";
+		};
+		30B2FD9321B666840054EAB6 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD9421B666A60054EAB6 /* LeaveData.swift */,
+				30B2FD9721B667030054EAB6 /* TrainingData.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		3E0B2D2021AEDD2000C5D04F /* ThemeCell */ = {
@@ -1775,6 +1824,9 @@
 		3EB5646620CA909000501CAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				30B2FD9321B666840054EAB6 /* Domain */,
+				30B2FD8F21B553230054EAB6 /* CustomFooter */,
+				30B2FD8521B538360054EAB6 /* CollapsableSection */,
 				3055C53D219ABBF90066F0E0 /* EmptyView */,
 				3E72644F20EA1CE100DC7240 /* Utility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
@@ -2194,6 +2246,7 @@
 				30FD36E3214A5E530047038C /* Main.storyboard in Resources */,
 				306F1C8E21A2A7D900E2D27B /* TeamTableViewCell.xib in Resources */,
 				309B6CF4216603F00046EFE9 /* readUser.sql in Resources */,
+				30B2FD8B21B538670054EAB6 /* CollapsableSection.xib in Resources */,
 				30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E832319216CADCC0068E37F /* Summary.storyboard in Resources */,
 				3027D26C21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */,
@@ -2208,6 +2261,7 @@
 				30B2FD7521B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */,
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
 				30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */,
+				30B2FD9221B553890054EAB6 /* CustomFooter.xib in Resources */,
 				30B2FD5C21B1130B0054EAB6 /* deleteToken.sql in Resources */,
 				30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */,
 				3027D23E21AC1B4700094D5C /* readToken.sql in Resources */,
@@ -2230,6 +2284,7 @@
 				3027D26B21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */,
+				30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				30B2FD5221AEA9EF0054EAB6 /* readTokens.sql in Resources */,
@@ -2265,6 +2320,7 @@
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
 				30741335213E6DD100F05427 /* UserPreviewTableViewCell.xib in Resources */,
 				3027D24021AC1C6900094D5C /* createToken.sql in Resources */,
+				30B2FD8A21B538670054EAB6 /* CollapsableSection.xib in Resources */,
 				30A08D47216B880000FF8B2D /* DatePickerCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2683,6 +2739,7 @@
 				302A58A121A69F68000778C6 /* LeaveProfileUseCaseImplementation.swift in Sources */,
 				30FD3682214A5E530047038C /* RemainigDaysViewController.swift in Sources */,
 				30FD3683214A5E530047038C /* RequestUseCaseImplementation.swift in Sources */,
+				30B2FD8921B538670054EAB6 /* CollapsableSection.swift in Sources */,
 				30FD3684214A5E530047038C /* CalendarCellCollectionViewCell.swift in Sources */,
 				30FD3685214A5E530047038C /* HistoryViewController.swift in Sources */,
 				30092B51219EF68E00244F09 /* TeamsManagementViewController.swift in Sources */,
@@ -2695,6 +2752,7 @@
 				30FD368A214A5E530047038C /* RequestRepository.swift in Sources */,
 				3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30092B54219EF72800244F09 /* TeamRepositoryImplementation.swift in Sources */,
+				30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B23219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
@@ -2724,6 +2782,7 @@
 				30FD369A214A5E530047038C /* NewRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
 				3E80631121873600009224BD /* DateStringConverter.swift in Sources */,
+				30B2FD9921B667030054EAB6 /* TrainingData.swift in Sources */,
 				3EBC9EB421AC16F5002937E5 /* SignInUseCaseImplementation.swift in Sources */,
 				302A589E21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCaseImplementation.swift in Sources */,
@@ -2755,6 +2814,7 @@
 				3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
+				30B2FD9621B666A60054EAB6 /* LeaveData.swift in Sources */,
 				30092B3B219EC22100244F09 /* UserManagementViewController.swift in Sources */,
 				3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
@@ -2783,6 +2843,7 @@
 				306F1C8721A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
 				30092B44219EC2E600244F09 /* PublicHolidaysManagementViewController.swift in Sources */,
+				30B2FD7E21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */,
 				3E0FCE882191CF4600E987F8 /* SignInButton.swift in Sources */,
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
@@ -2829,6 +2890,7 @@
 				302A58A021A69F68000778C6 /* LeaveProfileUseCaseImplementation.swift in Sources */,
 				3E42592220E259C800F22BBD /* RequestUseCaseImplementation.swift in Sources */,
 				3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */,
+				30B2FD8821B538670054EAB6 /* CollapsableSection.swift in Sources */,
 				3E15C36720E60F0800DB2CF7 /* HistoryViewController.swift in Sources */,
 				307413572142809B00F05427 /* PublicHolidayTableViewCell.swift in Sources */,
 				30092B50219EF68E00244F09 /* TeamsManagementViewController.swift in Sources */,
@@ -2841,6 +2903,7 @@
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
 				3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30092B53219EF72800244F09 /* TeamRepositoryImplementation.swift in Sources */,
+				30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B22219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
@@ -2870,6 +2933,7 @@
 				3E28E79A20E5121700F1C6D5 /* NewRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3074134E2142761C00F05427 /* PublicHolidayUseCaseImplementation.swift in Sources */,
+				30B2FD9821B667030054EAB6 /* TrainingData.swift in Sources */,
 				3E80631021873600009224BD /* DateStringConverter.swift in Sources */,
 				302A589D21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30741327213968E800F05427 /* Allowance.swift in Sources */,
@@ -2901,6 +2965,7 @@
 				3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* RoundedButton.swift in Sources */,
+				30B2FD9521B666A60054EAB6 /* LeaveData.swift in Sources */,
 				30092B3A219EC22100244F09 /* UserManagementViewController.swift in Sources */,
 				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
@@ -2929,6 +2994,7 @@
 				306F1C8621A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCaseImplementation.swift in Sources */,
 				30092B43219EC2E600244F09 /* PublicHolidaysManagementViewController.swift in Sources */,
+				30B2FD7D21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */,
 				3E0FCE872191CF4600E987F8 /* SignInButton.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,

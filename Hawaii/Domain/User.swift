@@ -6,6 +6,7 @@ struct User: Codable, CustomStringConvertible {
     let teamId: Int?
     let teamName: String?
     let leaveProfileId: Int?
+    let leaveProfileName: String?
     let fullName: String?
     let email: String?
     let userRole: String?
@@ -32,7 +33,7 @@ extension User: Equatable {
 
 extension User {
     init(user: User? = nil, id: Int? = nil, teamId: Int? = nil,
-         teamName: String? = nil, leaveProfileId: Int? = nil, fullName: String? = nil,
+         teamName: String? = nil, leaveProfileId: Int? = nil, leaveProfileName: String? = nil, fullName: String? = nil,
          email: String? = nil, userRole: String? = nil, userPushTokens: [PushTokenDTO]? = nil, jobTitle: String? = nil,
          deleted: Bool? = nil, active: Bool? = nil, yearsOfService: Int? = nil, allowances: [Allowance]? = nil) {
         self.id = id ?? user?.id
@@ -48,6 +49,7 @@ extension User {
         self.active = active ?? user?.active
         self.yearsOfService = yearsOfService ?? user?.yearsOfService
         self.allowances = allowances ?? user?.allowances
+        self.leaveProfileName = leaveProfileName ?? user?.leaveProfileName
     }
     
     init(user: User? = nil, values: [String: Any?], team: Team? = nil, leaveProfile: LeaveProfile? = nil) {
@@ -64,6 +66,7 @@ extension User {
         self.allowances = user?.allowances
         self.userPushTokens = user?.userPushTokens
         self.active = values["active"] as? Bool ?? user?.active
+        self.leaveProfileName = leaveProfile?.name ?? user?.leaveProfileName
     }
 
 }
