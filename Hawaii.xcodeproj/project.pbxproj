@@ -395,6 +395,8 @@
 		3E60E75C21A8299700EFE824 /* MessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */; };
 		3E60E76121A82F8F00EFE824 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */; };
 		3E60E76221A82F8F00EFE824 /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */; };
+		3E6AE21721B679FD001D2A1F /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */; };
+		3E6AE21821B679FD001D2A1F /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */; };
 		3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
 		3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
 		3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
@@ -755,6 +757,7 @@
 		3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestUpdateProtocol.swift; sourceTree = "<group>"; };
 		3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingDelegate.swift; sourceTree = "<group>"; };
 		3E60E76021A82F8F00EFE824 /* NotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
 		3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateFormatter.swift; sourceTree = "<group>"; };
 		3E6EBC5021904E100043EDBD /* CalendarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
 		3E6EBC532190730E0043EDBD /* RefreshUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUtils.swift; sourceTree = "<group>"; };
@@ -904,6 +907,7 @@
 				3027D25821AD314C00094D5C /* LeaveProfileManagementViewController.swift */,
 				30B2FD4A21AE8FAD0054EAB6 /* ProfileViewController.swift */,
 				30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */,
+				3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */,
 			);
 			path = Management;
 			sourceTree = "<group>";
@@ -2783,6 +2787,7 @@
 				306F1C8721A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
 				30FD36B9214A5E530047038C /* AppDelegate.swift in Sources */,
 				30092B44219EC2E600244F09 /* PublicHolidaysManagementViewController.swift in Sources */,
+				3E6AE21821B679FD001D2A1F /* AllowanceManagementViewController.swift in Sources */,
 				3E0FCE882191CF4600E987F8 /* SignInButton.swift in Sources */,
 				30FD36BA214A5E530047038C /* UIColorExtension.swift in Sources */,
 				30FD36BC214A5E530047038C /* RequestDetailsViewController.swift in Sources */,
@@ -2929,6 +2934,7 @@
 				306F1C8621A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
 				3EBD33FD21061D2F00EAFE69 /* UserDetailsUseCaseImplementation.swift in Sources */,
 				30092B43219EC2E600244F09 /* PublicHolidaysManagementViewController.swift in Sources */,
+				3E6AE21721B679FD001D2A1F /* AllowanceManagementViewController.swift in Sources */,
 				3E0FCE872191CF4600E987F8 /* SignInButton.swift in Sources */,
 				3EB5643920CA69E900501CAC /* AppDelegate.swift in Sources */,
 				3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */,
