@@ -41,8 +41,6 @@ class MoreViewController: BaseViewController {
     }
     
     func signOut() {
-        GIDSignIn.sharedInstance().signOut()
-        GIDSignIn.sharedInstance().disconnect()
     
         self.userUseCase?.deleteFirebaseToken(pushToken: nil) { firebaseResponse in
             guard let success = firebaseResponse?.success else {
@@ -52,9 +50,13 @@ class MoreViewController: BaseViewController {
             if !success {
                 AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: firebaseResponse?.message ?? "",
                                                    viewController: self, completion: { _ in
-                                                    self.stopActivityIndicatorSpinner()
+                    self.stopActivityIndicatorSpinner()
+                    return
                 })
             }
+            GIDSignIn.sharedInstance().signOut()
+            GIDSignIn.sharedInstance().disconnect()
+            
             self.removeUserDetails()
             self.navigateToSignIn()
         }

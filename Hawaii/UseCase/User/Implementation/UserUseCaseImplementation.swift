@@ -153,9 +153,15 @@ class UserUseCaseImplementation: UserUseCase {
     }
     
     func setFirebaseToken(completion: @escaping (GenericResponse<PushTokenDTO>?) -> Void) {
+        if userDetailsUseCase?.getToken() == nil {
+            completion(GenericResponse<PushTokenDTO> (success: false, item: nil, statusCode: 401,
+                                             error: nil,
+                                             message: LocalizedKeys.General.emptyToken.localized()))
+            return
+        }
         
         if let firebaseToken = getFirebaseToken() {
-            
+    
             let pushTokenDTO = PushTokenDTO(pushToken: firebaseToken, name: UIDevice.current.name, platform: Platform.iOS)
             setTokenService(pushTokenDTO: pushTokenDTO) { response in
                 completion(response)

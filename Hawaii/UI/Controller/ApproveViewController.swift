@@ -21,7 +21,6 @@ class ApproveViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let refreshControlTitle = LocalizedKeys.General.refresh.localized()
         
         self.navigationItem.title = LocalizedKeys.Approval.title.localized()

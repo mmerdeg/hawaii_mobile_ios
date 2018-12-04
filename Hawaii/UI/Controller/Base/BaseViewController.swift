@@ -3,7 +3,7 @@ import UIKit
 class BaseViewController: UIViewController {
     
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.primaryColor
@@ -19,7 +19,8 @@ class BaseViewController: UIViewController {
                 NSAttributedStringKey.font: UIFont.systemFont(ofSize: 25, weight: .semibold)
             ]
         }
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(changeColorScheme),
+                                               name: NSNotification.Name(rawValue: NotificationNames.themeChanged), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,10 +52,13 @@ class BaseViewController: UIViewController {
         })
     }
     
-    func changeSchemeTo(colorScheme: ColorScheme) {
-        UIColor.initWithColorScheme(colorScheme: colorScheme)
+    @objc func changeColorScheme() {
+        
+        self.view.setNeedsDisplay()
+        self.navigationController?.view.setNeedsDisplay()
+        
         for subview in self.view.subviews {
-            subview.layoutIfNeeded()
+            subview.setNeedsDisplay()
         }
     }
 }

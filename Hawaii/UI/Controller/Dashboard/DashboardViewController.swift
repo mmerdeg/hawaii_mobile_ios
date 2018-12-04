@@ -60,7 +60,6 @@ class DashboardViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = LocalizedKeys.Dashboard.title.localized()
         dateLabel.textColor = UIColor.primaryTextColor
         nextButton.setTitleColor(UIColor.primaryTextColor, for: .normal)
@@ -139,7 +138,6 @@ class DashboardViewController: BaseViewController {
     }
     
     func showDetails(_ requests: [Request]) {
-        self.changeSchemeTo(colorScheme: .light)
         self.navigationController?.view.addSubview(customView)
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {

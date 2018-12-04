@@ -14,10 +14,9 @@ class HomeTabBarController: UITabBarController {
     var userUseCase: UserUseCase?
     
     var userDetailsUseCase: UserDetailsUseCase?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
