@@ -35,8 +35,7 @@ class PublicHolidaysManagementViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.view.backgroundColor = UIColor.darkPrimaryColor
-        self.navigationItem.rightBarButtonItem = addBarItem
-        self.navigationItem.leftBarButtonItem = editBarItem
+        self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
@@ -44,6 +43,18 @@ class PublicHolidaysManagementViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fillData()
+    }
+    
+    @objc func showEditing() {
+        if self.tableView.isEditing == true {
+            self.tableView.isEditing = false
+            self.navigationItem.rightBarButtonItem = addBarItem
+            self.navigationItem.leftBarButtonItem = editBarItem
+        } else {
+            self.tableView.isEditing = true
+            self.navigationItem.rightBarButtonItem = doneBarItem
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
     
     func fillData() {
@@ -78,18 +89,6 @@ class PublicHolidaysManagementViewController: BaseViewController {
     
     @objc func addItem() {
         self.performSegue(withIdentifier: self.managePublicHolidaySegue, sender: nil)
-    }
-    
-    @objc func showEditing() {
-        if self.tableView.isEditing == true {
-            self.tableView.isEditing = false
-            self.navigationItem.rightBarButtonItem = addBarItem
-            self.navigationItem.leftBarButtonItem = editBarItem
-        } else {
-            self.tableView.isEditing = true
-            self.navigationItem.rightBarButtonItem = doneBarItem
-            self.navigationItem.leftBarButtonItem = nil
-        }
     }
     
 }

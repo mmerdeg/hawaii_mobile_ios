@@ -71,19 +71,6 @@ class TeamManagementViewController: BaseFormViewController {
             }).cellUpdate({ cell, row in
                     self.setEmailInput(cell: cell, row: row)
             })
-            <<< SwitchRow("deleted") { row in
-                row.value = team?.deleted
-                row.title = (team?.deleted ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
-                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
-            }.onChange { row in
-                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
-                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
-                row.updateCell()
-            }.cellSetup { cell, _ in
-                    self.setSwitchInput(cell: cell)
-            }.cellUpdate { cell, _ in
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
-            }
             <<< MultipleSelectorRow<User>("teamApprover") {
                 $0.title = LocalizedKeys.TeamManagement.teamApproverTitle.localized()
                 $0.value = Set(selectedTeamApprovers ?? [])

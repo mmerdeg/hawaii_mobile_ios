@@ -204,6 +204,9 @@
 		3097471C21902D8A0083E177 /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3097471821902D8A0083E177 /* EncodableExtension.swift */; };
 		3097472021906DEE0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097471F21906DEE0083E177 /* GoogleService-Info.plist */; };
 		3097472221906E0B0083E177 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3097472121906E0B0083E177 /* GoogleService-Info.plist */; };
+		309A536A21B7C2F900DA3FF1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536921B7C2F900DA3FF1 /* UIViewExtension.swift */; };
+		309A536B21B7C30900DA3FF1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536921B7C2F900DA3FF1 /* UIViewExtension.swift */; };
+		309A536D21B7CE5400DA3FF1 /* GenericExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */; };
 		309B6CD72162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CD82162A8050046EFE9 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */; };
 		309B6CDD2162AA570046EFE9 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309B6CDC2162AA570046EFE9 /* UserRole.swift */; };
@@ -242,6 +245,20 @@
 		30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
 		30B2FD7A21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
 		30B2FD7B21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
+		30B2FD7D21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
+		30B2FD7E21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
+		30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
+		30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
+		30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
+		30B2FD9221B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
+		30B2FD9521B666A60054EAB6 /* LeaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9421B666A60054EAB6 /* LeaveData.swift */; };
+		30B2FD9621B666A60054EAB6 /* LeaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9421B666A60054EAB6 /* LeaveData.swift */; };
+		30B2FD9821B667030054EAB6 /* TrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9721B667030054EAB6 /* TrainingData.swift */; };
+		30B2FD9921B667030054EAB6 /* TrainingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9721B667030054EAB6 /* TrainingData.swift */; };
+		30B2FD9B21B7B9200054EAB6 /* CollapsableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9A21B7B9200054EAB6 /* CollapsableHeader.swift */; };
+		30B2FD9C21B7B9200054EAB6 /* CollapsableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD9A21B7B9200054EAB6 /* CollapsableHeader.swift */; };
+		30B2FD9E21B7B9360054EAB6 /* CollapsableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9D21B7B9360054EAB6 /* CollapsableHeader.xib */; };
+		30B2FD9F21B7B9360054EAB6 /* CollapsableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9D21B7B9360054EAB6 /* CollapsableHeader.xib */; };
 		30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */; };
 		30D80DE2214FDBB9004FF287 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5643A20CA69E900501CAC /* SignInViewController.swift */; };
@@ -258,7 +275,7 @@
 		30FD368A214A5E530047038C /* RequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepository.swift */; };
 		30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074130D2136680100F05427 /* TeamPreviewTableViewCell.swift */; };
 		30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79220E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift */; };
-		30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
+		30FD368D214A5E530047038C /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* RoundedView.swift */; };
 		30FD368E214A5E530047038C /* LoadMoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074133A213E83E700F05427 /* LoadMoreTableViewCell.swift */; };
 		30FD368F214A5E530047038C /* ButtonStyleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C3F620E61A6500DB2CF7 /* ButtonStyleExtension.swift */; };
 		30FD3692214A5E530047038C /* ExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3074131921380FFF00F05427 /* ExpandableData.swift */; };
@@ -284,7 +301,7 @@
 		30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
 		30FD36AE214A5E530047038C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E79620E4AEA100F1C6D5 /* Day.swift */; };
 		30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F9211DB82F00B43B57 /* SelectAbsenceViewController.swift */; };
-		30FD36B1214A5E530047038C /* TableDataProviderRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift */; };
+		30FD36B1214A5E530047038C /* DataProviderRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift */; };
 		30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		30FD36B3214A5E530047038C /* CalendarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302EE1822135744D001355E9 /* CalendarType.swift */; };
 		30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3550F5211D937B00B43B57 /* ArrayExtension.swift */; };
@@ -344,7 +361,7 @@
 		3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45920E6379200DB2CF7 /* CellData.swift */; };
 		3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */; };
 		3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C45D20E645AC00DB2CF7 /* SectionData.swift */; };
-		3E15C46120E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift */; };
+		3E15C46120E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46020E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift */; };
 		3E15C46420E64D0200DB2CF7 /* TableDataProviderUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCaseImplementation.swift */; };
 		3E15C46820E64D3300DB2CF7 /* TableDataProviderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46720E64D3300DB2CF7 /* TableDataProviderRepository.swift */; };
 		3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */; };
@@ -358,7 +375,7 @@
 		3E236F2F20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */; };
 		3E236F3020D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */; };
 		3E28E78220E36BAE00F1C6D5 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */; };
-		3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */; };
+		3E28E78420E373AB00F1C6D5 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E28E78320E373AB00F1C6D5 /* RoundedView.swift */; };
 		3E28E78720E382AB00F1C6D5 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */; };
 		3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */; };
 		3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E28E78A20E3845300F1C6D5 /* History.storyboard */; };
@@ -672,6 +689,8 @@
 		3097471D219030C10083E177 /* RequestNotification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RequestNotification.entitlements; sourceTree = "<group>"; };
 		3097471F21906DEE0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3097472121906E0B0083E177 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		309A536921B7C2F900DA3FF1 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericExpandableData.swift; sourceTree = "<group>"; };
 		309B6CD62162A8050046EFE9 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		309B6CDC2162AA570046EFE9 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
 		309B6CEB2164EF5E0046EFE9 /* schema.sql */ = {isa = PBXFileReference; lastKnownFileType = text; path = schema.sql; sourceTree = "<group>"; };
@@ -693,6 +712,13 @@
 		30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PublicHolidayManagement.storyboard; sourceTree = "<group>"; };
 		30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenViewController.swift; sourceTree = "<group>"; };
 		30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseImplementation.swift; sourceTree = "<group>"; };
+		30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
+		30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
+		30B2FD9021B553890054EAB6 /* CustomFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFooter.xib; sourceTree = "<group>"; };
+		30B2FD9421B666A60054EAB6 /* LeaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveData.swift; sourceTree = "<group>"; };
+		30B2FD9721B667030054EAB6 /* TrainingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingData.swift; sourceTree = "<group>"; };
+		30B2FD9A21B7B9200054EAB6 /* CollapsableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsableHeader.swift; sourceTree = "<group>"; };
+		30B2FD9D21B7B9360054EAB6 /* CollapsableHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollapsableHeader.xib; sourceTree = "<group>"; };
 		30BD9D0D216DE55D003AE28E /* SearchUsersBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersBaseViewController.swift; sourceTree = "<group>"; };
 		30FD36EF214A5E530047038C /* Hawaii production.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hawaii production.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36305F366F06EBF730A581CC /* Pods-Hawaii production.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hawaii production.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production.debug.xcconfig"; sourceTree = "<group>"; };
@@ -710,7 +736,7 @@
 		3E15C45920E6379200DB2CF7 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		3E15C45B20E6453300DB2CF7 /* SelectRequestParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRequestParamsViewController.swift; sourceTree = "<group>"; };
 		3E15C45D20E645AC00DB2CF7 /* SectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionData.swift; sourceTree = "<group>"; };
-		3E15C46020E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderRepositoryImplementation.swift; sourceTree = "<group>"; };
+		3E15C46020E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProviderRepositoryImplementation.swift; sourceTree = "<group>"; };
 		3E15C46320E64D0200DB2CF7 /* TableDataProviderUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderUseCaseImplementation.swift; sourceTree = "<group>"; };
 		3E15C46720E64D3300DB2CF7 /* TableDataProviderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProviderRepository.swift; sourceTree = "<group>"; };
 		3E15C46920E65EFB00DB2CF7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -724,7 +750,7 @@
 		3E236F2D20D7CF21006AEF29 /* CalendarCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E236F2E20D7CF21006AEF29 /* CalendarCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarCellCollectionViewCell.xib; sourceTree = "<group>"; };
 		3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
-		3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		3E28E78320E373AB00F1C6D5 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		3E28E78620E382AB00F1C6D5 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		3E28E78820E383CA00F1C6D5 /* TeamCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamCalendar.storyboard; sourceTree = "<group>"; };
 		3E28E78A20E3845300F1C6D5 /* History.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
@@ -1125,6 +1151,33 @@
 			path = PublicHolidayManagement;
 			sourceTree = "<group>";
 		};
+		30B2FD8521B538360054EAB6 /* CollapsableSection */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD9A21B7B9200054EAB6 /* CollapsableHeader.swift */,
+				30B2FD9D21B7B9360054EAB6 /* CollapsableHeader.xib */,
+			);
+			path = CollapsableSection;
+			sourceTree = "<group>";
+		};
+		30B2FD8F21B553230054EAB6 /* CustomFooter */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD9021B553890054EAB6 /* CustomFooter.xib */,
+				30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */,
+			);
+			path = CustomFooter;
+			sourceTree = "<group>";
+		};
+		30B2FD9321B666840054EAB6 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				30B2FD9421B666A60054EAB6 /* LeaveData.swift */,
+				30B2FD9721B667030054EAB6 /* TrainingData.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		3E0B2D2021AEDD2000C5D04F /* ThemeCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1234,6 +1287,7 @@
 				3E15C45D20E645AC00DB2CF7 /* SectionData.swift */,
 				3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */,
 				3074131921380FFF00F05427 /* ExpandableData.swift */,
+				309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1468,13 +1522,14 @@
 			children = (
 				3E42592C20E26A1900F22BBD /* UIColorExtension.swift */,
 				3E28E78120E36BAE00F1C6D5 /* RoundedButton.swift */,
-				3E28E78320E373AB00F1C6D5 /* UIViewExtension.swift */,
+				3E28E78320E373AB00F1C6D5 /* RoundedView.swift */,
 				3051686A217F490D00AAEA7D /* UINavigationBarExtension.swift */,
 				305A01B2215928A00008B4EA /* RoundedTextView.swift */,
 				30516867217F48EB00AAEA7D /* GradientExtension.swift */,
 				3097471821902D8A0083E177 /* EncodableExtension.swift */,
 				3E0FCE862191CF4600E987F8 /* SignInButton.swift */,
 				306F1C8521A2A4EA00E2D27B /* RoundedImageView.swift */,
+				309A536921B7C2F900DA3FF1 /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1667,7 +1722,7 @@
 				3E42592820E25B7500F22BBD /* RequestRepositoryImplementation.swift */,
 				302EE1722133F549001355E9 /* UserRepositoryImplementation.swift */,
 				3074134F2142770000F05427 /* PublicHolidayRepositoryImplementation.swift */,
-				3E15C46020E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift */,
+				3E15C46020E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift */,
 				30092B52219EF72800244F09 /* TeamRepositoryImplementation.swift */,
 				302A589021A69DA0000778C6 /* LeaveProfileRepositoryImplementation.swift */,
 			);
@@ -1779,6 +1834,9 @@
 		3EB5646620CA909000501CAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				30B2FD9321B666840054EAB6 /* Domain */,
+				30B2FD8F21B553230054EAB6 /* CustomFooter */,
+				30B2FD8521B538360054EAB6 /* CollapsableSection */,
 				3055C53D219ABBF90066F0E0 /* EmptyView */,
 				3E72644F20EA1CE100DC7240 /* Utility */,
 				3E15C36820E6150700DB2CF7 /* Style */,
@@ -2174,6 +2232,7 @@
 				30FD36D4214A5E530047038C /* LoadMoreTableViewCell.xib in Resources */,
 				305A01B1215908F80008B4EA /* InputTableViewCell.xib in Resources */,
 				3055C543219ABC440066F0E0 /* EmptyView.xib in Resources */,
+				30B2FD9F21B7B9360054EAB6 /* CollapsableHeader.xib in Resources */,
 				30FD36D5214A5E530047038C /* .swiftlint.yml in Resources */,
 				30FD36D7214A5E530047038C /* CalendarCellCollectionViewCell.xib in Resources */,
 				30FD36D8214A5E530047038C /* TeamCalendarCollectionViewCell.xib in Resources */,
@@ -2212,6 +2271,7 @@
 				30B2FD7521B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */,
 				309B6CED2164EF5E0046EFE9 /* schema.sql in Resources */,
 				30139324215CA90800F65B7F /* RequestParams.storyboard in Resources */,
+				30B2FD9221B553890054EAB6 /* CustomFooter.xib in Resources */,
 				30B2FD5C21B1130B0054EAB6 /* deleteToken.sql in Resources */,
 				30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */,
 				3027D23E21AC1B4700094D5C /* readToken.sql in Resources */,
@@ -2234,6 +2294,7 @@
 				3027D26B21AD351400094D5C /* LeaveProfileTableViewCell.xib in Resources */,
 				3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */,
 				3055C542219ABC440066F0E0 /* EmptyView.xib in Resources */,
+				30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */,
 				3E28E78D20E3849400F1C6D5 /* More.storyboard in Resources */,
 				3E28E78920E383CA00F1C6D5 /* TeamCalendar.storyboard in Resources */,
 				30B2FD5221AEA9EF0054EAB6 /* readTokens.sql in Resources */,
@@ -2260,6 +2321,7 @@
 				30139326215CAACB00F65B7F /* RemainingDays.storyboard in Resources */,
 				3E28E78B20E3845300F1C6D5 /* History.storyboard in Resources */,
 				30B2FD7421B13ED20054EAB6 /* PublicHolidayManagement.storyboard in Resources */,
+				30B2FD9E21B7B9360054EAB6 /* CollapsableHeader.xib in Resources */,
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
 				3027D24621AC1D6700094D5C /* deleteTokens.sql in Resources */,
 				306F1C8321A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
@@ -2699,6 +2761,7 @@
 				30FD368A214A5E530047038C /* RequestRepository.swift in Sources */,
 				3097471A21902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30092B54219EF72800244F09 /* TeamRepositoryImplementation.swift in Sources */,
+				30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */,
 				30FD368B214A5E530047038C /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B23219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEF21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
@@ -2706,7 +2769,7 @@
 				3E892DE92177590200C7F784 /* ApiConstants.swift in Sources */,
 				3042CA8621536E9F002446FE /* Sort.swift in Sources */,
 				30FD368C214A5E530047038C /* RequestDetailTableViewCell.swift in Sources */,
-				30FD368D214A5E530047038C /* UIViewExtension.swift in Sources */,
+				30FD368D214A5E530047038C /* RoundedView.swift in Sources */,
 				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
 				3027D26A21AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
 				305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */,
@@ -2728,6 +2791,7 @@
 				30FD369A214A5E530047038C /* NewRequestViewController.swift in Sources */,
 				30FD369B214A5E530047038C /* BaseViewController.swift in Sources */,
 				3E80631121873600009224BD /* DateStringConverter.swift in Sources */,
+				30B2FD9921B667030054EAB6 /* TrainingData.swift in Sources */,
 				3EBC9EB421AC16F5002937E5 /* SignInUseCaseImplementation.swift in Sources */,
 				302A589E21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30FD369C214A5E530047038C /* PublicHolidayUseCaseImplementation.swift in Sources */,
@@ -2738,6 +2802,7 @@
 				3042CA8A21536EF6002446FE /* Page.swift in Sources */,
 				30B2FD7B21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */,
 				3044DF0221A450640068E2B7 /* PushTokenDTO.swift in Sources */,
+				30B2FD9C21B7B9200054EAB6 /* CollapsableHeader.swift in Sources */,
 				30FD369F214A5E530047038C /* TableDataProviderUseCaseImplementation.swift in Sources */,
 				30BD9D10216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */,
 				3E60E75C21A8299700EFE824 /* MessagingDelegate.swift in Sources */,
@@ -2759,6 +2824,7 @@
 				3E892DF2217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				30FD36AC214A5E530047038C /* User.swift in Sources */,
 				30FD36AD214A5E530047038C /* RequestTableViewController.swift in Sources */,
+				30B2FD9621B666A60054EAB6 /* LeaveData.swift in Sources */,
 				30092B3B219EC22100244F09 /* UserManagementViewController.swift in Sources */,
 				3EF5566B2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686C217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
@@ -2767,7 +2833,7 @@
 				305A01B4215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				30FD36B0214A5E530047038C /* SelectAbsenceViewController.swift in Sources */,
 				3027D26F21AD52AA00094D5C /* MultipleSelectionWithSearch.swift in Sources */,
-				30FD36B1214A5E530047038C /* TableDataProviderRepositoryImplementation.swift in Sources */,
+				30FD36B1214A5E530047038C /* DataProviderRepositoryImplementation.swift in Sources */,
 				30FD36B2214A5E530047038C /* AlertPresenter.swift in Sources */,
 				30FD36B3214A5E530047038C /* CalendarType.swift in Sources */,
 				30FD36B4214A5E530047038C /* ArrayExtension.swift in Sources */,
@@ -2815,6 +2881,7 @@
 				3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
+				309A536B21B7C30900DA3FF1 /* UIViewExtension.swift in Sources */,
 				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 				302A589B21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,
@@ -2846,13 +2913,14 @@
 				3042CA8521536E9F002446FE /* Sort.swift in Sources */,
 				3097471921902D8A0083E177 /* EncodableExtension.swift in Sources */,
 				30092B53219EF72800244F09 /* TeamRepositoryImplementation.swift in Sources */,
+				30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */,
 				3074130F2136680100F05427 /* TeamPreviewTableViewCell.swift in Sources */,
 				30092B22219DACE300244F09 /* JwtExtenstion.swift in Sources */,
 				3E892DEE21777E8E00C7F784 /* DisplayedDateFormatter.swift in Sources */,
 				30092B2D219E9F8E00244F09 /* TimerApplication.swift in Sources */,
 				3E892DE82177590200C7F784 /* ApiConstants.swift in Sources */,
 				3E28E79420E3C2F900F1C6D5 /* RequestDetailTableViewCell.swift in Sources */,
-				3E28E78420E373AB00F1C6D5 /* UIViewExtension.swift in Sources */,
+				3E28E78420E373AB00F1C6D5 /* RoundedView.swift in Sources */,
 				3074133C213E83E700F05427 /* LoadMoreTableViewCell.swift in Sources */,
 				3E15C3FA20E61A6500DB2CF7 /* ButtonStyleExtension.swift in Sources */,
 				3027D26921AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
@@ -2875,6 +2943,7 @@
 				3E28E79A20E5121700F1C6D5 /* NewRequestViewController.swift in Sources */,
 				3E15C46A20E65EFB00DB2CF7 /* BaseViewController.swift in Sources */,
 				3074134E2142761C00F05427 /* PublicHolidayUseCaseImplementation.swift in Sources */,
+				30B2FD9821B667030054EAB6 /* TrainingData.swift in Sources */,
 				3E80631021873600009224BD /* DateStringConverter.swift in Sources */,
 				302A589D21A69E1D000778C6 /* LeaveProfile.swift in Sources */,
 				30741327213968E800F05427 /* Allowance.swift in Sources */,
@@ -2885,6 +2954,7 @@
 				3042CA8921536EF6002446FE /* Page.swift in Sources */,
 				30B2FD7A21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */,
 				3044DF0121A450640068E2B7 /* PushTokenDTO.swift in Sources */,
+				30B2FD9B21B7B9200054EAB6 /* CollapsableHeader.swift in Sources */,
 				3E236F2920D7AA10006AEF29 /* MoreViewController.swift in Sources */,
 				30BD9D0F216DE55D003AE28E /* SearchUsersBaseViewController.swift in Sources */,
 				3E60E75B21A8299700EFE824 /* MessagingDelegate.swift in Sources */,
@@ -2906,6 +2976,7 @@
 				3E892DF1217783CD00C7F784 /* RequestDateFormatter.swift in Sources */,
 				3E42591C20E2454600F22BBD /* Request.swift in Sources */,
 				3E28E78220E36BAE00F1C6D5 /* RoundedButton.swift in Sources */,
+				30B2FD9521B666A60054EAB6 /* LeaveData.swift in Sources */,
 				30092B3A219EC22100244F09 /* UserManagementViewController.swift in Sources */,
 				3EF5566A2179FE0C00A7664D /* KeyChainRepositoryProtocol.swift in Sources */,
 				3051686B217F490D00AAEA7D /* UINavigationBarExtension.swift in Sources */,
@@ -2917,7 +2988,7 @@
 				305A01B3215928A00008B4EA /* RoundedTextView.swift in Sources */,
 				303C44332154F023003F16CC /* UsersResponse.swift in Sources */,
 				3E3550FA211DB82F00B43B57 /* SelectAbsenceViewController.swift in Sources */,
-				3E15C46120E64C4700DB2CF7 /* TableDataProviderRepositoryImplementation.swift in Sources */,
+				3E15C46120E64C4700DB2CF7 /* DataProviderRepositoryImplementation.swift in Sources */,
 				3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */,
 				302EE1832135744D001355E9 /* CalendarType.swift in Sources */,
 				3E35CAA0215E15150042E65A /* UserDaoImplementation.swift in Sources */,
@@ -2929,6 +3000,7 @@
 				3E15C45E20E645AC00DB2CF7 /* SectionData.swift in Sources */,
 				3E1E17D6218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
+				309A536D21B7CE5400DA3FF1 /* GenericExpandableData.swift in Sources */,
 				3E15C45A20E6379200DB2CF7 /* CellData.swift in Sources */,
 				3E35CA95215E148E0042E65A /* UserDb.swift in Sources */,
 				306F1C8621A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
@@ -2962,6 +3034,7 @@
 				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
+				309A536A21B7C2F900DA3FF1 /* UIViewExtension.swift in Sources */,
 				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 				302A589A21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,

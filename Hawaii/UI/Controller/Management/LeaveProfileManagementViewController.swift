@@ -27,10 +27,10 @@ class LeaveProfileManagementViewController: BaseFormViewController {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
-        form +++ Section("Basic Info")
+        form +++ Section(LocalizedKeys.LeaveProfileManagement.infoSection.localized())
             <<< TextRow("name") { row in
-                row.title = "Leave profile name"
-                row.placeholder = "Enter leave profile name"
+                row.title = LocalizedKeys.LeaveProfileManagement.nameTitle.localized()
+                row.placeholder = LocalizedKeys.LeaveProfileManagement.namePlaceholder.localized()
                 row.value = leaveProfile?.name
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -41,8 +41,8 @@ class LeaveProfileManagementViewController: BaseFormViewController {
             })
             
             <<< TextRow("comment") { row in
-                row.title = "Leave profile comment"
-                row.placeholder = "Enter leave profile comment"
+                row.title = LocalizedKeys.LeaveProfileManagement.commentTitle.localized()
+                row.placeholder = LocalizedKeys.LeaveProfileManagement.commentPlaceholder.localized()
                 row.value = leaveProfile?.comment
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -52,7 +52,7 @@ class LeaveProfileManagementViewController: BaseFormViewController {
                     self.setTextInput(cell: cell, row: row)
             })
             <<< IntRow("entitlement") {
-                $0.title = "Entitlement"
+                $0.title = LocalizedKeys.LeaveProfileManagement.entitlement.localized()
                 $0.value = leaveProfile?.entitlement
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -62,7 +62,7 @@ class LeaveProfileManagementViewController: BaseFormViewController {
                     self.setIntInput(cell: cell, row: row)
             })
             <<< IntRow("maxBonusDays") {
-                $0.title = "Max bonus days"
+                $0.title = LocalizedKeys.LeaveProfileManagement.maxBonusDays.localized()
                 $0.value = leaveProfile?.maxBonusDays
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -72,7 +72,7 @@ class LeaveProfileManagementViewController: BaseFormViewController {
                     self.setIntInput(cell: cell, row: row)
             })
             <<< IntRow("maxCarriedOver") {
-                $0.title = "Max carried over"
+                $0.title = LocalizedKeys.LeaveProfileManagement.maxCarriedOver.localized()
                 $0.value = leaveProfile?.maxCarriedOver
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -82,7 +82,7 @@ class LeaveProfileManagementViewController: BaseFormViewController {
                     self.setIntInput(cell: cell, row: row)
             })
             <<< IntRow("training") {
-                $0.title = "Training"
+                $0.title = LocalizedKeys.LeaveProfileManagement.training.localized()
                 $0.value = leaveProfile?.training
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange

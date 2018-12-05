@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jr9-Rc-cyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3549.5999999999999" y="197.45127436281859"/>
+            <point key="canvasLocation" x="4546.875" y="196.47887323943661"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="6xF-UB-xZj">
@@ -144,13 +144,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="R9i-s7-eop"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tIe-4X-rOR"/>
                     <connections>
                         <segue destination="GPv-Ar-ULB" kind="show" identifier="showTokenDetails" id="BAd-b8-dkF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qcR-VI-RhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2718" y="197"/>
+            <point key="canvasLocation" x="3714.375" y="196.47887323943661"/>
         </scene>
     </scenes>
 </document>

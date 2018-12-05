@@ -89,26 +89,13 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             })
-            <<< SwitchRow("deleted") { row in
-                row.value = user?.deleted
-                row.title = (user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() :
-                    LocalizedKeys.UserManagement.deletedDisabled.localized()
-            }.onChange { row in
-                row.title = (self.user?.deleted ?? false) ? LocalizedKeys.UserManagement.deletedEnabled.localized() :
-                    LocalizedKeys.UserManagement.deletedDisabled.localized()
-                row.updateCell()
-            }.cellSetup { cell, _ in
-                self.setSwitchInput(cell: cell)
-            }.cellUpdate { cell, _ in
-                cell.textLabel?.textColor = UIColor.primaryTextColor
-            }
             
             <<< SwitchRow("active") { row in
-                row.value = user?.active
-                row.title = (user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
+                row.value = user?.userStatusType == StatusType.active
+                row.title = user?.userStatusType == StatusType.active ? LocalizedKeys.UserManagement.activeEnabled.localized() :
                     LocalizedKeys.UserManagement.activeDisabled.localized()
             }.onChange { row in
-                row.title = (self.user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
+                row.title = (row.value ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
                     LocalizedKeys.UserManagement.activeDisabled.localized()
                 row.updateCell()
             }.cellSetup { cell, _ in
@@ -116,7 +103,13 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
             }.cellUpdate { cell, _ in
                 cell.textLabel?.textColor = UIColor.primaryTextColor
             }
-            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized())
+            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized()) { section in
+                var view = HeaderFooterView<CustomFooter>(.nibFile(name: String(describing: CustomFooter.self), bundle: nil))
+                view.onSetupView = { view, _ in
+                    view.user = self.user
+                }
+                section.footer = view
+            }
             <<< IntRow("yearsOfService") {
                 $0.title = LocalizedKeys.UserManagement.yearsOfServiceTitle.localized()
                 $0.value = user?.yearsOfService

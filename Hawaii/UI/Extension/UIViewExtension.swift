@@ -1,15 +1,46 @@
+//
+//  UIViewExtension.swift
+//  Hawaii
+//
+//  Created by Ivan Divljak on 12/5/18.
+//  Copyright © 2018 Server. All rights reserved.
+//
+
 import Foundation
 import UIKit
 
-class RoundedView: UIView {
-    
-    override func layoutSubviews() {
-        layer.cornerRadius = 5
-        layer.borderWidth = 1
-        layer.masksToBounds = true
-        layer.borderColor = UIColor.black.withAlphaComponent(0.4).cgColor
-        self.layoutIfNeeded()
-        backgroundColor = UIColor.black.withAlphaComponent(0.2)
+extension UIView {
+    func fixInView(_ container: UIView) -> Void {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.frame = container.frame
+        container.addSubview(self)
+        NSLayoutConstraint(item: self,
+                           attribute: .leading,
+                           relatedBy: .equal,
+                           toItem: container,
+                           attribute: .leading,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .trailing,
+                           relatedBy: .equal,
+                           toItem: container,
+                           attribute: .trailing,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .top,
+                           relatedBy: .equal,
+                           toItem: container,
+                           attribute: .top,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: container,
+                           attribute: .bottom,
+                           multiplier: 1.0,
+                           constant: 0).isActive = true
     }
-    
 }

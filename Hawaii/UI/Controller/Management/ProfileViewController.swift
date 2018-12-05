@@ -21,6 +21,8 @@ class ProfileViewController: BaseFormViewController {
     
     var userUseCase: UserUseCase?
     
+    var userDetailsUseCase: UserDetailsUseCase?
+    
     var user: User?
     
     var pushTokens: [PushTokenDTO]?
@@ -88,6 +90,10 @@ class ProfileViewController: BaseFormViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        guard let token = pushTokens?[indexPath.row].pushToken,
+              token == userDetailsUseCase?.getFirebaseToken() else {
+            return UITableViewCellEditingStyle.none
+        }
         return UITableViewCellEditingStyle.delete
     }
     
@@ -129,6 +135,7 @@ class ProfileViewController: BaseFormViewController {
                 })
                 return
             }
+            self.pushTokens?.remove(at: indexPath.row)
             self.deviceSection?.remove(at: indexPath.row)
 
             completion(true)

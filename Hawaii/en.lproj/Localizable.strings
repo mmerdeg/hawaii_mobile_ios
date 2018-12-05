@@ -157,6 +157,20 @@ token.notificationToken = "Device notification token";
 token.platform = "Device platform";
 token.createdDate = "Creation date";
 
+holiday.infoSection = "Public holiday info";
+holiday.nameTitle = "Holiday name";
+holiday.namePlaceholder = "Enter holiday name";
+holiday.date = "Holiday date";
+
+leaveProfile.infoSection = "Basic Info";
+leaveProfile.nameTitle = "Leave profile name";
+leaveProfile.namePlaceholder = "Enter leave profile name";
+leaveProfile.commentTitle = "Leave profile comment";
+leaveProfile.commentPlaceholder = "Enter leave profile comment";
+leaveProfile.entitlement = "Entitlement";
+leaveProfile.maxBonusDays = "Max bonus days";
+leaveProfile.maxCarriedOver = "Max carried over";
+leaveProfile.training = "Training";
 
 
 

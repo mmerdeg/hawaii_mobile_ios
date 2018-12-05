@@ -24,9 +24,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAX-vN-Ubr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4114" y="761"/>
+            <point key="canvasLocation" x="5052" y="760.56971514242889"/>
         </scene>
-        <!--Team Menagement-->
+        <!--Team Management-->
         <scene sceneID="sIt-m7-ELY">
             <objects>
                 <viewController id="t2y-9s-94c" customClass="TeamsManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,7 +48,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LFn-P9-Smf"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Team Menagement" id="9WD-B5-viS"/>
+                    <navigationItem key="navigationItem" title="Team Management" id="9WD-B5-viS"/>
                     <connections>
                         <outlet property="tableView" destination="1Z3-gk-Kap" id="CX2-E6-rwz"/>
                         <segue destination="Stv-5K-yWG" kind="show" identifier="manageTeam" id="ent-V7-S33"/>
@@ -56,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxg-E3-GiN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="744"/>
+            <point key="canvasLocation" x="4184.8000000000002" y="743.47826086956525"/>
         </scene>
     </scenes>
 </document>

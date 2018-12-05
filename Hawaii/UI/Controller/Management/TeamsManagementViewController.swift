@@ -47,8 +47,7 @@ class TeamsManagementViewController: BaseViewController {
         self.tableView.separatorStyle = .none
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.navigationItem.rightBarButtonItem = addBarItem
-        self.navigationItem.leftBarButtonItem = editBarItem
+        self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
         self.tableView.reloadData()
     }
     
@@ -95,12 +94,10 @@ class TeamsManagementViewController: BaseViewController {
     @objc func showEditing() {
         if self.tableView.isEditing == true {
             self.tableView.isEditing = false
-            self.navigationItem.rightBarButtonItem = addBarItem
-            self.navigationItem.leftBarButtonItem = editBarItem
+            self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
         } else {
             self.tableView.isEditing = true
-            self.navigationItem.rightBarButtonItem = doneBarItem
-            self.navigationItem.leftBarButtonItem = nil
+            self.navigationItem.rightBarButtonItems = [doneBarItem]
         }
     }
 

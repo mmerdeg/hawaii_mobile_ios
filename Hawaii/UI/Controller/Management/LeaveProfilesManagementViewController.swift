@@ -24,6 +24,18 @@ class LeaveProfilesManagementViewController: BaseViewController {
         return item
     }()
     
+    lazy var editBarItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(showEditing))
+        item.tintColor = UIColor.primaryTextColor
+        return item
+    }()
+    
+    lazy var doneBarItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(showEditing))
+        item.tintColor = UIColor.primaryTextColor
+        return item
+    }()
+    
     override func viewDidLoad() {
         tableView.register(UINib(nibName: String(describing: LeaveProfileTableViewCell.self), bundle: nil),
                            forCellReuseIdentifier: String(describing: LeaveProfileTableViewCell.self))
@@ -33,13 +45,23 @@ class LeaveProfilesManagementViewController: BaseViewController {
         self.tableView.separatorStyle = .none
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.navigationItem.rightBarButtonItem = addBarItem
+        self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
         self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fillData()
+    }
+    
+    @objc func showEditing() {
+        if self.tableView.isEditing == true {
+            self.tableView.isEditing = false
+            self.navigationItem.rightBarButtonItems = [addBarItem, editBarItem]
+        } else {
+            self.tableView.isEditing = true
+            self.navigationItem.rightBarButtonItems = [doneBarItem]
+        }
     }
     
     func fillData() {

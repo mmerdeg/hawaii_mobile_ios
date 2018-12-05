@@ -117,6 +117,15 @@ history.emptyDescription = "You are doing a good job, keep it up";
 team.emptyTitle = "No more requests to approve";
 team.emptyDescription = "You are doing a good job, keep it up";
 
+teamManagement.nameTitle = "Team name";
+teamManagement.namePlaceholder = "Enter team name";
+teamManagement.emailTitle = "Email";
+teamManagement.emailPlaceholder = "Enter email here";
+teamManagement.deletedEnabled = "Deleted";
+teamManagement.deletedDisabled = "Not deleted";
+teamManagement.teamApproverTitle = "Pick team approver";
+teamManagement.teamApproverPlaceholder = "";
+
 userManagement.nameTitle = "Team name";
 userManagement.namePlaceholder = "Enter team name";
 userManagement.emailTitle = "Email";
@@ -155,3 +164,13 @@ token.deviceName = "Device name";
 token.notificationToken = "Device notification token";
 token.platform = "Device platform";
 token.createdDate = "Creation date";
+
+holiday.infoSection = "Public holiday info";
+holiday.nameTitle = "Holiday name";
+holiday.namePlaceholder = "Enter holiday name";
+holiday.date = "Holiday date";
+
+leaveProfile.entitlement = "Entitlement";
+leaveProfile.maxBonusDays = "Max bonus days";
+leaveProfile.maxCarriedOver = "Max carried over";
+leaveProfile.training = "Training";

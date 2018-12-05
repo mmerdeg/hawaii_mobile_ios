@@ -27,10 +27,10 @@ class PublicHolidayManagementViewController: BaseFormViewController {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.primaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
-        form +++ Section("Public holiday info")
+        form +++ Section(LocalizedKeys.HolidayManagement.infoSection.localized())
             <<< TextRow("name") { row in
-                row.title = "Holiday name"
-                row.placeholder = "Enter holiday name"
+                row.title = LocalizedKeys.HolidayManagement.nameTitle.localized()
+                row.placeholder = LocalizedKeys.HolidayManagement.namePlaceholder.localized()
                 row.value = holiday?.name
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
@@ -40,7 +40,7 @@ class PublicHolidayManagementViewController: BaseFormViewController {
                     self.setTextInput(cell: cell, row: row)
             })
             <<< DateRow("date") {
-                $0.title = "Holiday date"
+                $0.title = LocalizedKeys.HolidayManagement.date.localized()
                 $0.value = holiday?.date ?? Date()
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
@@ -49,17 +49,6 @@ class PublicHolidayManagementViewController: BaseFormViewController {
             }).cellUpdate({ cell, row in
                 self.setDateInput(cell: cell, row: row)
             })
-            <<< SwitchRow("deleted") { row in
-                row.value = holiday?.deleted
-                row.title = (holiday?.deleted ?? false) ? "Deleted" : "Not deleted"
-            }.onChange { row in
-                    row.title = (row.value ?? false) ? "Deleted": "Not deleted"
-                    row.updateCell()
-            }.cellSetup { cell, _ in
-                    self.setSwitchInput(cell: cell)
-            }.cellUpdate { cell, _ in
-                    cell.textLabel?.textColor = UIColor.primaryTextColor
-            }
         
     }
     

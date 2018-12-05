@@ -182,4 +182,25 @@ public struct LocalizedKeys {
         static let createdDate = "token.createdDate"
         
     }
+    
+    struct HolidayManagement {
+        static let infoSection = "holiday.infoSection"
+        static let nameTitle = "holiday.nameTitle"
+        static let namePlaceholder = "holiday.namePlaceholder"
+        static let date = "holiday.date"
+        static let deletedEnabled = "userManagement.deletedEnabled"
+        static let deletedDisabled = "userManagement.deletedDisabled"
+    }
+    
+    struct LeaveProfileManagement {
+        static let infoSection = "leaveProfile.infoSection"
+        static let nameTitle = "leaveProfile.nameTitle"
+        static let namePlaceholder = "leaveProfile.namePlaceholder"
+        static let commentTitle = "leaveProfile.commentTitle"
+        static let commentPlaceholder = "leaveProfile.commentPlaceholder"
+        static let entitlement = "leaveProfile.entitlement"
+        static let maxBonusDays = "leaveProfile.maxBonusDays"
+        static let maxCarriedOver = "leaveProfile.maxCarriedOver"
+        static let training = "leaveProfile.training"
+    }
 }

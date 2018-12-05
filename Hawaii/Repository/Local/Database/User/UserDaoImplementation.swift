@@ -53,7 +53,7 @@ class UserDaoImplementation: UserDao {
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.id ?? -1,
@@ -64,7 +64,7 @@ class UserDaoImplementation: UserDao {
                                           entity.email ?? "",
                                           entity.userRole ?? "",
                                           entity.jobTitle ?? "",
-                                          entity.deleted ?? false,
+                                          entity.userStatusType?.rawValue ?? "",
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
                     DispatchQueue.main.async {
@@ -83,7 +83,7 @@ class UserDaoImplementation: UserDao {
     }
     
     func create(entity: [PushTokenDTO], userId: Int, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     for pushToken in entity {
@@ -100,7 +100,7 @@ class UserDaoImplementation: UserDao {
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije pisao token")
+                        print("Nije upisao tokene")
                         completion(-1)
                     }
                 }
@@ -113,7 +113,7 @@ class UserDaoImplementation: UserDao {
             completion(nil)
             return
         }
-        dispatchQueue?.sync {
+        dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 guard let resultSet = try? database.executeQuery(readUserQuery, values: nil) else {
                     DispatchQueue.main.async {
@@ -137,18 +137,19 @@ class UserDaoImplementation: UserDao {
     }
     
     func emptyUsers(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.sync {
+        dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
+                print("Obrisao usere")
+                let isSuccessfull = database.executeStatements(self.deleteUsersQuery ?? "")
                 DispatchQueue.main.async {
-                    print("Obrisao usere")
-                    completion(database.executeStatements(self.deleteUsersQuery ?? ""))
+                    completion(isSuccessfull)
                 }
             }
         }
     }
     
     func create(entity: PushTokenDTO, userId: Int, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.pushTokenId ?? -1,
@@ -164,7 +165,7 @@ class UserDaoImplementation: UserDao {
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije pisao token")
+                        print("Nije upisao token")
                         completion(-1)
                     }
                 }
@@ -174,7 +175,7 @@ class UserDaoImplementation: UserDao {
     
     func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void) {
         guard let readTokensQuery = readTokensQuery else {
-            completion(nil)
+                completion(nil)
             return
         }
         dispatchQueue?.async {
@@ -219,6 +220,12 @@ class UserDaoImplementation: UserDao {
                     }
                     return
                 }
+                if !resultSet.hasAnotherRow() {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                }
+                
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                         let tokenDb = PushTokenDb(parameters: result) else {
@@ -259,11 +266,15 @@ class UserDaoImplementation: UserDao {
     }
     
     func deleteTokens(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.sync {
+        guard let deleteTokensQuery = deleteTokensQuery else {
+            completion(false)
+            return
+        }
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
+                let isSuccessfull = database.executeStatements(deleteTokensQuery)
                 DispatchQueue.main.async {
-                    print("Obrisao tokene")
-                    completion(database.executeStatements(self.deleteTokensQuery ?? ""))
+                    completion(isSuccessfull)
                 }
             }
         }
