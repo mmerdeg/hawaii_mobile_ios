@@ -151,6 +151,7 @@ userManagement.activeDisabled = "Not active";
 userManagement.allowance = "Allowance";
 userManagement.allowancePlaceholder = "Enter number of hours";
 userManagement.annual = "Annual";
+userManagement.manual = "Manual adjust";
 
 token.deviceName = "Device name";
 token.notificationToken = "Device notification token";

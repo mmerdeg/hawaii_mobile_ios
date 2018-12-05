@@ -25,28 +25,21 @@ class AllowanceManagementViewController: BaseFormViewController {
         for allowance in allowances {
             guard let year = allowance.year,
                 let annual = allowance.annual,
-                let training = allowance.training else {
+                let manual = allowance.manualAdjust else {
                     return
             }
             
             sections.append(Section(String(year)) {
-                $0 <<< IntRow("annual" + String(year)) {
-                    $0.value = annual
+                $0 <<< LabelRow("annual" + String(year)) {
+                    $0.value = String(annual)
                     $0.tag = LocalizedKeys.UserManagement.annual.localized() + String(year)
                     $0.title = LocalizedKeys.UserManagement.annual.localized()
-                    $0.placeholder = LocalizedKeys.UserManagement.allowancePlaceholder.localized()
-                    $0.add(rule: RuleRequired())
-                    $0.validationOptions = .validatesOnChange
-                }.cellSetup({ cell, row in
-                    self.setIntInput(cell: cell, row: row)
-                }).cellUpdate({ cell, row in
-                    self.setIntInput(cell: cell, row: row)
-                })
+                }
                 
-                $0 <<< IntRow("training" + String(year)) {
-                    $0.value = training
-                    $0.tag = LocalizedKeys.RemainingDays.training.localized() + String(year)
-                    $0.title = LocalizedKeys.RemainingDays.training.localized()
+                $0 <<< IntRow("manual" + String(year)) {
+                    $0.value = manual
+                    $0.tag = LocalizedKeys.UserManagement.manual.localized() + String(year)
+                    $0.title = LocalizedKeys.UserManagement.manual.localized()
                     $0.placeholder = LocalizedKeys.UserManagement.allowancePlaceholder.localized()
                     $0.add(rule: RuleRequired())
                     $0.validationOptions = .validatesOnChange
@@ -84,14 +77,12 @@ class AllowanceManagementViewController: BaseFormViewController {
         
         for allowance in userAllowances {
             guard let year = allowance.year,
-                let newAnnual = formValues[LocalizedKeys.UserManagement.annual.localized() + String(year)] as? Int,
-                let newTraining = formValues[LocalizedKeys.RemainingDays.training.localized() + String(year)] as? Int else {
+                let newManual = formValues[LocalizedKeys.UserManagement.manual.localized() + String(year)] as? Int else {
                 return
             }
             
             newAllowances.append(Allowance(allowance: allowance,
-                                        annual: newAnnual,
-                                        training: newTraining))
+                                        manualAdjust: newManual))
         }
         
         self.user = User(user: user, allowances: newAllowances)
