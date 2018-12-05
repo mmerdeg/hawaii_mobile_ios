@@ -14,7 +14,8 @@ class AllowanceManagementViewController: BaseFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = LocalizedKeys.UserManagement.allowance.localized()
-        
+        self.tableView.backgroundColor = UIColor.darkPrimaryColor
+
         guard let allowances = user?.allowances else {
             return
         }
@@ -42,7 +43,7 @@ class AllowanceManagementViewController: BaseFormViewController {
                     self.setIntInput(cell: cell, row: row)
                 })
                 
-                $0 <<< IntRow("training") {
+                $0 <<< IntRow("training" + String(year)) {
                     $0.value = training
                     $0.tag = LocalizedKeys.RemainingDays.training.localized() + String(year)
                     $0.title = LocalizedKeys.RemainingDays.training.localized()
@@ -63,8 +64,8 @@ class AllowanceManagementViewController: BaseFormViewController {
         })
     }
     
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         updateUser()
         guard let user = user else {
             return
@@ -83,8 +84,8 @@ class AllowanceManagementViewController: BaseFormViewController {
         
         for allowance in userAllowances {
             guard let year = allowance.year,
-                let newAnnual = formValues["annual" + String(year)] as? Int,
-                let newTraining = formValues["training" + String(year)] as? Int else {
+                let newAnnual = formValues[LocalizedKeys.UserManagement.annual.localized() + String(year)] as? Int,
+                let newTraining = formValues[LocalizedKeys.RemainingDays.training.localized() + String(year)] as? Int else {
                 return
             }
             

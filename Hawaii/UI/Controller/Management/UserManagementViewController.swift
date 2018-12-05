@@ -37,7 +37,7 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundColor = UIColor.black
+        self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
         
         form +++ Section(LocalizedKeys.UserManagement.basicSection.localized())
@@ -204,8 +204,6 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
             })
             <<< ButtonRow("allowance") {
                 $0.title = LocalizedKeys.UserManagement.allowance.localized()
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
                 $0.presentationMode = PresentationMode.segueName(segueName: "manageAllowanceSegue", onDismiss: nil)
             }.cellSetup({ cell, _ in
                 cell.backgroundColor = UIColor.primaryColor
