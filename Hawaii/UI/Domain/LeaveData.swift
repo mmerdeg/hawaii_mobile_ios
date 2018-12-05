@@ -1,4 +1,3 @@
-
 //
 //  TrainingData.swift
 //  Hawaii

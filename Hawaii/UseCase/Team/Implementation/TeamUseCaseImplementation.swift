@@ -11,6 +11,8 @@ import Foundation
 protocol TeamUseCase {
     func get(completion: @escaping (GenericResponse<[Team]>?) -> Void)
     
+    func getWithExpandableData(completion: @escaping (GenericResponse<[Team]>?, [GenericExpandableData<Team>?]) -> Void)
+    
     func add(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
     
     func update(team: Team, completion: @escaping (GenericResponse<Team>) -> Void)
@@ -29,6 +31,16 @@ class TeamUseCaseImplementation: TeamUseCase {
     func get(completion: @escaping (GenericResponse<[Team]>?) -> Void) {
         teamRepository?.get(completion: { response in
             completion(response)
+        })
+    }
+    
+    func getWithExpandableData(completion: @escaping (GenericResponse<[Team]>?, [GenericExpandableData<Team>?]) -> Void) {
+        teamRepository?.get(completion: { response in
+            var expandableTeams: [GenericExpandableData<Team>?] = []
+            response?.item?.forEach({ (team: Team) in
+                expandableTeams.append(GenericExpandableData<Team>(item: team, isExpanded: false))
+            })
+            completion(response, expandableTeams)
         })
     }
     

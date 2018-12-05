@@ -2,7 +2,7 @@ import Foundation
 import CodableAlamofire
 import Alamofire
 
-class TableDataProviderRepositoryImplementation: SessionManager, TableDataProviderRepository {
+class DataProviderRepositoryImplementation: SessionManager, TableDataProviderRepository {
     
     let leaveTypesUrl = ApiConstants.baseUrl  + "/leavetypes"
     

@@ -10,7 +10,7 @@ struct UserDb: Codable {
     let email: String?
     let userRole: String?
     let jobTitle: String?
-    let deleted: Bool?
+    let userStatusType: StatusType?
     let yearsOfService: Int?
 }
 
@@ -18,7 +18,7 @@ extension UserDb {
     
     init(userDb: UserDb? = nil, id: Int? = nil, teamId: Int? = nil, teamName: String? = nil, leaveProfileId: Int? = nil,
          fullName: String? = nil, email: String? = nil, userRole: String? = nil,
-         jobTitle: String? = nil, deleted: Bool? = nil, yearsOfService: Int? = nil) {
+         jobTitle: String? = nil, userStatusType: StatusType? = nil, yearsOfService: Int? = nil) {
         self.id = id ?? userDb?.id
         self.teamId = teamId ?? userDb?.teamId
         self.teamName = teamName ?? userDb?.teamName
@@ -27,7 +27,7 @@ extension UserDb {
         self.email = email ?? userDb?.email
         self.userRole = userRole ?? userDb?.userRole
         self.jobTitle = jobTitle ?? userDb?.jobTitle
-        self.deleted = deleted ?? userDb?.deleted
+        self.userStatusType = userStatusType ?? userDb?.userStatusType
         self.yearsOfService = yearsOfService ?? userDb?.yearsOfService
     }
     
@@ -40,7 +40,7 @@ extension UserDb {
             let email = parameters["email"] as? String,
             let userRole = parameters["user_role"] as? String,
             let jobTitle = parameters["job_title"] as? String,
-            let deleted = parameters["deleted"] as? Bool,
+            let userStatusType = parameters["user_status_type"] as? String,
             let yearsOfService = parameters["years_of_service"] as? Int else {
                 return nil
         }
@@ -52,13 +52,13 @@ extension UserDb {
         self.email = email
         self.userRole = userRole
         self.jobTitle = jobTitle
-        self.deleted = deleted
+        self.userStatusType = StatusType(rawValue: userStatusType)
         self.yearsOfService = yearsOfService
     }
     
     func toUser() -> User {
         return User(id: self.id, teamId: self.teamId, teamName: self.teamName, leaveProfileId: self.leaveProfileId,
                     fullName: self.fullName, email: self.email, userRole: self.userRole,
-                    jobTitle: self.jobTitle, deleted: self.deleted, yearsOfService: self.yearsOfService, allowances: [])
+                    jobTitle: self.jobTitle, userStatusType: self.userStatusType, yearsOfService: self.yearsOfService, allowances: [])
     }
 }

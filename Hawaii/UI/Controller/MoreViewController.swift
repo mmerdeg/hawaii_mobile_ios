@@ -167,7 +167,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 if indexPath.row == 1 {
                     self.performSegue(withIdentifier: profileManagementSegue, sender: nil)
-                } else {
+                } else if indexPath.row == 2 {
                     signOut()
                 }
             }

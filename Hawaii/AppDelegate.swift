@@ -182,7 +182,7 @@ extension SwinjectStoryboard {
             let requestRepository = RequestRepositoryImplementation()
             let publicHolidayRepository = PublicHolidayRepositoryImplementation()
             let userRepository = UserRepositoryImplementation()
-            let tableDataProviderRepository = TableDataProviderRepositoryImplementation()
+            let tableDataProviderRepository = DataProviderRepositoryImplementation()
             let teamRepository = TeamRepositoryImplementation()
             let leaveProfileRepository = LeaveProfileRepositoryImplementation()
             
@@ -216,7 +216,7 @@ extension SwinjectStoryboard {
                 userRepository
             }
             
-            defaultContainer.register(TableDataProviderRepositoryImplementation.self, name: String(describing: TableDataProviderRepository.self)) { _ in
+            defaultContainer.register(DataProviderRepositoryImplementation.self, name: String(describing: TableDataProviderRepository.self)) { _ in
                 tableDataProviderRepository
             }
             

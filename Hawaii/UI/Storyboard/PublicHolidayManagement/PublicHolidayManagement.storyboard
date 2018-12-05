@@ -24,9 +24,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlM-O4-Pls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3953" y="1381"/>
+            <point key="canvasLocation" x="4892" y="1380.3598200899551"/>
         </scene>
-        <!--Holiday Menagement-->
+        <!--Holiday Management-->
         <scene sceneID="Kvu-FA-qQk">
             <objects>
                 <viewController id="Bbc-K3-Fmk" customClass="PublicHolidaysManagementViewController" customModule="Hawaii" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pfn-Wr-PuP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Holiday Menagement" id="uU9-Iu-WHX"/>
+                    <navigationItem key="navigationItem" title="Holiday Management" id="uU9-Iu-WHX"/>
                     <connections>
                         <outlet property="tableView" destination="LeE-YJ-0Qz" id="rhL-cw-O36"/>
                         <segue destination="RS2-SC-FmQ" kind="show" identifier="managePublicHoliday" id="EB1-KP-4iF"/>
@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odj-HZ-RH8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3038" y="1382"/>
+            <point key="canvasLocation" x="3976.8000000000002" y="1381.2593703148427"/>
         </scene>
     </scenes>
 </document>

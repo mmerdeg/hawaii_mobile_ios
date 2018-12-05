@@ -199,7 +199,6 @@ class CustomFooter: UIView {
         self.pendingBarWidth.constant = pendindgBarLen
         self.sicknessBarWidth.constant = sickBarLen
         
-        
         totalDays = (trainingData.trainingTotal ?? 0.0) / workHours
         self.totalDayNoLabelTraining.text = (floor(totalDays) == totalDays ?
             String(describing: Int(totalDays)) : String(format: ViewConstants.halfDayFormat, totalDays)) + totalDaysLabelExtension

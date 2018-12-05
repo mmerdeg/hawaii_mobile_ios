@@ -53,7 +53,7 @@ class UserDaoImplementation: UserDao {
     }
     
     func create(entity: User, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     let values: [Any] = [ entity.id ?? -1,
@@ -64,7 +64,7 @@ class UserDaoImplementation: UserDao {
                                           entity.email ?? "",
                                           entity.userRole ?? "",
                                           entity.jobTitle ?? "",
-                                          entity.deleted ?? false,
+                                          entity.userStatusType?.rawValue ?? "",
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
                     DispatchQueue.main.async {
@@ -83,7 +83,7 @@ class UserDaoImplementation: UserDao {
     }
     
     func create(entity: [PushTokenDTO], userId: Int, completion: @escaping (Int) -> Void) {
-        self.dispatchQueue?.sync {
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
                 do {
                     for pushToken in entity {
@@ -121,9 +121,6 @@ class UserDaoImplementation: UserDao {
                     }
                     return
                 }
-                if !resultSet.hasAnotherRow() {
-                    completion(nil)
-                }
                 while resultSet.next() {
                     guard let result = resultSet.resultDictionary as? [String: Any],
                           let userDb = UserDb(parameters: result) else {
@@ -140,11 +137,12 @@ class UserDaoImplementation: UserDao {
     }
     
     func emptyUsers(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.sync {
+        dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
+                print("Obrisao usere")
+                let isSuccessfull = database.executeStatements(self.deleteUsersQuery ?? "")
                 DispatchQueue.main.async {
-                    print("Obrisao usere")
-                    completion(database.executeStatements(self.deleteUsersQuery ?? ""))
+                    completion(isSuccessfull)
                 }
             }
         }
@@ -177,7 +175,7 @@ class UserDaoImplementation: UserDao {
     
     func read(userId: Int, completion: @escaping ([PushTokenDTO]?) -> Void) {
         guard let readTokensQuery = readTokensQuery else {
-            completion(nil)
+                completion(nil)
             return
         }
         dispatchQueue?.async {
@@ -188,9 +186,6 @@ class UserDaoImplementation: UserDao {
                         completion(nil)
                     }
                     return
-                }
-                if !resultSet.hasAnotherRow() {
-                    completion(nil)
                 }
                 var tokens: [PushTokenDTO] = []
                 while resultSet.next() {
@@ -226,7 +221,9 @@ class UserDaoImplementation: UserDao {
                     return
                 }
                 if !resultSet.hasAnotherRow() {
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                 }
                 
                 while resultSet.next() {
@@ -269,11 +266,15 @@ class UserDaoImplementation: UserDao {
     }
     
     func deleteTokens(completion: @escaping (Bool) -> Void) {
-        dispatchQueue?.sync {
+        guard let deleteTokensQuery = deleteTokensQuery else {
+            completion(false)
+            return
+        }
+        self.dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
+                let isSuccessfull = database.executeStatements(deleteTokensQuery)
                 DispatchQueue.main.async {
-                    print("Obrisao tokene")
-                    completion(database.executeStatements(self.deleteTokensQuery ?? ""))
+                    completion(isSuccessfull)
                 }
             }
         }

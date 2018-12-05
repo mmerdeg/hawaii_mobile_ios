@@ -98,6 +98,7 @@ class HistoryViewController: BaseViewController {
         tableView.backgroundView = EmptyView(frame: tableView.frame,
                                              titleText: LocalizedKeys.History.emptyTitle.localized(),
                                              backgroundImage: #imageLiteral(resourceName: "empty"))
+        tableView.backgroundView?.isHidden = !filteredRequests.isEmpty
 
     }
     

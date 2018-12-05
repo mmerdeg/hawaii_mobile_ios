@@ -47,6 +47,7 @@ class ApproveViewController: BaseViewController {
         tableView.backgroundView = EmptyView(frame: tableView.frame,
                                              titleText: LocalizedKeys.Approval.emptyTitle.localized(),
                                              backgroundImage: #imageLiteral(resourceName: "empty"))
+        tableView.backgroundView?.isHidden = !requests.isEmpty
         if userDetailsUseCase?.doesApproveScreenNeedsRefresh() ?? true {
             fillCalendar()
             userDetailsUseCase?.setRefreshApproveScreen(false)

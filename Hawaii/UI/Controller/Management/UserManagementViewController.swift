@@ -89,23 +89,10 @@ class UserManagementViewController: BaseFormViewController {
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
             })
-            <<< SwitchRow("deleted") { row in
-                row.value = user?.deleted
-                row.title = (user?.deleted ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
-                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
-            }.onChange { row in
-                row.title = (row.value ?? false) ? LocalizedKeys.TeamManagement.deletedEnabled.localized() :
-                    LocalizedKeys.TeamManagement.deletedDisabled.localized()
-                row.updateCell()
-            }.cellSetup { cell, _ in
-                self.setSwitchInput(cell: cell)
-            }.cellUpdate { cell, _ in
-                cell.textLabel?.textColor = UIColor.primaryTextColor
-            }
             
             <<< SwitchRow("active") { row in
-                row.value = user?.active
-                row.title = (user?.active ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
+                row.value = user?.userStatusType == StatusType.active
+                row.title = user?.userStatusType == StatusType.active ? LocalizedKeys.UserManagement.activeEnabled.localized() :
                     LocalizedKeys.UserManagement.activeDisabled.localized()
             }.onChange { row in
                 row.title = (row.value ?? false) ? LocalizedKeys.UserManagement.activeEnabled.localized() :
