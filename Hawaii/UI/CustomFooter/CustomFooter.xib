@@ -13,11 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomFooter" customModule="Hawaii" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="311"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="316"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePC-WZ-8g6">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="16" width="375" height="150"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGi-Mq-kR1">
                             <rect key="frame" x="16" y="0.0" width="343" height="150"/>
@@ -227,15 +227,15 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="top" secondItem="ePC-WZ-8g6" secondAttribute="top" id="1W1-v3-dBq"/>
-                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="leading" secondItem="ePC-WZ-8g6" secondAttribute="leading" constant="16" id="FSy-X0-3sw"/>
+                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="leading" secondItem="ePC-WZ-8g6" secondAttribute="leading" constant="16" id="Ack-I6-yru"/>
+                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="centerY" secondItem="ePC-WZ-8g6" secondAttribute="centerY" id="Ly7-Pn-tJa"/>
+                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="centerX" secondItem="ePC-WZ-8g6" secondAttribute="centerX" id="gc0-ih-G2q"/>
                         <constraint firstAttribute="height" constant="150" id="ipL-li-ILM"/>
-                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="centerX" secondItem="ePC-WZ-8g6" secondAttribute="centerX" id="qh8-F1-bTp"/>
-                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="centerY" secondItem="ePC-WZ-8g6" secondAttribute="centerY" id="wyW-ed-5rS"/>
+                        <constraint firstItem="UGi-Mq-kR1" firstAttribute="top" secondItem="ePC-WZ-8g6" secondAttribute="top" id="qMv-Ar-fUN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zny-GR-25W">
-                    <rect key="frame" x="0.0" y="150" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="166" width="375" height="150"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dl-Hy-YHt">
                             <rect key="frame" x="16" y="0.0" width="343" height="150"/>
@@ -446,22 +446,22 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="top" secondItem="Zny-GR-25W" secondAttribute="top" id="5f4-xd-gwB"/>
-                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="leading" secondItem="Zny-GR-25W" secondAttribute="leading" constant="16" id="R5M-FH-20p"/>
-                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="centerX" secondItem="Zny-GR-25W" secondAttribute="centerX" id="mwX-dr-pvt"/>
-                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="centerY" secondItem="Zny-GR-25W" secondAttribute="centerY" id="qX3-7s-dGw"/>
+                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="centerX" secondItem="Zny-GR-25W" secondAttribute="centerX" id="Jmq-5U-qoQ"/>
+                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="top" secondItem="Zny-GR-25W" secondAttribute="top" id="TTf-bO-O1n"/>
+                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="centerY" secondItem="Zny-GR-25W" secondAttribute="centerY" id="ccX-8D-8yf"/>
+                        <constraint firstItem="4dl-Hy-YHt" firstAttribute="leading" secondItem="Zny-GR-25W" secondAttribute="leading" constant="16" id="pgz-mR-qyq"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="0.94876855979999997" blue="0.14785282899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ePC-WZ-8g6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9sr-ZW-2dy"/>
-                <constraint firstItem="Zny-GR-25W" firstAttribute="top" secondItem="ePC-WZ-8g6" secondAttribute="bottom" id="LPr-EF-zkX"/>
-                <constraint firstItem="ePC-WZ-8g6" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LWm-gu-JXC"/>
-                <constraint firstItem="ePC-WZ-8g6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UHf-Fh-R9C"/>
-                <constraint firstItem="Zny-GR-25W" firstAttribute="height" secondItem="ePC-WZ-8g6" secondAttribute="height" id="eYd-TY-bTT"/>
-                <constraint firstItem="Zny-GR-25W" firstAttribute="leading" secondItem="ePC-WZ-8g6" secondAttribute="leading" id="n0n-BQ-ENZ"/>
-                <constraint firstItem="Zny-GR-25W" firstAttribute="centerX" secondItem="ePC-WZ-8g6" secondAttribute="centerX" id="zJm-vh-tVn"/>
+                <constraint firstItem="ePC-WZ-8g6" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="7i9-X8-54v"/>
+                <constraint firstItem="ePC-WZ-8g6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7vf-zB-A1B"/>
+                <constraint firstItem="Zny-GR-25W" firstAttribute="leading" secondItem="ePC-WZ-8g6" secondAttribute="leading" id="DEo-Xg-oAg"/>
+                <constraint firstItem="Zny-GR-25W" firstAttribute="top" secondItem="ePC-WZ-8g6" secondAttribute="bottom" id="KEU-Mc-chW"/>
+                <constraint firstItem="ePC-WZ-8g6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="ZQD-Im-DK5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Zny-GR-25W" secondAttribute="bottom" id="ZjA-Hc-Kee"/>
+                <constraint firstItem="Zny-GR-25W" firstAttribute="centerX" secondItem="ePC-WZ-8g6" secondAttribute="centerX" id="c3V-sx-d3q"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -501,7 +501,7 @@
                 <outlet property="totalDayNoLabel" destination="19n-fA-9bF" id="h3a-Kp-0A7"/>
                 <outlet property="totalDayNoLabelTraining" destination="gGf-rH-aSg" id="rwo-5n-tCK"/>
             </connections>
-            <point key="canvasLocation" x="138.40000000000001" y="-5.8470764617691158"/>
+            <point key="canvasLocation" x="138.40000000000001" y="-3.5982008995502253"/>
         </view>
     </objects>
 </document>

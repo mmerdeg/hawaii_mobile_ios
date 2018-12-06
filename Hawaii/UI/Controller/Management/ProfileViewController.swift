@@ -82,7 +82,7 @@ class ProfileViewController: BaseFormViewController {
                                               title: LocalizedKeys.General.delete.localized()) { _, _, handler in
                                                 self.deleteFirebaseToken(indexPath: indexPath, completion: { isSuccess in
                                                     handler(isSuccess)
-                                                })
+                                                })z
         }
         deleteAction.backgroundColor = .red
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -91,7 +91,7 @@ class ProfileViewController: BaseFormViewController {
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         guard let token = pushTokens?[indexPath.row].pushToken,
-              token == userDetailsUseCase?.getFirebaseToken() else {
+              token != userDetailsUseCase?.getFirebaseToken() else {
             return UITableViewCellEditingStyle.none
         }
         return UITableViewCellEditingStyle.delete
