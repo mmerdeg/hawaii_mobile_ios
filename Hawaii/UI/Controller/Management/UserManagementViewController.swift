@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class UserManagementViewController: BaseFormViewController {
+class UserManagementViewController: BaseFormViewController, UpdateAllowanceProtocol {
     
     var user: User?
     
@@ -37,7 +37,7 @@ class UserManagementViewController: BaseFormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.backgroundColor = UIColor.black
+        self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
         
         form +++ Section(LocalizedKeys.UserManagement.basicSection.localized())
@@ -195,7 +195,16 @@ class UserManagementViewController: BaseFormViewController {
                         }
                     })
             })
-        
+            <<< ButtonRow("allowance") {
+                $0.title = LocalizedKeys.UserManagement.allowance.localized()
+                $0.presentationMode = PresentationMode.segueName(segueName: "manageAllowanceSegue", onDismiss: nil)
+            }.cellSetup({ cell, _ in
+                cell.backgroundColor = UIColor.primaryColor
+                cell.textLabel?.textColor = UIColor.primaryTextColor
+            }).cellUpdate({ cell, _ in
+                cell.backgroundColor = UIColor.primaryColor
+                cell.textLabel?.textColor = UIColor.primaryTextColor
+            })
     }
     
     @objc func doneEditing() {
@@ -232,6 +241,20 @@ class UserManagementViewController: BaseFormViewController {
                     self.popViewController()
                 })
             }
+        }
+    }
+    
+    func didUpdateAllowance(user: User) {
+        self.user = user
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "manageAllowanceSegue" {
+            guard let controller = segue.destination as? AllowanceManagementViewController else {
+                return
+            }
+            controller.user = user
+            controller.updateAllowanceDelegate = self
         }
     }
     

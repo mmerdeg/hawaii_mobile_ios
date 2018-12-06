@@ -156,7 +156,9 @@ userManagement.companySection = "Company info";
 userManagement.additionalSection = "Additional info";
 userManagement.activeEnabled = "Active";
 userManagement.activeDisabled = "Not active";
-
+userManagement.allowance = "Allowance";
+userManagement.allowancePlaceholder = "Enter number of days";
+userManagement.annual = "Annual";
 
 token.deviceName = "Device name";
 token.notificationToken = "Device notification token";
