@@ -44,6 +44,7 @@ class UsersManagementViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: String(describing: UserPreviewTableViewCell.self), bundle: nil),

@@ -105,9 +105,9 @@ class MoreViewController: BaseViewController {
 extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section != adminSection {
-            return section == 0 ? 1 : 3
+            return section == 0 ? 1 : 2
         }
-        return isAdmin() ? 4 : 3
+        return isAdmin() ? 4 : 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,8 +127,6 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             switch indexPath.row {
             case 0:
-                return getThemeCell(indexPath: indexPath) ?? UITableViewCell()
-            case 1:
                 return getDefaultCell(text: LocalizedKeys.More.manageDevices.localized())
             default:
                 return getDefaultCell(text: LocalizedKeys.More.signOut.localized())
@@ -149,7 +147,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 2 {
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
                 self.performSegue(withIdentifier: profileManagementSegue, sender: nil)
             } else {
                 signOut()

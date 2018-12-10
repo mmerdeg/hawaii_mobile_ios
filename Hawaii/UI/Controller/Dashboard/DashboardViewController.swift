@@ -232,6 +232,7 @@ class DashboardViewController: BaseViewController {
                     }
                     guard let startYear = yearsResponse.item?.first,
                           let endYear = yearsResponse.item?.last else {
+                            self.stopActivityIndicatorSpinner()
                             return
                     }
                     self.startDate = self.calendarUtils.getStartDate(startYear: startYear)

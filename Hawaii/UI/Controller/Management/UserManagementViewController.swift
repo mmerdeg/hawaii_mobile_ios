@@ -37,6 +37,7 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.backgroundColor = UIColor.darkPrimaryColor
         self.navigationItem.rightBarButtonItem = doneBarItem
         
