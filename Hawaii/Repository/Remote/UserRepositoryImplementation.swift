@@ -18,10 +18,10 @@ class UserRepositoryImplementation: SessionManager, UserRepository {
         }
         let pageKey = "page",
             sizeKey = "size",
-            activeKey = "active",
+            userStatusType = "userStatusType",
             searchQueryKey = "searchQuery"
         
-        let params = [pageKey: page, sizeKey: numberOfItems, activeKey: true, searchQueryKey: parameter] as [String: Any]
+        let params = [pageKey: page, sizeKey: numberOfItems, userStatusType: StatusType.active.rawValue, searchQueryKey: parameter] as [String: Any]
         
         DispatchQueue.global(qos: .background).async {
             self.session.request(url, method: HTTPMethod.get, parameters: params).validate()
@@ -51,9 +51,9 @@ class UserRepositoryImplementation: SessionManager, UserRepository {
         guard let url = URL(string: getUserUrl) else {
             return
         }
-        let activeKey = "active"
+        let userStatusType = "userStatusType"
         
-        let params = [activeKey: true] as [String: Any]
+        let params = [userStatusType: StatusType.active.rawValue] as [String: Any]
         genericCodableRequest(value: [User].self, url, parameters: params) { response in
             completion(response)
         }

@@ -111,10 +111,10 @@ more.theme = "Light theme";
 approval.emptyTitle = "No more requests to approve";
 approval.emptyDescription = "You are doing a good job, keep it up";
 
-history.emptyTitle = "No more requests to approve";
+history.emptyTitle = "No requests here!";
 history.emptyDescription = "You are doing a good job, keep it up";
 
-team.emptyTitle = "No more requests to approve";
+team.emptyTitle = "No employees here!";
 team.emptyDescription = "You are doing a good job, keep it up";
 
 
