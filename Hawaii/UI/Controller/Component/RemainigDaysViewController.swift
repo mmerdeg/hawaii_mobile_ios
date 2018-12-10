@@ -12,6 +12,8 @@ class RemainigDaysViewController: BaseViewController {
     
     @IBOutlet weak var pendingDayNoLabel: UILabel!
     
+    @IBOutlet weak var pendingDaysLabel: UILabel!
+    
     @IBOutlet weak var takenDaysLabel: UILabel!
     
     @IBOutlet weak var progressBar: UIView!
@@ -76,6 +78,7 @@ class RemainigDaysViewController: BaseViewController {
         remainingLabel.text = LocalizedKeys.RemainingDays.remaining.localized()
         takenDaysLabel.text = LocalizedKeys.RemainingDays.days.localized()
         remainingDaysLabel.text = LocalizedKeys.RemainingDays.days.localized()
+        pendingDaysLabel.textColor = UIColor.primaryTextColor
     }
 
     func getData() {

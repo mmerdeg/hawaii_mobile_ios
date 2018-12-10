@@ -17,8 +17,6 @@
 		30092B28219E9F3F00244F09 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B26219E9F3E00244F09 /* main.swift */; };
 		30092B2D219E9F8E00244F09 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B2C219E9F8E00244F09 /* TimerApplication.swift */; };
 		30092B2E219E9F8E00244F09 /* TimerApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B2C219E9F8E00244F09 /* TimerApplication.swift */; };
-		30092B37219EBAEA00244F09 /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B36219EBAEA00244F09 /* ManagementViewController.swift */; };
-		30092B38219EBAEA00244F09 /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B36219EBAEA00244F09 /* ManagementViewController.swift */; };
 		30092B3A219EC22100244F09 /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B39219EC22100244F09 /* UserManagementViewController.swift */; };
 		30092B3B219EC22100244F09 /* UserManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B39219EC22100244F09 /* UserManagementViewController.swift */; };
 		30092B3D219EC23500244F09 /* PublicHolidayManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B3C219EC23500244F09 /* PublicHolidayManagementViewController.swift */; };
@@ -593,7 +591,6 @@
 		30092B21219DACE300244F09 /* JwtExtenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtExtenstion.swift; sourceTree = "<group>"; };
 		30092B26219E9F3E00244F09 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		30092B2C219E9F8E00244F09 /* TimerApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApplication.swift; sourceTree = "<group>"; };
-		30092B36219EBAEA00244F09 /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
 		30092B39219EC22100244F09 /* UserManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementViewController.swift; sourceTree = "<group>"; };
 		30092B3C219EC23500244F09 /* PublicHolidayManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicHolidayManagementViewController.swift; sourceTree = "<group>"; };
 		30092B3F219EC2D300244F09 /* UsersManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersManagementViewController.swift; sourceTree = "<group>"; };
@@ -918,7 +915,6 @@
 			isa = PBXGroup;
 			children = (
 				30092B4C219EF54B00244F09 /* TeamManagementViewController.swift */,
-				30092B36219EBAEA00244F09 /* ManagementViewController.swift */,
 				30092B39219EC22100244F09 /* UserManagementViewController.swift */,
 				30092B3C219EC23500244F09 /* PublicHolidayManagementViewController.swift */,
 				30092B3F219EC2D300244F09 /* UsersManagementViewController.swift */,
@@ -2871,7 +2867,6 @@
 				30092B60219EFABB00244F09 /* TeamUseCaseImplementation.swift in Sources */,
 				3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				30FD36CB214A5E530047038C /* SelectRequestParamsViewController.swift in Sources */,
-				30092B38219EBAEA00244F09 /* ManagementViewController.swift in Sources */,
 				30FD36CC214A5E530047038C /* CustomDatePickerTableViewController.swift in Sources */,
 				3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */,
@@ -3023,7 +3018,6 @@
 				30092B5F219EFABB00244F09 /* TeamUseCaseImplementation.swift in Sources */,
 				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
 				3E42592920E25B7500F22BBD /* RequestRepositoryImplementation.swift in Sources */,
-				30092B37219EBAEA00244F09 /* ManagementViewController.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,

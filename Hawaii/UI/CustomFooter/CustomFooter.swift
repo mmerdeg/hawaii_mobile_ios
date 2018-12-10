@@ -35,6 +35,8 @@ class CustomFooter: UIView {
     
     @IBOutlet weak var remainingDaysLabel: UILabel!
     
+    @IBOutlet weak var pendingDaysLabel: UILabel!
+    
     @IBOutlet weak var remainingDayNoLabel: UILabel!
     
     @IBOutlet weak var totalDayNoLabel: UILabel!
