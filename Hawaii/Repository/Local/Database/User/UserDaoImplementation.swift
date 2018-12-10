@@ -68,7 +68,7 @@ class UserDaoImplementation: UserDao {
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
                     DispatchQueue.main.async {
-                        completion(Int(database.lastInsertRowId))
+                        completion(entity.id ?? -1)
                     }
                 } catch {
                     print(error.localizedDescription)

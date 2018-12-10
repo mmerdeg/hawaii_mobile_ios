@@ -37,7 +37,7 @@ class ProfileViewController: BaseFormViewController {
         self.navigationItem.rightBarButtonItem = doneBarItem
         pushTokens = user?.userPushTokens
         self.tableView.backgroundColor = UIColor.primaryColor
-        deviceSection = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
+        deviceSection = MultivaluedSection(multivaluedOptions: [.Delete],
                                                     header: "Manage Devices",
                                                     footer: "Manage manage devices which can receive push messages") {
                                                         guard let pushTokens = pushTokens else {
@@ -50,9 +50,9 @@ class ProfileViewController: BaseFormViewController {
                                                                 if let token = pushToken.pushToken {
                                                                     if token == userDetailsUseCase?.getFirebaseToken() {
                                                                         $0.title = (pushToken.name ?? "") + " (Current device)"
+                                                                    } else {
+                                                                        $0.title = pushToken.name
                                                                     }
-                                                                } else {
-                                                                    $0.title = pushToken.name
                                                                 }
                                                             }.onCellSelection { _, _ in
                                                                 self.performSegue(withIdentifier: self.showTokenDetailsSegue, sender: pushToken)

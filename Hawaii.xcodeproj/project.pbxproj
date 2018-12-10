@@ -45,6 +45,7 @@
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
+		301B23BD21BE49520097E8B1 /* GenericExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */; };
 		3027D23821AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
 		3027D23921AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
 		3027D23A21AC195600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
@@ -2765,6 +2766,7 @@
 				30FD368D214A5E530047038C /* RoundedView.swift in Sources */,
 				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
 				3027D26A21AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
+				301B23BD21BE49520097E8B1 /* GenericExpandableData.swift in Sources */,
 				305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */,
 				30092B41219EC2D300244F09 /* UsersManagementViewController.swift in Sources */,
 				30092B5D219EF94000244F09 /* TeamsRepositoryProtocol.swift in Sources */,

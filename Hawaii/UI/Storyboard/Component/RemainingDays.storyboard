@@ -216,6 +216,7 @@
                             <constraint firstItem="cRI-UI-WV1" firstAttribute="leading" secondItem="7p9-P7-HcK" secondAttribute="trailing" priority="750" constant="16" id="nN3-N3-kIA"/>
                             <constraint firstItem="xaF-2V-hKV" firstAttribute="trailing" secondItem="5fq-9p-Inb" secondAttribute="trailing" id="od4-ph-2Bz"/>
                             <constraint firstItem="5fq-9p-Inb" firstAttribute="top" secondItem="lHI-R7-pOZ" secondAttribute="bottom" constant="10" id="q9T-53-5YI"/>
+                            <constraint firstItem="2Fl-PM-KLF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MII-IG-THJ" secondAttribute="trailing" constant="4" id="smu-KO-n2L"/>
                             <constraint firstItem="5fq-9p-Inb" firstAttribute="leading" secondItem="lHI-R7-pOZ" secondAttribute="leading" id="vN7-3V-aqt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GCH-G4-6f9"/>
