@@ -37,6 +37,8 @@ class CustomFooter: UIView {
     
     @IBOutlet weak var pendingDaysLabel: UILabel!
     
+    @IBOutlet weak var pendingDaysLabelTraining: UILabel!
+    
     @IBOutlet weak var remainingDayNoLabel: UILabel!
     
     @IBOutlet weak var totalDayNoLabel: UILabel!
@@ -166,6 +168,8 @@ class CustomFooter: UIView {
         remainingLabelTraining.text = LocalizedKeys.RemainingDays.remaining.localized()
         takenDaysLabelTraining.text = LocalizedKeys.RemainingDays.days.localized()
         remainingDaysLabelTraining.text = LocalizedKeys.RemainingDays.days.localized()
+        pendingDaysLabelTraining.textColor = UIColor.primaryTextColor
+        pendingDaysLabel.textColor = UIColor.primaryTextColor
     }
     
     func populateViewData(trainingData: TrainingData, leaveData: LeaveData) {
