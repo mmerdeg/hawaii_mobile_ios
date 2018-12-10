@@ -37,6 +37,8 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     let baseUrl = ApiConstants.baseUrl
     
+    let viewBaseUrl = ViewConstants.baseUrl
+    
     let requestsUrl =  ApiConstants.baseUrl + "/requests"
     
     let applicationTag = "com.hawaii.keys."
@@ -89,7 +91,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
                                                               fromFormat: ViewConstants.dateSourceFormat,
                                                               toFormat: formatter.format)
 
-            requestImage.kf.setImage(with: URL(string: baseUrl + "/" + imageUrl))
+            requestImage.kf.setImage(with: URL(string: viewBaseUrl + "/" + imageUrl))
             requestImage.image = requestImage.image?.withRenderingMode(.alwaysTemplate)
             requestImage.tintColor = UIColor.primaryColor
             requestImage.backgroundColor = color
