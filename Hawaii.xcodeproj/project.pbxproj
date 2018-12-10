@@ -245,8 +245,6 @@
 		30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
 		30B2FD7A21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
 		30B2FD7B21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
-		30B2FD7D21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
-		30B2FD7E21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
 		30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
 		30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
 		30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
@@ -346,6 +344,7 @@
 		30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		30FD36EB214A5E530047038C /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */; };
+		3E008FE621BAAD6F004EAC4F /* GenericExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */; };
 		3E0B2D2321AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
 		3E0B2D2421AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
 		3E0B2D2521AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */; };
@@ -712,7 +711,6 @@
 		30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PublicHolidayManagement.storyboard; sourceTree = "<group>"; };
 		30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenViewController.swift; sourceTree = "<group>"; };
 		30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseImplementation.swift; sourceTree = "<group>"; };
-		30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
 		30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
 		30B2FD9021B553890054EAB6 /* CustomFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFooter.xib; sourceTree = "<group>"; };
 		30B2FD9421B666A60054EAB6 /* LeaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveData.swift; sourceTree = "<group>"; };
@@ -2848,6 +2846,7 @@
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
 				3E1E17D7218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
+				3E008FE621BAAD6F004EAC4F /* GenericExpandableData.swift in Sources */,
 				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCaseImplementation.swift in Sources */,
 				306F1C8721A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
