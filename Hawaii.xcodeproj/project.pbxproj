@@ -45,6 +45,7 @@
 		30139327215CAACB00F65B7F /* RemainingDays.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30139325215CAACB00F65B7F /* RemainingDays.storyboard */; };
 		3013932C215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
 		3013932D215CBE8F00F65B7F /* NewRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3013932B215CBE8F00F65B7F /* NewRequest.storyboard */; };
+		301B23BD21BE49520097E8B1 /* GenericExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */; };
 		3027D23821AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
 		3027D23921AC161600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
 		3027D23A21AC195600094D5C /* PushTokenDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027D23721AC161600094D5C /* PushTokenDb.swift */; };
@@ -402,10 +403,10 @@
 		3E42591C20E2454600F22BBD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42591B20E2454600F22BBD /* Request.swift */; };
 		3E42592220E259C800F22BBD /* RequestUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592120E259C800F22BBD /* RequestUseCaseImplementation.swift */; };
 		3E42592720E25B5A00F22BBD /* RequestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592620E25B5A00F22BBD /* RequestRepository.swift */; };
-		3E42592920E25B7500F22BBD /* RequestRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592820E25B7500F22BBD /* RequestRepositoryImplementation.swift */; };
 		3E42592D20E26A1900F22BBD /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592C20E26A1900F22BBD /* UIColorExtension.swift */; };
 		3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42F4BC20CE7946002661AF /* DashboardViewController.swift */; };
 		3E4A3B0220ECB77E00906BA8 /* RemainigDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A3B0120ECB77E00906BA8 /* RemainigDaysViewController.swift */; };
+		3E5090C721BE8EA100DDCED3 /* RequestRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42592820E25B7500F22BBD /* RequestRepositoryImplementation.swift */; };
 		3E5C2AD92109F63B00706E82 /* RequestUpdateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C2AD82109F63B00706E82 /* RequestUpdateProtocol.swift */; };
 		3E60E75B21A8299700EFE824 /* MessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */; };
 		3E60E75C21A8299700EFE824 /* MessagingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E60E75A21A8299700EFE824 /* MessagingDelegate.swift */; };
@@ -417,8 +418,6 @@
 		3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
 		3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
 		3E6EBC5221904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
-		3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
-		3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
@@ -784,7 +783,6 @@
 		3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
 		3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateFormatter.swift; sourceTree = "<group>"; };
 		3E6EBC5021904E100043EDBD /* CalendarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
-		3E6EBC532190730E0043EDBD /* RefreshUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUtils.swift; sourceTree = "<group>"; };
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
@@ -1390,9 +1388,9 @@
 				309B6CFE216605710046EFE9 /* createUser.sql */,
 				3027D23C21AC1B4700094D5C /* readToken.sql */,
 				3027D23F21AC1C6900094D5C /* createToken.sql */,
+				30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */,
 				3027D24521AC1D6700094D5C /* deleteTokens.sql */,
 				30B2FD5121AEA9EF0054EAB6 /* readTokens.sql */,
-				30B2FD5A21B1130B0054EAB6 /* deleteToken.sql */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1577,7 +1575,6 @@
 				3E72645020EA1D0600DC7240 /* AlertPresenter.swift */,
 				302EE17B21353539001355E9 /* ProgressHud.swift */,
 				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
-				3E6EBC532190730E0043EDBD /* RefreshUtils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2770,6 +2767,7 @@
 				30FD368D214A5E530047038C /* RoundedView.swift in Sources */,
 				3042CA8721536EA3002446FE /* Pagable.swift in Sources */,
 				3027D26A21AD351400094D5C /* LeaveProfileTableViewCell.swift in Sources */,
+				301B23BD21BE49520097E8B1 /* GenericExpandableData.swift in Sources */,
 				305A01B0215908EE0008B4EA /* InputTableViewCell.swift in Sources */,
 				30092B41219EC2D300244F09 /* UsersManagementViewController.swift in Sources */,
 				30092B5D219EF94000244F09 /* TeamsRepositoryProtocol.swift in Sources */,
@@ -2881,7 +2879,6 @@
 				3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
 				309A536B21B7C30900DA3FF1 /* UIViewExtension.swift in Sources */,
-				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 				302A589B21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,
 				3027D25A21AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,
@@ -3013,6 +3010,7 @@
 				3E42F4BD20CE7946002661AF /* DashboardViewController.swift in Sources */,
 				3E3550FC21216F4300B43B57 /* SearchRequestsViewController.swift in Sources */,
 				3E2D45AF21621C2C002A512C /* DatabaseInitializer.swift in Sources */,
+				3E5090C721BE8EA100DDCED3 /* RequestRepositoryImplementation.swift in Sources */,
 				3E7C98D221A3034500AF7A10 /* TokenUtils.swift in Sources */,
 				3027D25C21AD31F500094D5C /* SetExtension.swift in Sources */,
 				30741334213E6DD100F05427 /* UserPreviewTableViewCell.swift in Sources */,
@@ -3027,14 +3025,12 @@
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				30092B5F219EFABB00244F09 /* TeamUseCaseImplementation.swift in Sources */,
 				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
-				3E42592920E25B7500F22BBD /* RequestRepositoryImplementation.swift in Sources */,
 				30092B37219EBAEA00244F09 /* ManagementViewController.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
 				309A536A21B7C2F900DA3FF1 /* UIViewExtension.swift in Sources */,
-				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 				302A589A21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,
 				3027D25921AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,

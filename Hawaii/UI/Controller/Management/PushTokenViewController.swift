@@ -22,7 +22,10 @@ class PushTokenViewController: UIViewController {
     @IBOutlet weak var createdDate: UILabel!
     @IBOutlet weak var createdDateValue: UILabel!
     
+    @IBOutlet weak var detailView: UIView!
+    
     @IBOutlet weak var platformImageView: RoundedImageView!
+    
     var pushToken: PushTokenDTO?
 
     override func viewDidLoad() {
@@ -30,7 +33,7 @@ class PushTokenViewController: UIViewController {
         let androidImage = #imageLiteral(resourceName: "android").withRenderingMode(.alwaysTemplate)
         let iOSImage = #imageLiteral(resourceName: "apple").withRenderingMode(.alwaysTemplate)
         platformImageView.image = pushToken?.platform == Platform.iOS ? iOSImage : androidImage
-        platformImageView.tintColor = UIColor.primaryTextColor
+        platformImageView.tintColor = UIColor.primaryTextColor.withAlphaComponent(0.2)
         deviceName.text = LocalizedKeys.Token.deviceName.localized()
         platform.text = LocalizedKeys.Token.platform.localized()
         createdDate.text = LocalizedKeys.Token.createdDate.localized()
@@ -41,6 +44,7 @@ class PushTokenViewController: UIViewController {
         createdDateValue.text = pushToken?.platform?.rawValue
         tokenValue.text = String(describing: pushToken?.pushTokenId ?? -1)
         self.view.backgroundColor = UIColor.primaryColor
+        detailView.layer.cornerRadius = 5
     }
 
 }

@@ -44,6 +44,7 @@ class ProfileTableViewCell: UITableViewCell {
         profileImage.layer.borderColor = UIColor.accentColor.cgColor
         profileImage.layer.cornerRadius = 120 / 2
         profileImage.clipsToBounds = true
+        self.backgroundColor = UIColor.primaryColor
 
     }
     

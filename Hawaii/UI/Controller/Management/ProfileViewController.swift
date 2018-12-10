@@ -36,8 +36,8 @@ class ProfileViewController: BaseFormViewController {
         self.navigationItem.title = LocalizedKeys.More.tokenScreenTitle.localized()
         self.navigationItem.rightBarButtonItem = doneBarItem
         pushTokens = user?.userPushTokens
-        
-        deviceSection = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
+        self.tableView.backgroundColor = UIColor.primaryColor
+        deviceSection = MultivaluedSection(multivaluedOptions: [.Delete],
                                                     header: "Manage Devices",
                                                     footer: "Manage manage devices which can receive push messages") {
                                                         guard let pushTokens = pushTokens else {
@@ -47,11 +47,24 @@ class ProfileViewController: BaseFormViewController {
                                                             $0 <<< LabelRow("tag_\(String(describing: pushToken.pushTokenId))") {
                                                                 $0.value = pushToken.platform?.description
                                                                 $0.tag = String(describing: pushToken.pushTokenId)
-                                                                $0.title = pushToken.name
-                                                                
+                                                                if let token = pushToken.pushToken {
+                                                                    if token == userDetailsUseCase?.getFirebaseToken() {
+                                                                        $0.title = (pushToken.name ?? "") + " (Current device)"
+                                                                    } else {
+                                                                        $0.title = pushToken.name
+                                                                    }
+                                                                }
                                                             }.onCellSelection { _, _ in
                                                                 self.performSegue(withIdentifier: self.showTokenDetailsSegue, sender: pushToken)
-                                                            }
+                                                            }.cellSetup({ cell, _ in
+                                                                    cell.backgroundColor = UIColor.primaryColor
+                                                                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                                                                    cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
+                                                            }).cellUpdate({ cell, _ in
+                                                                cell.backgroundColor = UIColor.primaryColor
+                                                                cell.textLabel?.textColor = UIColor.primaryTextColor
+                                                                cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
+                                                            })
                                                         }
                                                         
         }
@@ -91,7 +104,7 @@ class ProfileViewController: BaseFormViewController {
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         guard let token = pushTokens?[indexPath.row].pushToken,
-              token == userDetailsUseCase?.getFirebaseToken() else {
+              token != userDetailsUseCase?.getFirebaseToken() else {
             return UITableViewCellEditingStyle.none
         }
         return UITableViewCellEditingStyle.delete

@@ -12,9 +12,10 @@ class ThemeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         themeLabel.text = LocalizedKeys.More.theme.localized()
-        themeLabel.textColor = UIColor.black
+        themeLabel.textColor = UIColor.primaryTextColor
         themeSwitch.onTintColor = UIColor.accentColor
         themeSwitch.tintColor = UIColor.accentColor
+        self.backgroundColor = UIColor.primaryColor
     }
     
     @IBAction func onSwitch(_ sender: Any) {

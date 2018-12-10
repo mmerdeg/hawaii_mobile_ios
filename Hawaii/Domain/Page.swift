@@ -1,7 +1,6 @@
 import Foundation
 
 struct Page: Codable {
-    
     let content: [User]?
     let first: Bool?
     let last: Bool?

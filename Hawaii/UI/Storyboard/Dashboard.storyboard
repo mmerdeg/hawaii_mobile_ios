@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bRN-9c-16X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bRN-9c-16X">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -200,19 +200,19 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Xee-0Y-UGI" firstAttribute="leading" secondItem="nqF-Zi-Z8a" secondAttribute="leading" id="1AF-t8-VkU"/>
                                             <constraint firstItem="Xee-0Y-UGI" firstAttribute="height" secondItem="MHx-by-oiF" secondAttribute="height" id="7AD-TW-d3Y"/>
                                             <constraint firstItem="1QF-Ws-pM2" firstAttribute="top" secondItem="Xee-0Y-UGI" secondAttribute="bottom" constant="10" id="7gP-5k-aHb"/>
                                             <constraint firstItem="eBq-Pa-FbQ" firstAttribute="leading" secondItem="dve-e7-bbV" secondAttribute="leading" id="7h0-6N-huW"/>
-                                            <constraint firstItem="MHx-by-oiF" firstAttribute="centerX" secondItem="dve-e7-bbV" secondAttribute="centerX" id="8hC-XX-6Sf"/>
                                             <constraint firstItem="MHx-by-oiF" firstAttribute="leading" secondItem="Xee-0Y-UGI" secondAttribute="leading" id="Avs-jf-8ZP"/>
+                                            <constraint firstItem="MHx-by-oiF" firstAttribute="centerX" secondItem="Xee-0Y-UGI" secondAttribute="centerX" id="MfZ-vZ-e4m"/>
                                             <constraint firstAttribute="bottom" secondItem="MHx-by-oiF" secondAttribute="bottom" id="Pkp-oT-6IW"/>
                                             <constraint firstItem="eBq-Pa-FbQ" firstAttribute="top" secondItem="dve-e7-bbV" secondAttribute="top" id="Q6m-eh-teJ"/>
                                             <constraint firstItem="Xee-0Y-UGI" firstAttribute="top" secondItem="eBq-Pa-FbQ" secondAttribute="bottom" constant="15" id="aIL-mS-OU3"/>
-                                            <constraint firstItem="Xee-0Y-UGI" firstAttribute="leading" secondItem="eBq-Pa-FbQ" secondAttribute="leading" id="gQH-2j-LJH"/>
+                                            <constraint firstItem="Xee-0Y-UGI" firstAttribute="centerX" secondItem="nqF-Zi-Z8a" secondAttribute="centerX" id="aod-8u-Ose"/>
                                             <constraint firstAttribute="trailing" secondItem="1QF-Ws-pM2" secondAttribute="trailing" id="woj-zl-WSE"/>
                                             <constraint firstItem="1QF-Ws-pM2" firstAttribute="leading" secondItem="dve-e7-bbV" secondAttribute="leading" id="wxe-5S-Fwo"/>
                                             <constraint firstAttribute="trailing" secondItem="eBq-Pa-FbQ" secondAttribute="trailing" id="x1J-am-0aq"/>
-                                            <constraint firstItem="Xee-0Y-UGI" firstAttribute="centerX" secondItem="eBq-Pa-FbQ" secondAttribute="centerX" id="zV3-U1-XKd"/>
                                             <constraint firstItem="MHx-by-oiF" firstAttribute="top" secondItem="1QF-Ws-pM2" secondAttribute="bottom" constant="15" id="zh5-58-8Xf"/>
                                         </constraints>
                                     </view>

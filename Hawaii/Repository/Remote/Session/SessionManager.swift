@@ -18,15 +18,19 @@ class SessionManager: GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<T>) -> Void = { (response: DataResponse<T>) in
             switch response.result {
             case .success:
-                completion(GenericResponse<T> (success: true, item: response.result.value,
-                                               statusCode: response.response?.statusCode, error: nil, message: nil))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<T> (success: true, item: response.result.value,
+                                                   statusCode: response.response?.statusCode, error: nil, message: nil))
+                }
             case .failure(let error):
                 print(error)
                 
                 print(response.request?.url ?? "")
-                completion(GenericResponse<T> (success: false, item: nil, statusCode: response.response?.statusCode,
-                                               error: error,
-                                               message: response.error?.localizedDescription))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<T> (success: false, item: nil, statusCode: response.response?.statusCode,
+                                                   error: error,
+                                                   message: response.error?.localizedDescription))
+                }
             }
         }
         
@@ -46,14 +50,19 @@ class SessionManager: GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<String>) -> Void = { (response: DataResponse<String>) in
             switch response.result {
             case .success:
-                completion(GenericResponse<String> (success: true, item: response.result.value,
-                                                    statusCode: response.response?.statusCode, error: nil, message: nil))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<String> (success: true, item: response.result.value,
+                                                        statusCode: response.response?.statusCode, error: nil, message: nil))
+                }
+            
             case .failure(let error):
                 print(error)
                 print(response.request?.url ?? "")
-                completion(GenericResponse<String> (success: false, item: nil, statusCode: response.response?.statusCode,
-                                                    error: response.error,
-                                                    message: response.error?.localizedDescription))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<String> (success: false, item: nil, statusCode: response.response?.statusCode,
+                                                        error: response.error,
+                                                        message: response.error?.localizedDescription))
+                }
             }
         }
 
@@ -70,15 +79,19 @@ class SessionManager: GenericRepositoryProtocol {
         let completionHandler: (_ response: DataResponse<Any>) -> Void = { (response: DataResponse<Any>) in
             switch response.result {
             case .success:
-                completion(GenericResponse<Any> (success: true, item: response.result.value,
-                                                 statusCode: response.response?.statusCode, error: nil, message: nil))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<Any> (success: true, item: response.result.value,
+                                                     statusCode: response.response?.statusCode, error: nil, message: nil))
+                }
             case .failure(let error):
                 print(error)
                 
                 print(response.request?.url ?? "")
-                completion(GenericResponse<Any> (success: false, item: nil, statusCode: response.response?.statusCode,
-                                                 error: response.error,
-                                                 message: response.error?.localizedDescription))
+                DispatchQueue.main.async {
+                    completion(GenericResponse<Any> (success: false, item: nil, statusCode: response.response?.statusCode,
+                                                     error: response.error,
+                                                     message: response.error?.localizedDescription))
+                }
             }
         }
 
