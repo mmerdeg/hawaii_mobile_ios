@@ -25,7 +25,8 @@ class AllowanceManagementViewController: BaseFormViewController {
         for allowance in allowances {
             guard let year = allowance.year,
                 let annual = allowance.annual,
-                let training = allowance.training else {
+                let training = allowance.training,
+                let manualAdjust = allowance.manualAdjust else {
                     return
             }
             
@@ -36,6 +37,7 @@ class AllowanceManagementViewController: BaseFormViewController {
                     $0.title = LocalizedKeys.UserManagement.annual.localized()
                     $0.placeholder = LocalizedKeys.UserManagement.allowancePlaceholder.localized()
                     $0.add(rule: RuleRequired())
+                    $0.disabled = true
                     $0.validationOptions = .validatesOnChange
                 }.cellSetup({ cell, row in
                     self.setIntInput(cell: cell, row: row)
@@ -43,18 +45,50 @@ class AllowanceManagementViewController: BaseFormViewController {
                     self.setIntInput(cell: cell, row: row)
                 })
                 
-                $0 <<< IntRow("training" + String(year)) {
-                    $0.value = training
-                    $0.tag = LocalizedKeys.RemainingDays.training.localized() + String(year)
-                    $0.title = LocalizedKeys.RemainingDays.training.localized()
-                    $0.placeholder = LocalizedKeys.UserManagement.allowancePlaceholder.localized()
+                $0 <<< IntRow("manualAdjust" + String(year)) {
+                    $0.value = manualAdjust
+                   // $0.tag = LocalizedKeys.UserManagement.annual.localized() + String(year)
+                    $0.title = LocalizedKeys.UserManagement.manualAdjust.localized()
+                    $0.placeholder = LocalizedKeys.UserManagement.manualAdjustPlaceholder.localized()
                     $0.add(rule: RuleRequired())
                     $0.validationOptions = .validatesOnChange
                 }.cellSetup({ cell, row in
-                    self.setIntInput(cell: cell, row: row)
+                        self.setIntInput(cell: cell, row: row)
                 }).cellUpdate({ cell, row in
-                    self.setIntInput(cell: cell, row: row)
+                        self.setIntInput(cell: cell, row: row)
+                    guard let secondRow = self.form.rowBy(tag: "Sum\(year)") as? IntRow else {
+                        return
+                    }
+                    secondRow.value = annual + (row.value ?? 0)
+                    secondRow.reload()
                 })
+                
+                $0 <<< IntRow {
+                    $0.value = manualAdjust
+                    $0.tag = "Sum" + String(year)
+                    $0.title = "Sum"
+                    $0.placeholder = "Final sum"
+                    $0.add(rule: RuleRequired())
+                    $0.disabled = true
+                    $0.validationOptions = .validatesOnChange
+                }.cellSetup({ cell, row in
+                        self.setIntInput(cell: cell, row: row)
+                }).cellUpdate({ cell, row in
+                        self.setIntInput(cell: cell, row: row)
+                })
+                
+//                $0 <<< IntRow("training" + String(year)) {
+//                    $0.value = training
+//                    $0.tag = LocalizedKeys.RemainingDays.training.localized() + String(year)
+//                    $0.title = LocalizedKeys.RemainingDays.training.localized()
+//                    $0.placeholder = LocalizedKeys.UserManagement.allowancePlaceholder.localized()
+//                    $0.add(rule: RuleRequired())
+//                    $0.validationOptions = .validatesOnChange
+//                }.cellSetup({ cell, row in
+//                    self.setIntInput(cell: cell, row: row)
+//                }).cellUpdate({ cell, row in
+//                    self.setIntInput(cell: cell, row: row)
+//                })
 
             })
         }

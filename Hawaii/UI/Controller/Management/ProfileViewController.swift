@@ -36,7 +36,7 @@ class ProfileViewController: BaseFormViewController {
         self.navigationItem.title = LocalizedKeys.More.tokenScreenTitle.localized()
         self.navigationItem.rightBarButtonItem = doneBarItem
         pushTokens = user?.userPushTokens
-        
+        self.tableView.backgroundColor = UIColor.primaryColor
         deviceSection = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
                                                     header: "Manage Devices",
                                                     footer: "Manage manage devices which can receive push messages") {
@@ -47,11 +47,24 @@ class ProfileViewController: BaseFormViewController {
                                                             $0 <<< LabelRow("tag_\(String(describing: pushToken.pushTokenId))") {
                                                                 $0.value = pushToken.platform?.description
                                                                 $0.tag = String(describing: pushToken.pushTokenId)
-                                                                $0.title = pushToken.name
-                                                                
+                                                                if let token = pushToken.pushToken {
+                                                                    if token == userDetailsUseCase?.getFirebaseToken() {
+                                                                        $0.title = (pushToken.name ?? "") + " (Current device)"
+                                                                    }
+                                                                } else {
+                                                                    $0.title = pushToken.name
+                                                                }
                                                             }.onCellSelection { _, _ in
                                                                 self.performSegue(withIdentifier: self.showTokenDetailsSegue, sender: pushToken)
-                                                            }
+                                                            }.cellSetup({ cell, _ in
+                                                                    cell.backgroundColor = UIColor.primaryColor
+                                                                    cell.textLabel?.textColor = UIColor.primaryTextColor
+                                                                    cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
+                                                            }).cellUpdate({ cell, _ in
+                                                                cell.backgroundColor = UIColor.primaryColor
+                                                                cell.textLabel?.textColor = UIColor.primaryTextColor
+                                                                cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
+                                                            })
                                                         }
                                                         
         }
@@ -82,7 +95,7 @@ class ProfileViewController: BaseFormViewController {
                                               title: LocalizedKeys.General.delete.localized()) { _, _, handler in
                                                 self.deleteFirebaseToken(indexPath: indexPath, completion: { isSuccess in
                                                     handler(isSuccess)
-                                                })z
+                                                })
         }
         deleteAction.backgroundColor = .red
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])

@@ -49,6 +49,7 @@ class BaseViewController: UIViewController {
         self.stopActivityIndicatorSpinner()
         AlertPresenter.showAlertWithAction(title: LocalizedKeys.General.errorTitle.localized(), message: message ?? "",
                                         viewController: self, completion: { _ in
+                                            self.stopActivityIndicatorSpinner()
         })
     }
     

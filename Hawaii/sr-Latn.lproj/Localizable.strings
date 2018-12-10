@@ -159,6 +159,8 @@ userManagement.activeDisabled = "Not active";
 userManagement.allowance = "Allowance";
 userManagement.allowancePlaceholder = "Enter number of days";
 userManagement.annual = "Annual";
+userManagement.manualAdjust = "Manual adjust";
+userManagement.manualAdjustPlaceholder = "Enter custom days";
 
 token.deviceName = "Device name";
 token.notificationToken = "Device notification token";
@@ -170,6 +172,11 @@ holiday.nameTitle = "Holiday name";
 holiday.namePlaceholder = "Enter holiday name";
 holiday.date = "Holiday date";
 
+leaveProfile.infoSection = "Basic Info";
+leaveProfile.nameTitle = "Leave profile name";
+leaveProfile.namePlaceholder = "Enter leave profile name";
+leaveProfile.commentTitle = "Leave profile comment";
+leaveProfile.commentPlaceholder = "Enter leave profile comment";
 leaveProfile.entitlement = "Entitlement";
 leaveProfile.maxBonusDays = "Max bonus days";
 leaveProfile.maxCarriedOver = "Max carried over";

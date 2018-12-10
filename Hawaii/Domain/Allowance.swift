@@ -1,7 +1,6 @@
 import Foundation
 
 struct Allowance: Codable {
-    
     let id: Int?
     let year: Int?
     let annual: Int?

@@ -68,13 +68,11 @@ class UserDaoImplementation: UserDao {
                                           entity.yearsOfService ?? -1]
                     try database.executeUpdate(self.createUserQuery ?? "", values: values)
                     DispatchQueue.main.async {
-                        print("Upisao usera")
                         completion(Int(database.lastInsertRowId))
                     }
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije upisao usera")
                         completion(-1)
                     }
                 }
@@ -100,7 +98,6 @@ class UserDaoImplementation: UserDao {
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije upisao tokene")
                         completion(-1)
                     }
                 }
@@ -129,7 +126,6 @@ class UserDaoImplementation: UserDao {
                             }
                             return
                     }
-                    print("Procitao usera")
                     completion(userDb.toUser())
                 }
             }
@@ -139,7 +135,6 @@ class UserDaoImplementation: UserDao {
     func emptyUsers(completion: @escaping (Bool) -> Void) {
         dispatchQueue?.async {
             self.databaseQueue?.inTransaction { database, _ in
-                print("Obrisao usere")
                 let isSuccessfull = database.executeStatements(self.deleteUsersQuery ?? "")
                 DispatchQueue.main.async {
                     completion(isSuccessfull)
@@ -159,13 +154,11 @@ class UserDaoImplementation: UserDao {
                                           userId]
                     try database.executeUpdate(self.createTokenQuery ?? "", values: values)
                     DispatchQueue.main.async {
-                        print("Upisao token")
                         completion(Int(database.lastInsertRowId))
                     }
                 } catch {
                     print(error.localizedDescription)
                     DispatchQueue.main.async {
-                        print("Nije upisao token")
                         completion(-1)
                     }
                 }
@@ -199,7 +192,6 @@ class UserDaoImplementation: UserDao {
                     tokens.append(tokenDb.toPushToken())
                 }
                 DispatchQueue.main.async {
-                    print("Tokeni")
                     completion(tokens)
                 }
             }

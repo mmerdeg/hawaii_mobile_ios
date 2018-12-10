@@ -23,6 +23,10 @@ class BaseFormViewController: FormViewController {
         cell.textField.textColor = UIColor.primaryTextColor
         row.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
         cell.backgroundColor = UIColor.primaryColor
+        if !row.isValid {
+            cell.titleLabel?.textColor = .red
+            cell.textField.becomeFirstResponder()
+        }
     }
     
     func setIntInput(cell: IntCell, row: IntRow) {
@@ -30,6 +34,10 @@ class BaseFormViewController: FormViewController {
         cell.textField.textColor = UIColor.primaryTextColor
         row.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
         cell.backgroundColor = UIColor.primaryColor
+        if !row.isValid {
+            cell.titleLabel?.textColor = .red
+            cell.textField.becomeFirstResponder()
+        }
     }
     
     func setTextInput(cell: TextCell, row: TextRow) {
@@ -37,12 +45,20 @@ class BaseFormViewController: FormViewController {
         cell.textField.textColor = UIColor.primaryTextColor
         row.placeholderColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
         cell.backgroundColor = UIColor.primaryColor
+        if !row.isValid {
+            cell.titleLabel?.textColor = .red
+            cell.textField.becomeFirstResponder()
+        }
     }
     
     func setDateInput(cell: DateCell, row: DateRow) {
         cell.textLabel?.textColor = UIColor.primaryTextColor
         cell.detailTextLabel?.textColor = UIColor.primaryTextColor.withAlphaComponent(0.7)
         cell.backgroundColor = UIColor.primaryColor
+        if !row.isValid {
+            cell.textLabel?.textColor = .red
+        }
+        
     }
     
 }

@@ -56,6 +56,7 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                 row.title = LocalizedKeys.UserManagement.emailTitle.localized()
                 row.placeholder = LocalizedKeys.UserManagement.emailPlaceholder.localized()
                 row.value = user?.email
+                row.add(rule: RuleEmail())
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, row in
@@ -78,16 +79,19 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
             <<< PushRow<String>("userRole") { row in
                 row.title = LocalizedKeys.UserManagement.userRoleTitle.localized()
                 row.selectorTitle = LocalizedKeys.UserManagement.userRolePlaceholder.localized()
-                row.options = ["HR_MANAGER", "APPROVER", "USER"]
-                row.value = user?.userRole    // initially selected
+                row.options = [UserRole.hrManager.rawValue, UserRole.approver.rawValue, UserRole.user.rawValue]
+                row.value = user?.userRole
                 row.add(rule: RuleRequired())
                 row.validationOptions = .validatesOnChange
             }.cellSetup({ cell, _ in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
-            }).cellUpdate({ cell, _ in
+            }).cellUpdate({ cell, row in
                     cell.backgroundColor = UIColor.primaryColor
                     cell.textLabel?.textColor = UIColor.primaryTextColor
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
             })
             
             <<< SwitchRow("active") { row in
@@ -103,13 +107,7 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
             }.cellUpdate { cell, _ in
                 cell.textLabel?.textColor = UIColor.primaryTextColor
             }
-            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized()) { section in
-                var view = HeaderFooterView<CustomFooter>(.nibFile(name: String(describing: CustomFooter.self), bundle: nil))
-                view.onSetupView = { view, _ in
-                    view.user = self.user
-                }
-                section.footer = view
-            }
+            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized())
             <<< IntRow("yearsOfService") {
                 $0.title = LocalizedKeys.UserManagement.yearsOfServiceTitle.localized()
                 $0.value = user?.yearsOfService
@@ -157,6 +155,9 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                         self.selectedTeam = team
                     }
                 })
+                if !row.isValid {
+                    cell.textLabel?.textColor = .red
+                }
             })
             <<< PushRow<String>("leaveProfile") {
                 $0.title = LocalizedKeys.UserManagement.leaveProfileTitle.localized()
@@ -194,6 +195,9 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                             self.selectedLeaveProfile = item
                         }
                     })
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
             })
             <<< ButtonRow("allowance") {
                 $0.title = LocalizedKeys.UserManagement.allowance.localized()
@@ -205,6 +209,14 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                 cell.backgroundColor = UIColor.primaryColor
                 cell.textLabel?.textColor = UIColor.primaryTextColor
             })
+        
+            +++ Section(LocalizedKeys.UserManagement.additionalSection.localized()) { section in
+                var view = HeaderFooterView<CustomFooter>(.nibFile(name: String(describing: CustomFooter.self), bundle: nil))
+                view.onSetupView = { view, _ in
+                    view.user = self.user
+                }
+                section.footer = view
+            }
     }
     
     @objc func doneEditing() {
@@ -241,6 +253,8 @@ class UserManagementViewController: BaseFormViewController, UpdateAllowanceProto
                     self.popViewController()
                 })
             }
+        } else {
+            print(isValid)
         }
     }
     

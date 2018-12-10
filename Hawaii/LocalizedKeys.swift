@@ -173,6 +173,8 @@ public struct LocalizedKeys {
         static let allowance = "userManagement.allowance"
         static let allowancePlaceholder = "userManagement.allowancePlaceholder"
         static let annual = "userManagement.annual"
+        static let manualAdjust = "userManagement.manualAdjust"
+        static let manualAdjustPlaceholder = "userManagement.manualAdjustPlaceholder"
     }
     
     struct Token {

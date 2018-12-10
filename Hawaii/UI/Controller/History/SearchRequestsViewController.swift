@@ -56,6 +56,7 @@ class SearchRequestsViewController: UIViewController {
         yearPicker.delegate = self
         
         backgroundView.backgroundColor = UIColor.primaryColor
+        backgroundView.layer.cornerRadius = 16
         yearLabel.textColor = UIColor.primaryTextColor
         leaveLabel.textColor = UIColor.primaryTextColor
         sickLabel.textColor = UIColor.primaryTextColor
@@ -91,7 +92,7 @@ class SearchRequestsViewController: UIViewController {
     
     @IBAction func searchClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        delegate?.didFilterBy(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)]),
+        delegate?.didFilterBy(year: String(describing: items[yearPicker.selectedRow(inComponent: 0)] ),
                               leave: leaveToogle.isOn, sick: sickToggle.isOn, bonus: bonusToggle.isOn)
     }
     

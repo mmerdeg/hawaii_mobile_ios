@@ -9,7 +9,7 @@ class ViewConstants {
     
     static let dialogBackgroundAlpha = 0.85
     
-    static let maxTimeElapsed: Double = 360
+    static let maxTimeElapsed: Double = 60 * 10
     
     static let dateSourceFormat = "yyyy-MM-dd'T'HH:mm:ss"
     

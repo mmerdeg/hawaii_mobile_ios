@@ -28,6 +28,7 @@ class MoreViewController: BaseViewController {
                            forCellReuseIdentifier: String(describing: ThemeTableViewCell.self))
         tableView.tableFooterView = UIView()
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.primaryColor
         self.tableView.delegate = self
     }
     
@@ -146,6 +147,7 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 2 {
             if indexPath.row == 1 {
                 self.performSegue(withIdentifier: profileManagementSegue, sender: nil)
@@ -207,6 +209,8 @@ extension MoreViewController: UITableViewDelegate, UITableViewDataSource {
     func getDefaultCell(text: String) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
         cell.textLabel?.text = text
+        cell.textLabel?.textColor = UIColor.primaryTextColor
+        cell.backgroundColor = UIColor.primaryColor
         return cell
     }
     

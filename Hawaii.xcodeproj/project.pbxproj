@@ -245,8 +245,6 @@
 		30B2FD7821B141D20054EAB6 /* PushTokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */; };
 		30B2FD7A21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
 		30B2FD7B21B50E600054EAB6 /* UserUseCaseImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */; };
-		30B2FD7D21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
-		30B2FD7E21B5363B0054EAB6 /* AllowanceManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */; };
 		30B2FD8D21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
 		30B2FD8E21B552FC0054EAB6 /* CustomFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */; };
 		30B2FD9121B553890054EAB6 /* CustomFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30B2FD9021B553890054EAB6 /* CustomFooter.xib */; };
@@ -418,8 +416,6 @@
 		3E6EBC4C219048620043EDBD /* CalendarDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */; };
 		3E6EBC5121904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
 		3E6EBC5221904E100043EDBD /* CalendarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC5021904E100043EDBD /* CalendarUtils.swift */; };
-		3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
-		3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EBC532190730E0043EDBD /* RefreshUtils.swift */; };
 		3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */; };
 		3E72645120EA1D0600DC7240 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645020EA1D0600DC7240 /* AlertPresenter.swift */; };
 		3E72646020EA4D1D00DC7240 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */; };
@@ -712,7 +708,6 @@
 		30B2FD7321B13ED20054EAB6 /* PublicHolidayManagement.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PublicHolidayManagement.storyboard; sourceTree = "<group>"; };
 		30B2FD7621B141D20054EAB6 /* PushTokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTokenViewController.swift; sourceTree = "<group>"; };
 		30B2FD7921B50E600054EAB6 /* UserUseCaseImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseImplementation.swift; sourceTree = "<group>"; };
-		30B2FD7C21B5363B0054EAB6 /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
 		30B2FD8C21B552FC0054EAB6 /* CustomFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooter.swift; sourceTree = "<group>"; };
 		30B2FD9021B553890054EAB6 /* CustomFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFooter.xib; sourceTree = "<group>"; };
 		30B2FD9421B666A60054EAB6 /* LeaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveData.swift; sourceTree = "<group>"; };
@@ -786,7 +781,6 @@
 		3E6AE21621B679FD001D2A1F /* AllowanceManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceManagementViewController.swift; sourceTree = "<group>"; };
 		3E6EBC4A219048620043EDBD /* CalendarDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateFormatter.swift; sourceTree = "<group>"; };
 		3E6EBC5021904E100043EDBD /* CalendarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarUtils.swift; sourceTree = "<group>"; };
-		3E6EBC532190730E0043EDBD /* RefreshUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshUtils.swift; sourceTree = "<group>"; };
 		3E72644A20EA1C5000DC7240 /* DialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogWrapper.swift; sourceTree = "<group>"; };
 		3E72645020EA1D0600DC7240 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		3E72645F20EA4D1D00DC7240 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
@@ -1579,7 +1573,6 @@
 				3E72645020EA1D0600DC7240 /* AlertPresenter.swift */,
 				302EE17B21353539001355E9 /* ProgressHud.swift */,
 				3E892DEA21777B7300C7F784 /* ViewConstants.swift */,
-				3E6EBC532190730E0043EDBD /* RefreshUtils.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2882,7 +2875,6 @@
 				3055C540219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				309B6CDE2162AA570046EFE9 /* UserRole.swift in Sources */,
 				309A536B21B7C30900DA3FF1 /* UIViewExtension.swift in Sources */,
-				3E6EBC552190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				30FD36CD214A5E530047038C /* FontExtension.swift in Sources */,
 				302A589B21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,
 				3027D25A21AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,
@@ -3035,7 +3027,6 @@
 				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,
 				30741343213FCB4B00F05427 /* CustomDatePickerTableViewController.swift in Sources */,
 				309A536A21B7C2F900DA3FF1 /* UIViewExtension.swift in Sources */,
-				3E6EBC542190730E0043EDBD /* RefreshUtils.swift in Sources */,
 				3E15C3FB20E61A6500DB2CF7 /* FontExtension.swift in Sources */,
 				302A589A21A69DE9000778C6 /* LeaveProfileRepository.swift in Sources */,
 				3027D25921AD314D00094D5C /* LeaveProfileManagementViewController.swift in Sources */,
