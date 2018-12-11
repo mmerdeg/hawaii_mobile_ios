@@ -29,10 +29,9 @@ class ApproveViewController: BaseViewController {
         
         let nib = UINib(nibName: String(describing: RequestApprovalTableViewCell.self), bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: String(describing: RequestApprovalTableViewCell.self))
-        tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 260
         
         tableView.backgroundColor = UIColor.primaryColor
-        self.navigationController?.navigationBar.barTintColor = UIColor.darkPrimaryColor
          
         tableView.refreshControl = refreshControl
         

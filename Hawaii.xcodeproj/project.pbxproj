@@ -3020,7 +3020,6 @@
 				3E72644B20EA1C5000DC7240 /* DialogWrapper.swift in Sources */,
 				30092B5F219EFABB00244F09 /* TeamUseCaseImplementation.swift in Sources */,
 				3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */,
-				3E42592920E25B7500F22BBD /* RequestRepositoryImplementation.swift in Sources */,
 				3E15C45C20E6453300DB2CF7 /* SelectRequestParamsViewController.swift in Sources */,
 				3E6EBC4B219048620043EDBD /* CalendarDateFormatter.swift in Sources */,
 				3055C53F219ABC100066F0E0 /* EmptyView.swift in Sources */,
