@@ -113,6 +113,6 @@ extension SearchRequestsViewController: UIPickerViewDataSource, UIPickerViewDele
  
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return NSAttributedString(string: String(describing: items[row]),
-                                  attributes: [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor])
+                                  attributes: [NSAttributedString.Key.foregroundColor: UIColor.primaryTextColor])
     }
 }

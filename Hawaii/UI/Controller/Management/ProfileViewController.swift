@@ -14,7 +14,7 @@ class ProfileViewController: BaseFormViewController {
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(doneEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(doneEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -102,15 +102,15 @@ class ProfileViewController: BaseFormViewController {
         return configuration
     }
     
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         guard let token = pushTokens?[indexPath.row].pushToken,
               token != userDetailsUseCase?.getFirebaseToken() else {
-            return UITableViewCellEditingStyle.none
+            return UITableViewCell.EditingStyle.none
         }
-        return UITableViewCellEditingStyle.delete
+        return UITableViewCell.EditingStyle.delete
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let confirmationAlertTitle = LocalizedKeys.General.confirm.localized()
             let approveAlertMessage = LocalizedKeys.General.deleteMessage.localized()

@@ -91,7 +91,6 @@
 		302DED38218C80100002D6B4 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF6218AF2220000A8A3 /* UserNotifications.framework */; };
 		302DED39218C80100002D6B4 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301CECF8218AF2220000A8A3 /* UserNotificationsUI.framework */; };
 		302DED3C218C80100002D6B4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED3B218C80100002D6B4 /* NotificationViewController.swift */; };
-		302DED3F218C80100002D6B4 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		302DED43218C80100002D6B4 /* RequestNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED37218C80100002D6B4 /* RequestNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		302DED51218C80F30002D6B4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DED50218C80F30002D6B4 /* NotificationService.swift */; };
 		302DED55218C80F30002D6B4 /* RequestServiceNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 302DED4E218C80F30002D6B4 /* RequestServiceNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -148,7 +147,6 @@
 		3044DF0421A450640068E2B7 /* PushTokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3044DF0021A450640068E2B7 /* PushTokenDTO.swift */; };
 		3044DF0A21A55B280068E2B7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B55219EF75D00244F09 /* Team.swift */; };
 		3044DF0E21A55B280068E2B7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30092B55219EF75D00244F09 /* Team.swift */; };
-		30516851217DACF900AAEA7D /* (null) in Resources */ = {isa = PBXBuildFile; };
 		3051685B217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		3051685C217F046D00AAEA7D /* SearchUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516859217F046D00AAEA7D /* SearchUsersTableViewController.swift */; };
 		30516868217F48EB00AAEA7D /* GradientExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30516867217F48EB00AAEA7D /* GradientExtension.swift */; };
@@ -343,7 +341,6 @@
 		30FD36E7214A5E530047038C /* UserPreviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30741333213E6DD100F05427 /* UserPreviewTableViewCell.xib */; };
 		30FD36EB214A5E530047038C /* ECFoundationiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3E15C41420E61AAD00DB2CF7 /* ECFoundationiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C89426F0A20FF67B1032EED /* Pods_HawaiiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914D94BBDE9CED8125156DA8 /* Pods_HawaiiUITests.framework */; };
-		3E008FE621BAAD6F004EAC4F /* GenericExpandableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309A536C21B7CE5400DA3FF1 /* GenericExpandableData.swift */; };
 		3E0B2D2321AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
 		3E0B2D2421AEDD4000C5D04F /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2121AEDD4000C5D04F /* ThemeTableViewCell.swift */; };
 		3E0B2D2521AEDD4000C5D04F /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B2D2221AEDD4000C5D04F /* ThemeTableViewCell.xib */; };
@@ -2201,7 +2198,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				302DED3F218C80100002D6B4 /* (null) in Resources */,
 				30092B1C219DACA000244F09 /* Localizable.strings in Resources */,
 				307D6AED2191761A009F3104 /* MainInterface.storyboard in Resources */,
 			);
@@ -2316,7 +2312,6 @@
 				3E3550FE2121789300B43B57 /* Approval.storyboard in Resources */,
 				3027D24621AC1D6700094D5C /* deleteTokens.sql in Resources */,
 				306F1C8321A29EC500E2D27B /* HolidayTableViewCell.xib in Resources */,
-				30516851217DACF900AAEA7D /* (null) in Resources */,
 				3E1E17D0218B043400868667 /* Localizable.strings in Resources */,
 				3E834B642100A8BA0038BC96 /* credentials.plist in Resources */,
 				30139323215CA90800F65B7F /* RequestParams.storyboard in Resources */,
@@ -2349,7 +2344,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2358,7 +2353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RequestNotification/Pods-RequestNotification-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		30FD36E9214A5E530047038C /* ShellScript */ = {
@@ -2372,7 +2367,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		3E6AEFE920D3BD9B002E8F61 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2393,13 +2388,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka-iOS10.0/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
@@ -2415,6 +2409,24 @@
 				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS10.0/SwinjectStoryboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS10.0/YLProgressBar.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb-iOS10.0/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS11.0/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS11.0/CodableAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS11.0/EKBlurAlert.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka-iOS11.0/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB-iOS11.0/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS11.0/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS11.0/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS11.0/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar-iOS11.0/JTAppleCalendar.framework",
+				"${BUILT_PRODUCTS_DIR}/JWTDecode-iOS11.0/JWTDecode.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher-iOS11.0/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG-iOS11.0/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf-iOS11.0/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit-iOS11.0/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject-iOS11.0/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard-iOS11.0/SwinjectStoryboard.framework",
+				"${BUILT_PRODUCTS_DIR}/YLProgressBar-iOS11.0/YLProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-iOS11.0/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2423,7 +2435,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EKBlurAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -2442,7 +2453,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		66E2FBBE5469451912BC5D73 /* [CP] Check Pods Manifest.lock */ = {
@@ -2487,7 +2498,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2496,7 +2507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii production/Pods-Hawaii production-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9C0571A01006155F9E587EC6 /* [CP] Check Pods Manifest.lock */ = {
@@ -2559,7 +2570,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2568,7 +2579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CD40DF7C38DB3F4BE29030A9 /* [CP] Check Pods Manifest.lock */ = {
@@ -2595,7 +2606,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -2604,7 +2615,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RequestServiceNotification/Pods-RequestServiceNotification-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F51862B7B937C6C0B926D8BC /* [CP] Embed Pods Frameworks */ = {
@@ -2613,13 +2624,12 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-iOS10.0/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CodableAlamofire-iOS10.0/CodableAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/EKBlurAlert-iOS10.0/EKBlurAlert.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka-iOS10.0/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB-iOS10.0/FMDB.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2-iOS10.0/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher-iOS10.0/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-iOS10.0/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities-iOS10.0/GoogleUtilities.framework",
@@ -2643,7 +2653,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EKBlurAlert.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -2662,7 +2671,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hawaii/Pods-Hawaii-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2840,7 +2849,6 @@
 				30FD36B7214A5E530047038C /* CellData.swift in Sources */,
 				3E1E17D7218B054E00868667 /* LocalizedKeys.swift in Sources */,
 				30516869217F48EB00AAEA7D /* GradientExtension.swift in Sources */,
-				3E008FE621BAAD6F004EAC4F /* GenericExpandableData.swift in Sources */,
 				3E35CA96215E148E0042E65A /* UserDb.swift in Sources */,
 				30FD36B8214A5E530047038C /* UserDetailsUseCaseImplementation.swift in Sources */,
 				306F1C8721A2A4EA00E2D27B /* RoundedImageView.swift in Sources */,
@@ -3253,7 +3261,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3287,7 +3295,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -3440,7 +3448,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3474,7 +3482,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -32,7 +32,7 @@ class NewRequestViewController: BaseViewController {
         
         let nextButtonTitle = LocalizedKeys.General.next.localized()
         
-        let item = UIBarButtonItem(title: nextButtonTitle, style: UIBarButtonItemStyle.done, target: self, action: #selector(newRequest))
+        let item = UIBarButtonItem(title: nextButtonTitle, style: UIBarButtonItem.Style.done, target: self, action: #selector(newRequest))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -55,15 +55,17 @@ class NewRequestViewController: BaseViewController {
             self.title = LocalizedKeys.Request.leaveRequest.localized()
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
         
         guard let userInfo = notification.userInfo,
-              let value = userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue else {
+              let value = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue else {
             return
         }
         var keyboardFrame: CGRect = value.cgRectValue
@@ -99,7 +101,7 @@ class NewRequestViewController: BaseViewController {
             }
             requestTableViewController.delegate = self
             requestTableViewController.requestType = absenceType
-            addChildViewController(controller)
+            addChild(controller)
             
         } else if segue.identifier == showRemainingDaysViewController {
             guard let controller = segue.destination as? RemainigDaysViewController else {

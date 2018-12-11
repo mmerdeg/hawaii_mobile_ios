@@ -99,7 +99,7 @@ class RequestDetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.primaryColor
-        selectionStyle = UITableViewCellSelectionStyle.none
+        selectionStyle = UITableViewCell.SelectionStyle.none
     }
     
     @IBAction func onCancel(_ sender: Any) {

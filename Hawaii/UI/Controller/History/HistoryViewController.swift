@@ -40,8 +40,8 @@ class HistoryViewController: BaseViewController {
         var buttonImage = UIImage(named: filterDisabledImageName)
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
         
-        let button: UIButton = UIButton(type: UIButtonType.custom)
-        button.setImage(buttonImage, for: UIControlState.normal)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(buttonImage, for: UIControl.State.normal)
         button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 31, height: 21)
         button.tintColor = UIColor.primaryTextColor
@@ -56,8 +56,8 @@ class HistoryViewController: BaseViewController {
         
         var buttonImage = UIImage(named: filterEnabledImageName)
         buttonImage = buttonImage?.withRenderingMode(.alwaysTemplate)
-        let button: UIButton = UIButton(type: UIButtonType.custom)
-        button.setImage(buttonImage, for: UIControlState.normal)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
+        button.setImage(buttonImage, for: UIControl.State.normal)
         button.addTarget(self, action: #selector(searchRequest), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 51, height: 21)
         button.tintColor = UIColor.primaryTextColor
@@ -166,7 +166,7 @@ class HistoryViewController: BaseViewController {
             self.filteredRequests = self.requests
             DispatchQueue.main.async {
                 self.customView.removeFromSuperview()
-                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
                 self.stopActivityIndicatorSpinner()
             }
         }
@@ -187,7 +187,7 @@ class HistoryViewController: BaseViewController {
             self.filteredRequests = response.item ?? []
             DispatchQueue.main.async {
                 self.customView.removeFromSuperview()
-                self.segmentedControl.sendActions(for: UIControlEvents.valueChanged)
+                self.segmentedControl.sendActions(for: UIControl.Event.valueChanged)
                 self.stopActivityIndicatorSpinner()
             }
         }
@@ -198,7 +198,7 @@ class HistoryViewController: BaseViewController {
         segmentedControl.tintColor = UIColor.accentColor
         segmentedControl.backgroundColor = UIColor.darkPrimaryColor
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
-        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.primaryTextColor]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
     }
@@ -221,7 +221,7 @@ class HistoryViewController: BaseViewController {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.customView.backgroundColor = UIColor.black.withAlphaComponent(CGFloat(ViewConstants.dialogBackgroundAlpha))
-                self.navigationController?.view.bringSubview(toFront: self.customView)
+                self.navigationController?.view.bringSubviewToFront(self.customView)
             })
         }
         self.performSegue(withIdentifier: searchRequestsSegue, sender: nil)

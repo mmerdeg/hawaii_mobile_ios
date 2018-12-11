@@ -168,7 +168,7 @@ extension ApproveViewController: RequestApprovalProtocol {
             AlertPresenter.presentBluredAlertView(view: self.view, message: alertMessage)
             
             self.requests.remove(at: index.row)
-            self.tableView.deleteRows(at: [index], with: UITableViewRowAnimation.left)
+            self.tableView.deleteRows(at: [index], with: UITableView.RowAnimation.left)
         }
     }
 }

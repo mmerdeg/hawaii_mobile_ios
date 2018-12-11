@@ -53,7 +53,7 @@ class DashboardViewController: BaseViewController {
     }()
     
     lazy var refreshItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(fillCalendar))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -142,7 +142,7 @@ class DashboardViewController: BaseViewController {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-                self.navigationController?.view.bringSubview(toFront: self.customView)
+                self.navigationController?.view.bringSubviewToFront(self.customView)
             })
         }
         self.performSegue(withIdentifier: showRequestDetailsSegue, sender: requests)

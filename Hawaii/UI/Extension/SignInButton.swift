@@ -18,12 +18,12 @@ class SignInButton: UIButton {
         self.setImage(UIImage(named: "google"), for: .normal)
         let title = LocalizedKeys.General.signIn.localized()
     
-        let attrs = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 15),
-                     NSAttributedStringKey.foregroundColor: UIColor.black]
+        let attrs = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15),
+                     NSAttributedString.Key.foregroundColor: UIColor.black]
         let boldString = NSMutableAttributedString(string: title, attributes: attrs)
         self.setAttributedTitle(boldString, for: .normal)
         
-        self.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        self.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         
         guard let imageView = self.imageView else {
                 return

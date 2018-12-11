@@ -30,7 +30,7 @@ class TeamManagementViewController: BaseFormViewController {
     let showApprovePickerSegue = "showApprovePicker"
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(doneEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -75,7 +75,7 @@ class TeamManagementViewController: BaseFormViewController {
                 $0.title = LocalizedKeys.TeamManagement.teamApproverTitle.localized()
                 $0.value = Set(selectedTeamApprovers ?? [])
                 $0.optionsProvider = .lazy({ form, completion in
-                    let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+                    let activityView = UIActivityIndicatorView(style: .gray)
                     form.tableView.backgroundView = activityView
                     activityView.startAnimating()
                     self.userUseCase?.getAllApprovers(completion: { response in

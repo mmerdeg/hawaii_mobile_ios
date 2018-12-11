@@ -31,13 +31,13 @@ class UsersManagementViewController: BaseViewController {
     }()
     
     lazy var editBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -145,11 +145,11 @@ extension UsersManagementViewController: UITableViewDelegate, UITableViewDataSou
         return collapsableHeader
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.delete
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let confirmationAlertTitle = LocalizedKeys.General.confirm.localized()
             let approveAlertMessage = LocalizedKeys.General.deleteMessage.localized()

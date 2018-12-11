@@ -57,6 +57,6 @@ class TeamPreviewTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = UITableViewCellSelectionStyle.none
+        selectionStyle = UITableViewCell.SelectionStyle.none
     }
 }

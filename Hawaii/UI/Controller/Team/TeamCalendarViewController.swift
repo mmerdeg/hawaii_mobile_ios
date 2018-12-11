@@ -44,13 +44,13 @@ class TeamCalendarViewController: BaseViewController {
     var searchableId: Int?
     
     lazy var refreshItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(fillCalendar))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.refresh, target: self, action: #selector(fillCalendar))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     lazy var searchItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(searchUser))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.search, target: self, action: #selector(searchUser))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -126,7 +126,7 @@ class TeamCalendarViewController: BaseViewController {
         segmentedControl.tintColor = UIColor.accentColor
         segmentedControl.backgroundColor = UIColor.darkPrimaryColor
         segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged(segment:)), for: .valueChanged)
-        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.primaryTextColor]
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.primaryTextColor]
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .normal)
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
     }
@@ -250,7 +250,7 @@ class TeamCalendarViewController: BaseViewController {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, animations: {
                 self.customView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-                self.navigationController?.view.bringSubview(toFront: self.customView)
+                self.navigationController?.view.bringSubviewToFront(self.customView)
             })
         }
         let storyboard = UIStoryboard(name: dashboardStoryboard, bundle: nil)

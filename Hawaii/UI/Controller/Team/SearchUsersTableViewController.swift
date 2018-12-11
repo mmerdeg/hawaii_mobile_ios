@@ -43,7 +43,7 @@ class SearchUsersTableViewController: UITableViewController {
         if indexPath.row == users.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier:
                 String(describing: LoadMoreTableViewCell.self)) as? LoadMoreTableViewCell else {
-                    let defaultCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
+                    let defaultCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellIdentifier)
                     return defaultCell
             }
             return cell

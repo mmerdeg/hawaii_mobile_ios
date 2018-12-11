@@ -18,7 +18,7 @@ class LeaveProfileManagementViewController: BaseFormViewController {
     let progressHUD = ProgressHud(text: LocalizedKeys.General.wait.localized())
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(doneEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(doneEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()

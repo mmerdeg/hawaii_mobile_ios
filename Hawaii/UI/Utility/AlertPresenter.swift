@@ -27,10 +27,10 @@ class AlertPresenter {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = textAligment ?? .center
-        let mutableStringTitle = NSMutableAttributedString(string: title ?? "", attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringTitle = NSMutableAttributedString(string: title ?? "", attributes: [NSAttributedString.Key.font: UIFont.primary()])
         let mutableStringMessage = NSMutableAttributedString(string: message ?? "",
-                                                             attributes: [NSAttributedStringKey.font: UIFont.primary(),
-                                                                          NSAttributedStringKey.paragraphStyle: paragraphStyle])
+                                                             attributes: [NSAttributedString.Key.font: UIFont.primary(),
+                                                                          NSAttributedString.Key.paragraphStyle: paragraphStyle])
         let dialogue = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         dialogue.view.tintColor = UIColor.black
         dialogue.setValue(mutableStringTitle, forKey: titleKey)
@@ -70,25 +70,25 @@ class AlertPresenter {
         let okActionTitle = LocalizedKeys.General.ok.localized()
         let cancelActionTitle = LocalizedKeys.General.cancel.localized()
         
-        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.primary()])
         let mutableStringMessage = NSMutableAttributedString(string: message ,
-                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
+                                                             attributes: [NSAttributedString.Key.font: UIFont.primary()])
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.setValue(mutableStringTitle, forKey: titleKey)
         alert.setValue(mutableStringMessage, forKey: messageKey)
         
         if cancelable ?? false {
-            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertActionStyle.default) { _ in
+            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertAction.Style.default) { _ in
                 completion(true)
             }
             alert.addAction(okAction)
             
-            let cancelAction = UIAlertAction(title: cancelActionTitle, style: UIAlertActionStyle.cancel) { _ in
+            let cancelAction = UIAlertAction(title: cancelActionTitle, style: UIAlertAction.Style.cancel) { _ in
                 completion(false)
             }
             alert.addAction(cancelAction)
         } else {
-            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertActionStyle.cancel) { _ in
+            let okAction = UIAlertAction(title: okActionTitle, style: UIAlertAction.Style.cancel) { _ in
                 completion(true)
             }
             alert.addAction(okAction)
@@ -112,19 +112,19 @@ class AlertPresenter {
         let yesActionTitle = LocalizedKeys.General.yes.localized()
         let noActionTitle = LocalizedKeys.General.no.localized()
         
-        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedStringKey.font: UIFont.primary()])
+        let mutableStringTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.primary()])
         let mutableStringMessage = NSMutableAttributedString(string: message ,
-                                                             attributes: [NSAttributedStringKey.font: UIFont.primary()])
+                                                             attributes: [NSAttributedString.Key.font: UIFont.primary()])
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.setValue(mutableStringTitle, forKey: titleKey)
         alert.setValue(mutableStringMessage, forKey: messageKey)
         
-        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertActionStyle.default) { _ in
+        let yesAction = UIAlertAction(title: yesActionTitle, style: UIAlertAction.Style.default) { _ in
             completion(true)
         }
         alert.addAction(yesAction)
         
-        let noAction = UIAlertAction(title: noActionTitle, style: UIAlertActionStyle.cancel) { _ in
+        let noAction = UIAlertAction(title: noActionTitle, style: UIAlertAction.Style.cancel) { _ in
             completion(false)
         }
         alert.addAction(noAction)

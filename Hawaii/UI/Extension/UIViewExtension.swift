@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func fixInView(_ container: UIView) -> Void {
+    func fixInView(_ container: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.frame = container.frame
         container.addSubview(self)

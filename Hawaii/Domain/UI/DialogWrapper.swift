@@ -12,11 +12,11 @@ import UIKit
 struct DialogWrapper {
     
     let title: String?
-    let uiAction: UIAlertActionStyle?
+    let uiAction: UIAlertAction.Style?
     let image: UIImage?
     let handler: ((UIAlertAction) -> Void)?
     
-    init(dialogWrapper: DialogWrapper? = nil, title: String? = nil, uiAction: UIAlertActionStyle? = nil, image: UIImage? = nil,
+    init(dialogWrapper: DialogWrapper? = nil, title: String? = nil, uiAction: UIAlertAction.Style? = nil, image: UIImage? = nil,
          handler: ((UIAlertAction) -> Void)? = nil) {
         self.title = title ?? dialogWrapper?.title
         self.uiAction = uiAction ?? dialogWrapper?.uiAction

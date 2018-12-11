@@ -48,7 +48,7 @@ class SummaryViewController: BaseViewController {
     weak var requestUpdateDelegate: RequestUpdateProtocol?
     
     lazy var addRequestItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(title: LocalizedKeys.Summary.submit.localized(), style: UIBarButtonItemStyle.done,
+        let item = UIBarButtonItem(title: LocalizedKeys.Summary.submit.localized(), style: UIBarButtonItem.Style.done,
                                    target: self, action: #selector(addRequest))
         item.tintColor = UIColor.primaryTextColor
         return item

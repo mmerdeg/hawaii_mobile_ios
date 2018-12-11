@@ -18,13 +18,13 @@ class PublicHolidaysManagementViewController: BaseViewController {
     }()
     
     lazy var editBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
@@ -121,11 +121,11 @@ extension PublicHolidaysManagementViewController: UITableViewDataSource, UITable
         self.performSegue(withIdentifier: managePublicHolidaySegue, sender: Array(holidays ?? [:])[indexPath.section].value[indexPath.row])
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.delete
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let confirmationAlertTitle = LocalizedKeys.General.confirm.localized()
             let approveAlertMessage = LocalizedKeys.General.deleteMessage.localized()

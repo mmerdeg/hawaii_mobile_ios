@@ -25,13 +25,13 @@ class LeaveProfilesManagementViewController: BaseViewController {
     }()
     
     lazy var editBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.edit, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.edit, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
     
     lazy var doneBarItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(showEditing))
+        let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(showEditing))
         item.tintColor = UIColor.primaryTextColor
         return item
     }()
