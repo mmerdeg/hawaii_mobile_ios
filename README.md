@@ -16,7 +16,7 @@ local machine for development and testing purposes.
 ### Installing
 
 A step by step series of examples that tell you have to get a development env
-running
+running.
 
 1. Clone the project from github - https://github.com/execom-eu/hawaii_mobile_ios.git
     * $ git clone https://github.com/execom-eu/hawaii_mobile_ios.git
@@ -42,7 +42,7 @@ running
 ## Deployment
 
 The main branch is only for development of the generic functions. No real
-implementation of the app should be done on the main branch. For real app
+implementation of the app should be done on the main branch. For real application
 implementation use different branches such as develop.
 If you make any changes and want to deploy it on TestFlight, please open Hawaii in
 Xcode project navigator, General tab, section Identity, and increment the build
